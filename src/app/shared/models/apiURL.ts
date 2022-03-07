@@ -1,0 +1,25 @@
+export enum API_URLS{
+    LOGEO = 'api/Login',
+    GET_INGRESOS_ANUALES = 'api/Ingresos/IngresosAnuales',
+    GET_INGRESOS_ANUALES_DETALLADO = 'api/Ingresos/IngresosAnualesDetallado/2022/0',
+    GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
+
+    GET_TONELADAS_ANUALES = 'api/Ingresos/ToneladasAnuales',
+    GET_TONELADAS_ANUALES_CHART = 'api/Ingresos/ToneladasAnualesChart',
+
+    GET_VIAJES_ANUALES = 'api/Ingresos/ViajesAnuales',
+    GET_VIAJES_ANUALES_CHART = 'api/Ingresos/ViajesAnualesChart',
+
+    GET_KMS_ANUALES = 'api/Ingresos/KmsAnuales',
+    GET_KMS_ANUALES_CHART = 'api/Ingresos/KmsAnualesChart',
+
+    GET_Rentabilidad_Contable = 'api/Rentabilidad/RentbilidadContable',
+
+    GET_UNIDADES_NEOGCIO = 'api/General/UnidadesNegocio',
+    POST_RENTABILIDAD_CONTABLE = 'api/Rentabilidad/RentbilidadContable',
+    POST_TRACTOS = 'api/Rentabilidad/RCTractos',
+
+    GET_TIPOS_OPERACION = 'api/General/TiposOperacion',
+    POST_CLIENTES_RUTAS = 'api/Rentabilidad/RGClientesRutas',
+    POST_RENTABILIDAD_RUTA = 'api/Rentabilidad/RentabilidadRuta'
+}
