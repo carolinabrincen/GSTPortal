@@ -1,11 +1,14 @@
 export interface CotizacionModel{
   tipoViaje?: string,
+  regreso?: string,
+  clientePagaCasetas?: string,
   idCotizacion?: number,
   folio?: string,
   idUnidadNegocio?: number,
   unidadNegocio?: string,
   idTipoOperacion?: number,
   tipoOperacion?: string,
+  clasificacion?: string,
   cliente?: string,
   origen?: string,
   destino?: string,
@@ -23,6 +26,7 @@ export interface CotizacionModel{
   totalTiempo?: number,
   numLlantas?: number,
   rendimientoKms?: number,
+  rendimientoKmsVacio?:number,
   costoLlanta?: number,
   costoLlantaKmFull?: number,
   distanciaIda?: number,
@@ -33,12 +37,13 @@ export interface CotizacionModel{
   costoPorKm?: number,
   ingresoPorKm?: number,
   tarifa25?: number,
+  tarifa30?: number,
   tarifa35?: number,
   tarifa40?: number,
-  tarifa45?: number,
   porcentajeFinal?: number,
   tarifaFinal?: number,
-  status?: string
+  status?: string,
+  precioVtaFinal?: number
 }
 export interface VariablesCotizacionModel{
   descripcion: string,
