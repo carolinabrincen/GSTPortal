@@ -46,13 +46,6 @@ export class CotizadorComponent implements OnInit {
     FactorCargaSolcial: .58,
     distanciaTotal: undefined,
     fletePorViaje: undefined,
-    velKmsHr: 50,
-    tiempoCarga: undefined,
-    tiempoDescarga: undefined,
-    descansos: undefined,
-    transitoCargado: 38.9,
-    transitoVacio: 38.9,
-    totalTiempo: 89.9,
     numLlantas: 34,
     rendimientoKms: 160000,
     costoLlanta: 5000,
@@ -388,13 +381,6 @@ export class CotizadorComponent implements OnInit {
       FactorCargaSolcial: 0,
       distanciaTotal: 0,
       fletePorViaje: 0,
-      velKmsHr: 0,
-      tiempoCarga: 0,
-      tiempoDescarga: 0,
-      descansos: 0,
-      transitoCargado: 0,
-      transitoVacio: 0,
-      totalTiempo: 0,
       numLlantas: 0,
       rendimientoKms: 0,
       rendimientoKmsVacio: 0,
@@ -402,7 +388,8 @@ export class CotizadorComponent implements OnInit {
       costoLlantaKmFull: 0,
       distanciaIda: 0,
       distanaciaRetorno: 0,
-      precioVtaFinal: 0
+      precioVtaFinal: 0,
+      casetas: 0
     };
   }
 
