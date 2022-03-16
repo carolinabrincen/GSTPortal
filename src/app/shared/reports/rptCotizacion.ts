@@ -10,7 +10,7 @@ export class RptCotizacion {
   private detailBodyReport = [];
 
   getReport() {
-      const docDefinition = {
+      const docDefinition: any = {
           info: {
               title: 'this.tituloNavegador',
               author: 'Plataforma Estatal de Mejora Regulatoria',
