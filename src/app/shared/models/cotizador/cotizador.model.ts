@@ -25,6 +25,7 @@ export interface CotizacionModel{
   distanciaIda?: number,
   distanaciaRetorno?: number,
   casetas?: number,
+  casetasRegreso?: number,
   dieselFinal?: number,
   tarifa?: number,
   costoPorKm?: number,
@@ -36,16 +37,41 @@ export interface CotizacionModel{
   porcentajeFinal?: number,
   tarifaFinal?: number,
   status?: string,
-  precioVtaFinal?: number
+  precioVtaFinal?: number,
+  variables?: VariablesCotizacionModel[],
+  costos?: DetalleCotizacionModel[]
 }
 export interface VariablesCotizacionModel{
-  descripcion: string,
-  valor?: number,
-  fechaAct?:Date
+  variable: string,
+  valor?: number
 }
 
 export interface DetalleCotizacionModel{
   descripcion: string,
   valor?: string,
   porcentaje?:number
+}
+
+export interface NuevaCotizacionModel{
+  idCotizacion?:number,
+  sencillo: boolean,
+  regresa_vacio: boolean,
+  id_ingreso: string,
+  id_area: number,
+  id_tipo_operacion: number,
+  clasificacion: string,
+  cliente: string,
+  origen: string,
+  destino: string,
+  kms_ida: number,
+  kms_regreso: number,
+  casetas: number,
+  casetas_regreso: number,
+  diesel: number,
+  num_llantas: number,
+  rendimiento_cargado: number,
+  rendimiento_vacio: number,
+  costo_llanta: number,
+  costo_llanta_km_full: number,
+  tarifaFinal?: number
 }

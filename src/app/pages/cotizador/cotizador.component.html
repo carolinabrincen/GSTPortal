@@ -562,6 +562,7 @@
 
   <!--#region :::: VENTANA MODAL NUEVO/EDITAR ::::  -->
   <dx-popup
+    #modalNuevoEditar
     style="margin-top: 250px"
     [showTitle]="true"
     [title]="tituloModal"
@@ -812,7 +813,7 @@
           <!-- PRECIO VENTA FINAL -->
           <dxi-item
             itemtype="dxNumberBox"
-            dataField="precioVtaFinal"
+            dataField="tarifaFinal"
             [colSpan]="3"
             [editorOptions]="{ format: '$ #,##0.##' }"
           >
@@ -870,7 +871,7 @@
 
   <!--#region :::: MODAL VARIABLES ::::  -->
   <dx-popup
-    height="580px"
+    height="90%"
     width="520px"
     style="margin-top: 250px"
     [showTitle]="true"
@@ -887,7 +888,7 @@
       <dx-data-grid
         #variables
         id="gridVariables"
-        [dataSource]="arrVariables"
+        [dataSource]="itemCotizacion.variables"
         [columnAutoWidth]="true"
         [showColumnLines]="true"
         [showBorders]="true"
@@ -905,15 +906,9 @@
           caption="Valor"
           [fixed]="true"
           headerCellTemplate="headerTemplate"
-        ></dxi-column>
-        <dxi-column
-          dataField="fechaAct"
-          caption="Fecha Actualización"
-          [fixed]="true"
-          alignment="center"
-          format="dd/MM/yy"
-          headerCellTemplate="headerTemplate"
-        ></dxi-column>
+        >
+          <dxo-format type="fixedPoint" [precision]="2"> </dxo-format>
+        </dxi-column>
 
         <div *dxTemplate="let data of 'headerTemplate'">
           <div style="font-weight: bolder; color: black">
@@ -926,6 +921,7 @@
             {{ info.column.caption }}
           </div>
         </div>
+        <dxo-paging [pageSize]="18"></dxo-paging>
       </dx-data-grid>
 
       <!--#endregion :::: FIN GRID VARIABLES ::::  -->
@@ -936,7 +932,7 @@
 
   <!--#region :::: MODAL DETALLE COTIZACION :::: -->
   <dx-popup
-    height="750px"
+    height="80%"
     width="520px"
     style="margin-top: 250px"
     [showTitle]="true"
@@ -953,7 +949,7 @@
       <dx-data-grid
         #variables
         id="gridDetalleCotizacion"
-        [dataSource]="arrDetalleCotizacion"
+        [dataSource]="itemCotizacion.costos"
         [columnAutoWidth]="true"
         [showColumnLines]="true"
         [showBorders]="true"
@@ -971,7 +967,9 @@
           caption="Valor"
           alignment="right"
           headerCellTemplate="headerTemplate"
-        ></dxi-column>
+        >
+          <dxo-format type="currency" [precision]="2"> </dxo-format>
+        </dxi-column>
         <dxi-column
           dataField="porcentaje"
           caption="%"
