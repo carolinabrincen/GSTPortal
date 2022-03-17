@@ -294,6 +294,7 @@ export class CotizadorComponent implements OnInit {
   dieselValueChanged(e: any) {
     this.itemCotizacion.costo = e.value === 0 ? 0 : +(this.itemCotizacion.diesel / 1.16).toFixed(2);
   }
+  
 
   distanciaTotalValueChanged(e: any) {
     this.itemCotizacion.distanciaTotal = this.itemCotizacion.distanciaIda +
@@ -369,7 +370,8 @@ export class CotizadorComponent implements OnInit {
           rendimiento_cargado: this.itemCotizacion.rendimientoKms,
           rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
           costo_llanta: this.itemCotizacion.costoLlanta,
-          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull
+          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
+          dieselTotal: this.itemCotizacion.dieselTotal
         };
 
         this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
@@ -418,7 +420,8 @@ export class CotizadorComponent implements OnInit {
           rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
           costo_llanta: this.itemCotizacion.costoLlanta,
           costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
-          tarifaFinal: this.itemCotizacion.tarifaFinal
+          tarifaFinal: this.itemCotizacion.tarifaFinal,
+          dieselTotal: this.itemCotizacion.dieselTotal
         };
 
         this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
