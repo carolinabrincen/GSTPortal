@@ -21,5 +21,13 @@ export enum API_URLS{
 
     GET_TIPOS_OPERACION = 'api/General/TiposOperacion',
     POST_CLIENTES_RUTAS = 'api/Rentabilidad/RGClientesRutas',
-    POST_RENTABILIDAD_RUTA = 'api/Rentabilidad/RentabilidadRuta'
+    POST_RENTABILIDAD_RUTA = 'api/Rentabilidad/RentabilidadRuta',
+
+    POST_COTIZADOR_OBTENER_VARIABLES = 'api/Cotizador/ObtenerVariables',
+    POST_COTIZADOR_NUEVA_COTIZACION = 'api/Cotizador/NvaCotizacion',
+    GET_COTIZADOR_OBTENER_PRECOTIZACIONES = 'api/Cotizador/GetCotizacionesActivas/PRECOTIZACION',
+    GET_COTIZADOR_OBTENER_APROBADAS = 'api/Cotizador/GetCotizacionesActivas/APROBADA',
+    POST_COTIZADOR_EDITAR_COTIZACION = 'api/Cotizador/ModCotizacion',
+    POST_COTIZADOR_ELIMINAR_COTIZACION = 'api/Cotizador/EliminarCotizacion',
+    POST_COTIZADOR_APROBAR_COTIZACION = 'api/Cotizador/AprobarCotizacion',
 }

@@ -1,6 +1,6 @@
 import { ReportsPDFService } from './../../shared/reports/reports-pdf.service';
 import { CotizadorService } from './../../services/cotizador/cotizador.service';
-import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel } from './../../shared/models/cotizador/cotizador.model';
+import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel, NuevaCotizacionModel } from './../../shared/models/cotizador/cotizador.model';
 import { Component, OnInit } from '@angular/core';
 import {
   DxDataGridModule,
@@ -50,7 +50,7 @@ export class CotizadorComponent implements OnInit {
     rendimientoKms: 160000,
     costoLlanta: 5000,
     costoLlantaKmFull: 1.06,
-    precioVtaFinal:0
+    precioVtaFinal: 0
   };
 
   buttonOptions: any = {
@@ -97,6 +97,7 @@ export class CotizadorComponent implements OnInit {
     this.verCortizacionClick = this.verCortizacionClick.bind(this);
     this.distanciaTotalValueChanged = this.distanciaTotalValueChanged.bind(this);
     this.dieselValueChanged = this.dieselValueChanged.bind(this);
+    //this.getVariablesCotizacion = this.getVariablesCotizacion.bind(this);
 
     //Configuracion de botones
     //CALCULAR VARIABLES
@@ -107,7 +108,13 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         console.log('Calcular Variables', that.itemCotizacion);
-        if (that.itemCotizacion.idUnidadNegocio && that.itemCotizacion.idTipoOperacion >= 0 && that.itemCotizacion.clasificacion !== '') {
+        if (that.itemCotizacion.idUnidadNegocio &&
+          that.itemCotizacion.idTipoOperacion >= 0
+          && that.itemCotizacion.clasificacion !== '') {
+
+          that.getVariablesCotizacion(that.itemCotizacion.idUnidadNegocio,
+            that.itemCotizacion.idTipoOperacion,
+            that.itemCotizacion.clasificacion);
 
         } else {
           notify({
@@ -119,8 +126,6 @@ export class CotizadorComponent implements OnInit {
           }, 'warning', 3000);
 
         }
-
-
       },
     };
     //VER VARIABLES
@@ -131,8 +136,7 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         that.bolModalVariables = true;
-        console.log('modal variables');
-
+        console.log(that.itemCotizacion.variables);
       },
     };
     //PREVIZUALIZAR
@@ -166,7 +170,6 @@ export class CotizadorComponent implements OnInit {
       layout: 'horizontal',
       onValueChanged: (e) => {
         this.bolEsViajeSencillo = e.value === 'Solo de ida' ? true : false;
-        console.log(e);
       },
     };
     //Configuracion de radiobutton Regreso
@@ -195,8 +198,6 @@ export class CotizadorComponent implements OnInit {
     this.getPreCotizaciones();
     this.getUnidadesNegocio();
     this.getTiposOperacion();
-    this.getVariablesCotizacion();
-    this.getDetalleCotizacion();
     this.getClasificaciones();
   }
 
@@ -206,22 +207,70 @@ export class CotizadorComponent implements OnInit {
     this.arrClasificaciones = this.cotizadorService.getClasificaciones();
   }
 
-  getDetalleCotizacion() {
-    this.arrDetalleCotizacion = [];
-    this.arrDetalleCotizacion = this.cotizadorService.getDetalleCotizacion();
+
+  getVariablesCotizacion(idUDN: number, idTipoOperacion: number, clasificacion: string) {
+    this.arrVariables = [];
+    this.cotizadorService.getVariablesCotizacion(idUDN, idTipoOperacion, clasificacion)
+      .subscribe(res => {
+        console.log(res);
+
+        this.itemCotizacion.variables = res.data.variables;
+        console.table(this.itemCotizacion.variables);
+
+        if (this.itemCotizacion.variables.length > 0) {
+          notify({
+            message: 'Variables actualizadas correctamente!',
+            position: {
+              my: 'center top',
+              at: 'center center',
+            },
+          }, 'success', 3000);
+
+        } else {
+          notify({
+            message: 'Variables actualizadas correctamente!',
+            whidth: 20,
+            position: {
+              my: 'center top',
+              at: 'center center',
+            },
+          }, 'success', 3000);
+
+          notify({
+            message: 'Parametrización de variables no encontrada, verifique!',
+            whidth: 30,
+            position: {
+              my: 'left top',
+              at: 'center center',
+              of: '#modalNuevoEditar'
+            },
+          }, 'warning', 3000);
+        }
+
+        this.itemCotizacion.rendimientoKmsVacio = res.data.rendimiento_vacio;
+        this.itemCotizacion.rendimientoKms = res.data.rendimiento_cargado;
+        this.itemCotizacion.numLlantas = res.data.num_llantas;
+        this.itemCotizacion.costoLlanta = res.data.costo_llantas;
+        this.itemCotizacion.costoLlantaKmFull = res.data.costo_llantas_km_full;
+        this.itemCotizacion.diesel = res.data.diesel;
+        this.itemCotizacion.costo = res.data.costo_diesel;
+      });
+
+
   }
 
-  getVariablesCotizacion() {
-    this.arrVariables = [];
-    this.arrVariables = this.cotizadorService.getVariablesCotizacion();
-  }
   getCotizaciones() {
     this.arrCotizaciones = [];
-    this.arrCotizaciones = this.cotizadorService.getCotizaciones();
+    this.cotizadorService.getCotizaciones().subscribe(res => {
+      this.arrCotizaciones = res.data;
+    });
   }
+
   getPreCotizaciones() {
     this.arrPreCotizaciones = [];
-    this.arrPreCotizaciones = this.cotizadorService.getPreCotizaciones();
+    this.cotizadorService.getPreCotizaciones().subscribe(res => {
+      this.arrPreCotizaciones = res.data;
+    });
   }
 
   getUnidadesNegocio() {
@@ -243,7 +292,7 @@ export class CotizadorComponent implements OnInit {
 
   //#endregion :::: EVENTOS :::::
   dieselValueChanged(e: any) {
-    this.itemCotizacion.costo =  e.value === 0 ? 0 :  +(this.itemCotizacion.diesel / 1.16).toFixed(2);
+    this.itemCotizacion.costo = e.value === 0 ? 0 : +(this.itemCotizacion.diesel / 1.16).toFixed(2);
   }
 
   distanciaTotalValueChanged(e: any) {
@@ -252,7 +301,6 @@ export class CotizadorComponent implements OnInit {
   }
 
   mouseoverAprobarCotizacion(e: any) {
-    console.log(e);
     //TODO: Validar que sea tamien el gerente
     this.bolBotonAprobarCotizacion = e.value === 'PRECOTIZACION';
 
@@ -265,14 +313,33 @@ export class CotizadorComponent implements OnInit {
     result.then((dialogResult) => {
       if (dialogResult) {
         //TODO: Implementar endpoint para aprobar cotizacion
-        e.row.data.status = 'APROBADA';
-        notify({
-          message: 'Cotización aprobada con exito!',
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'success', 3000);
+        this.cotizadorService.postAprobarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+          if (res.responseCode === 200) {
+            //agregamos precotizacion a las aprobadas
+            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
+            this.arrPreCotizaciones[elementIndex].status = "APROBADA";
+            this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
+
+            //Quitamos la aprobada de las precotizaciones
+            this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+
+            notify({
+              message: 'Cotización aprobada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 5000);
+          }
+        });
       }
     });
   }
@@ -282,25 +349,100 @@ export class CotizadorComponent implements OnInit {
     console.log('🚗', this.itemCotizacion);
     switch (this.tipoRegistro) {
       case 'nuevo':
-        this.itemCotizacion.status = "PRECOTIZACION";
-        this.arrPreCotizaciones.push(this.itemCotizacion);
-        notify({
-          message: 'Cotización guardada con exito!',
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'success', 3000);
+
+        const nuevaCotizacion: NuevaCotizacionModel = {
+          sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
+          regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
+          id_ingreso: '0',
+          id_area: 1,
+          id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
+          clasificacion: this.itemCotizacion.clasificacion,
+          cliente: this.itemCotizacion.cliente,
+          origen: this.itemCotizacion.origen,
+          destino: this.itemCotizacion.destino,
+          kms_ida: this.itemCotizacion.distanciaIda,
+          kms_regreso: this.itemCotizacion.distanaciaRetorno,
+          casetas: this.itemCotizacion.casetas,
+          casetas_regreso: this.itemCotizacion.casetasRegreso,
+          diesel: this.itemCotizacion.diesel,
+          num_llantas: this.itemCotizacion.numLlantas,
+          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
+          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
+          costo_llanta: this.itemCotizacion.costoLlanta,
+          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull
+        };
+
+        this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
+          if (res.responseCode === 200) {
+            this.itemCotizacion = res.data;
+            this.arrPreCotizaciones.push(this.itemCotizacion);
+            notify({
+              message: 'Cotización guardada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 3000);
+          }
+
+
+        });
         break;
       case 'editar':
-        this.arrCotizaciones[this.rowIndex] = this.itemCotizacion;
-        notify({
-          message: 'Cotización modificada con exito!',
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'success', 3000);
+        const editarCotizacion: NuevaCotizacionModel = {
+          idCotizacion: this.itemCotizacion.idCotizacion,
+          sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
+          regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
+          id_ingreso: '0',
+          id_area: 1,
+          id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
+          clasificacion: this.itemCotizacion.clasificacion,
+          cliente: this.itemCotizacion.cliente,
+          origen: this.itemCotizacion.origen,
+          destino: this.itemCotizacion.destino,
+          kms_ida: this.itemCotizacion.distanciaIda,
+          kms_regreso: this.itemCotizacion.distanaciaRetorno,
+          casetas: this.itemCotizacion.casetas,
+          casetas_regreso: this.itemCotizacion.casetasRegreso,
+          diesel: this.itemCotizacion.diesel,
+          num_llantas: this.itemCotizacion.numLlantas,
+          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
+          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
+          costo_llanta: this.itemCotizacion.costoLlanta,
+          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
+          tarifaFinal: this.itemCotizacion.tarifaFinal
+        };
+
+        this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
+          if (res.responseCode === 200) {
+            this.itemCotizacion = res.data;
+            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == this.itemCotizacion.idCotizacion);
+            this.arrPreCotizaciones[elementIndex] = this.itemCotizacion;
+            notify({
+              message: 'Cotización guardada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 3000);
+          }
+        });
         break;
       default:
         break;
@@ -346,15 +488,27 @@ export class CotizadorComponent implements OnInit {
       clonedItem.folio + "</i>", "Confirmar Operación");
     result.then((dialogResult) => {
       if (dialogResult) {
-        // this.arrCotizaciones.splice(e.row.rowIndex);
-        this.arrCotizaciones = this.arrCotizaciones.filter(e => e.folio !== clonedItem.folio);
-        notify({
-          message: 'Cotización eliminada con exito!',
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'success', 3000);
+
+        this.cotizadorService.postEliminarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+          if (res.responseCode === 200) {
+            this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+            notify({
+              message: 'Cotización eliminada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 3000);
+          }
+        });
       }
     });
   }
@@ -389,7 +543,8 @@ export class CotizadorComponent implements OnInit {
       distanciaIda: 0,
       distanaciaRetorno: 0,
       precioVtaFinal: 0,
-      casetas: 0
+      casetas: 0,
+      tarifaFinal: 0
     };
   }
 
