@@ -13,6 +13,8 @@ export class IngresosDetalladosComponent implements OnInit {
 
   arrIngresos: IngresosDModel[] = [];
   arrDetalle: DetalleModel[] = [];
+  arrIngresosMarzo: IngresosDModel[] = [];
+  arrDetalleMarzo: DetalleModel[] = [];
 
   constructor(private ingresosService: ServiceSales) 
   {
@@ -22,6 +24,13 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalle = res.data.detalle;
       console.log(this.arrIngresos);
       console.log(this.arrDetalle);
+    });
+
+    this.ingresosService.getIngresosDetalladosMarzo().subscribe(res => {
+      console.log(res.data);
+      this.arrIngresosMarzo = res.data.resumen;
+      this.arrDetalleMarzo = res.data.detalle;
+    
     });
   }
 

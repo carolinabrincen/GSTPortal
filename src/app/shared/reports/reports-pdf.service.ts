@@ -208,62 +208,6 @@ export class ReportsPDFService {
                                 text: '(Doce mil ochocientos pesos 0/100 M.N.)',
                                 fontSize: 10
                               }
-                            ],
-                            //Ruta 2
-                            [
-                              {
-                                text: 'Monterrey - Chihuahua'
-                              },
-                              {
-                                alignment: 'right',
-                                text: '$ 49,950.00'
-                              },
-                              {
-                                text: '(Cuarenta y nueve mil novecientos cincuenta pesos 0/100 M.N.)',
-                                fontSize: 10
-                              }
-                            ],
-                            //Ruta 3
-                            [
-                              {
-                                text: 'Monterrey - Ciudad Cuauhtémoc'
-                              },
-                              {
-                                alignment: 'right',
-                                text: '$ 54,500.00'
-                              },
-                              {
-                                text: '(Cincuenta y cuatro mil quinientos pesos  0/100 M.N.)',
-                                fontSize: 10
-                              }
-                            ],
-                            //Ruta 4
-                            [
-                              {
-                                text: 'Monterrey Local'
-                              },
-                              {
-                                alignment: 'right',
-                                text: '$ 7,000.00'
-                              },
-                              {
-                                text: '(Siete mil pesos  0/100 M.N.)',
-                                fontSize: 10
-                              }
-                            ],
-                            //Ruta 5
-                            [
-                              {
-                                text: 'Cds México - Mérida'
-                              },
-                              {
-                                alignment: 'right',
-                                text: '$ 79,500.00'
-                              },
-                              {
-                                text: '(Setenta y nueve mil quinientos pesos 0/100 M.N.)',
-                                fontSize: 10
-                              }
                             ]
                           ]
                         }

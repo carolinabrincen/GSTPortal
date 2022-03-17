@@ -38,6 +38,7 @@ export interface CotizacionModel{
   tarifaFinal?: number,
   status?: string,
   precioVtaFinal?: number,
+  dieselTotal?: number,
   variables?: VariablesCotizacionModel[],
   costos?: DetalleCotizacionModel[]
 }
@@ -73,5 +74,6 @@ export interface NuevaCotizacionModel{
   rendimiento_vacio: number,
   costo_llanta: number,
   costo_llanta_km_full: number,
-  tarifaFinal?: number
+  tarifaFinal?: number,
+  dieselTotal
 }
