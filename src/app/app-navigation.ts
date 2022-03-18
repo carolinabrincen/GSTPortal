@@ -11,7 +11,7 @@ export const navigation = [
 
       {
         text: 'Ingresos',
-        path: '/tasks',
+        path: '/ingresosAnuales',
         icon: 'money'
       },
       {
