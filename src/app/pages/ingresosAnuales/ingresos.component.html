@@ -1,1 +1,277 @@
-<h2 class="content-block">Ingresos</h2>
+<h2 class="content-block">Ingresos Anuales</h2>
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+    <div>
+        <!--#region :::: FORM DE CAPUTURA :::: -->
+        <div class="dx-field">
+            <div class="dx-field-label" style="width: 20%;">Unidad de negocio</div>
+            <div class="dx-field-value" style="width: 80%;">
+                <dx-drop-down-box [(value)]="treeBoxValue" [(opened)]="isTreeBoxOpened" valueExpr="ID" displayExpr="name" placeholder="Selecciona un valor..." [showClearButton]="true" [dataSource]="treeDataSource" (onOptionChanged)="onTreeBoxOptionChanged($event)">
+                    <div *dxTemplate="let data of 'content'">
+                        <dx-tree-view [dataSource]="treeDataSource" dataStructure="plain" keyExpr="ID" parentIdExpr="categoryId" selectionMode="single" displayExpr="name" [selectByClick]="true" (onItemSelectionChanged)="treeView_itemSelectionChanged($event)">
+                        </dx-tree-view>
+                    </div>
+                </dx-drop-down-box>
+            </div>
+            <div class="dx-field-value" style="width: 25%;">
+                <dx-button stylingMode="contained" text="Actualizar" icon="search" type="normal" [width]="240" (onClick)="clickClientesRutas($event)">
+                </dx-button>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div>
+        <dx-tab-panel>
+            <dxi-item title=Ingresos>
+                <dx-data-grid #dataGridVar [dataSource]="indicadores" [showBorders]="true">
+
+                    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" cellTemplate="cellTemplateSize" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="enero" caption="Enero" format="currency"></dxi-column>
+                    <dxi-column dataField="febrero" caption="Febrero" format="currency"></dxi-column>
+                    <dxi-column dataField="marzo" caption="Marzo" format="currency"></dxi-column>
+                    <dxi-column dataField="abril" caption="Abril" format="currency"></dxi-column>
+                    <dxi-column dataField="mayo" caption="Mayo" format="currency"></dxi-column>
+                    <dxi-column dataField="junio" caption="Junio" format="currency"></dxi-column>
+                    <dxi-column dataField="julio" caption="Julio" format="currency"></dxi-column>
+                    <dxi-column dataField="agosto" caption="Agosto" format="currency"></dxi-column>
+                    <dxi-column dataField="septiembre" caption="Septiembre" format="currency"></dxi-column>
+                    <dxi-column dataField="octubre" caption="Octubre" format="currency"></dxi-column>
+                    <dxi-column dataField="noviembre" caption="Noviembre" format="currency"></dxi-column>
+                    <dxi-column dataField="diciemnbre" caption="Diciembre" format="currency"></dxi-column>
+                    <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+
+                    <dxo-summary>
+
+                        <dxi-total-item column="enero" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="febrero" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="marzo" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="abril" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="mayo" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="junio" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="julio" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="agosto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="septiembre" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="octubre" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="noviembre" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="diciemnbre" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        </dxi-total-item>
+
+
+                        <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="marzo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="abril" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="mayo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="junio" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="julio" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="agosto" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="septiembre" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="octubre" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="noviembre" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                        <dxi-group-item column="diciemnbre" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        </dxi-group-item>
+                    </dxo-summary>
+
+
+
+                    <dxo-paging [pageSize]="60"></dxo-paging>
+
+                    <div *dxTemplate="let cell of 'cellTemplateSize'">
+                        <div style="font-size: smaller; font-weight: bold;">{{cell.text}}</div>
+                    </div>
+
+                </dx-data-grid>
+            </dxi-item>
+            <dxi-item title="Kilómetros">
+                <dx-data-grid id="pivotgridKms" [dataSource]="kms" [showBorders]="true">
+                    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" cellTemplate="cellTemplateSize" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="enero" caption="Enero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="febrero" caption="Febrero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="marzo" caption="Marzo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="abril" caption="Abril" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="mayo" caption="Mayo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="junio" caption="Junio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="julio" caption="Julio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="agosto" caption="Agosto" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="septiembre" caption="Septiembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="octubre" caption="Octubre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="noviembre" caption="Noviembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="diciemnbre" caption="Diciembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+
+                    <dxo-summary>
+
+                        <dxi-total-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="marzo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="abril" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="mayo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="junio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="julio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="agosto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="septiembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="octubre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="noviembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="diciemnbre" summaryType="sum" displayFormat="{0}">
+                        </dxi-total-item>
+
+                    </dxo-summary>
+
+                    <div *dxTemplate="let cell of 'cellTemplateSize'">
+                        <div style="font-size: smaller; font-weight: bold;">{{cell.text}}</div>
+                    </div>
+
+                </dx-data-grid>
+            </dxi-item>
+            <dxi-item title="Viajes">
+                <dx-data-grid id="pivotgridViajes" [dataSource]="viajes" [showBorders]="true">
+                    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" cellTemplate="cellTemplateSize" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="enero" caption="Enero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="febrero" caption="Febrero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="marzo" caption="Marzo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="abril" caption="Abril" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="mayo" caption="Mayo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="junio" caption="Junio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="julio" caption="Julio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="agosto" caption="Agosto" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="septiembre" caption="Septiembre" format="fixedPoint"> </dxi-column>
+                    <dxi-column dataField="octubre" caption="Octubre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="noviembre" caption="Noviembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="diciemnbre" caption="Diciembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+
+                    <dxo-summary>
+
+                        <dxi-total-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="marzo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="abril" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="mayo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="junio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="julio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="agosto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="septiembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="octubre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="noviembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="diciemnbre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+
+                    </dxo-summary>
+
+                    <div *dxTemplate="let cell of 'cellTemplateSize'">
+                        <div style="font-size: smaller; font-weight: bold;">{{cell.text}}</div>
+                    </div>
+
+                </dx-data-grid>
+            </dxi-item>
+            <dxi-item title="Toneladas">
+
+                <dx-data-grid id="pivotgridToneladas" [dataSource]="toneladas" [showBorders]="true">
+                    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" cellTemplate="cellTemplateSize" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="enero" caption="Enero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="febrero" caption="Febrero" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="marzo" caption="Marzo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="abril" caption="Abril" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="mayo" caption="Mayo" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="junio" caption="Junio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="julio" caption="Julio" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="agosto" caption="Agosto" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="septiembre" caption="Septiembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="octubre" caption="Octubre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="noviembre" caption="Noviembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="diciemnbre" caption="Diciembre" format="fixedPoint"></dxi-column>
+                    <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+
+                    <dxo-summary>
+
+                        <dxi-total-item column="enero" summaryType="sum" valueFormat="fixedPoint" displayFormat="{0}">
+                        </dxi-total-item>
+                        <dxi-total-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="marzo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="abril" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="mayo" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="junio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="julio" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="agosto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="septiembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="octubre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="noviembre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+                        <dxi-total-item column="diciemnbre" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+                        </dxi-total-item>
+
+                    </dxo-summary>
+
+                    <div *dxTemplate="let cell of 'cellTemplateSize'">
+                        <div style="font-size: smaller; font-weight: bold;">{{cell.text}}</div>
+                    </div>
+
+                </dx-data-grid>
+            </dxi-item>
+        </dx-tab-panel>
+    </div>
+
+
+
+</div>
