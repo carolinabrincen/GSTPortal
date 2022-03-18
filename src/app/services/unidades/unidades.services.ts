@@ -39,13 +39,13 @@ import { Injectable } from '@angular/core';
     {
       "ID": "8",
       "categoryId": "0",
-      "name": "CUATITLAN",
+      "name": "CUAUTITLAN",
       "price": 1600
     },
     {
       "ID": "9",
       "categoryId": "0",
-      "name": "TULTITLÁN",
+      "name": "TULTITLAN",
       "price": 1750
     }
     
