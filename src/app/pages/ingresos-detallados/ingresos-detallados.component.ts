@@ -37,5 +37,37 @@ export class IngresosDetalladosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onRowPrepared(e: any) {
+    
+
+    // if (e.rowType == 'group') {
+    //   if (e.groupIndex == 0) {
+    //     e.rowElement.style.backgroundColor = '#ff9460';
+    //     e.rowElement.style.color = "white";
+    //   }
+      
+    // }
+
+    if (e.rowType == 'groupFooter') {
+
+      
+
+      e.cells.forEach((c: any) => {
+
+        
+
+          //negrita columna margen utilidad
+          if (c.columnIndex == 9  || c.columnIndex == 12) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "14px";
+            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.color = "red";
+          }
+
+          
+        });
+
+  }
 }
 
+}
