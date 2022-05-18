@@ -14,18 +14,15 @@ export interface CotizacionModel{
   destino?: string,
   diesel?: number,
   costo?: number,
-  FactorCargaSolcial?: number,
+  factorCargaSolcial?: number,
   distanciaTotal?: number,
   fletePorViaje?: number,
   numLlantas?: number,
   rendimientoKms?: number,
   rendimientoKmsVacio?:number,
-  costoLlanta?: number,
-  costoLlantaKmFull?: number,
   distanciaIda?: number,
   distanaciaRetorno?: number,
   casetas?: number,
-  casetasRegreso?: number,
   dieselFinal?: number,
   tarifa?: number,
   costoPorKm?: number,
@@ -38,9 +35,15 @@ export interface CotizacionModel{
   tarifaFinal?: number,
   status?: string,
   precioVtaFinal?: number,
+  sencillo?: boolean,
+  regresa_vacio?: boolean,
   dieselTotal?: number,
+  casetas_sin_iva?: number,
+  num_estancias?: number,
+  num_maniobras?:number,
   variables?: VariablesCotizacionModel[],
-  costos?: DetalleCotizacionModel[]
+  costos_ida?: DetalleCotizacionModel[],
+  costos_regreso?: DetalleCotizacionModel[]
 }
 export interface VariablesCotizacionModel{
   variable: string,
@@ -49,7 +52,9 @@ export interface VariablesCotizacionModel{
 
 export interface DetalleCotizacionModel{
   descripcion: string,
-  valor?: string,
+  unidad_medida:string,
+  costo?: string,
+  subtotal?: string,
   porcentaje?:number
 }
 
@@ -69,11 +74,14 @@ export interface NuevaCotizacionModel{
   casetas: number,
   casetas_regreso: number,
   diesel: number,
-  num_llantas: number,
   rendimiento_cargado: number,
   rendimiento_vacio: number,
-  costo_llanta: number,
-  costo_llanta_km_full: number,
-  tarifaFinal?: number,
-  dieselTotal
+  num_estancias_ida: number,
+  num_maniobras_ida: number,
+  ton_carga_ida: number,
+  num_estancias_regreso: number,
+  num_maniobras_regreso: number,
+  ton_carga_regreso:number,
+  cliente_paga: boolean,
+  tarifaFinal: number
 }

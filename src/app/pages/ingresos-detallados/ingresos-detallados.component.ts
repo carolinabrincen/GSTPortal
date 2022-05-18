@@ -17,6 +17,8 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleMarzo: DetalleModel[] = [];
   arrIngresosAbril: IngresosDModel[] = [];
   arrDetalleAbril: DetalleModel[] = [];
+  arrIngresosMayo: IngresosDModel[] = [];
+  arrDetalleMayo: DetalleModel[] = [];
 
   constructor(private ingresosService: ServiceSales) 
   {
@@ -35,10 +37,17 @@ export class IngresosDetalladosComponent implements OnInit {
     });
 
     this.ingresosService.getIngresosDetalladosMensual().subscribe(res => {
-      console.log(res.data);
+     
       this.arrIngresosAbril = res.data.resumen;
       this.arrDetalleAbril = res.data.detalle;
-     console.log(this.arrDetalleAbril);
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosMayo().subscribe(res => {
+     
+      this.arrIngresosMayo = res.data.resumen;
+      this.arrDetalleMayo = res.data.detalle;
+     
     });
   }
 

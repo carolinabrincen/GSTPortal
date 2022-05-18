@@ -30,7 +30,7 @@
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- DIESEL -->
-                <dxi-column dataField="dieselTotal" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="dieselFinal" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO POR KM -->
@@ -277,7 +277,7 @@
               searchEnabled: true,
               displayExpr: 'nombre',
               valueExpr: 'idUnidad'
-            }" [colSpan]="6">
+            }" [colSpan]="4">
                         <dxo-label text="Unidad de Negocio"> </dxo-label>
                         <dxi-validation-rule type="required" message="Unidad de Negocio es campo requerido"></dxi-validation-rule>
                     </dxi-item>
@@ -287,7 +287,7 @@
               searchEnabled: true,
               displayExpr: 'operacion',
               valueExpr: 'idTipoOperacion'
-            }" [colSpan]="6">
+            }" [colSpan]="4">
                         <dxo-label text="Tipo de Operación"> </dxo-label>
                         <dxi-validation-rule type="required" message="Tipo de Operación es campo requerido"></dxi-validation-rule>
                     </dxi-item>
@@ -295,71 +295,109 @@
                     <dxi-item dataField="clasificacion" editorType="dxSelectBox" [editorOptions]="{
               items: arrClasificaciones,
               searchEnabled: true
-            }" [colSpan]="!bolFormSoloLectura ? 4 : 6">
+            }" [colSpan]="4">
                         <dxo-label text="Clasificación"> </dxo-label>
                         <dxi-validation-rule type="required" message="Clasificación es campo requerido"></dxi-validation-rule>
                     </dxi-item>
-                    <!-- BOTON VER CONSULTAR DATOS  -->
-                    <dxi-item *ngIf="!bolFormSoloLectura" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonCalcularVariables" [colSpan]="2">
-                    </dxi-item>
+
                     <!-- CLIENTE -->
                     <dxi-item dataField="cliente" [colSpan]="6">
                         <dxi-validation-rule type="required" message="Cliente es campo requerido"></dxi-validation-rule>
                     </dxi-item>
                     <!-- ORIGEN -->
-                    <dxi-item dataField="origen" [colSpan]="6">
+                    <dxi-item dataField="origen" [colSpan]="3">
                         <dxi-validation-rule type="required" message="Origen es campo requerido"></dxi-validation-rule>
                     </dxi-item>
                     <!-- DESTINO -->
-                    <dxi-item dataField="destino" [colSpan]="6">
+                    <dxi-item dataField="destino" [colSpan]="3">
                         <dxi-validation-rule type="required" message="Destino es campo requerido"></dxi-validation-rule>
                     </dxi-item>
-                    <!-- DISTANCIA IDA -->
-                    <dxi-item dataField="distanciaIda" [colSpan]="4" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
-                        <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
+                    <dxo-subtitle text="Viaje de ida">
+                    </dxo-subtitle>
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE IDA">
+                        <!-- DISTANCIA IDA -->
+                        <dxi-item dataField="distanciaIda" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
+                            <dxo-label text="Kilómetros"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+
+                        <!-- DIESEL -->
+                        <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                            <dxo-label text="Diésel con Impuestos (MXN)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- CASETAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- ESTANCIAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Estancias (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- MANIOBRAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Maniobras (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- TONELADAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Toneladas (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+
+
                     </dxi-item>
-                    <!-- DISTANCIA RETORNO -->
-                    <dxi-item dataField="distanaciaRetorno" [colSpan]="4" [editorOptions]="{
-              readOnly: bolEsViajeSencillo,
-              onValueChanged: distanciaTotalValueChanged
-            }">
-                        <dxi-validation-rule type="required" message="Distancia retorno es campo requerido"></dxi-validation-rule>
-                    </dxi-item>
-                    <!-- DISTANCIA TOTAL -->
-                    <dxi-item dataField="distanciaTotal" [colSpan]="4" [editorOptions]="{ readOnly: true }">
-                        <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
-                    </dxi-item>
-                    <!-- DIESEL -->
-                    <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="4" [editorOptions]="{ onValueChanged: dieselValueChanged }">
-                        <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
-                    </dxi-item>
-                    <!-- COSTO -->
-                    <dxi-item dataField="costo" [colSpan]="4" [editorOptions]="{ readOnly: true }">
-                    </dxi-item>
-                    <!-- CASETAS -->
-                    <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="4">
-                        <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
-                    </dxi-item>
-                    <!-- NUM LLANTAS -->
-                    <dxi-item dataField="numLlantas" [colSpan]="2" [editorOptions]="{ readOnly: true }">
-                    </dxi-item>
-                    <!-- RENDIMIENTO KMS.CARGADO -->
-                    <dxi-item dataField="rendimientoKms" [colSpan]="2" [editorOptions]="{ readOnly: true }">
-                        <dxo-label text="Rendimiento Kms. Cargado"> </dxo-label>
-                    </dxi-item>
-                    <!-- RENDIMIENTO KMS. VACIO -->
-                    <dxi-item dataField="rendimientoKmsVacio" [colSpan]="2" [editorOptions]="{ readOnly: true }">
-                        <dxo-label text="Rendimiento Kms. Vacio"> </dxo-label>
-                    </dxi-item>
-                    <!-- COSTO LLANTA -->
-                    <dxi-item dataField="costoLlanta" [colSpan]="3" [editorOptions]="{ readOnly: true }">
-                    </dxi-item>
-                    <!-- COSTO LLANTA KM FULL -->
-                    <dxi-item dataField="costoLlantaKmFull" [colSpan]="3" [editorOptions]="{ readOnly: true }">
-                        <dxo-label text="COSTO LLANTA KM FULL"> </dxo-label>
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE REGRESO">
+                        <!-- DISTANCIA IDA -->
+                        <dxi-item dataField="distanciaIda" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
+                            <dxo-label text="Kilómetros"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- DIESEL -->
+                        <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                            <dxo-label text="Diésel con Impuestos(MXN)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- CASETAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- ESTANCIAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Estancias (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- MANIOBRAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Maniobras (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <!-- TONELADAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                            <dxo-label text="Toneladas (Número)"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
                     </dxi-item>
                     <!-- ESPACIO EN BLANCO -->
+                    <dxi-item itemType="empty" [colSpan]="12"></dxi-item>
+                    <!-- ESPACIO EN BLANCO -->
                     <dxi-item itemType="empty" [colSpan]="6"></dxi-item>
+
                     <!-- COSTO TOTAL -->
                     <dxi-item itemtype="dxNumberBox" dataField="tarifa" [colSpan]="3" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
                         <dxo-label text="COSTO DE OPERACION" style="font-weight: bold !important">
@@ -429,7 +467,7 @@
         <dxo-position at="botom" my="center" [of]="positionOf"> </dxo-position>
         <div *dxTemplate="let data of 'content'">
             <!--#region :::: GRID DETALLE COTIZACION :::: -->
-            <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
+            <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_ida" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
                 <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
                 <dxi-column dataField="valor" caption="Valor" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>

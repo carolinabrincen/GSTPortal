@@ -16,6 +16,7 @@ import { TiposOperacionModel } from 'src/app/shared/models/rentabilidad-gerencia
 import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 
+
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
@@ -42,14 +43,11 @@ export class CotizadorComponent implements OnInit {
     origen: undefined,
     destino: undefined,
     diesel: undefined,
-    costo: 18.77,
-    FactorCargaSolcial: .58,
+    costo: undefined,
     distanciaTotal: undefined,
     fletePorViaje: undefined,
     numLlantas: 34,
     rendimientoKms: 160000,
-    costoLlanta: 5000,
-    costoLlantaKmFull: 1.06,
     precioVtaFinal: 0
   };
 
@@ -170,6 +168,7 @@ export class CotizadorComponent implements OnInit {
       layout: 'horizontal',
       onValueChanged: (e) => {
         this.bolEsViajeSencillo = e.value === 'Solo de ida' ? true : false;
+        console.log(this.bolEsViajeSencillo);
       },
     };
     //Configuracion de radiobutton Regreso
@@ -250,8 +249,6 @@ export class CotizadorComponent implements OnInit {
         this.itemCotizacion.rendimientoKmsVacio = res.data.rendimiento_vacio;
         this.itemCotizacion.rendimientoKms = res.data.rendimiento_cargado;
         this.itemCotizacion.numLlantas = res.data.num_llantas;
-        this.itemCotizacion.costoLlanta = res.data.costo_llantas;
-        this.itemCotizacion.costoLlantaKmFull = res.data.costo_llantas_km_full;
         this.itemCotizacion.diesel = res.data.diesel;
         this.itemCotizacion.costo = res.data.costo_diesel;
       });
@@ -364,14 +361,18 @@ export class CotizadorComponent implements OnInit {
           kms_ida: this.itemCotizacion.distanciaIda,
           kms_regreso: this.itemCotizacion.distanaciaRetorno,
           casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetasRegreso,
+          casetas_regreso: this.itemCotizacion.casetas,
           diesel: this.itemCotizacion.diesel,
-          num_llantas: this.itemCotizacion.numLlantas,
           rendimiento_cargado: this.itemCotizacion.rendimientoKms,
           rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          costo_llanta: this.itemCotizacion.costoLlanta,
-          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
-          dieselTotal: this.itemCotizacion.dieselTotal
+          num_estancias_ida: 0,
+          num_maniobras_ida: 0,
+          ton_carga_ida: 0,
+          num_estancias_regreso:0,
+          num_maniobras_regreso: 0,
+          ton_carga_regreso: 0,
+          cliente_paga: false,
+          tarifaFinal: 0
         };
 
         this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
@@ -413,15 +414,19 @@ export class CotizadorComponent implements OnInit {
           kms_ida: this.itemCotizacion.distanciaIda,
           kms_regreso: this.itemCotizacion.distanaciaRetorno,
           casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetasRegreso,
+          casetas_regreso: this.itemCotizacion.casetas,
           diesel: this.itemCotizacion.diesel,
-          num_llantas: this.itemCotizacion.numLlantas,
           rendimiento_cargado: this.itemCotizacion.rendimientoKms,
           rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          costo_llanta: this.itemCotizacion.costoLlanta,
-          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
-          tarifaFinal: this.itemCotizacion.tarifaFinal,
-          dieselTotal: this.itemCotizacion.dieselTotal
+          num_estancias_ida: 0,
+          num_maniobras_ida: 0,
+          ton_carga_ida:0,
+          num_estancias_regreso: 0,
+          num_maniobras_regreso: 0,
+          ton_carga_regreso: 0,
+          cliente_paga: false,
+          tarifaFinal: this.itemCotizacion.tarifaFinal
+         
         };
 
         this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
@@ -535,14 +540,12 @@ export class CotizadorComponent implements OnInit {
       destino: undefined,
       diesel: 0,
       costo: 0,
-      FactorCargaSolcial: 0,
+     
       distanciaTotal: 0,
       fletePorViaje: 0,
       numLlantas: 0,
       rendimientoKms: 0,
       rendimientoKmsVacio: 0,
-      costoLlanta: 0,
-      costoLlantaKmFull: 0,
       distanciaIda: 0,
       distanaciaRetorno: 0,
       precioVtaFinal: 0,

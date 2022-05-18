@@ -21,28 +21,37 @@ export const navigation = [
       }
       ,
       {
-        text: 'Rent. Contable',
-        path: '/rentabilidad-contable',
-        icon: 'columnproperties'
-      },
-      {
-        text: 'Rent. Gerencial',
-        path: '/rentabilidad-gerencial',
-        icon: 'fieldchooser'
-      },
-      {
         text: 'Cotizador',
         path: '/cotizador',
         icon: 'columnchooser'
-      },
-      {
-        text: 'Indicadores',
-        path: '/profile',
-        icon: 'detailslayout'
       }
-
     ]
   }
+];
+    //   ,
+    //   {
+    //     text: 'Rent. Contable',
+    //     path: '/rentabilidad-contable',
+    //     icon: 'columnproperties'
+    //   },
+    //   {
+    //     text: 'Rent. Gerencial',
+    //     path: '/rentabilidad-gerencial',
+    //     icon: 'fieldchooser'
+    //   },
+    //   {
+    //     text: 'Cotizador',
+    //     path: '/cotizador',
+    //     icon: 'columnchooser'
+    //   },
+    //   {
+    //     text: 'Indicadores',
+    //     path: '/profile',
+    //     icon: 'detailslayout'
+    //   }
+
+    // ]
+  // }
   // ,
   // {
   //   text: 'Logística',
@@ -63,4 +72,4 @@ export const navigation = [
   //     }
   //   ]
   // }
-];
+// ];
