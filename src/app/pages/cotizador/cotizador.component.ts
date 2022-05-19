@@ -39,16 +39,26 @@ export class CotizadorComponent implements OnInit {
     unidadNegocio: undefined,
     idTipoOperacion: undefined,
     tipoOperacion: undefined,
+    clasificacion: undefined,
     cliente: undefined,
     origen: undefined,
     destino: undefined,
     diesel: undefined,
     costo: undefined,
     distanciaTotal: undefined,
+    distanciaIda:0,
+    distanaciaRetorno:0,
+    casetas: 0,
+    casetasRegreso: 0,
     fletePorViaje: undefined,
-    numLlantas: 34,
-    rendimientoKms: 160000,
-    precioVtaFinal: 0
+    precioVtaFinal: 0,
+    estancias:0,
+    estanciasRegreso:0,
+    maniobras:0,
+    maniobrasRegreso:0,
+    toneladas:0,
+    toneladasRegreso:0
+
   };
 
   buttonOptions: any = {
@@ -246,9 +256,7 @@ export class CotizadorComponent implements OnInit {
           }, 'warning', 3000);
         }
 
-        this.itemCotizacion.rendimientoKmsVacio = res.data.rendimiento_vacio;
-        this.itemCotizacion.rendimientoKms = res.data.rendimiento_cargado;
-        this.itemCotizacion.numLlantas = res.data.num_llantas;
+       
         this.itemCotizacion.diesel = res.data.diesel;
         this.itemCotizacion.costo = res.data.costo_diesel;
       });
@@ -361,20 +369,19 @@ export class CotizadorComponent implements OnInit {
           kms_ida: this.itemCotizacion.distanciaIda,
           kms_regreso: this.itemCotizacion.distanaciaRetorno,
           casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetas,
+          casetas_regreso: this.itemCotizacion.casetasRegreso,
           diesel: this.itemCotizacion.diesel,
-          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
-          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          num_estancias_ida: 0,
-          num_maniobras_ida: 0,
-          ton_carga_ida: 0,
-          num_estancias_regreso:0,
+          
+          num_estancias_ida: this.itemCotizacion.estancias,
+          num_maniobras_ida: this.itemCotizacion.maniobras,
+          ton_carga_ida: this.itemCotizacion.toneladas,
+          num_estancias_regreso:this.itemCotizacion.estanciasRegreso,
           num_maniobras_regreso: 0,
           ton_carga_regreso: 0,
           cliente_paga: false,
-          tarifaFinal: 0
+          tarifaFinal:0
         };
-
+        console.log(nuevaCotizacion);
         this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
@@ -416,14 +423,12 @@ export class CotizadorComponent implements OnInit {
           casetas: this.itemCotizacion.casetas,
           casetas_regreso: this.itemCotizacion.casetas,
           diesel: this.itemCotizacion.diesel,
-          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
-          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          num_estancias_ida: 0,
-          num_maniobras_ida: 0,
-          ton_carga_ida:0,
-          num_estancias_regreso: 0,
-          num_maniobras_regreso: 0,
-          ton_carga_regreso: 0,
+          num_estancias_ida: this.itemCotizacion.estancias,
+          num_maniobras_ida: this.itemCotizacion.maniobras,
+          ton_carga_ida:this.itemCotizacion.toneladas,
+          num_estancias_regreso: this.itemCotizacion.estanciasRegreso,
+          num_maniobras_regreso: this.itemCotizacion.maniobrasRegreso,
+          ton_carga_regreso: this.itemCotizacion.toneladasRegreso,
           cliente_paga: false,
           tarifaFinal: this.itemCotizacion.tarifaFinal
          
@@ -456,7 +461,7 @@ export class CotizadorComponent implements OnInit {
         break;
     }
     this.limpiarForm();
-    this.bolModal = false;
+    //this.bolModal = false;
     this.bolFormSoloLectura = false;
   }
 
@@ -539,18 +544,21 @@ export class CotizadorComponent implements OnInit {
       origen: undefined,
       destino: undefined,
       diesel: 0,
+      dieselRegreso:0,
       costo: 0,
-     
       distanciaTotal: 0,
       fletePorViaje: 0,
-      numLlantas: 0,
-      rendimientoKms: 0,
-      rendimientoKmsVacio: 0,
       distanciaIda: 0,
       distanaciaRetorno: 0,
       precioVtaFinal: 0,
       casetas: 0,
-      tarifaFinal: 0
+      tarifaFinal: 0,
+      maniobras:0,
+      maniobrasRegreso:0,
+      estancias:0,
+      estanciasRegreso:0,
+      toneladas:0,
+      toneladasRegreso:0
     };
   }
 

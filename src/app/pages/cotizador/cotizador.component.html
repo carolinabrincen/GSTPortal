@@ -335,19 +335,19 @@
                         </dxi-item>
 
                         <!-- ESTANCIAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="estancias" [colSpan]="2">
                             <dxo-label text="Estancias (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- MANIOBRAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="maniobarasRegreso" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- TONELADAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="toneladas" [colSpan]="2">
                             <dxo-label text="Toneladas (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -357,37 +357,37 @@
                     </dxi-item>
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE REGRESO">
                         <!-- DISTANCIA IDA -->
-                        <dxi-item dataField="distanciaIda" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
+                        <dxi-item dataField="distanaciaRetorno" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
                             <dxo-label text="Kilómetros"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- DIESEL -->
-                        <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                        <dxi-item itemtype="dxNumberBox" dataField="dieselRegreso" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
                             <dxo-label text="Diésel con Impuestos(MXN)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="casetasRegreso" [colSpan]="2">
                             <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- ESTANCIAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="estanciasRegreso" [colSpan]="2">
                             <dxo-label text="Estancias (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- MANIOBRAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="maniobrasRegreso" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- TONELADAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="toneladasRegreso" [colSpan]="2">
                             <dxo-label text="Toneladas (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
