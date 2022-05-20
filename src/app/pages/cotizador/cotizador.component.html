@@ -377,7 +377,7 @@
                         <!-- MANIOBRAS -->
                         <dxi-item itemtype="dxNumberBox" dataField="maniobrasRegreso" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
-                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                            <dxi-validation-rule type="required" message="Campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- TONELADAS -->
@@ -432,7 +432,9 @@
             <!--#region :::: GRID VARIABLES :::: -->
             <dx-data-grid #variables id="gridVariables" [dataSource]="itemCotizacion.variables" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
                 <dxi-column dataField="descripcion" caption="Variable" [fixed]="true" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="valor" caption="Valor" [fixed]="true" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="unidad_medida" caption="Unidad" [fixed]="true" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
+
+                <dxi-column dataField="valor" caption="Subtotal" [fixed]="true" headerCellTemplate="headerTemplate">
                     <dxo-format type="fixedPoint" [precision]="2"> </dxo-format>
                 </dxi-column>
 
@@ -457,32 +459,71 @@
     <!--#endregion :::: FIN MODAL VARIABLES :::: -->
 
     <!--#region :::: MODAL DETALLE COTIZACION :::: -->
-    <dx-popup height="80%" width="520px" style="margin-top: 250px" [showTitle]="true" title="Detalle de Cotización" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalDetalleCotizacion">
+    <dx-popup height="90%" width="800px" style="margin-top: 250px" [showTitle]="true" title="Detalle de Cotización" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalDetalleCotizacion">
         <dxo-position at="botom" my="center" [of]="positionOf"> </dxo-position>
         <div *dxTemplate="let data of 'content'">
-            <!--#region :::: GRID DETALLE COTIZACION :::: -->
-            <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_ida" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
-                <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="valor" caption="Valor" alignment="right" headerCellTemplate="headerTemplate">
-                    <dxo-format type="currency" [precision]="2"> </dxo-format>
-                </dxi-column>
-                <dxi-column dataField="porcentaje" caption="%" format="percent" alignment="center" headerCellTemplate="headerTemplate"></dxi-column>
+            <dx-tab-panel>
+                <dxi-item title="Viaje ida">
 
-                <div *dxTemplate="let data of 'headerTemplate'">
-                    <div style="font-weight: bolder; color: black">
-                        {{ data.column.caption }}
-                    </div>
-                </div>
+                    <!--#region :::: GRID DETALLE COTIZACION :::: -->
+                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_ida" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
+                        <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="unidad_medida" caption="Unidad" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="subtotal" caption="Subtotal" alignment="right" headerCellTemplate="headerTemplate">
+                            <dxo-format type="currency" [precision]="2"> </dxo-format>
+                        </dxi-column>
+                        <dxi-column dataField="costo" caption="Total" alignment="right" headerCellTemplate="headerTemplate">
+                            <dxo-format type="currency" [precision]="2"> </dxo-format>
+                        </dxi-column>
+                        <dxi-column dataField="porcentaje" caption="%" format="percent" alignment="center" headerCellTemplate="headerTemplate"></dxi-column>
 
-                <div *dxTemplate="let info of 'titleHeaderTemplate'">
-                    <div style="font-weight: bolder; color: #ff5722">
-                        {{ info.column.caption }}
-                    </div>
-                </div>
-                <dxo-paging [pageSize]="50"></dxo-paging>
-            </dx-data-grid>
+                        <div *dxTemplate="let data of 'headerTemplate'">
+                            <div style="font-weight: bolder; color: black">
+                                {{ data.column.caption }}
+                            </div>
+                        </div>
 
-            <!--#endregion :::: FIN GRID DETALLE COTIZACION ::::  -->
+                        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                            <div style="font-weight: bolder; color: #ff5722">
+                                {{ info.column.caption }}
+                            </div>
+                        </div>
+                        <dxo-paging [pageSize]="50"></dxo-paging>
+                    </dx-data-grid>
+
+                    <!--#endregion :::: FIN GRID DETALLE COTIZACION ::::  -->
+                </dxi-item>
+                <dxi-item title="Viaje regreso">
+
+                    <!--#region :::: GRID DETALLE COTIZACION :::: -->
+                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_regreso" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
+                        <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="unidad_medida" caption="Unidad" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="subtotal" caption="Subtotal" alignment="right" headerCellTemplate="headerTemplate">
+                            <dxo-format type="currency" [precision]="2"> </dxo-format>
+                        </dxi-column>
+                        <dxi-column dataField="costo" caption="Total" alignment="right" headerCellTemplate="headerTemplate">
+                            <dxo-format type="currency" [precision]="2"> </dxo-format>
+                        </dxi-column>
+                        <dxi-column dataField="porcentaje" caption="%" format="percent" alignment="center" headerCellTemplate="headerTemplate"></dxi-column>
+
+                        <div *dxTemplate="let data of 'headerTemplate'">
+                            <div style="font-weight: bolder; color: black">
+                                {{ data.column.caption }}
+                            </div>
+                        </div>
+
+                        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                            <div style="font-weight: bolder; color: #ff5722">
+                                {{ info.column.caption }}
+                            </div>
+                        </div>
+                        <dxo-paging [pageSize]="50"></dxo-paging>
+                    </dx-data-grid>
+
+                    <!--#endregion :::: FIN GRID DETALLE COTIZACION ::::  -->
+                </dxi-item>
+            </dx-tab-panel>
         </div>
     </dx-popup>
     <!--#endregion :::: FIN MODAL DETALLE COTIZACION :::: -->

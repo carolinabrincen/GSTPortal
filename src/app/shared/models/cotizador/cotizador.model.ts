@@ -89,6 +89,9 @@ export interface NuevaCotizacionModel{
   regreso?: string,
   clientePagaCasetas?: string,
   unidadNegocio?: string,
-  tipoOperacion?: string
+  tipoOperacion?: string,
+  variables?: VariablesCotizacionModel[],
+  costos_ida?: DetalleCotizacionModel[],
+  costos_regreso?: DetalleCotizacionModel[]
   
 }
