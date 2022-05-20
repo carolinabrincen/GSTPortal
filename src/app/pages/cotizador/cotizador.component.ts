@@ -17,6 +17,7 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 
 
+
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
@@ -31,6 +32,7 @@ export class CotizadorComponent implements OnInit {
   arrVariables: VariablesCotizacionModel[] = [];
   arrDetalleCotizacion: DetalleCotizacionModel[] = [];
   arrClasificaciones: string[] = [];
+  itemNuevaCotizacion: NuevaCotizacionModel;
 
   itemCotizacion: CotizacionModel = {
     idCotizacion: undefined,
@@ -379,7 +381,8 @@ export class CotizadorComponent implements OnInit {
           num_maniobras_regreso: 0,
           ton_carga_regreso: 0,
           cliente_paga: false,
-          tarifaFinal:0
+          tarifaFinal:0,
+          costoViaje:0
         };
         console.log(nuevaCotizacion);
         this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
@@ -406,57 +409,57 @@ export class CotizadorComponent implements OnInit {
 
         });
         break;
-      case 'editar':
-        const editarCotizacion: NuevaCotizacionModel = {
-          idCotizacion: this.itemCotizacion.idCotizacion,
-          sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
-          regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
-          id_ingreso: '0',
-          id_area: 1,
-          id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
-          clasificacion: this.itemCotizacion.clasificacion,
-          cliente: this.itemCotizacion.cliente,
-          origen: this.itemCotizacion.origen,
-          destino: this.itemCotizacion.destino,
-          kms_ida: this.itemCotizacion.distanciaIda,
-          kms_regreso: this.itemCotizacion.distanaciaRetorno,
-          casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetas,
-          diesel: this.itemCotizacion.diesel,
-          num_estancias_ida: this.itemCotizacion.estancias,
-          num_maniobras_ida: this.itemCotizacion.maniobras,
-          ton_carga_ida:this.itemCotizacion.toneladas,
-          num_estancias_regreso: this.itemCotizacion.estanciasRegreso,
-          num_maniobras_regreso: this.itemCotizacion.maniobrasRegreso,
-          ton_carga_regreso: this.itemCotizacion.toneladasRegreso,
-          cliente_paga: false,
-          tarifaFinal: this.itemCotizacion.tarifaFinal
+      // case 'editar':
+      //   const editarCotizacion: NuevaCotizacionModel = {
+      //     idCotizacion: this.itemCotizacion.idCotizacion,
+      //     sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
+      //     regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
+      //     id_ingreso: '0',
+      //     id_area: 1,
+      //     id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
+      //     clasificacion: this.itemCotizacion.clasificacion,
+      //     cliente: this.itemCotizacion.cliente,
+      //     origen: this.itemCotizacion.origen,
+      //     destino: this.itemCotizacion.destino,
+      //     kms_ida: this.itemCotizacion.distanciaIda,
+      //     kms_regreso: this.itemCotizacion.distanaciaRetorno,
+      //     casetas: this.itemCotizacion.casetas,
+      //     casetas_regreso: this.itemCotizacion.casetas,
+      //     diesel: this.itemCotizacion.diesel,
+      //     num_estancias_ida: this.itemCotizacion.estancias,
+      //     num_maniobras_ida: this.itemCotizacion.maniobras,
+      //     ton_carga_ida:this.itemCotizacion.toneladas,
+      //     num_estancias_regreso: this.itemCotizacion.estanciasRegreso,
+      //     num_maniobras_regreso: this.itemCotizacion.maniobrasRegreso,
+      //     ton_carga_regreso: this.itemCotizacion.toneladasRegreso,
+      //     cliente_paga: false,
+      //     tarifaFinal: this.itemCotizacion.tarifaFinal
          
-        };
+      //   };
 
-        this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
-          if (res.responseCode === 200) {
-            this.itemCotizacion = res.data;
-            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == this.itemCotizacion.idCotizacion);
-            this.arrPreCotizaciones[elementIndex] = this.itemCotizacion;
-            notify({
-              message: 'Cotización guardada con exito!',
-              position: {
-                my: 'center center',
-                at: 'center center',
-              },
-            }, 'success', 3000);
-          } else {
-            notify({
-              message: res.responseText,
-              position: {
-                my: 'center center',
-                at: 'center center',
-              },
-            }, 'error', 3000);
-          }
-        });
-        break;
+      //   this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
+      //     if (res.responseCode === 200) {
+      //       this.itemCotizacion = res.data;
+      //       const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == this.itemCotizacion.idCotizacion);
+      //       this.arrPreCotizaciones[elementIndex] = this.itemCotizacion;
+      //       notify({
+      //         message: 'Cotización guardada con exito!',
+      //         position: {
+      //           my: 'center center',
+      //           at: 'center center',
+      //         },
+      //       }, 'success', 3000);
+      //     } else {
+      //       notify({
+      //         message: res.responseText,
+      //         position: {
+      //           my: 'center center',
+      //           at: 'center center',
+      //         },
+      //       }, 'error', 3000);
+      //     }
+      //   });
+      //   break;
       default:
         break;
     }
@@ -471,10 +474,50 @@ export class CotizadorComponent implements OnInit {
     this.tipoRegistro = "editar";
     const clonedItem = { ...e.row.data };
     this.rowIndex = e.row.rowIndex;
-    console.log(this.rowIndex);
+  
     this.itemCotizacion = clonedItem;
     this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
     this.bolModal = true;
+
+    console.log(this.itemCotizacion.idCotizacion);
+    this.cotizadorService.getCotizacion(this.itemCotizacion.idCotizacion).subscribe(res => {
+      this.itemNuevaCotizacion = res.data;
+      console.log(res.data);
+      this.itemCotizacion = {
+        tipoViaje: this.itemNuevaCotizacion.tipoViaje,
+        regreso: this.itemNuevaCotizacion.regreso,
+        clientePagaCasetas: this.itemNuevaCotizacion.clientePagaCasetas,
+        idCotizacion: this.itemNuevaCotizacion.idCotizacion,
+        folio: this.itemNuevaCotizacion.idCotizacion.toString(),
+        idUnidadNegocio: this.itemNuevaCotizacion.id_area,
+        unidadNegocio: this.itemNuevaCotizacion.unidadNegocio,
+        idTipoOperacion: this.itemNuevaCotizacion.id_tipo_operacion,
+        tipoOperacion: this.itemNuevaCotizacion.tipoOperacion,
+        clasificacion: this.itemNuevaCotizacion.clasificacion,
+        cliente: this.itemNuevaCotizacion.cliente,
+        
+        origen: this.itemNuevaCotizacion.origen,
+        destino: this.itemNuevaCotizacion.destino,
+        diesel: this.itemNuevaCotizacion.diesel,
+        dieselRegreso:this.itemNuevaCotizacion.diesel,
+        costo: this.itemNuevaCotizacion.diesel,
+        distanciaTotal: 0,
+        fletePorViaje: this.itemNuevaCotizacion.costoViaje,
+        distanciaIda: this.itemNuevaCotizacion.kms_ida,
+        distanaciaRetorno: this.itemNuevaCotizacion.kms_regreso,
+        precioVtaFinal: this.itemNuevaCotizacion.tarifaFinal,
+        casetas: this.itemNuevaCotizacion.casetas,
+        casetasRegreso:this.itemNuevaCotizacion.casetas_regreso,
+        tarifaFinal: this.itemNuevaCotizacion.tarifaFinal,
+        maniobras:this.itemNuevaCotizacion.num_maniobras_ida,
+        maniobrasRegreso:this.itemNuevaCotizacion.num_estancias_regreso,
+        estancias:this.itemNuevaCotizacion.num_estancias_ida,
+        estanciasRegreso:this.itemNuevaCotizacion.num_estancias_regreso,
+        toneladas:this.itemNuevaCotizacion.ton_carga_ida,
+        toneladasRegreso:this.itemNuevaCotizacion.ton_carga_regreso
+        
+      };
+    });
   }
 
   verCortizacionClick(e: any) {
@@ -541,6 +584,7 @@ export class CotizadorComponent implements OnInit {
       tipoOperacion: undefined,
       clasificacion: '',
       cliente: undefined,
+      
       origen: undefined,
       destino: undefined,
       diesel: 0,
@@ -552,13 +596,15 @@ export class CotizadorComponent implements OnInit {
       distanaciaRetorno: 0,
       precioVtaFinal: 0,
       casetas: 0,
+      casetasRegreso:0,
       tarifaFinal: 0,
       maniobras:0,
       maniobrasRegreso:0,
       estancias:0,
       estanciasRegreso:0,
       toneladas:0,
-      toneladasRegreso:0
+      toneladasRegreso:0,
+      
     };
   }
 

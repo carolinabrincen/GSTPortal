@@ -81,6 +81,13 @@ export class CotizadorService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_APROBAR_COTIZACION), cotizacion, this.httpOptions);
   }
 
+  getCotizacion(idCotizacion: number) {
+    const cotizacion = {
+      idCotizacion: idCotizacion
+    }
+    return this.get<any>((this.API_URL + API_URLS.GET_COTIZADOR_OBTENER_COTIZACION + idCotizacion) , this.httpOptions);
+  }
+
 
 
 

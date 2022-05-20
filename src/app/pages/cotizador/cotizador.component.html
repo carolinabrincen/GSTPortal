@@ -153,7 +153,7 @@
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- DIESEL -->
-                <dxi-column dataField="distanciaTotal" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="diesel" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO POR KM -->
@@ -312,20 +312,20 @@
                     <dxi-item dataField="destino" [colSpan]="3">
                         <dxi-validation-rule type="required" message="Destino es campo requerido"></dxi-validation-rule>
                     </dxi-item>
-                    <dxo-subtitle text="Viaje de ida">
-                    </dxo-subtitle>
-                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE IDA">
+
+                    <!-- DIESEL -->
+                    <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                        <dxo-label text="Diésel con Impuestos (MXN/Lt.)"> </dxo-label>
+                        <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
+                    </dxi-item>
+                    <!-- ESPACIO EN BLANCO -->
+                    <dxi-item itemType="empty" [colSpan]="10"></dxi-item>
+
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE IDA">
                         <!-- DISTANCIA IDA -->
                         <dxi-item dataField="distanciaIda" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
                             <dxo-label text="Kilómetros"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
-                        </dxi-item>
-
-
-                        <!-- DIESEL -->
-                        <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
-                            <dxo-label text="Diésel con Impuestos (MXN)"> </dxo-label>
-                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- CASETAS -->
@@ -341,7 +341,7 @@
                         </dxi-item>
 
                         <!-- MANIOBRAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="maniobarasRegreso" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="maniobras" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -355,17 +355,11 @@
 
 
                     </dxi-item>
-                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE REGRESO">
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE REGRESO">
                         <!-- DISTANCIA IDA -->
                         <dxi-item dataField="distanaciaRetorno" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
                             <dxo-label text="Kilómetros"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
-                        </dxi-item>
-
-                        <!-- DIESEL -->
-                        <dxi-item itemtype="dxNumberBox" dataField="dieselRegreso" [colSpan]="2" [editorOptions]="{ onValueChanged: dieselValueChanged }">
-                            <dxo-label text="Diésel con Impuestos(MXN)"> </dxo-label>
-                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- CASETAS -->

@@ -30,6 +30,7 @@ export enum API_URLS{
     POST_COTIZADOR_NUEVA_COTIZACION = 'api/Cotizador/NvaCotizacion',
     GET_COTIZADOR_OBTENER_PRECOTIZACIONES = 'api/Cotizador/GetCotizacionesActivas/PRECOTIZACION',
     GET_COTIZADOR_OBTENER_APROBADAS = 'api/Cotizador/GetCotizacionesActivas/APROBADA',
+    GET_COTIZADOR_OBTENER_COTIZACION = 'api/Cotizador/GetCotizacion/',
     POST_COTIZADOR_EDITAR_COTIZACION = 'api/Cotizador/ModCotizacion',
     POST_COTIZADOR_ELIMINAR_COTIZACION = 'api/Cotizador/EliminarCotizacion',
     POST_COTIZADOR_APROBAR_COTIZACION = 'api/Cotizador/AprobarCotizacion',

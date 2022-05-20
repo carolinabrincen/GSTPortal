@@ -83,5 +83,12 @@ export interface NuevaCotizacionModel{
   num_maniobras_regreso: number,
   ton_carga_regreso:number,
   cliente_paga: boolean,
-  tarifaFinal: number
+  tarifaFinal: number,
+  costoViaje: number,
+  tipoViaje?: string,
+  regreso?: string,
+  clientePagaCasetas?: string,
+  unidadNegocio?: string,
+  tipoOperacion?: string
+  
 }
