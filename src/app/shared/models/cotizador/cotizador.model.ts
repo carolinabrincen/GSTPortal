@@ -43,6 +43,8 @@ export interface CotizacionModel{
   maniobrasRegreso?: number,
   toneladas?: number,
   toneladasRegreso?: number,
+  toneladas_num?: number,
+  precio_toneladas?: number,
   variables?: VariablesCotizacionModel[],
   costos_ida?: DetalleCotizacionModel[],
   costos_regreso?: DetalleCotizacionModel[]
@@ -90,6 +92,8 @@ export interface NuevaCotizacionModel{
   clientePagaCasetas?: string,
   unidadNegocio?: string,
   tipoOperacion?: string,
+  toneladas?: number,
+  precio_tonelada?: number,
   variables?: VariablesCotizacionModel[],
   costos_ida?: DetalleCotizacionModel[],
   costos_regreso?: DetalleCotizacionModel[]

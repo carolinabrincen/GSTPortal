@@ -15,8 +15,6 @@
                 <dxi-column dataField="unidadNegocio" caption="Unidad de Negocio" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- TIPO OPERACION -->
                 <dxi-column dataField="tipoOperacion" caption="Tipo de Operación" headerCellTemplate="headerTemplate"></dxi-column>
-                <!-- CLASIFICACION -->
-                <dxi-column dataField="clasificacion" caption="Clasificación" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- CLIENTE -->
                 <dxi-column dataField="cliente" caption="Cliente" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- ORIGEN -->
@@ -138,8 +136,7 @@
                 <dxi-column dataField="unidadNegocio" caption="Unidad de Negocio" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- TIPO OPERACION -->
                 <dxi-column dataField="tipoOperacion" caption="Tipo de Operación" headerCellTemplate="headerTemplate"></dxi-column>
-                <!-- CLASIFICACION -->
-                <dxi-column dataField="clasificacion" caption="Clasificación" headerCellTemplate="headerTemplate"></dxi-column>
+
                 <!-- CLIENTE -->
                 <dxi-column dataField="cliente" caption="Cliente" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- ORIGEN -->
@@ -312,7 +309,7 @@
                         <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                     </dxi-item>
                     <!-- DIESEL -->
-                    <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="3" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                    <dxi-item itemtype="dxNumberBox" dataField="costo" [colSpan]="3">
                         <dxo-label text="Diésel sin Impuestos (MXN/Lt.)"> </dxo-label>
                         <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                     </dxi-item>
@@ -326,7 +323,7 @@
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
                             <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -360,7 +357,7 @@
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetasRegreso" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="casetasRegreso" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
                             <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -390,13 +387,13 @@
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="10">
                         <dxi-item itemType="empty" [colSpan]="6"></dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="tarifaFinal" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
-                            <dxo-label text="TONELADAS" style="font-weight: bold !important">
+                        <dxi-item itemtype="dxNumberBox" dataField="toneladas_num" [colSpan]="2" [editorOptions]="{ onValueChanged: toneladasTotalValueChanged }">
+                            <dxo-label text="Toneladas" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="tarifaFinal" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
-                            <dxo-label text="PRECIO DE X TONELADA" style="font-weight: bold !important">
+                        <dxi-item itemtype="dxNumberBox" dataField="precio_toneladas" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
+                            <dxo-label text="PRECIO X TONELADA" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>
                         <dxi-item itemType="empty" [colSpan]="6"></dxi-item>

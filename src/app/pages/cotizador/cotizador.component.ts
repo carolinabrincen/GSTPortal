@@ -41,7 +41,6 @@ export class CotizadorComponent implements OnInit {
     unidadNegocio: undefined,
     idTipoOperacion: undefined,
     tipoOperacion: undefined,
-    clasificacion: undefined,
     cliente: undefined,
     origen: undefined,
     destino: undefined,
@@ -59,7 +58,9 @@ export class CotizadorComponent implements OnInit {
     maniobras:0,
     maniobrasRegreso:0,
     toneladas:0,
-    toneladasRegreso:0
+    toneladasRegreso:0,
+    toneladas_num: 0,
+    precio_toneladas: 0
 
   };
 
@@ -78,6 +79,7 @@ export class CotizadorComponent implements OnInit {
   RadioButtonTipoViaje: any;
   RadioButtonRegreso: any;
   RadioButtonClientePagaCasetas: any;
+  RadioButtonPrecioXTonelada: any;
 
 
   bolModal: boolean = false;
@@ -91,6 +93,7 @@ export class CotizadorComponent implements OnInit {
   tipoRegistro: string = '';
   rowIndex: number = -1;
   bolEsViajeSencillo = true;
+  bolEsPrecioTonelada = true;
   bolEsViajeVacio = true;
   bolBotonAprobarCotizacion = false;
   bolFormSoloLectura = false;
@@ -183,6 +186,18 @@ export class CotizadorComponent implements OnInit {
         console.log(this.bolEsViajeSencillo);
       },
     };
+
+    //Configuracion de radiobutton Precio por tonelada
+    this.RadioButtonPrecioXTonelada = {
+      items: ['No', 'Si'],
+      value: 'Precio por tonelada',
+      layout: 'horizontal',
+      onValueChanged: (e) => {
+        this.bolEsPrecioTonelada = e.value === 'Si' ? true : false;
+        
+      },
+    };
+
     //Configuracion de radiobutton Regreso
     this.RadioButtonRegreso = {
       items: ['Vacio', 'Cargado'],
@@ -209,7 +224,7 @@ export class CotizadorComponent implements OnInit {
     this.getPreCotizaciones();
     this.getUnidadesNegocio();
     this.getTiposOperacion();
-    this.getClasificaciones();
+    // this.getClasificaciones();
   }
 
   //#region :::: GETTERS ::::
@@ -309,6 +324,18 @@ export class CotizadorComponent implements OnInit {
       this.itemCotizacion.distanaciaRetorno;
   }
 
+  toneladasTotalValueChanged(e: any) {
+    if(this.itemCotizacion.tarifa >0 )
+    {
+      this.itemCotizacion.precio_toneladas = this.itemCotizacion.toneladas_num /
+        this.itemCotizacion.tarifa;
+    }
+    else
+    {
+      this.itemCotizacion.precio_toneladas = 0;
+    }
+  }
+
   mouseoverAprobarCotizacion(e: any) {
     //TODO: Validar que sea tamien el gerente
     this.bolBotonAprobarCotizacion = e.value === 'PRECOTIZACION';
@@ -365,7 +392,7 @@ export class CotizadorComponent implements OnInit {
           id_ingreso: '0',
           id_area: this.itemCotizacion.idUnidadNegocio,
           id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
-          clasificacion: this.itemCotizacion.clasificacion,
+          clasificacion: "",
           cliente: this.itemCotizacion.cliente,
           origen: this.itemCotizacion.origen,
           destino: this.itemCotizacion.destino,
@@ -382,7 +409,9 @@ export class CotizadorComponent implements OnInit {
           ton_carga_regreso: this.itemCotizacion.toneladasRegreso,
           cliente_paga: this.itemCotizacion.clientePagaCasetas === "Si" ? true : false,
           tarifaFinal:0,
-          costoViaje:0
+          costoViaje:0,
+          precio_tonelada:0,
+          toneladas: this.itemCotizacion.toneladas_num
         };
         console.log(nuevaCotizacion);
         this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
@@ -478,8 +507,6 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion = clonedItem;
     this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
     this.bolModal = true;
-
-    console.log(this.itemCotizacion.idCotizacion);
     this.cotizadorService.getCotizacion(this.itemCotizacion.idCotizacion).subscribe(res => {
       this.itemNuevaCotizacion = res.data;
       console.log(res.data);
@@ -493,7 +520,7 @@ export class CotizadorComponent implements OnInit {
         unidadNegocio: this.itemNuevaCotizacion.unidadNegocio,
         idTipoOperacion: this.itemNuevaCotizacion.id_tipo_operacion,
         tipoOperacion: this.itemNuevaCotizacion.tipoOperacion,
-        clasificacion: this.itemNuevaCotizacion.clasificacion,
+        // clasificacion: this.itemNuevaCotizacion.clasificacion,
         cliente: this.itemNuevaCotizacion.cliente,
         
         origen: this.itemNuevaCotizacion.origen,
@@ -518,7 +545,9 @@ export class CotizadorComponent implements OnInit {
         tarifa: this.itemNuevaCotizacion.costoViaje,
         variables: this.itemNuevaCotizacion.variables,
         costos_ida: this.itemNuevaCotizacion.costos_ida,
-        costos_regreso: this.itemNuevaCotizacion.costos_regreso
+        costos_regreso: this.itemNuevaCotizacion.costos_regreso,
+        toneladas_num: this.itemCotizacion.toneladas,
+        precio_toneladas: this.itemCotizacion.precio_toneladas
                 
       };
     });
@@ -608,7 +637,8 @@ export class CotizadorComponent implements OnInit {
       estanciasRegreso:0,
       toneladas:0,
       toneladasRegreso:0,
-      
+      toneladas_num:0,
+      precio_toneladas:0
     };
   }
 
