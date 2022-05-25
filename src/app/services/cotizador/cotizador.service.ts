@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AbstractManagerService } from 'src/app/shared/services/abstractManagerService';
 import { API_URLS } from 'src/app/shared/models/apiURL';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -55,12 +56,12 @@ export class CotizadorService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_OBTENER_VARIABLES), body, this.httpOptions);
   }
 
-  postNuevaCotizacion(cotizacion: NuevaCotizacionModel) {
+  postNuevaCotizacion(cotizacion: CotizacionModel) {
     console.log('🥧', cotizacion);
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_NUEVA_COTIZACION), cotizacion, this.httpOptions);
   }
 
-  postEditarCotizacion(cotizacion: NuevaCotizacionModel) {
+  postEditarCotizacion(cotizacion: CotizacionModel) {
     console.log('editar', cotizacion);
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_EDITAR_COTIZACION), cotizacion, this.httpOptions);
   }

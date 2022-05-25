@@ -22,13 +22,13 @@
                 <!-- DESTINO -->
                 <dxi-column dataField="destino" caption="Destino" alignment="left" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- KMS "DISTANCIA TOTAL" -->
-                <dxi-column dataField="distanciaTotal" caption="Kms." alignment="right" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="kms_totales" caption="Kms." alignment="right" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- CASETAS -->
-                <dxi-column dataField="casetas" caption="Casetas" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="casetas_total_sin_impuestos" caption="Casetas" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- DIESEL -->
-                <dxi-column dataField="dieselFinal" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="diesel_total_sin_impuestos" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO POR KM -->
@@ -40,7 +40,7 @@
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO VIAJE "TARIFA" -->
-                <dxi-column dataField="tarifa" caption="Costo Viaje" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="costoViaje" caption="Costo Viaje" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- TARIFA 25% -->
@@ -128,6 +128,7 @@
             <!--#region :::: GRID COTIZACIONES APROBADAS::::  -->
             <dx-data-grid #rentGer id="gridContainer" [dataSource]="arrCotizaciones" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
                 <!-- FOLIO -->
                 <dxi-column dataField="folio" caption="Folio" alignment="center" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold" fixed="true"></dxi-column>
                 <!-- STATUS -->
@@ -136,7 +137,6 @@
                 <dxi-column dataField="unidadNegocio" caption="Unidad de Negocio" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- TIPO OPERACION -->
                 <dxi-column dataField="tipoOperacion" caption="Tipo de Operación" headerCellTemplate="headerTemplate"></dxi-column>
-
                 <!-- CLIENTE -->
                 <dxi-column dataField="cliente" caption="Cliente" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- ORIGEN -->
@@ -144,13 +144,13 @@
                 <!-- DESTINO -->
                 <dxi-column dataField="destino" caption="Destino" alignment="left" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- KMS "DISTANCIA TOTAL" -->
-                <dxi-column dataField="distanciaTotal" caption="Kms." alignment="right" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="kms_totales" caption="Kms." alignment="right" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
                 <!-- CASETAS -->
-                <dxi-column dataField="casetas" caption="Casetas" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="casetas_total_sin_impuestos" caption="Casetas" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- DIESEL -->
-                <dxi-column dataField="diesel" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="diesel_total_sin_impuesto" caption="Diesel" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO POR KM -->
@@ -162,7 +162,7 @@
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- COSTO VIAJE "TARIFA" -->
-                <dxi-column dataField="tarifa" caption="Costo Viaje" alignment="right" headerCellTemplate="headerTemplate">
+                <dxi-column dataField="costoViaje" caption="Costo Viaje" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
                 <!-- TARIFA 25% -->
@@ -269,7 +269,7 @@
                     <!-- FOLIO -->
                     <dxi-item dataField="folio" [editorOptions]="{ readOnly: true }" [colSpan]="3"></dxi-item>
                     <!-- UNIDAD NEGOCIO -->
-                    <dxi-item dataField="idUnidadNegocio" editorType="dxSelectBox" [editorOptions]="{
+                    <dxi-item dataField="id_area" editorType="dxSelectBox" [editorOptions]="{
               items: arrUnidadesNegocio,
               searchEnabled: true,
               displayExpr: 'ciudad',
@@ -279,7 +279,7 @@
                         <dxi-validation-rule type="required" message="Unidad de Negocio es campo requerido"></dxi-validation-rule>
                     </dxi-item>
                     <!-- TIPOS OPERACIONES -->
-                    <dxi-item dataField="idTipoOperacion" editorType="dxSelectBox" [editorOptions]="{
+                    <dxi-item dataField="id_tipo_operacion" editorType="dxSelectBox" [editorOptions]="{
               items: arrTipoOperacion,
               searchEnabled: true,
               displayExpr: 'operacion',
@@ -304,12 +304,12 @@
                     </dxi-item>
 
                     <!-- DIESEL -->
-                    <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="3" [editorOptions]="{ onValueChanged: dieselValueChanged }">
+                    <dxi-item itemtype="dxNumberBox" dataField="diesel" [colSpan]="3" [editorOptions]="{ onValueChanged: dieselValueChanged, format: '$ #,##0.##' }">
                         <dxo-label text="Diésel con Impuestos (MXN/Lt.)"> </dxo-label>
                         <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                     </dxi-item>
                     <!-- DIESEL -->
-                    <dxi-item itemtype="dxNumberBox" dataField="costo" [colSpan]="3">
+                    <dxi-item itemtype="dxNumberBox" dataField="diesel_sin_impuestos" [colSpan]="3" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
                         <dxo-label text="Diésel sin Impuestos (MXN/Lt.)"> </dxo-label>
                         <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                     </dxi-item>
@@ -317,7 +317,7 @@
 
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE IDA">
                         <!-- DISTANCIA IDA -->
-                        <dxi-item dataField="distanciaIda" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
+                        <dxi-item dataField="kms_ida" [colSpan]="2">
                             <dxo-label text="Kilómetros"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -329,19 +329,19 @@
                         </dxi-item>
 
                         <!-- ESTANCIAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="estancias" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="num_estancias_ida" [colSpan]="2">
                             <dxo-label text="Estancias (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- MANIOBRAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="maniobras" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="num_maniobras_ida" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- TONELADAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="toneladas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="ton_carga_ida" [colSpan]="2">
                             <dxo-label text="Toneladas (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -351,31 +351,31 @@
                     </dxi-item>
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE REGRESO">
                         <!-- DISTANCIA IDA -->
-                        <dxi-item dataField="distanaciaRetorno" [colSpan]="2" [editorOptions]="{ onValueChanged: distanciaTotalValueChanged }">
+                        <dxi-item dataField="kms_regreso" [colSpan]="2">
                             <dxo-label text="Kilómetros"> </dxo-label>
                             <dxi-validation-rule type="required" message="Distancia Ida es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetasRegreso" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas_regreso" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
                             <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- ESTANCIAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="estanciasRegreso" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="num_estancias_regreso" [colSpan]="2">
                             <dxo-label text="Estancias (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- MANIOBRAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="maniobrasRegreso" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="num_maniobras_regreso" [colSpan]="2">
                             <dxo-label text="Maniobras (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- TONELADAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="toneladasRegreso" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="ton_carga_regreso" [colSpan]="2">
                             <dxo-label text="Toneladas (Número)"> </dxo-label>
                             <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
                         </dxi-item>
@@ -387,18 +387,18 @@
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="10">
                         <dxi-item itemType="empty" [colSpan]="6"></dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="toneladas_num" [colSpan]="2" [editorOptions]="{ onValueChanged: toneladasTotalValueChanged }">
+                        <dxi-item itemtype="dxNumberBox" dataField="toneladas" [colSpan]="2">
                             <dxo-label text="Toneladas" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="precio_toneladas" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
+                        <dxi-item itemtype="dxNumberBox" dataField="costo_tonelada" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
                             <dxo-label text="PRECIO X TONELADA" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>
                         <dxi-item itemType="empty" [colSpan]="6"></dxi-item>
                         <!-- COSTO TOTAL -->
-                        <dxi-item itemtype="dxNumberBox" dataField="tarifa" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
+                        <dxi-item itemtype="dxNumberBox" dataField="costoViaje" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
                             <dxo-label text="COSTO DE OPERACION" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>
@@ -434,7 +434,7 @@
     <!--#endregion :::: FIN VENTANA MODAL NUEVO/EDITAR ::::  -->
 
     <!--#region :::: MODAL VARIABLES ::::  -->
-    <dx-popup height="90%" width="520px" style="margin-top: 250px" [showTitle]="true" title="Parametrización de Variables" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalVariables">
+    <dx-popup height="60%" width="700px" style="margin-top: 250px" [showTitle]="true" title="Parametrización de Variables" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalVariables">
         <dxo-position at="botom" my="center" [of]="positionOf"> </dxo-position>
         <div *dxTemplate="let data of 'content'">
             <!--#region :::: GRID VARIABLES :::: -->
@@ -467,14 +467,14 @@
     <!--#endregion :::: FIN MODAL VARIABLES :::: -->
 
     <!--#region :::: MODAL DETALLE COTIZACION :::: -->
-    <dx-popup height="90%" width="800px" style="margin-top: 250px" [showTitle]="true" title="Detalle de Cotización" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalDetalleCotizacion">
+    <dx-popup height="80%" width="700px" style="margin-top: 250px" [showTitle]="true" title="Detalle de Cotización" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalDetalleCotizacion">
         <dxo-position at="botom" my="center" [of]="positionOf"> </dxo-position>
         <div *dxTemplate="let data of 'content'">
             <dx-tab-panel>
                 <dxi-item title="Viaje ida">
 
                     <!--#region :::: GRID DETALLE COTIZACION :::: -->
-                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_ida" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
+                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_ida" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="680px">
                         <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="unidad_medida" caption="Unidad" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="subtotal" caption="Subtotal" alignment="right" headerCellTemplate="headerTemplate">
@@ -504,7 +504,7 @@
                 <dxi-item title="Viaje regreso">
 
                     <!--#region :::: GRID DETALLE COTIZACION :::: -->
-                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_regreso" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="650px">
+                    <dx-data-grid #variables id="gridDetalleCotizacion" [dataSource]="itemCotizacion.costos_regreso" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" height="680px">
                         <dxi-column dataField="descripcion" caption="Concepto" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="unidad_medida" caption="Unidad" alignment="left" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="subtotal" caption="Subtotal" alignment="right" headerCellTemplate="headerTemplate">
