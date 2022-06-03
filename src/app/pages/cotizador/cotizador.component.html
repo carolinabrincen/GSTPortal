@@ -315,7 +315,7 @@
                     </dxi-item>
 
 
-                    <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE IDA">
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE IDA">
                         <!-- DISTANCIA IDA -->
                         <dxi-item dataField="kms_ida" [colSpan]="2">
                             <dxo-label text="Kilómetros"> </dxo-label>
@@ -323,10 +323,17 @@
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
-                            <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
-                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas" [colSpan]="2" [editorOptions]="{onValueChanged: caseta_ida_ValueChanged, format: '$ #,##0.##' }">
+                            <dxo-label text="Casetas con Impuestos"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                         </dxi-item>
+                        <!-- CASETAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas_si" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
+                            <dxo-label text="Casetas sin Impuestos"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+
+
 
                         <!-- ESTANCIAS -->
                         <dxi-item itemtype="dxNumberBox" dataField="num_estancias_ida" [colSpan]="2">
@@ -349,7 +356,7 @@
 
 
                     </dxi-item>
-                    <dxi-item itemType="group" [colSpan]="12" [colCount]="10" caption="VIAJE REGRESO">
+                    <dxi-item itemType="group" [colSpan]="12" [colCount]="12" caption="VIAJE REGRESO">
                         <!-- DISTANCIA IDA -->
                         <dxi-item dataField="kms_regreso" [colSpan]="2">
                             <dxo-label text="Kilómetros"> </dxo-label>
@@ -357,9 +364,14 @@
                         </dxi-item>
 
                         <!-- CASETAS -->
-                        <dxi-item itemtype="dxNumberBox" dataField="casetas_regreso" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
-                            <dxo-label text="Casetas con Impuestos (MXN)"> </dxo-label>
-                            <dxi-validation-rule type="required" message="Casetas es campo requerido"></dxi-validation-rule>
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas_regreso" [colSpan]="2" [editorOptions]="{onValueChanged: caseta_regreso_ValueChanged, format: '$ #,##0.##' }">
+                            <dxo-label text="Casetas con Impuestos"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
+                        </dxi-item>
+                        <!-- CASETAS -->
+                        <dxi-item itemtype="dxNumberBox" dataField="casetas_regreso_si" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##', readOnly: true }">
+                            <dxo-label text="Casetas sin Impuestos"> </dxo-label>
+                            <dxi-validation-rule type="required" message="Distancia total es campo requerido"></dxi-validation-rule>
                         </dxi-item>
 
                         <!-- ESTANCIAS -->
@@ -387,7 +399,7 @@
                     <dxi-item itemType="group" [colSpan]="12" [colCount]="10">
                         <dxi-item itemType="empty" [colSpan]="6"></dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="toneladas" [colSpan]="2">
+                        <dxi-item itemtype="dxNumberBox" dataField="toneladas" [colSpan]="2" [editorOptions]="{onValueChanged: toneladasTotalValueChanged}">
                             <dxo-label text="Toneladas" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>

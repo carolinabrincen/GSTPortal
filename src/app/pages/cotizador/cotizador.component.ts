@@ -1,6 +1,6 @@
 import { ReportsPDFService } from './../../shared/reports/reports-pdf.service';
 import { CotizadorService } from './../../services/cotizador/cotizador.service';
-import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel, NuevaCotizacionModel } from './../../shared/models/cotizador/cotizador.model';
+import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel} from './../../shared/models/cotizador/cotizador.model';
 import { Component, OnInit } from '@angular/core';
 import {
   DxDataGridModule,
@@ -19,6 +19,9 @@ import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 
 
+
+
+
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
@@ -33,7 +36,7 @@ export class CotizadorComponent implements OnInit {
   arrVariables: VariablesCotizacionModel[] = [];
   arrDetalleCotizacion: DetalleCotizacionModel[] = [];
   arrClasificaciones: string[] = [];
-  //itemNuevaCotizacion: NuevaCotizacionModel;
+ 
 
   itemCotizacion: CotizacionModel = {
     idCotizacion: undefined,
@@ -55,7 +58,9 @@ export class CotizadorComponent implements OnInit {
     kms_regreso:0,
     kms_totales: 0,
     casetas: 0,
+    casetas_si: 0,
     casetas_regreso:0,
+    casetas_regreso_si:0,
     casetas_total_sin_impuestos:0,
     diesel:0,
     diesel_sin_impuestos: 0,
@@ -122,6 +127,9 @@ export class CotizadorComponent implements OnInit {
     this.eliminarCotizcionClick = this.eliminarCotizcionClick.bind(this);
     this.verCortizacionClick = this.verCortizacionClick.bind(this);
     this.dieselValueChanged = this.dieselValueChanged.bind(this);
+    this.caseta_ida_ValueChanged = this.caseta_ida_ValueChanged.bind(this);
+    this.caseta_regreso_ValueChanged = this.caseta_regreso_ValueChanged.bind(this);
+    this.toneladasTotalValueChanged = this.toneladasTotalValueChanged.bind(this);
    
 
     
@@ -249,12 +257,38 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion.diesel_sin_impuestos = e.value === 0 ? 0 : +(((this.itemCotizacion.diesel-0.40228)/1.16) + 0.40228).toFixed(2);
   }
  
+  
+  caseta_ida_ValueChanged(e: any) {
+     console.log(e.value);
+    //  console.log(this.itemCotizacion.casetas_si);
+     
+     this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +(((this.itemCotizacion.casetas-0.40228)/1.16) + 0.40228).toFixed(2);
+
+    console.log(this.itemCotizacion.casetas_si);
+  }
+
+  caseta_regreso_ValueChanged(e: any) {
+    console.log(e.value);
+   //  console.log(this.itemCotizacion.casetas_si);
+    
+    this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +(((this.itemCotizacion.casetas_regreso-0.40228)/1.16) + 0.40228).toFixed(2);
+
+   console.log(this.itemCotizacion.casetas_si);
+ }
   toneladasTotalValueChanged(e: any) {
         console.log(this.itemCotizacion);
         if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
         {
+          if(this.itemCotizacion.tarifaFinal > 0)
+          {
+            this.itemCotizacion.costo_tonelada = this.itemCotizacion.tarifaFinal /
+            e.value;
+          }
+          else
+          {
           this.itemCotizacion.costo_tonelada = this.itemCotizacion.costoViaje /
-            this.itemCotizacion.toneladas;
+            e.value;
+          }
         }
         else
         {
@@ -318,34 +352,7 @@ export class CotizadorComponent implements OnInit {
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
         this.itemCotizacion.idCotizacion = 0;
         
-        // const nuevaCotizacion: CotizacionModel = {
-        //   sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
-        //   regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
-        //   id_ingreso: 0,
-        //   id_area: this.itemCotizacion.id_area,
-        //   id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
-        //   clasificacion: "",
-        //   cliente: this.itemCotizacion.cliente,
-        //   origen: this.itemCotizacion.origen,
-        //   destino: this.itemCotizacion.destino,
-        //   kms_ida: this.itemCotizacion.distanciaIda,
-        //   kms_regreso:  this.itemCotizacion.distanaciaRetorno,
-        //   casetas: this.itemCotizacion.casetas,
-        //   casetas_regreso: this.itemCotizacion.casetasRegreso,
-        //   diesel: this.itemCotizacion.diesel,
-        //   costo: this.itemCotizacion.costo,
-        //   num_estancias_ida: this.itemCotizacion.estancias,
-        //   num_maniobras_ida: this.itemCotizacion.maniobras,
-        //   ton_carga_ida: this.itemCotizacion.toneladas,
-        //   num_estancias_regreso:this.itemCotizacion.estanciasRegreso,
-        //   num_maniobras_regreso: this.itemCotizacion.maniobrasRegreso,
-        //   ton_carga_regreso: this.itemCotizacion.toneladasRegreso,
-        //   cliente_paga: this.itemCotizacion.clientePagaCasetas === "Si" ? true : false,
-        //   tarifaFinal:0,
-        //   costoViaje:0,
-        //   costo_tonelada:0,
-        //   toneladas: this.itemCotizacion.toneladas_num
-        // };
+        
         console.log(this.itemCotizacion);
         this.cotizadorService.postNuevaCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
@@ -422,46 +429,7 @@ export class CotizadorComponent implements OnInit {
       console.log(res.data);
       console.log(this.itemCotizacion);
       this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
-      // this.itemCotizacion = {
-      //   tipoViaje: this.itemNuevaCotizacion.tipoViaje,
-      //   regreso: this.itemNuevaCotizacion.regreso,
-      //   clientePagaCasetas: this.itemNuevaCotizacion.clientePagaCasetas,
-      //   idCotizacion: this.itemNuevaCotizacion.idCotizacion,
-      //   folio: this.itemNuevaCotizacion.idCotizacion.toString(),
-      //   idUnidadNegocio: this.itemNuevaCotizacion.id_area,
-      //   unidadNegocio: this.itemNuevaCotizacion.unidadNegocio,
-      //   idTipoOperacion: this.itemNuevaCotizacion.id_tipo_operacion,
-      //   tipoOperacion: this.itemNuevaCotizacion.tipoOperacion,
-      //   // clasificacion: this.itemNuevaCotizacion.clasificacion,
-      //   cliente: this.itemNuevaCotizacion.cliente,
-        
-      //   origen: this.itemNuevaCotizacion.origen,
-      //   destino: this.itemNuevaCotizacion.destino,
-      //   diesel: this.itemNuevaCotizacion.diesel,
-      //   dieselRegreso:this.itemNuevaCotizacion.diesel,
-      //   costo: this.itemNuevaCotizacion.costo,
-      //   distanciaTotal: 0,
-      //   fletePorViaje: this.itemNuevaCotizacion.costoViaje,
-      //   distanciaIda: this.itemNuevaCotizacion.kms_ida,
-      //   distanaciaRetorno: this.itemNuevaCotizacion.kms_regreso,
-      //   precioVtaFinal: this.itemNuevaCotizacion.tarifaFinal,
-      //   casetas: this.itemNuevaCotizacion.casetas,
-      //   casetasRegreso:this.itemNuevaCotizacion.casetas_regreso,
-      //   tarifaFinal: this.itemNuevaCotizacion.tarifaFinal,
-      //   maniobras:this.itemNuevaCotizacion.num_maniobras_ida,
-      //   maniobrasRegreso:this.itemNuevaCotizacion.num_maniobras_regreso,
-      //   estancias:this.itemNuevaCotizacion.num_estancias_ida,
-      //   estanciasRegreso:this.itemNuevaCotizacion.num_estancias_regreso,
-      //   toneladas:this.itemNuevaCotizacion.ton_carga_ida,
-      //   toneladasRegreso:this.itemNuevaCotizacion.ton_carga_regreso,
-      //   tarifa: this.itemNuevaCotizacion.costoViaje,
-      //   variables: this.itemNuevaCotizacion.variables,
-      //   costos_ida: this.itemNuevaCotizacion.costos_ida,
-      //   costos_regreso: this.itemNuevaCotizacion.costos_regreso,
-      //   toneladas_num: this.itemNuevaCotizacion.toneladas,
-      //   precio_toneladas: this.itemNuevaCotizacion.toneladas
-                
-      // };
+      
     });
   }
 
@@ -538,7 +506,9 @@ export class CotizadorComponent implements OnInit {
       kms_regreso:0,
       kms_totales: 0,
       casetas: 0,
+      casetas_si: 0,
       casetas_regreso:0,
+      casetas_regreso_si: 0,
       casetas_total_sin_impuestos:0,
       diesel:0,
       diesel_sin_impuestos: 0,
