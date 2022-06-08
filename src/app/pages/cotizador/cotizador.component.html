@@ -404,7 +404,7 @@
                             </dxo-label>
                         </dxi-item>
                         <!-- PRECIO VENTA TONELADA -->
-                        <dxi-item itemtype="dxNumberBox" dataField="costo_tonelada" [colSpan]="2" [editorOptions]="{ format: '$ #,##0.##' }">
+                        <dxi-item itemtype="dxNumberBox" dataField="costo_tonelada" [colSpan]="2" [editorOptions]="{onValueChanged: precioToneladasTotalValueChanged, format: '$ #,##0.##' }">
                             <dxo-label text="PRECIO X TONELADA" style="font-weight: bold !important">
                             </dxo-label>
                         </dxi-item>

@@ -22,6 +22,7 @@ import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 
 
+
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
@@ -130,7 +131,7 @@ export class CotizadorComponent implements OnInit {
     this.caseta_ida_ValueChanged = this.caseta_ida_ValueChanged.bind(this);
     this.caseta_regreso_ValueChanged = this.caseta_regreso_ValueChanged.bind(this);
     this.toneladasTotalValueChanged = this.toneladasTotalValueChanged.bind(this);
-   
+    this.precioToneladasTotalValueChanged = this.precioToneladasTotalValueChanged.bind(this);
 
     
     //VER VARIABLES
@@ -259,21 +260,16 @@ export class CotizadorComponent implements OnInit {
  
   
   caseta_ida_ValueChanged(e: any) {
-     console.log(e.value);
-    //  console.log(this.itemCotizacion.casetas_si);
-     
-     this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +(((this.itemCotizacion.casetas-0.40228)/1.16) + 0.40228).toFixed(2);
-
-    console.log(this.itemCotizacion.casetas_si);
+    this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas)/1.16).toFixed(2);
   }
 
   caseta_regreso_ValueChanged(e: any) {
     console.log(e.value);
-   //  console.log(this.itemCotizacion.casetas_si);
+  
     
-    this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +(((this.itemCotizacion.casetas_regreso-0.40228)/1.16) + 0.40228).toFixed(2);
+    this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas_regreso)/1.16).toFixed(2);
 
-   console.log(this.itemCotizacion.casetas_si);
+   
  }
   toneladasTotalValueChanged(e: any) {
         console.log(this.itemCotizacion);
@@ -296,6 +292,30 @@ export class CotizadorComponent implements OnInit {
         }
    
   }
+
+  precioToneladasTotalValueChanged(e: any) {
+    
+    if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
+    {
+
+      var costoViaje = this.itemCotizacion.toneladas * e.value
+
+      if(costoViaje > this.itemCotizacion.costoViaje )
+      {
+        this.itemCotizacion.tarifaFinal = costoViaje
+      }
+      else
+      {
+         this.itemCotizacion.tarifaFinal = 0;
+         this.itemCotizacion.costo_tonelada = this.itemCotizacion.costoViaje / this.itemCotizacion.toneladas;
+      }
+    }
+    else
+    {
+      this.itemCotizacion.costo_tonelada = 0;
+    }
+
+}
 
   mouseoverAprobarCotizacion(e: any) {
     //TODO: Validar que sea tamien el gerente
