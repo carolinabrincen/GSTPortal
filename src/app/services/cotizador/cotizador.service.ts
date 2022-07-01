@@ -69,7 +69,7 @@ export class CotizadorService extends AbstractManagerService {
   postEliminarCotizacion(idCotizacion: number) {
     const cotizacion = {
       idCotizacion: idCotizacion,
-      id_ingreso: "0"
+      id_ingreso: sessionStorage.getItem("idUsuario")
     }
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_ELIMINAR_COTIZACION), cotizacion, this.httpOptions);
   }
@@ -77,7 +77,7 @@ export class CotizadorService extends AbstractManagerService {
   postAprobarCotizacion(idCotizacion: number) {
     const cotizacion = {
       idCotizacion: idCotizacion,
-      id_ingreso: "0"
+      id_ingreso: sessionStorage.getItem("idUsuario")
     }
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_APROBAR_COTIZACION), cotizacion, this.httpOptions);
   }
@@ -89,7 +89,12 @@ export class CotizadorService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_COTIZADOR_OBTENER_COTIZACION + idCotizacion) , this.httpOptions);
   }
 
-
+  getTiposOperacion(IdUdn: number){
+    const cotizacion = {
+      IdUdn: IdUdn
+    }
+    return this.get<any>((this.API_URL + API_URLS.GET_TIPOS_OPERACION_UDN + IdUdn ), this.httpOptions);
+  }
 
 
 

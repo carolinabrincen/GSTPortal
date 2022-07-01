@@ -15,11 +15,7 @@ import { RentGerService } from 'src/app/services/rentabilidad-gerencial/rent-ger
 import { TiposOperacionModel } from 'src/app/shared/models/rentabilidad-gerencial/renta-geren.model';
 import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
-import { ifStmt } from '@angular/compiler/src/output/output_ast';
-
-
-
-
+import { IUser } from 'src/app/shared/services';
 
 
 
@@ -29,6 +25,8 @@ import { ifStmt } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./cotizador.component.scss']
 })
 export class CotizadorComponent implements OnInit {
+
+  private _user: IUser | null = null;
 
   arrCotizaciones: CotizacionModel[] = [];
   arrPreCotizaciones: CotizacionModel[] = [];
@@ -124,6 +122,7 @@ export class CotizadorComponent implements OnInit {
     private pdfReport: ReportsPDFService
   ) {
     const that = this;
+    this.unidadNegocio_ValueChanged = this.unidadNegocio_ValueChanged.bind(this);
     this.editarCotizacionClick = this.editarCotizacionClick.bind(this);
     this.eliminarCotizcionClick = this.eliminarCotizcionClick.bind(this);
     this.verCortizacionClick = this.verCortizacionClick.bind(this);
@@ -132,8 +131,8 @@ export class CotizadorComponent implements OnInit {
     this.caseta_regreso_ValueChanged = this.caseta_regreso_ValueChanged.bind(this);
     this.toneladasTotalValueChanged = this.toneladasTotalValueChanged.bind(this);
     this.precioToneladasTotalValueChanged = this.precioToneladasTotalValueChanged.bind(this);
-
-    
+    this.precioTotalValueChanged = this.precioTotalValueChanged.bind(this);
+     
     //VER VARIABLES
     this.buttonOptionsVariables = {
       type: 'normal',
@@ -165,7 +164,8 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         console.log('mostrar PDF');
-        pdfReport.obtenerReporte();
+        pdfReport.obtenerReporte(that.itemCotizacion.folio, that.itemCotizacion.cliente, 
+          that.itemCotizacion.tarifaFinal, that.itemCotizacion.origen + "-" + that.itemCotizacion.destino);
 
       },
     };
@@ -216,8 +216,7 @@ export class CotizadorComponent implements OnInit {
     this.getCotizaciones();
     this.getPreCotizaciones();
     this.getUnidadesNegocio();
-    this.getTiposOperacion();
-    // this.getClasificaciones();
+    
   }
 
   // //#region :::: GETTERS ::::
@@ -243,14 +242,16 @@ export class CotizadorComponent implements OnInit {
     });
   }
 
-  getTiposOperacion() {
+  getTiposOperacion(idUdN: number) {
     this.arrTipoOperacion = [];
-    this.renGerService.getTiposOperacion().subscribe(res => {
+    this.cotizadorService.getTiposOperacion(idUdN).subscribe(res => {
       this.arrTipoOperacion = res.data;
       console.log(this.arrTipoOperacion);
     });
 
   }
+
+  
   //#endregion :::: FIN GETTERS ::::
 
   //#endregion :::: EVENTOS :::::
@@ -263,14 +264,14 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas)/1.16).toFixed(2);
   }
 
-  caseta_regreso_ValueChanged(e: any) {
+    caseta_regreso_ValueChanged(e: any) {
     console.log(e.value);
   
     
     this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas_regreso)/1.16).toFixed(2);
 
    
- }
+   }
   toneladasTotalValueChanged(e: any) {
         console.log(this.itemCotizacion);
         if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
@@ -295,27 +296,62 @@ export class CotizadorComponent implements OnInit {
 
   precioToneladasTotalValueChanged(e: any) {
     
-    if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
+    if(this.itemCotizacion.costo_tonelada > 0)
     {
-
-      var costoViaje = this.itemCotizacion.toneladas * e.value
-
-      if(costoViaje > this.itemCotizacion.costoViaje )
+      if(this.itemCotizacion.toneladas > 0)
       {
-        this.itemCotizacion.tarifaFinal = costoViaje
+        var costo = this.itemCotizacion.toneladas * this.itemCotizacion.costo_tonelada;
+        if(costo >= this.itemCotizacion.costoViaje)
+        {
+          this.itemCotizacion.tarifaFinal = costo;
+        }
+        else
+        {
+          this.itemCotizacion.costo_tonelada = 0;
+        }
+      }
+    }
+  }
+
+  unidadNegocio_ValueChanged(e: any) {
+    console.log(e.value);
+    if(e.value > 0)
+    {
+      this.getTiposOperacion(e.value);
+    }
+    else
+    {
+      this.arrTipoOperacion = null;
+    }
+  }
+
+
+
+precioTotalValueChanged(e: any) {
+    
+  if(this.itemCotizacion.tarifaFinal > 0)
+  {
+    if(this.itemCotizacion.toneladas> 0)
+    {
+      if(this.itemCotizacion.tarifaFinal > this.itemCotizacion.costoViaje)
+      {
+        this.itemCotizacion.costo_tonelada = this.itemCotizacion.tarifaFinal / this.itemCotizacion.toneladas;
       }
       else
       {
-         this.itemCotizacion.tarifaFinal = 0;
-         this.itemCotizacion.costo_tonelada = this.itemCotizacion.costoViaje / this.itemCotizacion.toneladas;
+        this.itemCotizacion.tarifaFinal = 0;
       }
     }
     else
     {
-      this.itemCotizacion.costo_tonelada = 0;
+      if(this.itemCotizacion.tarifaFinal < this.itemCotizacion.costoViaje)
+      {
+        this.itemCotizacion.tarifaFinal = 0;
+      }
     }
-
+  }
 }
+
 
   mouseoverAprobarCotizacion(e: any) {
     //TODO: Validar que sea tamien el gerente
@@ -371,6 +407,7 @@ export class CotizadorComponent implements OnInit {
         this.itemCotizacion.regresa_vacio = this.itemCotizacion.regreso === "Vacio" ? true : false;
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
         this.itemCotizacion.idCotizacion = 0;
+        this.itemCotizacion.id_ingreso = sessionStorage.getItem("idUsuario");
         
         
         console.log(this.itemCotizacion);

@@ -57,6 +57,9 @@ export class AuthService extends AbstractManagerService{
         console.log('💙',data);
         
         sessionStorage.setItem('token', data.data.token.tokenUsuario);
+        sessionStorage.setItem('idUsuario', data.data.data.idUsuario);
+
+       
 
         this._user = data.data.data;
 

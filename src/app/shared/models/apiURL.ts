@@ -5,6 +5,8 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_MARZO = 'api/Ingresos/IngresosAnualesDetalladoMarzo/2022/0',
     GET_INGRESOS_ANUALES_DETALLADO_ABRIL = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202204/04',
     GET_INGRESOS_ANUALES_DETALLADO_MAYO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202205/05',
+    GET_INGRESOS_ANUALES_DETALLADO_JUNIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202206/06',
+    GET_INGRESOS_ANUALES_DETALLADO_JULIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202207/07',
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
     GET_TONELADAS_ANUALES = 'api/Ingresos/ToneladasAnuales',
@@ -23,6 +25,7 @@ export enum API_URLS{
     POST_TRACTOS = 'api/Rentabilidad/RCTractos',
 
     GET_TIPOS_OPERACION = 'api/General/TiposOperacion',
+    GET_TIPOS_OPERACION_UDN = 'api/Cotizador/GetOperaciones/',
     POST_CLIENTES_RUTAS = 'api/Rentabilidad/RGClientesRutas',
     POST_RENTABILIDAD_RUTA = 'api/Rentabilidad/RentabilidadRuta',
 
