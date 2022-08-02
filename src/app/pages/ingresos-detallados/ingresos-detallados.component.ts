@@ -24,6 +24,17 @@ export class IngresosDetalladosComponent implements OnInit {
   arrIngresosJulio: IngresosDModel[] = [];
   arrDetalleJulio: DetalleModel[] = [];
 
+  arrIngresosAgosto: IngresosDModel[] = [];
+  arrDetalleAgosto: DetalleModel[] = [];
+  arrIngresosSeptiembre: IngresosDModel[] = [];
+  arrDetalleSeptiembre: DetalleModel[] = [];
+  arrIngresosOctubre: IngresosDModel[] = [];
+  arrDetalleOctubre: DetalleModel[] = [];
+  arrIngresosNoviembre: IngresosDModel[] = [];
+  arrDetalleNoviembre: DetalleModel[] = [];
+  arrIngresosDiciembre: IngresosDModel[] = [];
+  arrDetalleDiciembre: DetalleModel[] = [];
+
   constructor(private ingresosService: ServiceSales) 
   {
     this.ingresosService.getIngresosDetallados().subscribe(res => {
@@ -65,6 +76,41 @@ export class IngresosDetalladosComponent implements OnInit {
      
       this.arrIngresosJulio = res.data.resumen;
       this.arrDetalleJulio = res.data.detalle;
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosAgosto().subscribe(res => {
+     
+      this.arrIngresosAgosto = res.data.resumen;
+      this.arrDetalleAgosto = res.data.detalle;
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosSeptiembre().subscribe(res => {
+     
+      this.arrIngresosSeptiembre = res.data.resumen;
+      this.arrDetalleSeptiembre = res.data.detalle;
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosOctubre().subscribe(res => {
+     
+      this.arrIngresosOctubre = res.data.resumen;
+      this.arrDetalleOctubre = res.data.detalle;
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosNoviembre().subscribe(res => {
+     
+      this.arrIngresosNoviembre = res.data.resumen;
+      this.arrDetalleNoviembre = res.data.detalle;
+     
+    });
+
+    this.ingresosService.getIngresosDetalladosDiciembre().subscribe(res => {
+     
+      this.arrIngresosDiciembre = res.data.resumen;
+      this.arrDetalleDiciembre = res.data.detalle;
      
     });
   }

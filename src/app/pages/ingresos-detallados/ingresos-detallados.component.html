@@ -4,7 +4,7 @@
 
     <h3>Resumen</h3>
     <dx-tab-panel>
-        <dxi-item title="Febrero 2022">
+        <dxi-item title="Feb 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresos" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -206,7 +206,7 @@
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
 
-        <dxi-item title="Marzo 2022">
+        <dxi-item title="Mar 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosMarzo" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -408,7 +408,7 @@
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
 
-        <dxi-item title="Abril 2022">
+        <dxi-item title="Abr 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosAbril" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -610,7 +610,7 @@
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
 
-        <dxi-item title="Mayo 2022">
+        <dxi-item title="May 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosMayo" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -812,7 +812,7 @@
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
 
-        <dxi-item title="Junio 2022">
+        <dxi-item title="Jun 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosJunio" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -1014,7 +1014,7 @@
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
 
-        <dxi-item title="Julio 2022">
+        <dxi-item title="Jul 2022">
             <!--#region :::: GRID PRINCIPAL::::  -->
             <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosJulio" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
 
@@ -1215,6 +1215,1017 @@
             </dx-data-grid>
             <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
         </dxi-item>
+
+        <dxi-item title="Ago 2022">
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosAgosto" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="tipoOperacion" caption="Operación"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="enero" caption="JULIO DESPACHADO" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febIgresosOtrosMeses -->
+                <dxi-column dataField="febIgresosOtrosMeses" caption="Otros Meses" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column caption="MOVIMIENTOS DE VIAJES DEL MES ANTERIOR" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+
+                    <!-- febMACancelacion -->
+                    <dxi-column dataField="febMACancelacion" caption="Cancelado" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMAAumento -->
+                    <dxi-column dataField="febMAAumento" caption="Mod. monto + " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="febMADisminucion" caption="Mod. monto -" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMANuevo -->
+                    <dxi-column dataField="febMANuevo" caption="Nuevas" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMATotal -->
+                    <dxi-column dataField="febMATotal" caption="TOTAL" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                </dxi-column>
+
+                <!-- febIngreso -->
+                <dxi-column caption="MOVIMIENTOS AGOSTO" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="febIngreso" caption="Facturado" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+                    <!-- febProvision -->
+                    <dxi-column dataField="febProvision" caption="Provisión" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
+                </dxi-column>
+
+                <!-- despachado -->
+                <dxi-column dataField="febDespachado" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxo-summary>
+                    <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="enero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febrero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIngreso" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIngreso" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIgresosOtrosMeses" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIgresosOtrosMeses" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMANuevo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMANuevo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMADisminucion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMADisminucion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMAAumento" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMAAumento" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMACancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMACancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febDespachado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febDespachado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                    <dxi-group-item column="febMATotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMATotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                </dxo-summary>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight:bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="60"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
+            <br>
+            <h3>Detalle</h3>
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #DetalleGrid id="gridContainer" [dataSource]="arrDetalleAgosto" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
+                <!-- clasificacion -->
+                <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+                <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="status" caption="St."></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
+
+                <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMACancelacion -->
+                <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMAAumento -->
+                <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxi-column dataField="factura" caption="Factura"></dxi-column>
+                <dxi-column dataField="facturaAnt" caption="Factura Ant."></dxi-column>
+                <dxi-column dataField="fechaIngreso" caption="Ingreso CP"></dxi-column>
+                <dxi-column dataField="fechaModifico" caption="Modificó CP"></dxi-column>
+
+
+
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="20"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+        </dxi-item>
+
+        <dxi-item title="Sep 2022">
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosSeptiembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="tipoOperacion" caption="Operación"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="enero" caption="AGOSTO DESPACHADO" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febIgresosOtrosMeses -->
+                <dxi-column dataField="febIgresosOtrosMeses" caption="Otros Meses" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column caption="MOVIMIENTOS DE VIAJES DEL MES ANTERIOR" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+
+                    <!-- febMACancelacion -->
+                    <dxi-column dataField="febMACancelacion" caption="Cancelado" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMAAumento -->
+                    <dxi-column dataField="febMAAumento" caption="Mod. monto + " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="febMADisminucion" caption="Mod. monto -" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMANuevo -->
+                    <dxi-column dataField="febMANuevo" caption="Nuevas" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMATotal -->
+                    <dxi-column dataField="febMATotal" caption="TOTAL" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                </dxi-column>
+
+                <!-- febIngreso -->
+                <dxi-column caption="MOVIMIENTOS SEPTIEMBRE" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="febIngreso" caption="Facturado" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+                    <!-- febProvision -->
+                    <dxi-column dataField="febProvision" caption="Provisión" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
+                </dxi-column>
+
+                <!-- despachado -->
+                <dxi-column dataField="febDespachado" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxo-summary>
+                    <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="enero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febrero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIngreso" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIngreso" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIgresosOtrosMeses" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIgresosOtrosMeses" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMANuevo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMANuevo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMADisminucion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMADisminucion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMAAumento" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMAAumento" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMACancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMACancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febDespachado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febDespachado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                    <dxi-group-item column="febMATotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMATotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                </dxo-summary>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight:bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="60"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
+            <br>
+            <h3>Detalle</h3>
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #DetalleGrid id="gridContainer" [dataSource]="arrDetalleSeptiembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
+                <!-- clasificacion -->
+                <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+                <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="status" caption="St."></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
+
+                <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMACancelacion -->
+                <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMAAumento -->
+                <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxi-column dataField="factura" caption="Factura"></dxi-column>
+                <dxi-column dataField="facturaAnt" caption="Factura Ant."></dxi-column>
+                <dxi-column dataField="fechaIngreso" caption="Ingreso CP"></dxi-column>
+                <dxi-column dataField="fechaModifico" caption="Modificó CP"></dxi-column>
+
+
+
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="20"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+        </dxi-item>
+
+        <dxi-item title="Oct 2022">
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosOctubre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="tipoOperacion" caption="Operación"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="enero" caption="SEPTIEMBRE DESPACHADO" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febIgresosOtrosMeses -->
+                <dxi-column dataField="febIgresosOtrosMeses" caption="Otros Meses" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column caption="MOVIMIENTOS DE VIAJES DEL MES ANTERIOR" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+
+                    <!-- febMACancelacion -->
+                    <dxi-column dataField="febMACancelacion" caption="Cancelado" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMAAumento -->
+                    <dxi-column dataField="febMAAumento" caption="Mod. monto + " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="febMADisminucion" caption="Mod. monto -" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMANuevo -->
+                    <dxi-column dataField="febMANuevo" caption="Nuevas" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMATotal -->
+                    <dxi-column dataField="febMATotal" caption="TOTAL" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                </dxi-column>
+
+                <!-- febIngreso -->
+                <dxi-column caption="MOVIMIENTOS OCTUBRE" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="febIngreso" caption="Facturado" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+                    <!-- febProvision -->
+                    <dxi-column dataField="febProvision" caption="Provisión" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
+                </dxi-column>
+
+                <!-- despachado -->
+                <dxi-column dataField="febDespachado" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxo-summary>
+                    <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="enero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febrero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIngreso" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIngreso" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIgresosOtrosMeses" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIgresosOtrosMeses" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMANuevo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMANuevo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMADisminucion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMADisminucion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMAAumento" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMAAumento" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMACancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMACancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febDespachado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febDespachado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                    <dxi-group-item column="febMATotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMATotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                </dxo-summary>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight:bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="60"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
+            <br>
+            <h3>Detalle</h3>
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #DetalleGrid id="gridContainer" [dataSource]="arrDetalleOctubre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
+                <!-- clasificacion -->
+                <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+                <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="status" caption="St."></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
+
+                <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMACancelacion -->
+                <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMAAumento -->
+                <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxi-column dataField="factura" caption="Factura"></dxi-column>
+                <dxi-column dataField="facturaAnt" caption="Factura Ant."></dxi-column>
+                <dxi-column dataField="fechaIngreso" caption="Ingreso CP"></dxi-column>
+                <dxi-column dataField="fechaModifico" caption="Modificó CP"></dxi-column>
+
+
+
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="20"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+        </dxi-item>
+
+        <dxi-item title="Nov 2022">
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosNoviembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="tipoOperacion" caption="Operación"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="enero" caption="OCTUBRE DESPACHADO" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febIgresosOtrosMeses -->
+                <dxi-column dataField="febIgresosOtrosMeses" caption="Otros Meses" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column caption="MOVIMIENTOS DE VIAJES DEL MES ANTERIOR" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+
+                    <!-- febMACancelacion -->
+                    <dxi-column dataField="febMACancelacion" caption="Cancelado" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMAAumento -->
+                    <dxi-column dataField="febMAAumento" caption="Mod. monto + " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="febMADisminucion" caption="Mod. monto -" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMANuevo -->
+                    <dxi-column dataField="febMANuevo" caption="Nuevas" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMATotal -->
+                    <dxi-column dataField="febMATotal" caption="TOTAL" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                </dxi-column>
+
+                <!-- febIngreso -->
+                <dxi-column caption="MOVIMIENTOS NOVIEMBRE" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="febIngreso" caption="Facturado" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+                    <!-- febProvision -->
+                    <dxi-column dataField="febProvision" caption="Provisión" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
+                </dxi-column>
+
+                <!-- despachado -->
+                <dxi-column dataField="febDespachado" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxo-summary>
+                    <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="enero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febrero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIngreso" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIngreso" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIgresosOtrosMeses" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIgresosOtrosMeses" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMANuevo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMANuevo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMADisminucion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMADisminucion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMAAumento" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMAAumento" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMACancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMACancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febDespachado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febDespachado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                    <dxi-group-item column="febMATotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMATotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                </dxo-summary>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight:bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="60"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
+            <br>
+            <h3>Detalle</h3>
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #DetalleGrid id="gridContainer" [dataSource]="arrDetalleNoviembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
+                <!-- clasificacion -->
+                <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+                <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="status" caption="St."></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
+
+                <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMACancelacion -->
+                <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMAAumento -->
+                <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxi-column dataField="factura" caption="Factura"></dxi-column>
+                <dxi-column dataField="facturaAnt" caption="Factura Ant."></dxi-column>
+                <dxi-column dataField="fechaIngreso" caption="Ingreso CP"></dxi-column>
+                <dxi-column dataField="fechaModifico" caption="Modificó CP"></dxi-column>
+
+
+
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="20"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+        </dxi-item>
+
+        <dxi-item title="Dic 2022">
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #IngresosGrid id="gridContainer" [dataSource]="arrIngresosDiciembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="tipoOperacion" caption="Operación"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="enero" caption="NOVIEMBRE DESPACHADO" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febIgresosOtrosMeses -->
+                <dxi-column dataField="febIgresosOtrosMeses" caption="Otros Meses" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column caption="MOVIMIENTOS DE VIAJES DEL MES ANTERIOR" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+
+                    <!-- febMACancelacion -->
+                    <dxi-column dataField="febMACancelacion" caption="Cancelado" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMAAumento -->
+                    <dxi-column dataField="febMAAumento" caption="Mod. monto + " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="febMADisminucion" caption="Mod. monto -" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMANuevo -->
+                    <dxi-column dataField="febMANuevo" caption="Nuevas" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                    <!-- febMATotal -->
+                    <dxi-column dataField="febMATotal" caption="TOTAL" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+                </dxi-column>
+
+                <!-- febIngreso -->
+                <dxi-column caption="MOVIMIENTOS DICIEMBRE" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="febIngreso" caption="Facturado" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+                    <!-- febProvision -->
+                    <dxi-column dataField="febProvision" caption="Provisión" alignment="right" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
+                </dxi-column>
+
+                <!-- despachado -->
+                <dxi-column dataField="febDespachado" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxo-summary>
+                    <dxi-group-item column="enero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="enero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febrero" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febrero" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIngreso" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIngreso" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febIgresosOtrosMeses" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febIgresosOtrosMeses" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMANuevo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMANuevo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMADisminucion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMADisminucion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMAAumento" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMAAumento" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febMACancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMACancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="febDespachado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febDespachado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                    <dxi-group-item column="febMATotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="febMATotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
+                </dxo-summary>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight:bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="60"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
+            <br>
+            <h3>Detalle</h3>
+            <!--#region :::: GRID PRINCIPAL::::  -->
+            <dx-data-grid #DetalleGrid id="gridContainer" [dataSource]="arrDetalleDiciembre" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+
+                <dxo-export [enabled]="true"></dxo-export>
+                <!-- unidadNegocio -->
+                <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
+                <!-- clasificacion -->
+                <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
+                <!-- tipoOperacion -->
+                <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+                <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
+                <!-- enero -->
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="status" caption="St."></dxi-column>
+                <!-- febMASolicitudCancelacion -->
+                <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
+
+                <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMACancelacion -->
+                <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+                <!-- febMAAumento -->
+                <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="2"> </dxo-format>
+                </dxi-column>
+
+                <dxi-column dataField="factura" caption="Factura"></dxi-column>
+                <dxi-column dataField="facturaAnt" caption="Factura Ant."></dxi-column>
+                <dxi-column dataField="fechaIngreso" caption="Ingreso CP"></dxi-column>
+                <dxi-column dataField="fechaModifico" caption="Modificó CP"></dxi-column>
+
+
+
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+
+                <!-- TEMPLATE: CELDA EN NEGRITA -->
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold">{{ cell.text }}</div>
+                </div>
+
+
+                <dxo-paging [pageSize]="20"></dxo-paging>
+
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+            <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+        </dxi-item>
+
     </dx-tab-panel>
 
 

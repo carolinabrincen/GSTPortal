@@ -7,6 +7,11 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_MAYO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202205/05',
     GET_INGRESOS_ANUALES_DETALLADO_JUNIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202206/06',
     GET_INGRESOS_ANUALES_DETALLADO_JULIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202207/07',
+    GET_INGRESOS_ANUALES_DETALLADO_AGO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202208/08',
+    GET_INGRESOS_ANUALES_DETALLADO_SEP = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202209/09',
+    GET_INGRESOS_ANUALES_DETALLADO_OCT = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202210/10',
+    GET_INGRESOS_ANUALES_DETALLADO_NOV = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202211/11',
+    GET_INGRESOS_ANUALES_DETALLADO_DIC = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202212/12',
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
     GET_TONELADAS_ANUALES = 'api/Ingresos/ToneladasAnuales',
@@ -37,4 +42,5 @@ export enum API_URLS{
     POST_COTIZADOR_EDITAR_COTIZACION = 'api/Cotizador/ModCotizacion',
     POST_COTIZADOR_ELIMINAR_COTIZACION = 'api/Cotizador/EliminarCotizacion',
     POST_COTIZADOR_APROBAR_COTIZACION = 'api/Cotizador/AprobarCotizacion',
+    GET_COTIZADOR_RENTABILIDAD = 'api/Cotizador/ObtenerRendimientos/',
 }

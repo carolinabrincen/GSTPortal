@@ -45,6 +45,8 @@ export interface CotizacionModel{
   tarifa40?: number,
   porcentajeFinal?: number,
   status?: string,
+  rend_cargado?: number,
+  rend_vacio?: number,
   variables?: VariablesCotizacionModel[],
   costos_ida?: DetalleCotizacionModel[],
   costos_regreso?: DetalleCotizacionModel[]
@@ -97,6 +99,8 @@ export interface NuevaCotizacionModel{
   tipoOperacion?: string,
   toneladas?: number,
   costo_tonelada?: number,
+  rend_cargado?: number,
+  rend_vacio?: number,
   variables?: VariablesCotizacionModel[],
   costos_ida?: DetalleCotizacionModel[],
   costos_regreso?: DetalleCotizacionModel[]

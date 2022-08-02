@@ -207,7 +207,7 @@ export class ReportsPDFService {
                       {
                         border: [false, false, false, false],
                         colSpan: 12,
-                        text: 'Por medio de este conducto le informo que en base a la plática  sostenida y de común acuerdo entre ambas partes  le hago llegar el presente documento para su autorización de las siguientes tarifas en base a las rutas solicitadas:'
+                        text: 'Por medio de este conducto le informo que con base a la plática  sostenida y de común acuerdo entre ambas partes  le hago llegar el presente documento para su autorización de las siguientes tarifas en base a las rutas solicitadas:'
                       }
                     ],
                     //Tabla de rutas
@@ -264,7 +264,7 @@ export class ReportsPDFService {
                       {
                         border: [false, false, false, false],
                         colSpan: 12,
-                        text: '\n\nEl costo de la tarifa es más IVA, libre de maniobras de carga y descarga.'
+                        text: '\n\nEl costo de la tarifa es más IVA, menos retenciones, libre de maniobras de carga y descarga.'
                       }
                     ],
                     //Despedida

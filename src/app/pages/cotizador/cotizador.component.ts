@@ -17,6 +17,13 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { IUser } from 'src/app/shared/services';
 
+import dxSelectBox from 'devextreme/ui/select_box';
+import { runInThisContext } from 'vm';
+
+
+
+
+
 
 
 @Component({
@@ -77,7 +84,9 @@ export class CotizadorComponent implements OnInit {
     toneladas:0,
     costo_tonelada:0,
     costoPorKm:0,
-    ingresoPorKm:0
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
     
   };
 
@@ -108,6 +117,7 @@ export class CotizadorComponent implements OnInit {
   readonly allowedPageSizes = [5, 10, 20, 50];
 
   tipoRegistro: string = '';
+  operacion: string = '';
   rowIndex: number = -1;
   bolEsViajeSencillo = true;
   bolEsPrecioTonelada = true;
@@ -126,12 +136,14 @@ export class CotizadorComponent implements OnInit {
     this.editarCotizacionClick = this.editarCotizacionClick.bind(this);
     this.eliminarCotizcionClick = this.eliminarCotizcionClick.bind(this);
     this.verCortizacionClick = this.verCortizacionClick.bind(this);
+    this.imprimirCortizacionClick = this.imprimirCortizacionClick.bind(this);
     this.dieselValueChanged = this.dieselValueChanged.bind(this);
     this.caseta_ida_ValueChanged = this.caseta_ida_ValueChanged.bind(this);
     this.caseta_regreso_ValueChanged = this.caseta_regreso_ValueChanged.bind(this);
     this.toneladasTotalValueChanged = this.toneladasTotalValueChanged.bind(this);
     this.precioToneladasTotalValueChanged = this.precioToneladasTotalValueChanged.bind(this);
     this.precioTotalValueChanged = this.precioTotalValueChanged.bind(this);
+    this.tipoOperacion_ValueChanged = this.tipoOperacion_ValueChanged.bind(this);
      
     //VER VARIABLES
     this.buttonOptionsVariables = {
@@ -147,7 +159,7 @@ export class CotizadorComponent implements OnInit {
     //PREVIZUALIZAR
     this.buttonOptionsPre = {
       type: 'normal',
-      text: 'Previsualizar',
+      text: 'Costos',
       icon: 'file',
 
       onClick(e: any) {
@@ -251,6 +263,17 @@ export class CotizadorComponent implements OnInit {
 
   }
 
+  getRentabilidad(operacion: string) {
+    
+    this.cotizadorService.getRentabilidad(this.itemCotizacion.id_area, operacion).subscribe(res => {
+      
+      console.log(res.data);
+      this.itemCotizacion.rend_cargado = res.data.rend_cargado;
+      this.itemCotizacion.rend_vacio = res.data.rend_vacio;
+    });
+
+  }
+
   
   //#endregion :::: FIN GETTERS ::::
 
@@ -264,7 +287,7 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas)/1.16).toFixed(2);
   }
 
-    caseta_regreso_ValueChanged(e: any) {
+  caseta_regreso_ValueChanged(e: any) {
     console.log(e.value);
   
     
@@ -323,6 +346,13 @@ export class CotizadorComponent implements OnInit {
     {
       this.arrTipoOperacion = null;
     }
+  }
+
+  tipoOperacion_ValueChanged(e: any) {
+    console.log(e);
+   
+   this.getRentabilidad(e.value);
+  
   }
 
 
@@ -408,7 +438,7 @@ precioTotalValueChanged(e: any) {
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
         this.itemCotizacion.idCotizacion = 0;
         this.itemCotizacion.id_ingreso = sessionStorage.getItem("idUsuario");
-        
+        console.log(this.itemCotizacion.tipoOperacion); 
         
         console.log(this.itemCotizacion);
         this.cotizadorService.postNuevaCotizacion(this.itemCotizacion).subscribe(res => {
@@ -423,7 +453,9 @@ precioTotalValueChanged(e: any) {
               },
             }, 'success', 3000);
           } else {
+            console.log(res);
             notify({
+              
               message: res.responseText,
               position: {
                 my: 'center center',
@@ -497,6 +529,15 @@ precioTotalValueChanged(e: any) {
     this.itemCotizacion = clonedItem;
     this.tituloModal = "Cotizacion Folio: " + this.itemCotizacion.folio + " (Solo Lectura)";
     this.bolModal = true;
+  }
+
+  imprimirCortizacionClick(e: any) {
+    const clonedItem = { ...e.row.data };
+    this.itemCotizacion = clonedItem;
+    this.tituloModal = "Cotizacion Folio: " + this.itemCotizacion.folio + " (Solo Lectura)";
+    console.log('mostrar PDF');
+    this.pdfReport.obtenerReporte(this.itemCotizacion.folio, this.itemCotizacion.cliente, 
+      this.itemCotizacion.tarifaFinal, this.itemCotizacion.origen + "-" + this.itemCotizacion.destino);
   }
 
   nuevaCotizacionClick() {
@@ -583,7 +624,9 @@ precioTotalValueChanged(e: any) {
       toneladas:0,
       costo_tonelada:0,
       costoPorKm:0,
-      ingresoPorKm:0
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
     };
   }
 
