@@ -12,9 +12,13 @@ import { DxSelectBoxModule, DxButtonModule, DxTabPanelModule, DxDataGridModule  
 import { HttpClientModule} from '@angular/common/http';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent
+    
+    
 
   ],
   imports: [

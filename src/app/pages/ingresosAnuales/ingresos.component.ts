@@ -1,31 +1,23 @@
 import {
   NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy, ChangeDetectorRef,AfterViewInit, OnInit
 } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
 
 import {
-  DxDropDownBoxModule,
-  DxTreeViewModule,
-  DxDataGridModule,
-  DxTreeViewComponent,
   DxDataGridComponent,
 } from 'devextreme-angular';
 
-import CustomStore from 'devextreme/data/custom_store';
+
 import { CurrencyPipe } from '@angular/common';
 import {
-  DxPivotGridModule,
-  DxPivotGridComponent,
-  DxChartModule,
   DxChartComponent,
 } from 'devextreme-angular';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
+
 import { ServiceSales } from '../tasks/app.serviceSales';
-import { IUser } from 'src/app/shared/services';
+
 
 @Component({
   

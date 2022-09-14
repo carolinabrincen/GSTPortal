@@ -43,4 +43,6 @@ export enum API_URLS{
     POST_COTIZADOR_ELIMINAR_COTIZACION = 'api/Cotizador/EliminarCotizacion',
     POST_COTIZADOR_APROBAR_COTIZACION = 'api/Cotizador/AprobarCotizacion',
     GET_COTIZADOR_RENTABILIDAD = 'api/Cotizador/ObtenerRendimientos/',
+
+    GET_KMS_ACTUALES = 'api/Kilometros/KmsMensuales',
 }

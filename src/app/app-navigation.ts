@@ -18,27 +18,33 @@ export const navigation = [
         text: 'Ingresos Detalle',
         path: '/ingresos',
         icon: 'money'
+      },
+      {
+        text: 'Kilómetros',
+        path: '/kilometros',
+        icon: 'map'
       }
-      ,
+       ,
       {
         text: 'Cotizador',
         path: '/cotizador',
         icon: 'columnchooser'
-      }
+      },
+      
+       {
+         TEXT: 'RENT. CONTABLE',
+         PATH: '/rentabilidadcontable',
+         ICON: 'map'
+       },
+       {
+         TEXT: 'RENT. GERENCIAL',
+         PATH: '/rentabilidadgerencial',
+         ICON: 'map'
+       }
     ]
   }
 ];
-    //   ,
-    //   {
-    //     text: 'Rent. Contable',
-    //     path: '/rentabilidad-contable',
-    //     icon: 'columnproperties'
-    //   },
-    //   {
-    //     text: 'Rent. Gerencial',
-    //     path: '/rentabilidad-gerencial',
-    //     icon: 'fieldchooser'
-    //   },
+    
     //   {
     //     text: 'Cotizador',
     //     path: '/cotizador',

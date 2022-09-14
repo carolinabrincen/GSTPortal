@@ -7,6 +7,11 @@ export interface MesesModel{
   idMes: number,
   nombre: string,
 }
+
+export interface OpcionesModel{
+  idMes: number,
+  nombre: string,
+}
 export interface AniosModel{
   idAnio: number,
   anio: string,

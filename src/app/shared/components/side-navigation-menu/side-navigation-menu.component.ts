@@ -68,6 +68,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   onItemClick(event: ItemClickEvent) {
     this.selectedItemChanged.emit(event);
+    console.log(event);
   }
 
   ngAfterViewInit() {

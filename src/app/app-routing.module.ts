@@ -14,11 +14,13 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule} from 'devextreme-angular';
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
+  import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
   import { IngresosComponent } from './pages/ingresosAnuales/ingresos.component';
-  import { GridCellDataPipe, RentGerComponent } from './pages/rent-ger/rent-ger.component';
+  import { GridCellDataPipe} from './pages/rent-ger/rent-ger.component';
   import { CotizadorComponent } from './pages/cotizador/cotizador.component';
   import { IngresosDetalladosComponent } from './pages/ingresos-detallados/ingresos-detallados.component';
-
+  import { KilometrosComponent } from './pages/kilometros/kilometros.component';
+  
 
 
 
@@ -65,12 +67,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'rentabilidad-contable',
+    path: 'rentabilidadcontable',
     component: RentContComponent,
     canActivate: [ AuthGuardService ]
   },
   {
-    path: 'rentabilidad-gerencial',
+    path: 'rentabilidadgerencial',
     component: RentGerComponent,
     canActivate: [ AuthGuardService ]
   },
@@ -82,6 +84,12 @@ const routes: Routes = [
   {
     path: 'ingresosAnuales',
     component: IngresosComponent,
+    canActivate: [ AuthGuardService ]
+  }
+  ,
+  {
+    path: 'kilometros',
+    component: KilometrosComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -98,6 +106,6 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent, ProfileComponent, TasksComponent, DetailGridComponent, RentContComponent, RentGerComponent, GridCellDataPipe,
-    IngresosComponent, CotizadorComponent, IngresosDetalladosComponent]
+    IngresosComponent, CotizadorComponent, IngresosDetalladosComponent, KilometrosComponent]
 })
 export class AppRoutingModule { }
