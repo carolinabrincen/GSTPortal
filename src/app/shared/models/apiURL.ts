@@ -45,4 +45,6 @@ export enum API_URLS{
     GET_COTIZADOR_RENTABILIDAD = 'api/Cotizador/ObtenerRendimientos/',
 
     GET_KMS_ACTUALES = 'api/Kilometros/KmsMensuales',
+    GET_KMS_ACTUALES_MANT = 'api/Kilometros/KmsMensualesAnt',
+    
 }
