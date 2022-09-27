@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 
 import DataGrid from "devextreme/ui/data_grid";
-import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
-
 import {
   DxDataGridComponent,
 } from 'devextreme-angular';
@@ -14,9 +12,9 @@ import {
   DxChartComponent,
 } from 'devextreme-angular';
 
-
+import notify from 'devextreme/ui/notify';
 import { KilometrosService } from 'src/app/services/kilometros/kilometrosService';
-import { KilometrosModel } from '../../shared/models/kilometros/kilometrosModel';
+import { KilometrosModel, ResumenModel } from '../../shared/models/kilometros/kilometrosModel';
 
 
 
@@ -50,7 +48,10 @@ export class KilometrosComponent implements OnInit {
   treeDataSource: any;
 
   dataSource: any;
+  arrResumen: ResumenModel[] = [];
   arrKilometros: KilometrosModel[] = [];
+  arrKilometrosMAnt: KilometrosModel[] = [];
+  arrKilometrosMAntNL: KilometrosModel[] = [];
   
   kms: any;
   kmsGrafica: any;
@@ -78,19 +79,98 @@ export class KilometrosComponent implements OnInit {
 
 
   constructor(private service: KilometrosService) { 
-    // this.getKilometosActual();
+    
+    this.getKilometosActual();
+    this.getKilometosActualMAnt();
   }
 
+  onContentReady(e) {
+    e.component.option('loadPanel.enabled', false);
+  }
+  
   ngOnInit(): void {
+  }
+ onShown()
+ {
+
+ }
+  
+ onHidden()
+ {
+
+ }
+
+ onRowPrepared(e: any) {
+  if (e.rowType == 'group') {
+      e.rowElement.style.backgroundColor = '#dcdcdc';
+      e.rowElement.style.color = "black";
+      e.rowElement.style.fontWeight = "bolder";
+    
+  }
+
+  if (e.rowType == 'data') {
+    e.cells.forEach((c: any) => {
+
+      if (c.cellElement) {
+     
+
+        //negrita columna margen utilidad
+        if (c.columnIndex == 3  || c.columnIndex == 6) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "14px";
+          c.cellElement.style.background = "#f5f5f5";
+        }
+       
+      }
+
+
+
+    });
   }
 
   
+  if (e.rowType == 'totalFooter') {
+    
+    e.cells.forEach((c: any) => {
+
+      if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "14px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        
+      }
+
+
+
+    });
+
+   
+
+
+  };
+
+ }
+
   getKilometosActual()
   {
+    this.loadingVisible = true;
       this.service.getKmsActuales().subscribe((response) => {
     
         this.arrKilometros = response.data.kmsMensuales;
+        this.arrResumen = response.data.resumen;
         console.log(this.arrKilometros);
+        this.loadingVisible = false;
+      });
+  }
+
+  getKilometosActualMAnt()
+  {
+      this.service.getKmsActualesMAnt().subscribe((response) => {
+    
+        this.arrKilometrosMAnt = response.data.kmsMensualesLiq;
+        this.arrKilometrosMAntNL = response.data.kmsMensualesNoLiq;
+        console.log(this.arrKilometrosMAnt);
     
       });
   }
@@ -99,6 +179,7 @@ export class KilometrosComponent implements OnInit {
   clickBuscar = (e: any) => {
       
     this.getKilometosActual();
+    this.getKilometosActualMAnt();
     
     this.dataGrid?.instance.refresh();
    };

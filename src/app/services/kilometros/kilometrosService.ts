@@ -27,6 +27,10 @@ export class KilometrosService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_KMS_ACTUALES), this.httpOptions);
   }
 
+  getKmsActualesMAnt(){
+    return this.get<any>((this.API_URL + API_URLS.GET_KMS_ACTUALES_MANT), this.httpOptions);
+  }
+
   
 
 }

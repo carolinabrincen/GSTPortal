@@ -42,5 +42,20 @@ export interface OpcionesModel{
         DiasSinLiquidar: number,
         Periodo: string,
         Flete: number,
+        DiaMes: number,
+        Toneladas: number,
         Status: string
+}
+
+export interface ResumenModel{
+  Udn: number,
+  TipoOperacion: string, 
+  KmsCargados: number,
+  KmsVacios: number,
+  KmsTotales: number,
+  ViajesCargados: number,
+  ViajesVacios: number,
+  ViajesTotales: number,
+  Toneladas: number,
+  Ingreso: number
 }

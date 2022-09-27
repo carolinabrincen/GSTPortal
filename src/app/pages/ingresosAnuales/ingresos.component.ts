@@ -101,50 +101,50 @@ export class IngresosComponent implements OnInit {
     });
     }
 
-    getKmsAnuales(Anio: number, UnidadNegocio: number)
-    {
-      this.service.getKms(Anio, UnidadNegocio).subscribe((response) => {
-        this.kms = response.data;
-      });
-    }
+    // getKmsAnuales(Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getKms(Anio, UnidadNegocio).subscribe((response) => {
+    //     this.kms = response.data;
+    //   });
+    // }
     
-    getKmsAnualesChart (Anio: number, UnidadNegocio: number)
-    {
-      this.service.getKmsGrafica(Anio, UnidadNegocio).subscribe((response) => {
+    // getKmsAnualesChart (Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getKmsGrafica(Anio, UnidadNegocio).subscribe((response) => {
         
-      this.kmsGrafica = response.data;
-      });
-    }
-    getViajesAnuales(Anio: number, UnidadNegocio: number)
-    {
-      this.service.getViajes(Anio, UnidadNegocio).subscribe((response) => {
-        this.viajes = response.data;
-      });
-    }
+    //   this.kmsGrafica = response.data;
+    //   });
+    // }
+    // getViajesAnuales(Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getViajes(Anio, UnidadNegocio).subscribe((response) => {
+    //     this.viajes = response.data;
+    //   });
+    // }
     
-    getViajesAnualesChart (Anio: number, UnidadNegocio: number)
-    {
-      this.service.getViajesGrafica(Anio, UnidadNegocio).subscribe((response) => {
+    // getViajesAnualesChart (Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getViajesGrafica(Anio, UnidadNegocio).subscribe((response) => {
         
-      this.viajesGrafica = response.data;
-      });
-    }
+    //   this.viajesGrafica = response.data;
+    //   });
+    // }
 
-    getToneladasAnuales(Anio: number, UnidadNegocio: number)
-    {
-      this.service.getToneladas(Anio, UnidadNegocio).subscribe((response) => {
-        this.toneladas = response.data;
-      });
-    }
+    // getToneladasAnuales(Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getToneladas(Anio, UnidadNegocio).subscribe((response) => {
+    //     this.toneladas = response.data;
+    //   });
+    // }
     
-    getToneladasAnualesChart (Anio: number, UnidadNegocio: number)
-    {
-      this.service.getToneladasGrafica(Anio, UnidadNegocio).subscribe((response) => {
+    // getToneladasAnualesChart (Anio: number, UnidadNegocio: number)
+    // {
+    //   this.service.getToneladasGrafica(Anio, UnidadNegocio).subscribe((response) => {
         
-      this.toneladasGrafica = response.data;
+    //   this.toneladasGrafica = response.data;
       
-      });
-    }
+    //   });
+    // }
 
 
     clickClientesRutas = (e: any) => {
@@ -156,13 +156,13 @@ export class IngresosComponent implements OnInit {
   
       
       this.getIngresosAnuales(this.Anio, this.IdUnidadNegocio);
-      this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
-      this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
-      this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
-      this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
-      this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
-      this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
-      this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
+      //this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
+      // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
+      // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
+      // this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
+      // this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
+      // this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
+      // this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
       this.dataGrid?.instance.refresh();
      };
 

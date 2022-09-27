@@ -24,25 +24,27 @@ export const navigation = [
         path: '/kilometros',
         icon: 'map'
       }
-       ,
-      {
-        text: 'Cotizador',
-        path: '/cotizador',
-        icon: 'columnchooser'
-      },
+       
       
-       {
-         TEXT: 'RENT. CONTABLE',
-         PATH: '/rentabilidadcontable',
-         ICON: 'map'
-       },
-       {
-         TEXT: 'RENT. GERENCIAL',
-         PATH: '/rentabilidadgerencial',
-         ICON: 'map'
-       }
+      //  {
+      //    TEXT: 'RENT. CONTABLE',
+      //    PATH: '/rentabilidadcontable',
+      //    ICON: 'map'
+      //  },
+      //  {
+      //    TEXT: 'RENT. GERENCIAL',
+      //    PATH: '/rentabilidadgerencial',
+      //    ICON: 'map'
+      //  }
     ]
+  },
+  {
+    text: 'Cotizador',
+    icon: 'columnchooser',
+    path: '/cotizador'
+    
   }
+
 ];
     
     //   {
