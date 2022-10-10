@@ -46,5 +46,7 @@ export enum API_URLS{
 
     GET_KMS_ACTUALES = 'api/Kilometros/KmsMensuales',
     GET_KMS_ACTUALES_MANT = 'api/Kilometros/KmsMensualesAnt',
+
+    GET_COSTOS_MES = 'api/Costos/GetCostosMensuales/',
     
 }

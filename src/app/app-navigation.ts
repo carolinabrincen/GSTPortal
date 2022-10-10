@@ -44,6 +44,13 @@ export const navigation = [
     path: '/cotizador'
     
   }
+  ,
+  {
+    text: 'Costos',
+    icon: 'columnchooser',
+    path: '/costos'
+    
+  }
 
 ];
     
