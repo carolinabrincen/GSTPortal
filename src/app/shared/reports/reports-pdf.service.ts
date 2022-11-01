@@ -3,17 +3,21 @@ import { RptCotizacion } from './rptCotizacion';
 import { Injectable } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { NumeroLetras } from '../services/convertirNumLetra';
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Injectable({
   providedIn: 'root'
 })
 export class ReportsPDFService {
 
-  constructor() {
+  
+
+  constructor(private numLetras: NumeroLetras) {
 
   }
 
-  obtenerReporte() {
+  obtenerReporte(folio:number, nombreCliente: string, precioVenta: number, ruta: string) {
 
     const pdfDefinition: any = {
       content: [
@@ -23,8 +27,9 @@ export class ReportsPDFService {
     };
 
 
+    
 
-    const otroPDF = pdfMake.createPdf(this.buildReport());
+    const otroPDF = pdfMake.createPdf(this.buildReport(folio, nombreCliente, precioVenta, ruta));
     otroPDF.open();
 
 
@@ -36,7 +41,48 @@ export class ReportsPDFService {
 
 
 
-  buildReport() {
+  buildReport(folio:number, nombreCliente: string, precioVenta: number, ruta: string) {
+
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    var mmS;
+    var ddS;
+
+    if (dd < 10) 
+    {  
+      ddS = '0' + dd;
+    }
+    else
+    {
+      ddS = dd.toString();
+    }
+
+    if (mm < 10)
+    {
+      mmS = '0' + mm;
+    }
+    else
+    {
+      mmS = mm.toString();
+    }
+
+    const today2 = ddS + '/' + mmS + '/' + yyyy;
+
+
+
+    
+
+    let pesoMXLocale = Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+  });
+   
+
+
     const pdfDefinition: any = {
       info: {
         title: 'Cotizacion de Viaje',
@@ -98,7 +144,7 @@ export class ReportsPDFService {
                     margin: [0, 20, 10, 0],
                     width: '*',
                     alignment: 'right',
-                    text: 'Folio: 0001', bold: true, fontSize: 12
+                    text: 'Folio: ' + folio, bold: true, fontSize: 12
                   },
                 ]
               }
@@ -142,7 +188,7 @@ export class ReportsPDFService {
                         border: [false, false, false, false],
                         alignment: 'right',
                         colSpan: 12,
-                        text: '14-Marzo-2022'
+                        text: today2
                       }
                     ],
                     //Nombre del cliente
@@ -152,7 +198,7 @@ export class ReportsPDFService {
                         colSpan: 12,
                         text: [
                           { text: 'Atención:  ' },
-                          { text: ' Ing. José Luis Herrera Reynoso', bold: true }
+                          { text: nombreCliente, bold: true }
                         ]
                       }
                     ],
@@ -161,7 +207,7 @@ export class ReportsPDFService {
                       {
                         border: [false, false, false, false],
                         colSpan: 12,
-                        text: 'Por medio de este conducto le informo que en base a la plática  sostenida y de común acuerdo entre ambas partes  le hago llegar el presente documento para su autorización de las siguientes tarifas en base a las rutas solicitadas:'
+                        text: 'Por medio de este conducto le informo que con base a la plática  sostenida y de común acuerdo entre ambas partes  le hago llegar el presente documento para su autorización de las siguientes tarifas en base a las rutas solicitadas:'
                       }
                     ],
                     //Tabla de rutas
@@ -198,14 +244,14 @@ export class ReportsPDFService {
                             //Ruta 1
                             [
                               {
-                                text: 'Monterrey - Saltillo'
+                                text: ruta
                               },
                               {
                                 alignment: 'right',
-                                text: '$ 12,800.00'
+                                text: pesoMXLocale.format(precioVenta)
                               },
                               {
-                                text: '(Doce mil ochocientos pesos 0/100 M.N.)',
+                                text: this.numLetras.getNumeroLetras(precioVenta),
                                 fontSize: 10
                               }
                             ]
@@ -218,7 +264,7 @@ export class ReportsPDFService {
                       {
                         border: [false, false, false, false],
                         colSpan: 12,
-                        text: '\n\nEl costo de la tarifa es más IVA, libre de maniobras de carga y descarga.'
+                        text: '\n\nEl costo de la tarifa es más IVA, menos retenciones, libre de maniobras de carga y descarga.'
                       }
                     ],
                     //Despedida

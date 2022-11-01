@@ -98,6 +98,63 @@ export class ServiceSales extends AbstractManagerService{
     
   }
 
+  getIngresosDetalladosMensual( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_ABRIL),this.httpOptions);    
+    
+    
+  }
+
+  getIngresosDetalladosMayo( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_MAYO),this.httpOptions);    
+    
+    
+  }
+
+  getIngresosDetalladosJunio( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_JUNIO),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosJulio( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_JULIO),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosAgosto( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_AGO),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosSeptiembre( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_SEP),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosOctubre( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_OCT),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosNoviembre( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_NOV),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosDiciembre( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_DIC),this.httpOptions);    
+    
+  }
+
+  
   getIndicadoresGrafica(Anio: number, UnidadNegocio: number) {
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_CHART + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
   }

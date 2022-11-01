@@ -1,6 +1,6 @@
 import { ReportsPDFService } from './../../shared/reports/reports-pdf.service';
 import { CotizadorService } from './../../services/cotizador/cotizador.service';
-import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel, NuevaCotizacionModel } from './../../shared/models/cotizador/cotizador.model';
+import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel} from './../../shared/models/cotizador/cotizador.model';
 import { Component, OnInit } from '@angular/core';
 import {
   DxDataGridModule,
@@ -15,6 +15,16 @@ import { RentGerService } from 'src/app/services/rentabilidad-gerencial/rent-ger
 import { TiposOperacionModel } from 'src/app/shared/models/rentabilidad-gerencial/renta-geren.model';
 import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
+import { IUser } from 'src/app/shared/services';
+
+import dxSelectBox from 'devextreme/ui/select_box';
+import { runInThisContext } from 'vm';
+
+
+
+
+
+
 
 @Component({
   selector: 'app-cotizador',
@@ -23,6 +33,8 @@ import { confirm } from 'devextreme/ui/dialog';
 })
 export class CotizadorComponent implements OnInit {
 
+  private _user: IUser | null = null;
+
   arrCotizaciones: CotizacionModel[] = [];
   arrPreCotizaciones: CotizacionModel[] = [];
   arrUnidadesNegocio: UnidadesNegocioModel[] = [];
@@ -30,27 +42,52 @@ export class CotizadorComponent implements OnInit {
   arrVariables: VariablesCotizacionModel[] = [];
   arrDetalleCotizacion: DetalleCotizacionModel[] = [];
   arrClasificaciones: string[] = [];
+ 
 
   itemCotizacion: CotizacionModel = {
     idCotizacion: undefined,
-    folio: "0001",
-    idUnidadNegocio: 1,
-    unidadNegocio: undefined,
-    idTipoOperacion: undefined,
-    tipoOperacion: undefined,
+    folio: 0,
+    sencillo:true,
+    tipoViaje: "Solo de ida",
+    regresa_vacio: false,
+    regreso:"Vacio",
+    id_ingreso: "0",
+    id_area: undefined,
+    unidadNegocio: "",
+    id_tipo_operacion: 0,
+    tipoOperacion: "",
+    clasificacion: "",
     cliente: undefined,
     origen: undefined,
     destino: undefined,
-    diesel: undefined,
-    costo: 18.77,
-    FactorCargaSolcial: .58,
-    distanciaTotal: undefined,
-    fletePorViaje: undefined,
-    numLlantas: 34,
-    rendimientoKms: 160000,
-    costoLlanta: 5000,
-    costoLlantaKmFull: 1.06,
-    precioVtaFinal: 0
+    kms_ida: 0,
+    kms_regreso:0,
+    kms_totales: 0,
+    casetas: 0,
+    casetas_si: 0,
+    casetas_regreso:0,
+    casetas_regreso_si:0,
+    casetas_total_sin_impuestos:0,
+    diesel:0,
+    diesel_sin_impuestos: 0,
+    diesel_total_sin_impuestos:0,
+    num_estancias_ida: 0,
+    num_maniobras_ida: 0,
+    ton_carga_ida:0,
+    num_estancias_regreso:0,
+    num_maniobras_regreso:0,
+    ton_carga_regreso:0,
+    clienta_paga: false,
+    clientePagaCasetas:"No",
+    tarifaFinal:0,
+    costoViaje:0,
+    toneladas:0,
+    costo_tonelada:0,
+    costoPorKm:0,
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
+    
   };
 
   buttonOptions: any = {
@@ -68,6 +105,7 @@ export class CotizadorComponent implements OnInit {
   RadioButtonTipoViaje: any;
   RadioButtonRegreso: any;
   RadioButtonClientePagaCasetas: any;
+  RadioButtonPrecioXTonelada: any;
 
 
   bolModal: boolean = false;
@@ -79,8 +117,10 @@ export class CotizadorComponent implements OnInit {
   readonly allowedPageSizes = [5, 10, 20, 50];
 
   tipoRegistro: string = '';
+  operacion: string = '';
   rowIndex: number = -1;
   bolEsViajeSencillo = true;
+  bolEsPrecioTonelada = true;
   bolEsViajeVacio = true;
   bolBotonAprobarCotizacion = false;
   bolFormSoloLectura = false;
@@ -92,42 +132,19 @@ export class CotizadorComponent implements OnInit {
     private pdfReport: ReportsPDFService
   ) {
     const that = this;
+    this.unidadNegocio_ValueChanged = this.unidadNegocio_ValueChanged.bind(this);
     this.editarCotizacionClick = this.editarCotizacionClick.bind(this);
     this.eliminarCotizcionClick = this.eliminarCotizcionClick.bind(this);
     this.verCortizacionClick = this.verCortizacionClick.bind(this);
-    this.distanciaTotalValueChanged = this.distanciaTotalValueChanged.bind(this);
+    this.imprimirCortizacionClick = this.imprimirCortizacionClick.bind(this);
     this.dieselValueChanged = this.dieselValueChanged.bind(this);
-    //this.getVariablesCotizacion = this.getVariablesCotizacion.bind(this);
-
-    //Configuracion de botones
-    //CALCULAR VARIABLES
-    this.buttonCalcularVariables = {
-      type: 'normal',
-      text: 'calcular',
-      icon: 'datafield',
-
-      onClick(e: any) {
-        console.log('Calcular Variables', that.itemCotizacion);
-        if (that.itemCotizacion.idUnidadNegocio &&
-          that.itemCotizacion.idTipoOperacion >= 0
-          && that.itemCotizacion.clasificacion !== '') {
-
-          that.getVariablesCotizacion(that.itemCotizacion.idUnidadNegocio,
-            that.itemCotizacion.idTipoOperacion,
-            that.itemCotizacion.clasificacion);
-
-        } else {
-          notify({
-            message: 'Debe seleccionar: Unidad de Negocio, Tipo de Operacion y Clasificación, verifique!',
-            position: {
-              my: 'center center',
-              at: 'center center',
-            },
-          }, 'warning', 3000);
-
-        }
-      },
-    };
+    this.caseta_ida_ValueChanged = this.caseta_ida_ValueChanged.bind(this);
+    this.caseta_regreso_ValueChanged = this.caseta_regreso_ValueChanged.bind(this);
+    this.toneladasTotalValueChanged = this.toneladasTotalValueChanged.bind(this);
+    this.precioToneladasTotalValueChanged = this.precioToneladasTotalValueChanged.bind(this);
+    this.precioTotalValueChanged = this.precioTotalValueChanged.bind(this);
+    this.tipoOperacion_ValueChanged = this.tipoOperacion_ValueChanged.bind(this);
+     
     //VER VARIABLES
     this.buttonOptionsVariables = {
       type: 'normal',
@@ -142,7 +159,7 @@ export class CotizadorComponent implements OnInit {
     //PREVIZUALIZAR
     this.buttonOptionsPre = {
       type: 'normal',
-      text: 'Previsualizar',
+      text: 'Costos',
       icon: 'file',
 
       onClick(e: any) {
@@ -159,7 +176,8 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         console.log('mostrar PDF');
-        pdfReport.obtenerReporte();
+        pdfReport.obtenerReporte(that.itemCotizacion.folio, that.itemCotizacion.cliente, 
+          that.itemCotizacion.tarifaFinal, that.itemCotizacion.origen + "-" + that.itemCotizacion.destino);
 
       },
     };
@@ -170,8 +188,21 @@ export class CotizadorComponent implements OnInit {
       layout: 'horizontal',
       onValueChanged: (e) => {
         this.bolEsViajeSencillo = e.value === 'Solo de ida' ? true : false;
+        console.log(this.bolEsViajeSencillo);
       },
     };
+
+    //Configuracion de radiobutton Precio por tonelada
+    this.RadioButtonPrecioXTonelada = {
+      items: ['No', 'Si'],
+      value: 'Precio por tonelada',
+      layout: 'horizontal',
+      onValueChanged: (e) => {
+        this.bolEsPrecioTonelada = e.value === 'Si' ? true : false;
+        
+      },
+    };
+
     //Configuracion de radiobutton Regreso
     this.RadioButtonRegreso = {
       items: ['Vacio', 'Cargado'],
@@ -197,68 +228,10 @@ export class CotizadorComponent implements OnInit {
     this.getCotizaciones();
     this.getPreCotizaciones();
     this.getUnidadesNegocio();
-    this.getTiposOperacion();
-    this.getClasificaciones();
+    
   }
 
-  //#region :::: GETTERS ::::
-  getClasificaciones() {
-    this.arrClasificaciones = [];
-    this.arrClasificaciones = this.cotizadorService.getClasificaciones();
-  }
-
-
-  getVariablesCotizacion(idUDN: number, idTipoOperacion: number, clasificacion: string) {
-    this.arrVariables = [];
-    this.cotizadorService.getVariablesCotizacion(idUDN, idTipoOperacion, clasificacion)
-      .subscribe(res => {
-        console.log(res);
-
-        this.itemCotizacion.variables = res.data.variables;
-        console.table(this.itemCotizacion.variables);
-
-        if (this.itemCotizacion.variables.length > 0) {
-          notify({
-            message: 'Variables actualizadas correctamente!',
-            position: {
-              my: 'center top',
-              at: 'center center',
-            },
-          }, 'success', 3000);
-
-        } else {
-          notify({
-            message: 'Variables actualizadas correctamente!',
-            whidth: 20,
-            position: {
-              my: 'center top',
-              at: 'center center',
-            },
-          }, 'success', 3000);
-
-          notify({
-            message: 'Parametrización de variables no encontrada, verifique!',
-            whidth: 30,
-            position: {
-              my: 'left top',
-              at: 'center center',
-              of: '#modalNuevoEditar'
-            },
-          }, 'warning', 3000);
-        }
-
-        this.itemCotizacion.rendimientoKmsVacio = res.data.rendimiento_vacio;
-        this.itemCotizacion.rendimientoKms = res.data.rendimiento_cargado;
-        this.itemCotizacion.numLlantas = res.data.num_llantas;
-        this.itemCotizacion.costoLlanta = res.data.costo_llantas;
-        this.itemCotizacion.costoLlantaKmFull = res.data.costo_llantas_km_full;
-        this.itemCotizacion.diesel = res.data.diesel;
-        this.itemCotizacion.costo = res.data.costo_diesel;
-      });
-
-
-  }
-
+  // //#region :::: GETTERS ::::
   getCotizaciones() {
     this.arrCotizaciones = [];
     this.cotizadorService.getCotizaciones().subscribe(res => {
@@ -270,6 +243,7 @@ export class CotizadorComponent implements OnInit {
     this.arrPreCotizaciones = [];
     this.cotizadorService.getPreCotizaciones().subscribe(res => {
       this.arrPreCotizaciones = res.data;
+        console.log(res.data);
     });
   }
 
@@ -280,26 +254,134 @@ export class CotizadorComponent implements OnInit {
     });
   }
 
-  getTiposOperacion() {
+  getTiposOperacion(idUdN: number) {
     this.arrTipoOperacion = [];
-    this.renGerService.getTiposOperacion().subscribe(res => {
+    this.cotizadorService.getTiposOperacion(idUdN).subscribe(res => {
       this.arrTipoOperacion = res.data;
       console.log(this.arrTipoOperacion);
     });
 
   }
+
+  getRentabilidad(operacion: string) {
+    
+    this.cotizadorService.getRentabilidad(this.itemCotizacion.id_area, operacion).subscribe(res => {
+      
+      console.log(res.data);
+      this.itemCotizacion.rend_cargado = res.data.rend_cargado;
+      this.itemCotizacion.rend_vacio = res.data.rend_vacio;
+    });
+
+  }
+
+  
   //#endregion :::: FIN GETTERS ::::
 
   //#endregion :::: EVENTOS :::::
   dieselValueChanged(e: any) {
-    this.itemCotizacion.costo = e.value === 0 ? 0 : +(this.itemCotizacion.diesel / 1.16).toFixed(2);
+    this.itemCotizacion.diesel_sin_impuestos = e.value === 0 ? 0 : +(((this.itemCotizacion.diesel-0.40228)/1.16) + 0.40228).toFixed(2);
   }
+ 
   
-
-  distanciaTotalValueChanged(e: any) {
-    this.itemCotizacion.distanciaTotal = this.itemCotizacion.distanciaIda +
-      this.itemCotizacion.distanaciaRetorno;
+  caseta_ida_ValueChanged(e: any) {
+    this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas)/1.16).toFixed(2);
   }
+
+  caseta_regreso_ValueChanged(e: any) {
+    console.log(e.value);
+  
+    
+    this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas_regreso)/1.16).toFixed(2);
+
+   
+   }
+  toneladasTotalValueChanged(e: any) {
+        console.log(this.itemCotizacion);
+        if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
+        {
+          if(this.itemCotizacion.tarifaFinal > 0)
+          {
+            this.itemCotizacion.costo_tonelada = this.itemCotizacion.tarifaFinal /
+            e.value;
+          }
+          else
+          {
+          this.itemCotizacion.costo_tonelada = this.itemCotizacion.costoViaje /
+            e.value;
+          }
+        }
+        else
+        {
+          this.itemCotizacion.costo_tonelada = 0;
+        }
+   
+  }
+
+  precioToneladasTotalValueChanged(e: any) {
+    
+    if(this.itemCotizacion.costo_tonelada > 0)
+    {
+      if(this.itemCotizacion.toneladas > 0)
+      {
+        var costo = this.itemCotizacion.toneladas * this.itemCotizacion.costo_tonelada;
+        if(costo >= this.itemCotizacion.costoViaje)
+        {
+          this.itemCotizacion.tarifaFinal = costo;
+        }
+        else
+        {
+          this.itemCotizacion.costo_tonelada = 0;
+        }
+      }
+    }
+  }
+
+  unidadNegocio_ValueChanged(e: any) {
+    console.log(e.value);
+    if(e.value > 0)
+    {
+      this.getTiposOperacion(e.value);
+    }
+    else
+    {
+      this.arrTipoOperacion = null;
+    }
+  }
+
+  tipoOperacion_ValueChanged(e: any) {
+    console.log(e);
+   
+   this.getRentabilidad(e.value);
+  
+  }
+
+
+
+precioTotalValueChanged(e: any) {
+    
+  if(this.itemCotizacion.tarifaFinal > 0)
+  {
+    if(this.itemCotizacion.toneladas> 0)
+    {
+      if(this.itemCotizacion.tarifaFinal > this.itemCotizacion.costoViaje)
+      {
+        this.itemCotizacion.costo_tonelada = this.itemCotizacion.tarifaFinal / this.itemCotizacion.toneladas;
+      }
+      else
+      {
+        this.itemCotizacion.tarifaFinal = 0;
+      }
+    }
+    else
+    {
+      if(this.itemCotizacion.tarifaFinal < this.itemCotizacion.costoViaje)
+      {
+        this.itemCotizacion.tarifaFinal = 0;
+      }
+    }
+  }
+}
+
 
   mouseoverAprobarCotizacion(e: any) {
     //TODO: Validar que sea tamien el gerente
@@ -351,33 +433,18 @@ export class CotizadorComponent implements OnInit {
     switch (this.tipoRegistro) {
       case 'nuevo':
 
-        const nuevaCotizacion: NuevaCotizacionModel = {
-          sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
-          regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
-          id_ingreso: '0',
-          id_area: 1,
-          id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
-          clasificacion: this.itemCotizacion.clasificacion,
-          cliente: this.itemCotizacion.cliente,
-          origen: this.itemCotizacion.origen,
-          destino: this.itemCotizacion.destino,
-          kms_ida: this.itemCotizacion.distanciaIda,
-          kms_regreso: this.itemCotizacion.distanaciaRetorno,
-          casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetasRegreso,
-          diesel: this.itemCotizacion.diesel,
-          num_llantas: this.itemCotizacion.numLlantas,
-          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
-          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          costo_llanta: this.itemCotizacion.costoLlanta,
-          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
-          dieselTotal: this.itemCotizacion.dieselTotal
-        };
-
-        this.cotizadorService.postNuevaCotizacion(nuevaCotizacion).subscribe(res => {
+        this.itemCotizacion.sencillo = this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false;
+        this.itemCotizacion.regresa_vacio = this.itemCotizacion.regreso === "Vacio" ? true : false;
+        this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
+        this.itemCotizacion.idCotizacion = 0;
+        this.itemCotizacion.id_ingreso = sessionStorage.getItem("idUsuario");
+        console.log(this.itemCotizacion.tipoOperacion); 
+        
+        console.log(this.itemCotizacion);
+        this.cotizadorService.postNuevaCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
-            this.arrPreCotizaciones.push(this.itemCotizacion);
+            this.getPreCotizaciones();
             notify({
               message: 'Cotización guardada con exito!',
               position: {
@@ -386,7 +453,9 @@ export class CotizadorComponent implements OnInit {
               },
             }, 'success', 3000);
           } else {
+            console.log(res);
             notify({
+              
               message: res.responseText,
               position: {
                 my: 'center center',
@@ -399,36 +468,15 @@ export class CotizadorComponent implements OnInit {
         });
         break;
       case 'editar':
-        const editarCotizacion: NuevaCotizacionModel = {
-          idCotizacion: this.itemCotizacion.idCotizacion,
-          sencillo: this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false,
-          regresa_vacio: this.itemCotizacion.regreso === "Vacio" ? true : false,
-          id_ingreso: '0',
-          id_area: 1,
-          id_tipo_operacion: this.itemCotizacion.idTipoOperacion,
-          clasificacion: this.itemCotizacion.clasificacion,
-          cliente: this.itemCotizacion.cliente,
-          origen: this.itemCotizacion.origen,
-          destino: this.itemCotizacion.destino,
-          kms_ida: this.itemCotizacion.distanciaIda,
-          kms_regreso: this.itemCotizacion.distanaciaRetorno,
-          casetas: this.itemCotizacion.casetas,
-          casetas_regreso: this.itemCotizacion.casetasRegreso,
-          diesel: this.itemCotizacion.diesel,
-          num_llantas: this.itemCotizacion.numLlantas,
-          rendimiento_cargado: this.itemCotizacion.rendimientoKms,
-          rendimiento_vacio: this.itemCotizacion.rendimientoKmsVacio,
-          costo_llanta: this.itemCotizacion.costoLlanta,
-          costo_llanta_km_full: this.itemCotizacion.costoLlantaKmFull,
-          tarifaFinal: this.itemCotizacion.tarifaFinal,
-          dieselTotal: this.itemCotizacion.dieselTotal
-        };
-
-        this.cotizadorService.postEditarCotizacion(editarCotizacion).subscribe(res => {
+        console.log(this.itemCotizacion);
+        this.itemCotizacion.sencillo = this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false;
+        this.itemCotizacion.regresa_vacio = this.itemCotizacion.regreso === "Vacio" ? true : false;
+        this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
+        
+        this.cotizadorService.postEditarCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
-            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == this.itemCotizacion.idCotizacion);
-            this.arrPreCotizaciones[elementIndex] = this.itemCotizacion;
+            this.getPreCotizaciones();
             notify({
               message: 'Cotización guardada con exito!',
               position: {
@@ -459,12 +507,19 @@ export class CotizadorComponent implements OnInit {
     this.bolFormSoloLectura = false;
     e.event.preventDefault();
     this.tipoRegistro = "editar";
-    const clonedItem = { ...e.row.data };
-    this.rowIndex = e.row.rowIndex;
-    console.log(this.rowIndex);
-    this.itemCotizacion = clonedItem;
-    this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
+    // const clonedItem = { ...e.row.data };
+    // this.rowIndex = e.row.rowIndex;
+  
+    // this.itemCotizacion = clonedItem;
+    // this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
     this.bolModal = true;
+    this.cotizadorService.getCotizacion(e.row.data.idCotizacion).subscribe(res => {
+      this.itemCotizacion = res.data;
+      console.log(res.data);
+      console.log(this.itemCotizacion);
+      this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
+      
+    });
   }
 
   verCortizacionClick(e: any) {
@@ -474,6 +529,15 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion = clonedItem;
     this.tituloModal = "Cotizacion Folio: " + this.itemCotizacion.folio + " (Solo Lectura)";
     this.bolModal = true;
+  }
+
+  imprimirCortizacionClick(e: any) {
+    const clonedItem = { ...e.row.data };
+    this.itemCotizacion = clonedItem;
+    this.tituloModal = "Cotizacion Folio: " + this.itemCotizacion.folio + " (Solo Lectura)";
+    console.log('mostrar PDF');
+    this.pdfReport.obtenerReporte(this.itemCotizacion.folio, this.itemCotizacion.cliente, 
+      this.itemCotizacion.tarifaFinal, this.itemCotizacion.origen + "-" + this.itemCotizacion.destino);
   }
 
   nuevaCotizacionClick() {
@@ -517,44 +581,58 @@ export class CotizadorComponent implements OnInit {
   }
 
   limpiarForm() {
+    console.log("limpiar");
     this.bolFormSoloLectura = false;
-    this.itemCotizacion = {};
+    //this.itemCotizacion = {};
     this.itemCotizacion = {
-      tipoViaje: 'Solo de ida',
-      regreso: 'Vacio',
-      clientePagaCasetas: 'No',
       idCotizacion: undefined,
-      folio: "",
-      idUnidadNegocio: undefined,
-      unidadNegocio: undefined,
-      idTipoOperacion: undefined,
-      tipoOperacion: undefined,
-      clasificacion: '',
+      folio: 0,
+      sencillo:true,
+      tipoViaje: "Solo de ida",
+      regresa_vacio: false,
+      regreso:"Vacio",
+      id_ingreso: "0",
+      id_area: undefined,
+      unidadNegocio: "",
+      id_tipo_operacion: 0,
+      tipoOperacion: "",
+      clasificacion: "",
       cliente: undefined,
       origen: undefined,
       destino: undefined,
-      diesel: 0,
-      costo: 0,
-      FactorCargaSolcial: 0,
-      distanciaTotal: 0,
-      fletePorViaje: 0,
-      numLlantas: 0,
-      rendimientoKms: 0,
-      rendimientoKmsVacio: 0,
-      costoLlanta: 0,
-      costoLlantaKmFull: 0,
-      distanciaIda: 0,
-      distanaciaRetorno: 0,
-      precioVtaFinal: 0,
+      kms_ida: 0,
+      kms_regreso:0,
+      kms_totales: 0,
       casetas: 0,
-      tarifaFinal: 0
+      casetas_si: 0,
+      casetas_regreso:0,
+      casetas_regreso_si: 0,
+      casetas_total_sin_impuestos:0,
+      diesel:0,
+      diesel_sin_impuestos: 0,
+      diesel_total_sin_impuestos:0,
+      num_estancias_ida: 0,
+      num_maniobras_ida: 0,
+      ton_carga_ida:0,
+      num_estancias_regreso:0,
+      num_maniobras_regreso:0,
+      ton_carga_regreso:0,
+      clienta_paga: false,
+      clientePagaCasetas:"No",
+      tarifaFinal:0,
+      costoViaje:0,
+      toneladas:0,
+      costo_tonelada:0,
+      costoPorKm:0,
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
     };
   }
 
   asignarFolio() {
-    this.arrCotizaciones.length == 0 ?
-      this.itemCotizacion.folio = "0001" :
-      this.itemCotizacion.folio = ((this.arrCotizaciones.length + this.arrPreCotizaciones.length) + 1).toString().padStart(4, '0');
+    
+      this.itemCotizacion.folio = 1 ;
   }
   //#endregion :::: FIN EVENTOS ::::
 
