@@ -22,6 +22,7 @@ export interface costos{
     porAvanceDiario: number,
     acumulado: number,
     proyeccion: number,
+    porProyecccio: number,
     desviacionMensual: number,
     porDesviacionMensual: number
   }
