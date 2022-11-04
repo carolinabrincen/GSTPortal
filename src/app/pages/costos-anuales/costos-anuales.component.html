@@ -1,0 +1,693 @@
+<h2 class="content-block">Costos Anuales</h2>
+
+<!-- Card principal  -->
+<div class="content-block dx-card responsive-paddings padding-10">
+
+
+    <dx-responsive-box>
+        <!-- COLS -->
+        <dxi-col [ratio]="1"></dxi-col>
+        <!--UDN-->
+        <dxi-col [ratio]="3"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".30"></dxi-col>
+        <!--Mes-->
+        <dxi-col [ratio]=".80"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".30"></dxi-col>
+        <!--Año-->
+        <dxi-col [ratio]=".60"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".40"></dxi-col>
+        <!--Tracto-->
+        <dxi-col [ratio]="2"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]="1"></dxi-col>
+        <!--Buscar-->
+
+        <!-- ROWS -->
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+
+        <!-- CONTROLES DEL FORM -->
+        <!--#region :::: ROW 1 DEL FORM ::::  -->
+        <!--ROW 1 Unidad de Negocio -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+            <div>Unidad de Negocio:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+                >
+            </dx-tag-box>
+        </dxi-item>
+
+        <!-- MES -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
+            <div>Mes:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMes($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!-- AÑO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Año:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!-- TRACTO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Tracto:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <div style="display: flex;">
+              <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
+              [items]="arrTractos"
+              (onValueChanged)="seleccionarTracto($event)">
+                  ></dx-select-box>
+                  <div title="Borrar tracto">
+                    <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" >
+                    </dx-button>
+                  </div>
+            </div>
+        </dxi-item>
+
+        <!-- BUSCAR -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
+            <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+            <div>
+                <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <!--#endregion :::: FIN ROW 1 ::::  -->
+    </dx-responsive-box>
+
+
+    <br><br><br>
+
+    <dx-responsive-box>
+        <!-- COLS -->
+        <!-- <dxi-col [ratio]="1"></dxi-col> -->
+        <!--Año-->
+        <dxi-col [ratio]=".60"></dxi-col>
+        <dxi-col [ratio]="1"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Mes-->
+        <dxi-col [ratio]=".60"></dxi-col>
+        <dxi-col [ratio]="1.50"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Compañia-->
+        <dxi-col [ratio]="1.30"></dxi-col>
+        <dxi-col [ratio]="3"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--UDN-->
+        <dxi-col [ratio]=".70"></dxi-col>
+        <dxi-col [ratio]="3"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Clasificacion-->
+        <dxi-col [ratio]="1.70"></dxi-col>
+        <dxi-col [ratio]="3"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Buscar-->
+        <dxi-col [ratio]="1"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+
+
+        <!-- ROWS -->
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+
+        <!-- CONTROLES DEL FORM -->
+        <!--#region :::: ROW 1 DEL FORM ::::  -->
+        <!-- AÑO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Año:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!-- MES -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
+            <div>Mes:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMes($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!--Compañia -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+            <div>Compañia:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+                >
+            </dx-tag-box>
+        </dxi-item>
+        <!--ROW 1 Unidad de Negocio -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+            <div>UdN:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+                >
+            </dx-tag-box>
+        </dxi-item>
+        <!-- TRACTO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Clasificación:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="13"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <div style="display: flex;">
+              <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
+              [items]="arrTractos"
+              (onValueChanged)="seleccionarTracto($event)">
+                  ></dx-select-box>
+            </div>
+        </dxi-item>
+        <!-- BUSCAR -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="14"></dxi-location>
+            <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+            <div>
+                <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <!--#endregion :::: FIN ROW 1 ::::  -->
+    </dx-responsive-box>
+  
+    <br><br><br>
+<!--==========================Line Chart==================-->
+    <div id="chart-demo">
+        <dx-chart palette="Violet" [dataSource]="countriesInfo">
+        <dxi-series *ngFor="let energy of energySources" [valueField]="energy.value" [name]="energy.name">{{energy.name}}</dxi-series>
+        <dxo-common-series-settings #seriesSettings argumentField="month" [type]="types[0]"></dxo-common-series-settings>
+        <dxo-margin [bottom]="20"></dxo-margin>
+        <dxo-argument-axis [valueMarginsEnabled]="false" discreteAxisDivisionMode="crossLabels">
+            <dxo-grid [visible]="true"></dxo-grid>
+        </dxo-argument-axis>
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"></dxo-legend>
+        <dxo-title text="Costos">
+            <dxo-subtitle text="(Anuales)"> </dxo-subtitle>
+        </dxo-title>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-tooltip [enabled]="true"></dxo-tooltip>
+        </dx-chart>
+    </div>
+<!--====================================Finish chart==========-->
+<br><br><br>
+
+
+    <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="arrRentContItems" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+
+        <dxi-column dataField="unidadNegocio" caption="Unidad Negocio" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
+        <dxi-column dataField="operador" caption="Operador" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column>
+
+        <dxi-column dataField="noLiquidacion" caption="Clave" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="inicio" caption="Descripción" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        
+        <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
+      
+            <dxi-column>
+                <dxi-column dataField="fin" caption="Real" [fixed]="false" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="ingresoTotal" caption="Pppto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold"></dxi-column>
+            <dxi-column dataField="margenUtilida" caption="Var" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="margenUtilidaPor" caption="%" [fixed]="false" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+
+        <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="diasViaje" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="viajes" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="kmsCargados" caption="Var" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="kmsVacios" caption="%" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="lstDiesel" caption="Real" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="rendimiento" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="combustible" caption="Var" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="combustiblePor" caption="%" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Abril" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="casetas" caption="Real" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="casetasPor" caption="Pppto" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="sueldosLiquidacion" caption="Var" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="sueldosLiquidacionPor" caption="%" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Mayo" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="otros" caption="Real" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="otrosPor" caption="Pppto" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="costosDirectosViaje" caption="Var" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="costosDirectosViajePor" caption="%" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Junio" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="sueldoBase" caption="Real" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="sueldoBasePor" caption="Pppto" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cargaSocialNomina" caption="Var" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cargaSocialNominaPor" caption="%" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Julio" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="fijoMtto" caption="Real." format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="fijoMttoPor" caption="Pppto" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="varMtto" caption="Var" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="varMttoPor" caption="%" format="percent" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Agosto" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="fijoTrans" caption="Real" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="fijoTransPor" caption="Pppto" [fixed]="false" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="varTrans" caption="Var" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="varTransPor" caption="%" [fixed]="false" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Septiembre" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="costosAdicionales" caption="Real" format="$ #,##0.##;-$ #,##0.##" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="costosAdicionalesPor" caption="Pppto" [fixed]="false" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Octubre" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Noviembre" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+        <dxi-column caption="Diciembre" headerCellTemplate="headerTemplate">
+            <dxi-column>
+                <dxi-column dataField="" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        </dxi-column>
+
+        <div *dxTemplate="let data of 'detalleCellTemplate'">
+            <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="verDetallesClick(data)"></dx-button>
+        </div>
+
+
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+
+        <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
+          <!-- SUMARY TOTALES -->
+            <dxi-total-item column="ingresoTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+            </dxi-total-item>
+            <dxi-total-item column="margenUtilida" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+            </dxi-total-item>
+            <dxi-total-item column="fin" summaryType="sum" displayFormat="TOTAL UDN'S">
+            </dxi-total-item>
+            <dxi-total-item column="diasViaje" summaryType="sum" valueFormat="fixedPoint" displayFormat="{0}">
+            </dxi-total-item>
+            <dxi-total-item column="viajes" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item>
+            <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item>
+            <dxi-total-item column="kmsVacios" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item>
+            <dxi-total-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item>
+            <dxi-total-item column="combustible" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="casetas" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="sueldosLiquidacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="otros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="costosDirectosViaje" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="sueldoBase" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="cargaSocialNomina" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="fijoMtto" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="varMtto" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="fijoTrans" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="varTrans" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+            <dxi-total-item column="costosAdicionales" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+            </dxi-total-item>
+
+
+
+          <!-- PORCENTAJES TOTALES -->
+            <dxi-total-item showInColumn="margenUtilidaPor" name="TotMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="combustiblePor" name="TotCombustiblePor" summaryType="custom" displayFormat="*{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="casetasPor" name="TotCasetasPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="sueldosLiquidacionPor" name="TotSueldosLiquidacionPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="otrosPor" name="TotOtrosPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="costosDirectosViajePor" name="TotCostosDirectosViajePor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="sueldoBasePor" name="TotSueldoBasePor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="cargaSocialNominaPor" name="TotCargaSocialNominaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="fijoMttoPor" name="TotFijoMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="varMttoPor" name="TotVarMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="fijoTransPor" name="TotFijoTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="varTransPor" name="TotVarTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+            <dxi-total-item showInColumn="costosAdicionalesPor" name="TotCostosAdicionalesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
+
+
+          <!-- SUMARY DE GRUPO -->
+            <dxi-group-item column="margenUtilida" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="diasViaje" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="viajes" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="kmsVacios" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="ingresoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="combustible" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="casetas" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="sueldosLiquidacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="otros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="costosDirectosViaje" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="sueldoBase" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="cargaSocialNomina" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="fijoMtto" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="varMtto" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="fijoTrans" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="varTrans" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item column="costosAdicionales" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="fin"column="fin" summaryType="sum" displayFormat="SUBTOTAL" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <!-- PORCENTAJES GRUPO -->
+            <dxi-group-item showInColumn="margenUtilidaPor" name="grupMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="combustiblePor" name="grupCombustiblePor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="casetasPor" name="grupCasetasPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="sueldosLiquidacionPor" name="grupSueldosLiquidacionPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="otrosPor" name="grupOtrosPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="costosDirectosViajePor" name="grupCostosDirectosViajePor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="sueldoBasePor" name="grupSueldoBasePor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="cargaSocialNominaPor" name="grupCargaSocialNominaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="fijoMttoPor" name="grupFijoMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="varMttoPor" name="grupVarMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="fijoTransPor" name="grupFijoTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="varTransPor" name="grupVarTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="costosAdicionalesPor" name="grupCostosAdicionalesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+        </dxo-summary>
+
+        <div *dxTemplate="let data of 'headerTemplate'">
+            <div style="font-weight: bolder; color: black">
+                {{ data.column.caption }}
+            </div>
+        </div>
+        <div *dxTemplate="let cell of 'cellTemplateBold'">
+            <div style="font-weight: bold;">{{cell.text}}</div>
+        </div>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+        </dxo-pager>
+        <dxo-sorting mode="none"></dxo-sorting>
+    </dx-data-grid>
+
+
+<!--==========================MODAL REAL=========================================================-->
+        <dx-popup
+        width="80%"
+        [height]="400"
+        [showTitle]="true"
+        title="Detalle de Real"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [showCloseButton]="true"
+        container=".dx-viewport"
+        [(visible)]="openModReal"
+      >
+        <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>
+        <div *dxTemplate="let data of 'content'">
+          <!--#region :::: GRID DETALLE DE LIQUIDACIONES ::::  -->
+          <dx-data-grid
+            #rentGer
+            id="gridContainer"
+            [dataSource]="arrLiquidacionesDetalle"
+            [columnAutoWidth]="true"
+            [showColumnLines]="true"
+            [showBorders]="true"
+            [rowAlternationEnabled]="true"
+            (onRowPrepared)="onRowPreparedDetalle($event)"
+          >
+            <dxi-column
+              dataField="noLiquidacion"
+              caption="Liquidación"
+              headerCellTemplate="headerTemplate"
+            ></dxi-column>
+            <dxi-column
+              dataField="inicio"
+              caption="Inicio"
+              headerCellTemplate="headerTemplate"
+              format="dd-MM-yy"
+            ></dxi-column>
+            <dxi-column
+              dataField="fin"
+              caption="Fin"
+              headerCellTemplate="headerTemplate"
+              format="dd-MM-yy"
+            ></dxi-column>
+            <dxi-column
+              dataField="viajes"
+              caption="Viajes"
+              headerCellTemplate="headerTemplate"
+              format="fixedPoint"
+            ></dxi-column>
+            <dxi-column
+              dataField="diasViaje"
+              caption="Dias"
+              headerCellTemplate="headerTemplate"
+            ></dxi-column>
+            <dxi-column
+              dataField="kms"
+              caption="Kms."
+              headerCellTemplate="headerTemplate"
+              format="fixedPoint"
+            ></dxi-column>
+            <dxi-column
+              dataField="lstDiesel"
+              caption="Lts. Diesel"
+              headerCellTemplate="headerTemplate"
+              format="fixedPoint"
+            ></dxi-column>
+            <dxi-column
+              dataField="ingresoTotal"
+              caption="Ingreso Total"
+              headerCellTemplate="headerTemplate"
+              format="$ #,##0.##;-$ #,##0.##"
+            ></dxi-column>
+            <dxi-column
+            dataField="margenUtilida"
+            caption="Margen Utilidad"
+            headerCellTemplate="headerTemplate"
+            format="$ #,##0.##;-$ #,##0.##"
+          ></dxi-column>
+          <dxi-column
+            dataField="margenUtilidaPor"
+            caption="%"
+            format="percent"
+            headerCellTemplate="headerTemplate"
+          ></dxi-column>
+  
+          <!-- Templates Grid -->
+            <div *dxTemplate="let data of 'headerTemplate'">
+              <div style="font-weight: bolder; color: black">
+                {{ data.column.caption }}
+              </div>
+            </div>
+  
+            <div *dxTemplate="let info of 'titleHeaderTemplate'">
+              <div style="font-weight: bolder; color: #ff5722">
+                {{ info.column.caption }}
+              </div>
+            </div>
+  
+            <div
+              *dxTemplate="let d of 'diffCellTemplate'"
+              [class]="d.text >= 0 ? 'inc' : 'dec'"
+            >
+              <div class="diff"></div>
+            </div>
+  
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-paging [pageSize]="30"></dxo-paging>
+            <dxo-sorting mode="none"></dxo-sorting>
+          </dx-data-grid>
+
+        </div>
+      </dx-popup>
+<!--=============================================FIN MODAL==========================================-->
+
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+</div>

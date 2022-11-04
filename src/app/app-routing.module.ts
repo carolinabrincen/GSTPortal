@@ -21,7 +21,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { IngresosDetalladosComponent } from './pages/ingresos-detallados/ingresos-detallados.component';
   import { KilometrosComponent } from './pages/kilometros/kilometros.component';
   import { CostosComponent } from './pages/costos/costos.component';
-
+  import { CostosAnualesComponent } from './pages/costos-anuales/costos-anuales.component'
 
 
 const routes: Routes = [
@@ -99,6 +99,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'costos-anuales',
+    component: CostosAnualesComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -112,6 +117,6 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent, ProfileComponent, TasksComponent, DetailGridComponent, RentContComponent, RentGerComponent, GridCellDataPipe,
-    IngresosComponent, CotizadorComponent, IngresosDetalladosComponent, KilometrosComponent, CostosComponent]
+    IngresosComponent, CotizadorComponent, IngresosDetalladosComponent, KilometrosComponent, CostosComponent, CostosAnualesComponent]
 })
 export class AppRoutingModule { }

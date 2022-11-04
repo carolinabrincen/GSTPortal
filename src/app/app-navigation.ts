@@ -23,8 +23,17 @@ export const navigation = [
         text: 'Kilómetros',
         path: '/kilometros',
         icon: 'map'
-      }
-       
+      },
+      {
+        text: 'Rent. Contable',
+        path: '/rentabilidadcontable',
+        icon: 'columnproperties'
+      },
+      {
+        text: 'Rent. Gerencial',
+        path: '/rentabilidadgerencial',
+        icon: 'fieldchooser'
+      },
       
       //  {
       //    TEXT: 'RENT. CONTABLE',
@@ -46,9 +55,15 @@ export const navigation = [
   }
   ,
   {
-    text: 'Costos',
+    text: 'Costos Mensuales',
     icon: 'columnchooser',
     path: '/costos'
+    
+  },
+  {
+    text: 'Costos Anuales',
+    icon: 'columnchooser',
+    path: '/costos-anuales'
     
   }
 
