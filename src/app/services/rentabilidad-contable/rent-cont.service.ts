@@ -34,7 +34,7 @@ export class RentContService extends AbstractManagerService {
       unidadesNegocio:udnSel.length == 7 ? [] : udnSel
     };
     console.log(body);
-
+    
     return this.post<any>((this.API_URL + API_URLS.POST_RENTABILIDAD_CONTABLE), body, this.httpOptions);
   }
 

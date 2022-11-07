@@ -1,5 +1,5 @@
-import { RentContModel, UnidadesNegocioModel, MesesModel, AniosModel } from './../../shared/models/rentabilidad-contable/renta-contable.model';
-import { RentContService } from 'src/app/services/rentabilidad-contable/rent-cont.service';
+import { RentContModel, UnidadesNegocioModel, MesesModel, AniosModel, CompaniaModel } from './../../shared/models/rentabilidad-contable/renta-contable.model';
+import { CostosAnualesService } from '../../services/costos-anuales/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import liquidaciones from 'src/assets/rc02.json';
@@ -7,6 +7,8 @@ import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import { CountryInfo, EnergyDescription, Service  } from './costos-anuales.service';
+import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
+import { DetalleCuenta } from '../../shared/models/costos-anuales/detalleCuenta.model'
 @Component({
 
   templateUrl: './costos-anuales.component.html',
@@ -21,7 +23,8 @@ export class CostosAnualesComponent implements OnInit {
   fechaInicio: Date = new Date();
   fechaFin: Date = new Date();
 
-  arrRentContItems: RentContModel[] = [];
+  costosAnuales: CostosAnuales[] = [];
+  DestalleCuenta: DetalleCuenta[] = []
 
 
   col: string = '50';
@@ -45,21 +48,29 @@ export class CostosAnualesComponent implements OnInit {
     { idMes: 11, nombre: 'NOVIEMBRE' },
     { idMes: 12, nombre: 'DICIEMBRE' }
   ];
+
   arrAnos: AniosModel[] = [
-    { idAnio: 2022, anio: "2022" },
-    { idAnio: 2021, anio: "2021" },
+    { idAnio: 2022, anio: "2022" }
+    // { idAnio: 2021, anio: "2021" },
   ];
+
+  companias: CompaniaModel[] =[
+    {idComp:1, compania: 'TRANSPORTES BONAMPAK'},
+    {idComp:2, compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL'},
+    {idComp:3, compania: 'TRANSPORTE DE CARGA GEMINIS'}
+  ]
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
   loadingVisible = false;
 
-  rentContServ!: RentContService;
+  costosAnuService!: CostosAnualesService;
 
   mesSeleccionado: number = 0;
   anioSeleccionado: number = 0;
   udnSeleccionado: number[] = [];
   tractoSeleccionado: string = '';
+  selectedCompania: number = 0;
 
   objTracto: any;
   objRentabilidad: any;
@@ -82,14 +93,13 @@ export class CostosAnualesComponent implements OnInit {
 
 
   constructor(
-    private rentContService: RentContService,
+    private costosAnualesService: CostosAnualesService,
     private service: Service
     ) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.verDetallesClick = this.verDetallesClick.bind(this)
-    this.rentContServ = rentContService;
-    this.getUnidadesNegocio();
+    this.costosAnuService = costosAnualesService;
 
   //===========chart===================
     this.countriesInfo = service.getCountriesInfo();
@@ -97,12 +107,90 @@ export class CostosAnualesComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {}
+
+  //=================GETS===========================
+  getCostosAnuales() {
+    const request = new Promise((resolve, reject) => {
+
+      var anio = 0
+      var compania = 0
+      var area = 0
+      var mes = 0
+      var clasificacion = 0
+      this.costosAnuService.postEdoResult(anio, compania, area, mes, clasificacion).subscribe(data =>{
+        this.costosAnuales = data.data;
+        console.log(this.costosAnuales)
+       
+      })
+    });
+    return request;
   }
 
-  ngAfterViewInit(): void {
+  getUnidadesNegocio() {
+    this.costosAnuService.getUnidadesNegocio().subscribe(res => {
+      
+      if(this.selectedCompania == 1){
+        const orderdata: UnidadesNegocioModel[] = res.data;
+        let neworderdata = [];
+        neworderdata.push(orderdata[1],orderdata[2],orderdata[3],
+            orderdata[4]);//FALTA LA PAZ
+        this.arrUnidadesNegocio = neworderdata;
+        // console.log(this.arrUnidadesNegocio)      
+      }else if(this.selectedCompania == 2){
+        const orderdata: UnidadesNegocioModel[] = res.data;
+        let neworderdata = [];
+        neworderdata.push(orderdata[5]);
+        this.arrUnidadesNegocio = neworderdata;
+        // console.log(this.arrUnidadesNegocio)
+      }else if(this.selectedCompania == 3){
+        const orderdata: UnidadesNegocioModel[] = res.data;
+        let neworderdata = [];
+        neworderdata.push(orderdata[6]);
+        this.arrUnidadesNegocio = neworderdata;
+        // console.log(this.arrUnidadesNegocio)
+      }
 
+    });
 
+  }
+
+  //=================SELECTS========================
+  //Manejadores de Eventos
+  seleccionarMes(e: any) {
+    this.mesSeleccionado = e.value;
+  }
+  seleccionarAnio(e: any) {
+    this.anioSeleccionado = e.value;
+  }
+
+  seleccionarUDN(e: any) {
+    this.udnSeleccionado = [];
+    this.udnSeleccionado = e.value;
+  }
+
+  selectCompania(e: any) {
+    this.selectedCompania = e.value;
+    this.getUnidadesNegocio();
+  }
+
+  verDetallesClick(data) {
+    // console.log(data.row.key)
+
+    // const request = new Promise((resolve, reject) => {
+
+      var periodo = 0
+      var idcuenta = 0
+      this.costosAnuService.postDetalleCuenta(periodo, idcuenta).subscribe(data =>{
+        console.log(data)
+        this.DestalleCuenta = data.data
+        this.openModReal = true;
+      })
+
+    // });
+    // return request;
   }
 
   borrarClick = (e: any) =>{
@@ -110,53 +198,14 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   buscarClick = (e: any) => {
-    if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
+    // if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
       this.loadingVisible = true;
-      this.getRentabilidad().then(() => {
+      this.getCostosAnuales().then(() => {
         this.loadingVisible = false;
       });
-    }
+    // }
 
   };
-
-  getRentabilidad() {
-    const request = new Promise((resolve, reject) => {
-      this.rentContServ.getRentabilidadContable(
-        this.anioSeleccionado,
-        this.mesSeleccionado,
-        this.tractoSeleccionado,
-        this.udnSeleccionado).subscribe(res => {
-          let array: RentContModel[] = res.data.resumen;
-
-          array.forEach(element => {
-            element.inicio = new Date(element.inicio);
-            element.fin = new Date(element.fin);
-          });
-          this.arrRentContItems = res.data.resumen;
-
-        });
-    });
-    return request;
-  }
-
-  getUnidadesNegocio() {
-    this.rentContServ.getUnidadesNegocio().subscribe(res => {
-      this.arrUnidadesNegocio = res.data;
-
-    });
-
-  }
-
-  getTractos() {
-    if (this.anioSeleccionado && this.mesSeleccionado && this.udnSeleccionado) {
-      this.arrTractos = [];
-      this.selectTracto.value = '';
-      this.rentContServ.getTractos(this.anioSeleccionado, this.mesSeleccionado, this.udnSeleccionado).subscribe(res => {
-        this.arrTractos = res.data.tractos;
-
-      });
-    }
-  }
 
   onShown() {
     // setTimeout(() => {
@@ -384,78 +433,9 @@ export class CostosAnualesComponent implements OnInit {
     // }
   }
 
-  //Manejadores de Eventos
-  seleccionarMes(e: any) {
-    this.mesSeleccionado = e.value;
-
-    this.getTractos();
-
-  }
-  seleccionarAnio(e: any) {
-    this.anioSeleccionado = e.value;
-
-    this.getTractos();
-
-  }
-
-  seleccionarUDN(e: any) {
-    this.udnSeleccionado = [];
-    this.udnSeleccionado = e.value;
-
-
-    this.getTractos();
-  }
-
-  seleccionarTracto(e: any) {
-    this.tractoSeleccionado = e.value;
-
-  }
-
-
-  verDetallesClick(data) {
-    console.log(data.row.key)
-    this.openModReal = true;
-  }
-
   onRowPreparedDetalle(e: any){
 
   }
 
 }
 
-
-// onRowPrepared(e: any) {
-//   if (e.rowType == 'data' && (e.data.concepto == "Ingreso Total" ||
-//     e.data.concepto == "Costo Directo Viaje" ||
-//     e.data.concepto == "Adicionales" ||
-//     e.data.concepto == "Total Costos Adicionales" ||
-//     e.data.concepto == "Margen de Utilidad Bruta")) {
-//     e.cells.forEach((c: any) => {
-
-//       if (c.cellElement) {
-//         c.cellElement.style.fontWeight = "bolder";
-
-//         if (c.value.length > 1 && c.value.toString().startsWith('-')) {
-//           c.cellElement.style.color = "red";
-//         }
-
-//         if ((c.cellElement) && (c.value === "-$ 14,341.00")) {
-//           c.cellElement.style.color = "red";
-//         }
-//       }
-
-//     })
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Adicionales") {
-//     e.rowElement.style.backgroundColor = 'gainsboro';
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Margen de Utilidad Bruta") {
-//     e.rowElement.style.backgroundColor = 'darkGrey';
-//     e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
-//     e.cells.forEach((c: any) => {
-//       c.cellElement ? c.cellElement.style.fontSize = "16px" : null;
-//     })
-//   }
-// }

@@ -17,6 +17,11 @@ export interface AniosModel{
   anio: string,
 }
 
+export interface CompaniaModel{
+  idComp: number,
+  compania: string,
+}
+
 
 export interface RentContModel {
   idUnidadNegocio: number,
