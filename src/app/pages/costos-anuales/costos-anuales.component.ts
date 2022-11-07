@@ -177,10 +177,6 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   verDetallesClick(data) {
-    // console.log(data.row.key)
-
-    // const request = new Promise((resolve, reject) => {
-
       var periodo = 0
       var idcuenta = 0
       this.costosAnuService.postDetalleCuenta(periodo, idcuenta).subscribe(data =>{
@@ -188,9 +184,6 @@ export class CostosAnualesComponent implements OnInit {
         this.DestalleCuenta = data.data
         this.openModReal = true;
       })
-
-    // });
-    // return request;
   }
 
   borrarClick = (e: any) =>{
