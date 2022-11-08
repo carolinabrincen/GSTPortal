@@ -112,23 +112,6 @@ export class CostosAnualesComponent implements OnInit {
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
-  getCostosAnuales() {
-    const request = new Promise((resolve, reject) => {
-
-      var anio = 0
-      var compania = 0
-      var area = 0
-      var mes = 0
-      var clasificacion = 0
-      this.costosAnuService.postEdoResult(anio, compania, area, mes, clasificacion).subscribe(data =>{
-        this.costosAnuales = data.data;
-        console.log(this.costosAnuales)
-       
-      })
-    });
-    return request;
-  }
-
   getUnidadesNegocio() {
     this.costosAnuService.getUnidadesNegocio().subscribe(res => {
       
@@ -159,21 +142,32 @@ export class CostosAnualesComponent implements OnInit {
 
   //=================SELECTS========================
   //Manejadores de Eventos
-  seleccionarMes(e: any) {
-    this.mesSeleccionado = e.value;
-  }
   seleccionarAnio(e: any) {
     this.anioSeleccionado = e.value;
   }
-
+  seleccionarMes(e: any) {
+    this.mesSeleccionado = e.value;
+  }
+  selectCompania(e: any) {
+    this.selectedCompania = e.value;
+    this.getUnidadesNegocio();
+  }  
   seleccionarUDN(e: any) {
     this.udnSeleccionado = [];
     this.udnSeleccionado = e.value;
   }
 
-  selectCompania(e: any) {
-    this.selectedCompania = e.value;
-    this.getUnidadesNegocio();
+  callCostosAnuales() {
+    const request = new Promise((resolve, reject) => {
+
+      var clasificacion = 0
+      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, clasificacion).subscribe(data =>{
+        this.costosAnuales = data.data;
+        console.log(this.costosAnuales)
+       
+      })
+    });
+    return request;
   }
 
   verDetallesClick(data) {
@@ -193,7 +187,7 @@ export class CostosAnualesComponent implements OnInit {
   buscarClick = (e: any) => {
     // if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
       this.loadingVisible = true;
-      this.getCostosAnuales().then(() => {
+      this.callCostosAnuales().then(() => {
         this.loadingVisible = false;
       });
     // }

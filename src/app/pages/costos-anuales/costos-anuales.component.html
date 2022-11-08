@@ -165,10 +165,10 @@
     <dx-data-grid #rentCont2 id="gridarrLiquidacionesDetalleContainer2" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
 
-        <dxi-column dataField="compania" caption="Compañia" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
-        <dxi-column dataField="area" caption="Area" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
-        <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="2"></dxi-column>
-        <dxi-column dataField="cuentaPadre" caption="Cuenta Padre" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column>
+        <dxi-column dataField="compania" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="area" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
+        <dxi-column dataField="clasificacion" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="2"></dxi-column>
+        <dxi-column dataField="cuentaPadre" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column>
 
         <dxi-column dataField="cuenta" caption="Cuenta" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column>
 
@@ -176,123 +176,96 @@
         <dxi-column dataField="cuenta" caption="Descripción" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         
         <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
-      
-            <dxi-column>
-                <dxi-column dataField="eneroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="eneroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPresupuesto" caption="Pppto" [fixed]="false"  headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold"></dxi-column>
             <dxi-column dataField="eneroDesviacion" caption="Var" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPorDesv" caption="%" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
 
         <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="febreroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="febreroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="marzoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="marzoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="marzoPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="marzoDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="marzoPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Abril" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="abrilReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="abrilReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="abrilPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="abrilDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="abrilPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Mayo" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="mayoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="mayoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="otrosPomayoPresupuestor" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="mayoDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="mayoPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Junio" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="junioReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="junioReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="junioPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="junioDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="junioPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Julio" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="julioReal" caption="Real." [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="julioReal" caption="Real." [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="julioPresupuesto" caption="Pppto" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="julioDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="julioPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Agosto" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="agostoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="agostoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="agostoPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="agostoDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="agostoPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Septiembre" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="septiembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="septiembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="septiembrePresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="septiembreDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="septiembrePorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Octubre" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="octubreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="octubreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="octubrePresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="octubreDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="octubrePorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Noviembre" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="noviembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="noviembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="noviembrePresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="noviembreDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="noviembrePorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Diciembre" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="diciembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="diciembreReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="diciembrePresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="diciembreDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="diciembrePorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
         <dxi-column caption="Acumulado" headerCellTemplate="headerTemplate">
-            <dxi-column>
-                <dxi-column dataField="acumuladoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="acumuladoReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="acumuladoPresupuesto" caption="Pppto" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="acumuladoDesviacion" caption="Var" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="acumuladoPorDesv" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
         </dxi-column>
 
         <div *dxTemplate="let data of 'detalleCellTemplate'">
