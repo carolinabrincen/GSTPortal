@@ -267,9 +267,9 @@ export class CostosAnualesComponent implements OnInit {
 
     if (e.rowType == 'groupFooter') {
 
-        let ingresoTotal = 20
-        ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = 520/ingresoTotal;
-        alert(ingresoTotal)
+        // let ingresoTotal = 20
+        // ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = 520/ingresoTotal;
+        // alert(ingresoTotal)
       // let ingresoTotal = e.summaryCells[6][0].value;
       // let margenUtilidad = e.summaryCells[7][0].value;
       // let combustible = e.summaryCells[15][0].value;
@@ -315,89 +315,6 @@ export class CostosAnualesComponent implements OnInit {
 
 
     }
-
-    // if (e.rowType == 'totalFooter') {
-    //   console.log('TOT:', e);
-
-    //   let ingresoTotal = e.summaryCells[6][0].value;
-    //   let margenUtilidad = e.summaryCells[7][0].value;
-    //   let combustible = e.summaryCells[15][0].value;
-    //   let casetas = e.summaryCells[17][0].value;
-    //   let sueldosLiquidacion = e.summaryCells[19][0].value;
-    //   let otros = e.summaryCells[21][0].value;
-    //   let costosDirectos = e.summaryCells[23][0].value;
-    //   let sueldoBase = e.summaryCells[25][0].value;
-    //   let cargaSocial = e.summaryCells[27][0].value;
-    //   let fijoMtto = e.summaryCells[29][0].value;
-    //   let varMtto = e.summaryCells[31][0].value;
-    //   let fijoTrans = e.summaryCells[33][0].value;
-    //   let varTrans = e.summaryCells[35][0].value;
-    //   let ctosAdicionales = e.summaryCells[37][0].value;
-
-    //   //Porcentajes Margen utilidad
-    //   ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = margenUtilidad/ingresoTotal;
-    //   //Combustible
-    //   ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
-    //   //Casetas
-    //   ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
-    //   //Sueldos Liq
-    //   ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
-    //   //Otros
-    //   ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
-    //   //costosDirectos
-    //   ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
-    //   //sueldoBAse
-    //   ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
-    //   //Carga Social
-    //   ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
-    //   //Fijo Mtto
-    //   ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
-    //   //Variable Mtto
-    //   ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
-    //   //fijo Transportacion
-    //   ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
-    //   //variable Transportacion
-    //   ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
-    //   //Costso Adicionales
-    //   ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
-
-
-
-
-    //   e.rowElement.style.backgroundColor = '#f5f5f5';
-    //   e.rowElement.style.color = 'red';
-
-    //   e.cells.forEach((c: any) => {
-
-    //     if (c.cellElement) {
-    //       //poner en rojo negativos
-    //       if (c.summaryCells && c.summaryCells[7][0].value.toString().startsWith('-')) {
-    //         c.cellElement.style.color = "red";
-    //       }
-
-    //       //negrita columna margen utilidad
-    //       if (c.columnIndex == 5  || c.columnIndex == 6  ||
-    //           c.columnIndex == 7  || c.columnIndex == 8  ||
-    //           c.columnIndex == 23 || c.columnIndex == 24 ||
-    //           c.columnIndex == 37 || c.columnIndex == 38) {
-    //         c.cellElement.style.fontWeight = "bolder";
-    //         c.cellElement.style.fontSize = "14px";
-    //         c.cellElement.style.background = "#f5f5f5";
-    //         c.cellElement.style.color = "red";
-    //       }
-
-    //       //porcentaje de combistuble > .25 en rojo
-    //       if (c.columnIndex == 16 && c.value >= .25) {
-    //         c.cellElement.style.color = "red";
-    //       }
-    //     }
-
-
-
-    //   });
-
-
-    // }
   }
 
   calcularPorcentajes(options: any) {

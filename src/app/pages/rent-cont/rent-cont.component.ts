@@ -204,6 +204,63 @@ export class RentContComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter') {
+      let ingresoTotal = e.summaryCells[6][0].value;
+      let margenUtilidad = e.summaryCells[7][0].value;
+      let combustible = e.summaryCells[15][0].value;
+      let casetas = e.summaryCells[17][0].value;
+      let sueldosLiquidacion = e.summaryCells[19][0].value;
+      let otros = e.summaryCells[21][0].value;
+      let costosDirectos = e.summaryCells[23][0].value;
+      let sueldoBase = e.summaryCells[25][0].value;
+      let cargaSocial = e.summaryCells[27][0].value;
+      let fijoMtto = e.summaryCells[29][0].value;
+      let varMtto = e.summaryCells[31][0].value;
+      let fijoTrans = e.summaryCells[33][0].value;
+      let varTrans = e.summaryCells[35][0].value;
+      let ctosAdicionales = e.summaryCells[37][0].value;
+
+
+      //Porcentajes Margen utilidad
+      ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = margenUtilidad/ingresoTotal;
+      //Combustible
+      ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
+      //Casetas
+      ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
+      //Sueldos Liq
+      ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
+      //Otros
+      ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
+      //costosDirectos
+      ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
+      //sueldoBAse
+      ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
+      //Carga Social
+      ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
+      //Fijo Mtto
+      ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
+      //Variable Mtto
+      ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
+      //fijo Transportacion
+      ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
+      //variable Transportacion
+      ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
+      //Costso Adicionales
+      ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
+
+
+      if (e.groupIndex === 1) {
+        e.summaryCells[5][0].displayFormat = 'SUBTOTAL TRACTO';
+       // console.log('🌲', e);
+
+      }
+      if (e.groupIndex === 0) {
+        e.summaryCells[5][0].displayFormat = 'SUBTOTAL ' + e.key[0];
+        //e.rowElement.style.backgroundColor = '#dcdcdc';
+      }
+
+
+
+
 
     }
 
