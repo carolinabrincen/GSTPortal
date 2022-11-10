@@ -162,21 +162,15 @@
 <br><br><br>
 
 
-    <dx-data-grid #rentCont2 id="gridarrLiquidacionesDetalleContainer2" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+    <dx-data-grid #rentCont2 id="costosanuales" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
 
         <dxo-export [enabled]="true"></dxo-export>
 
-        <dxi-column dataField="compania" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
-        <dxi-column dataField="area" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
-        <dxi-column dataField="clasificacion" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="2"></dxi-column>
-        <dxi-column dataField="cuentaPadre" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column>
-
-        <!-- <dxi-column dataField="compania" [groupIndex]="0"></dxi-column>
-        <dxi-column dataField="area" [groupIndex]="1"></dxi-column>
-        <dxi-column dataField="clasificacion" [groupIndex]="2"></dxi-column>
-        <dxi-column dataField="cuentaPadre" [groupIndex]="3"></dxi-column> -->
-        <!-- <dxi-column dataField="cuenta" caption="Cuenta" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column> -->
+        <dxi-column dataField="compania" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="area" caption="" [groupIndex]="1" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="clasificacion" caption="" [groupIndex]="2" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="cuentaPadre" caption="" [groupIndex]="3" [allowSorting]="false"></dxi-column>
 
         <dxi-column dataField="idCuenta" caption="Clave" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="cuenta" caption="Descripción" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
@@ -420,31 +414,31 @@
             <dxi-group-item column="acumuladoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!-- PORCENTAJES GRUPO -->
             <!--ENERO-->
-            <dxi-group-item showInColumn="eneroPorDesv" name="grupEneroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="eneroPorDesv" name="grupEneroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--FEBRERO-->
-            <dxi-group-item showInColumn="febreroPorDesv" name="grupFebreroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="febreroPorDesv" name="grupFebreroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--MARZO-->
-            <dxi-group-item showInColumn="marzoPorDesv" name="grupMarzoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="marzoPorDesv" name="grupMarzoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--ABRIL-->
-            <dxi-group-item showInColumn="abrilPorDesv" name="grupAbrilPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="abrilPorDesv" name="grupAbrilPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--MAYO-->
-            <dxi-group-item showInColumn="mayoPorDesv" name="grupMayoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="mayoPorDesv" name="grupMayoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--JUNIO-->
-            <dxi-group-item showInColumn="junioPorDesv" name="grupJunioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="junioPorDesv" name="grupJunioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--JULIO-->
-            <dxi-group-item showInColumn="julioPorDesv" name="grupJulioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="julioPorDesv" name="grupJulioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--AGOSTO-->
-            <dxi-group-item showInColumn="agostoPorDesv" name="grupAgostoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="agostoPorDesv" name="grupAgostoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--SEPTIEMBRE-->
-            <dxi-group-item showInColumn="septiembrePorDesv" name="grupSeptiembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="septiembrePorDesv" name="grupSeptiembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--OCTUBRE-->
-            <dxi-group-item showInColumn="octubrePorDesv" name="grupOctubrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="octubrePorDesv" name="grupOctubrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--NOMVIEMBRE-->
-            <dxi-group-item showInColumn="noviembrePorDesv" name="grupNoviembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="noviembrePorDesv" name="grupNoviembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--DICIEMBRE-->
-            <dxi-group-item showInColumn="diciembrePorDesv" name="grupDiciembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="diciembrePorDesv" name="grupDiciembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
             <!--ACUMULADO-->
-            <dxi-group-item showInColumn="acumuladoPorDesv" name="grupAcumuladoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="acumuladoPorDesv" name="grupAcumuladoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
         </dxo-summary>
 
         <div *dxTemplate="let data of 'headerTemplate'">
@@ -460,7 +454,6 @@
         </dxo-pager>
         <dxo-sorting mode="none"></dxo-sorting>
     </dx-data-grid>
-
 
 <!--==========================MODAL REAL=========================================================-->
         <dx-popup
