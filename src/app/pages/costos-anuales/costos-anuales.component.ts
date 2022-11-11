@@ -9,6 +9,8 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 import { CountryInfo, EnergyDescription, Service  } from './costos-anuales.service';
 import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
 import { DetalleCuenta } from '../../shared/models/costos-anuales/detalleCuenta.model'
+import { TotalesOperacion } from '../../shared/models/costos-anuales/totalesOperacion.model';
+
 @Component({
 
   templateUrl: './costos-anuales.component.html',
@@ -91,10 +93,7 @@ export class CostosAnualesComponent implements OnInit {
   positions: string[];
   states: string[];
 
-  totalOperacion: number;
-  totalOperacionFlete: number;
-  totalOperacionCostos: number;
-
+  totalesOperacion = new TotalesOperacion;
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -257,6 +256,7 @@ export class CostosAnualesComponent implements OnInit {
     }
 
     if (e.rowType == 'group') {
+      //====Agregando estilos a la agrupacion=========================================
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = '#ff9460';
         e.rowElement.style.color = "white";
@@ -267,26 +267,38 @@ export class CostosAnualesComponent implements OnInit {
         e.rowElement.style.fontWeight = "bolder";
       }
 
-      if(e.groupIndex == 2){
-
-          // e.cells[0].totalItem.summaryCells = [] //Omotir totales en la agrupacion
+      //======Omitir totales en la agrupacion no afecta a la sumatoria========================================
+      if(e.groupIndex == 1 && e.data.key == '0.- INDICADORES'){
+          e.cells[0].totalItem.summaryCells = [] 
       }
+
 
       if(e.groupIndex == 2){
          //console.log(e)
+
+        //===== Omitir totales en la agrupacion no afecta a la sumatoria===========================================
+        if(e.data.key == 'INDICADORES'){
+          e.cells[0].totalItem.summaryCells = [] 
+        }
+
+
+        //=====Resta Entre Fletes y Costos en la agrupacion OPERACION ============================================
         if(e.data.key == 'a.- INGRESOS POR FLETE'){          
-          this.totalOperacionFlete = e.data.aggregates[0]
+          this.totalesOperacion.totalFleteER = e.data.aggregates[0]
         }
 
         if(e.data.key == 'b.- COSTOS '){      
-          this.totalOperacionCostos = e.data.aggregates[0]
-          this.totalOperacion = this.totalOperacionFlete - this.totalOperacionCostos;
+          this.totalesOperacion.totalCostosER = e.data.aggregates[0]
+
+          this.totalesOperacion.totalOperacionER = this.totalesOperacion.totalFleteER - this.totalesOperacion.totalCostosER;
+          //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
         }
+
       }
 
       if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
-        console.log(e)
-        e.summaryCells[6][0].value = this.totalOperacion;
+        //console.log(e)
+        e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
       }
 
     }
@@ -306,4 +318,5 @@ export class CostosAnualesComponent implements OnInit {
   }
 
 }
+
 
