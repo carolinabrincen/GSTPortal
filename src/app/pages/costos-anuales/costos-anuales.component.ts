@@ -224,10 +224,8 @@ export class CostosAnualesComponent implements OnInit {
 }
 
   onRowPrepared(e: any) {
-    console.log(e)
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
-
         if (c.cellElement) {
           //poner en rojo negativos
           if (c.value && c.value.toString().startsWith('-')) {
@@ -247,6 +245,7 @@ export class CostosAnualesComponent implements OnInit {
           if (c.columnIndex == 16 && c.value >= .25) {
             c.cellElement.style.color = "red";
           }
+
         }
 
 
@@ -265,13 +264,14 @@ export class CostosAnualesComponent implements OnInit {
         e.rowElement.style.fontWeight = "bolder";
       }
 
-    }
-    if(e.rowType === "groupFooter" && e.summaryItems.length) {
-      e.cellElement.innerText = "Sum for " + e.data.key + ": $" + e.summaryItems[0].value;
-   
-  }
-  }
+      if(e.groupIndex == 2){
+        console.log(e)
 
+        e.cells[0].totalItem.summaryCells = []
+      }
+
+    }
+  }
   calcularPorcentajes(options: any) {
     // //
     // if (options.summaryProcess === 'calculate') {
