@@ -91,6 +91,9 @@ export class CostosAnualesComponent implements OnInit {
   positions: string[];
   states: string[];
 
+  totalOperacion: number;
+  totalOperacionFlete: number;
+  totalOperacionCostos: number;
 
   constructor(
     private costosAnualesService: CostosAnualesService,
@@ -265,9 +268,25 @@ export class CostosAnualesComponent implements OnInit {
       }
 
       if(e.groupIndex == 2){
-        console.log(e)
 
-        e.cells[0].totalItem.summaryCells = []
+          // e.cells[0].totalItem.summaryCells = [] //Omotir totales en la agrupacion
+      }
+
+      if(e.groupIndex == 2){
+         //console.log(e)
+        if(e.data.key == 'a.- INGRESOS POR FLETE'){          
+          this.totalOperacionFlete = e.data.aggregates[0]
+        }
+
+        if(e.data.key == 'b.- COSTOS '){      
+          this.totalOperacionCostos = e.data.aggregates[0]
+          this.totalOperacion = this.totalOperacionFlete - this.totalOperacionCostos;
+        }
+      }
+
+      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
+        console.log(e)
+        e.summaryCells[6][0].value = this.totalOperacion;
       }
 
     }
