@@ -99,6 +99,10 @@ export class CostosAnualesComponent implements OnInit {
   totalIngresosER: number;
   totalOtrosGER: number;
 
+  totalesOGOER: number;
+  totalGAER: number;
+  totalDAER: number;
+
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -263,8 +267,9 @@ export class CostosAnualesComponent implements OnInit {
           e.cells[0].totalItem.summaryCells = [] 
       }
 
-//================================Resta de la agrupacion de Operacion==============================================
+
       if(e.groupIndex == 2){
+//================================Resta de la agrupacion de Operacion==============================================
         //===== Omitir totales en la agrupacion no afecta a la sumatoria===========================================
         if(e.data.key == 'INDICADORES'){
           e.cells[0].totalItem.summaryCells = [] 
@@ -396,6 +401,17 @@ export class CostosAnualesComponent implements OnInit {
           //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
         }
 
+
+//===============================Resta de la agrupacion de  Otros Gastos de Operacion===============================
+        
+        if(e.data.key == 'a.- GASTOS ADMINISTRATIVOS'){
+            this.totalGAER = e.data.aggregates[0];
+        }
+        if(e.data.key == 'b.- DEPRECIACION DE ACTIVOS'){
+          this.totalDAER = e.data.aggregates[0];
+
+        }
+
       }
 
       //=====Resta Entre Fletes y Costos============================================
@@ -421,7 +437,17 @@ export class CostosAnualesComponent implements OnInit {
 
       if(e.groupIndex == 2 && e.data.key == 'c.- OTROS GASTOS/INGRESOS ORDINARIOS'){
         e.summaryCells[6][0].value = this.totalOtrosGIER;
+
+        let sumaOGOER
+        sumaOGOER = this.totalGAER + this.totalDAER;
+        this.totalesOGOER = sumaOGOER - this.totalOtrosGIER
+        
       }
+
+      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+        e.summaryCells[6][0].value = this.totalesOGOER
+      }
+
     }
   }
   calcularPorcentajes(options: any) {
