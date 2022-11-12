@@ -103,6 +103,14 @@ export class CostosAnualesComponent implements OnInit {
   totalGAER: number;
   totalDAER: number;
 
+  totalesOtros: number;
+  totalOIOEER: number;
+  totalOGOEER: number;
+
+  totalesOtrosGIEER
+  totalGIC: number;
+  totalEF: number;
+  totalVAF: number;
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -174,7 +182,7 @@ export class CostosAnualesComponent implements OnInit {
       var clasificacion = 0
       this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, clasificacion).subscribe(data =>{
         this.costosAnuales = data.data;
-        console.log(this.costosAnuales)
+        // console.log(this.costosAnuales)
        
       })
     });
@@ -269,7 +277,7 @@ export class CostosAnualesComponent implements OnInit {
 
 
       if(e.groupIndex == 2){
-//================================Resta de la agrupacion de Operacion==============================================
+//================================Resta de la agrupacion de 01.- OPERACION==============================================
         //===== Omitir totales en la agrupacion no afecta a la sumatoria===========================================
         if(e.data.key == 'INDICADORES'){
           e.cells[0].totalItem.summaryCells = [] 
@@ -277,7 +285,7 @@ export class CostosAnualesComponent implements OnInit {
 
         //========================Sacando los valores para la operacion============================================
         if(e.data.key == 'a.- INGRESOS POR FLETE'){          
-          console.log(e.data)
+          // console.log(e.data)
           this.totalesOperacion.totalFleteER = e.data.aggregates[0];
           this.totalesOperacion.totalFleteEP = e.data.aggregates[1];
           this.totalesOperacion.totalFleteED = e.data.aggregates[2]
@@ -401,9 +409,7 @@ export class CostosAnualesComponent implements OnInit {
           //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
         }
 
-
-//===============================Resta de la agrupacion de  Otros Gastos de Operacion===============================
-        
+//===============================Resta de la agrupacion de 02.- OTROS GASTOS DE OPERACIÓN===============================
         if(e.data.key == 'a.- GASTOS ADMINISTRATIVOS'){
             this.totalGAER = e.data.aggregates[0];
         }
@@ -412,17 +418,24 @@ export class CostosAnualesComponent implements OnInit {
 
         }
 
+//================================Resta de la agrupacion de 03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS        
+        if(e.data.key == 'a.- GASTOS INGRESO DE COLABORACIÓN'){
+          this.totalGIC = e.data.aggregates[0];
+        }
+        if(e.data.key == 'b.- ESTÍMULOS FISCALES'){
+          this.totalEF = e.data.aggregates[0];
+        }
+        if(e.data.key == 'c.- VENTA DE ACTIVO FIJO'){
+          this.totalVAF = e.data.aggregates[0];
+        }
       }
 
-      //=====Resta Entre Fletes y Costos============================================
-      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
-        //console.log(e)
-        e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
-      }
 
 
-//=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
+
+
       if(e.groupIndex == 3){
+//=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
         //========================Sacando los valores para la operacion============================================
         if(e.data.key == '401-01-000 INGRESOS ORDINARIOS'){
           this.totalIngresosER = e.data.aggregates[0];
@@ -433,6 +446,27 @@ export class CostosAnualesComponent implements OnInit {
 
           this.totalOtrosGIER = this.totalOtrosGER - this.totalIngresosER;
         }
+//=================================Resta de la agrupacion Otros Gastos/Ingresos Extraordinario=========================
+        //=========================Sacando los valores para la operaion 
+        console.log(e)
+        if(e.data.key == '405-01-000 OTROS ING OPER EXTRAORDINARIO'){
+          this.totalOIOEER = e.data.aggregates[0];
+        }
+        if(e.data.key == '507-01-000 OTROS GASTOS OPER EXTRAORDINARIOS  '){
+          this.totalOGOEER = e.data.aggregates[0];
+
+          this.totalesOtros = this.totalOGOEER - this.totalOIOEER;
+        }
+      }
+
+      //=====Resta Entre Fletes y Costos============================================
+      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
+        //console.log(e)
+        e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
+      }
+
+      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+        e.summaryCells[6][0].value = this.totalesOGOER
       }
 
       if(e.groupIndex == 2 && e.data.key == 'c.- OTROS GASTOS/INGRESOS ORDINARIOS'){
@@ -444,8 +478,16 @@ export class CostosAnualesComponent implements OnInit {
         
       }
 
-      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
-        e.summaryCells[6][0].value = this.totalesOGOER
+      if(e.groupIndex == 1 && e.data.key == '03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS'){
+        e.summaryCells[6][0].value = this.totalesOtrosGIEER;
+      }
+
+      if(e.groupIndex == 2 && e.data.key == 'd.- OTROS'){
+        e.summaryCells[6][0].value = this.totalesOtros;
+        
+        let sumaOGIEER;
+        sumaOGIEER = this.totalGIC + this.totalEF + this.totalVAF;
+        this.totalesOtrosGIEER = sumaOGIEER - this.totalesOtros;
       }
 
     }
