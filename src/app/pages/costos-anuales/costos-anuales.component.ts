@@ -94,6 +94,11 @@ export class CostosAnualesComponent implements OnInit {
   states: string[];
 
   totalesOperacion = new TotalesOperacion;
+
+  totalOtrosGIER: number;
+  totalIngresosER: number;
+  totalOtrosGER: number;
+
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -233,25 +238,11 @@ export class CostosAnualesComponent implements OnInit {
           if (c.value && c.value.toString().startsWith('-')) {
             c.cellElement.style.color = "red";
           }
-
-          //negrita columna margen utilidad
-          // if (c.columnIndex == 7  || c.columnIndex == 8  ||
-          //     c.columnIndex == 23 || c.columnIndex == 24 ||
-          //     c.columnIndex == 37 || c.columnIndex == 38) {
-          //   c.cellElement.style.fontWeight = "bolder";
-          //   c.cellElement.style.fontSize = "14px";
-          //   c.cellElement.style.background = "#f5f5f5";
-          // }
-
           //porcentaje de combistuble > .25 en rojo
           if (c.columnIndex == 16 && c.value >= .25) {
             c.cellElement.style.color = "red";
           }
-
         }
-
-
-
       });
     }
 
@@ -272,35 +263,165 @@ export class CostosAnualesComponent implements OnInit {
           e.cells[0].totalItem.summaryCells = [] 
       }
 
-
+//================================Resta de la agrupacion de Operacion==============================================
       if(e.groupIndex == 2){
-         //console.log(e)
-
         //===== Omitir totales en la agrupacion no afecta a la sumatoria===========================================
         if(e.data.key == 'INDICADORES'){
           e.cells[0].totalItem.summaryCells = [] 
         }
 
-
-        //=====Resta Entre Fletes y Costos en la agrupacion OPERACION ============================================
+        //========================Sacando los valores para la operacion============================================
         if(e.data.key == 'a.- INGRESOS POR FLETE'){          
-          this.totalesOperacion.totalFleteER = e.data.aggregates[0]
+          console.log(e.data)
+          this.totalesOperacion.totalFleteER = e.data.aggregates[0];
+          this.totalesOperacion.totalFleteEP = e.data.aggregates[1];
+          this.totalesOperacion.totalFleteED = e.data.aggregates[2]
+          this.totalesOperacion.totalFleteFR
+          this.totalesOperacion.totalFleteFP
+          this.totalesOperacion.totalFleteFD
+          this.totalesOperacion.totalFleteMR
+          this.totalesOperacion.totalFleteMP
+          this.totalesOperacion.totalFleteMD
+          this.totalesOperacion.totalFleteAR
+          this.totalesOperacion.totalFleteAP
+          this.totalesOperacion.totalFleteAD
+          this.totalesOperacion.totalFleteMYR
+          this.totalesOperacion.totalFleteMYP
+          this.totalesOperacion.totalFleteMYD
+          this.totalesOperacion.totalFleteJR
+          this.totalesOperacion.totalFleteJP
+          this.totalesOperacion.totalFleteJD
+          this.totalesOperacion.totalFleteJLR
+          this.totalesOperacion.totalFleteJLP
+          this.totalesOperacion.totalFleteJLD
+          this.totalesOperacion.totalFleteAGR
+          this.totalesOperacion.totalFleteAGP
+          this.totalesOperacion.totalFleteAGD
+          this.totalesOperacion.totalFleteSR
+          this.totalesOperacion.totalFleteSP
+          this.totalesOperacion.totalFleteSD
+          this.totalesOperacion.totalFleteOR
+          this.totalesOperacion.totalFleteOP
+          this.totalesOperacion.totalFleteOD
+          this.totalesOperacion.totalFleteNR
+          this.totalesOperacion.totalFleteNP
+          this.totalesOperacion.totalFleteND
+          this.totalesOperacion.totalFleteDR
+          this.totalesOperacion.totalFleteDP
+          this.totalesOperacion.totalFleteDD
+          this.totalesOperacion.totalFleteACR
+          this.totalesOperacion.totalFleteACP
+          this.totalesOperacion.totalFleteACD
         }
 
         if(e.data.key == 'b.- COSTOS '){      
           this.totalesOperacion.totalCostosER = e.data.aggregates[0]
+          this.totalesOperacion.totalCostosEP
+          this.totalesOperacion.totalCostosED
+          this.totalesOperacion.totalCostosFR
+          this.totalesOperacion.totalCostosFP
+          this.totalesOperacion.totalCostosFD
+          this.totalesOperacion.totalCostosMR
+          this.totalesOperacion.totalCostosMP
+          this.totalesOperacion.totalCostosMD
+          this.totalesOperacion.totalCostosAR
+          this.totalesOperacion.totalCostosAP
+          this.totalesOperacion.totalCostosAD
+          this.totalesOperacion.totalCostosMYR
+          this.totalesOperacion.totalCostosMYP
+          this.totalesOperacion.totalCostosMYD
+          this.totalesOperacion.totalCostosJR
+          this.totalesOperacion.totalCostosJP
+          this.totalesOperacion.totalCostosJD
+          this.totalesOperacion.totalCostosJLR
+          this.totalesOperacion.totalCostosJLP
+          this.totalesOperacion.totalCostosJLD
+          this.totalesOperacion.totalCostosAGR
+          this.totalesOperacion.totalCostosAGP
+          this.totalesOperacion.totalCostosAGD
+          this.totalesOperacion.totalCostosSR
+          this.totalesOperacion.totalCostosSP
+          this.totalesOperacion.totalCostosSD
+          this.totalesOperacion.totalCostosOR
+          this.totalesOperacion.totalCostosOP
+          this.totalesOperacion.totalCostosOD
+          this.totalesOperacion.totalCostosNR
+          this.totalesOperacion.totalCostosNP
+          this.totalesOperacion.totalCostosND
+          this.totalesOperacion.totalCostosDR
+          this.totalesOperacion.totalCostosDP
+          this.totalesOperacion.totalCostosDD
+          this.totalesOperacion.totalCostosACR
+          this.totalesOperacion.totalCostosACP
+          this.totalesOperacion.totalCostosACD
+
 
           this.totalesOperacion.totalOperacionER = this.totalesOperacion.totalFleteER - this.totalesOperacion.totalCostosER;
+          this.totalesOperacion.totalOperacionEP
+          this.totalesOperacion.totalOperacionED
+          this.totalesOperacion.totalOperacionFR
+          this.totalesOperacion.totalOperacionFP
+          this.totalesOperacion.totalOperacionFD
+          this.totalesOperacion.totalOperacionAR
+          this.totalesOperacion.totalOperacionAP
+          this.totalesOperacion.totalOperacionAD
+          this.totalesOperacion.totalOperacionMYR
+          this.totalesOperacion.totalOperacionMYP
+          this.totalesOperacion.totalOperacionMYD
+          this.totalesOperacion.totalOperacionJR
+          this.totalesOperacion.totalOperacionJP
+          this.totalesOperacion.totalOperacionJD
+          this.totalesOperacion.totalOperacionJLR
+          this.totalesOperacion.totalOperacionJLP
+          this.totalesOperacion.totalOperacionJLD
+          this.totalesOperacion.totalOperacionAGR
+          this.totalesOperacion.totalOperacionAGP
+          this.totalesOperacion.totalOperacionAGD
+          this.totalesOperacion.totalOperacionSR
+          this.totalesOperacion.totalOperacionSP
+          this.totalesOperacion.totalOperacionSD
+          this.totalesOperacion.totalOperacionOR
+          this.totalesOperacion.totalOperacionOP
+          this.totalesOperacion.totalOperacionOD
+          this.totalesOperacion.totalOperacionNR
+          this.totalesOperacion.totalOperacionNP
+          this.totalesOperacion.totalOperacionND
+          this.totalesOperacion.totalOperacionDR
+          this.totalesOperacion.totalOperacionDP
+          this.totalesOperacion.totalOperacionDD
+          this.totalesOperacion.totalOperacionACR
+          this.totalesOperacion.totalOperacionACP
+          this.totalesOperacion.totalOperacionACD
+
           //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
         }
 
       }
 
+      //=====Resta Entre Fletes y Costos============================================
       if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
         //console.log(e)
         e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
       }
 
+
+//=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
+      if(e.groupIndex == 3){
+        //========================Sacando los valores para la operacion============================================
+        if(e.data.key == '401-01-000 INGRESOS ORDINARIOS'){
+          this.totalIngresosER = e.data.aggregates[0];
+        }
+
+        if(e.data.key == '505-01-000 OTROS GASTOS  ORDINARIOS      '){
+          this.totalOtrosGER = e.data.aggregates[0];
+
+          this.totalOtrosGIER = this.totalOtrosGER - this.totalIngresosER;
+        }
+      }
+
+      if(e.groupIndex == 2 && e.data.key == 'c.- OTROS GASTOS/INGRESOS ORDINARIOS'){
+        e.summaryCells[6][0].value = this.totalOtrosGIER;
+      }
     }
   }
   calcularPorcentajes(options: any) {

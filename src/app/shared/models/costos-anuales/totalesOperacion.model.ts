@@ -101,8 +101,8 @@ export class TotalesOperacion{
     totalFleteSP: number;
     totalFleteSD: number;
     totalCostosSR: number;
-    totalCostoSP: number;
-    totalCostoSD: number;
+    totalCostosSP: number;
+    totalCostosSD: number;
 
     totalFleteOR: number;
     totalFleteOP: number;
