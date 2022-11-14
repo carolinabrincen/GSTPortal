@@ -111,6 +111,10 @@ export class CostosAnualesComponent implements OnInit {
   totalGIC: number;
   totalEF: number;
   totalVAF: number;
+
+  totalesGIF: number;
+  totalPodructF: number;
+  totalGastosF: number;
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -270,258 +274,255 @@ export class CostosAnualesComponent implements OnInit {
         e.rowElement.style.fontWeight = "bolder";
       }
 
-//       //======Omitir totales en la agrupacion no afecta a la sumatoria========================================
-//       if(e.groupIndex == 1 && e.data.key == '0.- INDICADORES'){
-//           e.cells[0].totalItem.summaryCells = [] 
-//       }
+      // if(e.groupIndex == 1){
+      //   if(e.data.key == '01.- OPERACION'){
+
+      //   }
+
+      //   if(e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+
+      //   }
+
+      //   if(e.data.key == ''){
+
+      //   }
+
+      // }
 
 
-//       if(e.groupIndex == 2){
-// //================================Resta de la agrupacion de 01.- OPERACION==============================================
-//         //===== Omitir totales en la agrupacion no afecta a la sumatoria===========================================
-//         if(e.data.key == 'INDICADORES'){
-//           e.cells[0].totalItem.summaryCells = [] 
-//         }
+      if(e.groupIndex == 2){
+//================================Resta de la agrupacion de 01.- OPERACION==============================================
+        //===== Omitir totales en la agrupacion no afecta a la sumatoria================================================
+        if(e.data.key == 'INDICADORES'){
+          e.cells[0].totalItem.summaryCells = [] 
+        }
 
-//         //========================Sacando los valores para la operacion============================================
-//         if(e.data.key == 'a.- INGRESOS POR FLETE'){          
-//           // console.log(e.data)
-//           this.totalesOperacion.totalFleteER = e.data.aggregates[0];
-//           this.totalesOperacion.totalFleteEP = e.data.aggregates[1];
-//           this.totalesOperacion.totalFleteED = e.data.aggregates[2]
-//           this.totalesOperacion.totalFleteFR
-//           this.totalesOperacion.totalFleteFP
-//           this.totalesOperacion.totalFleteFD
-//           this.totalesOperacion.totalFleteMR
-//           this.totalesOperacion.totalFleteMP
-//           this.totalesOperacion.totalFleteMD
-//           this.totalesOperacion.totalFleteAR
-//           this.totalesOperacion.totalFleteAP
-//           this.totalesOperacion.totalFleteAD
-//           this.totalesOperacion.totalFleteMYR
-//           this.totalesOperacion.totalFleteMYP
-//           this.totalesOperacion.totalFleteMYD
-//           this.totalesOperacion.totalFleteJR
-//           this.totalesOperacion.totalFleteJP
-//           this.totalesOperacion.totalFleteJD
-//           this.totalesOperacion.totalFleteJLR
-//           this.totalesOperacion.totalFleteJLP
-//           this.totalesOperacion.totalFleteJLD
-//           this.totalesOperacion.totalFleteAGR
-//           this.totalesOperacion.totalFleteAGP
-//           this.totalesOperacion.totalFleteAGD
-//           this.totalesOperacion.totalFleteSR
-//           this.totalesOperacion.totalFleteSP
-//           this.totalesOperacion.totalFleteSD
-//           this.totalesOperacion.totalFleteOR
-//           this.totalesOperacion.totalFleteOP
-//           this.totalesOperacion.totalFleteOD
-//           this.totalesOperacion.totalFleteNR
-//           this.totalesOperacion.totalFleteNP
-//           this.totalesOperacion.totalFleteND
-//           this.totalesOperacion.totalFleteDR
-//           this.totalesOperacion.totalFleteDP
-//           this.totalesOperacion.totalFleteDD
-//           this.totalesOperacion.totalFleteACR
-//           this.totalesOperacion.totalFleteACP
-//           this.totalesOperacion.totalFleteACD
-//         }
+        //========================Sacando los valores para  01.- OPERACION==============================================
+        if(e.data.key == 'a.- INGRESOS POR FLETE'){          
+          // console.log(e.data)
+          this.totalesOperacion.totalFleteER = e.data.aggregates[0];
+          this.totalesOperacion.totalFleteEP = e.data.aggregates[1];
+          this.totalesOperacion.totalFleteED = e.data.aggregates[2]
+          this.totalesOperacion.totalFleteFR
+          this.totalesOperacion.totalFleteFP
+          this.totalesOperacion.totalFleteFD
+          this.totalesOperacion.totalFleteMR
+          this.totalesOperacion.totalFleteMP
+          this.totalesOperacion.totalFleteMD
+          this.totalesOperacion.totalFleteAR
+          this.totalesOperacion.totalFleteAP
+          this.totalesOperacion.totalFleteAD
+          this.totalesOperacion.totalFleteMYR
+          this.totalesOperacion.totalFleteMYP
+          this.totalesOperacion.totalFleteMYD
+          this.totalesOperacion.totalFleteJR
+          this.totalesOperacion.totalFleteJP
+          this.totalesOperacion.totalFleteJD
+          this.totalesOperacion.totalFleteJLR
+          this.totalesOperacion.totalFleteJLP
+          this.totalesOperacion.totalFleteJLD
+          this.totalesOperacion.totalFleteAGR
+          this.totalesOperacion.totalFleteAGP
+          this.totalesOperacion.totalFleteAGD
+          this.totalesOperacion.totalFleteSR
+          this.totalesOperacion.totalFleteSP
+          this.totalesOperacion.totalFleteSD
+          this.totalesOperacion.totalFleteOR
+          this.totalesOperacion.totalFleteOP
+          this.totalesOperacion.totalFleteOD
+          this.totalesOperacion.totalFleteNR
+          this.totalesOperacion.totalFleteNP
+          this.totalesOperacion.totalFleteND
+          this.totalesOperacion.totalFleteDR
+          this.totalesOperacion.totalFleteDP
+          this.totalesOperacion.totalFleteDD
+          this.totalesOperacion.totalFleteACR
+          this.totalesOperacion.totalFleteACP
+          this.totalesOperacion.totalFleteACD
+        }
 
-//         if(e.data.key == 'b.- COSTOS '){      
-//           this.totalesOperacion.totalCostosER = e.data.aggregates[0]
-//           this.totalesOperacion.totalCostosEP
-//           this.totalesOperacion.totalCostosED
-//           this.totalesOperacion.totalCostosFR
-//           this.totalesOperacion.totalCostosFP
-//           this.totalesOperacion.totalCostosFD
-//           this.totalesOperacion.totalCostosMR
-//           this.totalesOperacion.totalCostosMP
-//           this.totalesOperacion.totalCostosMD
-//           this.totalesOperacion.totalCostosAR
-//           this.totalesOperacion.totalCostosAP
-//           this.totalesOperacion.totalCostosAD
-//           this.totalesOperacion.totalCostosMYR
-//           this.totalesOperacion.totalCostosMYP
-//           this.totalesOperacion.totalCostosMYD
-//           this.totalesOperacion.totalCostosJR
-//           this.totalesOperacion.totalCostosJP
-//           this.totalesOperacion.totalCostosJD
-//           this.totalesOperacion.totalCostosJLR
-//           this.totalesOperacion.totalCostosJLP
-//           this.totalesOperacion.totalCostosJLD
-//           this.totalesOperacion.totalCostosAGR
-//           this.totalesOperacion.totalCostosAGP
-//           this.totalesOperacion.totalCostosAGD
-//           this.totalesOperacion.totalCostosSR
-//           this.totalesOperacion.totalCostosSP
-//           this.totalesOperacion.totalCostosSD
-//           this.totalesOperacion.totalCostosOR
-//           this.totalesOperacion.totalCostosOP
-//           this.totalesOperacion.totalCostosOD
-//           this.totalesOperacion.totalCostosNR
-//           this.totalesOperacion.totalCostosNP
-//           this.totalesOperacion.totalCostosND
-//           this.totalesOperacion.totalCostosDR
-//           this.totalesOperacion.totalCostosDP
-//           this.totalesOperacion.totalCostosDD
-//           this.totalesOperacion.totalCostosACR
-//           this.totalesOperacion.totalCostosACP
-//           this.totalesOperacion.totalCostosACD
-
-
-//           this.totalesOperacion.totalOperacionER = this.totalesOperacion.totalFleteER - this.totalesOperacion.totalCostosER;
-//           this.totalesOperacion.totalOperacionEP
-//           this.totalesOperacion.totalOperacionED
-//           this.totalesOperacion.totalOperacionFR
-//           this.totalesOperacion.totalOperacionFP
-//           this.totalesOperacion.totalOperacionFD
-//           this.totalesOperacion.totalOperacionAR
-//           this.totalesOperacion.totalOperacionAP
-//           this.totalesOperacion.totalOperacionAD
-//           this.totalesOperacion.totalOperacionMYR
-//           this.totalesOperacion.totalOperacionMYP
-//           this.totalesOperacion.totalOperacionMYD
-//           this.totalesOperacion.totalOperacionJR
-//           this.totalesOperacion.totalOperacionJP
-//           this.totalesOperacion.totalOperacionJD
-//           this.totalesOperacion.totalOperacionJLR
-//           this.totalesOperacion.totalOperacionJLP
-//           this.totalesOperacion.totalOperacionJLD
-//           this.totalesOperacion.totalOperacionAGR
-//           this.totalesOperacion.totalOperacionAGP
-//           this.totalesOperacion.totalOperacionAGD
-//           this.totalesOperacion.totalOperacionSR
-//           this.totalesOperacion.totalOperacionSP
-//           this.totalesOperacion.totalOperacionSD
-//           this.totalesOperacion.totalOperacionOR
-//           this.totalesOperacion.totalOperacionOP
-//           this.totalesOperacion.totalOperacionOD
-//           this.totalesOperacion.totalOperacionNR
-//           this.totalesOperacion.totalOperacionNP
-//           this.totalesOperacion.totalOperacionND
-//           this.totalesOperacion.totalOperacionDR
-//           this.totalesOperacion.totalOperacionDP
-//           this.totalesOperacion.totalOperacionDD
-//           this.totalesOperacion.totalOperacionACR
-//           this.totalesOperacion.totalOperacionACP
-//           this.totalesOperacion.totalOperacionACD
-
-//           //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
-//         }
-
-// //===============================Resta de la agrupacion de 02.- OTROS GASTOS DE OPERACIÓN===============================
-//         if(e.data.key == 'a.- GASTOS ADMINISTRATIVOS'){
-//             this.totalGAER = e.data.aggregates[0];
-//         }
-//         if(e.data.key == 'b.- DEPRECIACION DE ACTIVOS'){
-//           this.totalDAER = e.data.aggregates[0];
-
-//         }
-
-// //================================Resta de la agrupacion de 03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS        
-//         if(e.data.key == 'a.- GASTOS INGRESO DE COLABORACIÓN'){
-//           this.totalGIC = e.data.aggregates[0];
-//         }
-//         if(e.data.key == 'b.- ESTÍMULOS FISCALES'){
-//           this.totalEF = e.data.aggregates[0];
-//         }
-//         if(e.data.key == 'c.- VENTA DE ACTIVO FIJO'){
-//           this.totalVAF = e.data.aggregates[0];
-//         }
-//       }
+        if(e.data.key == 'b.- COSTOS '){      
+          this.totalesOperacion.totalCostosER = e.data.aggregates[0]
+          this.totalesOperacion.totalCostosEP
+          this.totalesOperacion.totalCostosED
+          this.totalesOperacion.totalCostosFR
+          this.totalesOperacion.totalCostosFP
+          this.totalesOperacion.totalCostosFD
+          this.totalesOperacion.totalCostosMR
+          this.totalesOperacion.totalCostosMP
+          this.totalesOperacion.totalCostosMD
+          this.totalesOperacion.totalCostosAR
+          this.totalesOperacion.totalCostosAP
+          this.totalesOperacion.totalCostosAD
+          this.totalesOperacion.totalCostosMYR
+          this.totalesOperacion.totalCostosMYP
+          this.totalesOperacion.totalCostosMYD
+          this.totalesOperacion.totalCostosJR
+          this.totalesOperacion.totalCostosJP
+          this.totalesOperacion.totalCostosJD
+          this.totalesOperacion.totalCostosJLR
+          this.totalesOperacion.totalCostosJLP
+          this.totalesOperacion.totalCostosJLD
+          this.totalesOperacion.totalCostosAGR
+          this.totalesOperacion.totalCostosAGP
+          this.totalesOperacion.totalCostosAGD
+          this.totalesOperacion.totalCostosSR
+          this.totalesOperacion.totalCostosSP
+          this.totalesOperacion.totalCostosSD
+          this.totalesOperacion.totalCostosOR
+          this.totalesOperacion.totalCostosOP
+          this.totalesOperacion.totalCostosOD
+          this.totalesOperacion.totalCostosNR
+          this.totalesOperacion.totalCostosNP
+          this.totalesOperacion.totalCostosND
+          this.totalesOperacion.totalCostosDR
+          this.totalesOperacion.totalCostosDP
+          this.totalesOperacion.totalCostosDD
+          this.totalesOperacion.totalCostosACR
+          this.totalesOperacion.totalCostosACP
+          this.totalesOperacion.totalCostosACD
 
 
+          this.totalesOperacion.totalOperacionER = this.totalesOperacion.totalFleteER - this.totalesOperacion.totalCostosER;
+          this.totalesOperacion.totalOperacionEP
+          this.totalesOperacion.totalOperacionED
+          this.totalesOperacion.totalOperacionFR
+          this.totalesOperacion.totalOperacionFP
+          this.totalesOperacion.totalOperacionFD
+          this.totalesOperacion.totalOperacionAR
+          this.totalesOperacion.totalOperacionAP
+          this.totalesOperacion.totalOperacionAD
+          this.totalesOperacion.totalOperacionMYR
+          this.totalesOperacion.totalOperacionMYP
+          this.totalesOperacion.totalOperacionMYD
+          this.totalesOperacion.totalOperacionJR
+          this.totalesOperacion.totalOperacionJP
+          this.totalesOperacion.totalOperacionJD
+          this.totalesOperacion.totalOperacionJLR
+          this.totalesOperacion.totalOperacionJLP
+          this.totalesOperacion.totalOperacionJLD
+          this.totalesOperacion.totalOperacionAGR
+          this.totalesOperacion.totalOperacionAGP
+          this.totalesOperacion.totalOperacionAGD
+          this.totalesOperacion.totalOperacionSR
+          this.totalesOperacion.totalOperacionSP
+          this.totalesOperacion.totalOperacionSD
+          this.totalesOperacion.totalOperacionOR
+          this.totalesOperacion.totalOperacionOP
+          this.totalesOperacion.totalOperacionOD
+          this.totalesOperacion.totalOperacionNR
+          this.totalesOperacion.totalOperacionNP
+          this.totalesOperacion.totalOperacionND
+          this.totalesOperacion.totalOperacionDR
+          this.totalesOperacion.totalOperacionDP
+          this.totalesOperacion.totalOperacionDD
+          this.totalesOperacion.totalOperacionACR
+          this.totalesOperacion.totalOperacionACP
+          this.totalesOperacion.totalOperacionACD
+
+          //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
+        }
+
+//===============================Resta de la agrupacion de 02.- OTROS GASTOS DE OPERACIÓN===============================
+        if(e.data.key == 'a.- GASTOS ADMINISTRATIVOS'){
+            this.totalGAER = e.data.aggregates[0];
+        }
+
+        if(e.data.key == 'b.- DEPRECIACION DE ACTIVOS'){
+          this.totalDAER = e.data.aggregates[0];
+
+        }
+
+//================================Resta de la agrupacion de 03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS        
+        if(e.data.key == 'a.- GASTOS INGRESO DE COLABORACIÓN'){
+          this.totalGIC = e.data.aggregates[0];
+        }
+
+        if(e.data.key == 'b.- ESTÍMULOS FISCALES'){
+          this.totalEF = e.data.aggregates[0];
+        }
+
+        if(e.data.key == 'c.- VENTA DE ACTIVO FIJO'){
+          this.totalVAF = e.data.aggregates[0];
+        }
+
+//================================Resta de la agrupacion 04.- GASTOS/INGRESOS FINANCIEROS================================
+        if(e.data.key == 'a.- PRODUCTOS FINANCIEROS'){
+          this.totalPodructF = e.data.aggregates[0];
+        }
+
+        if(e.data.key == 'b.- GASTOS FINANCIEROS'){
+          this.totalGastosF = e.data.aggregates[0];
+
+          this.totalesGIF = this.totalGastosF - this.totalPodructF;
+        }
+      }
 
 
+      if(e.groupIndex == 3){
+//=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
+        //========================Sacando los valores para la operacion============================================
+        if(e.data.key == '401-01-000 INGRESOS ORDINARIOS'){
+          this.totalIngresosER = e.data.aggregates[0];
+        }
 
-//       if(e.groupIndex == 3){
-// //=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
-//         //========================Sacando los valores para la operacion============================================
-//         if(e.data.key == '401-01-000 INGRESOS ORDINARIOS'){
-//           this.totalIngresosER = e.data.aggregates[0];
-//         }
+        if(e.data.key == '505-01-000 OTROS GASTOS  ORDINARIOS      '){
+          this.totalOtrosGER = e.data.aggregates[0];
 
-//         if(e.data.key == '505-01-000 OTROS GASTOS  ORDINARIOS      '){
-//           this.totalOtrosGER = e.data.aggregates[0];
+          this.totalOtrosGIER = this.totalOtrosGER - this.totalIngresosER;
+        }
+//=================================Resta de la agrupacion Otros Gastos/Ingresos Extraordinario=========================
+        //=========================Sacando los valores para la operaion 
+        console.log(e)
+        if(e.data.key == '405-01-000 OTROS ING OPER EXTRAORDINARIO'){
+          this.totalOIOEER = e.data.aggregates[0];
+        }
+        if(e.data.key == '507-01-000 OTROS GASTOS OPER EXTRAORDINARIOS  '){
+          this.totalOGOEER = e.data.aggregates[0];
 
-//           this.totalOtrosGIER = this.totalOtrosGER - this.totalIngresosER;
-//         }
-// //=================================Resta de la agrupacion Otros Gastos/Ingresos Extraordinario=========================
-//         //=========================Sacando los valores para la operaion 
-//         console.log(e)
-//         if(e.data.key == '405-01-000 OTROS ING OPER EXTRAORDINARIO'){
-//           this.totalOIOEER = e.data.aggregates[0];
-//         }
-//         if(e.data.key == '507-01-000 OTROS GASTOS OPER EXTRAORDINARIOS  '){
-//           this.totalOGOEER = e.data.aggregates[0];
+          this.totalesOtros = this.totalOGOEER - this.totalOIOEER;
+        }
+      }
 
-//           this.totalesOtros = this.totalOGOEER - this.totalOIOEER;
-//         }
-//       }
+      //======Omitir totales en la agrupacion no afecta a la sumatoria========================================
+      if(e.groupIndex == 1 && e.data.key == '0.- INDICADORES'){
+        e.cells[0].totalItem.summaryCells = [] 
+      }
 
-//       //=====Resta Entre Fletes y Costos============================================
-//       if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
-//         //console.log(e)
-//         e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
-//       }
+      //=====Resta Entre Fletes y Costos============================================
+      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
+        //console.log(e)
+        e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
+      }
 
-//       if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
-//         e.summaryCells[6][0].value = this.totalesOGOER
-//       }
+      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+        e.summaryCells[6][0].value = this.totalesOGOER
+      }
 
-//       if(e.groupIndex == 2 && e.data.key == 'c.- OTROS GASTOS/INGRESOS ORDINARIOS'){
-//         e.summaryCells[6][0].value = this.totalOtrosGIER;
+      if(e.groupIndex == 2 && e.data.key == 'c.- OTROS GASTOS/INGRESOS ORDINARIOS'){
+        e.summaryCells[6][0].value = this.totalOtrosGIER;
 
-//         let sumaOGOER
-//         sumaOGOER = this.totalGAER + this.totalDAER;
-//         this.totalesOGOER = sumaOGOER - this.totalOtrosGIER
+        let sumaOGOER
+        sumaOGOER = this.totalGAER + this.totalDAER;
+        this.totalesOGOER = sumaOGOER - this.totalOtrosGIER
         
-//       }
+      }
 
-//       if(e.groupIndex == 1 && e.data.key == '03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS'){
-//         e.summaryCells[6][0].value = this.totalesOtrosGIEER;
-//       }
+      if(e.groupIndex == 1 && e.data.key == '03.- OTROS GASTOS/INGRESOS EXTRAORDINARIOS'){
+        e.summaryCells[6][0].value = this.totalesOtrosGIEER;
+      }
 
-//       if(e.groupIndex == 2 && e.data.key == 'd.- OTROS'){
-//         e.summaryCells[6][0].value = this.totalesOtros;
+      if(e.groupIndex == 2 && e.data.key == 'd.- OTROS'){
+        e.summaryCells[6][0].value = this.totalesOtros;
         
-//         let sumaOGIEER;
-//         sumaOGIEER = this.totalGIC + this.totalEF + this.totalVAF;
-//         this.totalesOtrosGIEER = sumaOGIEER - this.totalesOtros;
-//       }
-
-    }
-
-    if (e.rowType == 'groupFooter') {
-      console.log(e)
-      if (e.groupIndex == 0) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL' + e.key[0];
-        //e.rowElement.style.backgroundColor = '#dcdcdc';
+        let sumaOGIEER;
+        sumaOGIEER = this.totalGIC + this.totalEF + this.totalVAF;
+        this.totalesOtrosGIEER = sumaOGIEER - this.totalesOtros;
       }
 
-      if (e.groupIndex == 1) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL' + e.key[1];
-       // console.log('🌲', e);
-
+      if(e.groupIndex == 1 && e.data.key == '04.- GASTOS/INGRESOS FINANCIEROS'){
+        e.summaryCells[6][0].value = this.totalesGIF
       }
-
-      if (e.groupIndex == 2) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL' + e.key[2];
-       // console.log('🌲', e);
-
-      }
-
-      if (e.groupIndex == 3) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL' + e.key[3];
-       // console.log('🌲', e);
-
-      }
-
-
-
-
-
-
     }
 
   }
