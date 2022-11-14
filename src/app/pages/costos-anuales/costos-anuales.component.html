@@ -162,23 +162,27 @@
 <br><br><br>
 
 
-    <dx-data-grid #rentCont2 id="costosanuales" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+    <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
 
         <dxo-export [enabled]="true"></dxo-export>
 
-        <dxi-column dataField="compania" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
+        <!-- <dxi-column dataField="compania" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
         <dxi-column dataField="area" caption="" [groupIndex]="1" [allowSorting]="false"></dxi-column>
         <dxi-column dataField="clasificacion" caption="" [groupIndex]="2" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="cuentaPadre" caption="" [groupIndex]="3" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="cuentaPadre" caption="" [groupIndex]="3" [allowSorting]="false"></dxi-column> -->
+
+        <dxi-column dataField="compania" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="area" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
+        <dxi-column dataField="clasificacion" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="2"></dxi-column>
+        <dxi-column dataField="cuentaPadre" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column>
+
 
         <dxi-column dataField="idCuenta" caption="Clave" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="cuenta" caption="Descripción" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         
         <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="eneroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate">
-                <dxo-format type="fixedPoint"> </dxo-format>
-            </dxi-column>
+            <dxi-column dataField="eneroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPresupuesto" caption="Pppto" [fixed]="false"  headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold"></dxi-column>
             <dxi-column dataField="eneroDesviacion" caption="Var" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPorDesv" caption="%" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
@@ -360,85 +364,88 @@
             </dxi-total-item> -->
 
           <!-- SUMARY DE GRUPO -->
-            <!--ENERO-->
-            <dxi-group-item column="eneroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="eneroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="eneroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <!--ENERO [alignByColumn]="true"-->
+            <dxi-group-item column="eneroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="eneroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="eneroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true" ></dxi-group-item>
             <!--FEBRERO-->
-            <dxi-group-item column="febreroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="febreroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="febreroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="febreroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="febreroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="febreroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--MARZO-->
-            <dxi-group-item column="marzoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="marzoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="marzoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="marzoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="marzoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true" ></dxi-group-item>
+            <dxi-group-item column="marzoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true" ></dxi-group-item>
             <!--ABRIL-->
-            <dxi-group-item column="abrilReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="abrilPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="abrilDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="abrilReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="abrilPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="abrilDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--MAYO-->
-            <dxi-group-item column="mayoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="mayoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="mayoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mayoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="mayoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="mayoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--JUNIO-->
-            <dxi-group-item column="junioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="junioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="junioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="junioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="junioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="junioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--JULIO-->
-            <dxi-group-item column="julioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="julioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="julioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="julioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="julioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="julioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--AGOSTO-->
-            <dxi-group-item column="agostoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="agostoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="agostoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="agostoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="agostoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="agostoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--SEPTIEMBRE-->
-            <dxi-group-item column="septiembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="septiembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="septiembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="septiembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="septiembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="septiembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--OCTUBRE-->
-            <dxi-group-item column="octubreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="octubrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="octubreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="octubreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="octubrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="octubreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--NOMVIEMBRE-->
-            <dxi-group-item column="noviembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="noviembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="noviembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="noviembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="noviembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="noviembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--DICIEMBRE-->
-            <dxi-group-item column="diciembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="diciembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="diciembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="diciembreReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="diciembrePresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="diciembreDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
             <!--ACUMULADO-->
-            <dxi-group-item column="acumuladoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="acumuladoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-            <dxi-group-item column="acumuladoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="acumuladoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="acumuladoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item column="acumuladoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="cuenta"column="cuenta" summaryType="sum" displayFormat="SUBTOTAL" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
+
             <!-- PORCENTAJES GRUPO -->
             <!--ENERO-->
-            <dxi-group-item showInColumn="eneroPorDesv" name="grupEneroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="eneroPorDesv" name="grupEneroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--FEBRERO-->
-            <dxi-group-item showInColumn="febreroPorDesv" name="grupFebreroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="febreroPorDesv" name="grupFebreroPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--MARZO-->
-            <dxi-group-item showInColumn="marzoPorDesv" name="grupMarzoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="marzoPorDesv" name="grupMarzoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--ABRIL-->
-            <dxi-group-item showInColumn="abrilPorDesv" name="grupAbrilPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="abrilPorDesv" name="grupAbrilPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--MAYO-->
-            <dxi-group-item showInColumn="mayoPorDesv" name="grupMayoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="mayoPorDesv" name="grupMayoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--JUNIO-->
-            <dxi-group-item showInColumn="junioPorDesv" name="grupJunioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="junioPorDesv" name="grupJunioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--JULIO-->
-            <dxi-group-item showInColumn="julioPorDesv" name="grupJulioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="julioPorDesv" name="grupJulioPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--AGOSTO-->
-            <dxi-group-item showInColumn="agostoPorDesv" name="grupAgostoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="agostoPorDesv" name="grupAgostoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--SEPTIEMBRE-->
-            <dxi-group-item showInColumn="septiembrePorDesv" name="grupSeptiembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="septiembrePorDesv" name="grupSeptiembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--OCTUBRE-->
-            <dxi-group-item showInColumn="octubrePorDesv" name="grupOctubrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="octubrePorDesv" name="grupOctubrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--NOMVIEMBRE-->
-            <dxi-group-item showInColumn="noviembrePorDesv" name="grupNoviembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="noviembrePorDesv" name="grupNoviembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--DICIEMBRE-->
-            <dxi-group-item showInColumn="diciembrePorDesv" name="grupDiciembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="diciembrePorDesv" name="grupDiciembrePorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
             <!--ACUMULADO-->
-            <dxi-group-item showInColumn="acumuladoPorDesv" name="grupAcumuladoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item showInColumn="acumuladoPorDesv" name="grupAcumuladoPorDesv" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
         </dxo-summary>
 
         <div *dxTemplate="let data of 'headerTemplate'">
