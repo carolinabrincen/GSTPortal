@@ -107,9 +107,8 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
-                >
-            </dx-tag-box>
+            <dx-select-box [items]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+            </dx-select-box>
         </dxi-item>
         <!-- TRACTO -->
         <dxi-item>
@@ -117,16 +116,11 @@
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Clasificación:</div>
         </dxi-item>
-
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="13"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-            <div style="display: flex;">
-              <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
-              [items]="arrTractos"
-              >
-                  ></dx-select-box>
-            </div>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="clasificaciones" displayExpr="clasificacion" valueExpr="idClas" (onValueChanged)="selectClasficacion($event)">
+            </dx-select-box>
         </dxi-item>
         <!-- BUSCAR -->
         <dxi-item>
