@@ -273,9 +273,6 @@
         </div>
 
 
-        <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-
         <dxo-summary>
 
             <!-- <dxi-total-item column="eneroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
@@ -448,7 +445,9 @@
         <div *dxTemplate="let cell of 'cellTemplateBold'">
             <div style="font-weight: bold;">{{cell.text}}</div>
         </div>
-        <dxo-paging [pageSize]="20"></dxo-paging>
+        <dxo-paging [pageSize]="paginacion"></dxo-paging>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="expandGroup" ></dxo-grouping>
         <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
         </dxo-pager>
         <dxo-sorting mode="none"></dxo-sorting>

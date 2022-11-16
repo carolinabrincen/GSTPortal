@@ -14,6 +14,8 @@ import {  OtrosGastosIngresosOrdonarios } from '../../shared/models/costos-anual
 import { OtrosGastosOperacion } from '../../shared/models/costos-anuales/totalesOtrosGO.model'
 import { Otros } from '../../shared/models/costos-anuales/totalesOtros.model';
 import { OtrosGastosIngresosEstraordinarios } from '../../shared/models/costos-anuales/totalesOtrosGIE.model';
+import { GastosIngresosFinancieros } from '../..//shared/models/costos-anuales/totalesGIFinancieros.model';
+
 import { Clasificacion } from '../../shared/models/costos-anuales/clasificaion.model';
 
 @Component({
@@ -119,16 +121,21 @@ export class CostosAnualesComponent implements OnInit {
   totalesOtrosGO = new OtrosGastosOperacion;
   totalesOtros = new Otros;
   totalesOtrosGIE = new OtrosGastosIngresosEstraordinarios;
+  totalesGIF = new GastosIngresosFinancieros;
 
-  totalesGIF: number;
-  totalPodructF: number;
-  totalGastosF: number;
+  // totalesGIF: number;
+  // totalPodructF: number;
+  // totalGastosF: number;
 
   totales0: number;
   totales01: number;
   totales02: number;
   totales03: number;
   totales04: number; 
+
+  paginacion: number = 0;
+  expandGroup: boolean = true;
+
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -651,13 +658,127 @@ export class CostosAnualesComponent implements OnInit {
 
 //================================Resta de la agrupacion 04.- GASTOS/INGRESOS FINANCIEROS================================
         if(e.data.key == 'a.- PRODUCTOS FINANCIEROS'){
-          this.totalPodructF = e.data.aggregates[0];
+          this.totalesGIF.totalPFER = e.summaryCells[6][0].value;
+          this.totalesGIF.totalPFEP = e.summaryCells[7][0].value;
+          this.totalesGIF.totalPFED = e.summaryCells[8][0].value;
+          this.totalesGIF.totalPFFR = e.summaryCells[11][0].value;
+          this.totalesGIF.totalPFFP = e.summaryCells[12][0].value;
+          this.totalesGIF.totalPFFD = e.summaryCells[13][0].value;
+          this.totalesGIF.totalPFMR = e.summaryCells[16][0].value;
+          this.totalesGIF.totalPFMP = e.summaryCells[17][0].value;
+          this.totalesGIF.totalPFMD = e.summaryCells[18][0].value;
+          this.totalesGIF.totalPFAR = e.summaryCells[21][0].value;
+          this.totalesGIF.totalPFAP = e.summaryCells[22][0].value;
+          this.totalesGIF.totalPFAD = e.summaryCells[23][0].value;
+          this.totalesGIF.totalPFMYR = e.summaryCells[26][0].value;
+          this.totalesGIF.totalPFMYP = e.summaryCells[27][0].value;
+          this.totalesGIF.totalPFMYD = e.summaryCells[28][0].value;
+          this.totalesGIF.totalPFJR = e.summaryCells[31][0].value;
+          this.totalesGIF.totalPFJP = e.summaryCells[32][0].value;
+          this.totalesGIF.totalPFJD = e.summaryCells[33][0].value;
+          this.totalesGIF.totalPFJLR = e.summaryCells[36][0].value;
+          this.totalesGIF.totalPFJLP = e.summaryCells[37][0].value;
+          this.totalesGIF.totalPFJLD = e.summaryCells[38][0].value;
+          this.totalesGIF.totalPFAGR = e.summaryCells[41][0].value;
+          this.totalesGIF.totalPFAGP = e.summaryCells[42][0].value;
+          this.totalesGIF.totalPFAGD = e.summaryCells[43][0].value;
+          this.totalesGIF.totalPFSR = e.summaryCells[46][0].value;
+          this.totalesGIF.totalPFSP = e.summaryCells[47][0].value;
+          this.totalesGIF.totalPFSD = e.summaryCells[48][0].value;
+          this.totalesGIF.totalPFOR = e.summaryCells[51][0].value;
+          this.totalesGIF.totalPFOP = e.summaryCells[52][0].value;
+          this.totalesGIF.totalPFOD = e.summaryCells[53][0].value;
+          this.totalesGIF.totalPFNR = e.summaryCells[56][0].value;
+          this.totalesGIF.totalPFNP = e.summaryCells[57][0].value;
+          this.totalesGIF.totalPFND = e.summaryCells[58][0].value;
+          this.totalesGIF.totalPFDR = e.summaryCells[61][0].value;
+          this.totalesGIF.totalPFDP = e.summaryCells[62][0].value;
+          this.totalesGIF.totalPFDD = e.summaryCells[63][0].value;
+          this.totalesGIF.totalPFACR = e.summaryCells[66][0].value;
+          this.totalesGIF.totalPFACP = e.summaryCells[67][0].value;
+          this.totalesGIF.totalPFACD = e.summaryCells[68][0].value;
         }
 
         if(e.data.key == 'b.- GASTOS FINANCIEROS'){
-          this.totalGastosF = e.data.aggregates[0];
+          this.totalesGIF.totalGFER = e.summaryCells[6][0].value;
+          this.totalesGIF.totalGFEP = e.summaryCells[7][0].value
+          this.totalesGIF.totalGFED = e.summaryCells[8][0].value
+          this.totalesGIF.totalGFFR = e.summaryCells[11][0].value
+          this.totalesGIF.totalGFFP = e.summaryCells[12][0].value
+          this.totalesGIF.totalGFFD = e.summaryCells[13][0].value
+          this.totalesGIF.totalGFMR = e.summaryCells[16][0].value
+          this.totalesGIF.totalGFMP = e.summaryCells[17][0].value
+          this.totalesGIF.totalGFMD = e.summaryCells[18][0].value
+          this.totalesGIF.totalGFAR = e.summaryCells[21][0].value
+          this.totalesGIF.totalGFAP = e.summaryCells[22][0].value
+          this.totalesGIF.totalGFAD = e.summaryCells[23][0].value
+          this.totalesGIF.totalGFMYR = e.summaryCells[26][0].value
+          this.totalesGIF.totalGFMYP = e.summaryCells[27][0].value
+          this.totalesGIF.totalGFMYD = e.summaryCells[28][0].value
+          this.totalesGIF.totalGFJR = e.summaryCells[31][0].value
+          this.totalesGIF.totalGFJP = e.summaryCells[32][0].value
+          this.totalesGIF.totalGFJD = e.summaryCells[33][0].value
+          this.totalesGIF.totalGFJLR = e.summaryCells[36][0].value
+          this.totalesGIF.totalGFJLP = e.summaryCells[37][0].value
+          this.totalesGIF.totalGFJLD = e.summaryCells[38][0].value
+          this.totalesGIF.totalGFAGR = e.summaryCells[41][0].value
+          this.totalesGIF.totalGFAGP = e.summaryCells[42][0].value
+          this.totalesGIF.totalGFAGD = e.summaryCells[43][0].value
+          this.totalesGIF.totalGFSR = e.summaryCells[46][0].value
+          this.totalesGIF.totalGFSP = e.summaryCells[47][0].value
+          this.totalesGIF.totalGFSD = e.summaryCells[48][0].value
+          this.totalesGIF.totalGFOR = e.summaryCells[51][0].value
+          this.totalesGIF.totalGFOP = e.summaryCells[52][0].value
+          this.totalesGIF.totalGFOD = e.summaryCells[53][0].value
+          this.totalesGIF.totalGFNR = e.summaryCells[56][0].value
+          this.totalesGIF.totalGFNP = e.summaryCells[57][0].value
+          this.totalesGIF.totalGFND = e.summaryCells[58][0].value
+          this.totalesGIF.totalGFDR = e.summaryCells[61][0].value
+          this.totalesGIF.totalGFDP = e.summaryCells[62][0].value
+          this.totalesGIF.totalGFDD = e.summaryCells[63][0].value
+          this.totalesGIF.totalGFACR = e.summaryCells[66][0].value
+          this.totalesGIF.totalGFACP = e.summaryCells[67][0].value
+          this.totalesGIF.totalGFACD = e.summaryCells[68][0].value
 
-          this.totalesGIF = this.totalGastosF - this.totalPodructF;
+          this.totalesGIF.totalesGIFER = this.totalesGIF.totalGFER - this.totalesGIF.totalPFER;
+          this.totalesGIF.totalesGIFEP = this.totalesGIF.totalGFEP -this.totalesGIF.totalPFEP;
+          this.totalesGIF.totalesGIFED = this.totalesGIF.totalGFED -this.totalesGIF.totalPFED;
+          this.totalesGIF.totalesGIFFR = this.totalesGIF.totalGFFR -this.totalesGIF.totalPFFR;
+          this.totalesGIF.totalesGIFFP = this.totalesGIF.totalGFFP -this.totalesGIF.totalPFFP;
+          this.totalesGIF.totalesGIFFD = this.totalesGIF.totalGFFD -this.totalesGIF.totalPFFD;
+          this.totalesGIF.totalesGIFMR = this.totalesGIF.totalGFMR -this.totalesGIF.totalPFMR;
+          this.totalesGIF.totalesGIFMP = this.totalesGIF.totalGFMP -this.totalesGIF.totalPFMP;
+          this.totalesGIF.totalesGIFMD = this.totalesGIF.totalGFMD -this.totalesGIF.totalPFMD;
+          this.totalesGIF.totalesGIFAR = this.totalesGIF.totalGFAR -this.totalesGIF.totalPFAR;
+          this.totalesGIF.totalesGIFAP = this.totalesGIF.totalGFAP -this.totalesGIF.totalPFAP;
+          this.totalesGIF.totalesGIFAD = this.totalesGIF.totalGFAD -this.totalesGIF.totalPFAD;
+          this.totalesGIF.totalesGIFMYR = this.totalesGIF.totalGFMYR -this.totalesGIF.totalPFMYR;
+          this.totalesGIF.totalesGIFMYP = this.totalesGIF.totalGFMYP -this.totalesGIF.totalPFMYP;
+          this.totalesGIF.totalesGIFMYD = this.totalesGIF.totalGFMYD -this.totalesGIF.totalPFMYD;
+          this.totalesGIF.totalesGIFJR = this.totalesGIF.totalGFJR -this.totalesGIF.totalPFJR;
+          this.totalesGIF.totalesGIFJP = this.totalesGIF.totalGFJP -this.totalesGIF.totalPFJP;
+          this.totalesGIF.totalesGIFJD = this.totalesGIF.totalGFJD -this.totalesGIF.totalPFJD;
+          this.totalesGIF.totalesGIFJLR = this.totalesGIF.totalGFJLR -this.totalesGIF.totalPFJLR;
+          this.totalesGIF.totalesGIFJLP = this.totalesGIF.totalGFJLP -this.totalesGIF.totalPFJLP;
+          this.totalesGIF.totalesGIFJLD = this.totalesGIF.totalGFJLD -this.totalesGIF.totalPFJLD;
+          this.totalesGIF.totalesGIFAGR = this.totalesGIF.totalGFAGR -this.totalesGIF.totalPFAGR;
+          this.totalesGIF.totalesGIFAGP = this.totalesGIF.totalGFAGP -this.totalesGIF.totalPFAGP;
+          this.totalesGIF.totalesGIFAGD = this.totalesGIF.totalGFAGD -this.totalesGIF.totalPFAGD;
+          this.totalesGIF.totalesGIFSR = this.totalesGIF.totalGFSR -this.totalesGIF.totalPFSR;
+          this.totalesGIF.totalesGIFSP = this.totalesGIF.totalGFSP -this.totalesGIF.totalPFSP;
+          this.totalesGIF.totalesGIFSD = this.totalesGIF.totalGFSD -this.totalesGIF.totalPFSD;
+          this.totalesGIF.totalesGIFOR = this.totalesGIF.totalGFOR -this.totalesGIF.totalPFOR;
+          this.totalesGIF.totalesGIFOP = this.totalesGIF.totalGFOP -this.totalesGIF.totalPFOP;
+          this.totalesGIF.totalesGIFOD = this.totalesGIF.totalGFOD -this.totalesGIF.totalPFOD;
+          this.totalesGIF.totalesGIFNR = this.totalesGIF.totalGFNR -this.totalesGIF.totalPFNR;
+          this.totalesGIF.totalesGIFNP = this.totalesGIF.totalGFNP -this.totalesGIF.totalPFNP;
+          this.totalesGIF.totalesGIFND = this.totalesGIF.totalGFND -this.totalesGIF.totalPFND;
+          this.totalesGIF.totalesGIFDR = this.totalesGIF.totalGFDR -this.totalesGIF.totalPFDR;
+          this.totalesGIF.totalesGIFDP = this.totalesGIF.totalGFDP -this.totalesGIF.totalPFDP;
+          this.totalesGIF.totalesGIFDD = this.totalesGIF.totalGFDD -this.totalesGIF.totalPFDD;
+          this.totalesGIF.totalesGIFACR = this.totalesGIF.totalGFACR -this.totalesGIF.totalPFACR;
+          this.totalesGIF.totalesGIFACP = this.totalesGIF.totalGFACP -this.totalesGIF.totalPFACP;
+          this.totalesGIF.totalesGIFACD = this.totalesGIF.totalGFACD -this.totalesGIF.totalPFACD;
         }
       }
 
@@ -919,10 +1040,14 @@ export class CostosAnualesComponent implements OnInit {
       //=====Resta Entre Fletes y Costos============================================
       if(e.groupIndex == 0 && e.key[0]){
         e.summaryCells[6][0].value = this.totales0
+
+        if(e.summaryCells[6][0].value !== undefined){
+          console.log(e.summaryCells[6][0].value)
+           this.expandGroup = false
+        }
       }
 
       if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
-        console.log(e)
         e.summaryCells[6][0].value = this.totalesOperacion.totalOperacionER;
         e.summaryCells[7][0].value = this.totalesOperacion.totalOperacionEP;
         e.summaryCells[8][0].value = this.totalesOperacion.totalOperacionED;
@@ -1374,20 +1499,59 @@ export class CostosAnualesComponent implements OnInit {
       }
 
       if(e.groupIndex == 1 && e.data.key == '04.- GASTOS/INGRESOS FINANCIEROS'){
-        e.summaryCells[6][0].value = this.totalesGIF
-      }
+        e.summaryCells[6][0].value = this.totalesGIF.totalesGIFER
+        e.summaryCells[7][0].value = this.totalesGIF.totalesGIFEP
+        e.summaryCells[8][0].value = this.totalesGIF.totalesGIFED
+        e.summaryCells[11][0].value = this.totalesGIF.totalesGIFFR
+        e.summaryCells[12][0].value = this.totalesGIF.totalesGIFFP
+        e.summaryCells[13][0].value = this.totalesGIF.totalesGIFFD
+        e.summaryCells[16][0].value = this.totalesGIF.totalesGIFMR
+        e.summaryCells[17][0].value = this.totalesGIF.totalesGIFMP
+        e.summaryCells[18][0].value = this.totalesGIF.totalesGIFMD
+        e.summaryCells[21][0].value = this.totalesGIF.totalesGIFAR
+        e.summaryCells[22][0].value = this.totalesGIF.totalesGIFAP
+        e.summaryCells[23][0].value = this.totalesGIF.totalesGIFAD
+        e.summaryCells[26][0].value = this.totalesGIF.totalesGIFMYR
+        e.summaryCells[27][0].value = this.totalesGIF.totalesGIFMYP
+        e.summaryCells[28][0].value = this.totalesGIF.totalesGIFMYD
+        e.summaryCells[31][0].value = this.totalesGIF.totalesGIFJR
+        e.summaryCells[32][0].value = this.totalesGIF.totalesGIFJP
+        e.summaryCells[33][0].value = this.totalesGIF.totalesGIFJD
+        e.summaryCells[36][0].value = this.totalesGIF.totalesGIFJLR
+        e.summaryCells[37][0].value = this.totalesGIF.totalesGIFJLP
+        e.summaryCells[38][0].value = this.totalesGIF.totalesGIFJLD
+        e.summaryCells[41][0].value = this.totalesGIF.totalesGIFAGR
+        e.summaryCells[42][0].value = this.totalesGIF.totalesGIFAGP
+        e.summaryCells[43][0].value = this.totalesGIF.totalesGIFAGD
+        e.summaryCells[46][0].value = this.totalesGIF.totalesGIFSR
+        e.summaryCells[47][0].value = this.totalesGIF.totalesGIFSP
+        e.summaryCells[48][0].value = this.totalesGIF.totalesGIFSD
+        e.summaryCells[51][0].value = this.totalesGIF.totalesGIFOR
+        e.summaryCells[52][0].value = this.totalesGIF.totalesGIFOP
+        e.summaryCells[53][0].value = this.totalesGIF.totalesGIFOD
+        e.summaryCells[56][0].value = this.totalesGIF.totalesGIFNR
+        e.summaryCells[57][0].value = this.totalesGIF.totalesGIFNP
+        e.summaryCells[58][0].value = this.totalesGIF.totalesGIFND
+        e.summaryCells[61][0].value = this.totalesGIF.totalesGIFDR
+        e.summaryCells[62][0].value = this.totalesGIF.totalesGIFDP
+        e.summaryCells[63][0].value = this.totalesGIF.totalesGIFDD
+        e.summaryCells[66][0].value = this.totalesGIF.totalesGIFACR
+        e.summaryCells[67][0].value = this.totalesGIF.totalesGIFACP
+        e.summaryCells[68][0].value = this.totalesGIF.totalesGIFACD
 
+      }
 
 //=========================Totales 0====================================================================
 
         this.totales01 = this.totalesOperacion.totalOperacionER;
         this.totales02 = this.totalesOtrosGO.totalOGOperacionER;
         this.totales03 = this.totalesOtrosGIE.totalesOGIEER;
-        this.totales04 = this.totalesGIF;
+        this.totales04 = this.totalesGIF.totalesGIFER;
 
         this.totales0 = this.totales01 - this.totales02 - this.totales03 - this.totales04;
         // alert(this.totales0)
 
+      this.paginacion = 20
 
     }
 
