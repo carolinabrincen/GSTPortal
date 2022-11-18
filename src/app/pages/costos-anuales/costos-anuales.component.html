@@ -161,19 +161,21 @@
 
         <dxo-export [enabled]="true"></dxo-export>
 
-        <!-- <dxi-column dataField="compania" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="area" caption="" [groupIndex]="1" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="clasificacion" caption="" [groupIndex]="2" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="cuentaPadre" caption="" [groupIndex]="3" [allowSorting]="false"></dxi-column> -->
+        <dxi-column dataField="compania" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="area" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+        <dxi-column dataField="clasificacion" [fixed]="true" caption="" [groupIndex]="2"></dxi-column>
+        <dxi-column dataField="cuentaPadre" [fixed]="true" caption="" [groupIndex]="3"></dxi-column>
 
-        <dxi-column dataField="compania" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+        <!-- <dxi-column dataField="compania" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
         <dxi-column dataField="area" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
         <dxi-column dataField="clasificacion" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="2"></dxi-column>
-        <dxi-column dataField="cuentaPadre" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column>
+        <dxi-column dataField="cuentaPadre" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="3"></dxi-column> -->
 
 
-        <dxi-column dataField="idCuenta" caption="Clave" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
-        <dxi-column dataField="cuenta" caption="Descripción" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="" headerCellTemplate="headerTemplate" [fixed]="true" >
+        <dxi-column dataField="idCuenta" caption="Clave" [fixed]="true"></dxi-column>
+        <dxi-column dataField="cuenta" caption="Descripción" [fixed]="true"></dxi-column>
+        </dxi-column>
         
         <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
             <dxi-column dataField="eneroReal" caption="Real" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
@@ -274,86 +276,6 @@
 
 
         <dxo-summary>
-
-            <!-- <dxi-total-item column="eneroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="eneroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="eneroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="febreroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="febreroPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="febreroDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="marzoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="marzoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="marzoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="abrilReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="abrilPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="abrilDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="mayoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="mayoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="mayoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="junioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="junioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="junioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="julioReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="julioPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="julioDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="agostoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="agostoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="agostoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="septiembreReal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="septiembrePresupuesto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="septiembreDesviacion" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="octubreReal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="octubrePresupuesto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="ocutbreDesviacion" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="noviembreReal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="noviembrePresupuesto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="noviembreDesviacion" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="diciembreReal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="diciembrePresupuesto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="diciembreDesviacion" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="acumuladoReal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="acumuladoPresupuesto" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item>
-            <dxi-total-item column="acumuladoDesviacion" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-            </dxi-total-item> -->
-
           <!-- SUMARY DE GRUPO -->
             <!--ENERO [alignByColumn]="true"-->
             <dxi-group-item column="eneroReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
