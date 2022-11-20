@@ -17,8 +17,8 @@ import { OtrosGastosIngresosEstraordinarios } from '../../shared/models/costos-a
 import { GastosIngresosFinancieros } from '../..//shared/models/costos-anuales/totalesGIFinancieros.model';
 import { Totales0 } from '../../shared/models/costos-anuales/totales0.model';
 import { Provisiones } from '../../shared/models/costos-anuales/totalesProvisiones.model';
-
 import { Clasificacion } from '../../shared/models/costos-anuales/clasificaion.model';
+import { CostosTPS } from '../../shared/models/costos-anuales/CostosTPS.model';
 
 @Component({
 
@@ -35,7 +35,8 @@ export class CostosAnualesComponent implements OnInit {
   fechaFin: Date = new Date();
 
   costosAnuales: CostosAnuales[] = [];
-  DestalleCuenta: DetalleCuenta[] = []
+  DestalleCuenta: DetalleCuenta[] = [];
+  costosFTP: CostosTPS[] = [];
 
 
   col: string = '50';
@@ -98,6 +99,8 @@ export class CostosAnualesComponent implements OnInit {
   udnSeleccionado: number[] = [];
   tractoSeleccionado: string = '';
   selectedCompania: number = 0;
+  selectedAnioTPS: number = 0;
+  selectedMesTPS: number = 0;
 
   objTracto: any;
   objRentabilidad: any;
@@ -198,6 +201,14 @@ export class CostosAnualesComponent implements OnInit {
   selectClasficacion(e: any) {
 
   }
+
+  seleccionarAnioTPS(e: any) {
+    this.selectedAnioTPS = e.value;
+  }
+  seleccionarMesTPS(e: any) {
+    this.selectedMesTPS = e.value;
+  }
+
 
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
@@ -1876,6 +1887,97 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   onRowPreparedDetalle(e: any){
+
+  }
+
+
+  getTPS(){
+    let anio = this.selectedAnioTPS;
+    let mes = this.selectedMesTPS;
+    this.costosAnualesService.getTPS(anio, mes).subscribe(data =>{
+      console.log(data.data)
+      this.costosFTP = data.data;
+      this.loadingVisible = false;
+    })
+  }
+
+  buscarClickTPS = (e: any) => {
+      this.loadingVisible = true;
+      this.getTPS();
+  };
+
+  onRowPreparedFTP(e: any){
+
+
+    if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          //poner en rojo negativos
+          if (c.value && c.value.toString().startsWith('-')) {
+            c.cellElement.style.color = "red";
+            c.cellElement.style.fontWeight = "bolder";
+          }
+
+          //negrita columna margen utilidad
+          // if (c.columnIndex == 2  || c.columnIndex == 11) {
+          //   c.cellElement.style.fontWeight = "bolder";
+          //   c.cellElement.style.fontSize = "14px";
+          //   c.cellElement.style.background = "#f5f5f5";
+          // }
+
+          //porcentaje de combistuble > .25 en rojo
+          // if (c.columnIndex == 16 && c.value >= .25) {
+          //   c.cellElement.style.color = "red";
+          // }
+
+          if (c.rowIndex == 26 || 
+            c.rowIndex == 31 ||
+            c.rowIndex == 38 ||
+            c.rowIndex == 42)
+          {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "14px";
+            
+          
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+          }
+
+          if (c.rowIndex == 1 || 
+            c.rowIndex == 7 ||
+            c.rowIndex == 13 ||
+            c.rowIndex == 19 ||
+            c.rowIndex == 27 ||
+            c.rowIndex == 36 ||
+            c.rowIndex == 37 ||
+            c.rowIndex == 39 ||
+            c.rowIndex == 43 ||
+            c.rowIndex == 44)
+          {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "14px";
+            
+          
+          c.cellElement.style.background = "#DCDCDC";
+          c.cellElement.style.color = "black";
+          }
+        }
+
+
+
+      });
+    }
+
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+
 
   }
 

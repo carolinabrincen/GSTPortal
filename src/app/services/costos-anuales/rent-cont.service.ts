@@ -48,5 +48,10 @@ export class CostosAnualesService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
   }
 
+  getTPS(anio: number, mes: number){
+
+    return this.get<any>((this.API_URL + API_URLS.GET_TPS+ anio+"/"+mes), this.httpOptions);
+  }
+
 
 }
