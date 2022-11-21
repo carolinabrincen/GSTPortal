@@ -2,6 +2,167 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
+        <dxi-item title="TPS">
+            <br><br>
+            <dx-responsive-box>
+                <!-- COLS -->
+                <!-- <dxi-col [ratio]="1"></dxi-col> -->
+                <!--Año-->
+                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <!--vacia-->
+                <dxi-col [ratio]=".15"></dxi-col>
+                <!--Mes-->
+                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]="1.50"></dxi-col>
+                <!--vacia-->
+                <dxi-col [ratio]=".15"></dxi-col>
+                <!--Buscar-->
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+        
+        
+                <!-- ROWS -->
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+                <!-- CONTROLES DEL FORM -->
+                <!--#region :::: ROW 1 DEL FORM ::::  -->
+                <!-- AÑO -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Año:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnioTPS($event)">
+                    </dx-select-box>
+                </dxi-item>
+                <!-- MES -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Mes:</div>
+                </dxi-item>
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMesTPS($event)">
+                    </dx-select-box>
+                </dxi-item>
+                <!-- BUSCAR -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClickTPS($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+                <!--#endregion :::: FIN ROW 1 ::::  -->
+            </dx-responsive-box>
+
+            <br><br><br>
+
+            <!--==========================Line Chart==================-->
+            <div id="chart-demo">
+                <dx-chart palette="Violet" [dataSource]="countriesInfo">
+                <dxi-series *ngFor="let energy of energySources" [valueField]="energy.value" [name]="energy.name">{{energy.name}}</dxi-series>
+                <dxo-common-series-settings #seriesSettings argumentField="month" [type]="types[0]"></dxo-common-series-settings>
+                <dxo-margin [bottom]="20"></dxo-margin>
+                <dxo-argument-axis [valueMarginsEnabled]="false" discreteAxisDivisionMode="crossLabels">
+                    <dxo-grid [visible]="true"></dxo-grid>
+                </dxo-argument-axis>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"></dxo-legend>
+                <dxo-title text="Costos">
+                    <dxo-subtitle text="(Anuales)"> </dxo-subtitle>
+                </dxo-title>
+                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-tooltip [enabled]="true"></dxo-tooltip>
+                </dx-chart>
+            </div>
+            <!--====================================Finish chart==========-->
+
+            <br><br><br>
+            <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosFTP" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
+                
+                
+                <dxi-column dataField="concepto" caption="Concepto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+
+                <dxi-column caption="Geminis" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="geminisMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="geminisAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Teisa" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="TBK" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="tbkMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="tbkAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                    
+                </dxi-column>
+                <dxi-column caption="GST" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="gstMesReal" caption="MesReal" headerCellTemplate="headerTemplate" [width]="100" format="currency" precision="2"></dxi-column>
+                    <dxi-column dataField="gstMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate" [width]="100" format="currency" precision="2"></dxi-column>
+                    <dxi-column dataField="gstMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="gstMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="gstAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="gstAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="gstAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="gstAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+    
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+    
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <div style="font-weight: bolder; color: #ff5722">
+                        {{ info.column.caption }}
+                    </div>
+                </div>
+    
+                <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
+                    <div class="diff"></div>
+                </div>
+    
+                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-paging [pageSize]="100"></dxo-paging>
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+        </dxi-item>
         <dxi-item title="Estado de Resultado">
             <br><br>
             <dx-responsive-box>
@@ -120,7 +281,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="13"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="clasificaciones" displayExpr="clasificacion" valueExpr="idClas" (onValueChanged)="selectClasficacion($event)">
+                    <dx-select-box [items]="clasificaciones" displayExpr="clasificacion" valueExpr="clasificacion" (onValueChanged)="selectClasficacion($event)">
                     </dx-select-box>
                 </dxi-item>
                 <!-- BUSCAR -->
@@ -134,28 +295,7 @@
                 </dxi-item>
                 <!--#endregion :::: FIN ROW 1 ::::  -->
             </dx-responsive-box>
-          
-            <br><br><br>
-            <!--==========================Line Chart==================-->
-            <div id="chart-demo">
-                <dx-chart palette="Violet" [dataSource]="countriesInfo">
-                <dxi-series *ngFor="let energy of energySources" [valueField]="energy.value" [name]="energy.name">{{energy.name}}</dxi-series>
-                <dxo-common-series-settings #seriesSettings argumentField="month" [type]="types[0]"></dxo-common-series-settings>
-                <dxo-margin [bottom]="20"></dxo-margin>
-                <dxo-argument-axis [valueMarginsEnabled]="false" discreteAxisDivisionMode="crossLabels">
-                    <dxo-grid [visible]="true"></dxo-grid>
-                </dxo-argument-axis>
-                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"></dxo-legend>
-                <dxo-title text="Costos">
-                    <dxo-subtitle text="(Anuales)"> </dxo-subtitle>
-                </dxo-title>
-                <dxo-export [enabled]="true"></dxo-export>
-                <dxo-tooltip [enabled]="true"></dxo-tooltip>
-                </dx-chart>
-            </div>
-            <!--====================================Finish chart==========-->
-            <br><br><br>
-        
+            <br><br>
         
             <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="costosAnuales" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
                 (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
@@ -372,147 +512,6 @@
                 <dxo-grouping #expand [autoExpandAll]="expandGroup" ></dxo-grouping>
                 <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
                 </dxo-pager>
-                <dxo-sorting mode="none"></dxo-sorting>
-            </dx-data-grid>
-        </dxi-item>
-        <dxi-item title="TPS">
-            <br><br>
-            <dx-responsive-box>
-                <!-- COLS -->
-                <!-- <dxi-col [ratio]="1"></dxi-col> -->
-                <!--Año-->
-                <dxi-col [ratio]=".60"></dxi-col>
-                <dxi-col [ratio]="1"></dxi-col>
-                <!--vacia-->
-                <dxi-col [ratio]=".15"></dxi-col>
-                <!--Mes-->
-                <dxi-col [ratio]=".60"></dxi-col>
-                <dxi-col [ratio]="1.50"></dxi-col>
-                <!--vacia-->
-                <dxi-col [ratio]=".15"></dxi-col>
-                <!--Buscar-->
-                <dxi-col [ratio]="1"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
-        
-        
-                <!-- ROWS -->
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-        
-                <!-- CONTROLES DEL FORM -->
-                <!--#region :::: ROW 1 DEL FORM ::::  -->
-                <!-- AÑO -->
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Año:</div>
-                </dxi-item>
-        
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnioTPS($event)">
-                    </dx-select-box>
-                </dxi-item>
-                <!-- MES -->
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Mes:</div>
-                </dxi-item>
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMesTPS($event)">
-                    </dx-select-box>
-                </dxi-item>
-                <!-- BUSCAR -->
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
-                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
-                    <div>
-                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClickTPS($event)">
-                        </dx-button>
-                    </div>
-                </dxi-item>
-                <!--#endregion :::: FIN ROW 1 ::::  -->
-            </dx-responsive-box>
-
-            <br><br><br>
-
-            <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosFTP" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
-                <dxo-scrolling mode="virtual"></dxo-scrolling>
-                <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
-                
-                
-                <dxi-column dataField="concepto" caption="Concepto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
-
-                <dxi-column caption="Geminis" headerCellTemplate="headerTemplate">
-                    <dxi-column dataField="geminisMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="geminisAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                </dxi-column>
-                <dxi-column caption="Teisa" headerCellTemplate="headerTemplate">
-                    <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                </dxi-column>
-                <dxi-column caption="TBK" headerCellTemplate="headerTemplate">
-                    <dxi-column dataField="tbkMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="tbkAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                    
-                </dxi-column>
-                <dxi-column caption="GST" headerCellTemplate="headerTemplate">
-                    <dxi-column dataField="gstMesReal" caption="MesReal" headerCellTemplate="headerTemplate" [width]="100" format="currency" precision="2"></dxi-column>
-                    <dxi-column dataField="gstMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate" [width]="100" format="currency" precision="2"></dxi-column>
-                    <dxi-column dataField="gstMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="gstMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="gstAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="gstAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="gstAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="gstAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                </dxi-column>
-    
-                <div *dxTemplate="let data of 'headerTemplate'">
-                    <div style="font-weight: bolder; color: black">
-                        {{ data.column.caption }}
-                    </div>
-                </div>
-    
-                <div *dxTemplate="let info of 'titleHeaderTemplate'">
-                    <div style="font-weight: bolder; color: #ff5722">
-                        {{ info.column.caption }}
-                    </div>
-                </div>
-    
-                <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
-                    <div class="diff"></div>
-                </div>
-    
-                <dxo-export [enabled]="true"></dxo-export>
-                <dxo-paging [pageSize]="100"></dxo-paging>
                 <dxo-sorting mode="none"></dxo-sorting>
             </dx-data-grid>
         </dxi-item>

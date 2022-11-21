@@ -24,7 +24,7 @@ export class CostosAnualesService extends AbstractManagerService {
   }
 
 
-  postEdoResult(anio: number, compania: number, area: number[], mes: number, clasificacion: number){
+  postEdoResult(anio: number, compania: number, area: number[], mes: number, clasificacion: string){
     let body = {
       anio: anio,
       compania: compania,

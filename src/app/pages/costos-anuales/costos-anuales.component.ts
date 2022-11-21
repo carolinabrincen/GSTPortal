@@ -95,6 +95,7 @@ export class CostosAnualesComponent implements OnInit {
   selectedCompania: number = 0;
   selectedAnioTPS: number = 0;
   selectedMesTPS: number = 0;
+  selectedClasficacion: string = '';
 
   objTracto: any;
   objRentabilidad: any;
@@ -193,7 +194,7 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   selectClasficacion(e: any) {
-
+    this.selectedClasficacion = e.value;
   }
 
   seleccionarAnioTPS(e: any) {
@@ -206,12 +207,9 @@ export class CostosAnualesComponent implements OnInit {
 
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
-
-      var clasificacion = 0
-      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, clasificacion).subscribe(data =>{
+      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
         this.costosAnuales = data.data;
-        // console.log(this.costosAnuales)
-       
+
       })
     });
     return request;
@@ -232,12 +230,12 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   buscarClick = (e: any) => {
-    // if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
+    if (this.selectedClasficacion !==  '') {
       this.loadingVisible = true;
       this.callCostosAnuales().then(() => {
         this.loadingVisible = false;
       });
-    // }
+    }
 
   };
 
@@ -313,7 +311,6 @@ export class CostosAnualesComponent implements OnInit {
           e.cells[0].totalItem.summaryCells = [] 
         }
 
-        console.log(e)
 //========================Sacando los valores para  01.- OPERACION======================================================
         if(e.data.key == 'a.- Total de Producto Neto'){          
           // console.log(e)
@@ -1037,7 +1034,6 @@ export class CostosAnualesComponent implements OnInit {
 
       //=====Resta Entre Fletes y Costos============================================
       if(e.groupIndex == 0 && e.key[0]){
-        console.log(e)
         e.summaryCells[7][0].value = this.totales.totalER;
         e.summaryCells[8][0].value = this.totales.totalEP;
         e.summaryCells[9][0].value = this.totales.totalED;
@@ -1078,10 +1074,9 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[68][0].value = this.totales.totalACP;
         e.summaryCells[69][0].value = this.totales.totalACD;
 
-        if(e.summaryCells[7][0].value !== undefined){
-          console.log(e.summaryCells[7][0].value)
-           this.expandGroup = false
-        }
+        // if(e.summaryCells[7][0].value !== undefined){
+        //    this.expandGroup = false
+        // }
       }
       if(e.groupIndex == 1 && e.data.key == '01.- UTILIDAD BRUTA'){
         e.summaryCells[7][0].value = this.totalesOperacion.totalOperacionER;
@@ -1123,6 +1118,8 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[67][0].value = this.totalesOperacion.totalOperacionACR;
         e.summaryCells[68][0].value = this.totalesOperacion.totalOperacionACP;
         e.summaryCells[69][0].value = this.totalesOperacion.totalOperacionACD;
+
+
       }
 
       if(e.groupIndex == 1 && e.data.key == '02.- Total Otros Gastos de Operacion'){
@@ -1864,6 +1861,8 @@ export class CostosAnualesComponent implements OnInit {
         // alert(this.totales0)
 
       this.paginacion = 20
+      if(this.totales.totalACD !== undefined)
+      this.expandGroup = false
 
     }
 
