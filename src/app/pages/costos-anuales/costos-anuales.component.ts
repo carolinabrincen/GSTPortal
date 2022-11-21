@@ -1074,9 +1074,9 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[68][0].value = this.totales.totalACP;
         e.summaryCells[69][0].value = this.totales.totalACD;
 
-        // if(e.summaryCells[7][0].value !== undefined){
-        //    this.expandGroup = false
-        // }
+        if(e.summaryCells[7][0].value !== undefined){
+           this.expandGroup = false
+        }
       }
       if(e.groupIndex == 1 && e.data.key == '01.- UTILIDAD BRUTA'){
         e.summaryCells[7][0].value = this.totalesOperacion.totalOperacionER;
@@ -1861,8 +1861,8 @@ export class CostosAnualesComponent implements OnInit {
         // alert(this.totales0)
 
       this.paginacion = 20
-      if(this.totales.totalACD !== undefined)
-      this.expandGroup = false
+      // if(this.totales.totalACD !== undefined)
+      // this.expandGroup = false
 
     }
 
