@@ -209,7 +209,8 @@ export class CostosAnualesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
         this.costosAnuales = data.data;
-
+        this.paginacion = 0;
+        this.expandGroup = true;
       })
     });
     return request;
@@ -232,8 +233,7 @@ export class CostosAnualesComponent implements OnInit {
   buscarClick = (e: any) => {
     if (this.selectedClasficacion !==  '') {
       this.loadingVisible = true;
-      this.paginacion = 0;
-      this.expandGroup = true;
+      
       this.callCostosAnuales().then(() => {
         this.loadingVisible = false;
       });
