@@ -74,18 +74,12 @@ export class CostosAnualesComponent implements OnInit {
 
 
   clasificaciones: Clasificacion[] = [
-    {idClas:1, clasificacion: 'INGRESOS POR FLETE'},
-    {idClas:2, clasificacion: 'COSTOS'},
-    {idClas:3, clasificacion: 'GASTOS ADMINISTRATIVOS'},
-    {idClas:4, clasificacion: 'DEPRECIACION DE ACTIVOS'},
-    {idClas:5, clasificacion: 'OTROS GASTOS/INGRESOS ORDINARIOS'},
-    {idClas:6, clasificacion: 'GASTOS INGRESO DE COLABORACIÓN'},
-    {idClas:7, clasificacion: 'ESTÍMULOS FISCALES'},
-    {idClas:8, clasificacion: 'VENTA DE ACTIVO FIJO'},
-    {idClas:9, clasificacion: 'OTROS'},
-    {idClas:10, clasificacion: 'PRODUCTOS FINANCIEROS'},
-    {idClas:11, clasificacion: 'GASTOS FINANCIEROS'},
-    {idClas:12, clasificacion: 'PROVISIONES DE IMPUESTOS'},
+    {idClas:1, clasificacion: '00.- Indicadores'},
+    {idClas:2, clasificacion: '01.- Utilidad Bruta'},
+    {idClas:3, clasificacion: '02.- Total Otros Gastos de Operación'},
+    {idClas:4, clasificacion: '03.- Total Otros Gastos y Prod. Extraordinarios'},
+    {idClas:5, clasificacion: '04.- Total Otros Gastos y Productos Financieros'},
+    {idClas:6, clasificacion: '05.- Total de Provisiones'}
   ]
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
@@ -319,8 +313,9 @@ export class CostosAnualesComponent implements OnInit {
           e.cells[0].totalItem.summaryCells = [] 
         }
 
+        console.log(e)
 //========================Sacando los valores para  01.- OPERACION======================================================
-        if(e.data.key == 'a.- INGRESOS POR FLETE'){          
+        if(e.data.key == 'a.- Total de Producto Neto'){          
           // console.log(e)
           this.totalesOperacion.totalFleteER = e.summaryCells[7][0].value;
           this.totalesOperacion.totalFleteEP = e.summaryCells[8][0].value;
@@ -363,8 +358,7 @@ export class CostosAnualesComponent implements OnInit {
           this.totalesOperacion.totalFleteACD = e.summaryCells[69][0].value;
         }
 
-        if(e.data.key == 'b.- COSTOS '){   
-          console.log(e)   
+        if(e.data.key == 'b.- Total Costo de Operacion'){    
           this.totalesOperacion.totalCostosER = e.summaryCells[7][0].value;
           this.totalesOperacion.totalCostosEP = e.summaryCells[8][0].value;
           this.totalesOperacion.totalCostosED = e.summaryCells[9][0].value;
@@ -445,8 +439,6 @@ export class CostosAnualesComponent implements OnInit {
           this.totalesOperacion.totalOperacionACR = this.totalesOperacion.totalFleteACR - this.totalesOperacion.totalCostosACR;
           this.totalesOperacion.totalOperacionACP = this.totalesOperacion.totalFleteACP - this.totalesOperacion.totalCostosACP;
           this.totalesOperacion.totalOperacionACD = this.totalesOperacion.totalFleteACD - this.totalesOperacion.totalCostosACD;
-
-          //alert('Total Resta : '+ totalesOperacion.totalOperacionER)
         }
 
 //===============================Resta de la agrupacion de 02.- OTROS GASTOS DE OPERACIÓN===============================
@@ -1045,6 +1037,7 @@ export class CostosAnualesComponent implements OnInit {
 
       //=====Resta Entre Fletes y Costos============================================
       if(e.groupIndex == 0 && e.key[0]){
+        console.log(e)
         e.summaryCells[7][0].value = this.totales.totalER;
         e.summaryCells[8][0].value = this.totales.totalEP;
         e.summaryCells[9][0].value = this.totales.totalED;
@@ -1090,8 +1083,7 @@ export class CostosAnualesComponent implements OnInit {
            this.expandGroup = false
         }
       }
-
-      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
+      if(e.groupIndex == 1 && e.data.key == '01.- UTILIDAD BRUTA'){
         e.summaryCells[7][0].value = this.totalesOperacion.totalOperacionER;
         e.summaryCells[8][0].value = this.totalesOperacion.totalOperacionEP;
         e.summaryCells[9][0].value = this.totalesOperacion.totalOperacionED;
@@ -1133,7 +1125,7 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[69][0].value = this.totalesOperacion.totalOperacionACD;
       }
 
-      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+      if(e.groupIndex == 1 && e.data.key == '02.- Total Otros Gastos de Operacion'){
         e.summaryCells[7][0].value = this.totalesOtrosGO.totalOGOperacionER;
         e.summaryCells[8][0].value = this.totalesOtrosGO.totalOGOperacionEP;
         e.summaryCells[9][0].value = this.totalesOtrosGO.totalOGOperacionED;
@@ -1875,6 +1867,13 @@ export class CostosAnualesComponent implements OnInit {
 
     }
 
+    if (e.rowType == 'groupFooter') {
+
+      if (e.groupIndex === 1) {
+
+      }
+    }
+
   }
   calcularPorcentajes(options: any) {
     // //
@@ -1906,7 +1905,7 @@ export class CostosAnualesComponent implements OnInit {
       this.getTPS();
   };
 
-  onRowPreparedFTP(e: any){
+  onRowPreparedTPS(e: any){
 
 
     if (e.rowType == 'data') {
