@@ -74,6 +74,7 @@ export class CostosAnualesComponent implements OnInit {
 
 
   clasificaciones: Clasificacion[] = [
+    {idClas:0, clasificacion: ''},
     {idClas:1, clasificacion: '00.- Indicadores'},
     {idClas:2, clasificacion: '01.- Utilidad Bruta'},
     {idClas:3, clasificacion: '02.- Total Otros Gastos de Operación'},
@@ -127,6 +128,8 @@ export class CostosAnualesComponent implements OnInit {
 
   paginacion: number = 0;
   expandGroup: boolean = true;
+
+  modeSearch: 'true' | 'false' = 'true';
 
   constructor(
     private costosAnualesService: CostosAnualesService,
@@ -209,6 +212,7 @@ export class CostosAnualesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
         this.costosAnuales = data.data;
+                
         this.paginacion = 0;
         this.expandGroup = true;
       })
@@ -231,13 +235,54 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   buscarClick = (e: any) => {
-    if (this.selectedClasficacion !==  '') {
+    // if (this.selectedClasficacion !==  '') {
       this.loadingVisible = true;
-      
+      this.totales.totalER = 0;
+    this.totales.totalEP = 0;
+    this.totales.totalED = 0;
+    this.totales.totalFR = 0;
+    this.totales.totalFP = 0;
+    this.totales.totalFD = 0;
+    this.totales.totalMR = 0;
+    this.totales.totalMP = 0;
+    this.totales.totalMD = 0;
+    this.totales.totalAR = 0;
+    this.totales.totalAP = 0;
+    this.totales.totalAD = 0;
+    this.totales.totalMYR = 0;
+    this.totales.totalMYP = 0;
+    this.totales.totalMYD = 0;
+    this.totales.totalJR = 0;
+    this.totales.totalJP = 0;
+    this.totales.totalJD = 0;
+    this.totales.totalJLR = 0;
+    this.totales.totalJLP = 0;
+    this.totales.totalJLD = 0;
+    this.totales.totalAGR = 0;
+    this.totales.totalAGP = 0;
+    this.totales.totalAGD = 0;
+    this.totales.totalSR = 0;
+    this.totales.totalSP = 0;
+    this.totales.totalSD = 0;
+    this.totales.totalOR = 0;
+    this.totales.totalOP = 0;
+    this.totales.totalOD = 0;
+    this.totales.totalNR = 0;
+    this.totales.totalNP = 0;
+    this.totales.totalND = 0;
+    this.totales.totalDR = 0;
+    this.totales.totalDP = 0;
+    this.totales.totalDD = 0;
+    this.totales.totalACR = 0;
+    this.totales.totalACP = 0;
+    this.totales.totalACD = 0;
+
+    // console.log('entre : '+this.totales.totalER)
+
       this.callCostosAnuales().then(() => {
         this.loadingVisible = false;
       });
-    }
+    //}
 
   };
 
@@ -1037,6 +1082,8 @@ export class CostosAnualesComponent implements OnInit {
       //=====Resta Entre Fletes y Costos============================================
       if(e.groupIndex == 0 && e.key[0]){
         e.summaryCells[7][0].value = this.totales.totalER;
+        console.log(e.summaryCells[7][0].value);
+        console.log(this.totales.totalER)
         e.summaryCells[8][0].value = this.totales.totalEP;
         e.summaryCells[9][0].value = this.totales.totalED;
         e.summaryCells[12][0].value = this.totales.totalFR;
@@ -1859,8 +1906,6 @@ export class CostosAnualesComponent implements OnInit {
         this.totales.totalACR = this.totales.total1ACR - this.totales.total2ACR - this.totales.total3ACR - this.totales.total4ACR - this.totales.total5ACR;
         this.totales.totalACP = this.totales.total1ACP - this.totales.total2ACP - this.totales.total3ACP - this.totales.total4ACP - this.totales.total5ACP;
         this.totales.totalACD = this.totales.total1ACD - this.totales.total2ACD - this.totales.total3ACD - this.totales.total4ACD - this.totales.total5ACD;      
-
-        // alert(this.totales0)
 
       this.paginacion = 20
       if(this.paginacion = 20){
