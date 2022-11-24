@@ -8,12 +8,12 @@
                 <!-- COLS -->
                 <!-- <dxi-col [ratio]="1"></dxi-col> -->
                 <!--Año-->
-                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]=".20"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Mes-->
-                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]=".20"></dxi-col>
                 <dxi-col [ratio]="1.50"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
@@ -61,7 +61,7 @@
                 </dxi-item>
                 <!-- BUSCAR -->
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClickTPS($event)">
@@ -83,8 +83,8 @@
                     <dxo-grid [visible]="true"></dxo-grid>
                 </dxo-argument-axis>
                 <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"></dxo-legend>
-                <dxo-title text="Costos">
-                    <dxo-subtitle text="(Anuales)"> </dxo-subtitle>
+                <dxo-title text="TPS">
+                    <dxo-subtitle text="(Mensual)"> </dxo-subtitle>
                 </dxo-title>
                 <dxo-export [enabled]="true"></dxo-export>
                 <dxo-tooltip [enabled]="true"></dxo-tooltip>

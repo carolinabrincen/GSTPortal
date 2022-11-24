@@ -1956,8 +1956,11 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   buscarClickTPS = (e: any) => {
+    if (this.selectedAnioTPS !== 0 && this.selectedMesTPS !== 0) {
+
       this.loadingVisible = true;
       this.getTPS();
+    }
   };
 
   onRowPreparedTPS(e: any){
