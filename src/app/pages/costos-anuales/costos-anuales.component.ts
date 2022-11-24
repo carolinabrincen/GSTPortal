@@ -1988,6 +1988,13 @@ export class CostosAnualesComponent implements OnInit {
           //   c.cellElement.style.color = "red";
           // }
 
+          if(c.rowIndex == 20 ||
+            c.rowIndex == 23){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.fontSize = "14px";
+              c.cellElement.style.color = "black";
+            } 
+
           if (c.rowIndex == 26 || 
             c.rowIndex == 31 ||
             c.rowIndex == 38 ||
