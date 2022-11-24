@@ -131,6 +131,12 @@ export class CostosAnualesComponent implements OnInit {
 
   modeSearch: 'true' | 'false' = 'false';
 
+  isVisible = false;
+
+  type = 'info';
+
+  message = '';
+
   constructor(
     private costosAnualesService: CostosAnualesService,
     private service: Service
@@ -1960,6 +1966,13 @@ export class CostosAnualesComponent implements OnInit {
 
       this.loadingVisible = true;
       this.getTPS();
+    }else{
+    const type ='warning';
+    const text = "Por favor selecciones el año y mes";
+
+    this.type = type;
+    this.message = text;
+    this.isVisible = true;
     }
   };
 
@@ -2044,6 +2057,37 @@ export class CostosAnualesComponent implements OnInit {
 
 
   }
+
+
+//====================personalize style excel========================================
+  customizeExcelCell(e) {  
+    console.log(e.gridCell);  
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'data') {
+      if (gridCell.data.concepto === '1.- Volumen Transportado' ||
+          gridCell.data.concepto === '2.- Viajes Realizados' ||
+          gridCell.data.concepto === '3.- PRODUCTO NETO' ||
+          gridCell.data.concepto === '3.- COSTO DE OPERACION' ||
+          gridCell.data.concepto === '5.- OTROS GASTOS DE OPERACION' ||
+          gridCell.data.concepto === '6.TOTAL GASTOS Y PRODUCTOS EXTRAORDINARIOS' ||
+          gridCell.data.concepto === '7.TOTAL GASTOS Y PRODUCTOS FINAN.' ||
+          gridCell.data.concepto === '8. PROVISIONES' ||
+          gridCell.data.concepto === '9. FLUJO DE EFECTIVO' ||
+          gridCell.data.concepto === '10. FLUJO DE OPERACIÓN') {
+
+          e.backgroundColor = "#DCDCDC";
+          
+      }
+
+      if(gridCell.data.concepto == 'UTILIDAD BRUTA' ||
+        gridCell.data.concepto == 'UTILIDAD DE OPERACION' ||
+        gridCell.data.concepto == 'UTILIDAD ANTES DE IMPTO. Y PTU' ||
+        gridCell.data.concepto == 'UTILIDAD NETA'){
+
+          e.backgroundColor = "#FD9460";
+      }
+    }
+}
 
 }
 
