@@ -2061,7 +2061,6 @@ export class CostosAnualesComponent implements OnInit {
 
 //====================personalize style excel========================================
   customizeCompania(e) {  
-    console.log(e.gridCell);  
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'data') {
       if (gridCell.data.concepto === '1.- Volumen Transportado' ||
@@ -2088,11 +2087,18 @@ export class CostosAnualesComponent implements OnInit {
           e.backgroundColor = "#FD9460";
           e.font = {bold: true}
       }
+
+      if(gridCell.data.concepto == 'Mantenimiento' ||
+        gridCell.data.concepto == 'Transportacion'){
+
+          e.font = {bold: true}
+        }
+
+
     }
   }
 
   customizeRCO(e) {  
-    console.log(e.gridCell);  
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'data') {
       if (gridCell.data.concepto === '1.- Volumen Transportado' ||
@@ -2118,12 +2124,17 @@ export class CostosAnualesComponent implements OnInit {
 
           e.backgroundColor = "#FD9460";
           e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'Mantenimiento' ||
+      gridCell.data.concepto == 'Transportacion'){
+
+        e.font = {bold: true}
       }
     }
   }
 
   customizeGS(e) {  
-    console.log(e.gridCell);  
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'data') {
       if (gridCell.data.concepto === '1.- Volumen Transportado' ||
@@ -2149,6 +2160,12 @@ export class CostosAnualesComponent implements OnInit {
 
           e.backgroundColor = "#FD9460";
           e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'Mantenimiento' ||
+      gridCell.data.concepto == 'Transportacion'){
+
+        e.font = {bold: true}
       }
     }
   }
