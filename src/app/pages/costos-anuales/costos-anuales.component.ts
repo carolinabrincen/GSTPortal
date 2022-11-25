@@ -2060,7 +2060,7 @@ export class CostosAnualesComponent implements OnInit {
 
 
 //====================personalize style excel========================================
-  customizeExcelCell(e) {  
+  customizeCompania(e) {  
     console.log(e.gridCell);  
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'data') {
@@ -2076,7 +2076,8 @@ export class CostosAnualesComponent implements OnInit {
           gridCell.data.concepto === '10. FLUJO DE OPERACIÓN') {
 
           e.backgroundColor = "#DCDCDC";
-          
+          e.fontWeight = "bolder"
+          e.font = {bold: true}
       }
 
       if(gridCell.data.concepto == 'UTILIDAD BRUTA' ||
@@ -2085,9 +2086,72 @@ export class CostosAnualesComponent implements OnInit {
         gridCell.data.concepto == 'UTILIDAD NETA'){
 
           e.backgroundColor = "#FD9460";
+          e.font = {bold: true}
       }
     }
-}
+  }
+
+  customizeRCO(e) {  
+    console.log(e.gridCell);  
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'data') {
+      if (gridCell.data.concepto === '1.- Volumen Transportado' ||
+          gridCell.data.concepto === '2.- Viajes Realizados' ||
+          gridCell.data.concepto === '3.- PRODUCTO NETO' ||
+          gridCell.data.concepto === '3.- COSTO DE OPERACION' ||
+          gridCell.data.concepto === '5.- OTROS GASTOS DE OPERACION' ||
+          gridCell.data.concepto === '6.TOTAL GASTOS Y PRODUCTOS EXTRAORDINARIOS' ||
+          gridCell.data.concepto === '7.TOTAL GASTOS Y PRODUCTOS FINAN.' ||
+          gridCell.data.concepto === '8. PROVISIONES' ||
+          gridCell.data.concepto === '9. FLUJO DE EFECTIVO' ||
+          gridCell.data.concepto === '10. FLUJO DE OPERACIÓN') {
+
+          e.backgroundColor = "#DCDCDC";
+          e.fontWeight = "bolder"
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'UTILIDAD BRUTA' ||
+        gridCell.data.concepto == 'UTILIDAD DE OPERACION' ||
+        gridCell.data.concepto == 'UTILIDAD ANTES DE IMPTO. Y PTU' ||
+        gridCell.data.concepto == 'UTILIDAD NETA'){
+
+          e.backgroundColor = "#FD9460";
+          e.font = {bold: true}
+      }
+    }
+  }
+
+  customizeGS(e) {  
+    console.log(e.gridCell);  
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'data') {
+      if (gridCell.data.concepto === '1.- Volumen Transportado' ||
+          gridCell.data.concepto === '2.- Viajes Realizados' ||
+          gridCell.data.concepto === '3.- PRODUCTO NETO' ||
+          gridCell.data.concepto === '3.- COSTO DE OPERACION' ||
+          gridCell.data.concepto === '5.- OTROS GASTOS DE OPERACION' ||
+          gridCell.data.concepto === '6.TOTAL GASTOS Y PRODUCTOS EXTRAORDINARIOS' ||
+          gridCell.data.concepto === '7.TOTAL GASTOS Y PRODUCTOS FINAN.' ||
+          gridCell.data.concepto === '8. PROVISIONES' ||
+          gridCell.data.concepto === '9. FLUJO DE EFECTIVO' ||
+          gridCell.data.concepto === '10. FLUJO DE OPERACIÓN') {
+
+          e.backgroundColor = "#DCDCDC";
+          e.fontWeight = "bolder"
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'UTILIDAD BRUTA' ||
+        gridCell.data.concepto == 'UTILIDAD DE OPERACION' ||
+        gridCell.data.concepto == 'UTILIDAD ANTES DE IMPTO. Y PTU' ||
+        gridCell.data.concepto == 'UTILIDAD NETA'){
+
+          e.backgroundColor = "#FD9460";
+          e.font = {bold: true}
+      }
+    }
+  }
 
 }
 

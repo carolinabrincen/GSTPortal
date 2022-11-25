@@ -161,7 +161,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true" fileName="Compañias" [customizeExcelCell]="customizeExcelCell"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Compañias" [customizeExcelCell]="customizeCompania"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -233,7 +233,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="RegionCentroOccidente" [customizeExcelCell]="customizeRCO"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -305,7 +305,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="GolfoSureste" [customizeExcelCell]="customizeGS"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
