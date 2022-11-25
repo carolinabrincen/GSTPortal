@@ -371,15 +371,15 @@ export class CostosAnualesComponent implements OnInit {
 
 
       if (e.groupIndex === 0) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL ' + e.key[0];
+        e.summaryCells[5][0].displayFormat = 'Utilidad (Perdida) Neta ' + e.key[0];
       }
 
       if (e.groupIndex === 1) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL ' + e.key[1];
+        e.summaryCells[5][0].displayFormat = e.key[1];
       }
 
       if (e.groupIndex === 2) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL ' + e.key[2];
+        e.summaryCells[5][0].displayFormat = e.key[2];
 
 //================================Resta de la agrupacion de 01.- OPERACION==============================================
         //===== Omitir totales en la agrupacion no afecta a la sumatoria================================================
@@ -854,7 +854,7 @@ export class CostosAnualesComponent implements OnInit {
       }
 
       if (e.groupIndex === 3) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL ' + e.key[3];
+        e.summaryCells[5][0].displayFormat = e.key[3];
 
         //=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
         //========================Sacando los valores para la operacion============================================
@@ -1110,7 +1110,7 @@ export class CostosAnualesComponent implements OnInit {
       }
 
       if (e.groupIndex === 4) {
-        e.summaryCells[5][0].displayFormat = 'TOTAL ' + e.key[4];
+        e.summaryCells[5][0].displayFormat = e.key[4];
       }
 
       //=====Resta Entre Fletes y Costos============================================
