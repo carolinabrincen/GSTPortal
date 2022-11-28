@@ -19,6 +19,9 @@ import { Totales0 } from '../../shared/models/costos-anuales/totales0.model';
 import { Provisiones } from '../../shared/models/costos-anuales/totalesProvisiones.model';
 import { Clasificacion } from '../../shared/models/costos-anuales/clasificaion.model';
 import { CostosTPS } from '../../shared/models/costos-anuales/CostosTPS.model';
+import { CostosTPSOccidente } from '../../shared/models/costos-anuales/costosTPSOccidente.model';
+import { CostosTPSGolfo } from '../../shared/models/costos-anuales/costosTPSGolfo.mode';
+import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGrafica.mode';
 
 @Component({
 
@@ -37,6 +40,9 @@ export class CostosAnualesComponent implements OnInit {
   costosAnuales: CostosAnuales[] = [];
   DestalleCuenta: DetalleCuenta[] = [];
   costosFTP: CostosTPS[] = [];
+  costosTPSOccidente: CostosTPSOccidente[] = [];
+  costosTPSGolfo: CostosTPSGolfo[] = [];
+  costosTPSGrafica: CostosTPSGrafica[] = [];
 
 
   col: string = '50';
@@ -292,6 +298,8 @@ export class CostosAnualesComponent implements OnInit {
     }
 }
 
+
+  groupValue: string;
   onRowPrepared(e: any) {
 
 
@@ -375,18 +383,27 @@ export class CostosAnualesComponent implements OnInit {
       }
 
       if (e.groupIndex === 1) {
-        e.summaryCells[5][0].displayFormat = e.key[1];
+        if(e.data.key !== '0.- INDICADORES'){
+          e.summaryCells[5][0].displayFormat = e.key[1];
+        }else{
+          this.groupValue = '0.- INDICADORES';
+
+          // e.rowElement.style.backgroundColor = '#f5f5f5';
+          // e.rowElement.style.color = 'red';
+    
+          // e.cells.forEach((c: any) => {
+          //   console.log(c)
+
+          // })
+
+        }
+
       }
 
       if (e.groupIndex === 2) {
         e.summaryCells[5][0].displayFormat = e.key[2];
 
 //================================Resta de la agrupacion de 01.- OPERACION==============================================
-        //===== Omitir totales en la agrupacion no afecta a la sumatoria================================================
-        if(e.data.key == 'INDICADORES'){
-          e.cells[0].totalItem.summaryCells = [] 
-        }
-
 //========================Sacando los valores para  01.- OPERACION======================================================
         if(e.data.key == 'a.- Total de Producto Neto'){          
           // console.log(e)
@@ -1971,7 +1988,12 @@ export class CostosAnualesComponent implements OnInit {
     let mes = this.selectedMesTPS;
     this.costosAnualesService.getTPS(anio, mes).subscribe(data =>{
       console.log(data.data)
-      this.costosFTP = data.data;
+      
+      this.costosFTP = data.data.tpsdto;
+      this.costosTPSOccidente = data.data.tpsOccidenteDTO;
+      this.costosTPSGolfo = data.data.tpsGolfoDTO;
+      this.costosTPSGrafica = data.data.tpsGraficaDTO;
+
       this.loadingVisible = false;
     })
   }

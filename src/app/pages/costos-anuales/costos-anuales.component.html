@@ -74,22 +74,26 @@
             <br><br><br>
 
             <!--==========================Line Chart==================-->
-            <div id="chart-demo">
-                <dx-chart palette="Violet" [dataSource]="countriesInfo">
-                <dxi-series *ngFor="let energy of energySources" [valueField]="energy.value" [name]="energy.name">{{energy.name}}</dxi-series>
-                <dxo-common-series-settings #seriesSettings argumentField="month" [type]="types[0]"></dxo-common-series-settings>
-                <dxo-margin [bottom]="20"></dxo-margin>
-                <dxo-argument-axis [valueMarginsEnabled]="false" discreteAxisDivisionMode="crossLabels">
-                    <dxo-grid [visible]="true"></dxo-grid>
-                </dxo-argument-axis>
-                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"></dxo-legend>
-                <dxo-title text="TPS">
-                    <dxo-subtitle text="(Mensual)"> </dxo-subtitle>
-                </dxo-title>
-                <dxo-export [enabled]="true"></dxo-export>
+            <dx-chart id="chart" [dataSource]="costosTPSGrafica">
+                <dxi-series
+                  argumentField="udn"
+                  valueField="ingreso"
+                  name="Ingreso"
+                  type="bar"
+                  color="#ffaa66"
+                >
+                </dxi-series>
+                
+                <dxi-series
+                  argumentField="udn"
+                  valueField="presupuesto"
+                  name="Presupuesto"
+                  type="line"
+                  color="violet"
+                >
+                </dxi-series>
                 <dxo-tooltip [enabled]="true"></dxo-tooltip>
-                </dx-chart>
-            </div>
+              </dx-chart>
             <!--====================================Finish chart==========-->
 
             <br><br><br>
@@ -103,7 +107,7 @@
                         
                         <dxi-column dataField="concepto" caption="Concepto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         
-                        <dxi-column caption="Geminis" headerCellTemplate="headerTemplate">
+                        <dxi-column caption="GEMINIS" headerCellTemplate="headerTemplate">
                             <dxi-column dataField="geminisMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="geminisMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="geminisMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
@@ -112,16 +116,6 @@
                             <dxi-column dataField="geminisAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="geminisAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="geminisAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                        </dxi-column>
-                        <dxi-column caption="Teisa" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
                         <dxi-column caption="TBK" headerCellTemplate="headerTemplate">
                             <dxi-column dataField="tbkMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
@@ -134,7 +128,17 @@
                             <dxi-column dataField="tbkAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                             
                         </dxi-column>
-                        <dxi-column caption="GST" headerCellTemplate="headerTemplate">
+                        <dxi-column caption="TEISA" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="GST-TPS" headerCellTemplate="headerTemplate">
                             <dxi-column dataField="gstMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="gstMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="gstMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
@@ -143,6 +147,37 @@
                             <dxi-column dataField="gstAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="gstAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="gstAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="CENTRO DE MONITOREO" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="moniMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="moniAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="GST-TOTAL GRUPO" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="gstGrupoMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="gstGrupoAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="ATM" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="atmMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="atmAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
             
                         <div *dxTemplate="let data of 'headerTemplate'">
@@ -168,53 +203,73 @@
                 </dxi-item>
 
                 <dxi-item title="Región Centro Occidente">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosFTP" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosTPSOccidente" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
                         <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
                         
                         
                         <dxi-column dataField="concepto" caption="Concepto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         
-                        <dxi-column caption="Geminis" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="geminisMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="TULTITLAN" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="tulnMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="tulnAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="Teisa" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="CUATITLAN" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="cuauMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="cuauAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="TBK" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="tbkMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="GUDALAJARA" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="guaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="guaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                             
                         </dxi-column>
-                        <dxi-column caption="GST" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="gstMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="HERMOSILLO" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="herMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="herAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="MEXICALI" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="mexMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mexAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="TOTAL MES" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="totalGrupoMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
             
                         <div *dxTemplate="let data of 'headerTemplate'">
@@ -240,53 +295,43 @@
                 </dxi-item>
 
                 <dxi-item title="Golfo Sureste">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosFTP" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosTPSGolfo" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
                         <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
                         
                         
                         <dxi-column dataField="concepto" caption="Concepto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         
-                        <dxi-column caption="Geminis" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="geminisMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="geminisAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="ORIZABA" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="oriMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriMesPresupuesto" caption="MesPpto"  headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="oriAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="Teisa" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="teisaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="teisaAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="RAMOS ARIZPE" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="ramMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="ramAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="TBK" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="tbkMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="tbkAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="TOTAL MES" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="totalGrupoMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalGrupoAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                             
-                        </dxi-column>
-                        <dxi-column caption="GST" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="gstMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstMesPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoReal" caption="AcumReal" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoPresupuesto" caption="AcumPpto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="gstAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
             
                         <div *dxTemplate="let data of 'headerTemplate'">
@@ -562,7 +607,7 @@
                     <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="verDetallesClick(data)"></dx-button>
                 </div>
         
-        
+                <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                 <dxo-summary>
                   <!-- SUMARY DE GRUPO -->
                   <dxi-group-item
@@ -622,7 +667,7 @@
                     <dxi-group-item column="acumuladoReal" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
                     <dxi-group-item column="acumuladoPresupuesto" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
                     <dxi-group-item column="acumuladoDesviacion" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true"></dxi-group-item>
-                    <dxi-group-item showInColumn="cuenta"column="cuenta" summaryType="sum" displayFormat="SUBTOTAL" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item showInColumn="cuenta"column="cuenta" summaryType="sum" displayFormat="-" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     
                     <!-- PORCENTAJES GRUPO -->
