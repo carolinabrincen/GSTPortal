@@ -99,7 +99,7 @@
             <br><br><br>
 
             <dx-tab-panel>
-                <dxi-item title="Global">
+                <dxi-item title="TPS Global">
                     <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosFTP" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
                         <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
@@ -196,7 +196,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true" fileName="Compañias" [customizeExcelCell]="customizeCompania"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="TPS-Global" [customizeExcelCell]="customizeCompania"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -220,7 +220,7 @@
                             <dxi-column dataField="tulnAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="tulnAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="CUATITLAN" headerCellTemplate="headerTemplate">
+                        <dxi-column caption="CUAUTITLAN" headerCellTemplate="headerTemplate">
                             <dxi-column dataField="cuauMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="cuauMesPresupuesto" caption="MesPpto" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="cuauMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
@@ -230,7 +230,7 @@
                             <dxi-column dataField="cuauAcumuladoDesviacion" caption="AcumVar" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="cuauAcumuladoPorDesv" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="GUDALAJARA" headerCellTemplate="headerTemplate">
+                        <dxi-column caption="GUADALAJARA" headerCellTemplate="headerTemplate">
                             <dxi-column dataField="guaMesReal" caption="MesReal" headerCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="guaMesPresupuesto" caption="MesPpto" eaderCellTemplate="headerTemplate"></dxi-column>
                             <dxi-column dataField="guaMesDesviacion" caption="MesVar" headerCellTemplate="headerTemplate"></dxi-column>
@@ -288,7 +288,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true" fileName="RegionCentroOccidente" [customizeExcelCell]="customizeRCO"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Región-Centro-Occidente" [customizeExcelCell]="customizeRCO"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -350,7 +350,7 @@
                             <div class="diff"></div>
                         </div>
             
-                        <dxo-export [enabled]="true" fileName="GolfoSureste" [customizeExcelCell]="customizeGS"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Golfo-Sureste" [customizeExcelCell]="customizeGS"></dxo-export>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>

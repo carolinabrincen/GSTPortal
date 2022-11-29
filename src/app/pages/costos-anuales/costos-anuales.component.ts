@@ -387,14 +387,14 @@ export class CostosAnualesComponent implements OnInit {
           e.summaryCells[5][0].displayFormat = e.key[1];
         }else{
           this.groupValue = '0.- INDICADORES';
-
-          // e.rowElement.style.backgroundColor = '#f5f5f5';
-          // e.rowElement.style.color = 'red';
     
-          // e.cells.forEach((c: any) => {
-          //   console.log(c)
-
-          // })
+          e.cells.forEach((c: any) => {
+          
+            if(c.summaryItems.length !== 0 ){
+              c.summaryItems = [];
+              // c.cellElement.style.background = "#dcdcdc";
+            }
+          })
 
         }
 
@@ -402,6 +402,16 @@ export class CostosAnualesComponent implements OnInit {
 
       if (e.groupIndex === 2) {
         e.summaryCells[5][0].displayFormat = e.key[2];
+
+        if(e.data.key == 'INDICADORES'){
+          e.cells.forEach((c: any) => {
+          
+            if(c.summaryItems.length !== 0 ){
+              c.summaryItems = [];
+              // c.cellElement.style.background = "#dcdcdc";
+            }
+          })
+        }
 
 //================================Resta de la agrupacion de 01.- OPERACION==============================================
 //========================Sacando los valores para  01.- OPERACION======================================================
@@ -872,6 +882,37 @@ export class CostosAnualesComponent implements OnInit {
 
       if (e.groupIndex === 3) {
         e.summaryCells[5][0].displayFormat = e.key[3];
+
+
+        if(e.data.key == 'a) VOLUMEN TRANSPORTADO'){
+          e.cells.forEach((c: any) => {
+          
+            if(c.summaryItems.length !== 0 ){
+              c.summaryItems = [];
+              // c.cellElement.style.background = "#dcdcdc";
+            }
+          })
+        }
+
+        if(e.data.key == 'b) KILÓMETROS'){
+          e.cells.forEach((c: any) => {
+          
+            if(c.summaryItems.length !== 0 ){
+              c.summaryItems = [];
+              // c.cellElement.style.background = "#dcdcdc";
+            }
+          })
+        }
+
+        if(e.data.key == 'c) VIAJES REALIZADOS'){
+          e.cells.forEach((c: any) => {
+          
+            if(c.summaryItems.length !== 0 ){
+              c.summaryItems = [];
+              // c.cellElement.style.background = "#dcdcdc";
+            }
+          })
+        }
 
         //=================================Resta de la agrupacion Otros gastos/ingresos ordinarios=========================
         //========================Sacando los valores para la operacion============================================
