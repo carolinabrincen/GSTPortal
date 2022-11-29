@@ -22,7 +22,6 @@ import { CostosTPS } from '../../shared/models/costos-anuales/CostosTPS.model';
 import { CostosTPSOccidente } from '../../shared/models/costos-anuales/costosTPSOccidente.model';
 import { CostosTPSGolfo } from '../../shared/models/costos-anuales/costosTPSGolfo.mode';
 import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGrafica.mode';
-
 @Component({
 
   templateUrl: './costos-anuales.component.html',
@@ -394,7 +393,7 @@ export class CostosAnualesComponent implements OnInit {
               c.summaryItems = [];
               // c.cellElement.style.background = "#dcdcdc";
             }
-          })
+          });
 
         }
 
@@ -2045,11 +2044,11 @@ export class CostosAnualesComponent implements OnInit {
       this.loadingVisible = true;
       this.getTPS();
     }else{
-    const type ='warning';
-    const text = "Por favor selecciones el año y mes";
+    // const type ='warning';
+    // const text = "Por favor selecciones el año y mes";
 
-    this.type = type;
-    this.message = text;
+    // this.type = type;
+    // this.message = text;
     this.isVisible = true;
     }
   };
@@ -2248,6 +2247,11 @@ export class CostosAnualesComponent implements OnInit {
     }
   }
 
+
+
+  formatSliderTooltip (value) {
+    return "$"+value;
+}
 }
 
 

@@ -1,3 +1,10 @@
 // ::ng-deep .dx-data-grid-total-footer{
 //     display:none
 //   }
+
+::ng-deep .dx-toast-content {
+    min-width: 200px;
+    max-width: 400px;
+    font-weight: bold;
+    font-size: 14px;
+  }

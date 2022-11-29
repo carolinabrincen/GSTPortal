@@ -75,24 +75,29 @@
 
             <!--==========================Line Chart==================-->
             <dx-chart id="chart" [dataSource]="costosTPSGrafica">
-                <dxi-series
-                  argumentField="udn"
-                  valueField="ingreso"
-                  name="Ingreso"
+                <dxi-series argumentField="udn" valueField="ingreso" name="Ingreso" type="bar" color="#ffaa66"></dxi-series>
+                <dxo-common-series-settings
+                  argumentField="state"
                   type="bar"
-                  color="#ffaa66"
+                  hoverMode="allArgumentPoints"
+                  selectionMode="allArgumentPoints"
                 >
-                </dxi-series>
-                
-                <dxi-series
-                  argumentField="udn"
-                  valueField="presupuesto"
-                  name="Presupuesto"
-                  type="line"
-                  color="violet"
-                >
-                </dxi-series>
-                <dxo-tooltip [enabled]="true"></dxo-tooltip>
+                <dxo-label
+                [visible]="true"
+                [format]="formatSliderTooltip"
+              >
+                  <!-- <dxo-label
+                    [visible]="true"
+                    [format]="{
+                      type: 'fixedPoint',
+                      precision: 2
+                    }"
+                  > -->
+                  </dxo-label>
+                </dxo-common-series-settings>
+
+                <dxi-series argumentField="udn" valueField="presupuesto" name="Presupuesto" type="line" color="violet"></dxi-series>
+                <dxo-export [enabled]="true"></dxo-export>
               </dx-chart>
             <!--====================================Finish chart==========-->
 
@@ -781,6 +786,15 @@
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
     </dx-load-panel>
 
-    <dx-toast [(visible)]="isVisible" [type]="type" [message]="message">
+    <dx-toast
+    [(visible)]="isVisible"
+    type="warning"
+    message="Porfavor selecciones Año y Mes"
+    >  
+        <dxo-position
+            my="top"
+            at="right"
+            of="#container">
+        </dxo-position>
     </dx-toast>
 </div>
