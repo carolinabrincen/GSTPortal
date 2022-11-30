@@ -84,6 +84,10 @@
                     <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside"></dxo-label>
                 </dxi-series>
                 
+                <dxo-title text="Ingreso">
+                    <dxo-subtitle text="(Mensual)"> </dxo-subtitle>
+                </dxo-title>
+
                 <dxo-export [enabled]="true"></dxo-export>
               </dx-chart>
 
@@ -774,11 +778,7 @@
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
     </dx-load-panel>
 
-    <dx-toast
-    [(visible)]="isVisible"
-    type="warning"
-    message="Porfavor selecciones Año y Mes"
-    >  
+    <dx-toast [(visible)]="isVisible" type="warning" message="Seleccione Año y Mes">  
         <dxo-position
             my="top"
             at="right"

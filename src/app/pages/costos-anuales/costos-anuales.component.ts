@@ -2247,8 +2247,7 @@ export class CostosAnualesComponent implements OnInit {
     }
   }
 
-
-
+//==================Formato a la data de la grafica==================================
   formatSliderTooltip (value) {
      return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
 }

@@ -13,8 +13,6 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule} from 'devextreme-angular';
 
-  import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
   import { IngresosComponent } from './pages/ingresosAnuales/ingresos.component';
@@ -122,5 +120,3 @@ const routes: Routes = [
     IngresosComponent, CotizadorComponent, IngresosDetalladosComponent, KilometrosComponent, CostosComponent, CostosAnualesComponent]
 })
 export class AppRoutingModule { }
-
-platformBrowserDynamic().bootstrapModule(AppRoutingModule);
