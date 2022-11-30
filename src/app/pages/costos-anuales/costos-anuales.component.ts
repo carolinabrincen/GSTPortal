@@ -2250,17 +2250,7 @@ export class CostosAnualesComponent implements OnInit {
 
 
   formatSliderTooltip (value) {
-    return "$"+value;
-}
-
-valueText: string;
-
-temperatureCustomizeText() {
-  return `${this.valueText} °C`;
-}
-
-precipitationCustomizeText() {
-  return `${this.valueText} mm`;
+     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
 }
 
 }
