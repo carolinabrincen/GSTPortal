@@ -65,6 +65,10 @@ export const navigation = [
     icon: 'columnchooser',
     path: '/costos-anuales'
     
+  },{
+    text: 'Permisos/Bitacora',
+    icon: 'columnchooser',
+    path: '/permiso-bitacora'
   }
 
 ];

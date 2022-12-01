@@ -22,7 +22,8 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { IngresosDetalladosComponent } from './pages/ingresos-detallados/ingresos-detallados.component';
   import { KilometrosComponent } from './pages/kilometros/kilometros.component';
   import { CostosComponent } from './pages/costos/costos.component';
-  import { CostosAnualesComponent } from './pages/costos-anuales/costos-anuales.component'
+  import { CostosAnualesComponent } from './pages/costos-anuales/costos-anuales.component';
+  import { PermisoBitacoraComponent } from './pages/persmiso-bitacora/permiso-bitacora.component';
 
 
 const routes: Routes = [
@@ -105,19 +106,60 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'permiso-bitacora',
+    component: PermisoBitacoraComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true }), DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule,
-    DxCalendarModule, DxPopupModule, DxTabPanelModule, DxDataGridModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule,
-    DxTagBoxModule, DxValidatorModule, DxLoadPanelModule, DxToastModule, CommonModule,  DxTemplateModule, DxToolbarModule, DxSpeedDialActionModule,
-    DxRadioGroupModule, DxTabsModule, DxScrollViewModule, DxCheckBoxModule],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true }), 
+    DxFormModule, 
+    DxSelectBoxModule, 
+    DxButtonModule, 
+    DxDropDownBoxModule, 
+    DxTreeViewModule,
+    DxCalendarModule, 
+    DxPopupModule, 
+    DxTabPanelModule, 
+    DxDataGridModule, 
+    DxChartModule, 
+    DxPivotGridModule, 
+    DxResponsiveBoxModule, 
+    DxDateBoxModule,
+    DxTagBoxModule, 
+    DxValidatorModule, 
+    DxLoadPanelModule, 
+    DxToastModule, 
+    CommonModule,  
+    DxTemplateModule, 
+    DxToolbarModule, 
+    DxSpeedDialActionModule,
+    DxRadioGroupModule, 
+    DxTabsModule, 
+    DxScrollViewModule, 
+    DxCheckBoxModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
-  declarations: [HomeComponent, ProfileComponent, TasksComponent, DetailGridComponent, RentContComponent, RentGerComponent, GridCellDataPipe,
-    IngresosComponent, CotizadorComponent, IngresosDetalladosComponent, KilometrosComponent, CostosComponent, CostosAnualesComponent]
+  declarations: [
+    HomeComponent, 
+    ProfileComponent, 
+    TasksComponent, 
+    DetailGridComponent, 
+    RentContComponent, 
+    RentGerComponent, 
+    GridCellDataPipe,
+    IngresosComponent, 
+    CotizadorComponent, 
+    IngresosDetalladosComponent, 
+    KilometrosComponent, 
+    CostosComponent, 
+    CostosAnualesComponent,
+    PermisoBitacoraComponent]
 })
 export class AppRoutingModule { }
