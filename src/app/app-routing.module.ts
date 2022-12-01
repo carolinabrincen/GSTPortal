@@ -11,7 +11,8 @@ import { DetailGridComponent } from './pages/profile/detail-grid/detail-grid.com
 
 import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule, DxCalendarModule,
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
-  DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule} from 'devextreme-angular';
+  DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
+  DxCheckBoxModule} from 'devextreme-angular';
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -113,7 +114,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true }), DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule,
     DxCalendarModule, DxPopupModule, DxTabPanelModule, DxDataGridModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule,
     DxTagBoxModule, DxValidatorModule, DxLoadPanelModule, DxToastModule, CommonModule,  DxTemplateModule, DxToolbarModule, DxSpeedDialActionModule,
-    DxRadioGroupModule, DxTabsModule, DxScrollViewModule],
+    DxRadioGroupModule, DxTabsModule, DxScrollViewModule, DxCheckBoxModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [HomeComponent, ProfileComponent, TasksComponent, DetailGridComponent, RentContComponent, RentGerComponent, GridCellDataPipe,

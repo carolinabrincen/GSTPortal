@@ -22,6 +22,8 @@ import { CostosTPS } from '../../shared/models/costos-anuales/CostosTPS.model';
 import { CostosTPSOccidente } from '../../shared/models/costos-anuales/costosTPSOccidente.model';
 import { CostosTPSGolfo } from '../../shared/models/costos-anuales/costosTPSGolfo.mode';
 import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGrafica.mode';
+
+import notify from 'devextreme/ui/notify';
 @Component({
 
   templateUrl: './costos-anuales.component.html',
@@ -2044,12 +2046,7 @@ export class CostosAnualesComponent implements OnInit {
       this.loadingVisible = true;
       this.getTPS();
     }else{
-    // const type ='warning';
-    // const text = "Por favor selecciones el año y mes";
-
-    // this.type = type;
-    // this.message = text;
-    this.isVisible = true;
+      this.isVisible = true;
     }
   };
 
@@ -2249,7 +2246,8 @@ export class CostosAnualesComponent implements OnInit {
 
 //==================Formato a la data de la grafica==================================
   formatSliderTooltip (value) {
-     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
+    
+    return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
 }
 
 }
