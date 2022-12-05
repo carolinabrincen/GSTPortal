@@ -51,6 +51,7 @@ export enum API_URLS{
 
     POST_RESULT_COSTO_ANUAL = 'api/Costos/GetEdoResultados',
     POST_DETALLE_CUENTA = 'api/Costos/GetDetalleCuenta',
-    GET_TPS = 'api/Costos/GetTPS/'
+    GET_TPS = 'api/Costos/GetTPS/',
+    GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios'
     
 }

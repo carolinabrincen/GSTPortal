@@ -23,34 +23,8 @@ export class PermisoBitacoraService extends AbstractManagerService {
     this.putInterfaceManager(this);
   }
 
-
-  postEdoResult(anio: number, compania: number, area: number[], mes: number, clasificacion: string){
-    let body = {
-      anio: anio,
-      compania: compania,
-      area:area.length == 7 ? [] : area,//area: area,
-      mes: mes,
-      clasificacion: clasificacion
-    }
-    console.log(body)
-    return this.post<any>((this.API_URL + API_URLS.POST_RESULT_COSTO_ANUAL), body, this.httpOptions);
-  }
-
-  postDetalleCuenta(periodo: number, idCuenta: number){
-    let body = {
-      periodo: periodo,
-      idCuenta: idCuenta
-    }
-    return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_CUENTA), body, this.httpOptions);
-  }
-
-  getUnidadesNegocio(){
-    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
-  }
-
-  getTPS(anio: number, mes: number){
-
-    return this.get<any>((this.API_URL + API_URLS.GET_TPS+ anio+"/"+mes), this.httpOptions);
+  getTipoUsuario(){
+    return this.get<any>((this.API_URL + API_URLS.GET_TIPO_USUARIOS), this.httpOptions);
   }
 
 

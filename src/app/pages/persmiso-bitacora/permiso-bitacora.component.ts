@@ -3,6 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
+import { PermisoBitacoraService } from '../../services/permisos-bitacora/permiso-bitacora.service'
+import { TipoUsuario } from '../../shared/models/permisosBitacora/tipoUsuario';
+ 
 @Component({
   templateUrl: './permiso-bitacora.component.html',
   styleUrls: ['./permiso-bitacora.component.scss'],
@@ -11,19 +14,14 @@ export class PermisoBitacoraComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
-  portalGST: any[] = [];
-  gerencialGST: any[] = [];
-  bitacora: any[] = [];
+  gridPortalGST: any[] = [];
+  gridGerencialGST: any[] = [];
+  gridBitacora: any[] = [];
+  gridUsuario: any[] = [];
 
 
   fechaInicio: Date = new Date();
   fechaFin: Date = new Date();
-
-
-  usuarios: any[] = [
-    { id: 1, usuario: "Marco" }
-    // { idAnio: 2021, anio: "2021" },
-  ];
 
   tipo: any[] = [
     { id: 1, tipo: '' },
@@ -34,6 +32,7 @@ export class PermisoBitacoraComponent implements OnInit {
     { id: 2, portal: 'Gerencial GST' },
   ];
 
+  tipoUsuario: TipoUsuario[] = []
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
@@ -53,16 +52,27 @@ export class PermisoBitacoraComponent implements OnInit {
   promedioPonderado: number = 0;
 
   constructor(
+    private PBUService: PermisoBitacoraService
     ) {
 
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTipoUsuarios();
+  }
 
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
+
+  getTipoUsuarios() {
+    this.PBUService.getTipoUsuario().subscribe(data => {
+    this.tipoUsuario = data.data
+    console.log(data.data)
+    });
+
+  }
 
   //=================SELECTS========================
   selectUsuarios(e: any) {
