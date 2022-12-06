@@ -24,7 +24,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CostosComponent } from './pages/costos/costos.component';
   import { CostosAnualesComponent } from './pages/costos-anuales/costos-anuales.component';
   import { PermisoBitacoraComponent } from './pages/persmiso-bitacora/permiso-bitacora.component';
-
+  import { BalanzaComponent } from './pages/balanza/balanza.component';
 
 const routes: Routes = [
   {
@@ -111,6 +111,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'balanza',
+    component: BalanzaComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -160,6 +165,8 @@ const routes: Routes = [
     KilometrosComponent, 
     CostosComponent, 
     CostosAnualesComponent,
-    PermisoBitacoraComponent]
+    PermisoBitacoraComponent,
+    BalanzaComponent
+  ]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,169 @@
+<!-- Card principal  -->
+<div class="content-block dx-card responsive-paddings padding-10">
+
+    <dx-responsive-box>
+        <!-- COLS -->
+        <!-- <dxi-col [ratio]="1"></dxi-col> -->
+        <!--Año-->
+        <dxi-col [ratio]=".60"></dxi-col>
+        <dxi-col [ratio]="1"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Mes-->
+        <dxi-col [ratio]=".60"></dxi-col>
+        <dxi-col [ratio]="1.50"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Compañia-->
+        <dxi-col [ratio]="1.30"></dxi-col>
+        <dxi-col [ratio]="4"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--UDN-->
+        <dxi-col [ratio]=".70"></dxi-col>
+        <dxi-col [ratio]="3"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Clasificacion-->
+        <dxi-col [ratio]="1.70"></dxi-col>
+        <dxi-col [ratio]="3"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".15"></dxi-col>
+        <!--Buscar-->
+        <dxi-col [ratio]="1"></dxi-col>
+        <dxi-col [ratio]=".25"></dxi-col>
+
+
+        <!-- ROWS -->
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+
+        <!-- CONTROLES DEL FORM -->
+        <!--#region :::: ROW 1 DEL FORM ::::  -->
+        <!-- AÑO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Año:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="anio" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="selectAnio($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!-- MES -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
+            <div>Mes:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="meses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="selectMes($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!--Compañia -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+            <div>Compañia:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="companias" displayExpr="compania" valueExpr="idComp" (onValueChanged)="selectCompania($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!--ROW 1 Unidad de Negocio -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+            <div>UdN:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="unidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="selectUdN($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!-- TRACTO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Centro de Costos:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="13"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="centroCostos" displayExpr="clasificacion" valueExpr="clasificacion" (onValueChanged)="selectCostos($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!-- BUSCAR -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="2" [col]="13"></dxi-location>
+            <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+            <div>
+                <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <!--#endregion :::: FIN ROW 1 ::::  -->
+    </dx-responsive-box>
+    <br><br><br>
+
+
+    <dx-data-grid #rentGer id="gridContainer" [dataSource]="gridBalanza" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPrepared($event)">
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
+        
+    
+    <dxi-column dataField="" caption="Grid datos" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <div *dxTemplate="let data of 'headerTemplate'">
+            <div style="font-weight: bolder; color: black">
+                {{ data.column.caption }}
+        </div>
+    </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+            <div style="font-weight: bolder; color: #ff5722">
+                {{ info.column.caption }}
+        </div>
+    </div>
+        <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
+        <div class="diff"></div>
+    </div>
+        <dxo-export [enabled]="true" fileName="TPS-Global"></dxo-export>
+        <dxo-paging [pageSize]="100"></dxo-paging>
+        <dxo-sorting mode="none"></dxo-sorting>
+    </dx-data-grid>
+
+
+
+
+
+   
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+    </dx-load-panel>
+</div>
