@@ -27,5 +27,20 @@ export class BalanzaService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
   }
 
+  getCostosCC(){
+    return this.get<any>((this.API_URL + API_URLS.GET_COSTOS_CC), this.httpOptions);
+  }
+
+  postBalanza (mes: number, anio: number, idCompania: number, idUdn: number, idCc: number){
+    let body = {
+      mes: mes,
+      anio: anio,
+      idCompania: idCompania,
+      idUdn: idUdn,      
+      idCc: idCc
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_BALANZA), body, this.httpOptions);
+  }
 
 }

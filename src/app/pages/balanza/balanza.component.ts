@@ -4,7 +4,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import { BalanzaService } from '../../services/balanza/balanza.service';
-
+import { CentroCostos } from '../../shared/models/balanza/centroCostos.model';
+import { Balanza } from '../../shared/models/balanza/balanza.model';
 @Component({
   templateUrl: './balanza.component.html',
   styleUrls: ['./balanza.component.scss'],
@@ -13,14 +14,14 @@ export class BalanzaComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
-  gridBalanza: any[] = [];
+  gridBalanza: Balanza[] = [];
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
   loadingVisible = false;
 
   unidadesNegocio: UnidadesNegocioModel[] = [];
-  centroCostos: any[] = [];
+  centroCostos: CentroCostos[] = [];
 
   selectedAnio: any;
   selectedMes: any;
@@ -61,7 +62,7 @@ export class BalanzaComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.getCC();
   }
 
   ngAfterViewInit(): void {}
@@ -69,7 +70,6 @@ export class BalanzaComponent implements OnInit {
   //=================GETS===========================
   getUnidadesNegocio() {
     this.balanzaService.getUnidadesNegocio().subscribe(res => {
-      console.log(res)
       if(this.selectedCompania == 1){
         const orderdata: UnidadesNegocioModel[] = res.data;
         let neworderdata = [];
@@ -91,6 +91,12 @@ export class BalanzaComponent implements OnInit {
     });
 
   }
+
+  getCC(){
+    this.balanzaService.getCostosCC().subscribe(data => {
+      this.centroCostos = data.data;
+    })
+  }
   //=================SELECTS========================
   selectAnio(e: any) {
     this.selectedAnio = e.value;
@@ -102,6 +108,7 @@ export class BalanzaComponent implements OnInit {
 
   selectCompania(e: any){
     this.selectedCompania = e.value;
+    console.log(this.selectedCompania)
     this.getUnidadesNegocio();
   } 
 
@@ -115,19 +122,26 @@ export class BalanzaComponent implements OnInit {
   
   buscarClick = (e: any) => {
     // if (this.selectedClasficacion !==  undefined) {
-    //   this.loadingVisible = true;
-
-    //     // console.log('entre : '+this.totales.totalER)
-
-    //   this.callCostosAnuales().then(() => {
-    //     this.loadingVisible = false;
-    //   });
+      this.loadingVisible = true;
+      this.postBalanza().then(() => {
+        this.loadingVisible = false;
+      });
     // }
 
   };
 
+  postBalanza(){
+    const request = new Promise((resolve, reject) => {
+      this.balanzaService.postBalanza(this.selectedMes, this.selectedAnio, this.selectedCompania, this.selectedUdN, this.selectedCostos).subscribe(data =>{
+        this.gridBalanza = data.data;
+        this.loadingVisible = false;
+      })
+    });
+    return request;
+  }
+
   onRowPrepared(e:any){
-    
+
   }
 
 
