@@ -15,6 +15,7 @@ export class BalanzaComponent implements OnInit {
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
   gridBalanza: Balanza[] = [];
+  gridDetalle: any[] = [];
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
@@ -28,6 +29,10 @@ export class BalanzaComponent implements OnInit {
   selectedCompania: any;
   selectedUdN: any;
   selectedCostos: any;
+
+  modDetalle: boolean = false;
+
+  positionOf: string = '#myDiv';
   
   anio: AniosModel[] = [
     { idAnio: 2022, anio: "2022" }
@@ -141,6 +146,15 @@ export class BalanzaComponent implements OnInit {
   }
 
   onRowPrepared(e:any){
+
+  }
+
+  onRowPreparedDetalle(e:any){
+
+  }
+  
+  verDetallesClick(e: any) {
+    this.modDetalle = true;
 
   }
 
