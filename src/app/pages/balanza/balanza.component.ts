@@ -60,13 +60,17 @@ export class BalanzaComponent implements OnInit {
   ]
 
 
-  maxDate: Date = new Date();
+  maxDate: any;
   now: Date = new Date();
+
+  isVisible = false;
+  type = 'info';
+  message = '';
 
   constructor(
     private balanzaService: BalanzaService
     ) {
-  }
+    }
 
 
   ngOnInit(): void {
@@ -112,13 +116,11 @@ export class BalanzaComponent implements OnInit {
     this.selectedFechaI = e.value;
   } 
   
-  fechaVal: boolean
   selectFechaF(e: any){
     this.selectedFechaF = e.value;
 
     if(this.selectedFechaI >= this.selectedFechaF){
-      alert('entre')
-      this.fechaVal == true;
+      this.isVisible = true;
     }
   } 
 
@@ -176,8 +178,10 @@ export class BalanzaComponent implements OnInit {
 
   }
 
-
-
+  validatioDate(e){
+   alert('entre') 
+  }
+ 
 }
 
 

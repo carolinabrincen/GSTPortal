@@ -69,18 +69,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="4" [col]="0" [colspan]="12"></dxi-location>
-            <!-- <div id="form-container">
-                <dx-form id="form">
-                    <dxi-item editorType="dxDateBox"></dxi-item>       
-                    <dxi-item dataField="Date" editorType="dxDateBox" [editorOptions]="{ invalidDateMessage: 'The date must have the following format: MM/dd/yyyy'}">
-                      <dxi-validation-rule type="required" message="Date of birth is required"></dxi-validation-rule>
-                      <dxi-validation-rule type="range" [max]="maxDate" message="You must be at least 21 years old"></dxi-validation-rule>
-                    </dxi-item>
-                </dx-form>         
-            </div> -->
-            <dx-date-box type="date" (onValueChanged)="selectFechaF($event)">
-                <dxi-validation-rule type="range" message="You must be at least 21 years old"></dxi-validation-rule>
-            </dx-date-box>
+            <dx-date-box type="date" (onValueChanged)="selectFechaF($event)"></dx-date-box>
         </dxi-item>
 
         <!--Compañia -->
@@ -167,10 +156,10 @@
 
 
         <dxo-summary>
-            <dxi-total-item  column="saldoInicial" summaryType="sum" valueFormat="currency"></dxi-total-item>
-            <dxi-total-item  column="cargos" summaryType="sum" valueFormat="currency"></dxi-total-item>
-            <dxi-total-item  column="abonos" summaryType="sum" valueFormat="currency"></dxi-total-item>
-            <dxi-total-item  column="saldoFinal" summaryType="sum" valueFormat="currency"></dxi-total-item>
+            <dxi-total-item  column="saldoInicial" summaryType="sum" valueFormat="currency" displayFormat="Total: {0}"></dxi-total-item>
+            <dxi-total-item  column="cargos" summaryType="sum" valueFormat="currency" displayFormat="Total: {0}"></dxi-total-item>
+            <dxi-total-item  column="abonos" summaryType="sum" valueFormat="currency" displayFormat="Total: {0}"></dxi-total-item>
+            <dxi-total-item  column="saldoFinal" summaryType="sum" valueFormat="currency" displayFormat="Total: {0}"></dxi-total-item>
         </dxo-summary>
         
         <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -260,4 +249,12 @@ width="99%" [height]="400" [showTitle]="true" title="Detalle Balanza" [dragEnabl
     <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
     </dx-load-panel>
+
+    <dx-toast [(visible)]="isVisible" type="error" message="La fecha no debe ser menor a la Fecha Inicio">  
+        <dxo-position
+            my="top"
+            at="top center"
+            of="#container">
+        </dxo-position>
+    </dx-toast>
 </div>
