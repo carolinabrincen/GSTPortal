@@ -24,8 +24,8 @@ export class BalanzaComponent implements OnInit {
   unidadesNegocio: UnidadesNegocioModel[] = [];
   centroCostos: CentroCostos[] = [];
 
-  selectedAnio: any;
-  selectedMes: any;
+  selectedFechaI: any;
+  selectedFechaF: any;
   selectedCompania: any;
   selectedUdN: any;
   selectedCostos: any;
@@ -59,10 +59,13 @@ export class BalanzaComponent implements OnInit {
     {idComp:3, compania: 'TRANSPORTE DE CARGA GEMINIS'}
   ]
 
+
+  maxDate: Date = new Date();
+  now: Date = new Date();
+
   constructor(
     private balanzaService: BalanzaService
     ) {
-
   }
 
 
@@ -103,12 +106,20 @@ export class BalanzaComponent implements OnInit {
     })
   }
   //=================SELECTS========================
-  selectAnio(e: any) {
-    this.selectedAnio = e.value;
+  
+  selectFechaI(e: any) {
+    console.log(e.value)
+    this.selectedFechaI = e.value;
   } 
   
-  selectMes(e: any){
-    this.selectedMes = e.value;
+  fechaVal: boolean
+  selectFechaF(e: any){
+    this.selectedFechaF = e.value;
+
+    if(this.selectedFechaI >= this.selectedFechaF){
+      alert('entre')
+      this.fechaVal == true;
+    }
   } 
 
   selectCompania(e: any){
@@ -137,8 +148,15 @@ export class BalanzaComponent implements OnInit {
 
   postBalanza(){
     const request = new Promise((resolve, reject) => {
-      this.balanzaService.postBalanza(this.selectedMes, this.selectedAnio, this.selectedCompania, this.selectedUdN, this.selectedCostos).subscribe(data =>{
+      var mes = 1;
+      var anio = 2022;
+      var compania = 1;
+      var udn = 1;
+      var costos = 2;
+
+      this.balanzaService.postBalanza(mes, anio, compania, udn, costos).subscribe(data =>{
         this.gridBalanza = data.data;
+        this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
         this.loadingVisible = false;
       })
     });
@@ -157,6 +175,7 @@ export class BalanzaComponent implements OnInit {
     this.modDetalle = true;
 
   }
+
 
 
 }
