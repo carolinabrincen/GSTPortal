@@ -82,6 +82,9 @@ export class BalanzaComponent implements OnInit {
   //=================GETS===========================
   getUnidadesNegocio() {
     this.balanzaService.getUnidadesNegocio().subscribe(res => {
+      if(this.selectedCompania.length == 3){
+        this.unidadesNegocio = res.data;
+      }
       if(this.selectedCompania == 1){
         const orderdata: UnidadesNegocioModel[] = res.data;
         let neworderdata = [];
@@ -126,7 +129,6 @@ export class BalanzaComponent implements OnInit {
 
   selectCompania(e: any){
     this.selectedCompania = e.value;
-    console.log(this.selectedCompania)
     this.getUnidadesNegocio();
   } 
 
