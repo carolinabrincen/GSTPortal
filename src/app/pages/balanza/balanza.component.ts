@@ -6,6 +6,11 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 import { BalanzaService } from '../../services/balanza/balanza.service';
 import { CentroCostos } from '../../shared/models/balanza/centroCostos.model';
 import { Balanza } from '../../shared/models/balanza/balanza.model';
+import { Compania } from '../../shared/models/balanza/compania.model';
+import { UnidadNegocio } from '../../shared/models/balanza/udn.model';
+import { Tipos } from '../../shared/models/balanza/tipos.model';
+import { Clases } from '../../shared/models/balanza/clases.model';
+
 @Component({
   templateUrl: './balanza.component.html',
   styleUrls: ['./balanza.component.scss'],
@@ -21,13 +26,12 @@ export class BalanzaComponent implements OnInit {
 
   loadingVisible = false;
 
-  unidadesNegocio: UnidadesNegocioModel[] = [];
-  centroCostos: CentroCostos[] = [];
-
   selectedFechaI: any;
   selectedFechaF: any;
   selectedCompania: any;
   selectedUdN: any;
+  selectedTiposCostos: any;
+  selectedClasesCostos: any;
   selectedCostos: any;
 
   modDetalle: boolean = false;
@@ -53,12 +57,11 @@ export class BalanzaComponent implements OnInit {
     { idMes: 12, nombre: 'DICIEMBRE' }
   ];
 
-  companias: CompaniaModel[] =[
-    {idComp:1, compania: 'TRANSPORTES BONAMPAK'},
-    {idComp:2, compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL'},
-    {idComp:3, compania: 'TRANSPORTE DE CARGA GEMINIS'}
-  ]
-
+  companias: Compania[] =[]
+  unidadesNegocio: UnidadNegocio[] = [];
+  tiposCostos: Tipos[] = [];
+  clasesCostos: Clases[] = [];
+  centroCostos: CentroCostos[] = [];
 
   maxDate: any;
   now: Date = new Date();
@@ -74,43 +77,55 @@ export class BalanzaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCC();
+    this.getCompanias();
+    this.getTipoCostos();
   }
 
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
-  getUnidadesNegocio() {
-    this.balanzaService.getUnidadesNegocio().subscribe(res => {
-      if(this.selectedCompania.length == 3){
-        this.unidadesNegocio = res.data;
-      }
-      if(this.selectedCompania == 1){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[0],orderdata[1],orderdata[2],orderdata[3],
-            orderdata[4]);
-        this.unidadesNegocio = neworderdata;  
-      }else if(this.selectedCompania == 2){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[5]);
-        this.unidadesNegocio = neworderdata;
-      }else if(this.selectedCompania == 3){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[6]);
-        this.unidadesNegocio = neworderdata;
-      }
+  getCompanias(){
+    this.balanzaService.getCompanias().subscribe(data => {
+      this.companias = data.data;
+    })
+  }
 
+  getUnidadesNegocio(id) {
+    const request = new Promise((resolve, reject) => {
+      this.balanzaService.postUnidadesNegocio(id).subscribe(data =>{
+        this.unidadesNegocio = data.data;
+      })
     });
+    return request;
 
   }
 
-  getCC(){
-    this.balanzaService.getCostosCC().subscribe(data => {
-      this.centroCostos = data.data;
+  getTipoCostos(){
+    this.balanzaService.getTipoCostos().subscribe(data =>{
+      this.tiposCostos = data.data;
+      console.log(this.tiposCostos)
     })
+  }
+
+  postClasesCostos(id){
+    const request = new Promise((resolve, reject) => {
+      this.balanzaService.postClasesCostos(id).subscribe(data =>{
+        this.clasesCostos = data.data;
+      })
+    });
+    return request;
+
+  }
+
+  getCC(tipos, clase){
+    const request = new Promise((resolve, reject) => {
+
+      this.balanzaService.postCostosCC(tipos, clase).subscribe(data =>{
+        this.centroCostos = data.data;
+        console.log(this.centroCostos)
+      })
+    });
+    return request;
   }
   //=================SELECTS========================
   
@@ -129,12 +144,28 @@ export class BalanzaComponent implements OnInit {
 
   selectCompania(e: any){
     this.selectedCompania = e.value;
-    this.getUnidadesNegocio();
+
+    this.getUnidadesNegocio(this.selectedCompania)
   } 
 
   selectUdN(e: any){
     this.selectedUdN = e.value;
   } 
+
+  selectTiposCostos(e: any){
+    this.selectedTiposCostos = e.value;
+
+    this.postClasesCostos(this.selectedTiposCostos)
+  }
+
+  selecttClasesCostos(e: any){
+    this.selectedClasesCostos = e.value;
+
+    var tipo = this.selectedTiposCostos;
+    var clase =  this.selectedClasesCostos
+    console.log(tipo, clase)
+    this.getCC(this.selectedTiposCostos, this.selectedClasesCostos)
+  }
 
   selectCostos(e: any){
     this.selectedCostos = e.value;
@@ -179,11 +210,6 @@ export class BalanzaComponent implements OnInit {
     this.modDetalle = true;
 
   }
-
-  validatioDate(e){
-   alert('entre') 
-  }
- 
 }
 
 

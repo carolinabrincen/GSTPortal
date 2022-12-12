@@ -15,8 +15,8 @@
         <!--vacia-->
         <dxi-col [ratio]=".40"></dxi-col>
         <!--Compañia-->
-        <dxi-col [ratio]="4"></dxi-col>
-        <dxi-col [ratio]="9"></dxi-col>
+        <dxi-col [ratio]="5"></dxi-col>
+        <dxi-col [ratio]="8"></dxi-col>
         <!--vacia-->
         <!-- <dxi-col [ratio]=".15"></dxi-col> -->
         <!--Buscar-->
@@ -81,7 +81,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="companias" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="companias" displayExpr="compania" valueExpr="idComp" (onValueChanged)="selectCompania($event)">
+            <dx-tag-box [items]="companias" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="companias" displayExpr="compania" valueExpr="idCompania" (onValueChanged)="selectCompania($event)">
             </dx-tag-box>
         </dxi-item>
         <!--ROW 1 Unidad de Negocio -->
@@ -93,23 +93,47 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="2" [col]="1"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="unidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="unidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="selectUdN($event)">
+            <dx-tag-box [items]="unidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="unidadesNegocio" displayExpr="udn" valueExpr="idUdn" (onValueChanged)="selectUdN($event)">
             </dx-tag-box>
         </dxi-item>
-        <!--CC-->
+        <!--Tipos Costos-->
         <dxi-item>
             <dxi-location screen="md lg" [row]="2" [col]="3"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Tipos de Costos:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="2" [col]="4"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-tag-box [items]="tiposCostos" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="tiposCostos" displayExpr="nombre" valueExpr="idTipoCentrocosto" (onValueChanged)="selectTiposCostos($event)">
+            </dx-tag-box>
+        </dxi-item>
+        <!--Clase Costos-->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Clase de Costos:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="2" [col]="7"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+            <dx-tag-box [items]="clasesCostos" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="clasesCostos" displayExpr="nombre" valueExpr="idCentroCosto" (onValueChanged)="selecttClasesCostos($event)">
+            </dx-tag-box>
+        </dxi-item>
+        <!--Centro Costos-->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="4" [col]="0"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Centro de Costos:</div>
         </dxi-item>
         <dxi-item>
-            <dxi-location screen="md lg" [row]="2" [col]="4"></dxi-location>
+            <dxi-location screen="md lg" [row]="4" [col]="1"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
             <dx-tag-box [items]="centroCostos" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="centroCostos" displayExpr="cc" valueExpr="id" (onValueChanged)="selectCostos($event)">
             </dx-tag-box>
         </dxi-item>
         <!--CONSOLIDADO-->
-        <dxi-item>
+        <!-- <dxi-item>
             <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Consolidado:</div>
@@ -120,10 +144,10 @@
             <div>
               <dx-check-box [value]="false"></dx-check-box>
             </div>
-        </dxi-item>
+        </dxi-item> -->
         <!-- BUSCAR -->
         <dxi-item>
-            <dxi-location screen="md lg" [row]="4" [col]="7"></dxi-location>
+            <dxi-location screen="md lg" [row]="6" [col]="7"></dxi-location>
             <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
             <div>
                 <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">

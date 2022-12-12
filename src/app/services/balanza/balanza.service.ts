@@ -23,12 +23,33 @@ export class BalanzaService extends AbstractManagerService {
     this.putInterfaceManager(this);
   }
 
-  getUnidadesNegocio(){
-    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
+  getCompanias(){
+    return this.get<any>((this.API_URL + API_URLS.GET_COSTOS_COMPANIAS), this.httpOptions);
   }
 
-  getCostosCC(){
-    return this.get<any>((this.API_URL + API_URLS.GET_COSTOS_CC), this.httpOptions);
+  getTipoCostos(){
+    return this.get<any>((this.API_URL + API_URLS.GET_COSTOS_TIPOS), this.httpOptions);
+  }
+
+  postClasesCostos(id: number[]){
+    var myId = id.length == 7 ? []: id;
+    return this.post<any>((this.API_URL + API_URLS.GET_COSTOS_CLASES), myId, this.httpOptions);
+  }
+
+  postCostosCC(tipos: number[], clase:number[]){
+    let body = {
+      tipos: tipos.length == 7 ? []: tipos,
+      clase: clase.length == 7 ? []: clase
+    }
+    return this.post<any>((this.API_URL + API_URLS.POST_CENTRO_COSTOS), body, this.httpOptions);
+  }
+
+  postUnidadesNegocio(id:number[]){
+    //let body = {
+      var myId = id.length == 7 ? []: id
+    //}
+    //console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_COSTOS_UDN), myId, this.httpOptions);
   }
 
   postBalanza (mes: number, anio: number, idCompania: number, idUdn: number, idCc: number){
