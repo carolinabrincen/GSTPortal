@@ -52,14 +52,18 @@ export class BalanzaService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_COSTOS_UDN), myId, this.httpOptions);
   }
 
-  postBalanza (mes: number, anio: number, idCompania: number, idUdn: number, idCc: number){
+  postBalanza (inicio: string, fin: string, companias: number[], udNs: number[], tipos: number[], clases: number[], cCs: number[], consolidado: boolean){
     let body = {
-      mes: mes,
-      anio: anio,
-      idCompania: idCompania,
-      idUdn: idUdn,      
-      idCc: idCc
+      inicio: inicio,
+      fin: fin,
+      companias: companias.length == 7 ? []: companias,
+      udNs: udNs.length == 7 ? []: udNs,
+      tipos: tipos.length == 7 ? []: tipos,
+      clases: clases.length == 7 ? []: clases,
+      cCs: cCs.length == 7 ? []: cCs,
+      consolidado: consolidado
     }
+
     console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_BALANZA), body, this.httpOptions);
   }

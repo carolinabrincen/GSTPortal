@@ -160,10 +160,7 @@ export class BalanzaComponent implements OnInit {
 
   selecttClasesCostos(e: any){
     this.selectedClasesCostos = e.value;
-
-    var tipo = this.selectedTiposCostos;
-    var clase =  this.selectedClasesCostos
-    console.log(tipo, clase)
+    console.log(this.selectedClasesCostos)
     this.getCC(this.selectedTiposCostos, this.selectedClasesCostos)
   }
 
@@ -183,13 +180,9 @@ export class BalanzaComponent implements OnInit {
 
   postBalanza(){
     const request = new Promise((resolve, reject) => {
-      var mes = 1;
-      var anio = 2022;
-      var compania = 1;
-      var udn = 1;
-      var costos = 2;
-
-      this.balanzaService.postBalanza(mes, anio, compania, udn, costos).subscribe(data =>{
+  
+      var consolidado = true;
+      this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.selectedCompania, this.selectedUdN, this.selectedTiposCostos, this.selectedClasesCostos, this.selectedCostos, consolidado).subscribe(data =>{
         this.gridBalanza = data.data;
         this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
         this.loadingVisible = false;

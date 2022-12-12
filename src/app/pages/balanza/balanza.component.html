@@ -117,7 +117,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="2" [col]="7"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="clasesCostos" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="clasesCostos" displayExpr="nombre" valueExpr="idCentroCosto" (onValueChanged)="selecttClasesCostos($event)">
+            <dx-tag-box [items]="clasesCostos" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="clasesCostos" displayExpr="nombre" valueExpr="idCentroCostoClase" (onValueChanged)="selecttClasesCostos($event)">
             </dx-tag-box>
         </dxi-item>
         <!--Centro Costos-->
@@ -133,18 +133,18 @@
             </dx-tag-box>
         </dxi-item>
         <!--CONSOLIDADO-->
-        <!-- <dxi-item>
-            <dxi-location screen="md lg" [row]="2" [col]="6"></dxi-location>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="4" [col]="3"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Consolidado:</div>
         </dxi-item>
         <dxi-item>
-            <dxi-location screen="md lg" [row]="2" [col]="7"></dxi-location>
+            <dxi-location screen="md lg" [row]="4" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
             <div>
               <dx-check-box [value]="false"></dx-check-box>
             </div>
-        </dxi-item> -->
+        </dxi-item>
         <!-- BUSCAR -->
         <dxi-item>
             <dxi-location screen="md lg" [row]="6" [col]="7"></dxi-location>
@@ -165,9 +165,11 @@
 
         <dxi-column dataField="compania" caption="Compañia" [fixed]="false"></dxi-column>
         <dxi-column dataField="udn" caption="Unidad de Negocio" [fixed]="false"></dxi-column>
-        <dxi-column dataField="cc" caption="Centro de Costos" [fixed]="false"></dxi-column>
         <dxi-column dataField="cuenta" caption="Cuenta" [fixed]="false"></dxi-column>
         <dxi-column dataField="descripcion" caption="Descripción" [fixed]="false"></dxi-column>
+        <dxi-column dataField="tipo" caption="Tipo" [fixed]="false"></dxi-column>
+        <dxi-column dataField="clase" caption="Clase" [fixed]="false"></dxi-column>
+        <dxi-column dataField="cc" caption="Centro de Costos" [fixed]="false"></dxi-column>
         <dxi-column dataField="saldoInicial" caption="Saldo Inicial" [fixed]="false"></dxi-column>
         <dxi-column dataField="cargos" caption="Cargos" [fixed]="false"></dxi-column>
         <dxi-column dataField="abonos" caption="Abonos" [fixed]="false"></dxi-column>
