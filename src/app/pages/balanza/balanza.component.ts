@@ -37,25 +37,6 @@ export class BalanzaComponent implements OnInit {
   modDetalle: boolean = false;
 
   positionOf: string = '#myDiv';
-  
-  anio: AniosModel[] = [
-    { idAnio: 2022, anio: "2022" }
-  ];
-
-  meses: MesesModel[] = [
-    { idMes: 1, nombre: 'ENERO' },
-    { idMes: 2, nombre: 'FEBRERO' },
-    { idMes: 3, nombre: 'MARZO' },
-    { idMes: 4, nombre: 'ABRIL' },
-    { idMes: 5, nombre: 'MAYO' },
-    { idMes: 6, nombre: 'JUNIO' },
-    { idMes: 7, nombre: 'JULIO' },
-    { idMes: 8, nombre: 'AGOSTO' },
-    { idMes: 9, nombre: 'SEPTIEMBRE' },
-    { idMes: 10, nombre: 'OCTUBRE' },
-    { idMes: 11, nombre: 'NOVIEMBRE' },
-    { idMes: 12, nombre: 'DICIEMBRE' }
-  ];
 
   companias: Compania[] =[]
   unidadesNegocio: UnidadNegocio[] = [];
@@ -63,12 +44,19 @@ export class BalanzaComponent implements OnInit {
   clasesCostos: Clases[] = [];
   centroCostos: CentroCostos[] = [];
 
+  allCompanias: any[] = [];
+  allUdns: any[] = [];
+  allTipos: any[] = [];
+  allClases: any[] = [];
+
   maxDate: any;
   now: Date = new Date();
 
   isVisible = false;
   type = 'info';
   message = '';
+
+  checkConsolidado: boolean = false;
 
   constructor(
     private balanzaService: BalanzaService
@@ -87,6 +75,16 @@ export class BalanzaComponent implements OnInit {
   getCompanias(){
     this.balanzaService.getCompanias().subscribe(data => {
       this.companias = data.data;
+
+      var myData = data.data;
+      for (var i = 0; i < myData.length; i++) {
+        this.allCompanias.push(myData[i].idCompania);
+
+      }
+
+      if(this.allCompanias !== undefined){
+        this.getAllUnidadesNegocio(this.allCompanias);
+      }
     })
   }
 
@@ -100,10 +98,34 @@ export class BalanzaComponent implements OnInit {
 
   }
 
+  getAllUnidadesNegocio(id) {
+    const request = new Promise((resolve, reject) => {
+      this.balanzaService.postUnidadesNegocio(id).subscribe(data =>{
+        
+        var myData = data.data;
+        for (var i = 0; i < myData.length; i++) {
+          this.allUdns.push(myData[i].idUdn)
+        }
+
+      })
+    });
+    return request;
+
+  }
+
   getTipoCostos(){
     this.balanzaService.getTipoCostos().subscribe(data =>{
       this.tiposCostos = data.data;
-      console.log(this.tiposCostos)
+
+      var myData = data.data;
+      for (var i = 0; i < myData.length; i++) {
+        this.allTipos.push(myData[i].idTipoCentrocosto)
+      }
+
+      if(this.allTipos !== undefined){
+        this.postAllClasesCostos(this.allTipos);
+      }
+
     })
   }
 
@@ -111,6 +133,20 @@ export class BalanzaComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.balanzaService.postClasesCostos(id).subscribe(data =>{
         this.clasesCostos = data.data;
+      })
+    });
+    return request;
+
+  }
+
+  postAllClasesCostos(id){
+    const request = new Promise((resolve, reject) => {
+      this.balanzaService.postClasesCostos(id).subscribe(data =>{
+        
+        var myData = data.data;
+        for (var i = 0; i < myData.length; i++) {
+          this.allClases.push(myData[i].idCentroCostoClase)
+        }
       })
     });
     return request;
@@ -167,6 +203,10 @@ export class BalanzaComponent implements OnInit {
   selectCostos(e: any){
     this.selectedCostos = e.value;
   }
+
+  checkBoxToggled(e: any){
+    this.checkConsolidado = e.value;
+  }
   
   buscarClick = (e: any) => {
     // if (this.selectedClasficacion !==  undefined) {
@@ -180,13 +220,27 @@ export class BalanzaComponent implements OnInit {
 
   postBalanza(){
     const request = new Promise((resolve, reject) => {
-  
-      var consolidado = true;
-      this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.selectedCompania, this.selectedUdN, this.selectedTiposCostos, this.selectedClasesCostos, this.selectedCostos, consolidado).subscribe(data =>{
-        this.gridBalanza = data.data;
-        this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
-        this.loadingVisible = false;
-      })
+
+      if(this.selectedCompania !== undefined && this.selectedUdN !== undefined && this.selectedTiposCostos !== undefined && this.selectedClasesCostos !== undefined){
+        console.log("entre primero")
+        this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.selectedCompania, this.selectedUdN, this.selectedTiposCostos, this.selectedClasesCostos, this.selectedCostos, this.checkConsolidado).subscribe(data =>{
+          this.gridBalanza = data.data;
+          this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
+          this.loadingVisible = false;
+        })
+      }else {
+        console.log("entre segundo")
+        var centrocostos = [];
+        this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.allCompanias, this.allUdns, this.allTipos, this.allClases, centrocostos, this.checkConsolidado).subscribe(data =>{
+          this.gridBalanza = data.data;
+          this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
+          this.loadingVisible = false;
+        })
+      }
+
+
+
+
     });
     return request;
   }

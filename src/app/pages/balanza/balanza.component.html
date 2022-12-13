@@ -142,7 +142,7 @@
             <dxi-location screen="md lg" [row]="4" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
             <div>
-              <dx-check-box [value]="false"></dx-check-box>
+              <dx-check-box [value]="false" (onValueChanged)="checkBoxToggled($event)"></dx-check-box>
             </div>
         </dxi-item>
         <!-- BUSCAR -->
