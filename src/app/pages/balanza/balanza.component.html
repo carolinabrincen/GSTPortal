@@ -58,7 +58,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-date-box type="date" (onValueChanged)="selectFechaI($event)"> </dx-date-box>
+            <dx-date-box type="date" displayFormat="dd/MM/yyyy" (onValueChanged)="selectFechaI($event)"> </dx-date-box>
         </dxi-item>
         <!-- Fecha Fin -->
         <dxi-item>
@@ -69,7 +69,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="4" [col]="0" [colspan]="12"></dxi-location>
-            <dx-date-box type="date" (onValueChanged)="selectFechaF($event)"></dx-date-box>
+            <dx-date-box type="date" displayFormat="dd/MM/yyyy" (onValueChanged)="selectFechaF($event)"></dx-date-box>
         </dxi-item>
 
         <!--Compañia -->

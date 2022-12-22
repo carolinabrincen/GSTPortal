@@ -23,12 +23,32 @@ export class CostosAnualesService extends AbstractManagerService {
     this.putInterfaceManager(this);
   }
 
+  getUnidadesNegocio(){
+    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
+  }
 
-  postEdoResult(anio: number, compania: number, area: number[], mes: number, clasificacion: string){
+  getTPS(anio: number, mes: number){
+
+    return this.get<any>((this.API_URL + API_URLS.GET_TPS+ anio+"/"+mes), this.httpOptions);
+  }
+
+  getCompanias(){
+    return this.get<any>((this.API_URL + API_URLS.GET_COSTOS_COMPANIAS), this.httpOptions);
+  }
+
+  postUnidadesNegocio(id:number[]){
+    //let body = {
+      var myId = id.length == 7 ? []: id
+    //}
+    //console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_COSTOS_UDN), myId, this.httpOptions);
+  }
+
+  postEdoResult(anio: number, idCompania: number, idArea: number, mes: number, clasificacion: number){
     let body = {
       anio: anio,
-      compania: compania,
-      area:area.length == 7 ? [] : area,//area: area,
+      idCompania: idCompania,
+      idArea: idArea,//area: area,
       mes: mes,
       clasificacion: clasificacion
     }
@@ -42,15 +62,6 @@ export class CostosAnualesService extends AbstractManagerService {
       idCuenta: idCuenta
     }
     return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_CUENTA), body, this.httpOptions);
-  }
-
-  getUnidadesNegocio(){
-    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
-  }
-
-  getTPS(anio: number, mes: number){
-
-    return this.get<any>((this.API_URL + API_URLS.GET_TPS+ anio+"/"+mes), this.httpOptions);
   }
 
 

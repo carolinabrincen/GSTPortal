@@ -75,7 +75,7 @@ export class BalanzaComponent implements OnInit {
   getCompanias(){
     this.balanzaService.getCompanias().subscribe(data => {
       this.companias = data.data;
-
+      console.log(this.companias)
       var myData = data.data;
       for (var i = 0; i < myData.length; i++) {
         this.allCompanias.push(myData[i].idCompania);
@@ -166,11 +166,11 @@ export class BalanzaComponent implements OnInit {
   //=================SELECTS========================
   
   selectFechaI(e: any) {
-    console.log(e.value)
     this.selectedFechaI = e.value;
   } 
   
   selectFechaF(e: any){
+    console.log(e)
     this.selectedFechaF = e.value;
 
     if(this.selectedFechaI >= this.selectedFechaF){
@@ -225,7 +225,7 @@ export class BalanzaComponent implements OnInit {
         console.log("entre primero")
         this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.selectedCompania, this.selectedUdN, this.selectedTiposCostos, this.selectedClasesCostos, this.selectedCostos, this.checkConsolidado).subscribe(data =>{
           this.gridBalanza = data.data;
-          this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
+          // this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
           this.loadingVisible = false;
         })
       }else {
@@ -233,7 +233,7 @@ export class BalanzaComponent implements OnInit {
         var centrocostos = [];
         this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.allCompanias, this.allUdns, this.allTipos, this.allClases, centrocostos, this.checkConsolidado).subscribe(data =>{
           this.gridBalanza = data.data;
-          this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
+          // this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
           this.loadingVisible = false;
         })
       }

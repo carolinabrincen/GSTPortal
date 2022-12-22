@@ -462,7 +462,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="companias" displayExpr="compania" valueExpr="idComp" (onValueChanged)="selectCompania($event)">
+                    <dx-select-box [items]="companias" displayExpr="compania" valueExpr="idCompania" (onValueChanged)="selectCompania($event)">
                     </dx-select-box>
                 </dxi-item>
                 <!--ROW 1 Unidad de Negocio -->
@@ -474,7 +474,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+                    <dx-select-box [items]="arrUnidadesNegocio" displayExpr="udn" valueExpr="idUdn" (onValueChanged)="seleccionarUDN($event)">
                     </dx-select-box>
                 </dxi-item>
                 <!-- TRACTO -->

@@ -22,6 +22,8 @@ import { CostosTPS } from '../../shared/models/costos-anuales/CostosTPS.model';
 import { CostosTPSOccidente } from '../../shared/models/costos-anuales/costosTPSOccidente.model';
 import { CostosTPSGolfo } from '../../shared/models/costos-anuales/costosTPSGolfo.mode';
 import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGrafica.mode';
+import { Compania } from '../../shared/models/costos-anuales/compania.model'; 
+import { UnidadNegocio } from '../../shared/models/costos-anuales/udn.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -49,7 +51,7 @@ export class CostosAnualesComponent implements OnInit {
   col: string = '50';
 
 
-  arrUnidadesNegocio: UnidadesNegocioModel[] = [];
+  arrUnidadesNegocio: UnidadNegocio[] = [];
 
   arrTractos: string[] = [];
 
@@ -73,11 +75,7 @@ export class CostosAnualesComponent implements OnInit {
     // { idAnio: 2021, anio: "2021" },
   ];
 
-  companias: CompaniaModel[] =[
-    {idComp:1, compania: 'TRANSPORTES BONAMPAK'},
-    {idComp:2, compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL'},
-    {idComp:3, compania: 'TRANSPORTE DE CARGA GEMINIS'}
-  ]
+  companias: Compania[] =[]
 
 
   clasificaciones: Clasificacion[] = [
@@ -98,7 +96,7 @@ export class CostosAnualesComponent implements OnInit {
 
   mesSeleccionado: number = 0;
   anioSeleccionado: number = 0;
-  udnSeleccionado: number[] = [];
+  udnSeleccionado: number = 0;
   tractoSeleccionado: string = '';
   selectedCompania: number = 0;
   selectedAnioTPS: number = 0;
@@ -159,36 +157,27 @@ export class CostosAnualesComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCompanias();
+  }
 
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
-  getUnidadesNegocio() {
-    this.costosAnuService.getUnidadesNegocio().subscribe(res => {
-      console.log(res)
-      if(this.selectedCompania == 1){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[0],orderdata[1],orderdata[2],orderdata[3],
-            orderdata[4]);//FALTA LA PAZ
-        this.arrUnidadesNegocio = neworderdata;
-        // console.log(this.arrUnidadesNegocio)      
-      }else if(this.selectedCompania == 2){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[5]);
-        this.arrUnidadesNegocio = neworderdata;
-        // console.log(this.arrUnidadesNegocio)
-      }else if(this.selectedCompania == 3){
-        const orderdata: UnidadesNegocioModel[] = res.data;
-        let neworderdata = [];
-        neworderdata.push(orderdata[6]);
-        this.arrUnidadesNegocio = neworderdata;
-        // console.log(this.arrUnidadesNegocio)
-      }
+  getCompanias(){
+    this.costosAnuService.getCompanias().subscribe(data => {
+      this.companias = data.data;
+      console.log(this.companias)
+    })
+  }
 
+  getUnidadesNegocio(id) {
+    const request = new Promise((resolve, reject) => {
+      this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
+        this.arrUnidadesNegocio = data.data;
+      })
     });
+    return request;
 
   }
 
@@ -202,10 +191,11 @@ export class CostosAnualesComponent implements OnInit {
   }
   selectCompania(e: any) {
     this.selectedCompania = e.value;
-    this.getUnidadesNegocio();
+    var myValue = []
+    myValue.push(e.value)
+    this.getUnidadesNegocio(myValue);
   }  
   seleccionarUDN(e: any) {
-    this.udnSeleccionado = [];
     this.udnSeleccionado = e.value;
   }
 
@@ -223,7 +213,8 @@ export class CostosAnualesComponent implements OnInit {
 
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
-      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
+      var myclasificacion = 0
+      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, myclasificacion).subscribe(data =>{
         this.costosAnuales = data.data;
         this.paginacion = 0;
         this.expandGroup = true;
