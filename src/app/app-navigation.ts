@@ -24,27 +24,16 @@ export const navigation = [
         path: '/kilometros',
         icon: 'map'
       },
-      {
-        text: 'Rent. Contable',
-        path: '/rentabilidadcontable',
-        icon: 'columnproperties'
-      },
-      {
-        text: 'Rent. Gerencial',
-        path: '/rentabilidadgerencial',
-        icon: 'fieldchooser'
-      },
-      
-      //  {
-      //    TEXT: 'RENT. CONTABLE',
-      //    PATH: '/rentabilidadcontable',
-      //    ICON: 'map'
-      //  },
-      //  {
-      //    TEXT: 'RENT. GERENCIAL',
-      //    PATH: '/rentabilidadgerencial',
-      //    ICON: 'map'
-      //  }
+      // {
+      //   text: 'Rent. Contable',
+      //   path: '/rentabilidadcontable',
+      //   icon: 'columnproperties'
+      // },
+      // {
+      //   text: 'Rent. Gerencial',
+      //   path: '/rentabilidadgerencial',
+      //   icon: 'fieldchooser'
+      // },
     ]
   },
   {
@@ -55,27 +44,27 @@ export const navigation = [
   }
   ,
   {
-    text: 'Costos Mensuales',
+    text: 'Costos',//Mensuales
     icon: 'columnchooser',
     path: '/costos'
     
   },
-  {
-    text: 'Costos Anuales',
-    icon: 'columnchooser',
-    path: '/costos-anuales'
+  // {
+  //   text: 'Costos Anuales',
+  //   icon: 'columnchooser',
+  //   path: '/costos-anuales'
     
-  },
-  {
-    text: 'Permisos/Bitacora',
-    icon: 'columnchooser',
-    path: '/permiso-bitacora'
-  },
-  {
-    text: 'Balanza Comprobación',
-    icon: 'columnchooser',
-    path: '/balanza'
-  }
+  // },
+  // {
+  //   text: 'Permisos/Bitacora',
+  //   icon: 'columnchooser',
+  //   path: '/permiso-bitacora'
+  // },
+  // {
+  //   text: 'Balanza Comprobación',
+  //   icon: 'columnchooser',
+  //   path: '/balanza'
+  // }
 
 ];
     

@@ -1,23 +1,13 @@
-import {
-  NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy, ChangeDetectorRef,AfterViewInit, OnInit
-} from '@angular/core';
-
+import {NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy, ChangeDetectorRef,AfterViewInit, OnInit} from '@angular/core';
 import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
 
-import {
-  DxDataGridComponent,
-} from 'devextreme-angular';
-
-
+import { DxDataGridComponent, } from 'devextreme-angular';
 import { CurrencyPipe } from '@angular/common';
-import {
-  DxChartComponent,
-} from 'devextreme-angular';
-
+import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
-
+import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-contable.model';
 
 @Component({
   
@@ -67,6 +57,12 @@ export class IngresosComponent implements OnInit {
   gridColumns: any = ['unidadNegocio','tipoOperacion', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
  
 
+  anios: AniosModel[] = [
+    { idAnio: 2023, anio: "2023" },
+    { idAnio: 2022, anio: "2022" }
+  ];
+
+  anioSeleccionado: number;
   constructor( private unidadesService: UnidadesService, private service: ServiceSales, private currencyPipe: CurrencyPipe) {
 
     this.IdUnidadNegocio = 0;
@@ -83,6 +79,8 @@ export class IngresosComponent implements OnInit {
 
   getIngresosAnuales(Anio: number, UnidadNegocio: number)
   {
+    console.log(Anio)
+    console.log(UnidadNegocio)
       this.service.getIndicadores(Anio, UnidadNegocio).subscribe((response) => {
     
         this.indicadores = response.data;
@@ -146,6 +144,10 @@ export class IngresosComponent implements OnInit {
     //   });
     // }
 
+    seleccionarAnio(e: any) {
+      this.anioSeleccionado = e.value;
+    }
+
 
     clickClientesRutas = (e: any) => {
       
@@ -155,7 +157,7 @@ export class IngresosComponent implements OnInit {
       // this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
   
       
-      this.getIngresosAnuales(this.Anio, this.IdUnidadNegocio);
+      this.getIngresosAnuales(this.anioSeleccionado, this.IdUnidadNegocio);
       //this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
       // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
       // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
