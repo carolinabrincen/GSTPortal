@@ -1,4 +1,4 @@
-<h2 class="content-block">Ciclo de Viaje</h2>
+<h2 class="content-block">Ciclo de viaje</h2>
 
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
@@ -161,62 +161,63 @@
     <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="arrRentContItems" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
         
-        <dxi-column caption="Viaje Salida" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="" caption="T. Salida Viaje" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="VIAJE SALIDA" headerCellTemplate="headerTemplate">
+            <dxi-column dataField="" caption="T. salida viaje" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         </dxi-column>
 
                 <!-- <dxi-column dataField="fake" [showInColumnChooser]="false" [fixed]="true" fixedPosition="left" [width]="0.01"></dxi-column>  -->
 
-        <dxi-column caption="Viaje Cargado" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="" caption="No. Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Llegada Punto Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Tiempo Registo Viaje Cargado" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Llegada a Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Ingreso a Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Inicio Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="VIAJE CARGADO" headerCellTemplate="headerTemplate">
+            <dxi-column dataField="" caption="No. viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Llegada punto carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Tiempo registo viaje cargado" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Llegada a carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ingreso a carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera inicio carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Inicio Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Tránsito Destino" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Ingreso Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espara Inicio descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera inicio viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Tránsito destino" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera ingreso descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espara inicio descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Cierre de Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera cierre de viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Fin de viaje " [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Ruta" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
 
         </dxi-column>
 
-        <dxi-column caption="Viaje Siguiente Cargado" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="" caption="No.Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Punto Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Llegada Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Ingreso Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="VIAJE SIGUIENTE CARG" headerCellTemplate="headerTemplate">
+            <dxi-column dataField="" caption="No. viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Punto carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Llegada carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ingreso carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Espera" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Salida" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera salida" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Carga Diesel" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Tránsito Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Tránsito descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Ruta" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
         </dxi-column>
 
-        <dxi-column caption="Viaje Retorno" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="" caption="Espera Despacho" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Retorno Base" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="VIAJE RETORNO" headerCellTemplate="headerTemplate">
+            <dxi-column dataField="" caption="Espera despacho" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Retorno base" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
         </dxi-column>
 
-        <dxi-column caption="Viaje Gasolinera" headerCellTemplate="headerTemplate">
+        <dxi-column caption="VIAJE GASOLINERA" headerCellTemplate="headerTemplate">
             <dxi-column dataField="" caption="Salida" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Llegada" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Retorno" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
         </dxi-column> 
 
-        <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-        <dxi-column dataField="" caption="Detalle" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="" caption="TOTAL" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="" caption="DETALLE" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
 
 
         <dxo-group-panel [visible]="false"></dxo-group-panel>
