@@ -7,18 +7,8 @@
     <dx-responsive-box>
         <!-- COLS -->
         <!--UDN-->
-        <dxi-col [ratio]="4"></dxi-col>
-        <dxi-col [ratio]="5"></dxi-col>
-        <!--vacia-->
         <dxi-col [ratio]="1"></dxi-col>
-        <!--tipo operacion -->
-        <dxi-col [ratio]="3"></dxi-col>
-        <dxi-col [ratio]="5"></dxi-col>
-        <!--vacia-->
-        <dxi-col [ratio]="1"></dxi-col>
-        <!--cliente-->
         <dxi-col [ratio]="2"></dxi-col>
-        <dxi-col [ratio]="5"></dxi-col>
         <!--vacia-->
         <dxi-col [ratio]=".25"></dxi-col>
         <!--Mes-->
@@ -73,38 +63,14 @@
             </dx-tag-box>
         </dxi-item>
 
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
-            <div>Tipo de Operación:</div>
-        </dxi-item>
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
-            </dx-tag-box>
-        </dxi-item>
-
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
-            <div>Cliente:</div>
-        </dxi-item>
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
-            </dx-tag-box>
-        </dxi-item>
-
         <!-- MES -->
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="0"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
             <div>Mes:</div>
         </dxi-item>
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="1"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
             <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMes($event)">
             </dx-select-box>
@@ -112,13 +78,13 @@
 
         <!-- AÑO -->
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="3"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Año:</div>
         </dxi-item>
 
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="4"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
             <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
             </dx-select-box>
@@ -126,13 +92,13 @@
 
         <!-- TRACTO -->
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="6"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
             <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
             <div>Tracto:</div>
         </dxi-item>
 
         <dxi-item>
-            <dxi-location screen="md lg" [row]="1" [col]="7"></dxi-location>
+            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
             <div style="display: flex;">
               <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
