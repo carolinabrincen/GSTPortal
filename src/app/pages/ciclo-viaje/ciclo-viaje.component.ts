@@ -63,6 +63,9 @@ export class CicloViajeComponent implements OnInit {
   objRentabilidad: any;
 
 
+  openModal: boolean;
+  positionOf
+  DestalleCuenta: any[]
   constructor(private rentContService: RentContService) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);

@@ -167,18 +167,18 @@
 
                 <!-- <dxi-column dataField="fake" [showInColumnChooser]="false" [fixed]="true" fixedPosition="left" [width]="0.01"></dxi-column>  -->
 
-        <dxi-column caption="Viaje Cardo" headerCellTemplate="headerTemplate">
+        <dxi-column caption="Viaje Cargado" headerCellTemplate="headerTemplate">
             <dxi-column dataField="" caption="No. Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Llegada Punto Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Tiempo Registo viaje Cargado" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="llegada a carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Ingreso a carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera inicio carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Tiempo Registo Viaje Cargado" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Llegada a Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Ingreso a Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera Inicio Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Carga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Espera Inicio Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Tránsito Destino" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espera ingreso descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="" caption="Espara inicio descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espera Ingreso Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Espara Inicio descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Descarga" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Espera Cierre de Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="" caption="Total" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
@@ -380,6 +380,59 @@
         </dxo-pager>
         <dxo-sorting mode="none"></dxo-sorting>
     </dx-data-grid>
+
+
+    <!--==========================MODAL REAL=========================================================-->
+    <dx-popup
+    width="99%" [height]="400" [showTitle]="true" title="Detalle de Real" [dragEnabled]="false" [closeOnOutsideClick]="true"
+    [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModal">
+    <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>
+    <div *dxTemplate="let data of 'content'">
+      <!--#region :::: GRID DETALLE DE REAL ::::  -->
+      <dx-data-grid #rentGer id="gridContainer" [dataSource]="DestalleCuenta" [columnAutoWidth]="true" [showColumnLines]="true"
+        [showBorders]="true" [rowAlternationEnabled]="true">
+        
+        <dxi-column dataField="" caption="Area" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="No. Viaje" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Unidad" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Estatus Viaje" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Ini. Estatus" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Usuario" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Tipo Seg" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Descripcion" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Nombre Estatus Viaje" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Ruta" [fixed]="false"></dxi-column>
+        <dxi-column dataField="" caption="Tiempos" [fixed]="false"></dxi-column>
+        
+      <!-- Templates Grid -->
+        <div *dxTemplate="let data of 'headerTemplate'">
+          <div style="font-weight: bolder; color: black">
+            {{ data.column.caption }}
+          </div>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+          <div style="font-weight: bolder; color: #ff5722">
+            {{ info.column.caption }}
+          </div>
+        </div>
+
+        <div
+          *dxTemplate="let d of 'diffCellTemplate'"
+          [class]="d.text >= 0 ? 'inc' : 'dec'"
+        >
+          <div class="diff"></div>
+        </div>
+
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-paging [pageSize]="30"></dxo-paging>
+        <dxo-sorting mode="none"></dxo-sorting>
+      </dx-data-grid>
+
+    </div>
+  </dx-popup>
+<!--=============================================FIN MODAL==========================================-->
+
 
     <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
