@@ -54,7 +54,7 @@ export const navigation = [
     path: '/ciclo-viaje'
   },
   {
-    text: 'Renta',
+    text: 'Rentabilidad',
     icon: 'columnchooser',
     path: '/renta'
   },

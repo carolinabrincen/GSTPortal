@@ -8,6 +8,7 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import { CicloViajeService, Service } from 'src/app/shared/models/ciclo-viaje/cicloviaje.sevice';
 import { DetailsModalService, DetailsService } from 'src/app/shared/models/ciclo-viaje/detailsmodal.service';
+import { CiclosViajesService } from '../../services/ciclo-viaje/cicloViaje.service';
 
 @Component({
 
@@ -48,7 +49,8 @@ export class CicloViajeComponent implements OnInit {
     { idMes: 12, nombre: 'DICIEMBRE' }
   ];
   arrAnos: AniosModel[] = [
-    { idAnio: 2022, anio: "2022" },
+    { idAnio: 2023, anio: "2023" },
+    { idAnio: 2022, anio: "2022 " },
     { idAnio: 2021, anio: "2021" },
   ];
 
@@ -74,15 +76,20 @@ export class CicloViajeComponent implements OnInit {
   cicloViaje: CicloViajeService[];
   detailsModal: DetailsModalService[];
 
+  tiposOperacion: any[]
+  clientes: any[]
+
   constructor(
     private rentContService: RentContService,
     service: Service,
-    detailService: DetailsService
+    detailService: DetailsService,
+    private  ciclosViajes: CiclosViajesService
     ) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.rentContServ = rentContService;
     this.getUnidadesNegocio();
+    this.getTipoOperacion()
 
     this.cicloViaje = service.getCountriesInfo();
     this.detailsModal = detailService.getCountriesInfo();
@@ -95,6 +102,13 @@ export class CicloViajeComponent implements OnInit {
   ngAfterViewInit(): void {
 
 
+  }
+
+  getTipoOperacion(){
+    this.ciclosViajes.getTiposOperacion().subscribe(data =>{
+      this.tiposOperacion = data.data
+      console.log(this.tiposOperacion)
+    }) 
   }
 
   borrarClick = (e: any) =>{

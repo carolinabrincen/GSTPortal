@@ -37,7 +37,7 @@
         <!--vacia-->
         <dxi-col [ratio]=".25"></dxi-col>
         <!--Buscar-->
-        <dxi-col [ratio]="1"></dxi-col>
+        <dxi-col [ratio]="2"></dxi-col>
         
 
         <!-- ROWS -->
@@ -81,7 +81,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+            <dx-tag-box [items]="tiposOperacion" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="tiposOperacion" displayExpr="operacion" valueExpr="idTipoOperacion" (onValueChanged)="seleccionarUDN($event)">
             </dx-tag-box>
         </dxi-item>
 
@@ -93,7 +93,7 @@
         <dxi-item>
             <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
             <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-            <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+            <dx-tag-box [items]="clientes" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="clientes" displayExpr="name" valueExpr="id" (onValueChanged)="seleccionarUDN($event)">
             </dx-tag-box>
         </dxi-item>
 
@@ -148,7 +148,7 @@
 
         <!-- BUSCAR -->
         <dxi-item>
-            <dxi-location screen="md lg" [row]="2" [col]="12"></dxi-location>
+            <dxi-location screen="md lg" [row]="2" [col]="7"></dxi-location>
             <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
             <div>
                 <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">

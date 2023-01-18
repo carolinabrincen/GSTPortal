@@ -93,7 +93,7 @@ const countriesInfo: CicloViajeService[] = [{
     Llegada: '',
     retorno: '',
     totalVG: '',
-    total: '12/31/99 6:41',
+    total: '1 día 6:41',
 }, {
     salidaViaje: '01:01:00',
     noViaje: 39,
@@ -132,7 +132,7 @@ const countriesInfo: CicloViajeService[] = [{
     Llegada: '00:15:00',
     retorno: '00:10:00',
     totalVG: '00:40:00',
-    total: '12/30/99 6:22',
+    total: '6:22',
 }
 ];
 
