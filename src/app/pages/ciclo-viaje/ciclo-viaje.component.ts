@@ -6,10 +6,14 @@ import liquidaciones from 'src/assets/rc02.json';
 import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
+import { CicloViajeService, Service } from 'src/app/shared/models/ciclo-viaje/cicloviaje.sevice';
+import { DetailsModalService, DetailsService } from 'src/app/shared/models/ciclo-viaje/detailsmodal.service';
+
 @Component({
 
   templateUrl: './ciclo-viaje.component.html',
-  styleUrls: ['./ciclo-viaje.component.scss']
+  styleUrls: ['./ciclo-viaje.component.scss'],
+  providers: [Service, DetailsService],
 })
 export class CicloViajeComponent implements OnInit {
 
@@ -66,11 +70,22 @@ export class CicloViajeComponent implements OnInit {
   openModal: boolean;
   positionOf
   DestalleCuenta: any[]
-  constructor(private rentContService: RentContService) {
+
+  cicloViaje: CicloViajeService[];
+  detailsModal: DetailsModalService[];
+
+  constructor(
+    private rentContService: RentContService,
+    service: Service,
+    detailService: DetailsService
+    ) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.rentContServ = rentContService;
     this.getUnidadesNegocio();
+
+    this.cicloViaje = service.getCountriesInfo();
+    this.detailsModal = detailService.getCountriesInfo();
   }
 
 
@@ -388,43 +403,10 @@ export class CicloViajeComponent implements OnInit {
 
   }
 
+  verDetallesClick(e: any) {
+    this.openModal = true;
 
+  }
 
 }
 
-
-// onRowPrepared(e: any) {
-//   if (e.rowType == 'data' && (e.data.concepto == "Ingreso Total" ||
-//     e.data.concepto == "Costo Directo Viaje" ||
-//     e.data.concepto == "Adicionales" ||
-//     e.data.concepto == "Total Costos Adicionales" ||
-//     e.data.concepto == "Margen de Utilidad Bruta")) {
-//     e.cells.forEach((c: any) => {
-
-//       if (c.cellElement) {
-//         c.cellElement.style.fontWeight = "bolder";
-
-//         if (c.value.length > 1 && c.value.toString().startsWith('-')) {
-//           c.cellElement.style.color = "red";
-//         }
-
-//         if ((c.cellElement) && (c.value === "-$ 14,341.00")) {
-//           c.cellElement.style.color = "red";
-//         }
-//       }
-
-//     })
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Adicionales") {
-//     e.rowElement.style.backgroundColor = 'gainsboro';
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Margen de Utilidad Bruta") {
-//     e.rowElement.style.backgroundColor = 'darkGrey';
-//     e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
-//     e.cells.forEach((c: any) => {
-//       c.cellElement ? c.cellElement.style.fontSize = "16px" : null;
-//     })
-//   }
-// }
