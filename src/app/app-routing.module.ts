@@ -25,6 +25,8 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CostosAnualesComponent } from './pages/costos-anuales/costos-anuales.component';
   import { PermisoBitacoraComponent } from './pages/persmiso-bitacora/permiso-bitacora.component';
   import { BalanzaComponent } from './pages/balanza/balanza.component';
+  import { CicloViajeComponent } from './pages/ciclo-viaje/ciclo-viaje.component'
+  import { RentaComponent } from './pages/renta/renta.component'
 
 const routes: Routes = [
   {
@@ -116,6 +118,16 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'ciclo-viaje',
+    component: CicloViajeComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'renta',
+    component: RentaComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -166,7 +178,9 @@ const routes: Routes = [
     CostosComponent, 
     CostosAnualesComponent,
     PermisoBitacoraComponent,
-    BalanzaComponent
+    BalanzaComponent,
+    CicloViajeComponent,
+    RentaComponent
   ]
 })
 export class AppRoutingModule { }
