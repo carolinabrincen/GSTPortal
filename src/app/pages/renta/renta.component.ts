@@ -5,11 +5,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import liquidaciones from 'src/assets/rc02.json';
 import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
+import { RentabilidadService, Service } from '../../shared/models/rentabilidad/rentabilidad.service'
 
 @Component({
 
   templateUrl: './renta.component.html',
-  styleUrls: ['./renta.component.scss']
+  styleUrls: ['./renta.component.scss'],
+  providers: [Service]
 })
 export class RentaComponent implements OnInit {
 
@@ -63,12 +65,18 @@ export class RentaComponent implements OnInit {
   objTracto: any;
   objRentabilidad: any;
 
+  Rentabilidad: any[];
 
-  constructor(private rentContService: RentContService) {
+  constructor(
+    private rentContService: RentContService,
+    service: Service
+    ) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.rentContServ = rentContService;
     this.getUnidadesNegocio();
+
+      this.Rentabilidad = service.getCountriesInfo();
   }
 
 
@@ -207,7 +215,7 @@ export class RentaComponent implements OnInit {
     if (e.rowType == 'groupFooter') {
       let ingresoTotal = e.summaryCells[6][0].value;
       let margenUtilidad = e.summaryCells[7][0].value;
-      let combustible = e.summaryCells[15][0].value;
+      let combustible = e.summaryCells[15][0]?.value;
       let casetas = e.summaryCells[17][0].value;
       let sueldosLiquidacion = e.summaryCells[19][0].value;
       let otros = e.summaryCells[21][0].value;
@@ -248,14 +256,8 @@ export class RentaComponent implements OnInit {
       //Costso Adicionales
       ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
 
-
-      if (e.groupIndex === 1) {
-        e.summaryCells[5][0].displayFormat = 'SUBTOTAL TRACTO';
-       // console.log('🌲', e);
-
-      }
       if (e.groupIndex === 0) {
-        e.summaryCells[5][0].displayFormat = 'SUBTOTAL ' + e.key[0];
+        e.summaryCells[6][0].displayFormat = 'SUBTOTAL ' + e.key[0];
         //e.rowElement.style.backgroundColor = '#dcdcdc';
       }
 
@@ -270,7 +272,7 @@ export class RentaComponent implements OnInit {
 
       let ingresoTotal = e.summaryCells[6][0].value;
       let margenUtilidad = e.summaryCells[7][0].value;
-      let combustible = e.summaryCells[15][0].value;
+      let combustible = e.summaryCells[15][0]?.value;
       let casetas = e.summaryCells[17][0].value;
       let sueldosLiquidacion = e.summaryCells[19][0].value;
       let otros = e.summaryCells[21][0].value;

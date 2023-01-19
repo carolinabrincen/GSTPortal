@@ -175,6 +175,7 @@ const countriesInfo: DetailsModalService[] = [
     ruta: 'MADISA COATZA - VIDRIERA SL POTOSI',
     Tiempos: '01:02:00',
 }
+// /
 ];
 
 @Injectable()

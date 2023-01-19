@@ -124,11 +124,16 @@
         <!--#endregion :::: FIN ROW 1 ::::  -->
     </dx-responsive-box>
 
-    <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="arrRentContItems" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+    <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="Rentabilidad" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+        
         <dxi-column dataField="unidadNegocio" caption="Unidad Negocio" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
-        <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
-        <dxi-column dataField="operador" caption="Operador" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column>
+        
+        <dxi-column dataField="tipoOperacion" caption="Tipo Operación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="cliente" caption="Cliente" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
+        
+        <!-- <dxi-column dataField="operador" caption="Operador" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column> -->
         <dxi-column dataField="noLiquidacion" caption="Liquidación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="inicio" caption="Inicio" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="fin" caption="Fin" [fixed]="true" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
