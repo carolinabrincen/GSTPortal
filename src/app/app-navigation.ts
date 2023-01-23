@@ -49,6 +49,10 @@ export const navigation = [
     path: '/costos'
     
   },{
+    text: 'Costos Anuales',
+    icon: 'columnchooser',
+    path: '/costos-anuales'
+  },{
     text: 'Ciclo Viaje',
     icon: 'columnchooser',
     path: '/ciclo-viaje'
@@ -58,12 +62,6 @@ export const navigation = [
     icon: 'columnchooser',
     path: '/renta'
   },
-  // {
-  //   text: 'Costos Anuales',
-  //   icon: 'columnchooser',
-  //   path: '/costos-anuales'
-    
-  // },
   // {
   //   text: 'Permisos/Bitacora',
   //   icon: 'columnchooser',

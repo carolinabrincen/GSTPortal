@@ -71,7 +71,7 @@ export class CostosAnualesComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 2022, anio: "2022" }
+    { idAnio: 2023, anio: "2023" }
     // { idAnio: 2021, anio: "2021" },
   ];
 
