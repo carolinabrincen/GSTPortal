@@ -24,6 +24,7 @@ import { CostosTPSGolfo } from '../../shared/models/costos-anuales/costosTPSGolf
 import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGrafica.mode';
 import { Compania } from '../../shared/models/costos-anuales/compania.model'; 
 import { UnidadNegocio } from '../../shared/models/costos-anuales/udn.model';
+import { Totales01Operacion } from 'src/app/shared/models/costos-anuales/totales01Operacion.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -123,6 +124,7 @@ export class CostosAnualesComponent implements OnInit {
   states: string[];
 
   totalesOperacion = new TotalesOperacion;
+  totales01O = new Totales01Operacion;
   totalesOGIO = new OtrosGastosIngresosOrdonarios;
   totalesOtrosGO = new OtrosGastosOperacion;
   totalesOtros = new Otros;
@@ -167,7 +169,7 @@ export class CostosAnualesComponent implements OnInit {
   getCompanias(){
     this.costosAnuService.getCompanias().subscribe(data => {
       this.companias = data.data;
-      console.log(this.companias)
+      //console.log(this.companias)
     })
   }
 
@@ -227,7 +229,7 @@ export class CostosAnualesComponent implements OnInit {
       var periodo = 0
       var idcuenta = 0
       this.costosAnuService.postDetalleCuenta(periodo, idcuenta).subscribe(data =>{
-        console.log(data)
+        //console.log(data)
         this.DestalleCuenta = data.data
         this.openModReal = true;
       })
@@ -405,8 +407,135 @@ export class CostosAnualesComponent implements OnInit {
           })
         }
 
-//================================Resta de la agrupacion de 01.- OPERACION==============================================
-//========================Sacando los valores para  01.- OPERACION======================================================
+//================================Resta de la agrupaciones==============================================
+
+//=============================== Sancando valores para 01.- OPERACION==================================================
+        if(e.data.key == 'a.- INGRESOS POR FLETE'){
+          this.totales01O.totalIFER = e.summaryCells[7][0].value;
+          this.totales01O.totalIFEP = e.summaryCells[8][0].value;
+          this.totales01O.totalIFED = e.summaryCells[9][0].value;
+          this.totales01O.totalIFFR = e.summaryCells[12][0].value;
+          this.totales01O.totalIFFP = e.summaryCells[13][0].value;
+          this.totales01O.totalIFFD = e.summaryCells[14][0].value;
+          this.totales01O.totalIFMR = e.summaryCells[17][0].value;
+          this.totales01O.totalIFMP = e.summaryCells[18][0].value;
+          this.totales01O.totalIFMD = e.summaryCells[19][0].value;
+          this.totales01O.totalIFAR = e.summaryCells[22][0].value;
+          this.totales01O.totalIFAP = e.summaryCells[23][0].value;
+          this.totales01O.totalIFAD = e.summaryCells[24][0].value;
+          this.totales01O.totalIFMYR = e.summaryCells[27][0].value;
+          this.totales01O.totalIFMYP = e.summaryCells[28][0].value;
+          this.totales01O.totalIFMYD = e.summaryCells[29][0].value;
+          this.totales01O.totalIFJR = e.summaryCells[32][0].value;
+          this.totales01O.totalIFJP = e.summaryCells[33][0].value;
+          this.totales01O.totalIFJD = e.summaryCells[34][0].value;
+          this.totales01O.totalIFJLR = e.summaryCells[37][0].value;
+          this.totales01O.totalIFJLP = e.summaryCells[38][0].value;
+          this.totales01O.totalIFJLD = e.summaryCells[39][0].value;
+          this.totales01O.totalIFAGR = e.summaryCells[42][0].value;
+          this.totales01O.totalIFAGP = e.summaryCells[43][0].value;
+          this.totales01O.totalIFAGD = e.summaryCells[44][0].value;
+          this.totales01O.totalIFSR = e.summaryCells[47][0].value;
+          this.totales01O.totalIFSP = e.summaryCells[48][0].value;
+          this.totales01O.totalIFSD = e.summaryCells[49][0].value;
+          this.totales01O.totalIFOR = e.summaryCells[52][0].value;
+          this.totales01O.totalIFOP = e.summaryCells[53][0].value;
+          this.totales01O.totalIFOD = e.summaryCells[54][0].value;
+          this.totales01O.totalIFNR = e.summaryCells[57][0].value;
+          this.totales01O.totalIFNP = e.summaryCells[58][0].value;
+          this.totales01O.totalIFND = e.summaryCells[59][0].value;
+          this.totales01O.totalIFDR = e.summaryCells[62][0].value;
+          this.totales01O.totalIFDP = e.summaryCells[63][0].value;
+          this.totales01O.totalIFDD = e.summaryCells[64][0].value;
+          this.totales01O.totalIFACR = e.summaryCells[67][0].value;
+          this.totales01O.totalIFACP = e.summaryCells[68][0].value;
+          this.totales01O.totalIFACD = e.summaryCells[69][0].value;
+        }
+
+        if(e.data.key == 'b.- COSTOS '){
+          this.totales01O.totalCER = e.summaryCells[7][0].value;
+          this.totales01O.totalCEP = e.summaryCells[8][0].value;
+          this.totales01O.totalCED = e.summaryCells[9][0].value;
+          this.totales01O.totalCFR = e.summaryCells[12][0].value;
+          this.totales01O.totalCFP = e.summaryCells[13][0].value;
+          this.totales01O.totalCFD = e.summaryCells[14][0].value;
+          this.totales01O.totalCMR = e.summaryCells[17][0].value;
+          this.totales01O.totalCMP = e.summaryCells[18][0].value;
+          this.totales01O.totalCMD = e.summaryCells[19][0].value;
+          this.totales01O.totalCAR = e.summaryCells[22][0].value;
+          this.totales01O.totalCAP = e.summaryCells[23][0].value;
+          this.totales01O.totalCAD = e.summaryCells[24][0].value;
+          this.totales01O.totalCMYR = e.summaryCells[27][0].value;
+          this.totales01O.totalCMYP = e.summaryCells[28][0].value;
+          this.totales01O.totalCMYD = e.summaryCells[29][0].value;
+          this.totales01O.totalCJR = e.summaryCells[32][0].value;
+          this.totales01O.totalCJP = e.summaryCells[33][0].value;
+          this.totales01O.totalCJD = e.summaryCells[34][0].value;
+          this.totales01O.totalCJLR = e.summaryCells[37][0].value;
+          this.totales01O.totalCJLP = e.summaryCells[38][0].value;
+          this.totales01O.totalCJLD = e.summaryCells[39][0].value;
+          this.totales01O.totalCAGR = e.summaryCells[42][0].value;
+          this.totales01O.totalCAGP = e.summaryCells[43][0].value;
+          this.totales01O.totalCAGD = e.summaryCells[44][0].value;
+          this.totales01O.totalCSR = e.summaryCells[47][0].value;
+          this.totales01O.totalCSP = e.summaryCells[48][0].value;
+          this.totales01O.totalCSD = e.summaryCells[49][0].value;
+          this.totales01O.totalCOR = e.summaryCells[52][0].value;
+          this.totales01O.totalCOP = e.summaryCells[53][0].value;
+          this.totales01O.totalCOD = e.summaryCells[54][0].value;
+          this.totales01O.totalCNR = e.summaryCells[57][0].value;
+          this.totales01O.totalCNP = e.summaryCells[58][0].value;
+          this.totales01O.totalCND = e.summaryCells[59][0].value;
+          this.totales01O.totalCDR = e.summaryCells[62][0].value;
+          this.totales01O.totalCDP = e.summaryCells[63][0].value;
+          this.totales01O.totalCDD = e.summaryCells[64][0].value;
+          this.totales01O.totalCACR = e.summaryCells[67][0].value;
+          this.totales01O.totalCACP = e.summaryCells[68][0].value;
+          this.totales01O.totalCACD = e.summaryCells[69][0].value;
+
+
+          this.totales01O.total01OperacionER = this.totales01O.totalIFER - this.totales01O.totalCER;
+          this.totales01O.total01OperacionEP = this.totales01O.totalIFEP - this.totales01O.totalCEP;
+          this.totales01O.total01OperacionED = this.totales01O.totalIFED - this.totales01O.totalCED;
+          this.totales01O.total01OperacionFR = this.totales01O.totalIFFR - this.totales01O.totalCFR;
+          this.totales01O.total01OperacionFP = this.totales01O.totalIFFP - this.totales01O.totalCFP;
+          this.totales01O.total01OperacionFD = this.totales01O.totalIFFD - this.totales01O.totalCFD;
+          this.totales01O.total01OperacionMR = this.totales01O.totalIFMR - this.totales01O.totalCMR;
+          this.totales01O.total01OperacionMP = this.totales01O.totalIFMP - this.totales01O.totalCMP;
+          this.totales01O.total01OperacionMD = this.totales01O.totalIFMD - this.totales01O.totalCMD;
+          this.totales01O.total01OperacionAR = this.totales01O.totalIFAR - this.totales01O.totalCAR;
+          this.totales01O.total01OperacionAP = this.totales01O.totalIFAP - this.totales01O.totalCAP;
+          this.totales01O.total01OperacionAD = this.totales01O.totalIFAD - this.totales01O.totalCAD;
+          this.totales01O.total01OperacionMYR = this.totales01O.totalIFMYR - this.totales01O.totalCMYR;
+          this.totales01O.total01OperacionMYP = this.totales01O.totalIFMYP - this.totales01O.totalCMYP;
+          this.totales01O.total01OperacionMYD = this.totales01O.totalIFMYD - this.totales01O.totalCMYD;
+          this.totales01O.total01OperacionJR = this.totales01O.totalIFJR - this.totales01O.totalCJR;
+          this.totales01O.total01OperacionJP = this.totales01O.totalIFJP - this.totales01O.totalCJP;
+          this.totales01O.total01OperacionJD = this.totales01O.totalIFJD - this.totales01O.totalCJD;
+          this.totales01O.total01OperacionJLR = this.totales01O.totalIFJLR - this.totales01O.totalCJLR;
+          this.totales01O.total01OperacionJLP = this.totales01O.totalIFJLP - this.totales01O.totalCJLP;
+          this.totales01O.total01OperacionJLD = this.totales01O.totalIFJLD - this.totales01O.totalCJLD;
+          this.totales01O.total01OperacionAGR = this.totales01O.totalIFAGR - this.totales01O.totalCAGR;
+          this.totales01O.total01OperacionAGP = this.totales01O.totalIFAGP - this.totales01O.totalCAGP;
+          this.totales01O.total01OperacionAGD = this.totales01O.totalIFAGD - this.totales01O.totalCAGD;
+          this.totales01O.total01OperacionSR = this.totales01O.totalIFSR - this.totales01O.totalCSR;
+          this.totales01O.total01OperacionSP = this.totales01O.totalIFSP - this.totales01O.totalCSP;
+          this.totales01O.total01OperacionSD = this.totales01O.totalIFSD - this.totales01O.totalCSD;
+          this.totales01O.total01OperacionOR = this.totales01O.totalIFOR - this.totales01O.totalCOR;
+          this.totales01O.total01OperacionOP = this.totales01O.totalIFOP - this.totales01O.totalCOP;
+          this.totales01O.total01OperacionOD = this.totales01O.totalIFOD - this.totales01O.totalCOD;
+          this.totales01O.total01OperacionNR = this.totales01O.totalIFNR - this.totales01O.totalCNR;
+          this.totales01O.total01OperacionNP = this.totales01O.totalIFNP - this.totales01O.totalCNP;
+          this.totales01O.total01OperacionND = this.totales01O.totalIFND - this.totales01O.totalCND;
+          this.totales01O.total01OperacionDR = this.totales01O.totalIFDR - this.totales01O.totalCDR;
+          this.totales01O.total01OperacionDP = this.totales01O.totalIFDP - this.totales01O.totalCDP;
+          this.totales01O.total01OperacionDD = this.totales01O.totalIFDD - this.totales01O.totalCDD;
+          this.totales01O.total01OperacionACR = this.totales01O.totalIFACR - this.totales01O.totalCACR;
+          this.totales01O.total01OperacionACP = this.totales01O.totalIFACP - this.totales01O.totalCACP;
+          this.totales01O.total01OperacionACD = this.totales01O.totalIFACD - this.totales01O.totalCACD;
+        }        
+
+//========================Sacando los valores para  UTILIDAD BRUTA======================================================
         if(e.data.key == 'a.- Total de Producto Neto'){          
           // console.log(e)
           this.totalesOperacion.totalFleteER = e.summaryCells[7][0].value;
@@ -533,7 +662,7 @@ export class CostosAnualesComponent implements OnInit {
           this.totalesOperacion.totalOperacionACD = this.totalesOperacion.totalFleteACD - this.totalesOperacion.totalCostosACD;
         }
 
-//===============================Resta de la agrupacion de 02.- OTROS GASTOS DE OPERACIÓN===============================
+//===============================Resta de la agrupacion de Total Otros Gastos de Operacion===============================
         if(e.data.key == 'a.- GASTOS ADMINISTRATIVOS'){
             this.totalesOtrosGO.totalGAER = e.summaryCells[7][0].value;
             this.totalesOtrosGO.totalGAEP = e.summaryCells[8][0].value;
@@ -1251,6 +1380,48 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[69][0].value = this.totalesOperacion.totalOperacionACD;
 
 
+      }
+
+      if(e.groupIndex == 1 && e.data.key == '01.- OPERACION'){
+        e.summaryCells[7][0].value = this.totales01O.total01OperacionER;
+        e.summaryCells[8][0].value = this.totales01O.total01OperacionEP;
+        e.summaryCells[9][0].value = this.totales01O.total01OperacionED;
+        e.summaryCells[12][0].value = this.totales01O.total01OperacionFR;
+        e.summaryCells[13][0].value = this.totales01O.total01OperacionFP;
+        e.summaryCells[14][0].value = this.totales01O.total01OperacionFD;
+        e.summaryCells[17][0].value = this.totales01O.total01OperacionMR;
+        e.summaryCells[18][0].value = this.totales01O.total01OperacionMP;
+        e.summaryCells[19][0].value = this.totales01O.total01OperacionMD;
+        e.summaryCells[22][0].value = this.totales01O.total01OperacionAR;
+        e.summaryCells[23][0].value = this.totales01O.total01OperacionAP;
+        e.summaryCells[24][0].value = this.totales01O.total01OperacionAD;
+        e.summaryCells[27][0].value = this.totales01O.total01OperacionMYR;
+        e.summaryCells[28][0].value = this.totales01O.total01OperacionMYP;
+        e.summaryCells[29][0].value = this.totales01O.total01OperacionMYD;
+        e.summaryCells[32][0].value = this.totales01O.total01OperacionJR;
+        e.summaryCells[33][0].value = this.totales01O.total01OperacionJP;
+        e.summaryCells[34][0].value = this.totales01O.total01OperacionJD;
+        e.summaryCells[37][0].value = this.totales01O.total01OperacionJLR;
+        e.summaryCells[38][0].value = this.totales01O.total01OperacionJLP;
+        e.summaryCells[39][0].value = this.totales01O.total01OperacionJLD;
+        e.summaryCells[42][0].value = this.totales01O.total01OperacionAGR;
+        e.summaryCells[43][0].value = this.totales01O.total01OperacionAGP;
+        e.summaryCells[44][0].value = this.totales01O.total01OperacionAGD;
+        e.summaryCells[47][0].value = this.totales01O.total01OperacionSR;
+        e.summaryCells[48][0].value = this.totales01O.total01OperacionSP;
+        e.summaryCells[49][0].value = this.totales01O.total01OperacionSD;
+        e.summaryCells[52][0].value = this.totales01O.total01OperacionOR;
+        e.summaryCells[53][0].value = this.totales01O.total01OperacionOP;
+        e.summaryCells[54][0].value = this.totales01O.total01OperacionOD;
+        e.summaryCells[57][0].value = this.totales01O.total01OperacionNR;
+        e.summaryCells[58][0].value = this.totales01O.total01OperacionNP;
+        e.summaryCells[59][0].value = this.totales01O.total01OperacionND;
+        e.summaryCells[62][0].value = this.totales01O.total01OperacionDR;
+        e.summaryCells[63][0].value = this.totales01O.total01OperacionDP;
+        e.summaryCells[64][0].value = this.totales01O.total01OperacionDD;
+        e.summaryCells[67][0].value = this.totales01O.total01OperacionACR;
+        e.summaryCells[68][0].value = this.totales01O.total01OperacionACP;
+        e.summaryCells[69][0].value = this.totales01O.total01OperacionACD;
       }
 
       if(e.groupIndex == 1 && e.data.key == '02.- Total Otros Gastos de Operacion'){
@@ -2020,7 +2191,7 @@ export class CostosAnualesComponent implements OnInit {
     let anio = this.selectedAnioTPS;
     let mes = this.selectedMesTPS;
     this.costosAnualesService.getTPS(anio, mes).subscribe(data =>{
-      console.log(data.data)
+      //console.log(data.data)
       
       this.costosFTP = data.data.tpsdto;
       this.costosTPSOccidente = data.data.tpsOccidenteDTO;
