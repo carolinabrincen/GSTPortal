@@ -33,7 +33,7 @@ export const navigation = [
       //   text: 'Rent. Gerencial',
       //   path: '/rentabilidadgerencial',
       //   icon: 'fieldchooser'
-      // },
+      // }, 
     ]
   },
   {
