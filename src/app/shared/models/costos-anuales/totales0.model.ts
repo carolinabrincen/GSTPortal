@@ -40,7 +40,48 @@ export class Totales0{
     totalACP: number = 0;
     totalACD: number = 0;
 
-    //TOTAL NIVEL 1
+    //TOTAL NIVEL 01 
+    total01ER: number = 0;
+    total01EP: number = 0;
+    total01ED: number = 0;
+    total01FR: number = 0;
+    total01FP: number = 0;
+    total01FD: number = 0;
+    total01MR: number = 0;
+    total01MP: number = 0;
+    total01MD: number = 0;
+    total01AR: number = 0;
+    total01AP: number = 0;
+    total01AD: number = 0;
+    total01MYR: number = 0;
+    total01MYP: number = 0;
+    total01MYD: number = 0;
+    total01JR: number = 0;
+    total01JP: number = 0;
+    total01JD: number = 0;
+    total01JLR: number = 0;
+    total01JLP: number = 0;
+    total01JLD: number = 0;
+    total01AGR: number = 0;
+    total01AGP: number = 0;
+    total01AGD: number = 0;
+    total01SR: number = 0;
+    total01SP: number = 0;
+    total01SD: number = 0;
+    total01OR: number = 0;
+    total01OP: number = 0;
+    total01OD: number = 0;
+    total01NR: number = 0;
+    total01NP: number = 0;
+    total01ND: number = 0;
+    total01DR: number = 0;
+    total01DP: number = 0;
+    total01DD: number = 0;
+    total01ACR: number = 0;
+    total01ACP: number = 0;
+    total01ACD: number = 0;
+
+    //TOTAL NIVEL 1 no se ocupa por el momento
     total1ER: number = 0;
     total1EP: number = 0;
     total1ED: number = 0;
@@ -81,7 +122,49 @@ export class Totales0{
     total1ACP: number = 0;
     total1ACD: number = 0;
 
-    //TOTAL NIVEL 2
+    //TOTAL NIVEL 02
+    total02ER: number = 0;
+    total02EP: number = 0;
+    total02ED: number = 0;
+    total02FR: number = 0;
+    total02FP: number = 0;
+    total02FD: number = 0;
+    total02MR: number = 0;
+    total02MP: number = 0;
+    total02MD: number = 0;
+    total02AR: number = 0;
+    total02AP: number = 0;
+    total02AD: number = 0;
+    total02MYR: number = 0;
+    total02MYP: number = 0;
+    total02MYD: number = 0;
+    total02JR: number = 0;
+    total02JP: number = 0;
+    total02JD: number = 0;
+    total02JLR: number = 0;
+    total02JLP: number = 0;
+    total02JLD: number = 0;
+    total02AGR: number = 0;
+    total02AGP: number = 0;
+    total02AGD: number = 0;
+    total02SR: number = 0;
+    total02SP: number = 0;
+    total02SD: number = 0;
+    total02OR: number = 0;
+    total02OP: number = 0;
+    total02OD: number = 0;
+    total02NR: number = 0;
+    total02NP: number = 0;
+    total02ND: number = 0;
+    total02DR: number = 0;
+    total02DP: number = 0;
+    total02DD: number = 0;
+    total02ACR: number = 0;
+    total02ACP: number = 0;
+    total02ACD: number = 0;
+
+
+    //TOTAL NIVEL 2 no se ocupa por el momento
     total2ER: number = 0;
     total2EP: number = 0;
     total2ED: number = 0;

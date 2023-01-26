@@ -25,6 +25,7 @@ import { CostosTPSGrafica } from '../../shared/models/costos-anuales/costosTPSGr
 import { Compania } from '../../shared/models/costos-anuales/compania.model'; 
 import { UnidadNegocio } from '../../shared/models/costos-anuales/udn.model';
 import { Totales01Operacion } from 'src/app/shared/models/costos-anuales/totales01Operacion.model';
+import { TotalesOGO } from 'src/app/shared/models/costos-anuales/totalesOGO.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -125,6 +126,7 @@ export class CostosAnualesComponent implements OnInit {
 
   totalesOperacion = new TotalesOperacion;
   totales01O = new Totales01Operacion;
+  totalesOGO = new TotalesOGO;
   totalesOGIO = new OtrosGastosIngresosOrdonarios;
   totalesOtrosGO = new OtrosGastosOperacion;
   totalesOtros = new Otros;
@@ -295,50 +297,6 @@ export class CostosAnualesComponent implements OnInit {
 
   groupValue: string;
   onRowPrepared(e: any) {
-
-
-    // if(this.modeSearch == 'true'){
-    //   console.log("entre : ")
-    //   e.summaryCells[7][0].value = 0;
-    //   e.summaryCells[8][0].value = 0;
-    //   e.summaryCells[9][0].value = 0;
-    //   e.summaryCells[12][0].value = 0;
-    //   e.summaryCells[13][0].value = 0;
-    //   e.summaryCells[14][0].value = 0;
-    //   e.summaryCells[17][0].value = 0;
-    //   e.summaryCells[18][0].value = 0;
-    //   e.summaryCells[19][0].value = 0;
-    //   e.summaryCells[22][0].value = 0;
-    //   e.summaryCells[23][0].value = 0;
-    //   e.summaryCells[24][0].value = 0;
-    //   e.summaryCells[27][0].value = 0;
-    //   e.summaryCells[28][0].value = 0;
-    //   e.summaryCells[29][0].value = 0;
-    //   e.summaryCells[32][0].value = 0;
-    //   e.summaryCells[33][0].value = 0;
-    //   e.summaryCells[34][0].value = 0;
-    //   e.summaryCells[37][0].value = 0;
-    //   e.summaryCells[38][0].value = 0;
-    //   e.summaryCells[39][0].value = 0;
-    //   e.summaryCells[42][0].value = 0;
-    //   e.summaryCells[43][0].value = 0;
-    //   e.summaryCells[44][0].value = 0;
-    //   e.summaryCells[47][0].value = 0;
-    //   e.summaryCells[48][0].value = 0;
-    //   e.summaryCells[49][0].value = 0;
-    //   e.summaryCells[52][0].value = 0;
-    //   e.summaryCells[53][0].value = 0;
-    //   e.summaryCells[54][0].value = 0;
-    //   e.summaryCells[57][0].value = 0;
-    //   e.summaryCells[58][0].value = 0;
-    //   e.summaryCells[59][0].value = 0;
-    //   e.summaryCells[62][0].value = 0;
-    //   e.summaryCells[63][0].value = 0;
-    //   e.summaryCells[64][0].value = 0;
-    //   e.summaryCells[67][0].value = 0;
-    //   e.summaryCells[68][0].value = 0;
-    //   e.summaryCells[69][0].value = 0;
-    // }
 
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -1338,6 +1296,8 @@ export class CostosAnualesComponent implements OnInit {
         //    this.expandGroup = false
         // }
       }
+
+      //no se ocupa es por el momento
       if(e.groupIndex == 1 && e.data.key == '01.- UTILIDAD BRUTA'){
         e.summaryCells[7][0].value = this.totalesOperacion.totalOperacionER;
         e.summaryCells[8][0].value = this.totalesOperacion.totalOperacionEP;
@@ -1379,6 +1339,49 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[68][0].value = this.totalesOperacion.totalOperacionACP;
         e.summaryCells[69][0].value = this.totalesOperacion.totalOperacionACD;
 
+
+      }
+      //no se ocupa es por el momento
+      if(e.groupIndex == 1 && e.data.key == '02.- Total Otros Gastos de Operacion'){
+        e.summaryCells[7][0].value = this.totalesOtrosGO.totalOGOperacionER;
+        e.summaryCells[8][0].value = this.totalesOtrosGO.totalOGOperacionEP;
+        e.summaryCells[9][0].value = this.totalesOtrosGO.totalOGOperacionED;
+        e.summaryCells[12][0].value = this.totalesOtrosGO.totalOGOperacionFR;
+        e.summaryCells[13][0].value = this.totalesOtrosGO.totalOGOperacionFP;
+        e.summaryCells[14][0].value = this.totalesOtrosGO.totalOGOperacionFD;
+        e.summaryCells[17][0].value = this.totalesOtrosGO.totalOGOperacionMR;
+        e.summaryCells[18][0].value = this.totalesOtrosGO.totalOGOperacionMP;
+        e.summaryCells[19][0].value = this.totalesOtrosGO.totalOGOperacionMD;
+        e.summaryCells[22][0].value = this.totalesOtrosGO.totalOGOperacionAR;
+        e.summaryCells[23][0].value = this.totalesOtrosGO.totalOGOperacionAP;
+        e.summaryCells[24][0].value = this.totalesOtrosGO.totalOGOperacionAD;
+        e.summaryCells[27][0].value = this.totalesOtrosGO.totalOGOperacionMYR;
+        e.summaryCells[28][0].value = this.totalesOtrosGO.totalOGOperacionMYP;
+        e.summaryCells[29][0].value = this.totalesOtrosGO.totalOGOperacionMYD;
+        e.summaryCells[32][0].value = this.totalesOtrosGO.totalOGOperacionJR;
+        e.summaryCells[33][0].value = this.totalesOtrosGO.totalOGOperacionJP;
+        e.summaryCells[34][0].value = this.totalesOtrosGO.totalOGOperacionJD;
+        e.summaryCells[37][0].value = this.totalesOtrosGO.totalOGOperacionJLR;
+        e.summaryCells[38][0].value = this.totalesOtrosGO.totalOGOperacionJLP;
+        e.summaryCells[39][0].value = this.totalesOtrosGO.totalOGOperacionJLD;
+        e.summaryCells[42][0].value = this.totalesOtrosGO.totalOGOperacionAGR;
+        e.summaryCells[43][0].value = this.totalesOtrosGO.totalOGOperacionAGP;
+        e.summaryCells[44][0].value = this.totalesOtrosGO.totalOGOperacionAGD;
+        e.summaryCells[47][0].value = this.totalesOtrosGO.totalOGOperacionSR;
+        e.summaryCells[48][0].value = this.totalesOtrosGO.totalOGOperacionSP;
+        e.summaryCells[49][0].value = this.totalesOtrosGO.totalOGOperacionSD;
+        e.summaryCells[52][0].value = this.totalesOtrosGO.totalOGOperacionOR;
+        e.summaryCells[53][0].value = this.totalesOtrosGO.totalOGOperacionOP;
+        e.summaryCells[54][0].value = this.totalesOtrosGO.totalOGOperacionOD;
+        e.summaryCells[57][0].value = this.totalesOtrosGO.totalOGOperacionNR;
+        e.summaryCells[58][0].value = this.totalesOtrosGO.totalOGOperacionNP;
+        e.summaryCells[59][0].value = this.totalesOtrosGO.totalOGOperacionND;
+        e.summaryCells[62][0].value = this.totalesOtrosGO.totalOGOperacionDR;
+        e.summaryCells[63][0].value = this.totalesOtrosGO.totalOGOperacionDP;
+        e.summaryCells[64][0].value = this.totalesOtrosGO.totalOGOperacionDD;
+        e.summaryCells[67][0].value = this.totalesOtrosGO.totalOGOperacionACR;
+        e.summaryCells[68][0].value = this.totalesOtrosGO.totalOGOperacionACP;
+        e.summaryCells[69][0].value = this.totalesOtrosGO.totalOGOperacionACD;
 
       }
 
@@ -1424,46 +1427,46 @@ export class CostosAnualesComponent implements OnInit {
         e.summaryCells[69][0].value = this.totales01O.total01OperacionACD;
       }
 
-      if(e.groupIndex == 1 && e.data.key == '02.- Total Otros Gastos de Operacion'){
-        e.summaryCells[7][0].value = this.totalesOtrosGO.totalOGOperacionER;
-        e.summaryCells[8][0].value = this.totalesOtrosGO.totalOGOperacionEP;
-        e.summaryCells[9][0].value = this.totalesOtrosGO.totalOGOperacionED;
-        e.summaryCells[12][0].value = this.totalesOtrosGO.totalOGOperacionFR;
-        e.summaryCells[13][0].value = this.totalesOtrosGO.totalOGOperacionFP;
-        e.summaryCells[14][0].value = this.totalesOtrosGO.totalOGOperacionFD;
-        e.summaryCells[17][0].value = this.totalesOtrosGO.totalOGOperacionMR;
-        e.summaryCells[18][0].value = this.totalesOtrosGO.totalOGOperacionMP;
-        e.summaryCells[19][0].value = this.totalesOtrosGO.totalOGOperacionMD;
-        e.summaryCells[22][0].value = this.totalesOtrosGO.totalOGOperacionAR;
-        e.summaryCells[23][0].value = this.totalesOtrosGO.totalOGOperacionAP;
-        e.summaryCells[24][0].value = this.totalesOtrosGO.totalOGOperacionAD;
-        e.summaryCells[27][0].value = this.totalesOtrosGO.totalOGOperacionMYR;
-        e.summaryCells[28][0].value = this.totalesOtrosGO.totalOGOperacionMYP;
-        e.summaryCells[29][0].value = this.totalesOtrosGO.totalOGOperacionMYD;
-        e.summaryCells[32][0].value = this.totalesOtrosGO.totalOGOperacionJR;
-        e.summaryCells[33][0].value = this.totalesOtrosGO.totalOGOperacionJP;
-        e.summaryCells[34][0].value = this.totalesOtrosGO.totalOGOperacionJD;
-        e.summaryCells[37][0].value = this.totalesOtrosGO.totalOGOperacionJLR;
-        e.summaryCells[38][0].value = this.totalesOtrosGO.totalOGOperacionJLP;
-        e.summaryCells[39][0].value = this.totalesOtrosGO.totalOGOperacionJLD;
-        e.summaryCells[42][0].value = this.totalesOtrosGO.totalOGOperacionAGR;
-        e.summaryCells[43][0].value = this.totalesOtrosGO.totalOGOperacionAGP;
-        e.summaryCells[44][0].value = this.totalesOtrosGO.totalOGOperacionAGD;
-        e.summaryCells[47][0].value = this.totalesOtrosGO.totalOGOperacionSR;
-        e.summaryCells[48][0].value = this.totalesOtrosGO.totalOGOperacionSP;
-        e.summaryCells[49][0].value = this.totalesOtrosGO.totalOGOperacionSD;
-        e.summaryCells[52][0].value = this.totalesOtrosGO.totalOGOperacionOR;
-        e.summaryCells[53][0].value = this.totalesOtrosGO.totalOGOperacionOP;
-        e.summaryCells[54][0].value = this.totalesOtrosGO.totalOGOperacionOD;
-        e.summaryCells[57][0].value = this.totalesOtrosGO.totalOGOperacionNR;
-        e.summaryCells[58][0].value = this.totalesOtrosGO.totalOGOperacionNP;
-        e.summaryCells[59][0].value = this.totalesOtrosGO.totalOGOperacionND;
-        e.summaryCells[62][0].value = this.totalesOtrosGO.totalOGOperacionDR;
-        e.summaryCells[63][0].value = this.totalesOtrosGO.totalOGOperacionDP;
-        e.summaryCells[64][0].value = this.totalesOtrosGO.totalOGOperacionDD;
-        e.summaryCells[67][0].value = this.totalesOtrosGO.totalOGOperacionACR;
-        e.summaryCells[68][0].value = this.totalesOtrosGO.totalOGOperacionACP;
-        e.summaryCells[69][0].value = this.totalesOtrosGO.totalOGOperacionACD;
+      if(e.groupIndex == 1 && e.data.key == '02.- OTROS GASTOS DE OPERACIÓN'){
+        e.summaryCells[7][0].value = this.totalesOGO.totalesOGOER;
+        e.summaryCells[8][0].value = this.totalesOGO.totalesOGOEP;
+        e.summaryCells[9][0].value = this.totalesOGO.totalesOGOED;
+        e.summaryCells[12][0].value = this.totalesOGO.totalesOGOFR;
+        e.summaryCells[13][0].value = this.totalesOGO.totalesOGOFP;
+        e.summaryCells[14][0].value = this.totalesOGO.totalesOGOFD;
+        e.summaryCells[17][0].value = this.totalesOGO.totalesOGOMR;
+        e.summaryCells[18][0].value = this.totalesOGO.totalesOGOMP;
+        e.summaryCells[19][0].value = this.totalesOGO.totalesOGOMD;
+        e.summaryCells[22][0].value = this.totalesOGO.totalesOGOAR;
+        e.summaryCells[23][0].value = this.totalesOGO.totalesOGOAP;
+        e.summaryCells[24][0].value = this.totalesOGO.totalesOGOAD;
+        e.summaryCells[27][0].value = this.totalesOGO.totalesOGOMYR;
+        e.summaryCells[28][0].value = this.totalesOGO.totalesOGOMYP;
+        e.summaryCells[29][0].value = this.totalesOGO.totalesOGOMYD;
+        e.summaryCells[32][0].value = this.totalesOGO.totalesOGOJR;
+        e.summaryCells[33][0].value = this.totalesOGO.totalesOGOJP;
+        e.summaryCells[34][0].value = this.totalesOGO.totalesOGOJD;
+        e.summaryCells[37][0].value = this.totalesOGO.totalesOGOJLR;
+        e.summaryCells[38][0].value = this.totalesOGO.totalesOGOJLP;
+        e.summaryCells[39][0].value = this.totalesOGO.totalesOGOJLD;
+        e.summaryCells[42][0].value = this.totalesOGO.totalesOGOAGR;
+        e.summaryCells[43][0].value = this.totalesOGO.totalesOGOAGP;
+        e.summaryCells[44][0].value = this.totalesOGO.totalesOGOAGD;
+        e.summaryCells[47][0].value = this.totalesOGO.totalesOGOSR;
+        e.summaryCells[48][0].value = this.totalesOGO.totalesOGOSP;
+        e.summaryCells[49][0].value = this.totalesOGO.totalesOGOSD;
+        e.summaryCells[67][0].value = this.totalesOGO.totalesOGOOR;
+        e.summaryCells[68][0].value = this.totalesOGO.totalesOGOOP;
+        e.summaryCells[69][0].value = this.totalesOGO.totalesOGOOD;
+        e.summaryCells[52][0].value = this.totalesOGO.totalesOGONR;
+        e.summaryCells[53][0].value = this.totalesOGO.totalesOGONP;
+        e.summaryCells[54][0].value = this.totalesOGO.totalesOGOND;
+        e.summaryCells[57][0].value = this.totalesOGO.totalesOGODR;
+        e.summaryCells[58][0].value = this.totalesOGO.totalesOGODP;
+        e.summaryCells[59][0].value = this.totalesOGO.totalesOGODD;
+        e.summaryCells[62][0].value = this.totalesOGO.totalesOGOACR;
+        e.summaryCells[63][0].value = this.totalesOGO.totalesOGOACP;
+        e.summaryCells[64][0].value = this.totalesOGO.totalesOGOACD;
 
       }
 
@@ -1921,6 +1924,48 @@ export class CostosAnualesComponent implements OnInit {
 
       //=========================Totales Compania====================================================================
 
+      //TOTAL NIVEL 01
+      this.totales.total01ER = this.totales01O.total01OperacionER;
+      this.totales.total01EP = this.totales01O.total01OperacionEP;
+      this.totales.total01ED = this.totales01O.total01OperacionED;
+      this.totales.total01FR = this.totales01O.total01OperacionFR;
+      this.totales.total01FP = this.totales01O.total01OperacionFP;
+      this.totales.total01FD = this.totales01O.total01OperacionFD;
+      this.totales.total01MR = this.totales01O.total01OperacionMR;
+      this.totales.total01MP = this.totales01O.total01OperacionMP;
+      this.totales.total01MD = this.totales01O.total01OperacionMD;
+      this.totales.total01AR = this.totales01O.total01OperacionAR;
+      this.totales.total01AP = this.totales01O.total01OperacionAP;
+      this.totales.total01AD = this.totales01O.total01OperacionAD;
+      this.totales.total01MYR = this.totales01O.total01OperacionMYR;
+      this.totales.total01MYP = this.totales01O.total01OperacionMYP;
+      this.totales.total01MYD = this.totales01O.total01OperacionMYD;
+      this.totales.total01JR = this.totales01O.total01OperacionJR;
+      this.totales.total01JP = this.totales01O.total01OperacionJP;
+      this.totales.total01JD = this.totales01O.total01OperacionJD;
+      this.totales.total01JLR = this.totales01O.total01OperacionJLR;
+      this.totales.total01JLP = this.totales01O.total01OperacionJLP;
+      this.totales.total01JLD = this.totales01O.total01OperacionJLD;
+      this.totales.total01AGR = this.totales01O.total01OperacionAGR;
+      this.totales.total01AGP = this.totales01O.total01OperacionAGP;
+      this.totales.total01AGD = this.totales01O.total01OperacionAGD;
+      this.totales.total01SR = this.totales01O.total01OperacionSR;
+      this.totales.total01SP = this.totales01O.total01OperacionSP;
+      this.totales.total01SD = this.totales01O.total01OperacionSD;
+      this.totales.total01OR = this.totales01O.total01OperacionOR;
+      this.totales.total01OP = this.totales01O.total01OperacionOP;
+      this.totales.total01OD = this.totales01O.total01OperacionOD;
+      this.totales.total01NR = this.totales01O.total01OperacionNR;
+      this.totales.total01NP = this.totales01O.total01OperacionNP;
+      this.totales.total01ND = this.totales01O.total01OperacionND;
+      this.totales.total01DR = this.totales01O.total01OperacionDR;
+      this.totales.total01DP = this.totales01O.total01OperacionDP;
+      this.totales.total01DD = this.totales01O.total01OperacionDD;
+      this.totales.total01ACR = this.totales01O.total01OperacionACR;
+      this.totales.total01ACP = this.totales01O.total01OperacionACP;
+      this.totales.total01ACD = this.totales01O.total01OperacionACD;
+
+      //TOTALE NIVEL 1 no se ocupa por el momento
       this.totales.total1ER = this.totalesOperacion.totalOperacionER;
       this.totales.total1EP = this.totalesOperacion.totalOperacionEP;
       this.totales.total1ED = this.totalesOperacion.totalOperacionED;
@@ -1961,6 +2006,48 @@ export class CostosAnualesComponent implements OnInit {
       this.totales.total1ACP = this.totalesOperacion.totalOperacionACP;
       this.totales.total1ACD = this.totalesOperacion.totalOperacionACD;
 
+      //TOTAL NIVEL 02
+      this.totales.total02ER = this.totalesOGO.totalesOGOER;
+      this.totales.total02EP = this.totalesOGO.totalesOGOEP;
+      this.totales.total02ED = this.totalesOGO.totalesOGOED;
+      this.totales.total02FR = this.totalesOGO.totalesOGOFR;
+      this.totales.total02FP = this.totalesOGO.totalesOGOFP;
+      this.totales.total02FD = this.totalesOGO.totalesOGOFD;
+      this.totales.total02MR = this.totalesOGO.totalesOGOMR;
+      this.totales.total02MP = this.totalesOGO.totalesOGOMP;
+      this.totales.total02MD = this.totalesOGO.totalesOGOMD;
+      this.totales.total02AR = this.totalesOGO.totalesOGOAR;
+      this.totales.total02AP = this.totalesOGO.totalesOGOAP;
+      this.totales.total02AD = this.totalesOGO.totalesOGOAD;
+      this.totales.total02MYR = this.totalesOGO.totalesOGOMYR;
+      this.totales.total02MYP = this.totalesOGO.totalesOGOMYP;
+      this.totales.total02MYD = this.totalesOGO.totalesOGOMYD;
+      this.totales.total02JR = this.totalesOGO.totalesOGOJR;
+      this.totales.total02JP = this.totalesOGO.totalesOGOJP;
+      this.totales.total02JD = this.totalesOGO.totalesOGOJD;
+      this.totales.total02JLR = this.totalesOGO.totalesOGOJLR;
+      this.totales.total02JLP = this.totalesOGO.totalesOGOJLP;
+      this.totales.total02JLD = this.totalesOGO.totalesOGOJLD;
+      this.totales.total02AGR = this.totalesOGO.totalesOGOAGR;
+      this.totales.total02AGP = this.totalesOGO.totalesOGOAGP;
+      this.totales.total02AGD = this.totalesOGO.totalesOGOAGD;
+      this.totales.total02SR = this.totalesOGO.totalesOGOSR;
+      this.totales.total02SP = this.totalesOGO.totalesOGOSP;
+      this.totales.total02SD = this.totalesOGO.totalesOGOSD;
+      this.totales.total02OR = this.totalesOGO.totalesOGOOR;
+      this.totales.total02OP = this.totalesOGO.totalesOGOOP;
+      this.totales.total02OD = this.totalesOGO.totalesOGOOD;
+      this.totales.total02NR = this.totalesOGO.totalesOGONR;
+      this.totales.total02NP = this.totalesOGO.totalesOGONP;
+      this.totales.total02ND = this.totalesOGO.totalesOGOND;
+      this.totales.total02DR = this.totalesOGO.totalesOGODR;
+      this.totales.total02DP = this.totalesOGO.totalesOGODP;
+      this.totales.total02DD = this.totalesOGO.totalesOGODD;
+      this.totales.total02ACR = this.totalesOGO.totalesOGOACR;
+      this.totales.total02ACP = this.totalesOGO.totalesOGOACP;
+      this.totales.total02ACD = this.totalesOGO.totalesOGOACD;
+
+      //TOTAL NIVEL 2 no se ocupa por el momento
       this.totales.total2ER= this.totalesOtrosGO.totalOGOperacionER;
       this.totales.total2EP = this.totalesOtrosGO.totalOGOperacionEP;
       this.totales.total2ED = this.totalesOtrosGO.totalOGOperacionED;
@@ -2001,6 +2088,7 @@ export class CostosAnualesComponent implements OnInit {
       this.totales.total2ACP = this.totalesOtrosGO.totalOGOperacionACP;
       this.totales.total2ACD = this.totalesOtrosGO.totalOGOperacionACD;
       
+            //TOTAL NIVEL 03
       this.totales.total3ER = this.totalesOtrosGIE.totalesOGIEER;
       this.totales.total3EP = this.totalesOtrosGIE.totalesOGIEEP;
       this.totales.total3ED = this.totalesOtrosGIE.totalesOGIEED;
@@ -2041,6 +2129,7 @@ export class CostosAnualesComponent implements OnInit {
       this.totales.total3ACP = this.totalesOtrosGIE.totalesOGIEACP;
       this.totales.total3ACD = this.totalesOtrosGIE.totalesOGIEACD;
 
+            //TOTAL NIVEL 04
       this.totales.total4ER = this.totalesGIF.totalesGIFER;
       this.totales.total4EP = this.totalesGIF.totalesGIFEP;
       this.totales.total4ED = this.totalesGIF.totalesGIFED;
@@ -2081,6 +2170,7 @@ export class CostosAnualesComponent implements OnInit {
       this.totales.total4ACP = this.totalesGIF.totalesGIFACP;
       this.totales.total4ACD = this.totalesGIF.totalesGIFACD;
 
+            //TOTAL NIVEL 05
       this.totales.total5ER = this.totalesProvisiones.totalProvisionER;
       this.totales.total5EP = this.totalesProvisiones.totalProvisionER;
       this.totales.total5ED = this.totalesProvisiones.totalProvisionEP;
@@ -2121,45 +2211,46 @@ export class CostosAnualesComponent implements OnInit {
       this.totales.total5ACP = this.totalesProvisiones.totalProvisionACP;
       this.totales.total5ACD = this.totalesProvisiones.totalProvisionACD;
 
-      this.totales.totalER = this.totales.total1ER - this.totales.total2ER - this.totales.total3ER - this.totales.total4ER - this.totales.total5ER;
-      this.totales.totalEP = this.totales.total1EP - this.totales.total2EP - this.totales.total3EP - this.totales.total4EP - this.totales.total5EP;
-      this.totales.totalED = this.totales.total1ED - this.totales.total2ED - this.totales.total3ED - this.totales.total4ED - this.totales.total5ED;
-      this.totales.totalFR = this.totales.total1FR - this.totales.total2FR - this.totales.total3FR - this.totales.total4FR - this.totales.total5FR;
-      this.totales.totalFP = this.totales.total1FP - this.totales.total2FP - this.totales.total3FP - this.totales.total4FP - this.totales.total5FP;
-      this.totales.totalFD = this.totales.total1FD - this.totales.total2FD - this.totales.total3FD - this.totales.total4FD - this.totales.total5FD;
-      this.totales.totalMR = this.totales.total1MR - this.totales.total2MR - this.totales.total3MR - this.totales.total4MR - this.totales.total5MR;
-      this.totales.totalMP = this.totales.total1MP - this.totales.total2MP - this.totales.total3MP - this.totales.total4MP - this.totales.total5MP;
-      this.totales.totalMD = this.totales.total1MD - this.totales.total2MD - this.totales.total3MD - this.totales.total4MD - this.totales.total5MD;
-      this.totales.totalAR = this.totales.total1AR - this.totales.total2AR - this.totales.total3AR - this.totales.total4AR - this.totales.total5AR;
-      this.totales.totalAP = this.totales.total1AP - this.totales.total2AP - this.totales.total3AP - this.totales.total4AP - this.totales.total5AP;
-      this.totales.totalAD = this.totales.total1AD - this.totales.total2AD - this.totales.total3AD - this.totales.total4AD - this.totales.total5AD;
-      this.totales.totalMYR = this.totales.total1MYR - this.totales.total2MYR - this.totales.total3MYR - this.totales.total4MYR - this.totales.total5MYR;
-      this.totales.totalMYP = this.totales.total1MYP - this.totales.total2MYP - this.totales.total3MYP - this.totales.total4MYP - this.totales.total5MYP;
-      this.totales.totalMYD = this.totales.total1MYD - this.totales.total2MYD - this.totales.total3MYD - this.totales.total4MYD - this.totales.total5MYD;
-      this.totales.totalJR = this.totales.total1JR - this.totales.total2JR - this.totales.total3JR - this.totales.total4JR - this.totales.total5JR;
-      this.totales.totalJP = this.totales.total1JP - this.totales.total2JP - this.totales.total3JP - this.totales.total4JP - this.totales.total5JP;
-      this.totales.totalJD = this.totales.total1JD - this.totales.total2JD - this.totales.total3JD - this.totales.total4JD - this.totales.total5JD;
-      this.totales.totalJLR = this.totales.total1JLR - this.totales.total2JLR - this.totales.total3JLR - this.totales.total4JLR - this.totales.total5JLR;
-      this.totales.totalJLP = this.totales.total1JLP - this.totales.total2JLP - this.totales.total3JLP - this.totales.total4JLP - this.totales.total5JLP;
-      this.totales.totalJLD = this.totales.total1JLD - this.totales.total2JLD - this.totales.total3JLD - this.totales.total4JLD - this.totales.total5JLD;
-      this.totales.totalAGR = this.totales.total1AGR - this.totales.total2AGR - this.totales.total3AGR - this.totales.total4AGR - this.totales.total5AGR;
-      this.totales.totalAGP = this.totales.total1AGP - this.totales.total2AGP - this.totales.total3AGP - this.totales.total4AGP - this.totales.total5AGP;
-      this.totales.totalAGD = this.totales.total1AGD - this.totales.total2AGD - this.totales.total3AGD - this.totales.total4AGD - this.totales.total5AGD;
-      this.totales.totalSR = this.totales.total1SR - this.totales.total2SR  - this.totales.total3SR - this.totales.total4SR - this.totales.total5SR;
-      this.totales.totalSP = this.totales.total1SP - this.totales.total2SP  - this.totales.total3SP - this.totales.total4SP - this.totales.total5SP;
-      this.totales.totalSD = this.totales.total1SD - this.totales.total2SD  - this.totales.total3SD - this.totales.total4SD - this.totales.total5SD;
-      this.totales.totalOR = this.totales.total1OR - this.totales.total2OR - this.totales.total3OR - this.totales.total4OR - this.totales.total5OR;
-      this.totales.totalOP = this.totales.total1OP - this.totales.total2OP - this.totales.total3OP - this.totales.total4OP - this.totales.total5OP;
-      this.totales.totalOD = this.totales.total1OD - this.totales.total2OD - this.totales.total3OD - this.totales.total4OD - this.totales.total5OD;
-      this.totales.totalNR = this.totales.total1NR - this.totales.total2NR - this.totales.total3NR - this.totales.total4NR - this.totales.total5NR;
-      this.totales.totalNP = this.totales.total1NP - this.totales.total2NP - this.totales.total3NP - this.totales.total4NP - this.totales.total5NP;
-      this.totales.totalND = this.totales.total1ND - this.totales.total2ND - this.totales.total3ND - this.totales.total4ND - this.totales.total5ND;
-      this.totales.totalDR = this.totales.total1DR - this.totales.total2DR - this.totales.total3DR - this.totales.total4DR - this.totales.total5DR;
-      this.totales.totalDP = this.totales.total1DP - this.totales.total2DP - this.totales.total3DP - this.totales.total4DP - this.totales.total5DP;
-      this.totales.totalDD = this.totales.total1DD - this.totales.total2DD - this.totales.total3DD - this.totales.total4DD - this.totales.total5DD;
-      this.totales.totalACR = this.totales.total1ACR - this.totales.total2ACR - this.totales.total3ACR - this.totales.total4ACR - this.totales.total5ACR;
-      this.totales.totalACP = this.totales.total1ACP - this.totales.total2ACP - this.totales.total3ACP - this.totales.total4ACP - this.totales.total5ACP;
-      this.totales.totalACD = this.totales.total1ACD - this.totales.total2ACD - this.totales.total3ACD - this.totales.total4ACD - this.totales.total5ACD;      
+            //TOTAL NIVEL 00
+      this.totales.totalER = this.totales.total01ER - this.totales.total02ER - this.totales.total3ER - this.totales.total4ER - this.totales.total5ER;
+      this.totales.totalEP = this.totales.total01EP - this.totales.total02EP - this.totales.total3EP - this.totales.total4EP - this.totales.total5EP;
+      this.totales.totalED = this.totales.total01ED - this.totales.total02ED - this.totales.total3ED - this.totales.total4ED - this.totales.total5ED;
+      this.totales.totalFR = this.totales.total01FR - this.totales.total02FR - this.totales.total3FR - this.totales.total4FR - this.totales.total5FR;
+      this.totales.totalFP = this.totales.total01FP - this.totales.total02FP - this.totales.total3FP - this.totales.total4FP - this.totales.total5FP;
+      this.totales.totalFD = this.totales.total01FD - this.totales.total02FD - this.totales.total3FD - this.totales.total4FD - this.totales.total5FD;
+      this.totales.totalMR = this.totales.total01MR - this.totales.total02MR - this.totales.total3MR - this.totales.total4MR - this.totales.total5MR;
+      this.totales.totalMP = this.totales.total01MP - this.totales.total02MP - this.totales.total3MP - this.totales.total4MP - this.totales.total5MP;
+      this.totales.totalMD = this.totales.total01MD - this.totales.total02MD - this.totales.total3MD - this.totales.total4MD - this.totales.total5MD;
+      this.totales.totalAR = this.totales.total01AR - this.totales.total02AR - this.totales.total3AR - this.totales.total4AR - this.totales.total5AR;
+      this.totales.totalAP = this.totales.total01AP - this.totales.total02AP - this.totales.total3AP - this.totales.total4AP - this.totales.total5AP;
+      this.totales.totalAD = this.totales.total01AD - this.totales.total02AD - this.totales.total3AD - this.totales.total4AD - this.totales.total5AD;
+      this.totales.totalMYR = this.totales.total01MYR - this.totales.total02MYR - this.totales.total3MYR - this.totales.total4MYR - this.totales.total5MYR;
+      this.totales.totalMYP = this.totales.total01MYP - this.totales.total02MYP - this.totales.total3MYP - this.totales.total4MYP - this.totales.total5MYP;
+      this.totales.totalMYD = this.totales.total01MYD - this.totales.total02MYD - this.totales.total3MYD - this.totales.total4MYD - this.totales.total5MYD;
+      this.totales.totalJR = this.totales.total01JR - this.totales.total02JR - this.totales.total3JR - this.totales.total4JR - this.totales.total5JR;
+      this.totales.totalJP = this.totales.total01JP - this.totales.total02JP - this.totales.total3JP - this.totales.total4JP - this.totales.total5JP;
+      this.totales.totalJD = this.totales.total01JD - this.totales.total02JD - this.totales.total3JD - this.totales.total4JD - this.totales.total5JD;
+      this.totales.totalJLR = this.totales.total01JLR - this.totales.total02JLR - this.totales.total3JLR - this.totales.total4JLR - this.totales.total5JLR;
+      this.totales.totalJLP = this.totales.total01JLP - this.totales.total02JLP - this.totales.total3JLP - this.totales.total4JLP - this.totales.total5JLP;
+      this.totales.totalJLD = this.totales.total01JLD - this.totales.total02JLD - this.totales.total3JLD - this.totales.total4JLD - this.totales.total5JLD;
+      this.totales.totalAGR = this.totales.total01AGR - this.totales.total02AGR - this.totales.total3AGR - this.totales.total4AGR - this.totales.total5AGR;
+      this.totales.totalAGP = this.totales.total01AGP - this.totales.total02AGP - this.totales.total3AGP - this.totales.total4AGP - this.totales.total5AGP;
+      this.totales.totalAGD = this.totales.total01AGD - this.totales.total02AGD - this.totales.total3AGD - this.totales.total4AGD - this.totales.total5AGD;
+      this.totales.totalSR = this.totales.total01SR - this.totales.total02SR  - this.totales.total3SR - this.totales.total4SR - this.totales.total5SR;
+      this.totales.totalSP = this.totales.total01SP - this.totales.total02SP  - this.totales.total3SP - this.totales.total4SP - this.totales.total5SP;
+      this.totales.totalSD = this.totales.total01SD - this.totales.total02SD  - this.totales.total3SD - this.totales.total4SD - this.totales.total5SD;
+      this.totales.totalOR = this.totales.total01OR - this.totales.total02OR - this.totales.total3OR - this.totales.total4OR - this.totales.total5OR;
+      this.totales.totalOP = this.totales.total01OP - this.totales.total02OP - this.totales.total3OP - this.totales.total4OP - this.totales.total5OP;
+      this.totales.totalOD = this.totales.total01OD - this.totales.total02OD - this.totales.total3OD - this.totales.total4OD - this.totales.total5OD;
+      this.totales.totalNR = this.totales.total01NR - this.totales.total02NR - this.totales.total3NR - this.totales.total4NR - this.totales.total5NR;
+      this.totales.totalNP = this.totales.total01NP - this.totales.total02NP - this.totales.total3NP - this.totales.total4NP - this.totales.total5NP;
+      this.totales.totalND = this.totales.total01ND - this.totales.total02ND - this.totales.total3ND - this.totales.total4ND - this.totales.total5ND;
+      this.totales.totalDR = this.totales.total01DR - this.totales.total02DR - this.totales.total3DR - this.totales.total4DR - this.totales.total5DR;
+      this.totales.totalDP = this.totales.total01DP - this.totales.total02DP - this.totales.total3DP - this.totales.total4DP - this.totales.total5DP;
+      this.totales.totalDD = this.totales.total01DD - this.totales.total02DD - this.totales.total3DD - this.totales.total4DD - this.totales.total5DD;
+      this.totales.totalACR = this.totales.total01ACR - this.totales.total02ACR - this.totales.total3ACR - this.totales.total4ACR - this.totales.total5ACR;
+      this.totales.totalACP = this.totales.total01ACP - this.totales.total02ACP - this.totales.total3ACP - this.totales.total4ACP - this.totales.total5ACP;
+      this.totales.totalACD = this.totales.total01ACD - this.totales.total02ACD - this.totales.total3ACD - this.totales.total4ACD - this.totales.total5ACD;      
 
     this.paginacion = 20
     if(this.paginacion = 20){
