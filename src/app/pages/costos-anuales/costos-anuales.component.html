@@ -615,7 +615,7 @@
                 </div>
         
                 <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
-                <dxo-summary>
+                <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                   <!-- SUMARY DE GRUPO -->
                   <dxi-group-item
                   column="fake"
@@ -727,33 +727,36 @@
 
 <!--==========================MODAL REAL=========================================================-->
         <dx-popup
-        width="99%" [height]="400" [showTitle]="true" title="Detalle de Real" [dragEnabled]="false" [closeOnOutsideClick]="true"
+        width="100%" [height]="600" [showTitle]="true" title="Detalle de Real" [dragEnabled]="false" [closeOnOutsideClick]="true"
         [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
         <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>
+        
+        
         <div *dxTemplate="let data of 'content'">
-          <!--#region :::: GRID DETALLE DE REAL ::::  -->
+            <dx-scroll-view width="100%" height="100%">
+            <!--#region :::: GRID DETALLE DE REAL ::::  -->
           <dx-data-grid #rentGer id="gridContainer" [dataSource]="DestalleCuenta" [columnAutoWidth]="true" [showColumnLines]="true"
             [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedDetalle($event)">
             
-            <dxi-column dataField="compania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="area" caption="Area" headerCellTemplate="headerTemplate" format="dd-MM-yy"></dxi-column>
-            <dxi-column dataField="identificadorPoliza" caption="Identificador Poliza" headerCellTemplate="headerTemplate" format="dd-MM-yy"></dxi-column>
-            <dxi-column dataField="descripcionPoliza" caption="Descripción Poliza" headerCellTemplate="headerTemplate" format="fixedPoint"></dxi-column>
-            <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate" format="fixedPoint"></dxi-column>
-            <dxi-column dataField="idIngreso" caption="Ingreso" headerCellTemplate="headerTemplate" format="fixedPoint"></dxi-column>
-            <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
-            <dxi-column dataField="idCuenta" caption="Clave" headerCellTemplate="headerTemplate" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
-            <dxi-column dataField="cuenta" caption="Cuenta" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="centroCosto" caption="Centro Costo" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="tipoOperacion" caption="Tipo Operación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="factura" caption="Factura" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="uuid" caption="UUID" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="iva" caption="IVA" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="cargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="abono" caption="Abono" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="area" caption="Area" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="centroCosto" caption="Centro Costo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="compania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cuenta" caption="Cuenta" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="descripcionPoliza" caption="Descripción Poliza" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="factura" caption="Factura" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="identificadorPoliza" caption="Identificador Poliza" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="iva" caption="IVA" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="tipoOperacion" caption="Tipo Operación" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="uuid" caption="UUID" headerCellTemplate="headerTemplate"></dxi-column>
+
           <!-- Templates Grid -->
             <div *dxTemplate="let data of 'headerTemplate'">
               <div style="font-weight: bolder; color: black">
@@ -778,7 +781,7 @@
             <dxo-paging [pageSize]="30"></dxo-paging>
             <dxo-sorting mode="none"></dxo-sorting>
           </dx-data-grid>
-
+          </dx-scroll-view>
         </div>
       </dx-popup>
 <!--=============================================FIN MODAL==========================================-->

@@ -83,8 +83,8 @@ export class CostosAnualesComponent implements OnInit {
   clasificaciones: Clasificacion[] = [
     {idClas:0, clasificacion: ''},
     {idClas:1, clasificacion: '00.- Indicadores'},
-    {idClas:2, clasificacion: '01.- Utilidad Bruta'},
-    {idClas:3, clasificacion: '02.- Total Otros Gastos de Operación'},
+    {idClas:2, clasificacion: '01.- Operación'},
+    {idClas:3, clasificacion: '02.- Otros Gastos de Operación'},
     {idClas:4, clasificacion: '03.- Total Otros Gastos y Prod. Extraordinarios'},
     {idClas:5, clasificacion: '04.- Total Otros Gastos y Productos Financieros'},
     {idClas:6, clasificacion: '05.- Total de Provisiones'}
@@ -228,10 +228,16 @@ export class CostosAnualesComponent implements OnInit {
   }
 
   verDetallesClick(data) {
-      var periodo = 0
-      var idcuenta = 0
-      this.costosAnuService.postDetalleCuenta(periodo, idcuenta).subscribe(data =>{
-        //console.log(data)
+    console.log(data)
+
+      var anio = this.anioSeleccionado;
+      var idCompania = data.key.idCompania;
+      var idArea = data.key.idArea;
+      var mes = this.mesSeleccionado;
+      var periodo = 0;
+      var idCuenta = data.key.idCuenta;
+      this.costosAnuService.postDetalleCuenta(anio, idCompania, idArea, mes, periodo, idCuenta).subscribe(data =>{
+        console.log(data)
         this.DestalleCuenta = data.data
         this.openModReal = true;
       })

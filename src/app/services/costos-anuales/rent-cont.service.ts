@@ -56,11 +56,16 @@ export class CostosAnualesService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_RESULT_COSTO_ANUAL), body, this.httpOptions);
   }
 
-  postDetalleCuenta(periodo: number, idCuenta: number){
+  postDetalleCuenta(anio: number, idCompania: number, idArea: number, mes: number, periodo: number, idCuenta: string){
     let body = {
+      anio: anio,
+      idCompania: idCompania,
+      idArea: idArea,
+      mes: mes,
       periodo: periodo,
       idCuenta: idCuenta
     }
+    console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_CUENTA), body, this.httpOptions);
   }
 
