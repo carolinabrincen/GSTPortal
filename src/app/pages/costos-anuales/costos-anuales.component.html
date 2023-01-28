@@ -738,24 +738,25 @@
           <dx-data-grid #rentGer id="gridContainer" [dataSource]="DestalleCuenta" [columnAutoWidth]="true" [showColumnLines]="true"
             [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedDetalle($event)">
             
-            <dxi-column dataField="abono" caption="Abono" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="area" caption="Area" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="cargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="centroCosto" caption="Centro Costo" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="compania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="area" caption="UdN" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="identificadorPoliza" caption="Identificador póliza" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="descripcionPoliza" caption="Descripción de la póliza" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="numPartida" caption="Num. partida" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="cuenta" caption="Cuenta" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="descripcionPoliza" caption="Descripción Poliza" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="factura" caption="Factura" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="identificadorPoliza" caption="Identificador Poliza" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="iva" caption="IVA" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="tipoOperacion" caption="Tipo Operación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="centroCosto" caption="Centro costo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="factura" caption="Factura" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="uuid" caption="UUID" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="tipoOperacion" caption="Operación" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="abono" caption="Abono" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="iva" caption="Iva" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate"></dxi-column>
+
 
           <!-- Templates Grid -->
             <div *dxTemplate="let data of 'headerTemplate'">
