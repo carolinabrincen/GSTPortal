@@ -103,7 +103,7 @@ export class CostosAnualesComponent implements OnInit {
   selectedCompania: number = 0;
   selectedAnioTPS: number = 0;
   selectedMesTPS: number = 0;
-  selectedClasficacion: string = '';
+  selectedClasficacion: number = 0;
 
   objTracto: any;
   objRentabilidad: any;
@@ -201,6 +201,7 @@ export class CostosAnualesComponent implements OnInit {
   }  
   seleccionarUDN(e: any) {
     this.udnSeleccionado = e.value;
+    console.log(e)
   }
 
   selectClasficacion(e: any) {
@@ -218,7 +219,7 @@ export class CostosAnualesComponent implements OnInit {
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
       var myclasificacion = 0
-      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, myclasificacion).subscribe(data =>{
+      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
         this.costosAnuales = data.data;
         this.paginacion = 0;
         this.expandGroup = true;

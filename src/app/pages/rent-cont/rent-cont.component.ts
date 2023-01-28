@@ -107,6 +107,7 @@ export class RentContComponent implements OnInit {
             element.fin = new Date(element.fin);
           });
           this.arrRentContItems = res.data.resumen;
+          console.log(this.arrRentContItems)
 
         });
     });

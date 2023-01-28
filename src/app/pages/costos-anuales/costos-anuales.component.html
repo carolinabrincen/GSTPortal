@@ -374,33 +374,33 @@
                 <!-- COLS -->
                 <!-- <dxi-col [ratio]="1"></dxi-col> -->
                 <!--Año-->
-                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Mes-->
-                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
                 <dxi-col [ratio]="1.50"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Compañia-->
-                <dxi-col [ratio]="1.30"></dxi-col>
-                <dxi-col [ratio]="4"></dxi-col>
-                <!--vacia-->
-                <dxi-col [ratio]=".15"></dxi-col>
-                <!--UDN-->
                 <dxi-col [ratio]=".70"></dxi-col>
                 <dxi-col [ratio]="3"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
-                <!--Clasificacion-->
-                <dxi-col [ratio]="1.70"></dxi-col>
+                <!--UDN-->
+                <dxi-col [ratio]=".60"></dxi-col>
                 <dxi-col [ratio]="3"></dxi-col>
+                <!--vacia-->
+                <!-- <dxi-col [ratio]=".15"></dxi-col> -->
+                <!--Clasificacion-->
+                <!-- <dxi-col [ratio]="1.70"></dxi-col>
+                <dxi-col [ratio]="3"></dxi-col> -->
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Buscar-->
-                <dxi-col [ratio]="1"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
+                <dxi-col [ratio]="2"></dxi-col>
+                <dxi-col [ratio]=".5"></dxi-col>
         
         
                 <!-- ROWS -->
@@ -477,8 +477,8 @@
                     <dx-select-box [items]="arrUnidadesNegocio" displayExpr="udn" valueExpr="idUdn" (onValueChanged)="seleccionarUDN($event)">
                     </dx-select-box>
                 </dxi-item>
-                <!-- TRACTO -->
-                <dxi-item>
+                <!-- CLASIFICACION se oculto por el momento -->
+                <!-- <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
                     <div>Clasificación:</div>
@@ -486,12 +486,12 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="13"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="clasificaciones" displayExpr="clasificacion" valueExpr="clasificacion" (onValueChanged)="selectClasficacion($event)">
+                    <dx-select-box [items]="clasificaciones" displayExpr="clasificacion" valueExpr="idClas" (onValueChanged)="selectClasficacion($event)">
                     </dx-select-box>
-                </dxi-item>
+                </dxi-item> -->
                 <!-- BUSCAR -->
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="13"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
