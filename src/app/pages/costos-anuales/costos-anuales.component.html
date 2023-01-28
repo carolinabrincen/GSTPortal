@@ -752,10 +752,10 @@
             <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="tipoOperacion" caption="Operación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="cargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="abono" caption="Abono" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="iva" caption="Iva" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="cargo" caption="Cargo" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="abono" caption="Abono" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="iva" caption="Iva" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
 
 
           <!-- Templates Grid -->
