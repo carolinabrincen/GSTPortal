@@ -232,8 +232,8 @@ export class CostosAnualesComponent implements OnInit {
     console.log(data)
 
       var anio = this.anioSeleccionado;
-      var idCompania = data.key.idCompania;
-      var idArea = data.key.idArea;
+      var idCompania = this.selectedCompania;
+      var idArea = this.udnSeleccionado;
       var mes = this.mesSeleccionado;
       var periodo = 0;
       var idCuenta = data.key.idCuenta;
