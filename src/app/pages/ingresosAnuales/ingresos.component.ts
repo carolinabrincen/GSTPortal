@@ -63,6 +63,10 @@ export class IngresosComponent implements OnInit {
   ];
 
   anioSeleccionado: number;
+
+  paginacion = 60; 
+  readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
+  
   constructor( private unidadesService: UnidadesService, private service: ServiceSales, private currencyPipe: CurrencyPipe) {
 
     this.IdUnidadNegocio = 0;
@@ -75,6 +79,7 @@ export class IngresosComponent implements OnInit {
     this.treeBoxValue = ['0'];
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
+    this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
   }
 
   getIngresosAnuales(Anio: number, UnidadNegocio: number)
@@ -98,51 +103,6 @@ export class IngresosComponent implements OnInit {
       
     });
     }
-
-    // getKmsAnuales(Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getKms(Anio, UnidadNegocio).subscribe((response) => {
-    //     this.kms = response.data;
-    //   });
-    // }
-    
-    // getKmsAnualesChart (Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getKmsGrafica(Anio, UnidadNegocio).subscribe((response) => {
-        
-    //   this.kmsGrafica = response.data;
-    //   });
-    // }
-    // getViajesAnuales(Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getViajes(Anio, UnidadNegocio).subscribe((response) => {
-    //     this.viajes = response.data;
-    //   });
-    // }
-    
-    // getViajesAnualesChart (Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getViajesGrafica(Anio, UnidadNegocio).subscribe((response) => {
-        
-    //   this.viajesGrafica = response.data;
-    //   });
-    // }
-
-    // getToneladasAnuales(Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getToneladas(Anio, UnidadNegocio).subscribe((response) => {
-    //     this.toneladas = response.data;
-    //   });
-    // }
-    
-    // getToneladasAnualesChart (Anio: number, UnidadNegocio: number)
-    // {
-    //   this.service.getToneladasGrafica(Anio, UnidadNegocio).subscribe((response) => {
-        
-    //   this.toneladasGrafica = response.data;
-      
-    //   });
-    // }
 
     seleccionarAnio(e: any) {
       this.anioSeleccionado = e.value;
@@ -170,86 +130,139 @@ export class IngresosComponent implements OnInit {
 
 
 
-saveGridInstance (e:any) {
-  this.dataGridInstance = e.component;
-}
-
-ngAfterViewInit() {
-  
-  // this.pivotGrid.instance.bindChart(this.chart.instance, {
-  //   dataFieldsDisplayMode: 'splitPanes',
-  //   alternateDataFields: false,
-  // });
-}
-
-customizeTooltip(args: any) {
-  const valueText = (args.seriesName.indexOf('Total') != -1)
-    ? new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(args.originalValue)
-    : args.originalValue;
-
-  return {
-    html: `${args.seriesName}<div class='currency'>${valueText}</div>`,
-  };
-}
-
-makeAsyncDataSource(http: any, jsonFile: any) {
-  // return new CustomStore({
-  //   loadMode: 'raw',
-  //   key: 'ID',
-  //   load() {
-  //     return http.get(`data/${jsonFile}`)
-  //       .toPromise();
-  //   },
-  // });
-}
-
-print() {
-  this.chart.instance.print();
-}
-export() {
-  this.chart.instance.exportTo('Example', 'png');
-}
-// syncTreeViewSelection() {
-//   if (!this.treeView) return;
-
-//   if (!this.treeBoxValue) {
-//     this.treeView.instance.unselectAll();
-//   } else {
-//     this.treeView.instance.selectItem(this.treeBoxValue);
-//   }
-// }
-
-treeView_itemSelectionChanged(e:any) {
-  this.treeBoxValue = e.component.getSelectedNodeKeys();
-  this.UnidadNegocio = e.node.text;
-  
-  
-  this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
-  
-  
-  // this.getIngresosAnuales(this.Anio, this.IdUnidadNegocio);
-  // this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
-  // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
-  // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
-  // this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
-  // this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
-  // this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
-  // this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
- 
-}
-
-
-
-onTreeBoxOptionChanged(e:any) {
-  if (e.name === 'value') {
-    this.isTreeBoxOpened = false;
-    // this.ref.detectChanges();
+  saveGridInstance (e:any) {
+    this.dataGridInstance = e.component;
   }
+
+  ngAfterViewInit() {
+    
+    // this.pivotGrid.instance.bindChart(this.chart.instance, {
+    //   dataFieldsDisplayMode: 'splitPanes',
+    //   alternateDataFields: false,
+    // });
+  }
+
+  customizeTooltip(args: any) {
+    const valueText = (args.seriesName.indexOf('Total') != -1)
+      ? new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(args.originalValue)
+      : args.originalValue;
+
+    return {
+      html: `${args.seriesName}<div class='currency'>${valueText}</div>`,
+    };
+  }
+
+  makeAsyncDataSource(http: any, jsonFile: any) {
+    // return new CustomStore({
+    //   loadMode: 'raw',
+    //   key: 'ID',
+    //   load() {
+    //     return http.get(`data/${jsonFile}`)
+    //       .toPromise();
+    //   },
+    // });
+  }
+
+  print() {
+    this.chart.instance.print();
+  }
+  export() {
+    this.chart.instance.exportTo('Example', 'png');
+  }
+
+  treeView_itemSelectionChanged(e:any) {
+    this.treeBoxValue = e.component.getSelectedNodeKeys();
+    this.UnidadNegocio = e.node.text;
+    
+    
+    this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
+    
+    
+    // this.getIngresosAnuales(this.Anio, this.IdUnidadNegocio);
+    // this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
+    // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
+    // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
+    // this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
+    // this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
+    // this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
+    // this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
+  
+  }
+
+
+
+  onTreeBoxOptionChanged(e:any) {
+    if (e.name === 'value') {
+      this.isTreeBoxOpened = false;
+      // this.ref.detectChanges();
+    }
+  }
+
+    
+  ngOnInit(): void {
+  }
+
+  total: number = 0;
+  anioAnt: number = 0;
+  resTotal: number = 0;
+  onRowPrepared(e: any) {
+    
+    if (e.rowType == 'groupFooter'){
+
+      if(e.groupIndex == 0){
+        console.log(e)
+        //Sacando valores para la operacion
+        if(e.summaryCells.length != 0){
+          this.total = e.summaryCells[4][0].value;
+          this.anioAnt = e.summaryCells[5][0].value; 
+          console.log(this.total + '  ' + this.anioAnt)
+        }
+        //Operacion de valores
+        if(this.total && this.anioAnt != undefined){
+          console.log(this.total + '  ' + this.anioAnt)
+          this.resTotal = this.total / this.anioAnt;
+        } 
+ 
+        //Resultado de valores
+        if(this.resTotal != undefined){
+          console.log(this.resTotal)
+          e.summaryCells[6][0].value = this.resTotal;
+        }
+      } 
+
+    }
+  }
+
+  calcularPorcentajes(options: any) {
+    // //
+    // if (options.summaryProcess === 'calculate') {
+    //   if (options.name === 'grupMargenUtilidaPor') {
+    //     options.totalValue = .17;
+    //     console.log('📵', options);
+    //   }
+    // }
+  }
+
+  onContentReady(e: any) {
+
+    this.loadingVisible = false;
+
+  }
+
+  onCellPrepared(e: any) {
+    if(e.rowType === "groupFooter" && e.column.dataField === "margenUtilida") {
+      //console.log('👣', e);
+
+        e.cellElement.style.color = "red";
+        // Tracks the `Amount` data field
+        // e.watch(function() {
+        //     return e.data.Amount;
+        // }, function() {
+        //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
+        // })
+    }
 }
 
-  
-ngOnInit(): void {
-}
 
 
 }

@@ -28,28 +28,32 @@
         </div>
     </div>
     <br>
+
     <div>
+
         <dx-tab-panel>
             <dxi-item title=Ingresos>
-                <dx-data-grid #dataGridVar [dataSource]="indicadores" [showBorders]="true">
 
-                    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
-                    <dxo-export [enabled]="true"></dxo-export>
-                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" cellTemplate="cellTemplateSize" [fixed]="true"></dxi-column>
+                <dx-data-grid #dataGridVar id="gridContainer2" [columnMinWidth]="150" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+                (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+            
+                <dxo-export [enabled]="true" fileName="Ingresos Anuales"></dxo-export>
+
+                    <!-- <dxo-column-fixing [enabled]="true"></dxo-column-fixing> -->
+                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" [fixed]="true"></dxi-column>
                     <dxi-column caption="Enero">
                         <dxi-column dataField="eneroFlete" caption="Flete" format="currency" width="100"></dxi-column>
                         <dxi-column dataField="eneroOtros" caption="Otros" format="currency" width="100"></dxi-column>
                         <dxi-column dataField="eneroTotal" caption="Total" format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroFD" caption="Directas" format="currency" width="100"></dxi-column>
                         <dxi-column dataField="eneroAnt" caption="Año Ant." format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroPor" caption="%" width="70" format="percent"></dxi-column>
+                        <dxi-column dataField="eneroPor" caption="%" [width]="70"></dxi-column>
                         <dxi-column dataField="eneroPres" caption="Prespupuesto" format="currency" width="100"></dxi-column>
                         <dxi-column dataField="eneroPorP" caption="%" format="percent" width="50"></dxi-column>
                     </dxi-column>
 
                     <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
 
-                    <dxo-summary>
+                    <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
 
                         <dxi-total-item column="eneroFlete" summaryType="sum" valueFormat="currency" displayFormat="{0}">
                         </dxi-total-item>
@@ -61,7 +65,7 @@
                         </dxi-total-item>
                         <dxi-total-item column="eneroAnt" summaryType="sum" valueFormat="currency" displayFormat="{0}">
                         </dxi-total-item>
-                        <dxi-total-item column="eneroPor" summaryType="sum" valueFormat="currency" displayFormat="{0}">
+                        <dxi-total-item column="eneroPor" summaryType="custom" valueFormat="percent" displayFormat="{0}">
                         </dxi-total-item>
                         <dxi-total-item column="eneroPres" summaryType="sum" valueFormat="currency" displayFormat="{0}">
                         </dxi-total-item>
@@ -77,7 +81,7 @@
                         </dxi-group-item>
                         <dxi-group-item column="eneroAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
                         </dxi-group-item>
-                        <dxi-group-item column="eneroPor" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
+                        <dxi-group-item column="eneroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
                         </dxi-group-item>
                         <dxi-group-item column="eneroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
                         </dxi-group-item>
@@ -88,15 +92,30 @@
 
 
 
-                    <dxo-paging [pageSize]="60"></dxo-paging>
+                    <!-- <dxo-paging [pageSize]="60"></dxo-paging>
 
                     <div *dxTemplate="let cell of 'cellTemplateSize'">
                         <div style="font-size: smaller; font-weight: bold;">{{cell.text}}</div>
+                    </div> -->
+
+                    <div *dxTemplate="let data of 'headerTemplate'">
+                        <div style="font-weight: bolder; color: black">
+                            {{ data.column.caption }}
+                        </div>
                     </div>
+                    <div *dxTemplate="let cell of 'cellTemplateBold'">
+                        <div style="font-weight: bold;">{{cell.text}}</div>
+                    </div>
+                    <dxo-paging [pageSize]="paginacion"></dxo-paging>
+                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                    <!-- <dxo-grouping #expand [autoExpandAll]="expandGroup" ></dxo-grouping> -->
+                    <!-- <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                    </dxo-pager>  -->
+                    <dxo-sorting mode="none"></dxo-sorting>
 
                 </dx-data-grid>
             </dxi-item>
-            <!-- <dxi-item title="Kilómetros">
+            <!-- <dxi-item title="Kilómetros">  
                 <dx-data-grid id="pivotgridKms" [dataSource]="kms" [showBorders]="true">
                     <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
                     <dxo-export [enabled]="true"></dxo-export>
