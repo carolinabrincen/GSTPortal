@@ -1,17 +1,8 @@
 export enum API_URLS{
     LOGEO = 'api/Login',
     GET_INGRESOS_ANUALES = 'api/Ingresos/IngresosAnuales',
-    GET_INGRESOS_ANUALES_DETALLADO = 'api/Ingresos/IngresosAnualesDetallado/2022/0',
-    GET_INGRESOS_ANUALES_DETALLADO_MARZO = 'api/Ingresos/IngresosAnualesDetalladoMarzo/2022/0',
-    GET_INGRESOS_ANUALES_DETALLADO_ABRIL = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202204/04',
-    GET_INGRESOS_ANUALES_DETALLADO_MAYO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202205/05',
-    GET_INGRESOS_ANUALES_DETALLADO_JUNIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202206/06',
-    GET_INGRESOS_ANUALES_DETALLADO_JULIO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202207/07',
-    GET_INGRESOS_ANUALES_DETALLADO_AGO = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202208/08',
-    GET_INGRESOS_ANUALES_DETALLADO_SEP = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202209/09',
-    GET_INGRESOS_ANUALES_DETALLADO_OCT = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202210/10',
-    GET_INGRESOS_ANUALES_DETALLADO_NOV = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202211/11',
-    GET_INGRESOS_ANUALES_DETALLADO_DIC = 'api/Ingresos/IngresosAnualesDetalladoMensual/2022/202212/12',
+    GET_INGRESOS_ANUALES_DETALLADO_enero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202301/01',
+    
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
     GET_TONELADAS_ANUALES = 'api/Ingresos/ToneladasAnuales',
