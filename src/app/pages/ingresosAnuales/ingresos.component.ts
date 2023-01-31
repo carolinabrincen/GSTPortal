@@ -8,12 +8,14 @@ import { CurrencyPipe } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
 import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-contable.model';
+import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 
+import {Sale, Service} from '../../shared/models/ingresos/ingreso.service'
 @Component({
   
   templateUrl: './ingresos.component.html',
   styleUrls: ['./ingresos.component.scss'],
-  providers: [UnidadesService,ServiceSales, CurrencyPipe],
+  providers: [UnidadesService,ServiceSales, CurrencyPipe, Service],
 })
 
 export class IngresosComponent implements OnInit {
@@ -22,9 +24,6 @@ export class IngresosComponent implements OnInit {
   @ViewChild(DxChartComponent, { static: false }) chart: any;
 
   @ViewChild('dataGridVar', { static: false }) dataGrid: DxDataGridComponent | undefined;
-
-  pivotGridDataSource: any;
-
   employee: any;
   treeBoxValue: string[];
   treeDataSource: any;
@@ -67,7 +66,25 @@ export class IngresosComponent implements OnInit {
   paginacion = 60; 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
   
-  constructor( private unidadesService: UnidadesService, private service: ServiceSales, private currencyPipe: CurrencyPipe) {
+
+  applyChangesModes: any;
+
+  applyChangesMode: any;
+
+  layouts: any[];
+
+  pivotGridDataSource: any;
+
+  openModReal: boolean = false;
+  positionOf: string = '#myDiv';
+  expandGroup: boolean = true;
+
+  constructor( 
+    private unidadesService: UnidadesService, 
+    private service: ServiceSales, 
+    private currencyPipe: CurrencyPipe,
+    testService: Service
+    ) {
 
     this.IdUnidadNegocio = 0;
     this.UnidadNegocio = "Nacional";
@@ -80,6 +97,43 @@ export class IngresosComponent implements OnInit {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+    // this.verDetallesClick = this.verDetallesClick.bind(this)
+
+    // this.pivotGridDataSource = new PivotGridDataSource({
+    //   fields: [{
+    //     caption: 'UdN',
+    //     width: 120,
+    //     dataField: 'unidadNegocio',
+    //     area: 'row',
+    //     headerFilter: {
+    //       allowSearch: true,
+    //     },
+    //   }, {
+    //     caption: 'Operacion',
+    //     dataField: 'tipoOperacion',
+    //     width: 150,
+    //     area: 'row',
+    //     headerFilter: {
+    //       allowSearch: true,
+    //     },
+    //     selector(data: Sale) {
+    //       return `${data.tipoOperacion} (${data.unidadNegocio})`;
+    //     },
+    //   }, {
+    //     dataField: 'mes',
+    //     dataType: 'string',
+    //     area: 'column',
+    //   }, {
+    //     caption: 'Sales',
+    //     dataField: 'eneroTotal',
+    //     dataType: 'number',
+    //     summaryType: 'sum',
+    //     format: 'currency',
+    //     area: 'data',
+    //   }],
+    //   store: testService.getSales(),
+    // });
+
   }
 
   getIngresosAnuales(Anio: number, UnidadNegocio: number)
@@ -89,7 +143,11 @@ export class IngresosComponent implements OnInit {
       this.service.getIndicadores(Anio, UnidadNegocio).subscribe((response) => {
     
         this.indicadores = response.data;
+        console.log(this.indicadores)
     
+        //llenado delGrid con columnas y filas
+
+     
       });
   }
 
@@ -207,30 +265,63 @@ export class IngresosComponent implements OnInit {
   resTotal: number = 0;
   onRowPrepared(e: any) {
     
+    if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
+
+        // if (c.cellElement) {
+        //   //poner en rojo negativos
+        //   if (c.value && c.value.toString().startsWith('-')) {
+        //     c.cellElement.style.color = "red";
+        //   }
+
+        //   //negrita columna margen utilidad
+        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
+        //       c.columnIndex == 23 || c.columnIndex == 24 ||
+        //       c.columnIndex == 37 || c.columnIndex == 38) {
+        //     c.cellElement.style.fontWeight = "bolder";
+        //     c.cellElement.style.fontSize = "14px";
+        //     c.cellElement.style.background = "#f5f5f5";
+        //   }
+
+        //   //porcentaje de combistuble > .25 en rojo
+        //   if (c.columnIndex == 16 && c.value >= .25) {
+        //     c.cellElement.style.color = "red";
+        //   }
+        // }
+
+
+
+      });
+    }
+
+    if (e.rowType == 'group') {
+      // if (e.groupIndex == 0) {
+      //   e.rowElement.style.backgroundColor = '#ff9460';
+      //   e.rowElement.style.color = "white";
+      // }
+      // else {
+      //   e.rowElement.style.backgroundColor = '#dcdcdc';
+      //   e.rowElement.style.color = "black";
+      //   e.rowElement.style.fontWeight = "bolder";
+      // }
+    }
+
     if (e.rowType == 'groupFooter'){
 
-      if(e.groupIndex == 0){
-        console.log(e)
-        //Sacando valores para la operacion
-        if(e.summaryCells.length != 0){
-          this.total = e.summaryCells[4][0].value;
-          this.anioAnt = e.summaryCells[5][0].value; 
-          console.log(this.total + '  ' + this.anioAnt)
-        }
-        //Operacion de valores
-        if(this.total && this.anioAnt != undefined){
-          console.log(this.total + '  ' + this.anioAnt)
-          this.resTotal = this.total / this.anioAnt;
-        } 
- 
-        //Resultado de valores
-        if(this.resTotal != undefined){
-          console.log(this.resTotal)
-          e.summaryCells[6][0].value = this.resTotal;
-        }
-      } 
-
     }
+
+    if (e.rowType == 'totalFooter') {
+    
+      e.cells.forEach((c: any) => {
+  
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }
+      });
+    };
   }
 
   calcularPorcentajes(options: any) {
@@ -261,7 +352,72 @@ export class IngresosComponent implements OnInit {
         //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
         // })
     }
-}
+  }
+
+  onRowPreparedDetalle(e: any){
+    if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
+
+        // if (c.cellElement) {
+        //   //poner en rojo negativos
+        //   if (c.value && c.value.toString().startsWith('-')) {
+        //     c.cellElement.style.color = "red";
+        //   }
+
+        //   //negrita columna margen utilidad
+        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
+        //       c.columnIndex == 23 || c.columnIndex == 24 ||
+        //       c.columnIndex == 37 || c.columnIndex == 38) {
+        //     c.cellElement.style.fontWeight = "bolder";
+        //     c.cellElement.style.fontSize = "14px";
+        //     c.cellElement.style.background = "#f5f5f5";
+        //   }
+
+        //   //porcentaje de combistuble > .25 en rojo
+        //   if (c.columnIndex == 16 && c.value >= .25) {
+        //     c.cellElement.style.color = "red";
+        //   }
+        // }
+
+
+
+      });
+    }
+
+    if (e.rowType == 'group') {
+      // if (e.groupIndex == 0) {
+      //   e.rowElement.style.backgroundColor = '#ff9460';
+      //   e.rowElement.style.color = "white";
+      // }
+      // else {
+      //   e.rowElement.style.backgroundColor = '#dcdcdc';
+      //   e.rowElement.style.color = "black";
+      //   e.rowElement.style.fontWeight = "bolder";
+      // }
+    }
+
+    if (e.rowType == 'groupFooter'){
+
+    }
+
+    if (e.rowType == 'totalFooter') {
+    
+      e.cells.forEach((c: any) => {
+  
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }
+      });
+    };
+  }
+
+  verDetallesClick() {
+
+    this.openModReal = true;
+  }
 
 
 
