@@ -32,96 +32,192 @@
     <div>
 
         <dx-tab-panel>
-            <dxi-item title=Ingresos>
-                <br><br>
-                <!-- <dx-pivot-grid
-                [allowSortingBySummary]="true"
-                [allowSorting]="true"
-                [allowFiltering]="true"
-                [showBorders]="true"
-                [dataSource]="pivotGridDataSource"
-              >
-                <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
-              </dx-pivot-grid> -->
-
+            <dxi-item title=Ingresos>              
+                <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+                (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
               
-              <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
-              (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick()">
-              
-              <dxi-column dataField="unidadNegocio" caption="" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
+                <dxi-column dataField="unidadNegocio" caption="" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
       
-              <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
 
-              <dxi-column dataField="eneroTotal" caption="Enero" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="eneroTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="febreroTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="marzoTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Abril" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="abrilTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="abrilPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Mayo" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="mayoTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="mayoPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Junio" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="junioTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="junioPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Julio" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="julioTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="julioPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>    
+                <dxi-column caption="Agosto" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="agostoTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="agostoPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Septiembre" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="sepTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="sepPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Octubre" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="octTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="octPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Noviembre" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="novTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="novPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Diciembre" headerCellTemplate="headerTemplate">
+                    <dxi-column dataField="dicTotal" caption="Ingreso" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="dicPres" caption="Presupuesto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+                </dxi-column>
 
-              <dxi-column dataField="febreroTotal" caption="Febrero" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="marzoTotal" caption="Marzo" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="abrilTotal" caption="Abril" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="mayoTotal" caption="Mayo" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="junioTotal" caption="Junio" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="julioTotal" caption="Julio" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="agostoTotal" caption="Agosto" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="sepTotal" caption="Septiembre" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="octTotal" caption="Octubre" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="novTotal" caption="Noviembre" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-              <dxi-column dataField="dicTotal" caption="Diciembre" [fixed]="false" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-
-      
-              <dxo-group-panel [visible]="false"></dxo-group-panel>
-              <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
       
               <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                 <!-- SUMARY TOTALES -->
-                  <dxi-total-item column="eneroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="febreroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="marzoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="abrilTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="mayoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="junioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="julioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="agostoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="sepTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="octTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="novTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
-                  <dxi-total-item column="dicTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
-                  </dxi-total-item>
+                <!-- ENERO -->
+                    <dxi-total-item column="eneroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="eneroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- FEBRERO -->
+                    <dxi-total-item column="febreroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="febreroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- MARZO -->
+                    <dxi-total-item column="marzoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="marzoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- ABRIL -->
+                    <dxi-total-item column="abrilTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="abrilPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- MAYO -->
+                    <dxi-total-item column="mayoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="mayoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- JUNIO -->
+                    <dxi-total-item column="junioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="junioPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- JULIO -->
+                    <dxi-total-item column="julioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="julioPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- AGOSTO -->
+                    <dxi-total-item column="agostoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="agostoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- SEPTIEMBRE -->
+                    <dxi-total-item column="sepTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="sepPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- OCTUBRE -->
+                    <dxi-total-item column="octTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item> 
+                    <dxi-total-item column="octPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item> 
+                    <!-- NOVIEMBRE -->
+                    <dxi-total-item column="novTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="novPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <!-- DICIEMBRE -->
+                    <dxi-total-item column="dicTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
+                    <dxi-total-item column="dicPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
+                    </dxi-total-item>
       
                 <!-- SUMARY DE GRUPO -->
+                <!-- ENERO -->
                   <dxi-group-item column="eneroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="eneroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                <!-- FEBRERO -->
                   <dxi-group-item column="febreroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="febreroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- MARZO -->
                   <dxi-group-item column="marzoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="marzoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- ABRIL -->
                   <dxi-group-item column="abrilTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="abrilPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- MAYO -->
                   <dxi-group-item column="mayoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="mayoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- JUNIO -->
                   <dxi-group-item column="junioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="junioPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- JULIO -->
                   <dxi-group-item column="julioTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="julioPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- AGOSTO -->
                   <dxi-group-item column="agostoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="agostoPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- SEPTIEMBRE -->
                   <dxi-group-item column="sepTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="sepPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- OCTUBRE -->
                   <dxi-group-item column="octTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="octPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- NOVIEMBRE -->
                   <dxi-group-item column="novTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="novPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
+                  <!-- DICIEMBRE -->
                   <dxi-group-item column="dicTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                   </dxi-group-item>
+                  <dxi-group-item column="dicPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item>
 
             
               </dxo-summary>
@@ -135,129 +231,56 @@
                   <div style="font-weight: bold;">{{cell.text}}</div>
               </div>
               <dxo-export [enabled]="true"></dxo-export>
-              <dxo-paging [pageSize]="10"></dxo-paging>
-              <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
-              </dxo-pager>
+              <dxo-paging [pageSize]="60"></dxo-paging>
               <dxo-sorting mode="none"></dxo-sorting>
           </dx-data-grid>
-
-                <!-- <dx-data-grid #dataGridVar id="gridContainer2" [columnMinWidth]="150" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
-                (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
-            
-                <dxo-export [enabled]="true" fileName="Ingresos Anuales"></dxo-export>
-
-                    <dxi-column dataField="tipoOperacion" caption="Operación" width="100" [fixed]="true"></dxi-column>
-                    <dxi-column caption="Enero">
-                        <dxi-column dataField="eneroFlete" caption="Flete" format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroOtros" caption="Otros" format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroTotal" caption="Total" format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroAnt" caption="Año Ant." format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroPor" caption="%" [width]="70"></dxi-column>
-                        <dxi-column dataField="eneroPres" caption="Prespupuesto" format="currency" width="100"></dxi-column>
-                        <dxi-column dataField="eneroPorP" caption="%" format="percent" width="50"></dxi-column>
-                    </dxi-column>
-
-                    <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0" [allowSorting]="false"></dxi-column>
-
-                    <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-
-                        <dxi-total-item column="eneroFlete" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroOtros" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroTotal" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroFD" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroAnt" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroPor" summaryType="custom" valueFormat="percent" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroPres" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-                        <dxi-total-item column="eneroPorP" summaryType="sum" valueFormat="currency" displayFormat="{0}">
-                        </dxi-total-item>
-
-
-                        <dxi-group-item column="eneroFlete" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroOtros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-                        <dxi-group-item column="eneroPorP" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###;-$ #,##0" [showInGroupFooter]="true">
-                        </dxi-group-item>
-
-                    </dxo-summary>
-
-                    <div *dxTemplate="let data of 'headerTemplate'">
-                        <div style="font-weight: bolder; color: black">
-                            {{ data.column.caption }}
-                        </div>
-                    </div>
-                    <div *dxTemplate="let cell of 'cellTemplateBold'">
-                        <div style="font-weight: bold;">{{cell.text}}</div>
-                    </div>
-                    <dxo-paging [pageSize]="paginacion"></dxo-paging>
-                    <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    
-                    <dxo-sorting mode="none"></dxo-sorting>
-                </dx-data-grid> -->
-
-
-               
+              
             </dxi-item>
         </dx-tab-panel>
     </div>
 
 
     <!--==========================MODAL REAL=========================================================-->
-    <dx-popup
-    width="75%" [height]="600" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true"
-    [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
-    <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>
+    <dx-popup [width]="1200" [height]="600" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true"
+    [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal"> 
+    <!-- <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>  -->
     
     
     <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
         <!--#region :::: GRID DETALLE DE REAL ::::  -->
         <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
-        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+        (onRowPrepared)="onRowPreparedDetalle($event)">
 
         <dxo-export [enabled]="true"></dxo-export>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
         <dxi-column dataField="unidadNegocio" caption="" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
 
-        <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
 
         <dxi-column caption="Enero" headerCellTemplate="headerTemplate">
-            <dxi-column dataField="eneroFlete" caption="Flete" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##"  headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##"  headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPor" caption="%" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##"  headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPorP" caption="%" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="enePorProy" caption="%" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroFlete" caption="Flete" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130"  headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPor" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPorP" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="enePorProy" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
-        <dxi-column caption="Febrero" headerCellTemplate="detalleCellTemplate">
-            <dxi-column dataField="febreroFlete" caption="Flete" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPor" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPorP" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febPorProy" caption="%" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+        <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
+            <dxi-column dataField="febreroFlete" caption="Flete" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPor" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPorP" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febPorProy" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
         <!-- <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
@@ -334,11 +357,6 @@
         <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
         <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
           <!-- SUMARY DE GRUPO -->
-          <dxi-group-item
-          column="fake"
-          [alignByColumn]="true"
-          summaryType="count">
-      </dxi-group-item>
             <!--ENERO [alignByColumn]="true"-->
             <dxi-group-item column="eneroFlete" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true"></dxi-group-item>
             <dxi-group-item column="eneroOtros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true"></dxi-group-item>
@@ -431,4 +449,11 @@
   </dx-popup>
 <!--=============================================FIN MODAL==========================================-->
 
+<dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">  
+    <dxo-position
+        my="top"
+        at="right"
+        of="#container">
+    </dxo-position>
+</dx-toast>
 </div>

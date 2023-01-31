@@ -63,7 +63,7 @@ export class IngresosComponent implements OnInit {
 
   anioSeleccionado: number;
 
-  paginacion = 60; 
+  paginacion = 5; 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
   
 
@@ -78,6 +78,7 @@ export class IngresosComponent implements OnInit {
   openModReal: boolean = false;
   positionOf: string = '#myDiv';
   expandGroup: boolean = true;
+  isVisible = false;
 
   constructor( 
     private unidadesService: UnidadesService, 
@@ -260,38 +261,35 @@ export class IngresosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  total: number = 0;
-  anioAnt: number = 0;
-  resTotal: number = 0;
   onRowPrepared(e: any) {
     
     if (e.rowType == 'data') {
-      e.cells.forEach((c: any) => {
+      // e.cells.forEach((c: any) => {
 
-        // if (c.cellElement) {
-        //   //poner en rojo negativos
-        //   if (c.value && c.value.toString().startsWith('-')) {
-        //     c.cellElement.style.color = "red";
-        //   }
+      //   if (c.cellElement) {
+      //     //poner en rojo negativos
+      //     if (c.value && c.value.toString().startsWith('-')) {
+      //       c.cellElement.style.color = "red";
+      //     }
 
-        //   //negrita columna margen utilidad
-        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
-        //       c.columnIndex == 23 || c.columnIndex == 24 ||
-        //       c.columnIndex == 37 || c.columnIndex == 38) {
-        //     c.cellElement.style.fontWeight = "bolder";
-        //     c.cellElement.style.fontSize = "14px";
-        //     c.cellElement.style.background = "#f5f5f5";
-        //   }
+      //     //negrita columna margen utilidad
+      //     if (c.columnIndex == 7  || c.columnIndex == 8  ||
+      //         c.columnIndex == 23 || c.columnIndex == 24 ||
+      //         c.columnIndex == 37 || c.columnIndex == 38) {
+      //       c.cellElement.style.fontWeight = "bolder";
+      //       c.cellElement.style.fontSize = "14px";
+      //       c.cellElement.style.background = "#f5f5f5";
+      //     }
 
-        //   //porcentaje de combistuble > .25 en rojo
-        //   if (c.columnIndex == 16 && c.value >= .25) {
-        //     c.cellElement.style.color = "red";
-        //   }
-        // }
+      //     //porcentaje de combistuble > .25 en rojo
+      //     if (c.columnIndex == 16 && c.value >= .25) {
+      //       c.cellElement.style.color = "red";
+      //     }
+      //   }
 
 
 
-      });
+      // });
     }
 
     if (e.rowType == 'group') {
@@ -307,6 +305,10 @@ export class IngresosComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter'){
+      
+      e.cells.forEach((c: any) => {
+          
+      }); 
 
     }
 
@@ -319,7 +321,7 @@ export class IngresosComponent implements OnInit {
             c.cellElement.style.fontSize = "16px";
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
-        }
+        }  
       });
     };
   }
@@ -354,6 +356,9 @@ export class IngresosComponent implements OnInit {
     }
   }
 
+  total: number = 0;
+  anioAnt: number = 0;
+  resTotal: number = 0;
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -397,7 +402,16 @@ export class IngresosComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter'){
+      if(e.groupIndex == 0){
+        console.log(e)
+        this.total = e.summaryCells[4][0].value;
+        this.anioAnt = e.summaryCells[5][0].value;
 
+        this.resTotal = this.total / this.anioAnt;
+
+        e.summaryCells[6][0].value = this.resTotal;
+
+      }
     }
 
     if (e.rowType == 'totalFooter') {
@@ -414,9 +428,23 @@ export class IngresosComponent implements OnInit {
     };
   }
 
-  verDetallesClick() {
+  verDetallesClick(event) {
 
-    this.openModReal = true;
+    if(event.cellElement.innerText == "Enero" || event.cellElement.innerText == "Febrero" || event.cellElement.innerText == "Marzo"
+    || event.cellElement.innerText == "Abril" || event.cellElement.innerText == "Mayo" || event.cellElement.innerText == "Junio"
+    || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
+    || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
+      //console.log(event)
+
+      // if(this.indicadores.length !== 0){
+        this.openModReal = true;
+      // }else{
+      //   this.isVisible = true;
+      // } 
+
+    }
+
+
   }
 
 
