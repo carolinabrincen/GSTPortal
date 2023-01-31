@@ -29,11 +29,11 @@ export const navigation = [
         path: '/rentabilidadcontable',
         icon: 'columnproperties'
       },
-      // {
-      //   text: 'Rent. Gerencial',
-      //   path: '/rentabilidadgerencial',
-      //   icon: 'fieldchooser'
-      // }, 
+      {
+        text: 'Rent. Gerencial',
+        path: '/rentabilidadgerencial',
+        icon: 'fieldchooser'
+      }, 
     ]
   },
   {
@@ -62,50 +62,15 @@ export const navigation = [
     icon: 'columnchooser',
     path: '/renta'
   },
-  // {
-  //   text: 'Permisos/Bitacora',
-  //   icon: 'columnchooser',
-  //   path: '/permiso-bitacora'
-  // },
-  // {
-  //   text: 'Balanza Comprobación',
-  //   icon: 'columnchooser',
-  //   path: '/balanza'
-  // }
+  {
+    text: 'Permisos/Bitacora',
+    icon: 'columnchooser',
+    path: '/permiso-bitacora'
+  },
+  {
+    text: 'Balanza Comprobación',
+    icon: 'columnchooser',
+    path: '/balanza'
+  } 
 
 ];
-    
-    //   {
-    //     text: 'Cotizador',
-    //     path: '/cotizador',
-    //     icon: 'columnchooser'
-    //   },
-    //   {
-    //     text: 'Indicadores',
-    //     path: '/profile',
-    //     icon: 'detailslayout'
-    //   }
-
-    // ]
-  // }
-  // ,
-  // {
-  //   text: 'Logística',
-  //   icon: 'map',
-  //   items: [
-  //     {
-  //       text: 'Gerencial',
-  //       path: '/profiles'
-  //     },
-  //     {
-  //       text: 'Ingresos',
-  //       path: '/taskse'
-  //     }
-  //     ,
-  //     {
-  //       text: 'Ingresos',
-  //       path: '/taskesss'
-  //     }
-  //   ]
-  // }
-// ];

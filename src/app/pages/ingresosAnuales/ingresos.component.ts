@@ -306,23 +306,15 @@ export class IngresosComponent implements OnInit {
 
     if (e.rowType == 'groupFooter'){
       
-      // if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
-      //   console.log(e)
+      if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
+        // console.log(e)
 
-      //   e.rowElement.style.fontWeight = "bolder";
-      //   e.rowElement.style.fontSize = "16px";
-      //   e.rowElement.style.backgroundColor = "#DCDCDC";
-      //   e.rowElement.style.color = "black"; 
-      //   e.cells.forEach((c: any) => {
-      //     //console.log(c)
-      //     if (c.cellElement) {
-      //       c.cellElement.style.fontWeight = "bolder";
-      //       c.cellElement.style.fontSize = "16px";
-      //       c.cellElement.style.background = "#DCDCDC";
-      //       c.cellElement.style.color = "black"; 
-      //   }   
-      //   }); 
-      // }
+        e.cells.forEach((c: any) => {
+          if (c.cellElement) {
+
+          }    
+        });
+      }
 
 
     }
@@ -330,7 +322,6 @@ export class IngresosComponent implements OnInit {
     if (e.rowType == 'totalFooter') {
     
       e.cells.forEach((c: any) => {
-  
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "16px";
@@ -471,7 +462,5 @@ export class IngresosComponent implements OnInit {
 
 
   }
-
-
 
 }
