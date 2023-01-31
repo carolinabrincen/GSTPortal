@@ -306,15 +306,15 @@ export class IngresosComponent implements OnInit {
 
     if (e.rowType == 'groupFooter'){
       
-      if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
-        // console.log(e)
+      // if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
+      //   // console.log(e)
 
-        e.cells.forEach((c: any) => {
-          if (c.cellElement) {
+      //   e.cells.forEach((c: any) => {
+      //     if (c.cellElement) {
 
-          }    
-        });
-      }
+      //     }    
+      //   });
+      // }
 
 
     }
