@@ -306,9 +306,24 @@ export class IngresosComponent implements OnInit {
 
     if (e.rowType == 'groupFooter'){
       
-      e.cells.forEach((c: any) => {
-          
-      }); 
+      // if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
+      //   console.log(e)
+
+      //   e.rowElement.style.fontWeight = "bolder";
+      //   e.rowElement.style.fontSize = "16px";
+      //   e.rowElement.style.backgroundColor = "#DCDCDC";
+      //   e.rowElement.style.color = "black"; 
+      //   e.cells.forEach((c: any) => {
+      //     //console.log(c)
+      //     if (c.cellElement) {
+      //       c.cellElement.style.fontWeight = "bolder";
+      //       c.cellElement.style.fontSize = "16px";
+      //       c.cellElement.style.background = "#DCDCDC";
+      //       c.cellElement.style.color = "black"; 
+      //   }   
+      //   }); 
+      // }
+
 
     }
 
@@ -321,7 +336,7 @@ export class IngresosComponent implements OnInit {
             c.cellElement.style.fontSize = "16px";
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
-        }  
+        }   
       });
     };
   }
@@ -358,7 +373,11 @@ export class IngresosComponent implements OnInit {
 
   total: number = 0;
   anioAnt: number = 0;
-  resTotal: number = 0;
+  presupuesto: number = 0;
+  proyeccion: number = 0;
+  aniATotal: number = 0;
+  presTotal: number = 0;
+  ProyTotal: number = 0;
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -406,10 +425,16 @@ export class IngresosComponent implements OnInit {
         console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
+        this.presupuesto = e.summaryCells[7][0].value;
+        this.proyeccion = e.summaryCells[9][0].value;
 
-        this.resTotal = this.total / this.anioAnt;
+        this.aniATotal = this.total / this.anioAnt;
+        this.presTotal = this.total / this.presupuesto;
+        this.ProyTotal = this.total / this.proyeccion;
 
-        e.summaryCells[6][0].value = this.resTotal;
+        e.summaryCells[6][0].value = this.aniATotal;
+        e.summaryCells[8][0].value = this.presTotal;
+        e.summaryCells[10][0].value = this.ProyTotal;
 
       }
     }

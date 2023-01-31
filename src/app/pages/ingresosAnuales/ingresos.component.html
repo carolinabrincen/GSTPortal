@@ -241,7 +241,7 @@
 
 
     <!--==========================MODAL REAL=========================================================-->
-    <dx-popup [width]="1200" [height]="600" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true"
+    <dx-popup [width]="1250" [height]="650" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true"
     [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal"> 
     <!-- <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>  -->
     
@@ -264,11 +264,11 @@
             <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130"  headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPor" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPor" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPorP" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPorP" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="enePorProy" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="enePorProy" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
         <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
@@ -276,11 +276,11 @@
             <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPor" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPor" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPorP" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPorP" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febPorProy" caption="%" [fixed]="false" [width]="130" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febPorProy" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
         <!-- <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
@@ -413,19 +413,19 @@
 
             <!-- TOTAL TOTAL PORCENTAJE -->
             <!-- ENERO -->
-            <dxi-total-item column="eneroPor" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="eneroPor" name="TotEneroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
-            <dxi-total-item column="eneroPorP" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="eneroPorP" name="TotEneroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
-            <dxi-total-item column="enePorProy" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="enePorProy" name="TotEneroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
 
             <!-- FEBRERO -->
-            <dxi-total-item column="febreroPor" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="febreroPor" name="TotFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
-            <dxi-total-item column="febreroPorP" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="febreroPorP" name="TotFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
-            <dxi-total-item column="febPorProy" summaryType="sum" displayFormat="{0}" valueFormat="$ #,##0.##;-$ #,##0.##">
+            <dxi-total-item showInColumn="febPorProy" name="TotFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent">
             </dxi-total-item>
         </dxo-summary>
 
