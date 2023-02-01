@@ -1,8 +1,8 @@
 <h2 class="content-block">Ingresos Anuales</h2>
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
-    <!-- <div>
+    <div>
         <div class="dx-field">
-            <div class="dx-field-label" style="width: 10%;">Año</div>
+            <!-- <div class="dx-field-label" style="width: 10%;">Año</div>
             <div class="dx-field-value" style="width: 20%;">
                 <dx-select-box [items]="anios" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
                 </dx-select-box>
@@ -18,15 +18,15 @@
                         </dx-tree-view>
                     </div>
                 </dx-drop-down-box>
-            </div>
+            </div> -->
             <div class="dx-field-value" style="width: 20%;">
-                <dx-button stylingMode="contained" text="Actualizar" icon="search" type="normal" [width]="240" (onClick)="clickClientesRutas($event)">
+                <dx-button stylingMode="contained" text="Actualizar" icon="refresh" type="normal" [width]="240" (onClick)="clickClientesRutas($event)">
                 </dx-button>
             </div>
 
         </div>
     </div>
-    <br> -->
+    <br>
 
     <div>
 
@@ -266,11 +266,11 @@
             <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150"  headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPor" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPor" caption="vs Total" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="eneroPorP" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="eneroPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="enePorProy" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="enePorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
         <dxi-column caption="Febrero" headerCellTemplate="headerTemplate">
@@ -278,11 +278,11 @@
             <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPor" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPor" caption="vs Total" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febreroPorP" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febreroPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="febPorProy" caption="%" [fixed]="false" format="percent" [width]="60" headerCellTemplate="headerTemplate"></dxi-column>
+            <dxi-column dataField="febPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70" headerCellTemplate="headerTemplate"></dxi-column>
             <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column> -->
         </dxi-column>
         <!-- <dxi-column caption="Marzo" headerCellTemplate="headerTemplate">
