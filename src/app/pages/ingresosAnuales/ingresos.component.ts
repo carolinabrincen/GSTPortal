@@ -11,6 +11,7 @@ import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-con
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 
 import {Sale, Service} from '../../shared/models/ingresos/ingreso.service'
+import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 @Component({
   
   templateUrl: './ingresos.component.html',
@@ -79,6 +80,8 @@ export class IngresosComponent implements OnInit {
   positionOf: string = '#myDiv';
   expandGroup: boolean = true;
   isVisible = false;
+
+  totalPor: TotalPorcentajes;
 
   constructor( 
     private unidadesService: UnidadesService, 
@@ -384,6 +387,15 @@ export class IngresosComponent implements OnInit {
   aniATotal: number = 0;
   presTotal: number = 0;
   ProyTotal: number = 0;
+
+  totalFB: number = 0;
+  anioAntFB: number = 0;
+  presupuestoFB: number = 0;
+  proyeccionFB: number = 0;
+  aniATotalFB: number = 0;
+  presTotalFB: number = 0;
+  ProyTotalFB: number = 0;
+
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -428,19 +440,32 @@ export class IngresosComponent implements OnInit {
 
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
-        console.log(e)
+        //console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
         this.presupuesto = e.summaryCells[7][0].value;
         this.proyeccion = e.summaryCells[9][0].value;
 
+        this.totalFB = e.summaryCells[13][0].value;
+        this.anioAntFB = e.summaryCells[14][0].value;
+        this.presupuestoFB = e.summaryCells[16][0].value;
+        this.proyeccionFB = e.summaryCells[18][0].value;
+
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
         this.ProyTotal = this.total / this.proyeccion;
 
+        this.aniATotalFB = this.totalFB / this.anioAntFB;
+        this.presTotalFB = this.totalFB / this.presupuestoFB;
+        this.ProyTotalFB = this.totalFB / this.proyeccionFB;
+
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
         e.summaryCells[10][0].value = this.ProyTotal;
+
+        e.summaryCells[15][0].value = this.aniATotalFB;
+        e.summaryCells[17][0].value = this.presTotalFB;
+        e.summaryCells[19][0].value = this.ProyTotalFB;
 
       }
     }
