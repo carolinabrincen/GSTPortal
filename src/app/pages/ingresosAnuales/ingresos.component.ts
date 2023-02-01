@@ -137,11 +137,15 @@ export class IngresosComponent implements OnInit {
 
   }
 
-  getIngresosAnuales(Anio: number, UnidadNegocio: number)
+  ngOnInit(): void {
+    this.getIngresosAnuales();
+  }
+
+  getIngresosAnuales()
   {
-    console.log(Anio)
-    console.log(UnidadNegocio)
-      this.service.getIndicadores(Anio, UnidadNegocio).subscribe((response) => {
+    var myanio = 2023;
+    var myUdN = 0;
+      this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
         this.indicadores = response.data;
         console.log(this.indicadores)
@@ -175,8 +179,9 @@ export class IngresosComponent implements OnInit {
       
       // this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
   
-      
-      this.getIngresosAnuales(this.anioSeleccionado, this.IdUnidadNegocio);
+      // var myanio = 2023;
+      // var myUdN = 0;
+      // this.getIngresosAnuales(myanio, myUdN);
       //this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
       // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
       // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
@@ -257,46 +262,39 @@ export class IngresosComponent implements OnInit {
     }
   }
 
-    
-  ngOnInit(): void {
-  }
-
   onRowPrepared(e: any) {
     
     if (e.rowType == 'data') {
-      // e.cells.forEach((c: any) => {
+      e.cells.forEach((c: any) => {
+        // if (c.cellElement) {
+        //   //poner en rojo negativos
+        //   if (c.value && c.value.toString().startsWith('-')) {
+        //     c.cellElement.style.color = "red";
+        //   }
 
-      //   if (c.cellElement) {
-      //     //poner en rojo negativos
-      //     if (c.value && c.value.toString().startsWith('-')) {
-      //       c.cellElement.style.color = "red";
-      //     }
+        //   //negrita columna margen utilidad
+        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
+        //       c.columnIndex == 23 || c.columnIndex == 24 ||
+        //       c.columnIndex == 37 || c.columnIndex == 38) {
+        //     c.cellElement.style.fontWeight = "bolder";
+        //     c.cellElement.style.fontSize = "14px";
+        //     c.cellElement.style.background = "#f5f5f5";
+        //   }
 
-      //     //negrita columna margen utilidad
-      //     if (c.columnIndex == 7  || c.columnIndex == 8  ||
-      //         c.columnIndex == 23 || c.columnIndex == 24 ||
-      //         c.columnIndex == 37 || c.columnIndex == 38) {
-      //       c.cellElement.style.fontWeight = "bolder";
-      //       c.cellElement.style.fontSize = "14px";
-      //       c.cellElement.style.background = "#f5f5f5";
-      //     }
+        //   //porcentaje de combistuble > .25 en rojo
+        //   if (c.columnIndex == 16 && c.value >= .25) {
+        //     c.cellElement.style.color = "red";
+        //   }
+        // } 
 
-      //     //porcentaje de combistuble > .25 en rojo
-      //     if (c.columnIndex == 16 && c.value >= .25) {
-      //       c.cellElement.style.color = "red";
-      //     }
-      //   }
-
-
-
-      // });
+      });
     }
 
     if (e.rowType == 'group') {
       // if (e.groupIndex == 0) {
       //   e.rowElement.style.backgroundColor = '#ff9460';
       //   e.rowElement.style.color = "white";
-      // }
+      // } 
       // else {
       //   e.rowElement.style.backgroundColor = '#dcdcdc';
       //   e.rowElement.style.color = "black";
@@ -305,16 +303,15 @@ export class IngresosComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter'){
-      
-      // if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
-      //   // console.log(e)
 
-      //   e.cells.forEach((c: any) => {
-      //     if (c.cellElement) {
+      if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
 
-      //     }    
-      //   });
-      // }
+        e.cells.forEach((c: any) => {
+          console.log(c)
+          // c.cellElement.style.background = "#ff9460";
+
+        });
+      }
 
 
     }
@@ -324,7 +321,7 @@ export class IngresosComponent implements OnInit {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.fontSize = "18px";
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
         }   
