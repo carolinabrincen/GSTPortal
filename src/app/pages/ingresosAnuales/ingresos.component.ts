@@ -306,9 +306,17 @@ export class IngresosComponent implements OnInit {
 
       if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
 
+        e.rowElement.style.fontSize = '30px';
+        
         e.cells.forEach((c: any) => {
-          console.log(c)
+          //console.log(c)
+
+          // if (c.cellElement.style == undefined) {
           // c.cellElement.style.background = "#ff9460";
+          // c.cellElement.style.fontSize = "16px";
+          //     }
+          // c.cellElement.style.background = "#ff9460";
+          // c.cellElement.style.fontSize = "16px";
 
         });
       }
@@ -321,7 +329,7 @@ export class IngresosComponent implements OnInit {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "18px";
+            c.cellElement.style.fontSize = "16px";
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
         }   
@@ -346,16 +354,26 @@ export class IngresosComponent implements OnInit {
   }
 
   onCellPrepared(e: any) {
-    if(e.rowType === "groupFooter" && e.column.dataField === "margenUtilida") {
-      //console.log('👣', e);
+    if (e.rowType == 'groupFooter'){
 
-        e.cellElement.style.color = "red";
-        // Tracks the `Amount` data field
-        // e.watch(function() {
-        //     return e.data.Amount;
-        // }, function() {
-        //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
-        // })
+      console.log(e)
+      
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+        // e.cells.forEach((c: any) => {
+        //   console.log(c)
+
+        //   if (c.cellElement) {
+        //     c.cellElement.style.fontWeight = "bolder";
+        //     c.cellElement.style.fontSize = "16px";
+        //     c.cellElement.style.background = "#ff9460";
+        //     c.cellElement.style.color = "black"; 
+        // }   
+
+        // });
+      
+
+
     }
   }
 
@@ -439,6 +457,31 @@ export class IngresosComponent implements OnInit {
         }
       });
     };
+  }
+
+
+  onCellPreparedDetalle(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+      console.log(e)
+      
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+        // e.cells.forEach((c: any) => {
+        //   console.log(c)
+
+        //   if (c.cellElement) {
+        //     c.cellElement.style.fontWeight = "bolder";
+        //     c.cellElement.style.fontSize = "16px";
+        //     c.cellElement.style.background = "#ff9460";
+        //     c.cellElement.style.color = "black"; 
+        // }   
+
+        // });
+      
+
+
+    }
   }
 
   verDetallesClick(event) {

@@ -218,6 +218,9 @@
                   <dxi-group-item column="dicPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                 </dxi-group-item>
 
+                <!-- <dxi-group-item showInColumn="tipoOperacion"column="tipoOperacion" summaryType="sum" displayFormat="SUBTOTAL" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                </dxi-group-item> -->
+
             
               </dxo-summary>
       
@@ -249,7 +252,7 @@
         <dx-scroll-view width="100%" height="100%">
         <!--#region :::: GRID DETALLE DE REAL ::::  -->
         <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
-        (onRowPrepared)="onRowPreparedDetalle($event)">
+        (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)">
 
         <dxo-export [enabled]="true"></dxo-export>
         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
