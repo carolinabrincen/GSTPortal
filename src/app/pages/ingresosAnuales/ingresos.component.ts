@@ -8,20 +8,17 @@ import { CurrencyPipe } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
 import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-contable.model';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
-
-import {Sale, Service} from '../../shared/models/ingresos/ingreso.service'
+import {Service} from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
+import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
+
 @Component({
-  
   templateUrl: './ingresos.component.html',
   styleUrls: ['./ingresos.component.scss'],
   providers: [UnidadesService,ServiceSales, CurrencyPipe, Service],
 })
 
 export class IngresosComponent implements OnInit {
-  
-  
   @ViewChild(DxChartComponent, { static: false }) chart: any;
 
   @ViewChild('dataGridVar', { static: false }) dataGrid: DxDataGridComponent | undefined;
@@ -83,6 +80,8 @@ export class IngresosComponent implements OnInit {
 
   totalPor: TotalPorcentajes;
 
+  graficaModel: ModeloGrafica[] = [];
+
   constructor( 
     private unidadesService: UnidadesService, 
     private service: ServiceSales, 
@@ -101,43 +100,6 @@ export class IngresosComponent implements OnInit {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
-    // this.verDetallesClick = this.verDetallesClick.bind(this)
-
-    // this.pivotGridDataSource = new PivotGridDataSource({
-    //   fields: [{
-    //     caption: 'UdN',
-    //     width: 120,
-    //     dataField: 'unidadNegocio',
-    //     area: 'row',
-    //     headerFilter: {
-    //       allowSearch: true,
-    //     },
-    //   }, {
-    //     caption: 'Operacion',
-    //     dataField: 'tipoOperacion',
-    //     width: 150,
-    //     area: 'row',
-    //     headerFilter: {
-    //       allowSearch: true,
-    //     },
-    //     selector(data: Sale) {
-    //       return `${data.tipoOperacion} (${data.unidadNegocio})`;
-    //     },
-    //   }, {
-    //     dataField: 'mes',
-    //     dataType: 'string',
-    //     area: 'column',
-    //   }, {
-    //     caption: 'Sales',
-    //     dataField: 'eneroTotal',
-    //     dataType: 'number',
-    //     summaryType: 'sum',
-    //     format: 'currency',
-    //     area: 'data',
-    //   }],
-    //   store: testService.getSales(),
-    // });
-
   }
 
   ngOnInit(): void {
@@ -151,12 +113,8 @@ export class IngresosComponent implements OnInit {
       this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
         this.indicadores = response.data;
-        console.log(this.indicadores)
-    
-        //llenado delGrid con columnas y filas
-
-     
-      });
+ 
+       });
   }
 
     getIngresosAnualesChart (Anio: number, UnidadNegocio: number)
@@ -176,26 +134,9 @@ export class IngresosComponent implements OnInit {
 
 
     clickClientesRutas = (e: any) => {
-      
-      // this.treeBoxValue = e.component.getSelectedNodeKeys();
-      // this.UnidadNegocio = e.node.text;
-      
-      // this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
-  
-      // var myanio = 2023;
-      // var myUdN = 0;
-      // this.getIngresosAnuales(myanio, myUdN);
-      //this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
-      // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
-      // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
-      // this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
-      // this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
-      // this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
-      // this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
+      this.getIngresosAnuales();
       this.dataGrid?.instance.refresh();
      };
-
-
 
   saveGridInstance (e:any) {
     this.dataGridInstance = e.component;
@@ -244,15 +185,6 @@ export class IngresosComponent implements OnInit {
     
     this.IdUnidadNegocio = Number.parseInt(this.treeBoxValue[0]);
     
-    
-    // this.getIngresosAnuales(this.Anio, this.IdUnidadNegocio);
-    // this.getIngresosAnualesChart(this.Anio, this.IdUnidadNegocio);
-    // this.getKmsAnuales(this.Anio, this.IdUnidadNegocio);
-    // this.getKmsAnualesChart(this.Anio, this.IdUnidadNegocio);
-    // this.getViajesAnuales(this.Anio, this.IdUnidadNegocio);
-    // this.getViajesAnualesChart(this.Anio, this.IdUnidadNegocio);
-    // this.getToneladasAnuales(this.Anio, this.IdUnidadNegocio);
-    // this.getToneladasAnualesChart(this.Anio, this.IdUnidadNegocio);
   
   }
 
@@ -266,69 +198,26 @@ export class IngresosComponent implements OnInit {
   }
 
   onRowPrepared(e: any) {
-    
-    if (e.rowType == 'data') {
-      e.cells.forEach((c: any) => {
-        // if (c.cellElement) {
-        //   //poner en rojo negativos
-        //   if (c.value && c.value.toString().startsWith('-')) {
-        //     c.cellElement.style.color = "red";
-        //   }
-
-        //   //negrita columna margen utilidad
-        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
-        //       c.columnIndex == 23 || c.columnIndex == 24 ||
-        //       c.columnIndex == 37 || c.columnIndex == 38) {
-        //     c.cellElement.style.fontWeight = "bolder";
-        //     c.cellElement.style.fontSize = "14px";
-        //     c.cellElement.style.background = "#f5f5f5";
-        //   }
-
-        //   //porcentaje de combistuble > .25 en rojo
-        //   if (c.columnIndex == 16 && c.value >= .25) {
-        //     c.cellElement.style.color = "red";
-        //   }
-        // } 
-
-      });
-    }
-
-    if (e.rowType == 'group') {
-      // if (e.groupIndex == 0) {
-      //   e.rowElement.style.backgroundColor = '#ff9460';
-      //   e.rowElement.style.color = "white";
-      // } 
-      // else {
-      //   e.rowElement.style.backgroundColor = '#dcdcdc';
-      //   e.rowElement.style.color = "black";
-      //   e.rowElement.style.fontWeight = "bolder";
-      // }
-    }
-
-    if (e.rowType == 'groupFooter'){
-
-      if(e.groupIndex == 0 && e.data.key == 'CUAUTITLAN'){
-
-        e.rowElement.style.fontSize = '30px';
-        
-        e.cells.forEach((c: any) => {
-          //console.log(c)
-
-          // if (c.cellElement.style == undefined) {
-          // c.cellElement.style.background = "#ff9460";
-          // c.cellElement.style.fontSize = "16px";
-          //     }
-          // c.cellElement.style.background = "#ff9460";
-          // c.cellElement.style.fontSize = "16px";
-
-        });
-      }
-
-
-    }
 
     if (e.rowType == 'totalFooter') {
-    
+
+      this.graficaModel = [
+        {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
+        {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
+        {mes: "MARZO", total: e.summaryCells[6][0].value, presupuesto: e.summaryCells[7][0].value},
+        {mes: "ABRIL", total: e.summaryCells[8][0].value, presupuesto: e.summaryCells[9][0].value},
+        {mes: "MAYO", total: e.summaryCells[10][0].value, presupuesto: e.summaryCells[11][0].value},
+        {mes: "JUNIO", total: e.summaryCells[12][0].value, presupuesto: e.summaryCells[13][0].value},
+        {mes: "JULIO", total: e.summaryCells[14][0].value, presupuesto: e.summaryCells[15][0].value},
+        {mes: "AGOSTO", total: e.summaryCells[16][0].value, presupuesto: e.summaryCells[17][0].value},
+        {mes: "SEPTIEMBRE", total: e.summaryCells[18][0].value, presupuesto: e.summaryCells[19][0].value},
+        {mes: "OCTUBRE", total: e.summaryCells[20][0].value, presupuesto: e.summaryCells[21][0].value},
+        {mes: "NOVIEMBRE", total: e.summaryCells[22][0].value, presupuesto: e.summaryCells[23][0].value},
+        {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},  
+      ]
+      // e.summaryCells[7][0].value
+
+
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
@@ -345,7 +234,6 @@ export class IngresosComponent implements OnInit {
     // if (options.summaryProcess === 'calculate') {
     //   if (options.name === 'grupMargenUtilidaPor') {
     //     options.totalValue = .17;
-    //     console.log('📵', options);
     //   }
     // }
   }
@@ -359,24 +247,8 @@ export class IngresosComponent implements OnInit {
   onCellPrepared(e: any) {
     if (e.rowType == 'groupFooter'){
 
-      console.log(e)
-      
         e.cellElement.style.fontSize = '15px';
         e.cellElement.style.background = "#DCDCDC";
-        // e.cells.forEach((c: any) => {
-        //   console.log(c)
-
-        //   if (c.cellElement) {
-        //     c.cellElement.style.fontWeight = "bolder";
-        //     c.cellElement.style.fontSize = "16px";
-        //     c.cellElement.style.background = "#ff9460";
-        //     c.cellElement.style.color = "black"; 
-        // }   
-
-        // });
-      
-
-
     }
   }
 
@@ -397,50 +269,8 @@ export class IngresosComponent implements OnInit {
   ProyTotalFB: number = 0;
 
   onRowPreparedDetalle(e: any){
-    if (e.rowType == 'data') {
-      e.cells.forEach((c: any) => {
-
-        // if (c.cellElement) {
-        //   //poner en rojo negativos
-        //   if (c.value && c.value.toString().startsWith('-')) {
-        //     c.cellElement.style.color = "red";
-        //   }
-
-        //   //negrita columna margen utilidad
-        //   if (c.columnIndex == 7  || c.columnIndex == 8  ||
-        //       c.columnIndex == 23 || c.columnIndex == 24 ||
-        //       c.columnIndex == 37 || c.columnIndex == 38) {
-        //     c.cellElement.style.fontWeight = "bolder";
-        //     c.cellElement.style.fontSize = "14px";
-        //     c.cellElement.style.background = "#f5f5f5";
-        //   }
-
-        //   //porcentaje de combistuble > .25 en rojo
-        //   if (c.columnIndex == 16 && c.value >= .25) {
-        //     c.cellElement.style.color = "red";
-        //   }
-        // }
-
-
-
-      });
-    }
-
-    if (e.rowType == 'group') {
-      // if (e.groupIndex == 0) {
-      //   e.rowElement.style.backgroundColor = '#ff9460';
-      //   e.rowElement.style.color = "white";
-      // }
-      // else {
-      //   e.rowElement.style.backgroundColor = '#dcdcdc';
-      //   e.rowElement.style.color = "black";
-      //   e.rowElement.style.fontWeight = "bolder";
-      // }
-    }
-
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
-        //console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
         this.presupuesto = e.summaryCells[7][0].value;
@@ -453,11 +283,11 @@ export class IngresosComponent implements OnInit {
 
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
-        this.ProyTotal = this.total / this.proyeccion;
+        this.ProyTotal = this.proyeccion / this.presupuesto;
 
         this.aniATotalFB = this.totalFB / this.anioAntFB;
         this.presTotalFB = this.totalFB / this.presupuestoFB;
-        this.ProyTotalFB = this.totalFB / this.proyeccionFB;
+        this.ProyTotalFB = this.proyeccionFB / this.presupuestoFB;
 
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
@@ -487,25 +317,9 @@ export class IngresosComponent implements OnInit {
 
   onCellPreparedDetalle(e: any) {
     if (e.rowType == 'groupFooter'){
-
-      console.log(e)
       
         e.cellElement.style.fontSize = '15px';
         e.cellElement.style.background = "#DCDCDC";
-        // e.cells.forEach((c: any) => {
-        //   console.log(c)
-
-        //   if (c.cellElement) {
-        //     c.cellElement.style.fontWeight = "bolder";
-        //     c.cellElement.style.fontSize = "16px";
-        //     c.cellElement.style.background = "#ff9460";
-        //     c.cellElement.style.color = "black"; 
-        // }   
-
-        // });
-      
-
-
     }
   }
 
@@ -515,7 +329,6 @@ export class IngresosComponent implements OnInit {
     || event.cellElement.innerText == "Abril" || event.cellElement.innerText == "Mayo" || event.cellElement.innerText == "Junio"
     || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
     || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
-      //console.log(event)
 
       // if(this.indicadores.length !== 0){
         this.openModReal = true;
@@ -527,5 +340,11 @@ export class IngresosComponent implements OnInit {
 
 
   }
+
+  //==================Formato a la data de la grafica==================================
+  formatSliderTooltip (value) {
+    
+    return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
+}
 
 }

@@ -31,7 +31,35 @@
     <div>
 
         <dx-tab-panel>
-            <dxi-item title=Ingresos>              
+            <dxi-item title=Ingresos>
+                <br><br>
+
+            <!--==========================Bar and Line Chart==================-->
+            <dx-chart id="chart" [dataSource]="graficaModel">
+
+                <dxi-series argumentField="mes" valueField="total" name="Total" type="bar" color="#363640">
+                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="inside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+
+                <dxi-series argumentField="mes" valueField="presupuesto" name="Presupuesto" type="line" color="#FA593F">
+                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+                    
+                </dxi-series>
+                
+                <dxo-title text="Ingreso">
+                    <dxo-subtitle text="(Mensual)"> </dxo-subtitle>
+                </dxo-title>
+
+                <dxo-export [enabled]="true"></dxo-export>
+              </dx-chart>
+
+            <!--====================================Finish chart==========-->
+
+                <br><br>      
                 <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
                 (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
               
