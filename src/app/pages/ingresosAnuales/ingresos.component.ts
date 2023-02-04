@@ -12,6 +12,10 @@ import {Service} from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 
+import { Workbook } from 'exceljs';
+import { exportDataGrid } from 'devextreme/excel_exporter';
+import { saveAs } from 'file-saver-es';
+
 @Component({
   templateUrl: './ingresos.component.html',
   styleUrls: ['./ingresos.component.scss'],
@@ -22,6 +26,11 @@ export class IngresosComponent implements OnInit {
   @ViewChild(DxChartComponent, { static: false }) chart: any;
 
   @ViewChild('dataGridVar', { static: false }) dataGrid: DxDataGridComponent | undefined;
+
+  @ViewChild('priceDataGrid', { static: false }) priceDataGrid: DxDataGridComponent;
+
+  @ViewChild('ratingDataGrid', { static: false }) ratingDataGrid: DxDataGridComponent;
+
   employee: any;
   treeBoxValue: string[];
   treeDataSource: any;
@@ -356,4 +365,42 @@ export class IngresosComponent implements OnInit {
 
   onHidden() {
   }
+
+
+  exportGrids(e) {
+    const context = this;
+    const workbook = new Workbook();
+    const priceSheet = workbook.addWorksheet('Price');
+    // const ratingSheet = workbook.addWorksheet('Rating');
+
+    priceSheet.getRow(2).getCell(2).value = 'Price';
+    priceSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+
+    // ratingSheet.getRow(2).getCell(2).value = 'Rating';
+    // ratingSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+
+    function setAlternatingRowsBackground(gridCell, excelCell) {
+      if (gridCell.rowType === 'header' || gridCell.rowType === 'data') {
+        if (excelCell.fullAddress.row % 2 === 0) {
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+          };
+        }
+      }
+    }
+
+    exportDataGrid({
+      worksheet: priceSheet,
+      component: context.priceDataGrid.instance,
+      topLeftCell: { row: 4, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground(gridCell, excelCell);
+      },
+    }).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer) => {
+        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'MultipleGrids.xlsx');
+      });
+    });
+  }
+
 }

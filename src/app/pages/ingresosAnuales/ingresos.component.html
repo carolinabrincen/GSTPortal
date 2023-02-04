@@ -41,9 +41,8 @@
               </dx-chart>
 
             <!--====================================Finish chart==========-->
-
-                <br><br>      
-                <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+                <br>
+                <dx-data-grid #priceDataGrid [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
                 (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
               
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
@@ -260,10 +259,21 @@
     <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
         <!--#region :::: GRID DETALLE DE REAL ::::  -->
-        <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+
+        <div id="exportContainer" class="d-block mr-0 ml-auto">
+            <dx-button
+              text="Excel"
+              icon="xlsxfile"
+              (onClick)="exportGrids($event)"
+            ></dx-button>
+          </div>
+          <br>
+
+        <dx-data-grid class="data-grid" [dataSource]="indicadores" [showColumnLines]="true" [rowAlternationEnabled]="true"
+        [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
         (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)">
 
-        <dxo-export [enabled]="true"></dxo-export>
+        <!-- <dxo-export [enabled]="true"></dxo-export> -->
         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
         <dxi-column dataField="unidadNegocio" caption="" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
