@@ -108,12 +108,13 @@ export class IngresosComponent implements OnInit {
 
   getIngresosAnuales()
   {
+
+    this.loadingVisible = true;
     var myanio = 2023;
     var myUdN = 0;
       this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
         this.indicadores = response.data;
- 
        });
   }
 
@@ -347,4 +348,12 @@ export class IngresosComponent implements OnInit {
     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
 }
 
+  onShown() {
+    // setTimeout(() => {
+    //   this.loadingVisible = false;
+    // }, 3000);
+  }
+
+  onHidden() {
+  }
 }

@@ -479,6 +479,12 @@
   </dx-popup>
 <!--=============================================FIN MODAL==========================================-->
 
+
+<!-- LOAD PANEL -->
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+</dx-load-panel>
+
+
 <dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">  
     <dxo-position
         my="top"
