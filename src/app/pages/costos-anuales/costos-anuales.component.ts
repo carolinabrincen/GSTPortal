@@ -1471,6 +1471,11 @@ totalesOGOACD
         e.summaryCells[67][0].value = this.totales01O.total01OperacionACR;
         e.summaryCells[68][0].value = this.totales01O.total01OperacionACP;
         e.summaryCells[69][0].value = this.totales01O.total01OperacionACD;
+
+        e.summaryCells[5][0].displayFormat = 'UTILIDAD BRUTA';
+         // console.log('🌲', e);
+  
+        
       }
 
 
