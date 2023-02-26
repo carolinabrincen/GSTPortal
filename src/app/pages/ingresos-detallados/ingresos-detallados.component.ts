@@ -13,6 +13,8 @@ export class IngresosDetalladosComponent implements OnInit {
 
   arrIngresos: IngresosDModel[] = [];
   arrDetalle: DetalleModel[] = [];
+  arrIngresosFeb: IngresosDModel[] = [];
+  arrDetalleFeb: DetalleModel[] = [];
   arrIngresosMarzo: IngresosDModel[] = [];
   arrDetalleMarzo: DetalleModel[] = [];
   arrIngresosAbril: IngresosDModel[] = [];
@@ -44,75 +46,14 @@ export class IngresosDetalladosComponent implements OnInit {
       
     });
 
-    // this.ingresosService.getIngresosDetalladosMarzo().subscribe(res => {
+    this.ingresosService.getIngresosDetalladosMensualFeb().subscribe(res => {
       
-    //   this.arrIngresosMarzo = res.data.resumen;
-    //   this.arrDetalleMarzo = res.data.detalle;
+      this.arrIngresosFeb = res.data.resumen;
+      this.arrDetalleFeb = res.data.detalle;
+      
+    });
+
     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosMensual().subscribe(res => {
-     
-    //   this.arrIngresosAbril = res.data.resumen;
-    //   this.arrDetalleAbril = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosMayo().subscribe(res => {
-     
-    //   this.arrIngresosMayo = res.data.resumen;
-    //   this.arrDetalleMayo = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosJunio().subscribe(res => {
-     
-    //   this.arrIngresosJunio = res.data.resumen;
-    //   this.arrDetalleJunio = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosJulio().subscribe(res => {
-     
-    //   this.arrIngresosJulio = res.data.resumen;
-    //   this.arrDetalleJulio = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosAgosto().subscribe(res => {
-     
-    //   this.arrIngresosAgosto = res.data.resumen;
-    //   this.arrDetalleAgosto = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosSeptiembre().subscribe(res => {
-     
-    //   this.arrIngresosSeptiembre = res.data.resumen;
-    //   this.arrDetalleSeptiembre = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosOctubre().subscribe(res => {
-     
-    //   this.arrIngresosOctubre = res.data.resumen;
-    //   this.arrDetalleOctubre = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosNoviembre().subscribe(res => {
-     
-    //   this.arrIngresosNoviembre = res.data.resumen;
-    //   this.arrDetalleNoviembre = res.data.detalle;
-     
-    // });
-
-    // this.ingresosService.getIngresosDetalladosDiciembre().subscribe(res => {
-     
-    //   this.arrIngresosDiciembre = res.data.resumen;
-    //   this.arrDetalleDiciembre = res.data.detalle;
-     
-    // });
   }
 
   ngOnInit(): void {
