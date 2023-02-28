@@ -80,18 +80,18 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 202301, anio: "2023-ENERO" },
-    { idAnio: 202302, anio: "2023-FEBRERO" },
-    { idAnio: 202303, anio: "2023-MARZO" },
-    { idAnio: 202304, anio: "2023-ABRIL" },
-    { idAnio: 202305, anio: "2023-MAYO" },
-    { idAnio: 202306, anio: "2023-JUNIO" },
-    { idAnio: 202307, anio: "2023-JULIO" },
-    { idAnio: 202308, anio: "2023-AGOSTO" },
-    { idAnio: 202309, anio: "2023-SEPTIEMBRE" },
-    { idAnio: 202310, anio: "2023-OCTUBRE" },
-    { idAnio: 202311, anio: "2023-NOVIEMBRE" },
-    { idAnio: 202312, anio: "2023-DICIEMBRE" }
+    { idAnio: 202301, anio: "202301" },
+    { idAnio: 202302, anio: "202302" },
+    { idAnio: 202303, anio: "202303" },
+    { idAnio: 202304, anio: "202304" },
+    { idAnio: 202305, anio: "202305" },
+    { idAnio: 202306, anio: "202306" },
+    { idAnio: 202307, anio: "202307" },
+    { idAnio: 202308, anio: "202308" },
+    { idAnio: 202309, anio: "202309" },
+    { idAnio: 202310, anio: "202310" },
+    { idAnio: 202311, anio: "202311" },
+    { idAnio: 202312, anio: "202312" }
   ];
 
   companias: Compania[] =[]
@@ -286,9 +286,10 @@ export class CostosAnualesNewComponent implements OnInit {
     this.getUnidadesNegocio(myValue);
   }
   
+  myCompania: string = "";
   selectCompaniaNew(e: any) {
     this.selectedCompaniaNew = e.value;
-    
+    this.myCompania = e.value;
     var myValue = []
     // var myCompany = new SelectCompany;
 
@@ -305,8 +306,10 @@ export class CostosAnualesNewComponent implements OnInit {
     // console.log(myValue)
     this.getUnidadesNegocio(e.value);
   }
+  myUdN: string = "";
   seleccionarUDN(e: any) {
     this.udnSeleccionado = e.value;
+    this.myUdN = e.value;
     //console.log(e)
   }
 
@@ -2661,7 +2664,16 @@ totalesOGOACD
   formatSliderTooltip (value) {
     
     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
-}
+  }
+
+//==================Formato solo comas===============================================  
+  separator(value) {
+      var str = value.toString().split(".");
+      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return str.join(".");
+  }
+
+
 
 }
 
