@@ -46,11 +46,13 @@ export enum API_URLS{
     POST_BALANZA = 'api/costos/PostBalanza',
     POST_COSTOS_UDN = 'api/Costos/PostUdns',
     POST_CENTRO_COSTOS = 'api/Costos/GetCC',
+    POST_CA_TPS = 'api/Costos/GetTPSUdN',
+    POST_CA_COSTOS = 'api/Costos/GetCtasUdN',
+    POST_CA_AUXILIAR = 'api/Costos/GetAuxiliar',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
     GET_COSTOS_COMPANIAS = 'api/Costos/GetCompanias',
     GET_COSTOS_TIPOS = 'api/Costos/GetTipos',
-    GET_COSTOS_CLASES = 'api/Costos/GetClases'
-    
+    GET_COSTOS_CLASES = 'api/Costos/GetClases',
 }

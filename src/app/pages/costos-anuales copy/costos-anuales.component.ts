@@ -26,6 +26,9 @@ import { Compania } from '../../shared/models/costos-anuales/compania.model';
 import { UnidadNegocio } from '../../shared/models/costos-anuales/udn.model';
 import { Totales01Operacion } from 'src/app/shared/models/costos-anuales/totales01Operacion.model';
 import { TotalesOGO } from 'src/app/shared/models/costos-anuales/totalesOGO.model';
+import { SelectCompany } from '../../shared/models/costos-anuales/selectCompny.model'
+import { CATPS } from '../../shared/models/costos-anuales/catps.model';
+import { CACostos } from '../../shared/models/costos-anuales/cacostos.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -34,7 +37,7 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./costos-anuales.component.scss'],
   providers: [Service],
 })
-export class CostosAnualesCopyComponent implements OnInit {
+export class CostosAnualesNewComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
@@ -43,6 +46,9 @@ export class CostosAnualesCopyComponent implements OnInit {
   fechaFin: Date = new Date();
 
   costosAnuales: CostosAnuales[] = [];
+  CATPS: CATPS[] = [];
+  CACostos: CACostos[] = [];
+
   DestalleCuenta: DetalleCuenta[] = [];
   costosFTP: CostosTPS[] = [];
   costosTPSOccidente: CostosTPSOccidente[] = [];
@@ -53,8 +59,7 @@ export class CostosAnualesCopyComponent implements OnInit {
   col: string = '50';
 
 
-  arrUnidadesNegocio: UnidadNegocio[] = [];
-
+  arrUnidadesNegocio = []
   arrTractos: string[] = [];
 
   arrMeses: MesesModel[] = [
@@ -79,6 +84,15 @@ export class CostosAnualesCopyComponent implements OnInit {
 
   companias: Compania[] =[]
 
+  nweCompanias = [
+    {idCompania: 'ATMMAC', compania: 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'},
+    {idCompania: 'CORPOR', compania: 'CORPORATIVO'},
+    {idCompania: 'GSTFYS', compania: 'GST FLETES Y SERVICIOS S.A. DE C.V.'},
+    {idCompania: 'TEICUA', compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'},
+    {idCompania: 'TBKHER', compania: 'TRANSPORTES BONAMPAK S.A. DE C.V.'},
+    {idCompania: 'TCGTUL', compania: 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'},
+  ]
+
 
   clasificaciones: Clasificacion[] = [
     {idClas:0, clasificacion: ''},
@@ -98,9 +112,10 @@ export class CostosAnualesCopyComponent implements OnInit {
 
   mesSeleccionado: number = 0;
   anioSeleccionado: number = 0;
-  udnSeleccionado: number = 0;
+  udnSeleccionado: any;
   tractoSeleccionado: string = '';
-  selectedCompania: number = 0;
+  selectedCompania: any;
+  selectedCompaniaNew: string = ''
   selectedAnioTPS: number = 0;
   selectedMesTPS: number = 0;
   selectedClasficacion: number = 0;
@@ -171,18 +186,81 @@ export class CostosAnualesCopyComponent implements OnInit {
   getCompanias(){
     this.costosAnuService.getCompanias().subscribe(data => {
       this.companias = data.data;
-      //console.log(this.companias)
+     // console.log(this.companias)
     })
   }
 
-  getUnidadesNegocio(id) {
+  getUnidadesNegocio(value) {
     const request = new Promise((resolve, reject) => {
-      this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
-        this.arrUnidadesNegocio = data.data;
-      })
+      // this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
+      //   this.arrUnidadesNegocio = data.data;
+      // })
+
+      if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'ATMMAC', udn: 'ATMMAC'}
+        ]
+      }else if(value == 'CORPORATIVO'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'CORPOR', udn: 'CORPOR'}
+        ]
+      }else if(value == 'GST FLETES Y SERVICIOS S.A. DE C.V.'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'GSTFYS', udn: 'GSTFYS'}
+        ]
+      }else if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'TEICUA', udn: 'TEICUA'}
+        ]
+      }else if(value == 'TRANSPORTES BONAMPAK S.A. DE C.V.'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'TBKHER', udn: 'TBKHER'},
+          {idUdn: 'TBKRAM', udn: 'TBKRAM'},
+          {idUdn: 'TBKORI', udn: 'TBKORI'},
+          {idUdn: 'TBKGDL', udn: 'TBKGDL'},
+          {idUdn: 'TBKMEX', udn: 'TBKMEX'},
+        ]
+      }else if(value == 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'){
+        this.arrUnidadesNegocio = [
+          {idUdn: 'TCGTUL', udn: 'TCGTUL'}
+        ]
+      }
+
     });
     return request;
 
+  }
+
+  getCATPS(){
+    const request = new Promise((resolve, reject) => {
+      var periodo = 202301
+      this.costosAnuService.postCATPS(periodo, this.udnSeleccionado).subscribe(data => {
+        this.CATPS = data.data;
+      })
+    });
+    return request;
+  }
+
+  getCACostos(){
+    const request = new Promise((resolve, reject) => {
+      var periodo = 202301
+      this.costosAnuService.postCACostos(periodo, this.udnSeleccionado).subscribe(data => {
+        this.CACostos = data.data;
+      })
+    });
+    return request;
+  }
+
+  getCAAuxiliar(){
+    const request = new Promise((resolve, reject) => {
+      var periodo = 202301
+      this.costosAnuService.postCAAuxiliar(periodo, this.selectedCompania, this.udnSeleccionado).subscribe(data => {
+        // this.CATPS = data.data;
+
+        console.log(data.data)
+      })
+    });
+    return request;
   }
 
   //=================SELECTS========================
@@ -198,7 +276,28 @@ export class CostosAnualesCopyComponent implements OnInit {
     var myValue = []
     myValue.push(e.value)
     this.getUnidadesNegocio(myValue);
-  }  
+  }
+  
+  selectCompaniaNew(e: any) {
+    console.log(e)
+    this.selectedCompaniaNew = e.value;
+    
+    var myValue = []
+    // var myCompany = new SelectCompany;
+
+    // if(this.selectedCompaniaNew == 'TBKHER'){
+    //   e.value = '1'
+    //   e.value = '2'
+    //   e.value = '3'
+    //   e.value = '4'
+    // }
+    
+    // myCompany.hermosillo = e.value
+
+    // myValue.push(e.value)
+    // console.log(myValue)
+    this.getUnidadesNegocio(e.value);
+  }
   seleccionarUDN(e: any) {
     this.udnSeleccionado = e.value;
     //console.log(e)
@@ -218,12 +317,9 @@ export class CostosAnualesCopyComponent implements OnInit {
 
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
-      var myclasificacion = 0
-      this.costosAnuService.postEdoResult(this.anioSeleccionado, this.selectedCompania, this.udnSeleccionado, this.mesSeleccionado, this.selectedClasficacion).subscribe(data =>{
-        this.costosAnuales = data.data;
-        this.paginacion = 0;
-        this.expandGroup = true;
-      })
+      this.getCATPS();
+      this.getCACostos();
+      this.getCAAuxiliar();
     });
     return request;
   }

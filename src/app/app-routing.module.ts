@@ -28,7 +28,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CicloViajeComponent } from './pages/ciclo-viaje/ciclo-viaje.component'
   import { RentaComponent } from './pages/renta/renta.component'
 
-  import { CostosAnualesCopyComponent } from './pages/costos-anuales copy/costos-anuales.component'
+  import { CostosAnualesNewComponent } from './pages/costos-anuales copy/costos-anuales.component'
 
 const routes: Routes = [
   {
@@ -130,8 +130,8 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
-    path: 'copia',
-    component: CostosAnualesCopyComponent,
+    path: 'costos-anuales-new',
+    component: CostosAnualesNewComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -189,7 +189,7 @@ const routes: Routes = [
     BalanzaComponent,
     CicloViajeComponent,
     RentaComponent,
-    CostosAnualesCopyComponent
+    CostosAnualesNewComponent
   ]
 })
 export class AppRoutingModule { }

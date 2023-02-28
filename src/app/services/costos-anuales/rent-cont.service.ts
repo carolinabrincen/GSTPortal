@@ -40,8 +40,36 @@ export class CostosAnualesService extends AbstractManagerService {
     //let body = {
       var myId = id.length == 7 ? []: id
     //}
-    //console.log(body)
+    console.log(myId)
     return this.post<any>((this.API_URL + API_URLS.POST_COSTOS_UDN), myId, this.httpOptions);
+  }
+
+  postCATPS(periodo: number, clasificacion: string){
+    let body = {
+      periodo: periodo,
+      clasificacion: clasificacion
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CA_TPS), body, this.httpOptions);
+  }
+
+  postCACostos(periodo: number, clasificacion: string){
+    let body = {
+      periodo: periodo,
+      clasificacion: clasificacion
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CA_COSTOS), body, this.httpOptions);
+  }
+
+  postCAAuxiliar(periodo: number, compania: string, udn: string){
+    let body = {
+      periodo: periodo,
+      compania: compania,
+      udn: udn
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CA_AUXILIAR), body, this.httpOptions);
   }
 
   postEdoResult(anio: number, idCompania: number, idArea: number, mes: number, clasificacion: number){

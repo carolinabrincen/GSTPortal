@@ -51,7 +51,7 @@ export const navigation = [
   },{
     text: 'Costos Anuales',
     icon: 'columnchooser',
-    path: '/costos-anuales'
+    path: '/costos-anuales-new'
   },{
     text: 'Ciclo Viaje',
     icon: 'columnchooser',
