@@ -547,11 +547,11 @@
             
                     <dxo-export [enabled]="true" fileName="GST"></dxo-export>
                            
-                    <dxi-column dataField="centroCostoCia" caption="Centro Costos Cia" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
+                    <!-- <dxi-column dataField="centroCostoCia" caption="Centro Costos Cia" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="centroCostoCta" caption="Centro Costos Cta" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold"></dxi-column>
                     <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="clasificacion2" caption="Clasificación 2" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="periodo" caption="Periodo" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="periodo" caption="Periodo" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column> -->
                     <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="descCuenta" caption="Descripción" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="total" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
@@ -583,26 +583,43 @@
                     <dx-data-grid #rentGer id="gridContainer" [dataSource]="CAAuxiliar" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedCAAuxitliar($event)">
                         
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
-                        <dxi-column dataField="areaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="centroCosto" caption="Centro costo"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="centroCosto1" caption="Centro costo 1" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="centroCosto2" caption="Centro costo 2" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="centroCosto3" caption="Centro costo 3" headerCellTemplate="headerTemplate"></dxi-column>
-                        
+                       
+                        <dxi-column caption="POLIZA" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="nombre" caption="Nombre" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="areaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="descripcion" caption="Descipción" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="identificadorPoliza" caption="Identificador poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="fechaCreacion" caption="Fecha creacion" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="fechaIngreso" caption="Fecha ingreso" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="fechaModifico" caption="Fecha modificación" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalAbono" caption="Total abono" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="totalCargo" caption="Total cargo" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="descEstatus" caption="desc.   Estatus" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="Detalle cuenta" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="conceptoIndividual" caption="concepto individual" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="descCuenta" caption="desc. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mmAbono" caption="mm abono" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="mmCargo" caption="mm cargo" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="Centro costos origen" headerCellTemplate="headerTemplate">
+                            <dxi-column dataField="centroCosto1" caption="Centro costo 1" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="centroCosto2" caption="Centro costo 2" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="centroCosto3" caption="Centro costo 3" headerCellTemplate="headerTemplate"></dxi-column>
+                        </dxi-column>
                         <dxi-column caption="Centro de costos" headerCellTemplate="headerTemplate">
-                        <dxi-column dataField="centroCostoCia" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="centroCostoCta" caption="Centro costo" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="centroCostoCia" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
+                            <dxi-column dataField="centroCostoCta" caption="Centro costo" headerCellTemplate="headerTemplate"></dxi-column>
                         </dxi-column>
 
-                        <dxi-column dataField="conceptoIndividual" caption="concepto individual" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="descCuenta" caption="desc. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="descEstatus" caption="desc Estatus" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="descripcion" caption="Descipción" headerCellTemplate="headerTemplate"></dxi-column>
+
+                        <dxi-column dataField="centroCosto" caption="Centro costo"  headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="descripcionTipo" caption="Descripción" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="estatus" caption="Estatus" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="fechaCreacion" caption="Fecha creacion" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="fechaIngreso" caption="Fecha ingreso" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="fechaModifico" caption="Fecha Modificación" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
                         <!-- <dxi-column dataField="idAreaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="idCompania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="idConsecutivo" caption="Consecutivo" headerCellTemplate="headerTemplate"></dxi-column>
@@ -611,17 +628,9 @@
                         <dxi-column dataField="idModifico" caption="Modifico" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="idPoliza" caption="Poliza" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="idTipoPoliza" caption="Tipo poliza" headerCellTemplate="headerTemplate"></dxi-column> -->
-                        <dxi-column dataField="identificadorPoliza" caption="Identificador Poliza" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="mmAbono" caption="mm abono" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="mmCargo" caption="mm cargo" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="nombre" caption="Nombre" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate"></dxi-column>
+
                         <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="totalAbono" caption="Total abono" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="totalCargo" caption="Total cargo" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+
     
                         <div *dxTemplate="let data of 'headerTemplate'">
                             <div style="font-weight: bolder; color: black">
