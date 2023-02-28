@@ -29,6 +29,7 @@ import { TotalesOGO } from 'src/app/shared/models/costos-anuales/totalesOGO.mode
 import { SelectCompany } from '../../shared/models/costos-anuales/selectCompny.model'
 import { CATPS } from '../../shared/models/costos-anuales/catps.model';
 import { CACostos } from '../../shared/models/costos-anuales/cacostos.model';
+import { CAAuxiliar } from '../../shared/models/costos-anuales/caauxiliar.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -48,6 +49,7 @@ export class CostosAnualesNewComponent implements OnInit {
   costosAnuales: CostosAnuales[] = [];
   CATPS: CATPS[] = [];
   CACostos: CACostos[] = [];
+  CAAuxiliar: CAAuxiliar[] = [];
 
   DestalleCuenta: DetalleCuenta[] = [];
   costosFTP: CostosTPS[] = [];
@@ -78,8 +80,18 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 2023, anio: "2023" }
-    // { idAnio: 2021, anio: "2021" },
+    { idAnio: 202301, anio: "2023-ENERO" },
+    { idAnio: 202302, anio: "2023-FEBRERO" },
+    { idAnio: 202303, anio: "2023-MARZO" },
+    { idAnio: 202304, anio: "2023-ABRIL" },
+    { idAnio: 202305, anio: "2023-MAYO" },
+    { idAnio: 202306, anio: "2023-JUNIO" },
+    { idAnio: 202307, anio: "2023-JULIO" },
+    { idAnio: 202308, anio: "2023-AGOSTO" },
+    { idAnio: 202309, anio: "2023-SEPTIEMBRE" },
+    { idAnio: 202310, anio: "2023-OCTUBRE" },
+    { idAnio: 202311, anio: "2023-NOVIEMBRE" },
+    { idAnio: 202312, anio: "2023-DICIEMBRE" }
   ];
 
   companias: Compania[] =[]
@@ -233,8 +245,7 @@ export class CostosAnualesNewComponent implements OnInit {
 
   getCATPS(){
     const request = new Promise((resolve, reject) => {
-      var periodo = 202301
-      this.costosAnuService.postCATPS(periodo, this.udnSeleccionado).subscribe(data => {
+      this.costosAnuService.postCATPS(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         this.CATPS = data.data;
       })
     });
@@ -243,8 +254,7 @@ export class CostosAnualesNewComponent implements OnInit {
 
   getCACostos(){
     const request = new Promise((resolve, reject) => {
-      var periodo = 202301
-      this.costosAnuService.postCACostos(periodo, this.udnSeleccionado).subscribe(data => {
+      this.costosAnuService.postCACostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         this.CACostos = data.data;
       })
     });
@@ -253,11 +263,9 @@ export class CostosAnualesNewComponent implements OnInit {
 
   getCAAuxiliar(){
     const request = new Promise((resolve, reject) => {
-      var periodo = 202301
-      this.costosAnuService.postCAAuxiliar(periodo, this.selectedCompania, this.udnSeleccionado).subscribe(data => {
-        // this.CATPS = data.data;
-
-        console.log(data.data)
+      console.log(this.selectedCompaniaNew)
+      this.costosAnuService.postCAAuxiliar(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado).subscribe(data => {
+        this.CAAuxiliar = data.data;
       })
     });
     return request;
@@ -279,7 +287,6 @@ export class CostosAnualesNewComponent implements OnInit {
   }
   
   selectCompaniaNew(e: any) {
-    console.log(e)
     this.selectedCompaniaNew = e.value;
     
     var myValue = []
@@ -2536,6 +2543,8 @@ totalesOGOACD
 
   }
 
+  onRowPreparedCACostos(e: any){}
+  onRowPreparedCAAuxitliar(e: any){}
 
 //====================personalize style excel========================================
   customizeCompania(e) {  

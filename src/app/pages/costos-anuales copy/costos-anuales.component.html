@@ -374,13 +374,8 @@
                 <!-- COLS -->
                 <!-- <dxi-col [ratio]="1"></dxi-col> -->
                 <!--Año-->
-                <dxi-col [ratio]=".50"></dxi-col>
-                <dxi-col [ratio]="1"></dxi-col>
-                <!--vacia-->
-                <dxi-col [ratio]=".15"></dxi-col>
-                <!--Mes-->
-                <dxi-col [ratio]=".50"></dxi-col>
-                <dxi-col [ratio]="1.50"></dxi-col>
+                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]="1.30"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Compañia-->
@@ -399,8 +394,8 @@
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Buscar-->
-                <dxi-col [ratio]="2"></dxi-col>
-                <dxi-col [ratio]=".5"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]="1.20"></dxi-col>
         
         
                 <!-- ROWS -->
@@ -431,7 +426,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Año:</div>
+                    <div>Año-Mes:</div>
                 </dxi-item>
         
                 <dxi-item>
@@ -441,7 +436,7 @@
                     </dx-select-box>
                 </dxi-item>
                 <!-- MES -->
-                <dxi-item>
+                <!-- <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
                     <div>Mes:</div>
@@ -451,28 +446,28 @@
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
                     <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMes($event)">
                     </dx-select-box>
-                </dxi-item>
+                </dxi-item> -->
         
                 <!--Compañia -->
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
                     <div>Compañia:</div>
                 </dxi-item>
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
                     <dx-select-box [items]="nweCompanias" displayExpr="compania" valueExpr="compania" (onValueChanged)="selectCompaniaNew($event)">
                     </dx-select-box>
                 </dxi-item>
                 <!--ROW 1 Unidad de Negocio -->
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
                     <div>UdN:</div>
                 </dxi-item>
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
                     <dx-select-box [items]="arrUnidadesNegocio" displayExpr="udn" valueExpr="idUdn" (onValueChanged)="seleccionarUDN($event)">
                     </dx-select-box>
@@ -491,7 +486,7 @@
                 </dxi-item> -->
                 <!-- BUSCAR -->
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
@@ -511,15 +506,15 @@
                         
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
                         <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="periodo" caption="Periodo"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="presA" caption="PresA" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="presAP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="presupuesto" caption="Presupuesto" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="presupuestoP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="real" caption="Real" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="real" caption="REAL" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="realP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="realA" caption="RealA" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="presupuesto" caption="PRESUP" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="presupuestoP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="realA" caption="REAL ACUM" headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="realAP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="presA" caption="PRESUP ACUM" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="presAP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="periodo" caption="Periodo"  headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="renglon" caption="Renglon" headerCellTemplate="headerTemplate"></dxi-column>
     
                         <div *dxTemplate="let data of 'headerTemplate'">
@@ -583,7 +578,68 @@
                 </dxi-item>
 
                 <dxi-item title="AUXILIAR">
-                    
+                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="CAAuxiliar" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedCAAuxitliar($event)">
+                        
+                        <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
+                        <dxi-column dataField="areaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCosto" caption="Centro costo"  headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCosto1" caption="Centro costo 1" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCosto2" caption="Centro costo 2" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCosto3" caption="Centro costo 3" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCostoCia" caption="Centro costo cia" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="centroCostoCta" caption="Centro costo cta" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="conceptoIndividual" caption="concepto individual" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="descCuenta" caption="desc. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="descEstatus" caption="desc Estatus" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descipción" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="descripcionTipo" caption="Descripción" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="estatus" caption="Estatus" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="fechaCreacion" caption="Fecha creacion" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="fechaIngreso" caption="Fecha ingreso" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="fechaModifico" caption="Fecha Modificación" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
+                        <!-- <dxi-column dataField="idAreaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idCompania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idConsecutivo" caption="Consecutivo" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idCuenta" caption="Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idIngreso" caption="Ingreso" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idModifico" caption="Modifico" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idPoliza" caption="Poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="idTipoPoliza" caption="Tipo poliza" headerCellTemplate="headerTemplate"></dxi-column> -->
+                        <dxi-column dataField="identificadorPoliza" caption="Identificador Poliza" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="mmAbono" caption="mm abono" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="mmCargo" caption="mm cargo" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="nombre" caption="Nombre" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="numPartida" caption="Num. Partida" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="totalAbono" caption="Total abono" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="totalCargo" caption="Total cargo" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
+    
+                        <div *dxTemplate="let data of 'headerTemplate'">
+                            <div style="font-weight: bolder; color: black">
+                                {{ data.column.caption }}
+                            </div>
+                        </div>
+            
+                        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                            <div style="font-weight: bolder; color: #ff5722">
+                                {{ info.column.caption }}
+                            </div>
+                        </div>
+            
+                        <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
+                            <div class="diff"></div>
+                        </div>
+            
+                        <dxo-export [enabled]="true" fileName="Auxiliar" [customizeExcelCell]="customizeCompania"></dxo-export>
+                        <dxo-paging [pageSize]="20"></dxo-paging>
+                        <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                        </dxo-pager>
+                        <dxo-sorting mode="none"></dxo-sorting>
+
+                    </dx-data-grid>
                 </dxi-item>
             </dx-tab-panel>
 
