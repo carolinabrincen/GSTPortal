@@ -2673,6 +2673,10 @@ totalesOGOACD
       return str.join(".");
   }
 
+  customizeColumns(columns) {
+    columns[0].width = 70;
+  }
+
 
 
 }

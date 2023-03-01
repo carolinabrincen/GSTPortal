@@ -498,10 +498,11 @@
             <br><br>
         
             <dx-tab-panel>
-                <dxi-item title="TPS">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="CATPS" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                <dxi-item title="ESTADO DE RESULTADOS">
+                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="CATPS" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+                    [customizeColumns]="customizeColumns"  (onRowPrepared)="onRowPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
-                        <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
+                        <!-- <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping> -->
                         
                         
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
@@ -536,7 +537,7 @@
                         </div>
             
                         <dxo-export [enabled]="true" fileName="TPS-Global" [customizeExcelCell]="customizeCompania"></dxo-export>
-                        <dxo-paging [pageSize]="100"></dxo-paging>
+                        <dxo-paging [pageSize]="10"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
                 </dxi-item>
