@@ -188,8 +188,6 @@ export class CostosAnualesNewComponent implements OnInit {
     private costosAnualesService: CostosAnualesService,
     private service: Service
     ) {
-
-    this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.verDetallesClick = this.verDetallesClick.bind(this)
     this.costosAnuService = costosAnualesService;
 
@@ -2435,20 +2433,74 @@ totalesOGOACD
     }
 
   }
-  calcularPorcentajes(options: any) {
-    // //
-    // if (options.summaryProcess === 'calculate') {
-    //   if (options.name === 'grupMargenUtilidaPor') {
-    //     options.totalValue = .17;
-    //     console.log('📵', options);
-    //   }
-    // }
+
+  onRowPreparedCAER(e: any){
+    if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if (c.value && c.value.toString().startsWith('-')) {
+            c.cellElement.style.color = "red";
+            c.cellElement.style.fontWeight = "bolder";
+          }
+        }
+
+
+
+      });
+    }
+
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
   }
 
-  onRowPreparedDetalle(e: any){
+  onCellPreparedCAER(e: any){
+    if (e.rowType == 'data') {
+        if(e.data.renglon == 21 ||
+          e.data.renglon == 24){
+            e.cellElement.style.fontWeight = "bolder";
+            e.cellElement.style.fontSize = "14px";
+            e.cellElement.style.color = "black";
+          } 
 
+        if (e.data.renglon == 27 || 
+          e.data.renglon == 32 ||
+          e.data.renglon == 39 ||
+          e.data.renglon == 43)
+        {
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "14px";
+        
+          e.cellElement.style.background = "#ff9460";
+          e.cellElement.style.color = "black";
+        }
+
+        if (e.data.renglon == 2 || 
+          e.data.renglon == 8 ||
+          e.data.renglon == 14 ||
+          e.data.renglon == 20 ||
+          e.data.renglon == 28 ||
+          e.data.renglon == 37 ||
+          e.data.renglon == 38 ||
+          e.data.renglon == 40 ||
+          e.data.renglon == 44 ||
+          e.data.renglon == 45)
+        {
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "14px";
+          
+        
+          e.cellElement.style.background = "#DCDCDC";
+          e.cellElement.style.color = "black";
+        }
+    }
   }
-
 
   getTPS(){
     let anio = this.selectedAnioTPS;
@@ -2668,6 +2720,39 @@ totalesOGOACD
 
         e.font = {bold: true}
       }
+    }
+  }
+
+  customizeCAER(e) {  
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'data') {
+      console.log(gridCell.data)
+      if (gridCell.data.concepto === '1. Volumen transportado' ||
+          gridCell.data.concepto === '2. Viajes Realizados' ||
+          gridCell.data.concepto === '3. PRODUCTO NETO' ||
+          gridCell.data.concepto === '4. COSTO DE OPERACION' || gridCell.data.concepto === 'Administación') {
+
+          e.backgroundColor = "#DCDCDC";
+          e.fontWeight = "bolder"
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'UTILIDAD BRUTA' ||
+        gridCell.data.concepto == 'UTILIDAD DE OPERACION' ||
+        gridCell.data.concepto == 'UTILIDAD ANTES DE IMPTO. Y PTU' ||
+        gridCell.data.concepto == 'UTILIDAD NETA'){
+
+          e.backgroundColor = "#FD9460";
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.concepto == 'Mantenimiento' ||
+        gridCell.data.concepto == 'Transportacion'){
+
+          e.font = {bold: true}
+        }
+
+
     }
   }
 

@@ -499,10 +499,10 @@
                 <dxi-item title="ESTADO DE RESULTADOS">
 
                     <dx-data-grid  #ER id="gridContainer2" [dataSource]="CATPS" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedTPS($event)">
+                    (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
                       <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                       <dxo-paging [pageSize]="100"></dxo-paging>
-
+                      <dxo-export [enabled]="true" fileName="ESTADO DE RESULTADOS" [customizeExcelCell]="customizeCAER"></dxo-export>
 
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
                         <dxi-column caption="{{myCompania +' - '+ myUdN}}" >
@@ -529,8 +529,6 @@
 
                   
                 </dxi-item>
-
-           
 
                 <dxi-item title="RESUMEN DE CUENTAS">
 
@@ -625,9 +623,6 @@
                    <dxi-column dataField="nombre" caption="Compañia" [fixed]="true"></dxi-column>
                    <dxi-column dataField="areaPoliza" caption="Area" [fixed]="true"></dxi-column>
                    <dxi-column dataField="descripcionTipo" caption="Descripcion Tipo" [fixed]="true"></dxi-column>
-                   
-                   <dxi-column dataField="fake" [showInColumnChooser]="false" [fixed]="true" fixedPosition="left" [width]="0.01"></dxi-column>
-
                    <dxi-column dataField="descripcion" caption="Descripción"></dxi-column>
                    <dxi-column dataField="identificadorPoliza" caption="Identificador"></dxi-column>
                    <dxi-column dataField="fechaCreacion" caption="Creacion" format="dd/mm/yyyy"></dxi-column>
