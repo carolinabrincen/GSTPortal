@@ -44,7 +44,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnioTPS($event)">
+                    <dx-select-box [items]="anio" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnioTPS($event)">
                     </dx-select-box>
                 </dxi-item>
                 <!-- MES -->
@@ -493,169 +493,112 @@
                 </dxi-item>
                 <!--#endregion :::: FIN ROW 1 ::::  -->
             </dx-responsive-box>
-            <br><br>
+            <br>
         
             <dx-tab-panel>
                 <dxi-item title="ESTADO DE RESULTADOS">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="CATPS" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-                    [customizeColumns]="customizeColumns"  (onRowPrepared)="onRowPreparedTPS($event)">
-                        <dxo-scrolling mode="virtual"></dxo-scrolling>
-                        <!-- <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping> -->
-                        
-                        
+
+                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="CATPS" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedTPS($event)">
+                      <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                      <dxo-paging [pageSize]="100"></dxo-paging>
+
+
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
-                        <dxi-column caption="{{myCompania +' - '+ myUdN}}" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="real" caption="REAL" [format]="separator" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="realP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="presupuesto" caption="PRESUP" [format]="separator" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="presupuestoP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="realA" caption="REAL ACUM" [format]="separator" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="realAP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="presA" caption="PRESUP ACUM" [format]="separator" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="presAP" caption="%" headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column caption="{{myCompania +' - '+ myUdN}}" >
+                            <dxi-column dataField="concepto" caption="Concepto"></dxi-column>
+                            <dxi-column dataField="real" caption="REAL" [format]="separator"></dxi-column>
+                            <dxi-column dataField="realP" caption="%"></dxi-column>
+                            <dxi-column dataField="presupuesto" caption="PRESUP" [format]="separator"></dxi-column>
+                            <dxi-column dataField="presupuestoP" caption="%"></dxi-column>
+                            <dxi-column dataField="realA" caption="REAL ACUM" [format]="separator"></dxi-column>
+                            <dxi-column dataField="realAP" caption="%"></dxi-column>
+                            <dxi-column dataField="presA" caption="PRESUP ACUM" [format]="separator"></dxi-column>
+                            <dxi-column dataField="presAP" caption="%"></dxi-column>
                         </dxi-column>
                         <!-- <dxi-column dataField="periodo" caption="Periodo"  headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="renglon" caption="Renglon" headerCellTemplate="headerTemplate"></dxi-column> -->
-    
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black">
-                                {{ data.column.caption }}
-                            </div>
+
+                        <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="detalleCellTemplate"></dxi-column>
+
+                        <div *dxTemplate="let data of 'detalleCellTemplate'">
+                            <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="verDetallesClick(data)"></dx-button>
                         </div>
-            
-                        <div *dxTemplate="let info of 'titleHeaderTemplate'">
-                            <div style="font-weight: bolder; color: #ff5722">
-                                {{ info.column.caption }}
-                            </div>
-                        </div>
-            
-                        <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
-                            <div class="diff"></div>
-                        </div>
-            
-                        <dxo-export [enabled]="true" fileName="TPS-Global" [customizeExcelCell]="customizeCompania"></dxo-export>
-                        <dxo-paging [pageSize]="10"></dxo-paging>
-                        <dxo-sorting mode="none"></dxo-sorting>
+
                     </dx-data-grid>
+
+                  
                 </dxi-item>
 
-                <dxi-item title="RESUMEN DE CUENTAS">
-                    <dx-data-grid #rentCont2 id="gridContainer2" [dataSource]="CACostos" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
-                    (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
-            
-                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+           
 
-                    <dxo-export [enabled]="true" fileName="GST"></dxo-export>
-                           
-                    <!-- <dxi-column dataField="centroCostoCia" caption="Centro Costos Cia" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="centroCostoCta" caption="Centro Costos Cta" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold"></dxi-column>
-                    <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="clasificacion2" caption="Clasificación 2" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="periodo" caption="Periodo" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column> -->
-                    <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="descCuenta" caption="Descripción" [fixed]="false"  headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="total" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                    
-                    <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="detalleCellTemplate"></dxi-column>
-            
-                    <div *dxTemplate="let data of 'detalleCellTemplate'">
-                        <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="verDetallesClick(data)"></dx-button>
-                    </div> -->
-            
-                    <div *dxTemplate="let data of 'headerTemplate'">
-                        <div style="font-weight: bolder; color: black">
-                            {{ data.column.caption }}
-                        </div>
-                    </div>
-                    <div *dxTemplate="let cell of 'cellTemplateBold'">
-                        <div style="font-weight: bold;">{{cell.text}}</div>
-                    </div>
-                    <dxo-paging [pageSize]="20"></dxo-paging>
-                    <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    <dxo-grouping #expand [autoExpandAll]="expandGroup" ></dxo-grouping>
-                    <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
-                    </dxo-pager>
-                    <dxo-sorting mode="none"></dxo-sorting>
-                </dx-data-grid>
+                <dxi-item title="RESUMEN DE CUENTAS">
+
+                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="CACostos" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+                     [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+                    (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+                      <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                      <dxo-paging [pageSize]="100"></dxo-paging>
+
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
+                      <dxo-export [enabled]="true" fileName="RESUMEN CUENTAS"></dxo-export>
+                      
+                      <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" [fixed]="false"></dxi-column>
+                      <dxi-column dataField="descCuenta" caption="Descripción" [fixed]="false"></dxi-column>
+                      <dxi-column dataField="total" caption="Total" [fixed]="false" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+              
+
+                    </dx-data-grid>
                 </dxi-item>
 
                 <dxi-item title="AUXILIAR">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="CAAuxiliar" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedCAAuxitliar($event)">
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
-                       
-                        <dxi-column caption="POLIZA" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="nombre" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="areaPoliza" caption="Area" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="descripcion" caption="Tipo" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="identificadorPoliza" caption="Identificador" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="fechaCreacion" caption="Creacion" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="fechaIngreso" caption="Ingreso" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="fechaModifico" caption="Modificación" format="DD-MM-AAAA" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="descEstatus" caption="Estado" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="totalAbono" caption="Abono" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="totalCargo" caption="Cargo" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                        </dxi-column>
-                        <dxi-column caption="Detalle cuenta" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="numPartida" caption="Partida" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="conceptoIndividual" caption="Concepto individual" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="descCuenta" caption="Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="mmAbono" caption="Abono" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="mmCargo" caption="Cargo" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
-                        </dxi-column>
-                        <dxi-column caption="Centro costos origen" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="centroCosto1" caption="Centro costo 1" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="centroCosto2" caption="Centro costo 2" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="centroCosto3" caption="Centro costo 3" headerCellTemplate="headerTemplate"></dxi-column>
-                        </dxi-column>
-                        <dxi-column caption="Centro costos aplicación" headerCellTemplate="headerTemplate">
-                            <dxi-column dataField="centroCostoCia" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-                            <dxi-column dataField="centroCostoCta" caption="Centro costo" headerCellTemplate="headerTemplate"></dxi-column>
-                        </dxi-column>
 
+                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="CAAuxiliar" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+                    [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true"
+                   (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)">
+                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                     <dxo-paging [pageSize]="100"></dxo-paging>
 
-                        <dxi-column dataField="centroCosto" caption="Centro costo"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="descripcionTipo" caption="Descripción" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="estatus" caption="Estatus" headerCellTemplate="headerTemplate"></dxi-column>
-                        <!-- <dxi-column dataField="idAreaPoliza" caption="Area poliza" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idCompania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idConsecutivo" caption="Consecutivo" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idCuenta" caption="Cuenta" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idIngreso" caption="Ingreso" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idModifico" caption="Modifico" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idPoliza" caption="Poliza" headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="idTipoPoliza" caption="Tipo poliza" headerCellTemplate="headerTemplate"></dxi-column> -->
+                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
-                        <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
-
-    
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black">
-                                {{ data.column.caption }}
-                            </div>
-                        </div>
-            
-                        <div *dxTemplate="let info of 'titleHeaderTemplate'">
-                            <div style="font-weight: bolder; color: #ff5722">
-                                {{ info.column.caption }}
-                            </div>
-                        </div>
-            
-                        <div *dxTemplate="let d of 'diffCellTemplate'" [class]="d.text >= 0 ? 'inc' : 'dec'">
-                            <div class="diff"></div>
-                        </div>
-            
-                        <dxo-export [enabled]="true" fileName="Auxiliar" [customizeExcelCell]="customizeCompania"></dxo-export>
-                        <dxo-paging [pageSize]="20"></dxo-paging>
-                        <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
-                        </dxo-pager>
-                        <dxo-sorting mode="none"></dxo-sorting>
-
-                    </dx-data-grid>
+                     <dxo-export [enabled]="true" fileName="Auxiliar"></dxo-export>
+                     
+                     <dxi-column caption="POLIZA">
+                        <dxi-column dataField="nombre" caption="Compañia" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="areaPoliza" caption="Area" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="descripcionTipo" caption="Descripcion Tipo" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción"></dxi-column>
+                        <dxi-column dataField="identificadorPoliza" caption="Identificador"></dxi-column>
+                        <dxi-column dataField="fechaCreacion" caption="Creacion" format="dd/mm/yyyy"></dxi-column>
+                        <dxi-column dataField="fechaIngreso" caption="Ingreso" format="dd/mm/yyyy"></dxi-column>
+                        <dxi-column dataField="fechaModifico" caption="Modificación" format="dd/mm/yyyy"></dxi-column>
+                        <dxi-column dataField="totalAbono" caption="Abono" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="totalCargo" caption="Cargo" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                    </dxi-column>
+                    <dxi-column caption="Detalle cuenta">
+                        <dxi-column dataField="numPartida" caption="Partida"></dxi-column>
+                        <dxi-column dataField="conceptoIndividual" caption="Concepto individual"></dxi-column>
+                        <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta"></dxi-column>
+                        <dxi-column dataField="descCuenta" caption="Cuenta"></dxi-column>
+                        <dxi-column dataField="referencia" caption="Referencia"></dxi-column>
+                        <dxi-column dataField="mmAbono" caption="Abono" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="mmCargo" caption="Cargo" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                    </dxi-column>
+                    <dxi-column caption="Centro costos origen">
+                        <dxi-column dataField="centroCosto1" caption="Centro costo 1"></dxi-column>
+                        <dxi-column dataField="centroCosto2" caption="Centro costo 2"></dxi-column>
+                        <dxi-column dataField="centroCosto3" caption="Centro costo 3"></dxi-column>
+                    </dxi-column>
+                    <dxi-column caption="Centro costos aplicación">
+                        <dxi-column dataField="centroCostoCia" caption="Compañia"></dxi-column>
+                        <dxi-column dataField="centroCostoCta" caption="Centro costo"></dxi-column>
+                    </dxi-column>
+                    <!-- <dxi-column dataField="centroCosto" caption="Centro costo"></dxi-column> -->
+                    <!-- <dxi-column dataField="estatus" caption="Estatus"></dxi-column>
+                    <dxi-column dataField="periodo" caption="Periodo"></dxi-column> -->
+                   </dx-data-grid>
                 </dxi-item>
             </dx-tab-panel>
 
@@ -664,65 +607,73 @@
    
 
 <!--==========================MODAL REAL=========================================================-->
-        <dx-popup
-        width="100%" [height]="600" [showTitle]="true" title="Detalle de Real" [dragEnabled]="false" [closeOnOutsideClick]="true"
-        [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
-        <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>
-        
-        
-        <div *dxTemplate="let data of 'content'">
-            <dx-scroll-view width="100%" height="100%">
-            <!--#region :::: GRID DETALLE DE REAL ::::  -->
-          <dx-data-grid #rentGer id="gridContainer" [dataSource]="DestalleCuenta" [columnAutoWidth]="true" [showColumnLines]="true"
-            [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedDetalle($event)">
-            
-            <dxi-column dataField="compania" caption="Compañia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="area" caption="UdN" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="identificadorPoliza" caption="Identificador póliza" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="descripcionPoliza" caption="Descripción de la póliza" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="numPartida" caption="Num. partida" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="cuenta" caption="Cuenta" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="referencia" caption="Referencia" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="centroCosto" caption="Centro costo" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="factura" caption="Factura" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="uuid" caption="UUID" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="concepto" caption="Concepto" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="periodo" caption="Periodo" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="modificacion" caption="Modificación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="tipoOperacion" caption="Operación" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="cargo" caption="Cargo" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="abono" caption="Abono" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="iva" caption="Iva" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
-            <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##" [width]="100" headerCellTemplate="headerTemplate"></dxi-column>
+<dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="modDetalleA">
+    <!-- <dxo-position at="middle" my="center" [of]="positionOf"> </dxo-position>  -->
 
 
-          <!-- Templates Grid -->
-            <div *dxTemplate="let data of 'headerTemplate'">
-              <div style="font-weight: bolder; color: black">
-                {{ data.column.caption }}
-              </div>
-            </div>
-  
-            <div *dxTemplate="let info of 'titleHeaderTemplate'">
-              <div style="font-weight: bolder; color: #ff5722">
-                {{ info.column.caption }}
-              </div>
-            </div>
-  
-            <div
-              *dxTemplate="let d of 'diffCellTemplate'"
-              [class]="d.text >= 0 ? 'inc' : 'dec'"
-            >
-              <div class="diff"></div>
-            </div>
-  
-            <dxo-export [enabled]="true"></dxo-export>
-            <dxo-paging [pageSize]="30"></dxo-paging>
-            <dxo-sorting mode="none"></dxo-sorting>
-          </dx-data-grid>
-          </dx-scroll-view>
-        </div>
-      </dx-popup>
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+
+            <dx-data-grid class="data-grid" [dataSource]="deltalleAxuliar" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+             [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
+                <dxo-export [enabled]="true" fileName="Auxiliar"></dxo-export>
+                
+                <dxi-column caption="POLIZA">
+                   <dxi-column dataField="nombre" caption="Compañia" [fixed]="true"></dxi-column>
+                   <dxi-column dataField="areaPoliza" caption="Area" [fixed]="true"></dxi-column>
+                   <dxi-column dataField="descripcionTipo" caption="Descripcion Tipo" [fixed]="true"></dxi-column>
+                   
+                   <dxi-column dataField="fake" [showInColumnChooser]="false" [fixed]="true" fixedPosition="left" [width]="0.01"></dxi-column>
+
+                   <dxi-column dataField="descripcion" caption="Descripción"></dxi-column>
+                   <dxi-column dataField="identificadorPoliza" caption="Identificador"></dxi-column>
+                   <dxi-column dataField="fechaCreacion" caption="Creacion" format="dd/mm/yyyy"></dxi-column>
+                   <dxi-column dataField="fechaIngreso" caption="Ingreso" format="dd/mm/yyyy"></dxi-column>
+                   <dxi-column dataField="fechaModifico" caption="Modificación" format="dd/mm/yyyy"></dxi-column>
+                   <dxi-column dataField="totalAbono" caption="Abono" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                   <dxi-column dataField="totalCargo" caption="Cargo" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+               </dxi-column>
+               <dxi-column caption="Detalle cuenta">
+                   <dxi-column dataField="numPartida" caption="Partida"></dxi-column>
+                   <dxi-column dataField="conceptoIndividual" caption="Concepto individual"></dxi-column>
+                   <dxi-column dataField="numCuentaFormat" caption="Num. Cuenta"></dxi-column>
+                   <dxi-column dataField="descCuenta" caption="Cuenta"></dxi-column>
+                   <dxi-column dataField="referencia" caption="Referencia"></dxi-column>
+                   <dxi-column dataField="mmAbono" caption="Abono" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                   <dxi-column dataField="mmCargo" caption="Cargo" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+                   <dxi-column dataField="total" caption="Total" format="$ #,##0.##;-$ #,##0.##"></dxi-column>
+               </dxi-column>
+               <dxi-column caption="Centro costos origen">
+                   <dxi-column dataField="centroCosto1" caption="Centro costo 1"></dxi-column>
+                   <dxi-column dataField="centroCosto2" caption="Centro costo 2"></dxi-column>
+                   <dxi-column dataField="centroCosto3" caption="Centro costo 3"></dxi-column>
+               </dxi-column>
+               <dxi-column caption="Centro costos aplicación">
+                   <dxi-column dataField="centroCostoCia" caption="Compañia"></dxi-column>
+                   <dxi-column dataField="centroCostoCta" caption="Centro costo"></dxi-column>
+               </dxi-column>
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold;">{{cell.text}}</div>
+                </div>
+                <dxo-paging [pageSize]="paginacion"></dxo-paging>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="expandGroup"></dxo-grouping>
+                <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                </dxo-pager>
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+        </dx-scroll-view>
+    </div>
+</dx-popup>
 <!--=============================================FIN MODAL==========================================-->
 
     <!-- LOAD PANEL -->

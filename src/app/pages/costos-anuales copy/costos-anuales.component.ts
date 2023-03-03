@@ -94,6 +94,10 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202312, anio: "202312" }
   ];
 
+  anio: AniosModel[] = [
+    { idAnio: 2023, anio: "2023" },
+  ]
+
   companias: Compania[] =[]
 
   nweCompanias = [
@@ -172,6 +176,12 @@ export class CostosAnualesNewComponent implements OnInit {
   type = 'info';
 
   message = '';
+
+  
+  modDetalleA: boolean;
+  deltalleAxuliar: any[] = []
+
+  rtlEnabled = false;
 
   constructor(
     private costosAnualesService: CostosAnualesService,
@@ -335,19 +345,11 @@ export class CostosAnualesNewComponent implements OnInit {
   }
 
   verDetallesClick(data) {
-    //console.log(data)
+    console.log(data.data)
 
-      var anio = this.anioSeleccionado;
-      var idCompania = this.selectedCompania;
-      var idArea = this.udnSeleccionado;
-      var mes = this.mesSeleccionado;
-      var periodo = 0;
-      var idCuenta = data.key.idCuenta;
-      this.costosAnuService.postDetalleCuenta(anio, idCompania, idArea, mes, periodo, idCuenta).subscribe(data =>{
-        //console.log(data)
-        this.DestalleCuenta = data.data
-        this.openModReal = true;
-      })
+    this.modDetalleA = true;
+      // this.costosAnuService.postDetalleCuenta(anio, idCompania, idArea, mes, periodo, idCuenta).subscribe(data =>{
+      // })
   }
 
   borrarClick = (e: any) =>{
