@@ -53,6 +53,17 @@ export class CostosAnualesService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_CA_TPS), body, this.httpOptions);
   }
 
+  postDetalleTPS(periodo: number, compania: string, udn: string, renglon: number){
+    let body = {
+      periodo: periodo,
+      compania: compania,
+      udn: udn,
+      renglon: renglon
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_TPS), body, this.httpOptions);
+  }
+
   postCACostos(periodo: number, clasificacion: string){
     let body = {
       periodo: periodo,

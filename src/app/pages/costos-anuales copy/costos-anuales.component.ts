@@ -30,6 +30,7 @@ import { SelectCompany } from '../../shared/models/costos-anuales/selectCompny.m
 import { CATPS } from '../../shared/models/costos-anuales/catps.model';
 import { CACostos } from '../../shared/models/costos-anuales/cacostos.model';
 import { CAAuxiliar } from '../../shared/models/costos-anuales/caauxiliar.model';
+import { DetalleTPS } from '../../shared/models/costos-anuales/detalleTPS.model';
 
 import notify from 'devextreme/ui/notify';
 @Component({
@@ -179,7 +180,7 @@ export class CostosAnualesNewComponent implements OnInit {
 
   
   modDetalleA: boolean;
-  deltalleAxuliar: any[] = []
+  deltalleAxuliar: DetalleTPS[] = []
 
   rtlEnabled = false;
 
@@ -257,6 +258,18 @@ export class CostosAnualesNewComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postCATPS(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         this.CATPS = data.data;
+        this.CATPS.sort((a, b) => (a.renglon < b.renglon ? -1 : 1));
+      })
+    });
+    return request;
+  }
+
+  getDetalleTPS(renglon){
+    const request = new Promise((resolve, reject) => {
+      this.costosAnuService.postDetalleTPS(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado, renglon).subscribe(data => {
+        this.deltalleAxuliar = data.data
+        this.modDetalleA = true;
+
       })
     });
     return request;
@@ -273,7 +286,6 @@ export class CostosAnualesNewComponent implements OnInit {
 
   getCAAuxiliar(){
     const request = new Promise((resolve, reject) => {
-      console.log(this.selectedCompaniaNew)
       this.costosAnuService.postCAAuxiliar(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado).subscribe(data => {
         this.CAAuxiliar = data.data;
       })
@@ -345,11 +357,8 @@ export class CostosAnualesNewComponent implements OnInit {
   }
 
   verDetallesClick(data) {
-    console.log(data.data)
-
-    this.modDetalleA = true;
-      // this.costosAnuService.postDetalleCuenta(anio, idCompania, idArea, mes, periodo, idCuenta).subscribe(data =>{
-      // })
+    var mydata = data.data;
+    this.getDetalleTPS(mydata.renglon)
   }
 
   borrarClick = (e: any) =>{

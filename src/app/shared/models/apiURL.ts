@@ -47,6 +47,7 @@ export enum API_URLS{
     POST_COSTOS_UDN = 'api/Costos/PostUdns',
     POST_CENTRO_COSTOS = 'api/Costos/GetCC',
     POST_CA_TPS = 'api/Costos/GetTPSUdN',
+    POST_DETALLE_TPS = 'api/Costos/GetAuxiliarRenglon',
     POST_CA_COSTOS = 'api/Costos/GetCtasUdN',
     POST_CA_AUXILIAR = 'api/Costos/GetAuxiliar',
     GET_TPS = 'api/Costos/GetTPS/',
