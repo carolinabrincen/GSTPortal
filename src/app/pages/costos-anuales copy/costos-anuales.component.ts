@@ -266,6 +266,7 @@ export class CostosAnualesNewComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postDetalleTPS(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado, renglon).subscribe(data => {
         this.deltalleAxuliar = data.data
+        console.log(this.deltalleAxuliar)
         this.modDetalleA = true;
 
       })
