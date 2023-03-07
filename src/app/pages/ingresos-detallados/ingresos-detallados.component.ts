@@ -50,7 +50,11 @@ export class IngresosDetalladosComponent implements OnInit {
       
       this.arrIngresosFeb = res.data.resumen;
       this.arrDetalleFeb = res.data.detalle;
-      
+    });
+
+    this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
+      this.arrIngresosMarzo = res.data.resumen;
+      this.arrDetalleMarzo = res.data.detalle;
     });
 
     
