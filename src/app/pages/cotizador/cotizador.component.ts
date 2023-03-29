@@ -107,6 +107,9 @@ export class CotizadorComponent implements OnInit {
   RadioButtonClientePagaCasetas: any;
   RadioButtonPrecioXTonelada: any;
 
+  buttonOptionsActualizar: any;
+  buttonOptionsAprobar: any;
+  buttonOptionsCerar: any;
 
   bolModal: boolean = false;
   positionOf: string = '#myDiv';
@@ -125,6 +128,7 @@ export class CotizadorComponent implements OnInit {
   bolBotonAprobarCotizacion = false;
   bolFormSoloLectura = false;
 
+  modConfimation: boolean= false
   constructor(
     private cotizadorService: CotizadorService,
     private renContService: RentContService,
@@ -222,6 +226,37 @@ export class CotizadorComponent implements OnInit {
       },
     };
 
+    //Actualizar
+    this.buttonOptionsActualizar = {
+      type: 'normal',
+      text: 'Actualizar',
+
+      onClick() {
+
+      },
+    };
+
+    //Aprovar
+    this.buttonOptionsAprobar = {
+      type: 'normal',
+      text: 'Aprobar',
+
+      onClick(e: any) {
+        console.log(that.itemCotizacion.variables);
+      },
+    };
+
+    //Cerrar
+    this.buttonOptionsCerar = {
+      type: 'normal',
+      text: 'Cerrar',
+      icon: 'exit',
+      onClick(e: any) {
+        that.modConfimation = false;
+      },
+    };
+
+
   }
 
   ngOnInit(): void {
@@ -239,12 +274,19 @@ export class CotizadorComponent implements OnInit {
     });
   }
 
+  tarifaFinal: number;
   getPreCotizaciones() {
     this.arrPreCotizaciones = [];
     this.cotizadorService.getPreCotizaciones().subscribe(res => {
       this.arrPreCotizaciones = res.data;
-        console.log(res.data);
-    });
+        // console.log(res.data);
+        var mydata = res.data;
+        for(var i = 0; i<mydata.length; i++){
+
+          this.tarifaFinal = mydata[i].tarifaFinal;
+        }
+        
+      });
   }
 
   getUnidadesNegocio() {
@@ -636,4 +678,827 @@ precioTotalValueChanged(e: any) {
   }
   //#endregion :::: FIN EVENTOS ::::
 
+
+  onRowPrepared(e){
+  }
+  onContentReady(e){
+  }
+  onCellPrepared(e){
+  }
+
+  itemCotizacionT25: CotizacionModel = {
+    idCotizacion: undefined,
+    folio: 0,
+    sencillo:true,
+    tipoViaje: "Solo de ida",
+    regresa_vacio: false,
+    regreso:"Vacio",
+    id_ingreso: "0",
+    id_area: undefined,
+    unidadNegocio: "",
+    id_tipo_operacion: 0,
+    tipoOperacion: "",
+    clasificacion: "",
+    cliente: undefined,
+    origen: undefined,
+    destino: undefined,
+    kms_ida: 0,
+    kms_regreso:0,
+    kms_totales: 0,
+    casetas: 0,
+    casetas_si: 0,
+    casetas_regreso:0,
+    casetas_regreso_si:0,
+    casetas_total_sin_impuestos:0,
+    diesel:0,
+    diesel_sin_impuestos: 0,
+    diesel_total_sin_impuestos:0,
+    num_estancias_ida: 0,
+    num_maniobras_ida: 0,
+    ton_carga_ida:0,
+    num_estancias_regreso:0,
+    num_maniobras_regreso:0,
+    ton_carga_regreso:0,
+    clienta_paga: false,
+    clientePagaCasetas:"No",
+    tarifaFinal:0,
+    costoViaje:0,
+    toneladas:0,
+    costo_tonelada:0,
+    costoPorKm:0,
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
+    
+  };
+
+  limpiarFormT25() {
+    console.log("limpiar");
+    this.bolFormSoloLectura = false;
+    //this.itemCotizacion = {};
+    this.itemCotizacion = {
+      idCotizacion: undefined,
+      folio: 0,
+      sencillo:true,
+      tipoViaje: "Solo de ida",
+      regresa_vacio: false,
+      regreso:"Vacio",
+      id_ingreso: "0",
+      id_area: undefined,
+      unidadNegocio: "",
+      id_tipo_operacion: 0,
+      tipoOperacion: "",
+      clasificacion: "",
+      cliente: undefined,
+      origen: undefined,
+      destino: undefined,
+      kms_ida: 0,
+      kms_regreso:0,
+      kms_totales: 0,
+      casetas: 0,
+      casetas_si: 0,
+      casetas_regreso:0,
+      casetas_regreso_si: 0,
+      casetas_total_sin_impuestos:0,
+      diesel:0,
+      diesel_sin_impuestos: 0,
+      diesel_total_sin_impuestos:0,
+      num_estancias_ida: 0,
+      num_maniobras_ida: 0,
+      ton_carga_ida:0,
+      num_estancias_regreso:0,
+      num_maniobras_regreso:0,
+      ton_carga_regreso:0,
+      clienta_paga: false,
+      clientePagaCasetas:"No",
+      tarifaFinal:0,
+      costoViaje:0,
+      toneladas:0,
+      costo_tonelada:0,
+      costoPorKm:0,
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
+    };
+  }
+
+  T25: number;
+  tipoOperacion: string;
+  casetaSImp: number;
+  casetasRegreso: number;
+  mode: boolean = false;
+  // dataCotizacion: any;
+  tarifa25(data){
+    console.log(data.data)
+    // this.dataCotizacion = data.data;
+    // this.modConfimation = true;
+
+    this.T25 = data.data.tarifa25;
+    this.tipoOperacion = data.data.tipoOperacion;
+    this.casetaSImp = data.data.casetas_total_sin_impuestos;
+    this.casetasRegreso = data.data.casetas_regreso;
+
+    this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
+      this.itemCotizacionT25 = res.data;
+      console.log(this.itemCotizacionT25)
+    });
+    
+    
+    const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa25);
+    const clonedItem = { ...data.data };
+    let result = confirm("<i>La tarifa final sera <b>"+formatValue+"</b></i><br>"+
+                        "<i>Esta seguro de aprobar la cotización: <b>" +
+      clonedItem.folio + "</b></i>", "Confirmar Operación");
+    result.then((dialogResult) => {
+
+
+        if (dialogResult) {
+          //TODO: Implementar endpoint para aprobar cotizacion
+          this.guardarCotizacionT25()
+
+          // if(this.tarifaFinal == 0){
+
+          // }
+
+          if(this.itemCotizacionT25.tarifaFinal !== 0){
+            // alert("entre")
+            this.cotizadorService.postAprobarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+              if (res.responseCode === 200) {
+                //agregamos precotizacion a las aprobadas
+
+                const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
+                console.log(elementIndex)
+                this.arrPreCotizaciones[elementIndex].status = "APROBADA";
+                
+                this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
+
+                //Quitamos la aprobada de las precotizaciones
+                this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+                
+
+                notify({
+                  message: 'Cotización aprobada con exito!',
+                  position: {
+                    my: 'center center',
+                    at: 'center center',
+                  },
+                }, 'success', 3000);
+
+              } else {
+                notify({
+                  message: res.responseText,
+                  position: {
+                    my: 'center center',
+                    at: 'center center',
+                  },
+                }, 'error', 5000);
+              }
+            });
+
+          }
+        }
+      
+    });
+  }
+
+  guardarCotizacionT25() {
+   
+    
+          this.itemCotizacionT25.sencillo = this.itemCotizacionT25.tipoViaje === "Solo de ida" ? true : false;
+          this.itemCotizacionT25.regresa_vacio = this.itemCotizacionT25.regreso === "Vacio" ? true : false;
+          this.itemCotizacionT25.clienta_paga = this.itemCotizacionT25.clientePagaCasetas === "Si" ? true : false;
+          this.itemCotizacionT25.tarifaFinal = this.T25;
+          this.itemCotizacionT25.tipoOperacion = this.tipoOperacion;
+          this.itemCotizacionT25.casetas_total_sin_impuestos = this.casetaSImp;
+          this.itemCotizacionT25.casetas_regreso = this.casetasRegreso;
+          
+          this.cotizadorService.postEditarCotizacion(this.itemCotizacionT25).subscribe(res => {
+            if (res.responseCode === 200) {
+              console.log(res.data)
+              this.itemCotizacionT25 = res.data;
+              this.getPreCotizaciones();
+              if(res.data.tarifaFinal == this.T25){
+              this.mode = true;
+              }
+              notify({
+                message: 'Cotización guardada con exito!',
+                position: {
+                  my: 'center center',
+                  at: 'center center',
+                },
+              }, 'success', 3000);
+            } else {
+              notify({
+                message: res.responseText,
+                position: {
+                  my: 'center center',
+                  at: 'center center',
+                },
+              }, 'error', 3000);
+            }
+          });
+
+          this.limpiarFormT25();
+  }
+
+  itemCotizacionT30: CotizacionModel = {
+    idCotizacion: undefined,
+    folio: 0,
+    sencillo:true,
+    tipoViaje: "Solo de ida",
+    regresa_vacio: false,
+    regreso:"Vacio",
+    id_ingreso: "0",
+    id_area: undefined,
+    unidadNegocio: "",
+    id_tipo_operacion: 0,
+    tipoOperacion: "",
+    clasificacion: "",
+    cliente: undefined,
+    origen: undefined,
+    destino: undefined,
+    kms_ida: 0,
+    kms_regreso:0,
+    kms_totales: 0,
+    casetas: 0,
+    casetas_si: 0,
+    casetas_regreso:0,
+    casetas_regreso_si:0,
+    casetas_total_sin_impuestos:0,
+    diesel:0,
+    diesel_sin_impuestos: 0,
+    diesel_total_sin_impuestos:0,
+    num_estancias_ida: 0,
+    num_maniobras_ida: 0,
+    ton_carga_ida:0,
+    num_estancias_regreso:0,
+    num_maniobras_regreso:0,
+    ton_carga_regreso:0,
+    clienta_paga: false,
+    clientePagaCasetas:"No",
+    tarifaFinal:0,
+    costoViaje:0,
+    toneladas:0,
+    costo_tonelada:0,
+    costoPorKm:0,
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
+    
+  };
+
+  limpiarFormT30() {
+    console.log("limpiar");
+    this.bolFormSoloLectura = false;
+    //this.itemCotizacion = {};
+    this.itemCotizacion = {
+      idCotizacion: undefined,
+      folio: 0,
+      sencillo:true,
+      tipoViaje: "Solo de ida",
+      regresa_vacio: false,
+      regreso:"Vacio",
+      id_ingreso: "0",
+      id_area: undefined,
+      unidadNegocio: "",
+      id_tipo_operacion: 0,
+      tipoOperacion: "",
+      clasificacion: "",
+      cliente: undefined,
+      origen: undefined,
+      destino: undefined,
+      kms_ida: 0,
+      kms_regreso:0,
+      kms_totales: 0,
+      casetas: 0,
+      casetas_si: 0,
+      casetas_regreso:0,
+      casetas_regreso_si: 0,
+      casetas_total_sin_impuestos:0,
+      diesel:0,
+      diesel_sin_impuestos: 0,
+      diesel_total_sin_impuestos:0,
+      num_estancias_ida: 0,
+      num_maniobras_ida: 0,
+      ton_carga_ida:0,
+      num_estancias_regreso:0,
+      num_maniobras_regreso:0,
+      ton_carga_regreso:0,
+      clienta_paga: false,
+      clientePagaCasetas:"No",
+      tarifaFinal:0,
+      costoViaje:0,
+      toneladas:0,
+      costo_tonelada:0,
+      costoPorKm:0,
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
+    };
+  }
+
+  T30: number;
+  tipoOperacionT30: string;
+  casetaSImpT30: number;
+  casetasRegresoT30: number;
+  modeT30: boolean = false;
+  tarifa30(data){
+    console.log(data.data)
+    
+    this.T30 = data.data.tarifa30;
+    this.tipoOperacionT30 = data.data.tipoOperacion;
+    this.casetaSImpT30 = data.data.casetas_total_sin_impuestos;
+    this.casetasRegresoT30 = data.data.casetas_regreso;
+
+    this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
+      this.itemCotizacionT30 = res.data;
+      console.log(this.itemCotizacionT30)
+    });
+
+    const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa30);
+    const clonedItem = { ...data.data };
+    let result = confirm("<i>La tarifa final sera <b>"+formatValue+"</b></i><br>"+
+                        "<i>Esta seguro de aprobar la cotización: <b>" +
+      clonedItem.folio + "</b></i>", "Confirmar Operación");
+    result.then((dialogResult) => {
+
+
+      if (dialogResult) {
+        //TODO: Implementar endpoint para aprobar cotizacion
+        this.guardarCotizacionT30()
+
+        if(this.itemCotizacionT30.tarifaFinal !== 0){
+        this.cotizadorService.postAprobarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+          if (res.responseCode === 200) {
+            //agregamos precotizacion a las aprobadas
+            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
+            this.arrPreCotizaciones[elementIndex].status = "APROBADA";
+            this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
+
+            //Quitamos la aprobada de las precotizaciones
+            this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+
+            notify({
+              message: 'Cotización aprobada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 5000);
+          }
+        });
+      }
+    }
+    });
+  }
+
+  guardarCotizacionT30() {
+   
+    
+    this.itemCotizacionT30.sencillo = this.itemCotizacionT30.tipoViaje === "Solo de ida" ? true : false;
+    this.itemCotizacionT30.regresa_vacio = this.itemCotizacionT30.regreso === "Vacio" ? true : false;
+    this.itemCotizacionT30.clienta_paga = this.itemCotizacionT30.clientePagaCasetas === "Si" ? true : false;
+    this.itemCotizacionT30.tarifaFinal = this.T30;
+    this.itemCotizacionT30.tipoOperacion = this.tipoOperacionT30;
+    this.itemCotizacionT30.casetas_total_sin_impuestos = this.casetaSImpT30;
+    this.itemCotizacionT30.casetas_regreso = this.casetasRegresoT30;
+    
+    this.cotizadorService.postEditarCotizacion(this.itemCotizacionT30).subscribe(res => {
+      if (res.responseCode === 200) {
+        console.log(res.data)
+        this.itemCotizacionT30 = res.data;
+        this.getPreCotizaciones();
+        if(res.data.tarifaFinal == this.T30){
+        this.modeT30 = true;
+        }
+        notify({
+          message: 'Cotización guardada con exito!',
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'success', 3000);
+      } else {
+        notify({
+          message: res.responseText,
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'error', 3000);
+      }
+    });
+
+    this.limpiarFormT30();
+}
+
+  itemCotizacionT35: CotizacionModel = {
+    idCotizacion: undefined,
+    folio: 0,
+    sencillo:true,
+    tipoViaje: "Solo de ida",
+    regresa_vacio: false,
+    regreso:"Vacio",
+    id_ingreso: "0",
+    id_area: undefined,
+    unidadNegocio: "",
+    id_tipo_operacion: 0,
+    tipoOperacion: "",
+    clasificacion: "",
+    cliente: undefined,
+    origen: undefined,
+    destino: undefined,
+    kms_ida: 0,
+    kms_regreso:0,
+    kms_totales: 0,
+    casetas: 0,
+    casetas_si: 0,
+    casetas_regreso:0,
+    casetas_regreso_si:0,
+    casetas_total_sin_impuestos:0,
+    diesel:0,
+    diesel_sin_impuestos: 0,
+    diesel_total_sin_impuestos:0,
+    num_estancias_ida: 0,
+    num_maniobras_ida: 0,
+    ton_carga_ida:0,
+    num_estancias_regreso:0,
+    num_maniobras_regreso:0,
+    ton_carga_regreso:0,
+    clienta_paga: false,
+    clientePagaCasetas:"No",
+    tarifaFinal:0,
+    costoViaje:0,
+    toneladas:0,
+    costo_tonelada:0,
+    costoPorKm:0,
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
+    
+  };
+
+  limpiarFormT35() {
+    console.log("limpiar");
+    this.bolFormSoloLectura = false;
+    //this.itemCotizacion = {};
+    this.itemCotizacion = {
+      idCotizacion: undefined,
+      folio: 0,
+      sencillo:true,
+      tipoViaje: "Solo de ida",
+      regresa_vacio: false,
+      regreso:"Vacio",
+      id_ingreso: "0",
+      id_area: undefined,
+      unidadNegocio: "",
+      id_tipo_operacion: 0,
+      tipoOperacion: "",
+      clasificacion: "",
+      cliente: undefined,
+      origen: undefined,
+      destino: undefined,
+      kms_ida: 0,
+      kms_regreso:0,
+      kms_totales: 0,
+      casetas: 0,
+      casetas_si: 0,
+      casetas_regreso:0,
+      casetas_regreso_si: 0,
+      casetas_total_sin_impuestos:0,
+      diesel:0,
+      diesel_sin_impuestos: 0,
+      diesel_total_sin_impuestos:0,
+      num_estancias_ida: 0,
+      num_maniobras_ida: 0,
+      ton_carga_ida:0,
+      num_estancias_regreso:0,
+      num_maniobras_regreso:0,
+      ton_carga_regreso:0,
+      clienta_paga: false,
+      clientePagaCasetas:"No",
+      tarifaFinal:0,
+      costoViaje:0,
+      toneladas:0,
+      costo_tonelada:0,
+      costoPorKm:0,
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
+    };
+  }
+
+  T35: number;
+  tipoOperacionT35: string;
+  casetaSImpT35: number;
+  casetasRegresoT35: number;
+  modeT35: boolean = false;
+  tarifa35(data){
+    console.log(data.data)
+
+    this.T35 = data.data.tarifa35;
+    this.tipoOperacionT35 = data.data.tipoOperacion;
+    this.casetaSImpT35 = data.data.casetas_total_sin_impuestos;
+    this.casetasRegresoT35 = data.data.casetas_regreso;
+
+    this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
+      this.itemCotizacionT35 = res.data;
+      console.log(this.itemCotizacionT35)
+    });
+    
+    const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa35);
+    const clonedItem = { ...data.data };
+    let result = confirm("<i>La tarifa final sera <b>"+formatValue+"</b></i><br>"+
+                        "<i>Esta seguro de aprobar la cotización: <b>" +
+      clonedItem.folio + "</b></i>", "Confirmar Operación");
+    result.then((dialogResult) => {
+
+
+      if (dialogResult) {
+        //TODO: Implementar endpoint para aprobar cotizacion
+        this.guardarCotizacionT35();
+
+
+        if(this.itemCotizacionT35.tarifaFinal !== 0){
+        this.cotizadorService.postAprobarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+          if (res.responseCode === 200) {
+            //agregamos precotizacion a las aprobadas
+            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
+            this.arrPreCotizaciones[elementIndex].status = "APROBADA";
+            this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
+
+            //Quitamos la aprobada de las precotizaciones
+            this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+
+            notify({
+              message: 'Cotización aprobada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 5000);
+          }
+        });
+      }
+    }
+    });
+  }
+
+  guardarCotizacionT35() {
+   
+    
+    this.itemCotizacionT35.sencillo = this.itemCotizacionT35.tipoViaje === "Solo de ida" ? true : false;
+    this.itemCotizacionT35.regresa_vacio = this.itemCotizacionT35.regreso === "Vacio" ? true : false;
+    this.itemCotizacionT35.clienta_paga = this.itemCotizacionT35.clientePagaCasetas === "Si" ? true : false;
+    this.itemCotizacionT35.tarifaFinal = this.T35;
+    this.itemCotizacionT35.tipoOperacion = this.tipoOperacionT35;
+    this.itemCotizacionT35.casetas_total_sin_impuestos = this.casetaSImpT35;
+    this.itemCotizacionT35.casetas_regreso = this.casetasRegresoT35;
+    
+    this.cotizadorService.postEditarCotizacion(this.itemCotizacionT35).subscribe(res => {
+      if (res.responseCode === 200) {
+        console.log(res.data)
+        this.itemCotizacionT35 = res.data;
+        this.getPreCotizaciones();
+        if(res.data.tarifaFinal == this.T35){
+        this.modeT35 = true;
+        }
+        notify({
+          message: 'Cotización guardada con exito!',
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'success', 3000);
+      } else {
+        notify({
+          message: res.responseText,
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'error', 3000);
+      }
+    });
+
+    this.limpiarFormT35();
+}
+
+
+  itemCotizacionT40: CotizacionModel = {
+    idCotizacion: undefined,
+    folio: 0,
+    sencillo:true,
+    tipoViaje: "Solo de ida",
+    regresa_vacio: false,
+    regreso:"Vacio",
+    id_ingreso: "0",
+    id_area: undefined,
+    unidadNegocio: "",
+    id_tipo_operacion: 0,
+    tipoOperacion: "",
+    clasificacion: "",
+    cliente: undefined,
+    origen: undefined,
+    destino: undefined,
+    kms_ida: 0,
+    kms_regreso:0,
+    kms_totales: 0,
+    casetas: 0,
+    casetas_si: 0,
+    casetas_regreso:0,
+    casetas_regreso_si:0,
+    casetas_total_sin_impuestos:0,
+    diesel:0,
+    diesel_sin_impuestos: 0,
+    diesel_total_sin_impuestos:0,
+    num_estancias_ida: 0,
+    num_maniobras_ida: 0,
+    ton_carga_ida:0,
+    num_estancias_regreso:0,
+    num_maniobras_regreso:0,
+    ton_carga_regreso:0,
+    clienta_paga: false,
+    clientePagaCasetas:"No",
+    tarifaFinal:0,
+    costoViaje:0,
+    toneladas:0,
+    costo_tonelada:0,
+    costoPorKm:0,
+    ingresoPorKm:0,
+    rend_cargado:0,
+    rend_vacio:0
+    
+  };
+
+  limpiarFormT40() {
+    console.log("limpiar");
+    this.bolFormSoloLectura = false;
+    //this.itemCotizacion = {};
+    this.itemCotizacion = {
+      idCotizacion: undefined,
+      folio: 0,
+      sencillo:true,
+      tipoViaje: "Solo de ida",
+      regresa_vacio: false,
+      regreso:"Vacio",
+      id_ingreso: "0",
+      id_area: undefined,
+      unidadNegocio: "",
+      id_tipo_operacion: 0,
+      tipoOperacion: "",
+      clasificacion: "",
+      cliente: undefined,
+      origen: undefined,
+      destino: undefined,
+      kms_ida: 0,
+      kms_regreso:0,
+      kms_totales: 0,
+      casetas: 0,
+      casetas_si: 0,
+      casetas_regreso:0,
+      casetas_regreso_si: 0,
+      casetas_total_sin_impuestos:0,
+      diesel:0,
+      diesel_sin_impuestos: 0,
+      diesel_total_sin_impuestos:0,
+      num_estancias_ida: 0,
+      num_maniobras_ida: 0,
+      ton_carga_ida:0,
+      num_estancias_regreso:0,
+      num_maniobras_regreso:0,
+      ton_carga_regreso:0,
+      clienta_paga: false,
+      clientePagaCasetas:"No",
+      tarifaFinal:0,
+      costoViaje:0,
+      toneladas:0,
+      costo_tonelada:0,
+      costoPorKm:0,
+      ingresoPorKm:0,
+      rend_cargado:0,
+      rend_vacio:0
+    };
+  }
+
+  T40: number;
+  tipoOperacionT40: string;
+  casetaSImpT40: number;
+  casetasRegresoT40: number;
+  modeT40: boolean = false;
+  tarifa40(data){
+    console.log(data.data)
+
+    this.T40 = data.data.tarifa40;
+    this.tipoOperacionT40 = data.data.tipoOperacion;
+    this.casetaSImpT40 = data.data.casetas_total_sin_impuestos;
+    this.casetasRegresoT40 = data.data.casetas_regreso;
+
+    this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
+      this.itemCotizacionT40 = res.data;
+      console.log(this.itemCotizacionT40)
+    });
+    
+    const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa40);
+    const clonedItem = { ...data.data };
+    let result = confirm("<i>La tarifa final sera <b>"+formatValue+"</b></i><br>"+
+                        "<i>Esta seguro de aprobar la cotización: <b>" +
+      clonedItem.folio + "</b></i>", "Confirmar Operación");
+    result.then((dialogResult) => {
+
+
+      if (dialogResult) {
+        //TODO: Implementar endpoint para aprobar cotizacion
+        this.guardarCotizacionT40();
+        
+        if(this.itemCotizacionT40.tarifaFinal !== 0){
+        this.cotizadorService.postAprobarCotizacion(clonedItem.idCotizacion).subscribe(res =>{
+          if (res.responseCode === 200) {
+            //agregamos precotizacion a las aprobadas
+            const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
+            this.arrPreCotizaciones[elementIndex].status = "APROBADA";
+            this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
+
+            //Quitamos la aprobada de las precotizaciones
+            this.arrPreCotizaciones = this.arrPreCotizaciones.filter(e => e.idCotizacion !== clonedItem.idCotizacion);
+
+            notify({
+              message: 'Cotización aprobada con exito!',
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+          } else {
+            notify({
+              message: res.responseText,
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 5000);
+          }
+        });
+      }
+    }
+    });
+
+    
+  }
+
+  guardarCotizacionT40() {
+   
+    
+    this.itemCotizacionT40.sencillo = this.itemCotizacionT40.tipoViaje === "Solo de ida" ? true : false;
+    this.itemCotizacionT40.regresa_vacio = this.itemCotizacionT40.regreso === "Vacio" ? true : false;
+    this.itemCotizacionT40.clienta_paga = this.itemCotizacionT40.clientePagaCasetas === "Si" ? true : false;
+    this.itemCotizacionT40.tarifaFinal = this.T40;
+    this.itemCotizacionT40.tipoOperacion = this.tipoOperacionT40;
+    this.itemCotizacionT40.casetas_total_sin_impuestos = this.casetaSImpT40;
+    this.itemCotizacionT40.casetas_regreso = this.casetasRegresoT40;
+    
+    this.cotizadorService.postEditarCotizacion(this.itemCotizacionT40).subscribe(res => {
+      if (res.responseCode === 200) {
+        console.log(res.data)
+        this.itemCotizacionT40 = res.data;
+        this.getPreCotizaciones();
+        if(res.data.tarifaFinal == this.T40){
+        this.modeT40 = true;
+        }
+        notify({
+          message: 'Cotización guardada con exito!',
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'success', 3000);
+      } else {
+        notify({
+          message: res.responseText,
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'error', 3000);
+      }
+    });
+
+    this.limpiarFormT40();
+}
 }

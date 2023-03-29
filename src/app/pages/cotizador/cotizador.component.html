@@ -5,7 +5,9 @@
     <dx-tab-panel>
         <dxi-item title="Precotizaciones">
             <!--#region :::: GRID PRECOTIZACIONES PRECOTIZACIONES::::  -->
-            <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="arrPreCotizaciones" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
+            <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="arrPreCotizaciones" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+            (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)"
+            >
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                 <!-- FOLIO -->
                 <dxi-column dataField="folio" caption="Folio" alignment="center" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold" fixed="true"></dxi-column>
@@ -47,18 +49,22 @@
                 <dxi-column dataField="tarifa25" caption="25%" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
+                <dxi-column dataField="" caption="Aprobar" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="tarifa25"></dxi-column>
                 <!-- TARIFA 30% -->
                 <dxi-column dataField="tarifa30" caption="30%" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
+                <dxi-column dataField="" caption="Aprobar" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="tarifa30"></dxi-column>
                 <!-- TARIFA 35% -->
                 <dxi-column dataField="tarifa35" caption="35%" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
+                <dxi-column dataField="" caption="Aprobar" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="tarifa35"></dxi-column>
                 <!-- TARIFA 40% -->
                 <dxi-column dataField="tarifa40" caption="40%" alignment="right" headerCellTemplate="headerTemplate">
                     <dxo-format type="currency" [precision]="2"> </dxo-format>
                 </dxi-column>
+                <dxi-column dataField="" caption="Aprobar" [fixed]="false" headerCellTemplate="headerTemplate" cellTemplate="tarifa40"></dxi-column>
                 <!-- % FINAL -->
                 <dxi-column dataField="porcentajeFinal" caption="% Final" alignment="right" format="percent" [fixed]="true" fixedPosition="right" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold">
                 </dxi-column>
@@ -75,6 +81,22 @@
                 <dxi-column caption="Elimnar" headerCellTemplate="headerTemplate" type="buttons" [width]="60">
                     <dxi-button hint="Eliminar" icon="trash" [onClick]="eliminarCotizcionClick"></dxi-button>
                 </dxi-column>
+
+                <div *dxTemplate="let data of 'tarifa25'">
+                    <dx-button icon="check" stylingMode="outlined" style="background-color: #ffc340;" (onClick)="tarifa25(data)"></dx-button>
+                </div>
+
+                <div *dxTemplate="let data of 'tarifa30'">
+                    <dx-button icon="check" stylingMode="outlined" style="background-color: #ffc340;" (onClick)="tarifa30(data)"></dx-button>
+                </div>
+
+                <div *dxTemplate="let data of 'tarifa35'">
+                    <dx-button icon="check" stylingMode="outlined" style="background-color: #ffc340;" (onClick)="tarifa35(data)"></dx-button>
+                </div>
+
+                <div *dxTemplate="let data of 'tarifa40'">
+                    <dx-button icon="check" stylingMode="outlined" style="background-color: #ffc340;" (onClick)="tarifa40(data)"></dx-button>
+                </div>
 
                 <div *dxTemplate="let data of 'headerTemplate'">
                     <div style="font-weight: bolder; color: black">
@@ -469,6 +491,7 @@
     </dx-popup>
     <!--#endregion :::: FIN VENTANA MODAL NUEVO/EDITAR ::::  -->
 
+
     <!--#region :::: MODAL VARIABLES ::::  -->
     <dx-popup height="80%" width="700px" style="margin-top: 50px" [showTitle]="true" title="Parametrización de Variables" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="bolModalVariables">
         <dxo-position at="botom" my="center" [of]="positionOf"> </dxo-position>
@@ -578,5 +601,66 @@
     </dx-popup>
     <!--#endregion :::: FIN MODAL DETALLE COTIZACION :::: -->
 </div>
+
+
+<dx-popup
+    [width]="300"
+    [height]="280"
+    [showTitle]="true"
+    title="Confirmar Operación"
+    [dragEnabled]="false"
+    [showCloseButton]="false"
+    container=".dx-viewport"
+    [(visible)]="modConfimation"
+    position="center"
+  >
+
+    <div>
+        <dx-button caption="Actualizar" stylingMode="outlined" style="background-color: #ffc340;" (onClick)="guardarCotizacionT25()"></dx-button>
+    </div>
+      <dxi-toolbar-item
+      widget="dxButton"
+      toolbar="bottom"
+      location="before"
+      [options]="{
+        text: 'Actualizar',
+        onClick: guardarCotizacionT25
+    }"
+    >
+
+    </dxi-toolbar-item> 
+
+    <dxi-toolbar-item
+    *ngIf="mode == true"
+      widget="dxButton"
+      toolbar="bottom"
+      location="before"
+      [options]="buttonOptionsAprobar"
+    >
+    </dxi-toolbar-item>
+    <dxi-toolbar-item
+      widget="dxButton"
+      toolbar="top"
+      location="after"
+      [options]="buttonOptionsCerar"
+    >
+    </dxi-toolbar-item>
+    <dxo-position at="bottom" my="center" [of]="positionOf" collision="fit">
+    </dxo-position>
+    <div *dxTemplate="let data of 'content'">
+        <p>
+          <span>
+            <i>La tarifa final sera <b>{{ itemCotizacionT25.tarifa25}}</b></i><br>
+        </span>
+        </p>
+
+        <p>
+            <span>
+            <i>Esta seguro de aprobar la cotización: <b>{{ itemCotizacionT25.folio}}</b></i>
+          </span>
+          </p>
+      </div>
+  </dx-popup>
+
 <dx-speed-dial-action icon="add" label="Nueva Cotización" [index]="1" (onClick)="nuevaCotizacionClick()" style="left: -1132px; top: -699px">
 </dx-speed-dial-action>
