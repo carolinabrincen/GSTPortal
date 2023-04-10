@@ -4,3 +4,23 @@
     font-weight: bold;
     font-size: 14px;
   }
+
+  #gridContainer .dx-scrollbar-horizontal.dx-scrollbar-hoverable {
+    height: 15px;
+}
+
+#gridContainer .dx-scrollbar-vertical.dx-scrollbar-hoverable {
+    width: 15px;
+}
+
+#gridContainer .dx-scrollbar-horizontal .dx-scrollable-scroll { 
+    height: 15px; 
+}
+
+#gridContainer .dx-scrollbar-vertical .dx-scrollable-scroll { 
+    width: 15px; 
+}
+
+#gridContainer .dx-scrollable-scroll-content { 
+    background-color:green !important; /* optional if you want to change the color */
+}

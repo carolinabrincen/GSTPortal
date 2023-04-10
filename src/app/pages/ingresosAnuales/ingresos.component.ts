@@ -278,9 +278,18 @@ export class IngresosComponent implements OnInit {
   presTotalFB: number = 0;
   ProyTotalFB: number = 0;
 
+  totalM: number = 0;
+  anioAntM: number = 0;
+  presupuestoM: number = 0;
+  proyeccionM: number = 0;
+  aniATotalM: number = 0;
+  presTotalM: number = 0;
+  ProyTotalM: number = 0;
+
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
+        console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
         this.presupuesto = e.summaryCells[7][0].value;
@@ -291,6 +300,11 @@ export class IngresosComponent implements OnInit {
         this.presupuestoFB = e.summaryCells[16][0].value;
         this.proyeccionFB = e.summaryCells[18][0].value;
 
+        this.totalM = e.summaryCells[22][0].value;
+        this.anioAntM = e.summaryCells[23][0].value;
+        this.presupuestoM = e.summaryCells[25][0].value;
+        this.proyeccionM = e.summaryCells[27][0].value;
+
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
         this.ProyTotal = this.proyeccion / this.presupuesto;
@@ -299,6 +313,10 @@ export class IngresosComponent implements OnInit {
         this.presTotalFB = this.totalFB / this.presupuestoFB;
         this.ProyTotalFB = this.proyeccionFB / this.presupuestoFB;
 
+        this.aniATotalM = this.totalM / this.anioAntM;
+        this.presTotalM = this.totalM / this.presupuestoM;
+        this.ProyTotalM = this.proyeccionM / this.presupuestoM;
+
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
         e.summaryCells[10][0].value = this.ProyTotal;
@@ -306,6 +324,10 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[15][0].value = this.aniATotalFB;
         e.summaryCells[17][0].value = this.presTotalFB;
         e.summaryCells[19][0].value = this.ProyTotalFB;
+
+        e.summaryCells[24][0].value = this.aniATotalFB;
+        e.summaryCells[26][0].value = this.presTotalFB;
+        e.summaryCells[28][0].value = this.ProyTotalFB;
 
       }
     }
