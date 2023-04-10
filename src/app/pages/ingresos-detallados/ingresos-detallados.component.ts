@@ -39,23 +39,23 @@ export class IngresosDetalladosComponent implements OnInit {
 
   constructor(private ingresosService: ServiceSales) 
   {
-    this.ingresosService.getIngresosDetalladosMensual().subscribe(res => {
+    // this.ingresosService.getIngresosDetalladosMensual().subscribe(res => {
       
-      this.arrIngresos = res.data.resumen;
-      this.arrDetalle = res.data.detalle;
+    //   this.arrIngresos = res.data.resumen;
+    //   this.arrDetalle = res.data.detalle;
       
-    });
-
-    this.ingresosService.getIngresosDetalladosMensualFeb().subscribe(res => {
-      
-      this.arrIngresosFeb = res.data.resumen;
-      this.arrDetalleFeb = res.data.detalle;
-    });
-
-    // this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
-    //   this.arrIngresosMarzo = res.data.resumen;
-    //   this.arrDetalleMarzo = res.data.detalle;
     // });
+
+    // this.ingresosService.getIngresosDetalladosMensualFeb().subscribe(res => {
+      
+    //   this.arrIngresosFeb = res.data.resumen;
+    //   this.arrDetalleFeb = res.data.detalle;
+    // });
+
+    this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
+      this.arrIngresosMarzo = res.data.resumen;
+      this.arrDetalleMarzo = res.data.detalle;
+    });
 
     
   }
