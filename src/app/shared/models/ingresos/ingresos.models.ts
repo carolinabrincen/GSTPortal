@@ -38,6 +38,8 @@ export interface IngresosModel{
     abrilPor: number;
     abrilPres: number;
     abrilPorP: number;
+    abrProyeccion: number;
+    abrPorProy: number;
     mayoFlete: number;
     mayoOtros: number;
     mayoTotal: number;

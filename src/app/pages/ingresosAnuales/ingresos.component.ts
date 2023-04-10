@@ -286,6 +286,14 @@ export class IngresosComponent implements OnInit {
   presTotalM: number = 0;
   ProyTotalM: number = 0;
 
+  totalA: number = 0;
+  anioAntA: number = 0;
+  presupuestoA: number = 0;
+  proyeccionA: number = 0;
+  aniATotalA: number = 0;
+  presTotalA: number = 0;
+  ProyTotalA: number = 0;
+
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
@@ -305,6 +313,11 @@ export class IngresosComponent implements OnInit {
         this.presupuestoM = e.summaryCells[25][0].value;
         this.proyeccionM = e.summaryCells[27][0].value;
 
+        this.totalA = e.summaryCells[31][0].value;
+        this.anioAntA = e.summaryCells[32][0].value;
+        this.presupuestoA = e.summaryCells[34][0].value;
+        this.proyeccionA = e.summaryCells[36][0].value;
+
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
         this.ProyTotal = this.proyeccion / this.presupuesto;
@@ -317,6 +330,10 @@ export class IngresosComponent implements OnInit {
         this.presTotalM = this.totalM / this.presupuestoM;
         this.ProyTotalM = this.proyeccionM / this.presupuestoM;
 
+        this.aniATotalA = this.totalA / this.anioAntA;
+        this.presTotalA = this.totalA / this.presupuestoA;
+        this.ProyTotalA = this.proyeccionA / this.presupuestoA;
+
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
         e.summaryCells[10][0].value = this.ProyTotal;
@@ -325,9 +342,13 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[17][0].value = this.presTotalFB;
         e.summaryCells[19][0].value = this.ProyTotalFB;
 
-        e.summaryCells[24][0].value = this.aniATotalFB;
-        e.summaryCells[26][0].value = this.presTotalFB;
-        e.summaryCells[28][0].value = this.ProyTotalFB;
+        e.summaryCells[24][0].value = this.aniATotalM;
+        e.summaryCells[26][0].value = this.presTotalM;
+        e.summaryCells[28][0].value = this.ProyTotalM;
+
+        e.summaryCells[33][0].value = this.aniATotalA;
+        e.summaryCells[35][0].value = this.presTotalA;
+        e.summaryCells[37][0].value = this.ProyTotalA;
 
       }
     }
