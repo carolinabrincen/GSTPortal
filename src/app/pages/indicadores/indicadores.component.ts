@@ -45,6 +45,14 @@ export class IndicadoresComponent implements OnInit {
   onRowPreparedI(event){
 
   }
+  onCellPreparedI(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+      e.cellElement.style.fontSize = '15px';
+      e.cellElement.style.background = "#DCDCDC";
+  }
+  }
+
 
   onRowPreparedK(event){
 
