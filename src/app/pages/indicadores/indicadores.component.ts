@@ -34,7 +34,6 @@ export class IndicadoresComponent implements OnInit {
   //=================GETS===========================
   getScoreCard(){
     this.indicadorService.getScoreCard().subscribe(data => {
-      console.log(data.data)
       this.ingresos = data.data.scIng;
       this.kilomentros = data.data.scKms;
       this.ingresosKilometros = data.data.scIngXKm;
@@ -67,6 +66,10 @@ export class IndicadoresComponent implements OnInit {
     var str = value.toString().split(".");
     str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return str.join(".");
+}
+
+scroll(event){
+  console.log(event)
 }
 }
 
