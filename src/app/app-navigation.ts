@@ -71,6 +71,11 @@ export const navigation = [
     text: 'Balanza Comprobación',
     icon: 'columnchooser',
     path: '/balanza'
+  },
+  {
+    text: 'Indicadores',
+    icon: 'columnchooser',
+    path: '/indicadores'
   } 
 
 ];
