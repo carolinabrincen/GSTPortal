@@ -153,7 +153,7 @@ export class IndicadoresComponent implements OnInit {
 
 //==============================INGRESOS KILOMETROS===============================
 onCellPreparedPM(e){
-  if (e.rowType == 'group'){
+  if (e.rowType == 'data'){
 
     e.cellElement.style.fontSize = '12px';
     e.cellElement.style.background = "#DCDCDC";
