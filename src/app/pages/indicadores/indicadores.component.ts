@@ -57,7 +57,7 @@ export class IndicadoresComponent implements OnInit {
       this.kilometroViajes = data.data.scKmsViaje;
     })
   }
-
+//==============================INGRESOS=========================================
   onRowPreparedI(event){
 
   }
@@ -79,8 +79,27 @@ export class IndicadoresComponent implements OnInit {
       });
     }
   }
+  customizeI(e) {  
 
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
 
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
+
+//==============================KILOMETROS=======================================
   onRowPreparedK(e){
  
   }
@@ -102,7 +121,27 @@ export class IndicadoresComponent implements OnInit {
       });
     }
   }
+  customizeK(e) {  
 
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
+
+//==============================INGRESOS KILOMETROS===============================
   onRowPreparedIK(e){
     
   }
@@ -124,7 +163,27 @@ export class IndicadoresComponent implements OnInit {
       });
     }
   }
+  customizeIK(e) {  
 
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
+
+//==============================VIAJES============================================
   onRowPreparedV(e){
     
   }
@@ -146,7 +205,27 @@ export class IndicadoresComponent implements OnInit {
       });
     }
   }
+  customizeV(e) {  
 
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
+
+//==============================VIAJES KILOMETROS=================================
   onRowPreparedKV(e){
     
   }
@@ -168,12 +247,45 @@ export class IndicadoresComponent implements OnInit {
       });
     }
   }
+  customizeKV(e) {  
+
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
 
   separator(value) {
     var str = value.toString().split(".");
     str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return str.join(".");
   }
+
+  separatorKV(value) {
+
+    var str = value.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    let t=value.toString();
+    let regex=/(\d*.\d{0,2})/;
+    t.match(regex)[0];
+
+    return str.join("."), t.match(regex)[0];;
+  }
+
+
 
 }
 

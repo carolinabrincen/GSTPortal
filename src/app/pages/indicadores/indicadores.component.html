@@ -2,7 +2,7 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
-        <dxi-item title="Tag Score Card">
+        <dxi-item title="ScoreCard">
             <br><br>
 
                     <h3>Ingreso</h3>
@@ -55,7 +55,7 @@
                     <div *dxTemplate="let cell of 'cellTemplateBold'">
                         <div style="font-weight: bold;">{{cell.text}}</div>
                     </div>
-                    <dxo-export [enabled]="true" fileName="Ingreso"></dxo-export>
+                    <dxo-export [enabled]="true" fileName="Ingreso" [customizeExcelCell]="customizeI"></dxo-export>
                     <dxo-paging [pageSize]="60"></dxo-paging>
                     <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -81,23 +81,23 @@
 
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
-                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
     
-                            <dxi-total-item column="cuatitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="tultitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="guadalajara" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="hermosillo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mexicali" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="orizaba" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="ramosArizpe" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="cuatitlan" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="tultitlan" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="guadalajara" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="hermosillo" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mexicali" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="orizaba" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="ramosArizpe" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="total" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
                         <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
@@ -110,7 +110,7 @@
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold;">{{cell.text}}</div>
                         </div>
-                        <dxo-export [enabled]="true" fileName="Kilómetro"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Kilómetro" [customizeExcelCell]="customizeK"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -166,7 +166,7 @@
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold;">{{cell.text}}</div>
                         </div>
-                        <dxo-export [enabled]="true" fileName="Ingreso-Kilómetro"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Ingreso-Kilómetro" [customizeExcelCell]="customizeIK"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -192,23 +192,23 @@
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
-                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
     
-                            <dxi-total-item column="cuatitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="tultitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="guadalajara" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="hermosillo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mexicali" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="orizaba" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="ramosArizpe" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="cuatitlan" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="tultitlan" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="guadalajara" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="hermosillo" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mexicali" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="orizaba" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="ramosArizpe" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="total" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -222,7 +222,7 @@
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold;">{{cell.text}}</div>
                         </div>
-                        <dxo-export [enabled]="true" fileName="Viajes"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Viajes" [customizeExcelCell]="customizeV"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
@@ -237,34 +237,34 @@
                         <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
 
                         <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
-                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
     
-                            <dxi-total-item column="cuatitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="tultitlan" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="guadalajara" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="hermosillo" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mexicali" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="orizaba" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="ramosArizpe" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="cuatitlan" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="tultitlan" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="guadalajara" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="hermosillo" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mexicali" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="orizaba" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="ramosArizpe" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="total" summaryType="sum" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -278,7 +278,7 @@
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold;">{{cell.text}}</div>
                         </div>
-                        <dxo-export [enabled]="true" fileName="Kilómetros-Viaje"></dxo-export>
+                        <dxo-export [enabled]="true" fileName="Kilómetros-Viaje" [customizeExcelCell]="customizeKV"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
