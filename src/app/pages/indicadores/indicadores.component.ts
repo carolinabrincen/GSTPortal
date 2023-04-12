@@ -245,7 +245,6 @@ onCellPreparedPM(e){
   ramosAAL = [];
   totalAL = [];
   onRowPreparedIK(e){
-
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
 
@@ -710,9 +709,9 @@ onCellPreparedPM(e){
       
     }
 
-    /*if (e.rowType == 'totalFooter'){
-      
-      e.cells.forEach((c: any) => {
+    if (e.rowType == 'totalFooter'){
+        console.log(e) 
+      /*e.cells.forEach((c: any) => {
         if(c.columnIndex ==  2){
           var CuautitlanTS = 0;
 
@@ -725,8 +724,8 @@ onCellPreparedPM(e){
           console.log(c)  
         }
 
-      });
-    }*/
+      });*/
+    }
 
     this.paginacion = 60;
     if(this.paginacion = 60){
