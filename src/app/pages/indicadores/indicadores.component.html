@@ -1,29 +1,25 @@
-<!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
         <dxi-item title="ScoreCard">
             <br><br>
 
-            <dx-responsive-box>
-                <!-- COLS -->
-                <!--UDN-->
+            <!--<dx-responsive-box>
                 <dxi-col [ratio]=".35"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
-                <!--vacia-->
                 <dxi-col [ratio]=".25"></dxi-col>
-                <!--Buscar-->
+
                 <dxi-col [ratio]="1"></dxi-col>
                 
         
-                <!-- ROWS -->
+
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
         
-                <!-- CONTROLES DEL FORM -->
+
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
@@ -36,7 +32,6 @@
                     </dx-tag-box>
                 </dxi-item>
         
-                <!-- BUSCAR -->
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
@@ -45,14 +40,15 @@
                         </dx-button>
                     </div>
                 </dxi-item>
-                <!--#endregion :::: FIN ROW 1 ::::  -->
+
             </dx-responsive-box>
-            <br><br>
+            <br><br>-->
                     <h3>Ingreso</h3>
                     <dx-data-grid #gridContainer id="gridContainer" [dataSource]="ingresos" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
                      [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedI($event)" (onCellPrepared)="onCellPreparedI($event)" (sortingChange)="false">
 
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                     <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
 
@@ -109,7 +105,8 @@
                      [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedK($event)" (onCellPrepared)="onCellPreparedK($event)">
 
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
                         <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
                         
                         <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
@@ -207,7 +204,8 @@
                      [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedIK($event)" (onCellPrepared)="onCellPreparedIK($event)">
 
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
                         <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
                         
                         <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate" [width]="150"></dxi-column>
@@ -263,7 +261,8 @@
                      [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedV($event)" (onCellPrepared)="onCellPreparedV($event)">
 
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
                         <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
 
                         <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
@@ -319,7 +318,8 @@
                      [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedKV($event)" (onCellPrepared)="onCellPreparedKV($event)">
 
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        
                         <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
 
                         <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>

@@ -17,7 +17,9 @@ import { IngresosKM } from '../../shared/models/indicadores/ingresosKilometros.m
 import { TotalKM } from '../../shared/models/indicadores/ingresosKilometros.model';
 import { IngresosKA } from '../../shared/models/indicadores/ingresosKilometros.model';
 import { TotalKA } from '../../shared/models/indicadores/ingresosKilometros.model';
-
+const getOrderDay = function (rowData: any): number {
+  return (new Date(rowData.OrderDate)).getDay();
+};
 @Component({
   templateUrl: './indicadores.component.html',
   styleUrls: ['./indicadores.component.scss'],
@@ -56,9 +58,28 @@ export class IndicadoresComponent implements OnInit {
     { id: 5, nombre: 'GRADO ALIMENT' },
   ];
 
+  customOperations: Array<any>;
+  popupPosition: any;
+
   constructor(
     private indicadorService: IndicadoresService
-  ) {}
+  ) {
+    this.popupPosition = {
+      of: window, at: 'top', my: 'top', offset: { y: 10 },
+    };
+    
+    this.customOperations = [{
+      name: 'weekends',
+      caption: 'Weekends',
+      dataTypes: ['date'],
+      icon: 'check',
+      hasValue: false,
+      calculateFilterExpression() {
+        return [[getOrderDay, '=', 0], 'or', [getOrderDay, '=', 6]];
+      },
+    }];
+
+  }
 
 
   ngOnInit(): void {
@@ -80,6 +101,9 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getScoreCard().subscribe(data => {
 
       this.ingresos = data.data.scIng;
+      this.ingresos.filter(data => data.operacion == "CAJA SECA");
+      console.log(this.ingresos)
+
       this.kilomentros = data.data.scKms;
       this.ingresosKilometros = data.data.scIngXKm;
       this.viajes = data.data.scViajes;
@@ -107,6 +131,7 @@ export class IndicadoresComponent implements OnInit {
 
 
   buscarClick = (e: any) => {
+    this.getScoreCard()
     /*if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
       this.loadingVisible = true;
       this.getRentabilidad().then(() => {
@@ -710,7 +735,7 @@ onCellPreparedPM(e){
     }
 
     if (e.rowType == 'totalFooter'){
-        console.log(e) 
+        //console.log(e) 
       /*e.cells.forEach((c: any) => {
         if(c.columnIndex ==  2){
           var CuautitlanTS = 0;
