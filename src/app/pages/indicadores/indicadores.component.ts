@@ -48,6 +48,14 @@ export class IndicadoresComponent implements OnInit {
   paginacion: number = 0;
   expandGroup: boolean = true;
 
+  tipoOperacion: any[] = [
+    { id: 1, nombre: 'CAJA SECA' },
+    { id: 2, nombre: 'GONDOLA' },
+    { id: 3, nombre: 'TOLVA GRANEL' },
+    { id: 4, nombre: 'ENCORITNADO' },
+    { id: 5, nombre: 'GRADO ALIMENT' },
+  ];
+
   constructor(
     private indicadorService: IndicadoresService
   ) {}
@@ -93,6 +101,20 @@ export class IndicadoresComponent implements OnInit {
       this.expandGroup = true
     })
   }
+
+  seleccionarTipoOpe(e: any) {
+  }
+
+
+  buscarClick = (e: any) => {
+    /*if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
+      this.loadingVisible = true;
+      this.getRentabilidad().then(() => {
+        this.loadingVisible = false;
+      });
+    }*/
+
+  };
 //==============================INGRESOS=========================================
   onRowPreparedI(event){
 
@@ -687,6 +709,24 @@ onCellPreparedPM(e){
       }
       
     }
+
+    /*if (e.rowType == 'totalFooter'){
+      
+      e.cells.forEach((c: any) => {
+        if(c.columnIndex ==  2){
+          var CuautitlanTS = 0;
+
+          var totalCuautitlan = 0;
+
+          CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM
+          totalCuautitlan = CuautitlanTS / 3;
+          c.totalItem.summaryCells[2][0].value = totalCuautitlan;
+          
+          console.log(c)  
+        }
+
+      });
+    }*/
 
     this.paginacion = 60;
     if(this.paginacion = 60){
