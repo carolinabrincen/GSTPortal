@@ -1292,72 +1292,212 @@ onCellPreparedPM(e){
     kmsTotalCT: number = 0;
     kmsTotalVT: number = 0;
 
-    mykey:string = ""
+    myDataKey = [];
+    myDataKeyG = [];
+    myDataKeyH = [];
+    myDataKeyM = [];
+    myDataKeyO = [];
+    myDataKeyRA = [];
+    myDataKeyT = [];
   onRowPreparedIO(e){
     if(e.rowType == 'group'){
-      this.mykey = e.data.key;
+
+//==================================CUAUTITLAN====================================================
       if(e.data.key == "CUAUTITLAN"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCC = e.summaryCells[3][0].value;
         this.kmsTotalVC = e.summaryCells[4][0].value;
         }
       }
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "CUAUTITLAN"){
+            this.myDataKey.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKey.includes("CUAUTITLAN")
+        if(myKey == true && e.data.key == "CUAUTITLAN"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCC = e.summaryCells[3][0].value;
+            this.kmsTotalVC = e.summaryCells[4][0].value;
+            }
+        }
+        if(myKey == false){
+          this.kmsTotalCC = 0;
+          this.kmsTotalVC = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKey = []
+      }
+
+//==================================GUADALAJARA====================================================
       if(e.data.key == "GUADALAJARA"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCG = e.summaryCells[3][0].value;
         this.kmsTotalVG = e.summaryCells[4][0].value;
         }
       }
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "GUADALAJARA"){
+            this.myDataKeyG.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyG.includes("GUADALAJARA")
+        if(myKey == true && e.data.key == "GUADALAJARA"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCG = e.summaryCells[3][0].value;
+            this.kmsTotalVG = e.summaryCells[4][0].value;
+            }
+        }
+        if(myKey == false){
+          this.kmsTotalCG = 0;
+          this.kmsTotalVG = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKeyG = []
+      }
+//==================================HERMOSILLO====================================================     
       if(e.data.key == "HERMOSILLO"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCH = e.summaryCells[3][0].value;
         this.kmsTotalVH = e.summaryCells[4][0].value;
         }
       }
-      if(e.data.key == "MACUSPANA"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCMCA = e.summaryCells[3][0].value;
-        this.kmsTotalVMCA = e.summaryCells[4][0].value;
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "HERMOSILLO"){
+            this.myDataKeyH.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyH.includes("HERMOSILLO")
+        if(myKey == true && e.data.key == "HERMOSILLO"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCH = e.summaryCells[3][0].value;
+            this.kmsTotalVH = e.summaryCells[4][0].value;
+            }
         }
-      }
-      if(e.data.key == "LA PAZ"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCLP = e.summaryCells[3][0].value;
-        this.kmsTotalVLP = e.summaryCells[4][0].value;
-        }else{
-       
+        if(myKey == false){
+          this.kmsTotalCH = 0;
+          this.kmsTotalVH = 0;
         }
+      }else if(this.newText == ""){
+        this.myDataKeyH = []
       }
+//==================================MEXICALI====================================================
       if(e.data.key == "MEXICALI"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCM = e.summaryCells[3][0].value;
         this.kmsTotalVM = e.summaryCells[4][0].value;
         }
       }
-      if(e.data.key == "MIGUEL HIDALGO"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCMH = e.summaryCells[3][0].value;
-        this.kmsTotalVMH = e.summaryCells[4][0].value;
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "MEXICALI"){
+            this.myDataKeyM.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyM.includes("MEXICALI")
+        if(myKey == true && e.data.key == "MEXICALI"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCM = e.summaryCells[3][0].value;
+            this.kmsTotalVM = e.summaryCells[4][0].value;
+            }
         }
+        if(myKey == false){
+          this.kmsTotalCM = 0;
+          this.kmsTotalVM = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKeyM = []
       }
+//==================================ORIZABA====================================================     
       if(e.data.key == "ORIZABA"){
-        console.log(e)
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCO = e.summaryCells[3][0].value;
         this.kmsTotalVO = e.summaryCells[4][0].value;
         }
       }
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "ORIZABA"){
+            this.myDataKeyO.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyO.includes("ORIZABA")
+        if(myKey == true && e.data.key == "ORIZABA"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCO = e.summaryCells[3][0].value;
+            this.kmsTotalVO = e.summaryCells[4][0].value;
+            }
+        }
+        if(myKey == false){
+          this.kmsTotalCO = 0;
+          this.kmsTotalVO = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKeyO = []
+      }
+//==================================RAMOS ARIZPE====================================================
       if(e.data.key == "RAMOS ARIZPE"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCRA = e.summaryCells[3][0].value;
         this.kmsTotalVRA = e.summaryCells[4][0].value;
         }
       }
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "RAMOS ARIZPE"){
+            this.myDataKeyRA.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyRA.includes("RAMOS ARIZPE")
+        if(myKey == true && e.data.key == "RAMOS ARIZPE"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCRA = e.summaryCells[3][0].value;
+            this.kmsTotalVRA = e.summaryCells[4][0].value;
+            }
+        }
+        if(myKey == false){
+          this.kmsTotalCRA = 0;
+          this.kmsTotalVRA = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKeyRA = []
+      }
+//==================================TULTITLAN====================================================
       if(e.data.key == "TULTITLAN"){
         if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
         this.kmsTotalCT = e.summaryCells[3][0].value;
         this.kmsTotalVT = e.summaryCells[4][0].value;
         }
+      }
+      if(this.newText != ""){
+        e.cells.forEach((c: any) => {
+          if(c.data.key == "TULTITLAN"){
+            this.myDataKeyT.push(c.data.key);
+          }
+
+        })
+        var myKey = this.myDataKeyT.includes("TULTITLAN")
+        if(myKey == true && e.data.key == "TULTITLAN"){
+          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+            this.kmsTotalCT = e.summaryCells[3][0].value;
+            this.kmsTotalVT = e.summaryCells[4][0].value;
+            }
+        }
+        if(myKey == false){
+          this.kmsTotalCT = 0;
+          this.kmsTotalVT = 0;
+        }
+      }else if(this.newText == ""){
+        this.myDataKeyT = []
       }
   
       
@@ -1365,17 +1505,16 @@ onCellPreparedPM(e){
         {udN: "CUAUTITLAN", kmstotalC: this.kmsTotalCC ,  kmstotalV: this.kmsTotalVC},
         {udN: "GUADALAJARA", kmstotalC: this.kmsTotalCG, kmstotalV: this.kmsTotalVG},
         {udN: "HERMOSILLO", kmstotalC: this.kmsTotalCH, kmstotalV: this.kmsTotalVH},
-        {udN: "MACUSPANA", kmstotalC: this.kmsTotalCMCA, kmstotalV: this.kmsTotalVMCA},
-        {udN: "LA PAZ", kmstotalC: this.kmsTotalCLP, kmstotalV: this.kmsTotalVLP},
+        //{udN: "MACUSPANA", kmstotalC: this.kmsTotalCMCA, kmstotalV: this.kmsTotalVMCA},
+        //{udN: "LA PAZ", kmstotalC: this.kmsTotalCLP, kmstotalV: this.kmsTotalVLP},
         {udN: "MEXICALI", kmstotalC: this.kmsTotalCM, kmstotalV: this.kmsTotalVM},
-        {udN: "MIGUEL HIDALGO", kmstotalC: this.kmsTotalCMH, kmstotalV: this.kmsTotalVMH},
+        //{udN: "MIGUEL HIDALGO", kmstotalC: this.kmsTotalCMH, kmstotalV: this.kmsTotalVMH},
         {udN: "ORIZABA", kmstotalC: this.kmsTotalCO, kmstotalV: this.kmsTotalVO},
         {udN: "RAMOS ARIZPE", kmstotalC: this.kmsTotalCRA, kmstotalV: this.kmsTotalVRA},
         {udN: "TULTITLAN", kmstotalC: this.kmsTotalCT, kmstotalV: this.kmsTotalVT},
         
       ]
 
-      console.log(this.graficaModel)
     }
 
     
@@ -1432,6 +1571,11 @@ onCellPreparedPM(e){
   }
   }
 
+  newText: string = "";
+  test(e){
+    this.newText = e;
+    console.log(this.newText)
+  }
 
   separator(value) {
     var str = value.toString().split(".");

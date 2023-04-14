@@ -438,30 +438,6 @@
                 <dxo-export [enabled]="true"></dxo-export>
             </dx-chart>
 
-
-
-            <!--<dx-chart id="chart" [dataSource]="graficaModel">
-
-                <dxi-series argumentField="udN" valueField="kmstotalC" name="Kilómetros cargados" type="bar" color="#363640">
-                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="inside">
-                        <dxo-font size="9"></dxo-font>
-                    </dxo-label>
-                </dxi-series>
-    
-                <dxi-series argumentField="udN" valueField="kmstotalV" name="Kilómetros vacios" type="line" color="#FA593F">
-                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside">
-                        <dxo-font size="9"></dxo-font>
-                    </dxo-label>
-    
-                </dxi-series>
-    
-                <dxo-title text="Ingreso">
-                    <dxo-subtitle text="(Anual)"> </dxo-subtitle>
-                </dxo-title>
-    
-                <dxo-export [enabled]="true"></dxo-export>
-            </dx-chart>-->
-    
             <!--====================================Finish chart==========-->
             
          <br>
@@ -469,7 +445,7 @@
             <dx-data-grid  #ER id="gridContainer2" [dataSource]="ingresoOperador" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
 
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..." (textChange)="test($event)"></dxo-search-panel>
             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
             <dxo-paging [pageSize]="100"></dxo-paging>
             <dxo-export [enabled]="true" fileName="Ingreso-Operador" [customizeExcelCell]="customizeI"></dxo-export>
