@@ -17,6 +17,9 @@ import { IngresosKM } from '../../shared/models/indicadores/ingresosKilometros.m
 import { TotalKM } from '../../shared/models/indicadores/ingresosKilometros.model';
 import { IngresosKA } from '../../shared/models/indicadores/ingresosKilometros.model';
 import { TotalKA } from '../../shared/models/indicadores/ingresosKilometros.model';
+
+import { IngresoOperador } from '../../shared/models/indicadores/ingresoOperador.model';
+
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
 };
@@ -70,6 +73,8 @@ export class IndicadoresComponent implements OnInit {
   sumaTotalGroupRA = []
   sumaTotalGT = []
 
+  ingresoOperador: IngresoOperador[] = [];
+
   constructor(
     private indicadorService: IndicadoresService
   ) {
@@ -93,6 +98,7 @@ export class IndicadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getScoreCard();
+    this.getIngresoOperador();
   }
 
   ngAfterViewInit(): void {}
@@ -129,6 +135,13 @@ export class IndicadoresComponent implements OnInit {
       }
 
       this.expandGroup = true
+    })
+  }
+
+  getIngresoOperador(){
+    this.indicadorService.getIgresoOperador().subscribe(data => {
+      this.ingresoOperador = data.data;
+      console.log(this.ingresoOperador);
     })
   }
 
@@ -1207,6 +1220,50 @@ onCellPreparedPM(e){
   }
   }
 
+
+//==============================INGRESO OPERADOR===================================
+  onRowPreparedIO(event){
+
+  }
+  onCellPreparedIO(e: any) {
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+  customizeIO(e) {  
+
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
+  }
+
+
   separator(value) {
     var str = value.toString().split(".");
     str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1224,8 +1281,6 @@ onCellPreparedPM(e){
 
     return str.join("."), t.match(regex)[0];;
   }
-
-
 
 }
 

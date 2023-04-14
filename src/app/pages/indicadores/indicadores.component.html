@@ -369,6 +369,71 @@
                         <dxo-sorting mode="none"></dxo-sorting>
                     </dx-data-grid>
         </dxi-item>
+
+        <dxi-item title="Ingreso por operador">
+         
+
+            <dx-data-grid  #ER id="gridContainer2" [dataSource]="ingresoOperador" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            <dxo-export [enabled]="true" fileName="Ingreso-Operador" [customizeExcelCell]="customizeI"></dxo-export>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+              <dxi-column dataField="udN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+              <dxi-column dataField="operacion" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+  
+              <dxi-column dataField="operador" caption="Operador"></dxi-column>
+              <dxi-column caption="Kilometros">
+                  <dxi-column dataField="kmsCargados" caption="Cargados" [format]="separator"></dxi-column>
+                  <dxi-column dataField="kmsVacios" caption="Vacios" [format]="separator"></dxi-column>
+                  <dxi-column dataField="kmsTotal" caption="Total" [format]="separator"></dxi-column>
+              </dxi-column>
+              <dxi-column caption="Viajes">
+                  <dxi-column dataField="viajesCargados" caption="Cargados" [format]="separator"></dxi-column>
+                  <dxi-column dataField="viajesVacios" caption="Vacios" [format]="separator"></dxi-column>
+                  <dxi-column dataField="viajesTotal" caption="Total" [format]="separator"></dxi-column>
+              </dxi-column>
+              <dxi-column caption="Ingresos">
+                  <dxi-column dataField="ingresoCargados" caption="Cargados" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                  <dxi-column dataField="ingresoVacios" caption="Vacios" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                  <dxi-column dataField="ingresoTotal" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+              </dxi-column>
+  
+              <dxo-summary>
+                  <!-- SUMARY DE GRUPO -->
+                  <!-- Kilometros -->
+                  <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <!-- Viajes -->
+                  <dxi-group-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <!-- Ingresos -->
+                  <dxi-group-item column="ingresoCargados" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="ingresoVacios" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                  <dxi-group-item column="ingresoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+  
+                  <!-- SUMARY DE TOTAL FINAL -->
+                  <!-- Kilometros -->
+                  <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                  <dxi-total-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                  <dxi-total-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                  <!-- Viajes -->
+                  <dxi-total-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                  <dxi-total-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                  <dxi-total-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+                   <!-- Ingresos -->
+                  <dxi-total-item column="ingresoCargados" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                  <dxi-total-item column="ingresoVacios" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                  <dxi-total-item column="ingresoTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+              </dxo-summary>
+
+            </dx-data-grid>
+        </dxi-item>
     </dx-tab-panel>
    
 </div>
