@@ -371,8 +371,47 @@
         </dxi-item>
 
         <dxi-item title="Ingreso por operador">
-         
+         <br>
+            <dx-responsive-box>
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
 
+                <dxi-col [ratio]="1"></dxi-col>
+                
+        
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Periodo:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="periodo" displayExpr="periodo" valueExpr="periodo" (onValueChanged)="seleccionarPeriodo($event)">
+                    </dx-select-box>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+            <br><br>
             <dx-data-grid  #ER id="gridContainer2" [dataSource]="ingresoOperador" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
 
@@ -436,4 +475,7 @@
         </dxi-item>
     </dx-tab-panel>
    
+        <!-- LOAD PANEL -->
+        <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+        </dx-load-panel>
 </div>

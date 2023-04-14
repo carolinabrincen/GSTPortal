@@ -74,6 +74,16 @@ export class IndicadoresComponent implements OnInit {
   sumaTotalGT = []
 
   ingresoOperador: IngresoOperador[] = [];
+  periodo: any[] = [
+    { id: 1, periodo: 202301 },
+    { id: 2, periodo: 202302 },
+    { id: 3, periodo: 202303 },
+    { id: 4, periodo: 202304 },
+    //{ id: 5, periodo: 202305 },
+  ];
+
+  selectedPeriodo: number = 0;
+  loadingVisible = false;
 
   constructor(
     private indicadorService: IndicadoresService
@@ -98,7 +108,6 @@ export class IndicadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getScoreCard();
-    this.getIngresoOperador();
   }
 
   ngAfterViewInit(): void {}
@@ -139,24 +148,34 @@ export class IndicadoresComponent implements OnInit {
   }
 
   getIngresoOperador(){
-    this.indicadorService.getIgresoOperador().subscribe(data => {
+    const request = new Promise((resolve, reject) => {
+    this.indicadorService.getIgresoOperador(this.selectedPeriodo).subscribe(data => {
       this.ingresoOperador = data.data;
-      console.log(this.ingresoOperador);
+    
+
+      this.loadingVisible = false;
     })
+
+    })
+    return request;
   }
 
   seleccionarTipoOpe(e: any) {
   }
 
+  seleccionarPeriodo(e: any) {
+    this.selectedPeriodo = e.value
+    console.log(this.selectedPeriodo)
+  }
+
 
   buscarClick = (e: any) => {
-    this.getScoreCard()
-    /*if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
+    if (this.selectedPeriodo) {
       this.loadingVisible = true;
-      this.getRentabilidad().then(() => {
+      this.getIngresoOperador().then(() => {
         this.loadingVisible = false;
       });
-    }*/
+    }
 
   };
 //==============================INGRESOS=========================================

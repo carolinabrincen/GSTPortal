@@ -27,8 +27,8 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_SCORE_CARD), this.httpOptions);
   }
 
-  getIgresoOperador(){
-    return this.get<any>((this.API_URL + API_URLS.GET_INGRESO_OPERADOR), this.httpOptions);
+  getIgresoOperador(periodo: number){
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESO_OPERADOR+ periodo), this.httpOptions);
   }
 
 }
