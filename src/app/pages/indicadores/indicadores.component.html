@@ -371,7 +371,7 @@
         </dxi-item>
 
         <dxi-item title="Ingreso por operador">
-         <br>
+            <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
@@ -412,6 +412,60 @@
 
             </dx-responsive-box>
             <br><br>
+
+            <!--==========================Bar and Line Chart==================-->
+
+            <dx-chart id="chart" [dataSource]="graficaModel" palette="soft" title="Kilómetros por Udn">
+            
+                <dxi-series valueField="kmstotalC" name="kilometros cargados" color="#363640">
+                    <dxo-label [visible]="true" [format]="separator" position="inside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+                <dxi-series valueField="kmstotalV" name="kilometros vacios" color="#FA593F">
+                    <dxo-label [visible]="true" [format]="separator" position="inside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+                <dxo-common-series-settings
+                    argumentField="udN"
+                    type="bar"
+                    [ignoreEmptyPoints]="true"
+                >
+                </dxo-common-series-settings>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                </dxo-legend>
+                <dxo-export [enabled]="true"></dxo-export>
+            </dx-chart>
+
+
+
+            <!--<dx-chart id="chart" [dataSource]="graficaModel">
+
+                <dxi-series argumentField="udN" valueField="kmstotalC" name="Kilómetros cargados" type="bar" color="#363640">
+                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="inside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+    
+                <dxi-series argumentField="udN" valueField="kmstotalV" name="Kilómetros vacios" type="line" color="#FA593F">
+                    <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside">
+                        <dxo-font size="9"></dxo-font>
+                    </dxo-label>
+    
+                </dxi-series>
+    
+                <dxo-title text="Ingreso">
+                    <dxo-subtitle text="(Anual)"> </dxo-subtitle>
+                </dxo-title>
+    
+                <dxo-export [enabled]="true"></dxo-export>
+            </dx-chart>-->
+    
+            <!--====================================Finish chart==========-->
+            
+         <br>
+           
             <dx-data-grid  #ER id="gridContainer2" [dataSource]="ingresoOperador" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
 

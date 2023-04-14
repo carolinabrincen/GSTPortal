@@ -210,7 +210,7 @@ export class IngresosComponent implements OnInit {
   onRowPrepared(e: any) {
 
     if (e.rowType == 'totalFooter') {
-
+      console.log(e.summaryCells)
       this.graficaModel = [
         {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
         {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},

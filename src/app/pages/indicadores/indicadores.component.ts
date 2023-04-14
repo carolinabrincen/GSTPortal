@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
+import { DxChartComponent, } from 'devextreme-angular';
 
 import { SumaTotalE } from '../../shared/models/indicadores/sumaTotal.model';
 import { SumaTotalF } from '../../shared/models/indicadores/sumaTotal.model';
@@ -19,6 +20,9 @@ import { IngresosKA } from '../../shared/models/indicadores/ingresosKilometros.m
 import { TotalKA } from '../../shared/models/indicadores/ingresosKilometros.model';
 
 import { IngresoOperador } from '../../shared/models/indicadores/ingresoOperador.model';
+import { GraficaIngresoO } from '../../shared/models/indicadores/graficaIngresosO.model';
+import { SubtotalesKCV } from '../../shared/models/indicadores/subtotalesKCV.model';
+import { NgIf } from '@angular/common';
 
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
@@ -28,6 +32,7 @@ const getOrderDay = function (rowData: any): number {
   styleUrls: ['./indicadores.component.scss'],
 })
 export class IndicadoresComponent implements OnInit {
+  @ViewChild(DxChartComponent, { static: false }) chart: any;
 
   ingresos: ScoreCard[] = [];
   kilomentros: ScoreCard[] = [];
@@ -84,6 +89,9 @@ export class IndicadoresComponent implements OnInit {
 
   selectedPeriodo: number = 0;
   loadingVisible = false;
+
+  graficaModel: GraficaIngresoO[] = [];
+  subtalesGrafica: SubtotalesKCV;
 
   constructor(
     private indicadorService: IndicadoresService
@@ -170,6 +178,28 @@ export class IndicadoresComponent implements OnInit {
 
 
   buscarClick = (e: any) => {
+
+   this.kmsTotalCC = 0;
+   this.kmsTotalVC = 0;
+   this.kmsTotalCG = 0;
+   this.kmsTotalVG = 0;
+   this.kmsTotalCH = 0;
+   this.kmsTotalVH = 0;
+   this.kmsTotalCLP = 0;
+   this.kmsTotalVLP = 0;
+   this.kmsTotalCM = 0;
+   this.kmsTotalVM = 0;
+   this.kmsTotalCMH = 0;
+   this.kmsTotalVMH = 0;
+   this.kmsTotalCMCA = 0;
+   this.kmsTotalVMCA = 0;
+   this.kmsTotalCO = 0;
+   this.kmsTotalVO = 0;
+   this.kmsTotalCRA = 0;
+   this.kmsTotalVRA = 0;
+   this.kmsTotalCT = 0;
+   this.kmsTotalVT = 0;
+
     if (this.selectedPeriodo) {
       this.loadingVisible = true;
       this.getIngresoOperador().then(() => {
@@ -1241,8 +1271,128 @@ onCellPreparedPM(e){
 
 
 //==============================INGRESO OPERADOR===================================
-  onRowPreparedIO(event){
+    kmsTotalCC: number = 0;
+    kmsTotalVC: number = 0;
+    kmsTotalCG: number = 0;
+    kmsTotalVG: number = 0;
+    kmsTotalCH: number = 0;
+    kmsTotalVH: number = 0;
+    kmsTotalCLP: number = 0;
+    kmsTotalVLP: number = 0;
+    kmsTotalCM: number = 0;
+    kmsTotalVM: number = 0;
+    kmsTotalCMH: number = 0;
+    kmsTotalVMH: number = 0;
+    kmsTotalCMCA: number = 0;
+    kmsTotalVMCA: number = 0;
+    kmsTotalCO: number = 0;
+    kmsTotalVO: number = 0;
+    kmsTotalCRA: number = 0;
+    kmsTotalVRA: number = 0;
+    kmsTotalCT: number = 0;
+    kmsTotalVT: number = 0;
 
+    mykey:string = ""
+  onRowPreparedIO(e){
+    if(e.rowType == 'group'){
+      this.mykey = e.data.key;
+      if(e.data.key == "CUAUTITLAN"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCC = e.summaryCells[3][0].value;
+        this.kmsTotalVC = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "GUADALAJARA"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCG = e.summaryCells[3][0].value;
+        this.kmsTotalVG = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "HERMOSILLO"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCH = e.summaryCells[3][0].value;
+        this.kmsTotalVH = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "MACUSPANA"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCMCA = e.summaryCells[3][0].value;
+        this.kmsTotalVMCA = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "LA PAZ"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCLP = e.summaryCells[3][0].value;
+        this.kmsTotalVLP = e.summaryCells[4][0].value;
+        }else{
+       
+        }
+      }
+      if(e.data.key == "MEXICALI"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCM = e.summaryCells[3][0].value;
+        this.kmsTotalVM = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "MIGUEL HIDALGO"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCMH = e.summaryCells[3][0].value;
+        this.kmsTotalVMH = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "ORIZABA"){
+        console.log(e)
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCO = e.summaryCells[3][0].value;
+        this.kmsTotalVO = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "RAMOS ARIZPE"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCRA = e.summaryCells[3][0].value;
+        this.kmsTotalVRA = e.summaryCells[4][0].value;
+        }
+      }
+      if(e.data.key == "TULTITLAN"){
+        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
+        this.kmsTotalCT = e.summaryCells[3][0].value;
+        this.kmsTotalVT = e.summaryCells[4][0].value;
+        }
+      }
+  
+      
+      this.graficaModel = [
+        {udN: "CUAUTITLAN", kmstotalC: this.kmsTotalCC ,  kmstotalV: this.kmsTotalVC},
+        {udN: "GUADALAJARA", kmstotalC: this.kmsTotalCG, kmstotalV: this.kmsTotalVG},
+        {udN: "HERMOSILLO", kmstotalC: this.kmsTotalCH, kmstotalV: this.kmsTotalVH},
+        {udN: "MACUSPANA", kmstotalC: this.kmsTotalCMCA, kmstotalV: this.kmsTotalVMCA},
+        {udN: "LA PAZ", kmstotalC: this.kmsTotalCLP, kmstotalV: this.kmsTotalVLP},
+        {udN: "MEXICALI", kmstotalC: this.kmsTotalCM, kmstotalV: this.kmsTotalVM},
+        {udN: "MIGUEL HIDALGO", kmstotalC: this.kmsTotalCMH, kmstotalV: this.kmsTotalVMH},
+        {udN: "ORIZABA", kmstotalC: this.kmsTotalCO, kmstotalV: this.kmsTotalVO},
+        {udN: "RAMOS ARIZPE", kmstotalC: this.kmsTotalCRA, kmstotalV: this.kmsTotalVRA},
+        {udN: "TULTITLAN", kmstotalC: this.kmsTotalCT, kmstotalV: this.kmsTotalVT},
+        
+      ]
+
+      console.log(this.graficaModel)
+    }
+
+    
+    if (e.rowType == 'totalFooter') {
+
+      // e.summaryCells[7][0].value
+
+
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
   }
   onCellPreparedIO(e: any) {
     if (e.rowType == 'group'){
@@ -1300,6 +1450,12 @@ onCellPreparedPM(e){
 
     return str.join("."), t.match(regex)[0];;
   }
+
+   //==================Formato a la data de la grafica==================================
+   formatSliderTooltip (value) {
+    
+    return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
+}
 
 }
 
