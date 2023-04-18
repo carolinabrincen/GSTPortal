@@ -69,7 +69,7 @@ export class IndicadoresComponent implements OnInit {
   customOperations: Array<any>;
   popupPosition: any;
 
-  sumaTotalGroupC = []
+  sumaTotalGroupC: any[] = [];
   sumaTotalGroupT = []
   sumaTotalGroupG = []
   sumaTotalGroupH = []
@@ -93,6 +93,7 @@ export class IndicadoresComponent implements OnInit {
   graficaModel: GraficaIngresoO[] = [];
   subtalesGrafica: SubtotalesKCV;
 
+  collapseGroup: boolean;
   constructor(
     private indicadorService: IndicadoresService
   ) {
@@ -779,9 +780,13 @@ onCellPreparedPM(e){
 
     if (e.rowType == 'group'){
 
+      if(e.isExpanded == true){
+        this.collapseGroup == true
+      }
+
+
       if (e.data.key == '01 ENE') {
         if(e.isExpanded == true){
-
           this.ingresosKE = new IngresosKE;
           this.totalKE = new TotalKE;
           //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
@@ -825,7 +830,6 @@ onCellPreparedPM(e){
 
       if (e.data.key == '02 FEB') {
         if(e.isExpanded == true){
-
           this.ingresosKF = new IngresosKF;
           this.totalKF = new TotalKF;
           //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
@@ -868,7 +872,6 @@ onCellPreparedPM(e){
 
       if (e.data.key == '03 MAR') {
         if(e.isExpanded == true){
-
           this.ingresosKM = new IngresosKM;
           this.totalKM = new TotalKM;
           //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
@@ -911,7 +914,6 @@ onCellPreparedPM(e){
 
       if (e.data.key == '04 ABR') {
         if(e.isExpanded == true){
-
           this.ingresosKA = new IngresosKA;
           this.totalKA = new TotalKA;
           //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
@@ -977,10 +979,10 @@ onCellPreparedPM(e){
 
 
       }
-      
+
+
       e.cells.forEach((c: any) => {
         if(c.columnIndex == 2){
-        
           c.value = c.summaryItems[0].value
         
           if(Number.isNaN(c.value)){
@@ -989,8 +991,8 @@ onCellPreparedPM(e){
   
           if(c.value != 0){
             this.sumaTotalGroupC.push(c.value)
+ 
           }
-
         }
         if(c.columnIndex == 3){
         
@@ -1084,6 +1086,8 @@ onCellPreparedPM(e){
 
         }
       })
+
+    
      
     }
 
@@ -1093,6 +1097,24 @@ onCellPreparedPM(e){
     }
   }
 
+
+  CuautitlanTS = 0;
+  TultitlanTS = 0;
+  GuadalajaraTS = 0;
+  HermosilloTS = 0;
+  MexicaliTS = 0;
+  OrizabaTS = 0;
+  RamosATS = 0;
+  TotalTS = 0;
+
+  totalCuautitlan = 0;
+  totalTultitlan = 0;
+  totalGuadalajara = 0;
+  totalHermosillo = 0;
+  totalMexicali = 0;
+  totalOrizaba = 0;
+  totalRamosA = 0;
+  totalTotal = 0;
   onCellPreparedIK(e){
     if (e.rowType == 'group'){
 
@@ -1102,57 +1124,66 @@ onCellPreparedPM(e){
     }
 
     if (e.rowType == 'totalFooter') {
+     
+      if(this.collapseGroup == true){
+        this.totalKE = new TotalKE;
+
+        this.sumaTotalGroupC = []
+        this.sumaTotalGroupT = []
+        this.sumaTotalGroupG = []
+        this.sumaTotalGroupH = []
+        this.sumaTotalGroupM = []
+        this.sumaTotalGroupO = []
+        this.sumaTotalGroupRA = []
+        this.sumaTotalGT = []
+        
+        
+        this.totalCuautitlan = 0;
+        this.totalTultitlan = 0;
+        this.totalGuadalajara = 0;
+        this.totalHermosillo = 0;
+        this.totalMexicali = 0;
+        this.totalOrizaba = 0;
+        this.totalRamosA = 0;
+        this.totalTotal = 0;
+      }
+
+
 
       e.totalItem.cells.forEach((c: any) => {
-        var CuautitlanTS = 0;
-        var TultitlanTS = 0;
-        var GuadalajaraTS = 0;
-        var HermosilloTS = 0;
-        var MexicaliTS = 0;
-        var OrizabaTS = 0;
-        var RamosATS = 0;
-        var TotalTS = 0;
 
-        var totalCuautitlan = 0;
-        var totalTultitlan = 0;
-        var totalGuadalajara = 0;
-        var totalHermosillo = 0;
-        var totalMexicali = 0;
-        var totalOrizaba = 0;
-        var totalRamosA = 0;
-        var totalTotal = 0;
+        this.CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM + this.totalKA.cuautitlanTA;
+        this.totalCuautitlan = this.CuautitlanTS / 4;//this.sumaTotalGroupC.length;
+        console.log(this.CuautitlanTS +"  "+ this.sumaTotalGroupC.length)
+        c.totalItem.summaryCells[2][0].value = this.totalCuautitlan;
 
-        CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM + this.totalKA.cuautitlanTA;
-        totalCuautitlan = CuautitlanTS / this.sumaTotalGroupC.length;
-        c.totalItem.summaryCells[2][0].value = totalCuautitlan;
+        this.TultitlanTS = this.totalKE.tultitlanTE + this.totalKF.tultitlanTF +this.totalKM.tultitlanTM + this.totalKA.tultitlanTA;
+        this.totalTultitlan = this.TultitlanTS / 4;//this.sumaTotalGroupT.length;
+        c.totalItem.summaryCells[3][0].value = this.totalTultitlan;
 
-        TultitlanTS = this.totalKE.tultitlanTE + this.totalKF.tultitlanTF +this.totalKM.tultitlanTM + this.totalKA.tultitlanTA;
-        totalTultitlan = TultitlanTS / this.sumaTotalGroupT.length;
-        c.totalItem.summaryCells[3][0].value = totalTultitlan;
+        this.GuadalajaraTS = this.totalKE.guadalajaraTE + this.totalKF.guadalajaraTF +this.totalKM.guadalajaraTM + this.totalKA.guadalajaraTA;
+        this.totalGuadalajara = this.GuadalajaraTS / 4;//this.sumaTotalGroupG.length;
+        c.totalItem.summaryCells[4][0].value = this.totalGuadalajara;
 
-        GuadalajaraTS = this.totalKE.guadalajaraTE + this.totalKF.guadalajaraTF +this.totalKM.guadalajaraTM + this.totalKA.guadalajaraTA;
-        totalGuadalajara = GuadalajaraTS / this.sumaTotalGroupG.length;
-        c.totalItem.summaryCells[4][0].value = totalGuadalajara;
+        this.HermosilloTS = this.totalKE.hermosilloTE + this.totalKF.hermosilloTF +this.totalKM.hermosilloTM + this.totalKA.hermosilloTA;
+        this.totalHermosillo = this.HermosilloTS / 4;//this.sumaTotalGroupH.length;
+        c.totalItem.summaryCells[5][0].value = this.totalHermosillo;
 
-        HermosilloTS = this.totalKE.hermosilloTE + this.totalKF.hermosilloTF +this.totalKM.hermosilloTM + this.totalKA.hermosilloTA;
-        totalHermosillo = HermosilloTS / this.sumaTotalGroupH.length;
-        c.totalItem.summaryCells[5][0].value = totalHermosillo;
+        this.MexicaliTS = this.totalKE.mexicaliTE + this.totalKF.mexicaliTF +this.totalKM.mexicaliTM + this.totalKA.mexicaliTA;
+        this.totalMexicali = this.MexicaliTS / 4;//this.sumaTotalGroupM.length;
+        c.totalItem.summaryCells[6][0].value = this.totalMexicali;
 
-        MexicaliTS = this.totalKE.mexicaliTE + this.totalKF.mexicaliTF +this.totalKM.mexicaliTM + this.totalKA.mexicaliTA;
-        totalMexicali = MexicaliTS / this.sumaTotalGroupM.length;
-        c.totalItem.summaryCells[6][0].value = totalMexicali;
+        this.OrizabaTS = this.totalKE.orizabaTE + this.totalKF.orizabaTF +this.totalKM.orizabaTM + this.totalKA.orizabaTA;
+        this.totalOrizaba = this.OrizabaTS / 4;//this.sumaTotalGroupO.length;
+        c.totalItem.summaryCells[7][0].value = this.totalOrizaba;
 
-        OrizabaTS = this.totalKE.orizabaTE + this.totalKF.orizabaTF +this.totalKM.orizabaTM + this.totalKA.orizabaTA;
-        totalOrizaba = OrizabaTS / this.sumaTotalGroupO.length;
-        c.totalItem.summaryCells[7][0].value = totalOrizaba;
+        this.RamosATS = this.totalKE.ramisArispeTE + this.totalKF.ramisArispeTF +this.totalKM.ramisArispeTM + this.totalKA.ramisArispeTA;
+        this.totalRamosA = this.RamosATS / 4;//this.sumaTotalGroupRA.length;
+        c.totalItem.summaryCells[8][0].value = this.totalRamosA;
 
-        RamosATS = this.totalKE.ramisArispeTE + this.totalKF.ramisArispeTF +this.totalKM.ramisArispeTM + this.totalKA.ramisArispeTA;
-        totalRamosA = RamosATS / this.sumaTotalGroupRA.length;
-        c.totalItem.summaryCells[8][0].value = totalRamosA;
-
-        TotalTS = this.totalKE.totalTE + this.totalKF.totalTF +this.totalKM.totalTM + this.totalKA.totalTA;
-        totalTotal = TotalTS / this.sumaTotalGT.length;
-        c.totalItem.summaryCells[9][0].value = totalTotal;
+        this.TotalTS = this.totalKE.totalTE + this.totalKF.totalTF +this.totalKM.totalTM + this.totalKA.totalTA;
+        this.totalTotal = this.TotalTS / 4;//this.sumaTotalGT.length;
+        c.totalItem.summaryCells[9][0].value = this.totalTotal;
 
           //console.log(c.totalItem.summaryCells[2][0].value = e.component.getTotalSummaryValue(totalCuautitlan));
         if (c.cellElement) {

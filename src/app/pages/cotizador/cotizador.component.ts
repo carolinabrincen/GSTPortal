@@ -157,7 +157,6 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         that.bolModalVariables = true;
-        console.log(that.itemCotizacion.variables);
       },
     };
     //PREVIZUALIZAR
@@ -168,7 +167,6 @@ export class CotizadorComponent implements OnInit {
 
       onClick(e: any) {
         that.bolModalDetalleCotizacion = true;
-        console.log('Detalle Cotizacion');
 
       },
     };
@@ -179,7 +177,6 @@ export class CotizadorComponent implements OnInit {
       icon: 'print',
 
       onClick(e: any) {
-        console.log('mostrar PDF');
         pdfReport.obtenerReporte(that.itemCotizacion.folio, that.itemCotizacion.cliente, 
           that.itemCotizacion.tarifaFinal, that.itemCotizacion.origen + "-" + that.itemCotizacion.destino);
 
@@ -192,7 +189,6 @@ export class CotizadorComponent implements OnInit {
       layout: 'horizontal',
       onValueChanged: (e) => {
         this.bolEsViajeSencillo = e.value === 'Solo de ida' ? true : false;
-        console.log(this.bolEsViajeSencillo);
       },
     };
 
@@ -214,7 +210,6 @@ export class CotizadorComponent implements OnInit {
       layout: 'horizontal',
       onValueChanged: (e) => {
         this.bolEsViajeVacio = e.value === 'Vacio' ? true : false;
-        console.log(e);
       },
     };
     //Configuracion de radiobutton Cliente Paga Casetas
@@ -242,7 +237,7 @@ export class CotizadorComponent implements OnInit {
       text: 'Aprobar',
 
       onClick(e: any) {
-        console.log(that.itemCotizacion.variables);
+
       },
     };
 
@@ -279,7 +274,6 @@ export class CotizadorComponent implements OnInit {
     this.arrPreCotizaciones = [];
     this.cotizadorService.getPreCotizaciones().subscribe(res => {
       this.arrPreCotizaciones = res.data;
-        // console.log(res.data);
         var mydata = res.data;
         for(var i = 0; i<mydata.length; i++){
 
@@ -300,19 +294,19 @@ export class CotizadorComponent implements OnInit {
     this.arrTipoOperacion = [];
     this.cotizadorService.getTiposOperacion(idUdN).subscribe(res => {
       this.arrTipoOperacion = res.data;
-      console.log(this.arrTipoOperacion);
     });
 
   }
 
   getRentabilidad(operacion: string) {
-    
+    console.log(this.itemCotizacion.id_area+"   "+operacion)
+
     this.cotizadorService.getRentabilidad(this.itemCotizacion.id_area, operacion).subscribe(res => {
       
-      console.log(res.data);
       this.itemCotizacion.rend_cargado = res.data.rend_cargado;
       this.itemCotizacion.rend_vacio = res.data.rend_vacio;
     });
+    
 
   }
 
@@ -329,16 +323,12 @@ export class CotizadorComponent implements OnInit {
     this.itemCotizacion.casetas_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas)/1.16).toFixed(2);
   }
 
-  caseta_regreso_ValueChanged(e: any) {
-    console.log(e.value);
-  
-    
+  caseta_regreso_ValueChanged(e: any) {  
     this.itemCotizacion.casetas_regreso_si = e.value === 0 ? 0 : +((this.itemCotizacion.casetas_regreso)/1.16).toFixed(2);
 
    
    }
   toneladasTotalValueChanged(e: any) {
-        console.log(this.itemCotizacion);
         if(this.itemCotizacion.costoViaje >0  && this.itemCotizacion.toneladas> 0)
         {
           if(this.itemCotizacion.tarifaFinal > 0)
@@ -379,7 +369,6 @@ export class CotizadorComponent implements OnInit {
   }
 
   unidadNegocio_ValueChanged(e: any) {
-    console.log(e.value);
     if(e.value > 0)
     {
       this.getTiposOperacion(e.value);
@@ -391,10 +380,10 @@ export class CotizadorComponent implements OnInit {
   }
 
   tipoOperacion_ValueChanged(e: any) {
-    console.log(e);
-   
-   this.getRentabilidad(e.value);
   
+    if(e.value != undefined || e.value != null){ 
+   this.getRentabilidad(e.value);
+  }
   }
 
 
@@ -431,7 +420,6 @@ precioTotalValueChanged(e: any) {
 
   }
   aprobarCotizacionClick(e: any) {
-    console.log(e);
     const clonedItem = { ...e.row.data };
     let result = confirm("<i>Esta seguro de aprobar la cotización: <b>" +
       clonedItem.folio + "</b></i>", "Confirmar Operación");
@@ -471,7 +459,6 @@ precioTotalValueChanged(e: any) {
 
   guardarCotizacionClick(e: any) {
     e.preventDefault();
-    console.log('🚗', this.itemCotizacion);
     switch (this.tipoRegistro) {
       case 'nuevo':
 
@@ -480,9 +467,7 @@ precioTotalValueChanged(e: any) {
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
         this.itemCotizacion.idCotizacion = 0;
         this.itemCotizacion.id_ingreso = sessionStorage.getItem("idUsuario");
-        console.log(this.itemCotizacion.tipoOperacion); 
-        
-        console.log(this.itemCotizacion);
+
         this.cotizadorService.postNuevaCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
@@ -495,7 +480,6 @@ precioTotalValueChanged(e: any) {
               },
             }, 'success', 3000);
           } else {
-            console.log(res);
             notify({
               
               message: res.responseText,
@@ -510,15 +494,17 @@ precioTotalValueChanged(e: any) {
         });
         break;
       case 'editar':
-        console.log(this.itemCotizacion);
         this.itemCotizacion.sencillo = this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false;
         this.itemCotizacion.regresa_vacio = this.itemCotizacion.regreso === "Vacio" ? true : false;
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
-        
+        console.log(JSON.stringify(this.itemCotizacion))
         this.cotizadorService.postEditarCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
+            console.log(this.itemCotizacion)
             this.getPreCotizaciones();
+            this.tipoOperacion_ValueChanged = this.tipoOperacion_ValueChanged.bind(this);
+            console.log("SE EDITO CORRECTAMENTE")
             notify({
               message: 'Cotización guardada con exito!',
               position: {
@@ -527,6 +513,7 @@ precioTotalValueChanged(e: any) {
               },
             }, 'success', 3000);
           } else {
+            console.log("ALGO PASO !!!!!!!!")
             notify({
               message: res.responseText,
               position: {
@@ -557,10 +544,8 @@ precioTotalValueChanged(e: any) {
     this.bolModal = true;
     this.cotizadorService.getCotizacion(e.row.data.idCotizacion).subscribe(res => {
       this.itemCotizacion = res.data;
-      console.log(res.data);
-      console.log(this.itemCotizacion);
       this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
-      
+      console.log( this.itemCotizacion)
     });
   }
 
@@ -577,7 +562,6 @@ precioTotalValueChanged(e: any) {
     const clonedItem = { ...e.row.data };
     this.itemCotizacion = clonedItem;
     this.tituloModal = "Cotizacion Folio: " + this.itemCotizacion.folio + " (Solo Lectura)";
-    console.log('mostrar PDF');
     this.pdfReport.obtenerReporte(this.itemCotizacion.folio, this.itemCotizacion.cliente, 
       this.itemCotizacion.tarifaFinal, this.itemCotizacion.origen + "-" + this.itemCotizacion.destino);
   }
@@ -623,7 +607,6 @@ precioTotalValueChanged(e: any) {
   }
 
   limpiarForm() {
-    console.log("limpiar");
     this.bolFormSoloLectura = false;
     //this.itemCotizacion = {};
     this.itemCotizacion = {
@@ -733,7 +716,6 @@ precioTotalValueChanged(e: any) {
   };
 
   limpiarFormT25() {
-    console.log("limpiar");
     this.bolFormSoloLectura = false;
     //this.itemCotizacion = {};
     this.itemCotizacion = {
@@ -789,7 +771,6 @@ precioTotalValueChanged(e: any) {
   mode: boolean = false;
   // dataCotizacion: any;
   tarifa25(data){
-    console.log(data.data)
     // this.dataCotizacion = data.data;
     // this.modConfimation = true;
 
@@ -800,7 +781,6 @@ precioTotalValueChanged(e: any) {
 
     this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
       this.itemCotizacionT25 = res.data;
-      console.log(this.itemCotizacionT25)
     });
     
     
@@ -827,7 +807,6 @@ precioTotalValueChanged(e: any) {
                 //agregamos precotizacion a las aprobadas
 
                 const elementIndex = this.arrPreCotizaciones.findIndex(obj=> obj.idCotizacion == clonedItem.idCotizacion);
-                console.log(elementIndex)
                 this.arrPreCotizaciones[elementIndex].status = "APROBADA";
                 
                 this.arrCotizaciones.push(this.arrPreCotizaciones[elementIndex]);
@@ -874,7 +853,6 @@ precioTotalValueChanged(e: any) {
           
           this.cotizadorService.postEditarCotizacion(this.itemCotizacionT25).subscribe(res => {
             if (res.responseCode === 200) {
-              console.log(res.data)
               this.itemCotizacionT25 = res.data;
               this.getPreCotizaciones();
               if(res.data.tarifaFinal == this.T25){
@@ -948,7 +926,6 @@ precioTotalValueChanged(e: any) {
   };
 
   limpiarFormT30() {
-    console.log("limpiar");
     this.bolFormSoloLectura = false;
     //this.itemCotizacion = {};
     this.itemCotizacion = {
@@ -1002,9 +979,7 @@ precioTotalValueChanged(e: any) {
   casetaSImpT30: number;
   casetasRegresoT30: number;
   modeT30: boolean = false;
-  tarifa30(data){
-    console.log(data.data)
-    
+  tarifa30(data){    
     this.T30 = data.data.tarifa30;
     this.tipoOperacionT30 = data.data.tipoOperacion;
     this.casetaSImpT30 = data.data.casetas_total_sin_impuestos;
@@ -1012,7 +987,6 @@ precioTotalValueChanged(e: any) {
 
     this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
       this.itemCotizacionT30 = res.data;
-      console.log(this.itemCotizacionT30)
     });
 
     const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa30);
@@ -1073,7 +1047,6 @@ precioTotalValueChanged(e: any) {
     
     this.cotizadorService.postEditarCotizacion(this.itemCotizacionT30).subscribe(res => {
       if (res.responseCode === 200) {
-        console.log(res.data)
         this.itemCotizacionT30 = res.data;
         this.getPreCotizaciones();
         if(res.data.tarifaFinal == this.T30){
@@ -1147,7 +1120,6 @@ precioTotalValueChanged(e: any) {
   };
 
   limpiarFormT35() {
-    console.log("limpiar");
     this.bolFormSoloLectura = false;
     //this.itemCotizacion = {};
     this.itemCotizacion = {
@@ -1202,8 +1174,6 @@ precioTotalValueChanged(e: any) {
   casetasRegresoT35: number;
   modeT35: boolean = false;
   tarifa35(data){
-    console.log(data.data)
-
     this.T35 = data.data.tarifa35;
     this.tipoOperacionT35 = data.data.tipoOperacion;
     this.casetaSImpT35 = data.data.casetas_total_sin_impuestos;
@@ -1211,7 +1181,6 @@ precioTotalValueChanged(e: any) {
 
     this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
       this.itemCotizacionT35 = res.data;
-      console.log(this.itemCotizacionT35)
     });
     
     const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa35);
@@ -1273,7 +1242,6 @@ precioTotalValueChanged(e: any) {
     
     this.cotizadorService.postEditarCotizacion(this.itemCotizacionT35).subscribe(res => {
       if (res.responseCode === 200) {
-        console.log(res.data)
         this.itemCotizacionT35 = res.data;
         this.getPreCotizaciones();
         if(res.data.tarifaFinal == this.T35){
@@ -1348,7 +1316,6 @@ precioTotalValueChanged(e: any) {
   };
 
   limpiarFormT40() {
-    console.log("limpiar");
     this.bolFormSoloLectura = false;
     //this.itemCotizacion = {};
     this.itemCotizacion = {
@@ -1403,8 +1370,6 @@ precioTotalValueChanged(e: any) {
   casetasRegresoT40: number;
   modeT40: boolean = false;
   tarifa40(data){
-    console.log(data.data)
-
     this.T40 = data.data.tarifa40;
     this.tipoOperacionT40 = data.data.tipoOperacion;
     this.casetaSImpT40 = data.data.casetas_total_sin_impuestos;
@@ -1412,7 +1377,6 @@ precioTotalValueChanged(e: any) {
 
     this.cotizadorService.getCotizacion(data.data.idCotizacion).subscribe(res => {
       this.itemCotizacionT40 = res.data;
-      console.log(this.itemCotizacionT40)
     });
     
     const formatValue = Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(data.data.tarifa40);
@@ -1475,7 +1439,6 @@ precioTotalValueChanged(e: any) {
     
     this.cotizadorService.postEditarCotizacion(this.itemCotizacionT40).subscribe(res => {
       if (res.responseCode === 200) {
-        console.log(res.data)
         this.itemCotizacionT40 = res.data;
         this.getPreCotizaciones();
         if(res.data.tarifaFinal == this.T40){
