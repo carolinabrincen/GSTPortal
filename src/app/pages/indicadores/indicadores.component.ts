@@ -1124,37 +1124,12 @@ onCellPreparedPM(e){
     }
 
     if (e.rowType == 'totalFooter') {
-     
-      if(this.collapseGroup == true){
-        this.totalKE = new TotalKE;
-
-        this.sumaTotalGroupC = []
-        this.sumaTotalGroupT = []
-        this.sumaTotalGroupG = []
-        this.sumaTotalGroupH = []
-        this.sumaTotalGroupM = []
-        this.sumaTotalGroupO = []
-        this.sumaTotalGroupRA = []
-        this.sumaTotalGT = []
-        
-        
-        this.totalCuautitlan = 0;
-        this.totalTultitlan = 0;
-        this.totalGuadalajara = 0;
-        this.totalHermosillo = 0;
-        this.totalMexicali = 0;
-        this.totalOrizaba = 0;
-        this.totalRamosA = 0;
-        this.totalTotal = 0;
-      }
-
-
-
+   
       e.totalItem.cells.forEach((c: any) => {
 
         this.CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM + this.totalKA.cuautitlanTA;
         this.totalCuautitlan = this.CuautitlanTS / 4;//this.sumaTotalGroupC.length;
-        console.log(this.CuautitlanTS +"  "+ this.sumaTotalGroupC.length)
+        //console.log(this.CuautitlanTS +"  "+ this.sumaTotalGroupC.length)
         c.totalItem.summaryCells[2][0].value = this.totalCuautitlan;
 
         this.TultitlanTS = this.totalKE.tultitlanTE + this.totalKF.tultitlanTF +this.totalKM.tultitlanTM + this.totalKA.tultitlanTA;
