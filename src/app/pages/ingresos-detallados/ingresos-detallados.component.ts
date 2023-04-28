@@ -57,6 +57,11 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleMarzo = res.data.detalle;
     });
 
+    this.ingresosService.getIngresosDetalladosMensualAbr().subscribe(res => {
+      this.arrIngresosAbril = res.data.resumen;
+      this.arrDetalleAbril = res.data.detalle;
+    });
+
     
   }
 
