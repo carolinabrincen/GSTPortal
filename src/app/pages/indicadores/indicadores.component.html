@@ -44,23 +44,24 @@
             </dx-responsive-box>
             <br><br>-->
                     <h3>Ingreso</h3>
-                    <dx-data-grid #gridContainer id="gridContainer" [dataSource]="ingresos" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
-                     [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedI($event)" (onCellPrepared)="onCellPreparedI($event)" (sortingChange)="false">
 
+                    <dx-data-grid  #ING id="gridContainer1" [dataSource]="ingresos" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedI($event)" (onCellPrepared)="onCellPreparedI($event)">
+        
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-                    <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                    <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                    <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                    <dxi-column dataField="cuatitlan" caption="Cuautitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="tultitlan" caption="Tultitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="guadalajara" caption="Guadalajara" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="hermosillo" caption="Hermosillo" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="mexicali" caption="Mexicali" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="orizaba" caption="Orizaba" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                     
                     <dxo-summary>
                         <!-- SUMARY DE GRUPO -->
@@ -85,39 +86,32 @@
 
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-
-                    <div *dxTemplate="let data of 'headerTemplate'">
-                        <div style="font-weight: bolder; color: black;">
-                            {{ data.column.caption }}
-                        </div>
-                    </div>
-                    <div *dxTemplate="let cell of 'cellTemplateBold'">
-                        <div style="font-weight: bold;">{{cell.text}}</div>
-                    </div>
                     <dxo-export [enabled]="true" fileName="Ingreso" [customizeExcelCell]="customizeI"></dxo-export>
                     <dxo-paging [pageSize]="60"></dxo-paging>
                     <dxo-sorting mode="none"></dxo-sorting>
+
                     </dx-data-grid>
                     <br><br>
                     
                     <h3>Kilómetros</h3>
-                    <dx-data-grid #priceDataGrid [dataSource]="kilomentros" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false"
-                     [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedK($event)" (onCellPrepared)="onCellPreparedK($event)">
 
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dx-data-grid  #KMS id="gridContainer2" [dataSource]="kilomentros" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedK($event)" (onCellPrepared)="onCellPreparedK($event)">
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-                        <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                        <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                         
-                        <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separator"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separator"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separator"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separator"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separator"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separator"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separator"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" [format]="separator"></dxi-column>
 
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -139,20 +133,13 @@
                             <dxi-total-item column="ramosArizpe" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="total" summaryType="sum" [valueFormat]="separator" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
+
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
                         <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-            
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black;">
-                                {{ data.column.caption }}
-                            </div>
-                        </div>
-                        <div *dxTemplate="let cell of 'cellTemplateBold'">
-                            <div style="font-weight: bold;">{{cell.text}}</div>
-                        </div>
                         <dxo-export [enabled]="true" fileName="Kilómetro" [customizeExcelCell]="customizeK"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
+
                     </dx-data-grid>
                     <br><br>
 
@@ -200,23 +187,23 @@
                    </dx-data-grid>
                    <br>
 
-                    <dx-data-grid #priceDataGrid [dataSource]="ingresosKilometros" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false"
-                     [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedIK($event)" (onCellPrepared)="onCellPreparedIK($event)">
-
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                   <dx-data-grid  #INGXKMS id="gridContainer3" [dataSource]="ingresosKilometros" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                   (onRowPrepared)="onRowPreparedIK($event)" (onCellPrepared)="onCellPreparedIK($event)">
+       
+                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-                        <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                        <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                         
-                        <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate" [width]="150"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [width]="150"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -241,39 +228,31 @@
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
                         <dxo-grouping #expand [autoExpandAll]="expandGroup"></dxo-grouping>
-            
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black;">
-                                {{ data.column.caption }}
-                            </div>
-                        </div>
-                        <div *dxTemplate="let cell of 'cellTemplateBold'">
-                            <div style="font-weight: bold;">{{cell.text}}</div>
-                        </div>
                         <dxo-export [enabled]="true" fileName="Ingreso-Kilómetro" [customizeExcelCell]="customizeIK"></dxo-export>
                         <dxo-paging [pageSize]="paginacion"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
-                    </dx-data-grid>
+
+                   </dx-data-grid>
                     <br><br>
 
                     <h3>Viajes</h3>
-                    <dx-data-grid #priceDataGrid [dataSource]="viajes" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false"
-                     [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedV($event)" (onCellPrepared)="onCellPreparedV($event)">
-
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dx-data-grid  #VJS id="gridContainer4" [dataSource]="viajes" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedV($event)" (onCellPrepared)="onCellPreparedV($event)">
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-                        <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                        <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" [format]="separator"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separator"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separator"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separator"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separator"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separator"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separator"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separator"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" [format]="separator"></dxi-column>
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -298,39 +277,31 @@
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
                         <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-            
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black;">
-                                {{ data.column.caption }}
-                            </div>
-                        </div>
-                        <div *dxTemplate="let cell of 'cellTemplateBold'">
-                            <div style="font-weight: bold;">{{cell.text}}</div>
-                        </div>
                         <dxo-export [enabled]="true" fileName="Viajes" [customizeExcelCell]="customizeV"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
+                    
                     </dx-data-grid>
                     <br><br>
 
                     <h3>Kilómetros por Viaje</h3>
-                    <dx-data-grid #priceDataGrid [dataSource]="kilometroViajes" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false"
-                     [columnAutoWidth]="true" [showBorders]="true" (onRowPrepared)="onRowPreparedKV($event)" (onCellPrepared)="onCellPreparedKV($event)">
+                    <dx-data-grid  #KMSXVJS id="gridContainer5" [dataSource]="kilometroViajes" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedKV($event)" (onCellPrepared)="onCellPreparedKV($event)">
 
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         
-                        <dxi-column dataField="mes" caption="" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
+                        <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"  headerCellTemplate="headerTemplate"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separatorKV"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" [format]="separatorKV"></dxi-column>
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -355,18 +326,10 @@
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
                         <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-            
-                        <div *dxTemplate="let data of 'headerTemplate'">
-                            <div style="font-weight: bolder; color: black;">
-                                {{ data.column.caption }}
-                            </div>
-                        </div>
-                        <div *dxTemplate="let cell of 'cellTemplateBold'">
-                            <div style="font-weight: bold;">{{cell.text}}</div>
-                        </div>
                         <dxo-export [enabled]="true" fileName="Kilómetros-Viaje" [customizeExcelCell]="customizeKV"></dxo-export>
                         <dxo-paging [pageSize]="60"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
+
                     </dx-data-grid>
         </dxi-item>
 
