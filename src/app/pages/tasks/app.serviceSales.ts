@@ -106,6 +106,11 @@ export class ServiceSales extends AbstractManagerService{
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_marzo),this.httpOptions);    
     
   }
+  getIngresosDetalladosMensualAbr( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_abril),this.httpOptions);    
+    
+  }
 
   
 
