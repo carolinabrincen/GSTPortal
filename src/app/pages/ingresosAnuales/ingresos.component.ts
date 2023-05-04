@@ -124,6 +124,7 @@ export class IngresosComponent implements OnInit {
       this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
         this.indicadores = response.data;
+        console.log(this.indicadores)
        });
   }
 
@@ -210,7 +211,7 @@ export class IngresosComponent implements OnInit {
   onRowPrepared(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      console.log(e.summaryCells)
+      //console.log(e.summaryCells)
       this.graficaModel = [
         {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
         {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
@@ -444,6 +445,18 @@ export class IngresosComponent implements OnInit {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'MultipleGrids.xlsx');
       });
     });
+  }
+
+
+  formatValue(value) {
+    var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return "$ "+myFormat.join("");
+
   }
 
 }
