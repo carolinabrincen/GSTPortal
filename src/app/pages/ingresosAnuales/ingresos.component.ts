@@ -295,10 +295,18 @@ export class IngresosComponent implements OnInit {
   presTotalA: number = 0;
   ProyTotalA: number = 0;
 
+  totalMY: number = 0;
+  anioAntMY: number = 0;
+  presupuestoMY: number = 0;
+  proyeccionMY: number = 0;
+  aniATotalMY: number = 0;
+  presTotalMY: number = 0;
+  ProyTotalMY: number = 0;
+
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
-        console.log(e)
+        //console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
         this.presupuesto = e.summaryCells[7][0].value;
@@ -319,6 +327,11 @@ export class IngresosComponent implements OnInit {
         this.presupuestoA = e.summaryCells[34][0].value;
         this.proyeccionA = e.summaryCells[36][0].value;
 
+        this.totalMY = e.summaryCells[40][0].value;
+        this.anioAntMY = e.summaryCells[41][0].value;
+        this.presupuestoMY = e.summaryCells[43][0].value;
+        this.proyeccionMY = e.summaryCells[45][0].value;
+
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
         this.ProyTotal = this.proyeccion / this.presupuesto;
@@ -335,6 +348,10 @@ export class IngresosComponent implements OnInit {
         this.presTotalA = this.totalA / this.presupuestoA;
         this.ProyTotalA = this.proyeccionA / this.presupuestoA;
 
+        this.aniATotalMY = this.totalMY / this.anioAntMY;
+        this.presTotalMY = this.totalMY / this.presupuestoMY;
+        this.ProyTotalMY = this.proyeccionMY / this.presupuestoMY;
+
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
         e.summaryCells[10][0].value = this.ProyTotal;
@@ -350,6 +367,10 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[33][0].value = this.aniATotalA;
         e.summaryCells[35][0].value = this.presTotalA;
         e.summaryCells[37][0].value = this.ProyTotalA;
+
+        e.summaryCells[42][0].value = this.aniATotalMY;
+        e.summaryCells[44][0].value = this.presTotalMY;
+        e.summaryCells[46][0].value = this.ProyTotalMY;
 
       }
     }
@@ -445,6 +466,26 @@ export class IngresosComponent implements OnInit {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'MultipleGrids.xlsx');
       });
     });
+  }
+
+  customizeK(e) {  
+
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
   }
 
 

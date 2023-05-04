@@ -43,7 +43,7 @@
         <!--====================================Finish chart==========-->
         <br>
 
-        <dx-data-grid #ingresosGrid id="gridContainer2" [dataSource]="indicadores" [height]="700" [showBorders]="true" [columnAutoWidth]="true" (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)"
+        <dx-data-grid #ingresosGrid id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true" (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)"
             (onCellClick)="verDetallesClick($event)">
             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
             <dxo-paging [pageSize]="100"></dxo-paging>
@@ -54,52 +54,52 @@
             <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
 
             <dxi-column caption="Enero">
-                <dxi-column dataField="eneroTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="eneroTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Febrero">
-                <dxi-column dataField="febreroTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="febreroTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Marzo">
-                <dxi-column dataField="marzoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="marzoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Abril">
-                <dxi-column dataField="abrilTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="abrilPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="abrilTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="abrilPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Mayo">
-                <dxi-column dataField="mayoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="mayoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="mayoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="mayoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Junio">
-                <dxi-column dataField="junioTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="junioPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="junioTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="junioPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Julio">
-                <dxi-column dataField="julioTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="julioPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="julioTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="julioPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Agosto">
-                <dxi-column dataField="agostoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="agostoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="agostoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="agostoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Septiembre">
-                <dxi-column dataField="sepTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="sepPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="sepTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="sepPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Octubre">
-                <dxi-column dataField="octTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="octPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="octTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="octPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Noviembre">
-                <dxi-column dataField="novTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="novPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="novTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="novPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
             <dxi-column caption="Diciembre">
-                <dxi-column dataField="dicTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                <dxi-column dataField="dicPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                <dxi-column dataField="dicTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="dicPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
             </dxi-column>
 
             <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -244,9 +244,9 @@
     <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
         <div *dxTemplate="let data of 'content'">
             <dx-scroll-view width="100%" height="100%">
-                <div id="exportContainer" class="d-block mr-0 ml-auto">
+                <!-- <div id="exportContainer" class="d-block mr-0 ml-auto">
                     <dx-button text="Excel" icon="xlsxfile" (onClick)="exportGrids($event)"></dx-button>
-                </div>
+                </div> -->
                 <br>
 
                 <dx-data-grid #indidcaores id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true" (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)">
@@ -254,62 +254,64 @@
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
+                    <dxo-export [enabled]="true" fileName="Detalle Ingreso" [customizeExcelCell]="customizeK"></dxo-export>
+                    
                     <dxi-column dataField="unidadNegocio" caption="" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
                     <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
 
                     <dxi-column caption="Enero">
-                        <dxi-column dataField="eneroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="eneroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="eneroPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="eneroPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="enePorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Febrero">
-                        <dxi-column dataField="febreroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="febreroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="febreroAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febreroPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febreroPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Marzo">
-                        <dxi-column dataField="marzoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="marzoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="marzoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="marzoAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="marzoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="marzoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="marzoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="marzoAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="marProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="marProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Abril">
-                        <dxi-column dataField="abrilFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="abrilOtros" caption="Otros / Mov. Meses Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="abrilTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="abrilAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="abrilFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="abrilOtros" caption="Otros / Mov. Meses Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="abrilTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="abrilAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="abrilPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="abrilPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="abrilPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="abrilPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="abrProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="abrProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="abrPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Mayo">
-                        <dxi-column dataField="mayoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="mayoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="mayoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
-                        <dxi-column dataField="mayoAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="mayoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="mayoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="mayoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="mayoAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="mayoPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="mayoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="mayoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="mayoPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="mayProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="150"></dxi-column>
+                        <dxi-column dataField="mayProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="mayPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
 
