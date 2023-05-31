@@ -156,7 +156,7 @@
                        <dxi-column dataField="mexicali" caption="Mexicali" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                        <dxi-column dataField="orizaba" caption="Orizaba" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                       <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                       <!-- <dxi-column dataField="total" caption="Total" headerCellTemplate="headerTemplate" format="$ #,###,###.##;-$ #,##0.##"></dxi-column> -->
                        
                        <dxo-summary>
                            <!-- SUMARY DE GRUPO -->
@@ -167,7 +167,7 @@
                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                           <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                           <!-- <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item> -->
                        </dxo-summary>
 
                        <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -203,7 +203,7 @@
                         <dxi-column dataField="mexicali" caption="Mexicali" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         <dxi-column dataField="orizaba" caption="Orizaba" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                        <!-- <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column> -->
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -214,7 +214,7 @@
                             <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                             <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                             <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <!-- <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item> -->
     
                             <dxi-total-item column="cuatitlan" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="tultitlan" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
@@ -223,7 +223,7 @@
                             <dxi-total-item column="mexicali" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="orizaba" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="ramosArizpe" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                            <!-- <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,###,###.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item> -->
                         </dxo-summary>
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -333,7 +333,7 @@
                     </dx-data-grid>
         </dxi-item>
 
-        <dxi-item title="Ingreso por operador">
+        <!-- <dxi-item title="Ingreso por operador">
             <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
@@ -376,7 +376,7 @@
             </dx-responsive-box>
             <br><br>
 
-            <!--==========================Bar and Line Chart==================-->
+            
 
             <dx-chart id="chart" [dataSource]="graficaModel" palette="soft" title="Kilómetros por Udn">
             
@@ -401,7 +401,7 @@
                 <dxo-export [enabled]="true"></dxo-export>
             </dx-chart>
 
-            <!--====================================Finish chart==========-->
+           
             
          <br>
            
@@ -435,37 +435,35 @@
               </dxi-column>
   
               <dxo-summary>
-                  <!-- SUMARY DE GRUPO -->
-                  <!-- Kilometros -->
+               
                   <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <!-- Viajes -->
+              
                   <dxi-group-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <!-- Ingresos -->
+                  
                   <dxi-group-item column="ingresoCargados" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="ingresoVacios" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                   <dxi-group-item column="ingresoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
   
-                  <!-- SUMARY DE TOTAL FINAL -->
-                  <!-- Kilometros -->
+            
                   <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
                   <dxi-total-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
                   <dxi-total-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                  <!-- Viajes -->
+                
                   <dxi-total-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
                   <dxi-total-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
                   <dxi-total-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                   <!-- Ingresos -->
+                   
                   <dxi-total-item column="ingresoCargados" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
                   <dxi-total-item column="ingresoVacios" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
                   <dxi-total-item column="ingresoTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
               </dxo-summary>
 
             </dx-data-grid>
-        </dxi-item>
+        </dxi-item> -->
     </dx-tab-panel>
    
         <!-- LOAD PANEL -->

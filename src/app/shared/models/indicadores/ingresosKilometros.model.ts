@@ -6,7 +6,7 @@ export class IngresosKE{
     mexicaliE: number = 0;
     orizabaE: number = 0;
     ramisArispeE: number = 0;
-    totalE: number = 0;
+    // totalE: number = 0;
 }
 export class TotalKE{
     cuautitlanTE: number = 0;
@@ -16,7 +16,7 @@ export class TotalKE{
     mexicaliTE: number = 0;
     orizabaTE: number = 0;
     ramisArispeTE: number = 0;
-    totalTE: number = 0;
+    // totalTE: number = 0;
 }
 
 export class IngresosKF{
@@ -27,7 +27,7 @@ export class IngresosKF{
     mexicaliF: number = 0;
     orizabaF: number = 0;
     ramisArispeF: number = 0;
-    totalF: number = 0;
+    // totalF: number = 0;
 
 }
 export class TotalKF{
@@ -38,7 +38,7 @@ export class TotalKF{
     mexicaliTF: number = 0;
     orizabaTF: number = 0;
     ramisArispeTF: number = 0;
-    totalTF: number = 0;
+    // totalTF: number = 0;
 }
 
 export class IngresosKM{
@@ -49,7 +49,7 @@ export class IngresosKM{
     mexicaliM: number = 0;
     orizabaM: number = 0;
     ramisArispeM: number = 0;
-    totalM: number = 0;
+    // totalM: number = 0;
 
 }
 export class TotalKM{
@@ -60,7 +60,7 @@ export class TotalKM{
     mexicaliTM: number = 0;
     orizabaTM: number = 0;
     ramisArispeTM: number = 0;
-    totalTM: number = 0;
+    // totalTM: number = 0;
 }
 
 export class IngresosKA{
@@ -71,7 +71,7 @@ export class IngresosKA{
     mexicaliA: number = 0;
     orizabaA: number = 0;
     ramisArispeA: number = 0;
-    totalA: number = 0;
+    // totalA: number = 0;
 
 }
 export class TotalKA{
@@ -82,5 +82,27 @@ export class TotalKA{
     mexicaliTA: number = 0;
     orizabaTA: number = 0;
     ramisArispeTA: number = 0;
-    totalTA: number = 0;
+    // totalTA: number = 0;
+}
+
+export class IngresosKMY{
+    cuautitlanMY: number = 0;
+    tultitlanMY: number = 0;
+    guadalajaraMY: number = 0;
+    hermosilloMY: number = 0;
+    mexicaliMY: number = 0;
+    orizabaMY: number = 0;
+    ramisArispeMY: number = 0;
+    // totalMY: number = 0;
+
+}
+export class TotalKMY{
+    cuautitlanTMY: number = 0;
+    tultitlanTMY: number = 0;
+    guadalajaraTMY: number = 0;
+    hermosilloTMY: number = 0;
+    mexicaliTMY: number = 0;
+    orizabaTMY: number = 0;
+    ramisArispeTMY: number = 0;
+    // totalTMY: number = 0;
 }
