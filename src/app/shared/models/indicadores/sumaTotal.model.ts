@@ -7,9 +7,7 @@ export class SumaTotalE{
     sumaTotalOE: number = 0;
     sumaTotalRAE: number = 0;
     // sumaTotalTlE: number = 0;
-
 }
-
 export class SumaTotalF{
     sumaTotalCF: number = 0;
     sumaTotalTF: number = 0;
@@ -19,9 +17,7 @@ export class SumaTotalF{
     sumaTotalOF: number = 0;
     sumaTotalRAF: number = 0;
     // sumaTotalTlF: number = 0;
-
 }
-
 export class SumaTotalM{
     sumaTotalCM: number = 0;
     sumaTotalTM: number = 0;
@@ -31,9 +27,7 @@ export class SumaTotalM{
     sumaTotalOM: number = 0;
     sumaTotalRAM: number = 0;
     // sumaTotalTlM: number = 0;
-
 }
-
 export class SumaTotalA{
     sumaTotalCA: number = 0;
     sumaTotalTA: number = 0;
@@ -43,9 +37,7 @@ export class SumaTotalA{
     sumaTotalOA: number = 0;
     sumaTotalRAA: number = 0;
     // sumaTotalTlA: number = 0;
-
 }
-
 export class SumaTotalMY{
     sumaTotalCMY: number = 0;
     sumaTotalTMY: number = 0;
@@ -55,5 +47,74 @@ export class SumaTotalMY{
     sumaTotalOMY: number = 0;
     sumaTotalRAMY: number = 0;
     // sumaTotalTlMY: number = 0;
-
+}
+export class SumaTotalJN{
+    sumaTotalCJN: number = 0;
+    sumaTotalTJN: number = 0;
+    sumaTotalGJN: number = 0;
+    sumaTotalHJN: number = 0;
+    sumaTotalMJN: number = 0;
+    sumaTotalOJN: number = 0;
+    sumaTotalRAJN: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalJL{
+    sumaTotalCJL: number = 0;
+    sumaTotalTJL: number = 0;
+    sumaTotalGJL: number = 0;
+    sumaTotalHJL: number = 0;
+    sumaTotalMJL: number = 0;
+    sumaTotalOJL: number = 0;
+    sumaTotalRAJL: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalAG{
+    sumaTotalCAG: number = 0;
+    sumaTotalTAG: number = 0;
+    sumaTotalGAG: number = 0;
+    sumaTotalHAG: number = 0;
+    sumaTotalMAG: number = 0;
+    sumaTotalOAG: number = 0;
+    sumaTotalRAAG: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalS{
+    sumaTotalCS: number = 0;
+    sumaTotalTS: number = 0;
+    sumaTotalGS: number = 0;
+    sumaTotalHS: number = 0;
+    sumaTotalMS: number = 0;
+    sumaTotalOS: number = 0;
+    sumaTotalRAS: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalOC{
+    sumaTotalCOC: number = 0;
+    sumaTotalTOC: number = 0;
+    sumaTotalGOC: number = 0;
+    sumaTotalHOC: number = 0;
+    sumaTotalMOC: number = 0;
+    sumaTotalOOC: number = 0;
+    sumaTotalRAOC: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalNV{
+    sumaTotalCNV: number = 0;
+    sumaTotalTNV: number = 0;
+    sumaTotalGNV: number = 0;
+    sumaTotalHNV: number = 0;
+    sumaTotalMNV: number = 0;
+    sumaTotalONV: number = 0;
+    sumaTotalRANV: number = 0;
+    // sumaTotalTlMY: number = 0;
+}
+export class SumaTotalDC{
+    sumaTotalCDC: number = 0;
+    sumaTotalTDC: number = 0;
+    sumaTotalGDC: number = 0;
+    sumaTotalHDC: number = 0;
+    sumaTotalMDC: number = 0;
+    sumaTotalODC: number = 0;
+    sumaTotalRADC: number = 0;
+    // sumaTotalTlMY: number = 0;
 }

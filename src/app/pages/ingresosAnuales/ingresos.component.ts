@@ -73,7 +73,6 @@ export class IngresosComponent implements OnInit {
   paginacion = 5; 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
   
-
   applyChangesModes: any;
 
   applyChangesMode: any;
@@ -87,8 +86,7 @@ export class IngresosComponent implements OnInit {
   expandGroup: boolean = true;
   isVisible = false;
 
-  totalPor: TotalPorcentajes;
-
+  totalPor = new TotalPorcentajes;
   graficaModel: ModeloGrafica[] = [];
 
   constructor( 
@@ -263,136 +261,168 @@ export class IngresosComponent implements OnInit {
     }
   }
 
-  total: number = 0;
-  anioAnt: number = 0;
-  presupuesto: number = 0;
-  proyeccion: number = 0;
-  aniATotal: number = 0;
-  presTotal: number = 0;
-  ProyTotal: number = 0;
-
-  totalFB: number = 0;
-  anioAntFB: number = 0;
-  presupuestoFB: number = 0;
-  proyeccionFB: number = 0;
-  aniATotalFB: number = 0;
-  presTotalFB: number = 0;
-  ProyTotalFB: number = 0;
-
-  totalM: number = 0;
-  anioAntM: number = 0;
-  presupuestoM: number = 0;
-  proyeccionM: number = 0;
-  aniATotalM: number = 0;
-  presTotalM: number = 0;
-  ProyTotalM: number = 0;
-
-  totalA: number = 0;
-  anioAntA: number = 0;
-  presupuestoA: number = 0;
-  proyeccionA: number = 0;
-  aniATotalA: number = 0;
-  presTotalA: number = 0;
-  ProyTotalA: number = 0;
-
-  totalMY: number = 0;
-  anioAntMY: number = 0;
-  presupuestoMY: number = 0;
-  proyeccionMY: number = 0;
-  aniATotalMY: number = 0;
-  presTotalMY: number = 0;
-  ProyTotalMY: number = 0;
-
-  totalJN: number = 0;
-  anioAntJN: number = 0;
-  presupuestoJN: number = 0;
-  proyeccionJN: number = 0;
-  aniATotalJN: number = 0;
-  presTotalJN: number = 0;
-  ProyTotalJN: number = 0;
-
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
         // console.log(e)
-        this.total = e.summaryCells[4][0].value;
-        this.anioAnt = e.summaryCells[5][0].value;
-        this.presupuesto = e.summaryCells[7][0].value;
-        this.proyeccion = e.summaryCells[9][0].value;
+        //Enero
+        this.totalPor.totalE = e.summaryCells[4][0].value;
+        this.totalPor.anioAntE = e.summaryCells[5][0].value;
+        this.totalPor.presupuestoE = e.summaryCells[7][0].value;
+        this.totalPor.proyeccionE = e.summaryCells[9][0].value;
+        //Febrero
+        this.totalPor.totalFB = e.summaryCells[13][0].value;
+        this.totalPor.anioAntFB = e.summaryCells[14][0].value;
+        this.totalPor.presupuestoFB = e.summaryCells[16][0].value;
+        this.totalPor.proyeccionFB = e.summaryCells[18][0].value;
+        //Marzo
+        this.totalPor.totalM = e.summaryCells[22][0].value;
+        this.totalPor.anioAntM = e.summaryCells[23][0].value;
+        this.totalPor.presupuestoM = e.summaryCells[25][0].value;
+        this.totalPor.proyeccionM = e.summaryCells[27][0].value;
+        //Abril
+        this.totalPor.totalA = e.summaryCells[31][0].value;
+        this.totalPor.anioAntA = e.summaryCells[32][0].value;
+        this.totalPor.presupuestoA = e.summaryCells[34][0].value;
+        this.totalPor.proyeccionA = e.summaryCells[36][0].value;
+        //Mayo
+        this.totalPor.totalMY = e.summaryCells[40][0].value;
+        this.totalPor.anioAntMY = e.summaryCells[41][0].value;
+        this.totalPor.presupuestoMY = e.summaryCells[43][0].value;
+        this.totalPor.proyeccionMY = e.summaryCells[45][0].value;
+        //Junio
+        this.totalPor.totalJN = e.summaryCells[49][0].value;
+        this.totalPor.anioAntJN = e.summaryCells[50][0].value;
+        this.totalPor.presupuestoJN = e.summaryCells[52][0].value;
+        this.totalPor.proyeccionJN = e.summaryCells[54][0].value;
+        //Juio
+        // this.totalPor.totalJL = e.summaryCells[][0].value;
+        // this.totalPor.anioAntJL = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoJL = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionJL = e.summaryCells[][0].value;
+        //Agosto
+        // this.totalPor.totalAG = e.summaryCells[][0].value;
+        // this.totalPor.anioAntAG = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoAG = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionAG = e.summaryCells[][0].value;
+        //Septiembre
+        // this.totalPor.totalS = e.summaryCells[][0].value;
+        // this.totalPor.anioAntS = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoS = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionS = e.summaryCells[][0].value;
+        //Octubre
+        // this.totalPor.totalOC = e.summaryCells[][0].value;
+        // this.totalPor.anioAntOC = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoOC = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionOC = e.summaryCells[][0].value;
+        //Noviembre
+        // this.totalPor.totalNV = e.summaryCells[][0].value;
+        // this.totalPor.anioAntNV = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoNV = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionNV = e.summaryCells[][0].value;
+        //Diciembre
+        // this.totalPor.totalDC = e.summaryCells[][0].value;
+        // this.totalPor.anioAntDC = e.summaryCells[][0].value;
+        // this.totalPor.presupuestoDC = e.summaryCells[][0].value;
+        // this.totalPor.proyeccionDC = e.summaryCells[][0].value;
 
-        this.totalFB = e.summaryCells[13][0].value;
-        this.anioAntFB = e.summaryCells[14][0].value;
-        this.presupuestoFB = e.summaryCells[16][0].value;
-        this.proyeccionFB = e.summaryCells[18][0].value;
+        //Enero
+        this.totalPor.aniATotalE = this.totalPor.totalE / this.totalPor.anioAntE;
+        this.totalPor.presTotalE = this.totalPor.totalE / this.totalPor.presupuestoE;
+        this.totalPor.ProyTotalE = this.totalPor.proyeccionE / this.totalPor.presupuestoE;
+        //Febrero
+        this.totalPor.aniATotalFB = this.totalPor.totalFB / this.totalPor.anioAntFB;
+        this.totalPor.presTotalFB = this.totalPor.totalFB / this.totalPor.presupuestoFB;
+        this.totalPor.ProyTotalFB = this.totalPor.proyeccionFB / this.totalPor.presupuestoFB;
+        //Marzo
+        this.totalPor.aniATotalM = this.totalPor.totalM / this.totalPor.anioAntM;
+        this.totalPor.presTotalM = this.totalPor.totalM / this.totalPor.presupuestoM;
+        this.totalPor.ProyTotalM = this.totalPor.proyeccionM / this.totalPor.presupuestoM;
+        //Abril
+        this.totalPor.aniATotalA = this.totalPor.totalA / this.totalPor.anioAntA;
+        this.totalPor.presTotalA = this.totalPor.totalA / this.totalPor.presupuestoA;
+        this.totalPor.ProyTotalA = this.totalPor.proyeccionA / this.totalPor.presupuestoA;
+        //Mayo
+        this.totalPor.aniATotalMY = this.totalPor.totalMY / this.totalPor.anioAntMY;
+        this.totalPor.presTotalMY = this.totalPor.totalMY / this.totalPor.presupuestoMY;
+        this.totalPor.ProyTotalMY = this.totalPor.proyeccionMY / this.totalPor.presupuestoMY;
+        //Junio
+        this.totalPor.aniATotalJN = this.totalPor.totalJN / this.totalPor.anioAntJN;
+        this.totalPor.presTotalJN = this.totalPor.totalJN / this.totalPor.presupuestoJN;
+        this.totalPor.ProyTotalJN = this.totalPor.proyeccionJN / this.totalPor.presupuestoJN;
+        //Julio
+        // this.totalPor.aniATotalJL = this.totalPor.totalJL / this.totalPor.anioAntJL;
+        // this.totalPor.presTotalJL = this.totalPor.totalJL / this.totalPor.presupuestoJL;
+        // this.totalPor.ProyTotalJL = this.totalPor.proyeccionJL / this.totalPor.presupuestoJL;
+        //Agosto
+        // this.totalPor.aniATotalAG = this.totalPor.totalAG / this.totalPor.anioAntAG;
+        // this.totalPor.presTotalAG = this.totalPor.totalAG / this.totalPor.presupuestoAG;
+        // this.totalPor.ProyTotalAG = this.totalPor.proyeccionAG / this.totalPor.presupuestoAG;
+        //Septiembre
+        // this.totalPor.aniATotalS = this.totalPor.totalS / this.totalPor.anioAntS;
+        // this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
+        // this.totalPor.ProyTotalS = this.totalPor.proyeccionS / this.totalPor.presupuestoS;
+        //Octubre
+        // this.totalPor.aniATotalOC = this.totalPor.totalOC / this.totalPor.anioAntOC;
+        // this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
+        // this.totalPor.ProyTotalOC = this.totalPor.proyeccionOC / this.totalPor.presupuestoOC;
+        //Noviembre
+        // this.totalPor.aniATotalNV = this.totalPor.totalNV / this.totalPor.anioAntNV;
+        // this.totalPor.presTotalNV = this.totalPor.totalNV / this.totalPor.presupuestoNV;
+        // this.totalPor.ProyTotalNV = this.totalPor.proyeccionNV / this.totalPor.presupuestoNV;
+        //Diciembre
+        // this.totalPor.aniATotalDC = this.totalPor.totalDC / this.totalPor.anioAntDC;
+        // this.totalPor.presTotalDC = this.totalPor.totalDC / this.totalPor.presupuestoDC;
+        // this.totalPor.ProyTotalDC = this.totalPor.proyeccionDC / this.totalPor.presupuestoDC;
 
-        this.totalM = e.summaryCells[22][0].value;
-        this.anioAntM = e.summaryCells[23][0].value;
-        this.presupuestoM = e.summaryCells[25][0].value;
-        this.proyeccionM = e.summaryCells[27][0].value;
-
-        this.totalA = e.summaryCells[31][0].value;
-        this.anioAntA = e.summaryCells[32][0].value;
-        this.presupuestoA = e.summaryCells[34][0].value;
-        this.proyeccionA = e.summaryCells[36][0].value;
-
-        this.totalMY = e.summaryCells[40][0].value;
-        this.anioAntMY = e.summaryCells[41][0].value;
-        this.presupuestoMY = e.summaryCells[43][0].value;
-        this.proyeccionMY = e.summaryCells[45][0].value;
-
-        this.totalJN = e.summaryCells[49][0].value;
-        this.anioAntJN = e.summaryCells[50][0].value;
-        this.presupuestoJN = e.summaryCells[52][0].value;
-        this.proyeccionJN = e.summaryCells[54][0].value;
-
-
-        this.aniATotal = this.total / this.anioAnt;
-        this.presTotal = this.total / this.presupuesto;
-        this.ProyTotal = this.proyeccion / this.presupuesto;
-
-        this.aniATotalFB = this.totalFB / this.anioAntFB;
-        this.presTotalFB = this.totalFB / this.presupuestoFB;
-        this.ProyTotalFB = this.proyeccionFB / this.presupuestoFB;
-
-        this.aniATotalM = this.totalM / this.anioAntM;
-        this.presTotalM = this.totalM / this.presupuestoM;
-        this.ProyTotalM = this.proyeccionM / this.presupuestoM;
-
-        this.aniATotalA = this.totalA / this.anioAntA;
-        this.presTotalA = this.totalA / this.presupuestoA;
-        this.ProyTotalA = this.proyeccionA / this.presupuestoA;
-
-        this.aniATotalMY = this.totalMY / this.anioAntMY;
-        this.presTotalMY = this.totalMY / this.presupuestoMY;
-        this.ProyTotalMY = this.proyeccionMY / this.presupuestoMY;
-
-        this.aniATotalJN = this.totalJN / this.anioAntJN;
-        this.presTotalJN = this.totalJN / this.presupuestoJN;
-        this.ProyTotalJN = this.proyeccionJN / this.presupuestoJN;
-
-        e.summaryCells[6][0].value = this.aniATotal;
-        e.summaryCells[8][0].value = this.presTotal;
-        e.summaryCells[10][0].value = this.ProyTotal;
-
-        e.summaryCells[15][0].value = this.aniATotalFB;
-        e.summaryCells[17][0].value = this.presTotalFB;
-        e.summaryCells[19][0].value = this.ProyTotalFB;
-
-        e.summaryCells[24][0].value = this.aniATotalM;
-        e.summaryCells[26][0].value = this.presTotalM;
-        e.summaryCells[28][0].value = this.ProyTotalM;
-
-        e.summaryCells[33][0].value = this.aniATotalA;
-        e.summaryCells[35][0].value = this.presTotalA;
-        e.summaryCells[37][0].value = this.ProyTotalA;
-
-        e.summaryCells[42][0].value = this.aniATotalMY;
-        e.summaryCells[44][0].value = this.presTotalMY;
-        e.summaryCells[46][0].value = this.ProyTotalMY;
-
-        e.summaryCells[51][0].value = this.aniATotalJN;
-        e.summaryCells[53][0].value = this.presTotalJN;
-        e.summaryCells[55][0].value = this.ProyTotalJN;
+        //Enero
+        e.summaryCells[6][0].value = this.totalPor.aniATotalE;
+        e.summaryCells[8][0].value = this.totalPor.presTotalE;
+        e.summaryCells[10][0].value = this.totalPor.ProyTotalE;
+        //Febrero
+        e.summaryCells[15][0].value = this.totalPor.aniATotalFB;
+        e.summaryCells[17][0].value = this.totalPor.presTotalFB;
+        e.summaryCells[19][0].value = this.totalPor.ProyTotalFB;
+        //Marzo
+        e.summaryCells[24][0].value = this.totalPor.aniATotalM;
+        e.summaryCells[26][0].value = this.totalPor.presTotalM;
+        e.summaryCells[28][0].value = this.totalPor.ProyTotalM;
+        //Abril
+        e.summaryCells[33][0].value = this.totalPor.aniATotalA;
+        e.summaryCells[35][0].value = this.totalPor.presTotalA;
+        e.summaryCells[37][0].value = this.totalPor.ProyTotalA;
+        //Mayo
+        e.summaryCells[42][0].value = this.totalPor.aniATotalMY;
+        e.summaryCells[44][0].value = this.totalPor.presTotalMY;
+        e.summaryCells[46][0].value = this.totalPor.ProyTotalMY;
+        //Junio
+        e.summaryCells[51][0].value = this.totalPor.aniATotalJN;
+        e.summaryCells[53][0].value = this.totalPor.presTotalJN;
+        e.summaryCells[55][0].value = this.totalPor.ProyTotalJN;
+        //Julio
+        // e.summaryCells[][0].value = this.totalPor.aniATotalJL;
+        // e.summaryCells[][0].value = this.totalPor.presTotalJL;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalJL;
+        //Agosto
+        // e.summaryCells[][0].value = this.totalPor.aniATotalAG;
+        // e.summaryCells[][0].value = this.totalPor.presTotalAG;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalAG;
+        //Septiembre
+        // e.summaryCells[][0].value = this.totalPor.aniATotalS;
+        // e.summaryCells[][0].value = this.totalPor.presTotalS;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalS;
+        //Octubre
+        // e.summaryCells[][0].value = this.totalPor.aniATotalOC;
+        // e.summaryCells[][0].value = this.totalPor.presTotalOC;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalOC;
+        //Noviembre
+        // e.summaryCells[][0].value = this.totalPor.aniATotalNV;
+        // e.summaryCells[][0].value = this.totalPor.presTotalNV;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalNV;
+        //Diciembre
+        // e.summaryCells[][0].value = this.totalPor.aniATotalDC;
+        // e.summaryCells[][0].value = this.totalPor.presTotalDC;
+        // e.summaryCells[][0].value = this.totalPor.ProyTotalDC;
 
       }
     }
