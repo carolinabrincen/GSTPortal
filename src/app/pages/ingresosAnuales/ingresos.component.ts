@@ -303,10 +303,18 @@ export class IngresosComponent implements OnInit {
   presTotalMY: number = 0;
   ProyTotalMY: number = 0;
 
+  totalJN: number = 0;
+  anioAntJN: number = 0;
+  presupuestoJN: number = 0;
+  proyeccionJN: number = 0;
+  aniATotalJN: number = 0;
+  presTotalJN: number = 0;
+  ProyTotalJN: number = 0;
+
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
-        //console.log(e)
+        // console.log(e)
         this.total = e.summaryCells[4][0].value;
         this.anioAnt = e.summaryCells[5][0].value;
         this.presupuesto = e.summaryCells[7][0].value;
@@ -332,6 +340,12 @@ export class IngresosComponent implements OnInit {
         this.presupuestoMY = e.summaryCells[43][0].value;
         this.proyeccionMY = e.summaryCells[45][0].value;
 
+        this.totalJN = e.summaryCells[49][0].value;
+        this.anioAntJN = e.summaryCells[50][0].value;
+        this.presupuestoJN = e.summaryCells[52][0].value;
+        this.proyeccionJN = e.summaryCells[54][0].value;
+
+
         this.aniATotal = this.total / this.anioAnt;
         this.presTotal = this.total / this.presupuesto;
         this.ProyTotal = this.proyeccion / this.presupuesto;
@@ -352,6 +366,10 @@ export class IngresosComponent implements OnInit {
         this.presTotalMY = this.totalMY / this.presupuestoMY;
         this.ProyTotalMY = this.proyeccionMY / this.presupuestoMY;
 
+        this.aniATotalJN = this.totalJN / this.anioAntJN;
+        this.presTotalJN = this.totalJN / this.presupuestoJN;
+        this.ProyTotalJN = this.proyeccionJN / this.presupuestoJN;
+
         e.summaryCells[6][0].value = this.aniATotal;
         e.summaryCells[8][0].value = this.presTotal;
         e.summaryCells[10][0].value = this.ProyTotal;
@@ -371,6 +389,10 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[42][0].value = this.aniATotalMY;
         e.summaryCells[44][0].value = this.presTotalMY;
         e.summaryCells[46][0].value = this.ProyTotalMY;
+
+        e.summaryCells[51][0].value = this.aniATotalJN;
+        e.summaryCells[53][0].value = this.presTotalJN;
+        e.summaryCells[55][0].value = this.ProyTotalJN;
 
       }
     }

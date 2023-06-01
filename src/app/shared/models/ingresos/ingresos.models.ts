@@ -64,6 +64,8 @@ export interface IngresosModel{
     julioPor: number;
     julioPres: number;
     julioPorP: number;
+    junPorProy: number;
+    junProyeccion: number;
     agostoFlete: number;
     agostoOtros: number;
     agostoTotal: number;
