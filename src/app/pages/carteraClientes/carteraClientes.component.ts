@@ -189,7 +189,15 @@ export class CarteraClientesComponent implements OnInit {
   customizeCAER(e) {  
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'data') {
-    
+
+      if(e.gridCell.column.caption == "Total"){
+        e.backgroundColor = "#DCDCDC";
+      }
+
+    }
+
+    if (gridCell.rowType === 'header') {
+      e.backgroundColor = "#DCDCDC";
     }
   }
 

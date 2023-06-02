@@ -67,7 +67,7 @@
               <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
               <dxo-paging [pageSize]="100"></dxo-paging>
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-              <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" ></dxo-export>
+              <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" [customizeExcelCell]="customizeCAER"></dxo-export>
 <!-- [customizeExcelCell]="customizeCAER" -->
                 <dxi-column dataField="nombreCliente" caption="Nombre de cliente"></dxi-column>
                 <dxi-column dataField="corriente" caption="Corriente" [format]="formatSliderTooltip"></dxi-column>
