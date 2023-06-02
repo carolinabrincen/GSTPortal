@@ -78,6 +78,11 @@ export const navigation = [
     text: 'Indicadores',
     icon: 'columnchooser',
     path: '/indicadores'
+  },
+  {
+    text: 'Cartera-Clientes',
+    icon: 'columnchooser',
+    path: '/cartera-clientes'
   } 
 
 ];

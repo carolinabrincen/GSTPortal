@@ -1,0 +1,94 @@
+<!-- Card principal  -->
+<div class="content-block dx-card responsive-paddings padding-10">
+
+            <br><br>
+            <dx-responsive-box>
+                <!-- COLS -->
+                <!-- <dxi-col [ratio]="1"></dxi-col> -->
+                <!--Año-->
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <!--vacia-->
+                <dxi-col [ratio]=".15"></dxi-col>
+                <!--Buscar-->
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+        
+        
+                <!-- ROWS -->
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+                <!-- CONTROLES DEL FORM -->
+                <!--#region :::: ROW 1 DEL FORM ::::  -->
+                <!-- AÑO -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Compañía:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="boxCartera" displayExpr="cartera" valueExpr="id" (onValueChanged)="selectBoxCartera($event)">
+                    </dx-select-box>
+                </dxi-item>
+                <!-- BUSCAR -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+                <!--#endregion :::: FIN ROW 1 ::::  -->
+            </dx-responsive-box>
+
+            <br><br><br>
+
+            <h4><p style="text-align: center"> <b>
+                TRANSPORTES DE CARGA GEMINIS, S.A. DE C.V.<br>
+                SALDOS DE CARTERA AL 31 DE MARZO DEL 2023
+            </b></p></h4>
+
+            <br>
+
+            <dx-data-grid  #ER id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
+              <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+              <dxo-paging [pageSize]="100"></dxo-paging>
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+              <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" ></dxo-export>
+<!-- [customizeExcelCell]="customizeCAER" -->
+                <dxi-column dataField="nombreCliente" caption="Nombre de cliente"></dxi-column>
+                <dxi-column dataField="corriente" caption="Corriente" [format]="formatSliderTooltip"></dxi-column>
+                <dxi-column dataField="dias1A30" caption="1 a 30 dias" [format]="formatSliderTooltip"></dxi-column>
+                <dxi-column dataField="dias31A60" caption="31 a 60 dias" [format]="formatSliderTooltip"></dxi-column>
+                <dxi-column dataField="dias61A90" caption="61 a 90 dias" [format]="formatSliderTooltip"></dxi-column>
+                <dxi-column dataField="mayorA90" caption="Mayor de 90" [format]="formatSliderTooltip"></dxi-column>
+                <dxi-column dataField="total" caption="Total" [format]="formatSliderTooltip" cssClass="styletotal"></dxi-column>
+
+            </dx-data-grid>
+        
+   
+
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+    <dx-toast [(visible)]="isVisible" type="warning" message="Seleccione Año y Mes">  
+        <dxo-position
+            my="top"
+            at="right"
+            of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>
