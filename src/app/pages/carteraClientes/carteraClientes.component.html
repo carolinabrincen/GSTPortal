@@ -63,6 +63,7 @@
 
             <dx-data-grid  #ER id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
+
               <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
               <dxo-paging [pageSize]="100"></dxo-paging>
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>

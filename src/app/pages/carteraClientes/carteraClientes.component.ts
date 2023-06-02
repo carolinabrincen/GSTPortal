@@ -146,12 +146,6 @@ export class CarteraClientesComponent implements OnInit {
     // }, 3000);
   }
 
-  onContentReady(e: any) {
-
-    this.loadingVisible = false;
-
-  }
-
   onHidden() {
   }
 
@@ -185,7 +179,7 @@ export class CarteraClientesComponent implements OnInit {
     if (e.rowType == 'data') {
 
       // if(e.colum.caption == 'Total'){
-        console.log(e)
+       
       //}
 
     }
