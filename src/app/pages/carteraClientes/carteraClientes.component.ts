@@ -7,6 +7,7 @@ import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.
 
 import { Cartera } from '../../shared/models/carteraClientes/cartera';
 import { CarteraClientes } from '../..//shared/models/carteraClientes/carteraClientes';
+import { Detalle } from '../../shared/models/carteraClientes/detalle';
 
 @Component({
   templateUrl: './carteraClientes.component.html',
@@ -16,10 +17,7 @@ export class CarteraClientesComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
-  costosAnuales: CostosAnuales[] = [];
-
   col: string = '50';
-
 
   boxCartera: Cartera[] = [
     { id: 1, cartera: "ATM" },
@@ -56,6 +54,22 @@ export class CarteraClientesComponent implements OnInit {
     {nombreCliente: 'PORCENTAJE DE AVANCE', corriente: 7, dias1A30: 35, dias31A60: 81, dias61A90: 0, mayorA90: 0, total: 0},
 
   ]
+
+  detalle: Detalle[] = [
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '31/01/2023', remision: 'TBK-ORI A GEMINIS', recogerEn: 'CUOTA CORPORATIVA', totalIntegrado: 476502.48, diasCredito: 45, fechaVencimiento: '17/03/2023', fechaCierre: '30/04/2023', diasTrans: 44, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '21/02/2023', remision: 'REC SEGUROS INTERCIAS ENE 23', recogerEn: '', totalIntegrado: 17952.96, diasCredito: 45, fechaVencimiento: '07/04/2023', fechaCierre: '30/04/2023', diasTrans: 23, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '23/02/2023', remision: 'MANTENIMIENTO TT1341', recogerEn: '', totalIntegrado: 6515.72, diasCredito: 45, fechaVencimiento: '09/04/2023', fechaCierre: '30/04/2023', diasTrans: 21, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '23/02/2023', remision: 'TC5048 TC5052 TC5055 TC5059', recogerEn: '', totalIntegrado: 10514.47, diasCredito: 45, fechaVencimiento: '09/04/2023', fechaCierre: '30/04/2023', diasTrans: 21, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '23/02/2023', remision: 'GASTOS TT1368 TT1457 TT1461', recogerEn: '', totalIntegrado: 2663.01, diasCredito: 45, fechaVencimiento: '09/04/2023', fechaCierre: '30/04/2023', diasTrans: 21, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '27/02/2023', remision: 'TT2209 TT1436 TT1431 TT1375', recogerEn: '', totalIntegrado: 2802.10, diasCredito: 45, fechaVencimiento: '13/04/2023', fechaCierre: '30/04/2023', diasTrans: 17, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '27/02/2023', remision: 'TT5067 TT5066 TT5064 TT5057', recogerEn: '', totalIntegrado: 10514.47, diasCredito: 45, fechaVencimiento: '13/04/2023', fechaCierre: '30/04/2023', diasTrans: 17, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '27/02/2023', remision: 'REC SEGUROS INTERCIAS FEB 23', recogerEn: '', totalIntegrado: 31815.29, diasCredito: 45, fechaVencimiento: '37/04/2023', fechaCierre: '30/04/2023', diasTrans: 17, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '27/02/2023', remision: 'CUOTA CORPORATIVA', recogerEn: '', totalIntegrado: 476502.48, diasCredito: 45, fechaVencimiento: '13/04/2023', fechaCierre: '30/04/2023', diasTrans: 17, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '28/02/2023', remision: 'TT3208 TT3208 TT1310', recogerEn: '', totalIntegrado: 1915.54, diasCredito: 45, fechaVencimiento: '14/04/2023', fechaCierre: '30/04/2023', diasTrans: 16, observaciones: 'SOLICITAR PAGO'},
+    {compania: 'TBK ORIZABA', cliente: 'TRANSPORTES DE CARGA GEMINIS', nombre: '1 TBK ORI', serie: '126', documento: 'TANSPORTES DE CARGA GEMINIS', fechaGuia: '28/02/2023', remision: 'TT1453 TT1465 TT1429', recogerEn: '', totalIntegrado: 1292.09, diasCredito: 45, fechaVencimiento: '14/04/2023', fechaCierre: '30/04/2023', diasTrans: 16, observaciones: 'SOLICITAR PAGO'},
+
+  ];
+
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
@@ -199,6 +213,14 @@ export class CarteraClientesComponent implements OnInit {
     if (gridCell.rowType === 'header') {
       e.backgroundColor = "#DCDCDC";
     }
+  }
+
+  onRowPreparedD(e){
+
+  }
+
+  onCellPreparedD(e){
+
   }
 
 //==================Formato a la data de la grafica==================================

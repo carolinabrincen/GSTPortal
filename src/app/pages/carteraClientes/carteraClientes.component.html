@@ -1,6 +1,8 @@
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
 
+    <dx-tab-panel>
+        <dxi-item title="Cartera cliente">
             <br><br>
             <dx-responsive-box>
                 <!-- COLS -->
@@ -78,8 +80,49 @@
                 <dxi-column dataField="total" caption="Total" [format]="formatSliderTooltip" cssClass="styletotal"></dxi-column>
 
             </dx-data-grid>
+        </dxi-item>
+
+        <dxi-item title="Detalle">
+            <dx-data-grid  #ING id="gridContainer1" [dataSource]="detalle" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+
+            <dxi-column dataField="compania" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="cliente" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+
+            <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
+            <dxi-column dataField="serie" caption="Serie" ></dxi-column>
+            <dxi-column dataField="documento" caption="Documento"></dxi-column>
+            <dxi-column dataField="fechaGuia" caption="Fecha guía"></dxi-column>
+            <dxi-column dataField="remision" caption="Remisión"></dxi-column>
+            <dxi-column dataField="recogerEn" caption="Recoger en"></dxi-column>
+            <dxi-column dataField="totalIntegrado" caption="Total integrado" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+            <dxi-column dataField="diasCredito" caption="Días de crédito"></dxi-column>
+            <dxi-column dataField="fechaVencimiento" caption="Fecha vencimiento"></dxi-column>
+            <dxi-column dataField="fechaCierre" caption="Fecha cierre"></dxi-column>
+            <dxi-column dataField="diasTrans" caption="Días transcurridos"></dxi-column>
+            <dxi-column dataField="observaciones" caption="Obsevaciones"></dxi-column>
+            
+            <dxo-summary>
+                <dxi-group-item column="totalIntegrado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true"></dxi-group-item>
         
-   
+                <dxi-total-item column="totalIntegrado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+            </dxo-summary>
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+            <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
+            <dxo-paging [pageSize]="60"></dxo-paging>
+            <dxo-sorting mode="none"></dxo-sorting>
+
+            </dx-data-grid>
+        </dxi-item>
+
+        <dxi-item title="UUID">
+        </dxi-item>
+    </dx-tab-panel>
 
     <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
