@@ -1,0 +1,41 @@
+<!-- Card principal  -->
+<div class="content-block dx-card responsive-paddings padding-10">
+
+            <dx-data-grid  #ER id="gridContainer2" [dataSource]="validacionI" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
+
+              <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+              <dxo-paging [pageSize]="100"></dxo-paging>
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+              <dxo-export [enabled]="true" fileName="Validación-Ingreso"></dxo-export>
+
+                <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
+                <dxi-column dataField="cliente" caption="cliente"></dxi-column>
+                <dxi-column dataField="flete" caption="flete"></dxi-column>
+
+                <dxi-column dataField="" caption="Validar" [fixed]="false" cellTemplate="detalleCellTemplate"></dxi-column>
+
+                <div *dxTemplate="let data of 'detalleCellTemplate'">
+                    <dx-button icon="paste" stylingMode="outlined" type="warning" (onClick)="verDetallesClick(data)"></dx-button>
+                </div>
+
+
+            </dx-data-grid>
+
+
+
+            
+
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+    <dx-toast [(visible)]="isVisible" type="warning" message="Seleccione Año y Mes">  
+        <dxo-position
+            my="top"
+            at="right"
+            of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>

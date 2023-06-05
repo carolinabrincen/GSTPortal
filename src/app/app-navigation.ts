@@ -83,6 +83,11 @@ export const navigation = [
     text: 'Cartera-Clientes',
     icon: 'columnchooser',
     path: '/cartera-clientes'
-  } 
+  },
+  // {
+  //   text: 'Validación-Ingreso',
+  //   icon: 'columnchooser',
+  //   path: '/validacion-ingreso'
+  // } 
 
 ];

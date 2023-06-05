@@ -67,6 +67,10 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleMayo = res.data.detalle;
     });
 
+    this.ingresosService.getIngresosDetalladosMensualJun().subscribe(res => {
+      this.arrIngresosJunio = res.data.resumen;
+      this.arrDetalleJunio = res.data.detalle;
+    });
     
   }
 
