@@ -104,6 +104,7 @@
             <dxi-column dataField="fechaCierre" caption="Fecha cierre"></dxi-column>
             <dxi-column dataField="diasTrans" caption="Días transcurridos"></dxi-column>
             <dxi-column dataField="observaciones" caption="Obsevaciones"></dxi-column>
+            <dxi-column dataField="" caption="UUID" [width]="100"></dxi-column>
             
             <dxo-summary>
                 <dxi-group-item column="totalIntegrado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true"></dxi-group-item>
@@ -118,9 +119,6 @@
             <dxo-sorting mode="none"></dxo-sorting>
 
             </dx-data-grid>
-        </dxi-item>
-
-        <dxi-item title="UUID">
         </dxi-item>
     </dx-tab-panel>
 
