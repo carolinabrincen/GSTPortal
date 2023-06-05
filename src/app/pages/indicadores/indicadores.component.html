@@ -301,7 +301,7 @@
                         <dxi-column dataField="mexicali" caption="Mexicali" [format]="separatorKV"></dxi-column>
                         <dxi-column dataField="orizaba" caption="Orizaba" [format]="separatorKV"></dxi-column>
                         <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separatorKV"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" [format]="separatorKV"></dxi-column>
+                        <!-- <dxi-column dataField="total" caption="Total" [format]="separatorKV"></dxi-column> -->
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
@@ -312,7 +312,7 @@
                             <dxi-group-item column="mexicali" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                             <dxi-group-item column="orizaba" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                             <dxi-group-item column="ramosArizpe" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="total" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <!-- <dxi-group-item column="total" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item> -->
     
                             <dxi-total-item column="cuatitlan" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="tultitlan" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
@@ -321,13 +321,13 @@
                             <dxi-total-item column="mexicali" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="orizaba" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="ramosArizpe" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>
+                            <!-- <dxi-total-item column="total" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item> -->
                         </dxo-summary>
 
                         <dxo-group-panel [visible]="false"></dxo-group-panel>
-                        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                        <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
                         <dxo-export [enabled]="true" fileName="Kilómetros-Viaje" [customizeExcelCell]="customizeKV"></dxo-export>
-                        <dxo-paging [pageSize]="60"></dxo-paging>
+                        <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
                         <dxo-sorting mode="none"></dxo-sorting>
 
                     </dx-data-grid>
