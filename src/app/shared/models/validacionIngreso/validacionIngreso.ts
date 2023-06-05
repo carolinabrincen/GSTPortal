@@ -1,6 +1,6 @@
 export class ValidacionIngreso{
     udn: string;
-    numGuia: number;
+    numGuia: string;;
     cliente: string;
-    flete: string;
+    flete: number;
 }

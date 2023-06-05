@@ -84,10 +84,10 @@ export const navigation = [
     icon: 'columnchooser',
     path: '/cartera-clientes'
   },
-  // {
-  //   text: 'Validación-Ingreso',
-  //   icon: 'columnchooser',
-  //   path: '/validacion-ingreso'
-  // } 
+  {
+    text: 'Validación-Ingreso',
+    icon: 'columnchooser',
+    path: '/validacion-ingreso'
+  } 
 
 ];

@@ -12,7 +12,7 @@ import { DetailGridComponent } from './pages/profile/detail-grid/detail-grid.com
 import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule, DxCalendarModule,
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
-  DxCheckBoxModule, DxPivotGridFieldChooserModule,} from 'devextreme-angular';
+  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule} from 'devextreme-angular';
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -184,7 +184,10 @@ const routes: Routes = [
     DxTabsModule, 
     DxScrollViewModule, 
     DxCheckBoxModule,
-    DxPivotGridFieldChooserModule],
+    DxPivotGridFieldChooserModule,
+    DxNumberBoxModule,
+    DxAutocompleteModule
+  ],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

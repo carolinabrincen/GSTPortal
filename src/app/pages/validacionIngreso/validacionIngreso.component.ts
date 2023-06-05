@@ -1,17 +1,23 @@
 import { CostosAnualesService } from '../../services/costos-anuales/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent, DxFormComponent } from 'devextreme-angular';
 
 import { ValidacionIngreso } from '../../shared/models/validacionIngreso/validacionIngreso';
+import { ClientesValidos } from '../../shared/models/validacionIngreso/clientesValidos';
+import { Customer, Service } from './validacion.service'
+import notify from 'devextreme/ui/notify';
+import Validator from 'devextreme/ui/validator';
 
 @Component({
   templateUrl: './validacionIngreso.component.html',
   styleUrls: ['./validacionIngreso.component.scss'],
+  providers: [Service],
 })
 export class ValidacionIngresoComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
+  @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
 
   col: string = '50';
 
@@ -27,13 +33,30 @@ export class ValidacionIngresoComponent implements OnInit {
   isVisible = false;
 
   validacionI: ValidacionIngreso[] = [
-    {udn: 'BONAMPAK', numGuia: 1520, cliente: 'MOCTEZUMA', flete: '?'}
+    {udn: 'Orizaba', numGuia: 'ORI-00001', cliente: 'MATERIAS PRIMAS MONTERREY', flete: 20350.00}
   ]
 
+  clientesV: ClientesValidos[]=[
+    {id: 51, cliente: 'PUNTO A PUNTO T2', fechaIngreso: '05/06/2023 11:14', solicito: 'Alejandra Vázquez'},
+    {id: 109, cliente: 'ATRATEGIC MATERIALS MEXICANA', fechaIngreso: '05/06/2023 11:14', solicito: 'Alejandra Vázquez'},
+  ]
+
+  modValidacion: boolean;
+  customer: Customer;
+
+  changePasswordMode = (name) => {
+    let editor = this.form.instance.getEditor(name);
+    editor.option(
+      'mode',
+      editor.option('mode') === 'text' ? 'password' : 'text',
+    );
+  };
 
   constructor(
     private costosAnualesService: CostosAnualesService,
+    service: Service
     ) {
+      this.customer = service.getCustomer();
 
   //===========chart===================
 
@@ -70,12 +93,6 @@ export class ValidacionIngresoComponent implements OnInit {
     });
     return request;
   }
-
-
-  borrarClick = (e: any) =>{
-    this.selectTracto.value = '';
-  }
-
   buscarClick = (e: any) => {
     // if (this.selectedClasficacion !==  undefined) {
     //   this.loadingVisible = true;
@@ -98,6 +115,78 @@ export class ValidacionIngresoComponent implements OnInit {
     // }
 
   };
+
+  borrarClick = (e: any) =>{
+    this.selectTracto.value = '';
+  }
+
+  verDetallesClick(data) {
+    var mydata = data.data;
+    this.modValidacion = true;
+    // this.getDetalleTPS(mydata.renglon)
+  }
+
+  passwordOptions: any = {
+    mode: 'password',
+    onValueChanged: () => {
+      let editor = this.form.instance.getEditor('ConfirmPassword');
+      if (editor.option('value')) {
+        let instance = Validator.getInstance(editor.element()) as Validator;
+        instance.validate();
+      }
+    },
+    buttons: [
+      {
+        name: 'password',
+        location: 'after',
+        options: {
+          icon: './assets/ojo.png',
+          type: 'default',
+          onClick: () => this.changePasswordMode('Password'),
+        },
+      },
+    ],
+  };
+
+  confirmOptions: any = {
+    mode: 'password',
+    buttons: [
+      {
+        name: 'password',
+        location: 'after',
+        options: {
+          icon: './assets/ojo.png',
+          type: 'default',
+          onClick: () => this.changePasswordMode('ConfirmPassword'),
+        },
+      },
+    ],
+  };
+
+  passwordComparison = () => this.form.instance.option('formData').Contrasenia;
+
+  buttonOptions: any = {
+    text: 'Validar',
+    type: 'success',
+    useSubmitBehavior: true,
+  };
+
+
+  onFormSubmit = function (e) {
+    notify({
+      message: 'Validación exitosa',
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, 'success', 3000);
+    this.modValidacion = false;
+    e.preventDefault();
+  };
+
+
+
+
 
   onShown() {
     // setTimeout(() => {
@@ -183,11 +272,6 @@ export class ValidacionIngresoComponent implements OnInit {
 
   customizeColumns(columns) {
     columns[0].width = 70;
-  }
-
-  verDetallesClick(data) {
-    var mydata = data.data;
-    // this.getDetalleTPS(mydata.renglon)
   }
 
 
