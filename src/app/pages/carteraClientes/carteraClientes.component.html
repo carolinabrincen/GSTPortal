@@ -83,67 +83,104 @@
         </dxi-item>
 
         <dxi-item title="Detalle">
+            <br>
+            <div>
+
+                <div class="dx-field">
+        
+                    <div class="dx-field-value d-block mr-0 ml-auto" style="width: 20%;">
+                        <dx-button stylingMode="contained" text="Actualizar" icon="refresh" type="normal" [width]="240" (onClick)="ActuaizarDetalle()">
+                        </dx-button>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
             <dx-data-grid  #ING id="gridContainer1" [dataSource]="detalle" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
 
-            <dxi-column dataField="nombre" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>  <!-- AGRUPACION 1 -->
-            <dxi-column dataField="documento" caption="" [fixed]="true" [groupIndex]="1"></dxi-column><!-- AGRUPACION 2 -->
-
-            <dxi-column dataField="cliente" caption="Serie" [width]="100"></dxi-column>
+            <dxi-column dataField="cliente" caption="Cliente" [width]="100"></dxi-column>
             <dxi-column dataField="nombre" caption="Nombre" [width]="100"></dxi-column>
             <dxi-column dataField="nocarta" caption="Num. Carta" [width]="100"></dxi-column> 
             <dxi-column dataField="documento" caption="Documento" [width]="100"></dxi-column>
-            <dxi-column dataField="remision" caption="Remisión" [width]="150"></dxi-column>
+            <dxi-column dataField="remision" caption="Remisión" [width]="250"></dxi-column>
             <dxi-column dataField="fechA_GUIA" caption="Fecha guía" [width]="150"></dxi-column>
-            <dxi-column dataField="viaje" caption="Recoger en" [width]="100"></dxi-column>
+            <dxi-column dataField="viaje" caption="Viaje" [width]="100"></dxi-column>
             <dxi-column dataField="unidad" caption="Unidad" [width]="100"></dxi-column> 
             <dxi-column dataField="remolquE1" caption="Remolque 1" [width]="100"></dxi-column> 
             <dxi-column dataField="totaL_SALDO" caption="Total saldo" [width]="100"></dxi-column> 
-            <dxi-column dataField="totaL_VENCIDOS" caption="Total vencido" [width]="100"></dxi-column> 
+            <dxi-column dataField="totaL_VENCIDOS" caption="Total vencidos" [width]="130"></dxi-column> 
             <dxi-column dataField="saldo" caption="Saldo" [width]="100"></dxi-column>            
-            <dxi-column dataField="porvencido" caption="Por vencer" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS115" caption="Dias 115" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS1630" caption="Dias 1630" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS3145" caption="Dias 3145" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS4660" caption="Dias 4660" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS6190" caption="Dias 6190" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS91120" caption="Dias 91120" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS120" caption="Dias 120" [width]="100"></dxi-column> 
+            <dxi-column dataField="porvencido" caption="Por vencido" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS115" caption="1-15" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS1630" caption="16-30" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS3145" caption="31-45" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS4660" caption="46-60" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS6190" caption="61-90" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS91120" caption="91-120" [width]="100"></dxi-column> 
+            <dxi-column dataField="diaS120" caption="> 120" [width]="100"></dxi-column> 
             <dxi-column dataField="poR_VENCER" caption="Por vencer" [width]="100"></dxi-column> 
             <dxi-column dataField="poR_VENCER2" caption="Por vencer 2" [width]="100"></dxi-column> 
             <dxi-column dataField="dias_vencimiento" caption="Días transcurridos" [width]="140"></dxi-column>
-            <dxi-column dataField="venC17" caption="Venc 17" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC815" caption="Venc 815" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC1630" caption="Venc 1630" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC31" caption="Venc 31" [width]="100"></dxi-column> 
-            <dxi-column dataField="saldO_SIN_CCOBRO" caption="Saldo sin cobro" [width]="100"></dxi-column>
-            <dxi-column dataField="totaL_INTEGRADO" caption="Total integrado" format="$ #,###,###.##;-$ #,##0.##" [width]="100"></dxi-column>
-            <dxi-column dataField="tipO_DE_CREDITO" caption="Tipo de credito" [width]="100"></dxi-column>             
-            <dxi-column dataField="diaS_DECREDITO" caption="Días de crédito" [width]="100"></dxi-column>
+            <dxi-column dataField="venC17" caption="1-7" [width]="100"></dxi-column> 
+            <dxi-column dataField="venC815" caption="8-15" [width]="100"></dxi-column> 
+            <dxi-column dataField="venC1630" caption="16-30" [width]="100"></dxi-column> 
+            <dxi-column dataField="venC31" caption="> 30" [width]="100"></dxi-column> 
+            <dxi-column dataField="saldO_SIN_CCOBRO" caption="Saldo sin cobro" [width]="160"></dxi-column>
+            <dxi-column dataField="totaL_INTEGRADO" caption="Total integrado" [width]="160"></dxi-column>
+            <dxi-column dataField="tipO_DE_CREDITO" caption="Tipo de crédito" [width]="150"></dxi-column>             
+            <dxi-column dataField="diaS_DECREDITO" caption="Días de crédito" [width]="150"></dxi-column>
             <dxi-column dataField="subtotal" caption="Subtotal" [width]="100"></dxi-column> 
             <dxi-column dataField="iva" caption="IVA" [width]="100"></dxi-column>  
-            <dxi-column dataField="fechA_DE_VENCIMIENTO" caption="Fecha vencimiento" [width]="150"></dxi-column>
-            <dxi-column dataField="montO_RETENCION" caption="Monto retención" [width]="100"></dxi-column>            
-            <dxi-column dataField="fechA_CARTA" caption="Fecha cierre" [width]="150"></dxi-column>
+            <dxi-column dataField="fechA_DE_VENCIMIENTO" caption="Fecha de vencimiento" [width]="150"></dxi-column>
+            <dxi-column dataField="montO_RETENCION" caption="Monto retención" [width]="150"></dxi-column>            
+            <dxi-column dataField="fechA_CARTA" caption="Fecha carta" [width]="150"></dxi-column>
             <dxi-column dataField="factoR_IVA" caption="Factor IVA" [width]="100"></dxi-column> 
-            <dxi-column dataField="factoR_DE_RETENCION" caption="Factor de retención" [width]="100"></dxi-column> 
+            <dxi-column dataField="factoR_DE_RETENCION" caption="Factor de retención" [width]="150"></dxi-column> 
             <dxi-column dataField="monto_pago" caption="Monto pago" [width]="100"></dxi-column> 
-            <dxi-column dataField="status_guia" caption="Status guia" [width]="100"></dxi-column> 
+            <dxi-column dataField="status_guia" caption="Estatus guía" [width]="100"></dxi-column> 
             <dxi-column dataField="tipo_origen" caption="Tipo origen" [width]="100"></dxi-column> 
             <dxi-column dataField="tipo_doc" caption="Tipo doc." [width]="100"></dxi-column> 
-            <dxi-column dataField="no_poliza" caption="Num. Poliza" [width]="100"></dxi-column> 
+            <dxi-column dataField="no_poliza" caption="Num. Póliza" [width]="100"></dxi-column> 
             <dxi-column dataField="no_cartaF" caption="Num. CartaF" [width]="100"></dxi-column> 
-            <dxi-column dataField="id_area" caption="UUID" [width]="100"></dxi-column>
-            <dxi-column dataField="" caption="Obsevaciones" [width]="100"></dxi-column>
+            <dxi-column dataField="id_area" caption="ID área" [width]="100"></dxi-column>
             
-            <dxo-summary>
-                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true"></dxi-group-item>
+            <!-- <dxo-summary>
+                <dxi-group-item column="totaL_SALDO" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="totaL_VENCIDOS" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="saldo" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="porvencido" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="poR_VENCER2" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="poR_VENCER" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="saldO_SIN_CCOBRO" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="subtotal" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="iva" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="montO_RETENCION" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="factoR_IVA" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="factoR_DE_RETENCION" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="monto_pago" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
+
         
-                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-            </dxo-summary>
+                <dxi-total-item column="totaL_SALDO" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="totaL_VENCIDOS" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="saldo" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="porvencido" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="poR_VENCER2" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="poR_VENCER" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="saldO_SIN_CCOBRO" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="subtotal" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="iva" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="montO_RETENCION" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="factoR_IVA" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="factoR_DE_RETENCION" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="monto_pago" summaryType="sum"  displayFormat="{0}"></dxi-total-item>
+            </dxo-summary> -->
 
             <dxo-group-panel [visible]="false"></dxo-group-panel>
             <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>

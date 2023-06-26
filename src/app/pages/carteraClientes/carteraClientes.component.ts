@@ -92,7 +92,7 @@ export class CarteraClientesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
-        console.log(this.detalle)
+        this.loadingVisible = false;
       })
     });
     return request;
@@ -104,7 +104,10 @@ export class CarteraClientesComponent implements OnInit {
     this.selectedBoxCartera = e.value;
   }
 
-
+  ActuaizarDetalle(){
+    this.getCarteraDetalle();
+    this.loadingVisible = true;
+  }
 
   callCostosAnuales() {
     const request = new Promise((resolve, reject) => {
