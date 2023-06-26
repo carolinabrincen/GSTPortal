@@ -42,6 +42,11 @@
                         <dxo-format type="currency" [precision]="2"> </dxo-format>
                     </dxi-column>
 
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos " headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
                     <!-- febMANuevo -->
                     <dxi-column dataField="maTotal" caption="Total" headerCellTemplate="headerTemplate">
                         <dxo-format type="currency" [precision]="2"> </dxo-format>
@@ -99,7 +104,10 @@
                     </dxi-group-item>
                     <dxi-total-item column="maSolicitudCancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
                     </dxi-total-item>
-
+                    <dxi-group-item column="maCancelacionOtros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="maCancelacionOtros" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
                     <dxi-group-item column="maTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     <dxi-total-item column="maTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
@@ -733,6 +741,12 @@
                         <dxo-format type="currency" [precision]="2"> </dxo-format>
                     </dxi-column>
 
+                    <!-- febMADisminucion -->
+                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos" headerCellTemplate="headerTemplate">
+                        <dxo-format type="currency" [precision]="2"> </dxo-format>
+                    </dxi-column>
+
+
                     <!-- febMANuevo -->
                     <dxi-column dataField="maTotal" caption="Total" headerCellTemplate="headerTemplate">
                         <dxo-format type="currency" [precision]="2"> </dxo-format>
@@ -794,7 +808,10 @@
                     </dxi-group-item>
                     <dxi-total-item column="maSolicitudCancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
                     </dxi-total-item>
-
+                    <dxi-group-item column="maCancelacionOtros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="maCancelacionOtros" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
                     <dxi-group-item column="maTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     <dxi-total-item column="maTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
