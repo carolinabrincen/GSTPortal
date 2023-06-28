@@ -81,6 +81,7 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
+    { idAnio: 0, anio: "" },    
     { idAnio: 202301, anio: "202301" },
     { idAnio: 202302, anio: "202302" },
     { idAnio: 202303, anio: "202303" },
@@ -102,6 +103,7 @@ export class CostosAnualesNewComponent implements OnInit {
   companias: Compania[] =[]
 
   nweCompanias = [
+    {idCompania: '', compania: ''},
     {idCompania: 'ATMMAC', compania: 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'},
     {idCompania: 'CORPOR', compania: 'CORPORATIVO'},
     {idCompania: 'GSTFYS', compania: 'GST FLETES Y SERVICIOS S.A. DE C.V.'},
@@ -219,22 +221,27 @@ export class CostosAnualesNewComponent implements OnInit {
 
       if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'ATMMAC', udn: 'ATMMAC'}
         ]
       }else if(value == 'CORPORATIVO'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'CORPOR', udn: 'CORPOR'}
         ]
       }else if(value == 'GST FLETES Y SERVICIOS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'GSTFYS', udn: 'GSTFYS'}
         ]
       }else if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'TEICUA', udn: 'TEICUA'}
         ]
       }else if(value == 'TRANSPORTES BONAMPAK S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'TBKHER', udn: 'TBKHER'},
           {idUdn: 'TBKRAM', udn: 'TBKRAM'},
           {idUdn: 'TBKORI', udn: 'TBKORI'},
@@ -243,6 +250,7 @@ export class CostosAnualesNewComponent implements OnInit {
         ]
       }else if(value == 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
+          {idUdn: '', udn: ''},
           {idUdn: 'TCGTUL', udn: 'TCGTUL'}
         ]
       }
@@ -268,7 +276,6 @@ export class CostosAnualesNewComponent implements OnInit {
         this.deltalleAxuliar = data.data
         console.log(this.deltalleAxuliar)
         this.modDetalleA = true;
-
       })
     });
     return request;
@@ -287,8 +294,11 @@ export class CostosAnualesNewComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postCAAuxiliar(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado).subscribe(data => {
         this.CAAuxiliar = data.data;
+
       })
+
     });
+
     return request;
   }
 
@@ -352,6 +362,7 @@ export class CostosAnualesNewComponent implements OnInit {
       this.getCACostos();
       this.getCAAuxiliar();
     });
+
     return request;
   }
 
@@ -383,7 +394,9 @@ export class CostosAnualesNewComponent implements OnInit {
 
       this.callCostosAnuales().then(() => {
         this.loadingVisible = false;
+
       });
+
     }
 
   };
