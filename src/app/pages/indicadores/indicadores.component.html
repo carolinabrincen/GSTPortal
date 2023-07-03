@@ -303,7 +303,7 @@
 
                     <h3>Kilómetros por Viaje</h3>
                     <dx-data-grid  #KMSXVJS id="gridContainer5" [dataSource]="kilometroViajes" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedKV($event)" (onCellPrepared)="onCellPreparedKV($event)">
+                    (onRowPrepared)="onRowPreparedKV($event)" (onCellPrepared)="onCellPreparedKV($event)" [customizeExportData]="customizeExportDataKV">
 
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -322,13 +322,13 @@
                         
                         <dxo-summary>
                             <!-- SUMARY DE GRUPO -->
-                            <dxi-group-item column="cuatitlan" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="tultitlan" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="guadalajara" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="hermosillo" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="mexicali" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="orizaba" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                            <dxi-group-item column="ramosArizpe" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="cuatitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="tultitlan" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="guadalajara" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="hermosillo" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="mexicali" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="orizaba" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                            <dxi-group-item column="ramosArizpe" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                             <!-- <dxi-group-item column="total" summaryType="avg" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item> -->
     
                             <dxi-total-item column="cuatitlan" summaryType="avg" [valueFormat]="separatorKV" displayFormat="{0}"></dxi-total-item>

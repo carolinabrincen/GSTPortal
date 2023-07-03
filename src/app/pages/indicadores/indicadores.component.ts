@@ -5299,8 +5299,8 @@ onCellPreparedPM(e){
         this.totalGuadalajaraKV = this.GuadalajaraTSKV / 7;//this.sumaTotalGroupG.length;
         c.totalItem.summaryCells[4][0].value = this.totalGuadalajaraKV;
 
-        this.HermosilloTSKV = this.totalKEKV.hermosilloTE + this.totalKFKV.hermosilloTF +this.totalKMKV.hermosilloTM + this.totalKAKV.hermosilloTA + this.totalKMYKV.hermosilloTMY + this.totalKJNKV.hermosilloTJN;// + this.totalKJLKV;
-        this.totalHermosilloKV = this.HermosilloTSKV / 6;//this.sumaTotalGroupH.length;
+        this.HermosilloTSKV = this.totalKEKV.hermosilloTE + this.totalKFKV.hermosilloTF +this.totalKMKV.hermosilloTM + this.totalKAKV.hermosilloTA + this.totalKMYKV.hermosilloTMY + this.totalKJNKV.hermosilloTJN + this.totalKJLKV.hermosilloTJL;
+        this.totalHermosilloKV = this.HermosilloTSKV / 7;//this.sumaTotalGroupH.length;
         c.totalItem.summaryCells[5][0].value = this.totalHermosilloKV;
 
         this.MexicaliTSKV = this.totalKEKV.mexicaliTE + this.totalKFKV.mexicaliTF +this.totalKMKV.mexicaliTM + this.totalKAKV.mexicaliTA + this.totalKMYKV.mexicaliTMY + this.totalKJNKV.mexicaliTJN + this.totalKJLKV.mexicaliTJL;
@@ -5346,6 +5346,276 @@ onCellPreparedPM(e){
     e.font = {bold: true}
 
   }
+  }
+
+  customizeExportDataKV(cols, rows){
+
+    let sumaCuautitlaE = 0
+    let sumaTultitlanE = 0
+    let sumaGuadalajaraE = 0
+    let sumaHermosilloE = 0
+    let sumaMexicaliE = 0
+    let sumaOrizabaE = 0
+    let sumaRamozAE = 0
+
+    let sumaCuautitlaF = 0
+    let sumaTultitlanF = 0
+    let sumaGuadalajaraF = 0
+    let sumaHermosilloF = 0
+    let sumaMexicaliF = 0
+    let sumaOrizabaF = 0
+    let sumaRamozAF = 0
+
+    let sumaCuautitlaM = 0
+    let sumaTultitlanM = 0
+    let sumaGuadalajaraM = 0
+    let sumaHermosilloM = 0
+    let sumaMexicaliM = 0
+    let sumaOrizabaM = 0
+    let sumaRamozAM = 0
+
+    let sumaCuautitlaA = 0
+    let sumaTultitlanA = 0
+    let sumaGuadalajaraA = 0
+    let sumaHermosilloA = 0
+    let sumaMexicaliA = 0
+    let sumaOrizabaA = 0
+    let sumaRamozAA = 0
+
+    let sumaCuautitlaMY = 0
+    let sumaTultitlanMY = 0
+    let sumaGuadalajaraMY = 0
+    let sumaHermosilloMY = 0
+    let sumaMexicaliMY = 0
+    let sumaOrizabaMY = 0
+    let sumaRamozAMY = 0
+
+    let sumaCuautitlaJN = 0
+    let sumaTultitlanJN = 0
+    let sumaGuadalajaraJN = 0
+    let sumaHermosilloJN = 0
+    let sumaMexicaliJN = 0
+    let sumaOrizabaJN = 0
+    let sumaRamozAJN = 0
+
+    let sumaCuautitlaJL = 0
+    let sumaTultitlanJL = 0
+    let sumaGuadalajaraJL = 0
+    let sumaHermosilloJL = 0
+    let sumaMexicaliJL = 0
+    let sumaOrizabaJL = 0
+    let sumaRamozAJL = 0
+
+
+    let TotalSCuautitlan = 0
+    let TotalSTultitlan = 0
+    let TotalSGuadalajara = 0
+    let TotalSHermosillo = 0
+    let TotalSMexicali = 0
+    let TotalSOrizaba = 0
+    let TotalSRamozA = 0
+
+    rows.forEach((row: any) =>{  
+      
+      var rowValues =  row.values;  
+      var myData = row.data
+      
+      // if(myData?.mes == "01 ENE"){
+
+      //     //this.customTArrayL.cuatitlanEL
+      //     arrayCuatitlanEL.push(myData.cuatitlan)
+      //     console.log(arrayCuatitlanEL.length)
+          
+      //   if(row.data.tultitlan != 0){
+      //     arrayTultitlanEL.push(row.data.tultitlan)
+      //   }
+      //   if(row.data.guadalajara != 0){
+      //     arrayGuadalajaraEL.push(row.data.guadalajara)
+      //   }
+      //   if(row.data.hermosillo != 0){
+      //     arrayHermosilloEL.push(row.data.hermosillo)
+      //   }
+      //   if(row.data.mexicali != 0){
+      //     arrayMexicaliEL.push(row.data.mexicali)
+      //   }
+      //   if(row.data.orizaba != 0){
+      //     arrayOrizabaL.push(row.data.orizaba)
+      //   }
+      //   if(row.data.ramosArizpe != 0){
+      //     arrayRamosAEL.push(row.data.ramosArizpe)
+      //   }
+        
+
+      // }
+
+      if(row.rowType == "group"){
+        if(row.key[0] == '01 ENE'){
+
+          sumaCuautitlaE = row.summaryCells[1][0].value / 3;
+          sumaTultitlanE = row.summaryCells[2][0].value / 3;
+          sumaGuadalajaraE = row.summaryCells[3][0].value / 2;
+          sumaHermosilloE = row.summaryCells[4][0].value / 2;
+          sumaMexicaliE = row.summaryCells[5][0].value / 2;
+          sumaOrizabaE = row.summaryCells[6][0].value / 5;
+          sumaRamozAE = row.summaryCells[7][0].value / 3;
+
+          rowValues[1][0].value = sumaCuautitlaE;
+          rowValues[2][0].value = sumaTultitlanE;
+          rowValues[3][0].value = sumaGuadalajaraE;
+          rowValues[4][0].value = sumaHermosilloE;
+          rowValues[5][0].value = sumaMexicaliE;
+          rowValues[6][0].value = sumaOrizabaE;
+          rowValues[7][0].value = sumaRamozAE;
+        }
+
+        if(row.key[0] == '02 FEB'){
+          sumaCuautitlaF = row.summaryCells[1][0].value / 4;
+          sumaTultitlanF = row.summaryCells[2][0].value / 3;
+          sumaGuadalajaraF = row.summaryCells[3][0].value / 2;
+          sumaHermosilloF = row.summaryCells[4][0].value / 2;
+          sumaMexicaliF = row.summaryCells[5][0].value / 2;
+          sumaOrizabaF = row.summaryCells[6][0].value / 5;
+          sumaRamozAF = row.summaryCells[7][0].value / 3;
+
+          rowValues[1][0].value = sumaCuautitlaF;
+          rowValues[2][0].value = sumaTultitlanF;
+          rowValues[3][0].value = sumaGuadalajaraF;
+          rowValues[4][0].value = sumaHermosilloF;
+          rowValues[5][0].value = sumaMexicaliF;
+          rowValues[6][0].value = sumaOrizabaF;
+          rowValues[7][0].value = sumaRamozAF;
+        }
+
+        if(row.key[0] == '03 MAR'){
+          sumaCuautitlaM = row.summaryCells[1][0].value / 4;
+          sumaTultitlanM = row.summaryCells[2][0].value / 4;
+          sumaGuadalajaraM = row.summaryCells[3][0].value / 2;
+          sumaHermosilloM = row.summaryCells[4][0].value / 2;
+          sumaMexicaliM = row.summaryCells[5][0].value / 2;
+          sumaOrizabaM = row.summaryCells[6][0].value / 6;
+          sumaRamozAM = row.summaryCells[7][0].value / 2;
+
+          rowValues[1][0].value = sumaCuautitlaM;
+          rowValues[2][0].value = sumaTultitlanM;
+          rowValues[3][0].value = sumaGuadalajaraM;
+          rowValues[4][0].value = sumaHermosilloM;
+          rowValues[5][0].value = sumaMexicaliM;
+          rowValues[6][0].value = sumaOrizabaM;
+          rowValues[7][0].value = sumaRamozAM;
+        }
+
+        if(row.key[0] == '04 ABR'){
+          sumaCuautitlaA = row.summaryCells[1][0].value / 4;
+          sumaTultitlanA = row.summaryCells[2][0].value / 3;
+          sumaGuadalajaraA = row.summaryCells[3][0].value / 3;
+          sumaHermosilloA = row.summaryCells[4][0].value / 3;
+          sumaMexicaliA = row.summaryCells[5][0].value / 3;
+          sumaOrizabaA = row.summaryCells[6][0].value / 6;
+          sumaRamozAA = row.summaryCells[7][0].value / 4;
+
+          rowValues[1][0].value = sumaCuautitlaA;
+          rowValues[2][0].value = sumaTultitlanA;
+          rowValues[3][0].value = sumaGuadalajaraA;
+          rowValues[4][0].value = sumaHermosilloA;
+          rowValues[5][0].value = sumaMexicaliA;
+          rowValues[6][0].value = sumaOrizabaA;
+          rowValues[7][0].value = sumaRamozAA;
+        }
+
+        if(row.key[0] == '05 MAY'){
+          sumaCuautitlaMY = row.summaryCells[1][0].value / 3;
+          sumaTultitlanMY = row.summaryCells[2][0].value / 2;
+          sumaGuadalajaraMY = row.summaryCells[3][0].value / 2;
+          sumaHermosilloMY = row.summaryCells[4][0].value / 2;
+          sumaMexicaliMY = row.summaryCells[5][0].value / 2;
+          sumaOrizabaMY = row.summaryCells[6][0].value / 4;
+          sumaRamozAMY = row.summaryCells[7][0].value / 3;
+
+          rowValues[1][0].value = sumaCuautitlaMY;
+          rowValues[2][0].value = sumaTultitlanMY;
+          rowValues[3][0].value = sumaGuadalajaraMY;
+          rowValues[4][0].value = sumaHermosilloMY;
+          rowValues[5][0].value = sumaMexicaliMY;
+          rowValues[6][0].value = sumaOrizabaMY;
+          rowValues[7][0].value = sumaRamozAMY;
+        }
+
+        if(row.key[0] == '06 JUN'){
+          sumaCuautitlaJN = row.summaryCells[1][0].value / 3;
+          sumaTultitlanJN = row.summaryCells[2][0].value / 2;
+          sumaGuadalajaraJN = row.summaryCells[3][0].value / 3;
+          sumaHermosilloJN = row.summaryCells[4][0].value / 1;
+          sumaMexicaliJN = row.summaryCells[5][0].value / 1;
+          sumaOrizabaJN = row.summaryCells[6][0].value / 4;
+          sumaRamozAJN = row.summaryCells[7][0].value / 2;
+
+          rowValues[1][0].value = sumaCuautitlaJN;
+          rowValues[2][0].value = sumaTultitlanJN;
+          rowValues[3][0].value = sumaGuadalajaraJN;
+          rowValues[4][0].value = sumaHermosilloJN;
+          rowValues[5][0].value = sumaMexicaliJN;
+          rowValues[6][0].value = sumaOrizabaJN;
+          rowValues[7][0].value = sumaRamozAJN;
+        }
+
+        if(row.key[0] == '07 JUL'){
+          sumaCuautitlaJL = row.summaryCells[1][0].value / 2;
+          sumaTultitlanJL = row.summaryCells[2][0].value / 2;
+          sumaGuadalajaraJL = row.summaryCells[3][0].value / 2;
+          sumaHermosilloJL = row.summaryCells[4][0].value / 1;
+          sumaMexicaliJL = row.summaryCells[5][0].value / 1;
+          sumaOrizabaJL = row.summaryCells[6][0].value / 5;
+          sumaRamozAJL = row.summaryCells[7][0].value / 1;
+
+          rowValues[1][0].value = sumaCuautitlaJL;
+          rowValues[2][0].value = sumaTultitlanJL;
+          rowValues[3][0].value = sumaGuadalajaraJL;
+          rowValues[4][0].value = sumaHermosilloJL;
+          rowValues[5][0].value = sumaMexicaliJL;
+          rowValues[6][0].value = sumaOrizabaJL;
+          rowValues[7][0].value = sumaRamozAJL;
+
+        }
+      }
+
+
+
+      if(row.rowType == "totalFooter"){
+
+        let sumaC = sumaCuautitlaE + sumaCuautitlaF + sumaCuautitlaM + sumaCuautitlaA + sumaCuautitlaMY + sumaCuautitlaJN + sumaCuautitlaJL;
+        TotalSCuautitlan = sumaC / 7;
+
+        let sumaT = sumaTultitlanE + sumaTultitlanF + sumaTultitlanM + sumaTultitlanA + sumaTultitlanMY + sumaTultitlanJN + sumaTultitlanJL;
+        TotalSTultitlan = sumaT / 7;
+
+        let sumaG = sumaGuadalajaraE + sumaGuadalajaraF + sumaGuadalajaraM + sumaGuadalajaraA + sumaGuadalajaraMY + sumaGuadalajaraJN + sumaGuadalajaraJL;
+        TotalSGuadalajara = sumaG / 7;
+
+        let sumaH = sumaHermosilloE + sumaHermosilloF + sumaHermosilloM + sumaHermosilloA + sumaHermosilloMY + sumaHermosilloJN + sumaHermosilloJL;
+        TotalSHermosillo = sumaH / 7;
+
+        let sumaM = sumaMexicaliE + sumaMexicaliF + sumaMexicaliM + sumaMexicaliA + sumaMexicaliMY + sumaMexicaliJN + sumaMexicaliJL;
+        TotalSMexicali = sumaM / 7;
+
+        let sumaO = sumaOrizabaE + sumaOrizabaF + sumaOrizabaM + sumaOrizabaA + sumaOrizabaMY + sumaOrizabaJN + sumaOrizabaJL;
+        TotalSOrizaba = sumaO / 7;
+
+        let sumaRA = sumaRamozAE + sumaRamozAF + sumaRamozAM + sumaRamozAA + sumaRamozAMY+ sumaRamozAJN+ sumaRamozAJL;
+        TotalSRamozA = sumaRA / 7;
+
+        row.values[1].value = TotalSCuautitlan;
+        row.values[2].value = TotalSTultitlan;
+        row.values[3].value = TotalSGuadalajara;
+        row.values[4].value = TotalSHermosillo;
+        row.values[5].value = TotalSMexicali;
+        row.values[6].value = TotalSOrizaba;
+        row.values[7].value = TotalSRamozA;
+
+
+      }
+
+    });
+
   }
 //==============================INGRESO OPERADOR===================================
     kmsTotalCC: number = 0;
