@@ -81,7 +81,7 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 0, anio: "" },    
+    { idAnio: 0, anio: "TODOS" },    
     { idAnio: 202301, anio: "202301" },
     { idAnio: 202302, anio: "202302" },
     { idAnio: 202303, anio: "202303" },
@@ -103,7 +103,7 @@ export class CostosAnualesNewComponent implements OnInit {
   companias: Compania[] =[]
 
   nweCompanias = [
-    {idCompania: '', compania: ''},
+    {idCompania: 'TODOS', compania: 'TODOS'},
     {idCompania: 'ATMMAC', compania: 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'},
     {idCompania: 'CORPOR', compania: 'CORPORATIVO'},
     {idCompania: 'GSTFYS', compania: 'GST FLETES Y SERVICIOS S.A. DE C.V.'},
@@ -114,7 +114,7 @@ export class CostosAnualesNewComponent implements OnInit {
 
 
   clasificaciones: Clasificacion[] = [
-    {idClas:0, clasificacion: ''},
+    {idClas:0, clasificacion: 'TODOS'},
     {idClas:1, clasificacion: '00.- Indicadores'},
     {idClas:2, clasificacion: '01.- Operación'},
     {idClas:3, clasificacion: '02.- Otros Gastos de Operación'},
@@ -218,30 +218,34 @@ export class CostosAnualesNewComponent implements OnInit {
       // this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
       //   this.arrUnidadesNegocio = data.data;
       // })
-
+      if(value == 'TODOS'){
+        this.arrUnidadesNegocio = [
+          {idUdn: '', udn: 'TODOS'},
+        ]
+      }
       if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'ATMMAC', udn: 'ATMMAC'}
         ]
       }else if(value == 'CORPORATIVO'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'CORPOR', udn: 'CORPOR'}
         ]
       }else if(value == 'GST FLETES Y SERVICIOS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'GSTFYS', udn: 'GSTFYS'}
         ]
       }else if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TEICUA', udn: 'TEICUA'}
         ]
       }else if(value == 'TRANSPORTES BONAMPAK S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TBKHER', udn: 'TBKHER'},
           {idUdn: 'TBKRAM', udn: 'TBKRAM'},
           {idUdn: 'TBKORI', udn: 'TBKORI'},
@@ -250,7 +254,7 @@ export class CostosAnualesNewComponent implements OnInit {
         ]
       }else if(value == 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: ''},
+          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TCGTUL', udn: 'TCGTUL'}
         ]
       }
@@ -2778,9 +2782,17 @@ totalesOGOACD
 
 //==================Formato solo comas===============================================  
   separator(value) {
-      var str = value.toString().split(".");
-      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return str.join(".");
+      // var str = value.toString().split(".");
+      // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      // return str.join(".");
+
+      var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return myFormat.join("");
   }
 
   customizeColumns(columns) {

@@ -11,4 +11,6 @@ export class CATPS{
     realAP: number;
     realP: number;
     renglon: number;
+    presupuestoPC: number;
+    presupuestoAPC: number;
 }

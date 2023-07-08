@@ -370,20 +370,19 @@
             <br><br>
             <dx-responsive-box>
                 <!-- COLS -->
-                <!-- <dxi-col [ratio]="1"></dxi-col> -->
                 <!--Año-->
-                <dxi-col [ratio]=".60"></dxi-col>
-                <dxi-col [ratio]=".60"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <dxi-col [ratio]=".90"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--Compañia-->
                 <dxi-col [ratio]=".70"></dxi-col>
-                <dxi-col [ratio]="3"></dxi-col>
+                <dxi-col [ratio]="3.20"></dxi-col>
                 <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
                 <!--UDN-->
-                <dxi-col [ratio]=".60"></dxi-col>
-                <dxi-col [ratio]="3"></dxi-col>
+                <dxi-col [ratio]=".40"></dxi-col>
+                <dxi-col [ratio]="1.10"></dxi-col>
                 <!--vacia-->
                 <!-- <dxi-col [ratio]=".15"></dxi-col> -->
                 <!--Clasificacion-->
@@ -511,10 +510,12 @@
                             <dxi-column dataField="realP" caption="%" format="percent"></dxi-column>
                             <dxi-column dataField="presupuesto" caption="PRESUP" [format]="separator"></dxi-column>
                             <dxi-column dataField="presupuestoP" caption="%" format="percent"></dxi-column>
+                            <dxi-column dataField="presupuestoPC" caption="vs Real %" format="percent"></dxi-column>
                             <dxi-column dataField="realA" caption="REAL ACUM" [format]="separator"></dxi-column>
                             <dxi-column dataField="realAP" caption="%" format="percent"></dxi-column>
                             <dxi-column dataField="presA" caption="PRESUP ACUM" [format]="separator"></dxi-column>
                             <dxi-column dataField="presAP" caption="%" format="percent"></dxi-column>
+                            <dxi-column dataField="presupuestoAPC" caption="vs Real %" format="percent"></dxi-column>
                         </dxi-column>
                         <!-- <dxi-column dataField="periodo" caption="Periodo"  headerCellTemplate="headerTemplate"></dxi-column>
                         <dxi-column dataField="renglon" caption="Renglon" headerCellTemplate="headerTemplate"></dxi-column> -->

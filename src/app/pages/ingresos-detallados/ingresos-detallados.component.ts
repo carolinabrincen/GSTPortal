@@ -72,6 +72,10 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleJunio = res.data.detalle;
     });
     
+    this.ingresosService.getIngresosDetalladosMensualJul().subscribe(res => {
+      this.arrIngresosJulio = res.data.resumen;
+      this.arrDetalleJulio = res.data.detalle;
+    });
   }
 
   ngOnInit(): void {
