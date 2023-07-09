@@ -2568,57 +2568,6 @@ totalesOGOACD
             c.cellElement.style.color = "red";
             c.cellElement.style.fontWeight = "bolder";
           }
-
-          //negrita columna margen utilidad
-          // if (c.columnIndex == 2  || c.columnIndex == 11) {
-          //   c.cellElement.style.fontWeight = "bolder";
-          //   c.cellElement.style.fontSize = "14px";
-          //   c.cellElement.style.background = "#f5f5f5";
-          // }
-
-          //porcentaje de combistuble > .25 en rojo
-          // if (c.columnIndex == 16 && c.value >= .25) {
-          //   c.cellElement.style.color = "red";
-          // }
-
-          if(c.rowIndex == 20 ||
-            c.rowIndex == 23){
-              c.cellElement.style.fontWeight = "bolder";
-              c.cellElement.style.fontSize = "14px";
-              c.cellElement.style.color = "black";
-            } 
-
-          if (c.rowIndex == 26 || 
-            c.rowIndex == 31 ||
-            c.rowIndex == 38 ||
-            c.rowIndex == 42)
-          {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "14px";
-            
-          
-          c.cellElement.style.background = "#ff9460";
-          c.cellElement.style.color = "black";
-          }
-
-          if (c.rowIndex == 1 || 
-            c.rowIndex == 7 ||
-            c.rowIndex == 13 ||
-            c.rowIndex == 19 ||
-            c.rowIndex == 27 ||
-            c.rowIndex == 36 ||
-            c.rowIndex == 37 ||
-            c.rowIndex == 39 ||
-            c.rowIndex == 43 ||
-            c.rowIndex == 44)
-          {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "14px";
-            
-          
-          c.cellElement.style.background = "#DCDCDC";
-          c.cellElement.style.color = "black";
-          }
         }
 
 
@@ -2636,6 +2585,49 @@ totalesOGOACD
     }
 
 
+  }
+
+  onCellPreparedTPS(e: any){
+    if (e.rowType == 'data') {
+      if(e.rowIndex == 20 ||
+        e.rowIndex == 23){
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "14px";
+          e.cellElement.style.color = "black";
+        } 
+
+      if (e.rowIndex == 26 || 
+        e.rowIndex == 31 ||
+        e.rowIndex == 38 ||
+        e.rowIndex == 42)
+      {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "14px";
+        
+      
+      e.cellElement.style.background = "#ff9460";
+      e.cellElement.style.color = "black";
+      }
+
+      if (e.rowIndex == 1 || 
+        e.rowIndex == 7 ||
+        e.rowIndex == 13 ||
+        e.rowIndex == 19 ||
+        e.rowIndex == 27 ||
+        e.rowIndex == 36 ||
+        e.rowIndex == 37 ||
+        e.rowIndex == 39 ||
+        e.rowIndex == 43 ||
+        e.rowIndex == 44)
+      {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "14px";
+        
+      
+      e.cellElement.style.background = "#DCDCDC";
+      e.cellElement.style.color = "black";
+      }
+  }
   }
 
   onRowPreparedCACostos(e: any){}
