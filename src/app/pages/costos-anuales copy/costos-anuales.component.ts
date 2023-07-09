@@ -97,7 +97,18 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   anio: AniosModel[] = [
-    { idAnio: 2023, anio: "2023" },
+    { idAnio: 202301, anio: "202301" },
+    { idAnio: 202302, anio: "202302" },
+    { idAnio: 202303, anio: "202303" },
+    { idAnio: 202304, anio: "202304" },
+    { idAnio: 202305, anio: "202305" },
+    { idAnio: 202306, anio: "202306" },
+    { idAnio: 202307, anio: "202307" },
+    { idAnio: 202308, anio: "202308" },
+    { idAnio: 202309, anio: "202309" },
+    { idAnio: 202310, anio: "202310" },
+    { idAnio: 202311, anio: "202311" },
+    { idAnio: 202312, anio: "202312" }
   ]
 
   companias: Compania[] =[]
@@ -2523,7 +2534,7 @@ totalesOGOACD
   getTPS(){
     let anio = this.selectedAnioTPS;
     let mes = this.selectedMesTPS;
-    this.costosAnualesService.getTPS(anio, mes).subscribe(data =>{
+    this.costosAnualesService.getTPS(anio).subscribe(data =>{
       //console.log(data.data)
       
       this.costosFTP = data.data.tpsdto;
@@ -2536,7 +2547,7 @@ totalesOGOACD
   }
 
   buscarClickTPS = (e: any) => {
-    if (this.selectedAnioTPS !== 0 && this.selectedMesTPS !== 0) {
+    if (this.selectedAnioTPS) {
 
       this.loadingVisible = true;
       this.getTPS();

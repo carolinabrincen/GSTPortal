@@ -2336,7 +2336,7 @@ totalesOGOACD
   getTPS(){
     let anio = this.selectedAnioTPS;
     let mes = this.selectedMesTPS;
-    this.costosAnualesService.getTPS(anio, mes).subscribe(data =>{
+    this.costosAnualesService.getTPS(anio).subscribe(data =>{
       //console.log(data.data)
       
       this.costosFTP = data.data.tpsdto;
