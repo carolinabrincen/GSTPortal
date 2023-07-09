@@ -2589,17 +2589,18 @@ totalesOGOACD
 
   onCellPreparedTPS(e: any){
     if (e.rowType == 'data') {
-      if(e.rowIndex == 20 ||
-        e.rowIndex == 23){
+
+      if(e.data.concepto == "Mantenimiento" ||
+      e.data.concepto == "Transportación"){
           e.cellElement.style.fontWeight = "bolder";
           e.cellElement.style.fontSize = "14px";
           e.cellElement.style.color = "black";
         } 
 
-      if (e.rowIndex == 26 || 
-        e.rowIndex == 31 ||
-        e.rowIndex == 38 ||
-        e.rowIndex == 42)
+      if (e.data.concepto == "UTILIDAD BRUTA" || 
+      e.data.concepto == "UTILIDAD DE OPERACIÓN" ||
+      e.data.concepto == "UTLIDAD ANTES DE IMPTO. Y PTU" ||
+      e.data.concepto == "UTILIDAD NETA")
       {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "14px";
@@ -2609,24 +2610,47 @@ totalesOGOACD
       e.cellElement.style.color = "black";
       }
 
-      if (e.rowIndex == 1 || 
-        e.rowIndex == 7 ||
-        e.rowIndex == 13 ||
-        e.rowIndex == 19 ||
-        e.rowIndex == 27 ||
-        e.rowIndex == 36 ||
-        e.rowIndex == 37 ||
-        e.rowIndex == 39 ||
-        e.rowIndex == 43 ||
-        e.rowIndex == 44)
-      {
+      console.log(e.data)
+
+      if(e.data.concepto == "1.- Volumen transportado" ||
+        e.data.concepto == "2.- Viajes realizados" ||
+        e.data.concepto == "3.- PRODUCTO NETO" ||
+        e.data.concepto == "4.- COSTO DE OPERACIÓN" ||
+        e.data.concepto == "Mantenimiento" ||
+        e.data.concepto == "Transportación" ||
+        e.data.concepto == "5.- OTROS GASTOS DE OPERACION" ||
+        e.data.concepto == "6.- TOTAL GASTOS Y PRODUCTOS EXTRAORDINARIOS" ||
+        e.data.concepto == "7.- TOTAL GASTOS Y PRODUCTOS FINAN." ||
+        e.data.concepto == "8.- PROVISIONES" ||
+        e.data.concepto == "9.- FLUJO DE EFECTIVO" ||
+        e.data.concepto == "10.- FLUJO DE OPERACIÓN"
+        ){
+        
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "14px";
         
       
-      e.cellElement.style.background = "#DCDCDC";
-      e.cellElement.style.color = "black";
+        e.cellElement.style.background = "#DCDCDC";
+        e.cellElement.style.color = "black";
       }
+
+      // if (e.rowIndex == 7 ||
+      //   e.rowIndex == 13 ||
+      //   e.rowIndex == 19 ||
+      //   e.rowIndex == 27 ||
+      //   e.rowIndex == 36 ||
+      //   e.rowIndex == 37 ||
+      //   e.rowIndex == 39 ||
+      //   e.rowIndex == 43 ||
+      //   e.rowIndex == 44)
+      // {
+      //   e.cellElement.style.fontWeight = "bolder";
+      //   e.cellElement.style.fontSize = "14px";
+        
+      
+      // e.cellElement.style.background = "#DCDCDC";
+      // e.cellElement.style.color = "black";
+      // }
   }
   }
 

@@ -205,7 +205,7 @@
 
                 <dxi-item title="Región Centro Occidente">
                     <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosTPSOccidente" [height]="700" [columnAutoWidth]="true" [showColumnLines]="true"
-                     [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                     [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)" (onCellPrepared)="onCellPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
                         <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
                         
@@ -290,7 +290,8 @@
                 </dxi-item>
 
                 <dxi-item title="Golfo Sureste">
-                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosTPSGolfo" [height]="700" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)">
+                    <dx-data-grid #rentGer id="gridContainer" [dataSource]="costosTPSGolfo" [height]="700" [columnAutoWidth]="true"
+                     [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowPrepared)="onRowPreparedTPS($event)" (onCellPrepared)="onCellPreparedTPS($event)">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
                         <dxo-grouping #expand [autoExpandAll]="true" [allowCollapsing]="false"></dxo-grouping>
                         
