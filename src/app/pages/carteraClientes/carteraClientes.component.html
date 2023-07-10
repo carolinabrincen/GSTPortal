@@ -2,22 +2,14 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
-        <dxi-item title="Cartera cliente">
+        <!-- <dxi-item title="Cartera cliente">
             <br><br>
             <dx-responsive-box>
-                <!-- COLS -->
-                <!-- <dxi-col [ratio]="1"></dxi-col> -->
-                <!--Año-->
                 <dxi-col [ratio]=".30"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
-                <!--vacia-->
                 <dxi-col [ratio]=".15"></dxi-col>
-                <!--Buscar-->
                 <dxi-col [ratio]="1"></dxi-col>
                 <dxi-col [ratio]=".25"></dxi-col>
-        
-        
-                <!-- ROWS -->
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
@@ -27,9 +19,6 @@
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
         
-                <!-- CONTROLES DEL FORM -->
-                <!--#region :::: ROW 1 DEL FORM ::::  -->
-                <!-- AÑO -->
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
@@ -42,7 +31,6 @@
                     <dx-select-box [items]="boxCartera" displayExpr="cartera" valueExpr="id" (onValueChanged)="selectBoxCartera($event)">
                     </dx-select-box>
                 </dxi-item>
-                <!-- BUSCAR -->
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
@@ -51,7 +39,7 @@
                         </dx-button>
                     </div>
                 </dxi-item>
-                <!--#endregion :::: FIN ROW 1 ::::  -->
+
             </dx-responsive-box>
 
             <br><br><br>
@@ -70,7 +58,6 @@
               <dxo-paging [pageSize]="100"></dxo-paging>
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
               <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" [customizeExcelCell]="customizeCAER"></dxo-export>
-<!-- [customizeExcelCell]="customizeCAER" -->
                 <dxi-column dataField="nombreCliente" caption="Nombre de cliente"></dxi-column>
                 <dxi-column dataField="corriente" caption="Corriente" [format]="formatSliderTooltip"></dxi-column>
                 <dxi-column dataField="dias1A30" caption="1 a 30 dias" [format]="formatSliderTooltip"></dxi-column>
@@ -80,7 +67,7 @@
                 <dxi-column dataField="total" caption="Total" [format]="formatSliderTooltip" cssClass="styletotal"></dxi-column>
 
             </dx-data-grid>
-        </dxi-item>
+        </dxi-item> -->
 
         <dxi-item title="Detalle">
             <br>
@@ -103,52 +90,40 @@
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
 
-            <dxi-column dataField="cliente" caption="Cliente" [width]="100"></dxi-column>
-            <dxi-column dataField="nombre" caption="Nombre" [width]="100"></dxi-column>
-            <dxi-column dataField="nocarta" caption="Num. Carta" [width]="100"></dxi-column> 
-            <dxi-column dataField="documento" caption="Documento" [width]="100"></dxi-column>
-            <dxi-column dataField="remision" caption="Remisión" [width]="250"></dxi-column>
-            <dxi-column dataField="fechA_GUIA" caption="Fecha guía" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
-            <dxi-column dataField="viaje" caption="Viaje" [width]="100"></dxi-column>
-            <dxi-column dataField="unidad" caption="Unidad" [width]="100"></dxi-column> 
-            <dxi-column dataField="remolquE1" caption="Remolque 1" [width]="100"></dxi-column> 
-            <dxi-column dataField="totaL_SALDO" caption="Total saldo" [width]="100"></dxi-column> 
-            <dxi-column dataField="totaL_VENCIDOS" caption="Total vencidos" [width]="130"></dxi-column> 
-            <dxi-column dataField="saldo" caption="Saldo" [width]="100"></dxi-column>            
-            <dxi-column dataField="porvencido" caption="Por vencido" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS115" caption="1-15" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS1630" caption="16-30" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS3145" caption="31-45" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS4660" caption="46-60" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS6190" caption="61-90" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS91120" caption="91-120" [width]="100"></dxi-column> 
-            <dxi-column dataField="diaS120" caption="> 120" [width]="100"></dxi-column> 
-            <dxi-column dataField="poR_VENCER" caption="Por vencer" [width]="100"></dxi-column> 
-            <dxi-column dataField="poR_VENCER2" caption="Por vencer 2" [width]="100"></dxi-column> 
-            <dxi-column dataField="dias_vencimiento" caption="Días transcurridos" [width]="140"></dxi-column>
-            <dxi-column dataField="venC17" caption="1-7" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC815" caption="8-15" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC1630" caption="16-30" [width]="100"></dxi-column> 
-            <dxi-column dataField="venC31" caption="> 30" [width]="100"></dxi-column> 
-            <dxi-column dataField="saldO_SIN_CCOBRO" caption="Saldo sin cobro" [width]="160"></dxi-column>
-            <dxi-column dataField="totaL_INTEGRADO" caption="Total integrado" [width]="160"></dxi-column>
-            <dxi-column dataField="tipO_DE_CREDITO" caption="Tipo de crédito" [width]="150"></dxi-column>             
-            <dxi-column dataField="diaS_DECREDITO" caption="Días de crédito" [width]="150"></dxi-column>
-            <dxi-column dataField="subtotal" caption="Subtotal" [width]="100"></dxi-column> 
-            <dxi-column dataField="iva" caption="IVA" [width]="100"></dxi-column>  
-            <dxi-column dataField="fechA_DE_VENCIMIENTO" caption="Fecha de vencimiento" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
-            <dxi-column dataField="montO_RETENCION" caption="Monto retención" [width]="150"></dxi-column>            
-            <dxi-column dataField="fechA_CARTA" caption="Fecha carta" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
-            <dxi-column dataField="factoR_IVA" caption="Factor IVA" [width]="100"></dxi-column> 
-            <dxi-column dataField="factoR_DE_RETENCION" caption="Factor de retención" [width]="150"></dxi-column> 
-            <dxi-column dataField="monto_pago" caption="Monto pago" [width]="100"></dxi-column> 
-            <dxi-column dataField="status_guia" caption="Estatus guía" [width]="100"></dxi-column> 
-            <dxi-column dataField="tipo_origen" caption="Tipo origen" [width]="100"></dxi-column> 
-            <dxi-column dataField="tipo_doc" caption="Tipo doc." [width]="100"></dxi-column> 
-            <dxi-column dataField="no_poliza" caption="Num. Póliza" [width]="100"></dxi-column> 
-            <dxi-column dataField="no_cartaF" caption="Num. CartaF" [width]="100"></dxi-column> 
-            <dxi-column dataField="id_area" caption="ID área" [width]="100"></dxi-column>
-            
+            <dxi-column dataField="iD_AREA" caption="ID ÁREA" [width]="100"></dxi-column>
+            <dxi-column dataField="compania" caption="COMPAÑIA" [width]="100"></dxi-column>
+            <dxi-column dataField="cliente" caption="CLIENTE" [width]="100"></dxi-column>
+            <dxi-column dataField="nombre" caption="NOMBRE" [width]="100"></dxi-column>
+            <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
+            <dxi-column dataField="documento" caption="DOCUMENTO" [width]="120"></dxi-column>            
+            <dxi-column dataField="fechA_GUIA" caption="FEHCA GUÍA" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
+            <dxi-column dataField="nocarta" caption="NUM. CARTA" [width]="100"></dxi-column> 
+            <dxi-column dataField="f_CARTACROBRO" caption="FECHA CARTA COBRO" dataType="date" format="dd/mm/yyyy" [width]="160"></dxi-column> 
+            <dxi-column dataField="fechA_VENCIMIENTO" caption="FEHCA VENCIMIENTO" dataType="date" format="dd/mm/yyyy" [width]="160"></dxi-column>
+            <dxi-column dataField="remision" caption="REMISIÓN" [width]="250"></dxi-column>
+            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column> 
+            <dxi-column dataField="observaciones" caption="OBSERVACIONES" [width]="200"></dxi-column> 
+            <dxi-column dataField="recogeR_EN" caption="RECOGER EN" [width]="100"></dxi-column> 
+            <dxi-column dataField="totaL_SALDO" caption="TOTAL SALDO" [width]="120"></dxi-column> 
+            <dxi-column dataField="totaL_VENCIDOS" caption="TOTAL VENCIDOS" [width]="130"></dxi-column> 
+            <dxi-column dataField="v1A15" caption="1-15" [width]="100"></dxi-column> 
+            <dxi-column dataField="v16A30" caption="16-30" [width]="100"></dxi-column> 
+            <dxi-column dataField="v31A45" caption="31-45" [width]="100"></dxi-column> 
+            <dxi-column dataField="v46A60" caption="46-60" [width]="100"></dxi-column> 
+            <dxi-column dataField="v61A90" caption="61-90" [width]="100"></dxi-column> 
+            <dxi-column dataField="v91A120" caption="91-120" [width]="100"></dxi-column> 
+            <dxi-column dataField="v120" caption="> 120" [width]="100"></dxi-column> 
+            <dxi-column dataField="poR_VENCER" caption="POR VENCER" [width]="120"></dxi-column> 
+            <dxi-column dataField="poR_VENCER2" caption="POR VENCER 2" [width]="120"></dxi-column>
+            <dxi-column dataField="p1A7" caption="1-7" [width]="100"></dxi-column> 
+            <dxi-column dataField="p8A15" caption="8-15" [width]="100"></dxi-column> 
+            <dxi-column dataField="p16A30" caption="16-30" [width]="100"></dxi-column> 
+            <dxi-column dataField="p31" caption="> 31" [width]="100"></dxi-column> 
+            <dxi-column dataField="saldO_SIN_CCOBRO" caption="SALDO SIN COBRO" [width]="160"></dxi-column>
+            <dxi-column dataField="totaL_INTEGRADO" caption="TOTAL INTEGRADO" [width]="160"></dxi-column>
+            <dxi-column dataField="diaS_DE_CREDITO" caption="DÍAS DE CRÉDITO" [width]="150"></dxi-column>
+            <dxi-column dataField="diaS_SIN_CARTA_C" caption="DÍAS SIN CARTA" [width]="150"></dxi-column>
+
             <!-- <dxo-summary>
                 <dxi-group-item column="totaL_SALDO" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
                 <dxi-group-item column="totaL_VENCIDOS" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
