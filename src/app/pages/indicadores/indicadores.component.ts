@@ -112,6 +112,10 @@ import {
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
 };
+
+const totalIngresos = new TotalIngresos;
+const totalKilomentros = new TotalKilometros;
+const totalOperacionIK = new TotalOperacionIK;
 @Component({
   templateUrl: './indicadores.component.html',
   styleUrls: ['./indicadores.component.scss'],
@@ -275,9 +279,7 @@ export class IndicadoresComponent implements OnInit {
 
   customTArrayL = new CustomTArrayL;
 
-  totalIngresos = new TotalIngresos;
-  totalKilomentros = new TotalKilometros;
-  totalOperacionIK = new TotalOperacionIK;
+
 
   constructor(
     private indicadorService: IndicadoresService
@@ -419,13 +421,13 @@ export class IndicadoresComponent implements OnInit {
 //==============================INGRESOS=========================================
   onRowPreparedI(event){
     if(event.rowType == "totalFooter"){
-      this.totalIngresos.cuautitlan = event.summaryCells[2][0].value;
-      this.totalIngresos.tultitlan = event.summaryCells[3][0].value;
-      this.totalIngresos.guadalajara = event.summaryCells[4][0].value;
-      this.totalIngresos.hermosillo = event.summaryCells[5][0].value;
-      this.totalIngresos.mexicali = event.summaryCells[6][0].value;
-      this.totalIngresos.orizaba = event.summaryCells[7][0].value;
-      this.totalIngresos.ramosArispe = event.summaryCells[8][0].value;
+      totalIngresos.cuautitlan = event.summaryCells[2][0].value;
+      totalIngresos.tultitlan = event.summaryCells[3][0].value;
+      totalIngresos.guadalajara = event.summaryCells[4][0].value;
+      totalIngresos.hermosillo = event.summaryCells[5][0].value;
+      totalIngresos.mexicali = event.summaryCells[6][0].value;
+      totalIngresos.orizaba = event.summaryCells[7][0].value;
+      totalIngresos.ramosArispe = event.summaryCells[8][0].value;
     }
   }
   onCellPreparedI(e: any) {
@@ -469,21 +471,21 @@ export class IndicadoresComponent implements OnInit {
 //==============================KILOMETROS=======================================
   onRowPreparedK(e){
     if(e.rowType == "totalFooter"){
-      this.totalKilomentros.cuautitlan = e.summaryCells[2][0].value;
-      this.totalKilomentros.tultitlan = e.summaryCells[3][0].value;
-      this.totalKilomentros.guadalajara = e.summaryCells[4][0].value;
-      this.totalKilomentros.hermosillo = e.summaryCells[5][0].value;
-      this.totalKilomentros.mexicali = e.summaryCells[6][0].value;
-      this.totalKilomentros.orizaba = e.summaryCells[7][0].value;
-      this.totalKilomentros.ramosArispe = e.summaryCells[8][0].value;
+      totalKilomentros.cuautitlan = e.summaryCells[2][0].value;
+      totalKilomentros.tultitlan = e.summaryCells[3][0].value;
+      totalKilomentros.guadalajara = e.summaryCells[4][0].value;
+      totalKilomentros.hermosillo = e.summaryCells[5][0].value;
+      totalKilomentros.mexicali = e.summaryCells[6][0].value;
+      totalKilomentros.orizaba = e.summaryCells[7][0].value;
+      totalKilomentros.ramosArispe = e.summaryCells[8][0].value;
 
-      this.totalOperacionIK.cuautitlan = this.totalIngresos.cuautitlan / this.totalKilomentros.cuautitlan;
-      this.totalOperacionIK.tultitlan = this.totalIngresos.tultitlan / this.totalKilomentros.tultitlan;
-      this.totalOperacionIK.guadalajara = this.totalIngresos.guadalajara / this.totalKilomentros.guadalajara;
-      this.totalOperacionIK.hermosillo = this.totalIngresos.hermosillo / this.totalKilomentros.hermosillo;
-      this.totalOperacionIK.mexicali = this.totalIngresos.mexicali / this.totalKilomentros.mexicali;
-      this.totalOperacionIK.orizaba = this.totalIngresos.orizaba / this.totalKilomentros.orizaba;
-      this.totalOperacionIK.ramosArispe = this.totalIngresos.ramosArispe / this.totalKilomentros.ramosArispe;
+      totalOperacionIK.cuautitlan = totalIngresos.cuautitlan / totalKilomentros.cuautitlan;
+      totalOperacionIK.tultitlan = totalIngresos.tultitlan / totalKilomentros.tultitlan;
+      totalOperacionIK.guadalajara = totalIngresos.guadalajara / totalKilomentros.guadalajara;
+      totalOperacionIK.hermosillo = totalIngresos.hermosillo / totalKilomentros.hermosillo;
+      totalOperacionIK.mexicali = totalIngresos.mexicali / totalKilomentros.mexicali;
+      totalOperacionIK.orizaba = totalIngresos.orizaba / totalKilomentros.orizaba;
+      totalOperacionIK.ramosArispe = totalIngresos.ramosArispe / totalKilomentros.ramosArispe;
     }
   }
   onCellPreparedK(e){
@@ -2727,30 +2729,30 @@ onCellPreparedPM(e){
    
       e.totalItem.cells.forEach((c: any) => {
         if(c.totalItem.summaryCells[2][0]?.value != undefined){
-          c.totalItem.summaryCells[2][0].value = this.totalOperacionIK.cuautitlan;
+          c.totalItem.summaryCells[2][0].value = totalOperacionIK.cuautitlan;
         }
 
         if(c.totalItem.summaryCells[3][0]?.value != undefined){
-          c.totalItem.summaryCells[3][0].value = this.totalOperacionIK.tultitlan;
+          c.totalItem.summaryCells[3][0].value = totalOperacionIK.tultitlan;
         }
 
         if(c.totalItem.summaryCells[4][0]?.value != undefined){
-          c.totalItem.summaryCells[4][0].value = this.totalOperacionIK.guadalajara;
+          c.totalItem.summaryCells[4][0].value = totalOperacionIK.guadalajara;
         }
 
         if(c.totalItem.summaryCells[5][0]?.value != undefined){
-          c.totalItem.summaryCells[5][0].value = this.totalOperacionIK.hermosillo;          
+          c.totalItem.summaryCells[5][0].value = totalOperacionIK.hermosillo;          
         }
 
         if(c.totalItem.summaryCells[6][0]?.value != undefined){
-          c.totalItem.summaryCells[6][0].value = this.totalOperacionIK.mexicali;
+          c.totalItem.summaryCells[6][0].value = totalOperacionIK.mexicali;
         }
 
         if(c.totalItem.summaryCells[7][0]?.value != undefined){
-          c.totalItem.summaryCells[7][0].value = this.totalOperacionIK.orizaba;
+          c.totalItem.summaryCells[7][0].value = totalOperacionIK.orizaba;
         }
         if(c.totalItem.summaryCells[8][0]?.value != undefined){
-          c.totalItem.summaryCells[8][0].value = this.totalOperacionIK.ramosArispe;
+          c.totalItem.summaryCells[8][0].value = totalOperacionIK.ramosArispe;
         }
         // this.CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM + this.totalKA.cuautitlanTA + this.totalKMY.cuautitlanTMY + this.totalKJN.cuautitlanTJN + this.totalKJL.cuautitlanTJL;
         // this.totalCuautitlan = this.CuautitlanTS / 7;//this.sumaTotalGroupC.length;
@@ -2842,17 +2844,10 @@ onCellPreparedPM(e){
 
   }
 
-  lengthCEL: any[] = []
+
+
   customizeExportData(cols, rows){  
-    
-    // let arrayCuatitlanEL = []
-    // let letCuautitlanEL
-    // let arrayTultitlanEL = []
-    // let arrayGuadalajaraEL = []
-    // let arrayHermosilloEL = []
-    // let arrayMexicaliEL = []
-    // let arrayOrizabaL = []
-    // let arrayRamosAEL = []
+    console.log(totalOperacionIK.cuautitlan)
 
     let sumaCuautitlaE = 0
     let sumaTultitlanE = 0
@@ -3082,9 +3077,8 @@ onCellPreparedPM(e){
         }
       }
 
-
-
       if(row.rowType == "totalFooter"){
+        
 
         let sumaC = sumaCuautitlaE + sumaCuautitlaF + sumaCuautitlaM + sumaCuautitlaA + sumaCuautitlaMY + sumaCuautitlaJN + sumaCuautitlaJL;
         TotalSCuautitlan = sumaC / 7;
@@ -3107,21 +3101,28 @@ onCellPreparedPM(e){
         let sumaRA = sumaRamozAE + sumaRamozAF + sumaRamozAM + sumaRamozAA + sumaRamozAMY+ sumaRamozAJN+ sumaRamozAJL;
         TotalSRamozA = sumaRA / 7;
 
-        row.values[1].value = TotalSCuautitlan;
-        row.values[2].value = TotalSTultitlan;
-        row.values[3].value = TotalSGuadalajara;
-        row.values[4].value = TotalSHermosillo;
-        row.values[5].value = TotalSMexicali;
-        row.values[6].value = TotalSOrizaba;
-        row.values[7].value = TotalSRamozA;
+        row.values[1].value = totalOperacionIK.cuautitlan;//TotalSCuautitlan;
+        console.log(totalOperacionIK.cuautitlan)
+        row.values[2].value = totalOperacionIK.tultitlan;//TotalSTultitlan;
+        row.values[3].value = totalOperacionIK.guadalajara;//TotalSGuadalajara;
+        row.values[4].value = totalOperacionIK.hermosillo;//TotalSHermosillo;
+        row.values[5].value = totalOperacionIK.mexicali;//TotalSMexicali;
+        row.values[6].value = totalOperacionIK.orizaba;//TotalSOrizaba;
+        row.values[7].value = totalOperacionIK.ramosArispe;//TotalSRamozA;
 
 
       }
 
     });
-     
-}  
+  }  
 
+  onExporting(e){
+    console.log(e)
+  }
+
+  onExported(e){
+    console.log(e)
+  }
 //==============================VIAJES============================================
   onRowPreparedV(e){
     
