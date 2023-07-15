@@ -207,7 +207,9 @@ export class IndicadoresComponent implements OnInit {
   ingresosKilometros: ScoreCard[] = [];
   viajes: ScoreCard[] = [];
   kilometroViajes: ScoreCard[] = [];
+  ingresoViajes: ScoreCard[] = [];
   precioMeta: ScoreCard[] = [];
+
 
   //=========INGRESO POR KILOMETRO=========================
   sumaTotalE = new SumaTotalE;
@@ -415,7 +417,11 @@ export class IndicadoresComponent implements OnInit {
       this.ingresosKilometros = data.data.scIngXKm;
       this.viajes = data.data.scViajes;
       this.kilometroViajes = data.data.scKmsViaje;
+      this.ingresoViajes = data.data.scIngrViaje;
       this.precioMeta = data.data.scPrecioMeta;
+
+
+      console.log(data.data)
 
       var myPrecioM = data.data.scPrecioMeta;
       for (var i = 0; i<myPrecioM.length; i++){
@@ -5441,6 +5447,57 @@ onCellPreparedPM(e){
       }
 
     });
+
+  }
+
+//==============================INGRESO VIAJES=================================
+  onRowPreparedIV(e){
+
+  }
+
+  onCellPreparedIV(e){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+
+    }
+
+    if (e.rowType == 'totalFooter') {
+   
+      e.totalItem.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+
+  }
+
+  customizeIV(e){
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'group') {
+      
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+    }
+
+    if (gridCell.rowType === 'totalFooter') {
+
+      e.backgroundColor = "#ff9460";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+    }
+  }
+
+  customizeExportDataIV(cols, rows){
 
   }
 //==============================INGRESO OPERADOR===================================
