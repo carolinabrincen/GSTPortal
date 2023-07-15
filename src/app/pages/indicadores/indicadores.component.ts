@@ -174,7 +174,20 @@ import {
     TotalIngresosVCOC,
     TotalIngresosVCNV,
     TotalIngresosVCDC,
-    TotalOperacionIVC
+    TotalOperacionIVC,
+    TotalKilomeotrsVCE,
+    TotalKilomeotrsVCF,
+    TotalKilomeotrsVCM,
+    TotalKilomeotrsVCA,
+    TotalKilomeotrsVCMY,
+    TotalKilomeotrsVCJN,
+    TotalKilomeotrsVCJL,
+    TotalKilomeotrsVCAG,
+    TotalKilomeotrsVCS,
+    TotalKilomeotrsVCOC,
+    TotalKilomeotrsVCNV,
+    TotalKilomeotrsVCDC,
+    TotalOperacionKVC
    } from '../../shared/models/indicadores/totalIngresosViajes.model';
 
 const getOrderDay = function (rowData: any): number {
@@ -237,6 +250,7 @@ const viajesCargadosNV = new ViajesCargadosNV;
 const viajesCargadosDC = new ViajesCargadosDC;
 const totalVC = new TotalViajesCargados;
 const totalOperacionIVC = new TotalOperacionIVC;
+const totalOperacionKVC = new TotalOperacionKVC;
 const totalIVCE = new TotalIngresosVCE;
 const totalIVCF = new TotalIngresosVCF;
 const totalIVCM = new TotalIngresosVCM;
@@ -249,6 +263,18 @@ const totalIVCS = new TotalIngresosVCS;
 const totalIVCOC = new TotalIngresosVCOC;
 const totalIVCNV = new TotalIngresosVCNV;
 const totalIVCDC = new TotalIngresosVCDC;
+const totalKVCE = new TotalKilomeotrsVCE;
+const totalKVCF = new TotalKilomeotrsVCF;
+const totalKVCM = new TotalKilomeotrsVCM;
+const totalKVCA = new TotalKilomeotrsVCA;
+const totalKVCMY = new TotalKilomeotrsVCMY;
+const totalKVCJN = new TotalKilomeotrsVCJN;
+const totalKVCJL = new TotalKilomeotrsVCJL;
+const totalKVCAG = new TotalKilomeotrsVCAG;
+const totalKVCS = new TotalKilomeotrsVCS;
+const totalKVCOC = new TotalKilomeotrsVCOC;
+const totalKVCNV = new TotalKilomeotrsVCNV;
+const totalKVCDC = new TotalKilomeotrsVCDC;
 
 @Component({
   templateUrl: './indicadores.component.html',
@@ -3000,6 +3026,17 @@ onCellPreparedPM(e){
         totalIVCE.orizaba = agrupamientoIE.orizaba / viajesCargadosE.orizaba;
         totalIVCE.ramosArispe = agrupamientoIE.ramosArispe / viajesCargadosE.ramosArispe;
         totalIVCE.total = agrupamientoIE.total / viajesCargadosE.total;
+
+        totalKVCE.cuautitlan = agrupamientoKE.cuautitlan / viajesCargadosE.cuautitlan;
+        totalKVCE.tultitlan = agrupamientoKE.tultitlan / viajesCargadosE.tultitlan;
+        totalKVCE.guadalajara = agrupamientoKE.guadalajara / viajesCargadosE.guadalajara;
+        totalKVCE.hermosillo = agrupamientoKE.hermosillo / viajesCargadosE.hermosillo;
+        totalKVCE.mexicali = agrupamientoKE.mexicali / viajesCargadosE.mexicali;
+        totalKVCE.orizaba = agrupamientoKE.orizaba / viajesCargadosE.orizaba;
+        totalKVCE.ramosArispe = agrupamientoKE.ramosArispe / viajesCargadosE.ramosArispe;
+        totalKVCE.total = agrupamientoKE.total / viajesCargadosE.total;
+
+
       }
       if (event.data.key == '02 FEB'){
         viajesCargadosF.cuautitlan = event.summaryCells[2][0].value;
@@ -3019,6 +3056,15 @@ onCellPreparedPM(e){
         totalIVCF.orizaba = agrupamientoIF.orizaba / viajesCargadosF.orizaba;
         totalIVCF.ramosArispe = agrupamientoIF.ramosArispe / viajesCargadosF.ramosArispe;
         totalIVCF.total = agrupamientoIF.total / viajesCargadosF.total;
+
+        totalKVCF.cuautitlan = agrupamientoKF.cuautitlan / viajesCargadosF.cuautitlan;
+        totalKVCF.tultitlan = agrupamientoKF.tultitlan / viajesCargadosF.tultitlan;
+        totalKVCF.guadalajara = agrupamientoKF.guadalajara / viajesCargadosF.guadalajara;
+        totalKVCF.hermosillo = agrupamientoKF.hermosillo / viajesCargadosF.hermosillo;
+        totalKVCF.mexicali = agrupamientoKF.mexicali / viajesCargadosF.mexicali;
+        totalKVCF.orizaba = agrupamientoKF.orizaba / viajesCargadosF.orizaba;
+        totalKVCF.ramosArispe = agrupamientoKF.ramosArispe / viajesCargadosF.ramosArispe;
+        totalKVCF.total = agrupamientoKF.total / viajesCargadosF.total;
       }
       if (event.data.key == '03 MAR'){
         viajesCargadosM.cuautitlan = event.summaryCells[2][0].value;
@@ -3038,6 +3084,15 @@ onCellPreparedPM(e){
         totalIVCM.orizaba = agrupamientoIM.orizaba / viajesCargadosM.orizaba;
         totalIVCM.ramosArispe = agrupamientoIM.ramosArispe / viajesCargadosM.ramosArispe;
         totalIVCM.total = agrupamientoIM.total / viajesCargadosM.total;
+
+        totalKVCM.cuautitlan = agrupamientoKM.cuautitlan / viajesCargadosM.cuautitlan;
+        totalKVCM.tultitlan = agrupamientoKM.tultitlan / viajesCargadosM.tultitlan;
+        totalKVCM.guadalajara = agrupamientoKM.guadalajara / viajesCargadosM.guadalajara;
+        totalKVCM.hermosillo = agrupamientoKM.hermosillo / viajesCargadosM.hermosillo;
+        totalKVCM.mexicali = agrupamientoKM.mexicali / viajesCargadosM.mexicali;
+        totalKVCM.orizaba = agrupamientoKM.orizaba / viajesCargadosM.orizaba;
+        totalKVCM.ramosArispe = agrupamientoKM.ramosArispe / viajesCargadosM.ramosArispe;
+        totalKVCM.total = agrupamientoKM.total / viajesCargadosM.total;
       }
       if (event.data.key == '04 ABR'){
         viajesCargadosA.cuautitlan = event.summaryCells[2][0].value;
@@ -3057,6 +3112,15 @@ onCellPreparedPM(e){
         totalIVCA.orizaba = agrupamientoIA.orizaba / viajesCargadosA.orizaba;
         totalIVCA.ramosArispe = agrupamientoIA.ramosArispe / viajesCargadosA.ramosArispe;
         totalIVCA.total = agrupamientoIA.total / viajesCargadosA.total;
+
+        totalKVCA.cuautitlan = agrupamientoKA.cuautitlan / viajesCargadosA.cuautitlan;
+        totalKVCA.tultitlan = agrupamientoKA.tultitlan / viajesCargadosA.tultitlan;
+        totalKVCA.guadalajara = agrupamientoKA.guadalajara / viajesCargadosA.guadalajara;
+        totalKVCA.hermosillo = agrupamientoKA.hermosillo / viajesCargadosA.hermosillo;
+        totalKVCA.mexicali = agrupamientoKA.mexicali / viajesCargadosA.mexicali;
+        totalKVCA.orizaba = agrupamientoKA.orizaba / viajesCargadosA.orizaba;
+        totalKVCA.ramosArispe = agrupamientoKA.ramosArispe / viajesCargadosA.ramosArispe;
+        totalKVCA.total = agrupamientoKA.total / viajesCargadosA.total;
       }
       if (event.data.key == '05 MAY'){
         viajesCargadosMY.cuautitlan = event.summaryCells[2][0].value;
@@ -3076,6 +3140,15 @@ onCellPreparedPM(e){
         totalIVCMY.orizaba = agrupamientoIMY.orizaba / viajesCargadosMY.orizaba;
         totalIVCMY.ramosArispe = agrupamientoIMY.ramosArispe / viajesCargadosMY.ramosArispe;
         totalIVCMY.total = agrupamientoIMY.total / viajesCargadosMY.total;
+
+        totalKVCMY.cuautitlan = agrupamientoKMY.cuautitlan / viajesCargadosMY.cuautitlan;
+        totalKVCMY.tultitlan = agrupamientoKMY.tultitlan / viajesCargadosMY.tultitlan;
+        totalKVCMY.guadalajara = agrupamientoKMY.guadalajara / viajesCargadosMY.guadalajara;
+        totalKVCMY.hermosillo = agrupamientoKMY.hermosillo / viajesCargadosMY.hermosillo;
+        totalKVCMY.mexicali = agrupamientoKMY.mexicali / viajesCargadosMY.mexicali;
+        totalKVCMY.orizaba = agrupamientoKMY.orizaba / viajesCargadosMY.orizaba;
+        totalKVCMY.ramosArispe = agrupamientoKMY.ramosArispe / viajesCargadosMY.ramosArispe;
+        totalKVCMY.total = agrupamientoKMY.total / viajesCargadosMY.total;
       }
       if (event.data.key == '06 JUN'){
         viajesCargadosJN.cuautitlan = event.summaryCells[2][0].value;
@@ -3095,6 +3168,15 @@ onCellPreparedPM(e){
         totalIVCJN.orizaba = agrupamientoIJN.orizaba / viajesCargadosJN.orizaba;
         totalIVCJN.ramosArispe = agrupamientoIJN.ramosArispe / viajesCargadosJN.ramosArispe;
         totalIVCJN.total = agrupamientoIJN.total / viajesCargadosJN.total;
+
+        totalKVCJN.cuautitlan = agrupamientoKJN.cuautitlan / viajesCargadosJN.cuautitlan;
+        totalKVCJN.tultitlan = agrupamientoKJN.tultitlan / viajesCargadosJN.tultitlan;
+        totalKVCJN.guadalajara = agrupamientoKJN.guadalajara / viajesCargadosJN.guadalajara;
+        totalKVCJN.hermosillo = agrupamientoKJN.hermosillo / viajesCargadosJN.hermosillo;
+        totalKVCJN.mexicali = agrupamientoKJN.mexicali / viajesCargadosJN.mexicali;
+        totalKVCJN.orizaba = agrupamientoKJN.orizaba / viajesCargadosJN.orizaba;
+        totalKVCJN.ramosArispe = agrupamientoKJN.ramosArispe / viajesCargadosJN.ramosArispe;
+        totalKVCJN.total = agrupamientoKJN.total / viajesCargadosJN.total;
       }
       if (event.data.key == '07 JUL'){
         viajesCargadosJL.cuautitlan = event.summaryCells[2][0].value;
@@ -3114,6 +3196,15 @@ onCellPreparedPM(e){
         totalIVCJL.orizaba = agrupamientoIJL.orizaba / viajesCargadosJL.orizaba;
         totalIVCJL.ramosArispe = agrupamientoIJL.ramosArispe / viajesCargadosJL.ramosArispe;
         totalIVCJL.total = agrupamientoIJL.total / viajesCargadosJL.total;
+
+        totalKVCJL.cuautitlan = agrupamientoKJL.cuautitlan / viajesCargadosJL.cuautitlan;
+        totalKVCJL.tultitlan = agrupamientoKJL.tultitlan / viajesCargadosJL.tultitlan;
+        totalKVCJL.guadalajara = agrupamientoKJL.guadalajara / viajesCargadosJL.guadalajara;
+        totalKVCJL.hermosillo = agrupamientoKJL.hermosillo / viajesCargadosJL.hermosillo;
+        totalKVCJL.mexicali = agrupamientoKJL.mexicali / viajesCargadosJL.mexicali;
+        totalKVCJL.orizaba = agrupamientoKJL.orizaba / viajesCargadosJL.orizaba;
+        totalKVCJL.ramosArispe = agrupamientoKJL.ramosArispe / viajesCargadosJL.ramosArispe;
+        totalKVCJL.total = agrupamientoKJL.total / viajesCargadosJL.total;
       }
       // if (event.data.key == '08 AGO'){
         // viajesCargados.cuautitlan = event.summaryCells[2][0].value;
@@ -3230,6 +3321,17 @@ onCellPreparedPM(e){
       totalOperacionIVC.orizaba = totalIngresos.orizaba / totalVC.orizaba;
       totalOperacionIVC.ramosArispe = totalIngresos.ramosArispe / totalVC.ramosArispe;
       totalOperacionIVC.total = totalIngresos.total / totalVC.total;
+
+      totalOperacionKVC.cuautitlan = totalKilomentros.cuautitlan / totalVC.cuautitlan;
+      totalOperacionKVC.tultitlan = totalKilomentros.tultitlan / totalVC.tultitlan;
+      totalOperacionKVC.guadalajara = totalKilomentros.guadalajara / totalVC.guadalajara;
+      totalOperacionKVC.hermosillo = totalKilomentros.hermosillo / totalVC.hermosillo;
+      totalOperacionKVC.mexicali = totalKilomentros.mexicali / totalVC.mexicali;
+      totalOperacionKVC.orizaba = totalKilomentros.orizaba / totalVC.orizaba;
+      totalOperacionKVC.ramosArispe = totalKilomentros.ramosArispe / totalVC.ramosArispe;
+      totalOperacionKVC.total = totalKilomentros.total / totalVC.total;
+
+
     }
 
   }
@@ -3273,1306 +3375,6 @@ onCellPreparedPM(e){
 
 //==============================VIAJES KILOMETROS=================================
   onRowPreparedKV(e){
-    if (e.rowType == 'data') {
-      
-      e.cells.forEach((c: any) => {
-
-        if(c.key.mes == "01 ENE"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanEL.push(c.value)
-              let total = this.totalesArrayKV.cuatitlanEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalCE = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanEL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalTE = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraEL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalGE = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloEL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalHE = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliEL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalME = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaEL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalOE = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAEL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAEL.reduce((a, b) => a + b, 0);
-              this.sumaTotalEKV.sumaTotalRAE = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalEL.push(c.value)
-
-          //     let total = this.totalEL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalE.sumaTotalTlE = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "02 FEB"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanFL.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalCF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanFL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalTF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraFL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalGF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloFL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalHF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliFL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalMF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaFL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalOF = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAFL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAFL.reduce((a, b) => a + b, 0);
-              this.sumaTotalFKV.sumaTotalRAF = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalFL.push(c.value)
-
-          //     let total = this.totalFL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalF.sumaTotalTlF = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "03 MAR"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanML.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalCM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanML.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalTM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraML.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalGM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloML.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalHM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliML.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalMM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaML.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalOM = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAML.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAML.reduce((a, b) => a + b, 0);
-              this.sumaTotalMKV.sumaTotalRAM = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalML.push(c.value)
-
-          //     let total = this.totalML.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalM.sumaTotalTlM = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "04 ABR"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanAL.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalCA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanAL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalTA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraAL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalGA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloAL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalHA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliAL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalMA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaAL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalOA = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAAL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAAL.reduce((a, b) => a + b, 0);
-              this.sumaTotalAKV.sumaTotalRAA = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalAL.push(c.value)
-
-          //     let total = this.totalAL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalA.sumaTotalTlA = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "05 MAY"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanMYL.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalCMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanMYL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalTMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraMYL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalGMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloMYL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalHMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliMYL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalMMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaMYL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalOMY = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAMYL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAMYL.reduce((a, b) => a + b, 0);
-              this.sumaTotalMYKV.sumaTotalRAMY = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalMYL.push(c.value)
-
-          //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalMY.sumaTotalTlMY = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "06 JUN"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanJNL.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalCJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanJNL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalTJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraJNL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalGJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloJNL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalHJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliJNL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalMJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaJNL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalOJN = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAJNL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAJNL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJNKV.sumaTotalRAJN = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalMYL.push(c.value)
-
-          //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalMY.sumaTotalTlMY = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        if(c.key.mes == "07 JUL"){
-
-          if (c.cellElement && c.columnIndex == 2 ) {
-            if (this.cuautitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.cuatitlanJLL.push(c.value)
-
-              let total = this.totalesArrayKV.cuatitlanJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalCJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 3) {
-            if (this.tultitlanKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.tultitlanJLL.push(c.value)
-
-              let total = this.totalesArrayKV.tultitlanJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalTJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 4) {
-            if (this.guadalajaraKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.guadalajaraJLL.push(c.value)
-
-              let total = this.totalesArrayKV.guadalajaraJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalGJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 5) {
-            if (this.hermosilloKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.hermosilloJLL.push(c.value)
-
-              let total = this.totalesArrayKV.hermosilloJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalHJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 6) {
-            if (this.mexicaliKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.mexicaliJLL.push(c.value)
-
-              let total = this.totalesArrayKV.mexicaliJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalMJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 7) {
-            if (this.orizabaKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.orizabaJLL.push(c.value)
-
-              let total = this.totalesArrayKV.orizabaJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalOJL = total
-              //console.log(total);
-            }
-          }
-          if (c.cellElement && c.columnIndex == 8) {
-            if (this.ramisArispeKV >= c.value) {
-              c.cellElement.style.color = "red";
-            }
-
-            if(c.value != 0){
-              this.totalesArrayKV.ramosAJLL.push(c.value)
-
-              let total = this.totalesArrayKV.ramosAJLL.reduce((a, b) => a + b, 0);
-              this.sumaTotalJLKV.sumaTotalRAJL = total
-              //console.log(total);
-            }
-          }
-          // if (c.cellElement && c.columnIndex == 9) {
-          //   if (this.total >= c.value) {
-          //     c.cellElement.style.color = "red";
-          //   }
-
-          //   if(c.value != 0){
-          //     this.totalMYL.push(c.value)
-
-          //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-          //     this.sumaTotalMY.sumaTotalTlMY = total
-          //     //console.log(total);
-          //   }
-          // }
-        }
-
-        // if(c.key.mes == "08 AGO"){
-
-        //   if (c.cellElement && c.columnIndex == 2 ) {
-        //     if (this.cuautitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.cuatitlanAGL.push(c.value)
-
-        //       let total = this.totalesArray.cuatitlanAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalCAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 3) {
-        //     if (this.tultitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.tultitlanAGL.push(c.value)
-
-        //       let total = this.totalesArray.tultitlanAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalTAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 4) {
-        //     if (this.guadalajara >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.guadalajaraAGL.push(c.value)
-
-        //       let total = this.totalesArray.guadalajaraAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalGAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 5) {
-        //     if (this.hermosillo >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.hermosilloAGL.push(c.value)
-
-        //       let total = this.totalesArray.hermosilloAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalHAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 6) {
-        //     if (this.mexicali >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.mexicaliAGL.push(c.value)
-
-        //       let total = this.totalesArray.mexicaliAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalMAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 7) {
-        //     if (this.orizaba >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.orizabaAGL.push(c.value)
-
-        //       let total = this.totalesArray.orizabaAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalOAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 8) {
-        //     if (this.ramisArispe >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.ramosAAGL.push(c.value)
-
-        //       let total = this.totalesArray.ramosAAGL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalAG.sumaTotalRAAG = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   // if (c.cellElement && c.columnIndex == 9) {
-        //   //   if (this.total >= c.value) {
-        //   //     c.cellElement.style.color = "red";
-        //   //   }
-
-        //   //   if(c.value != 0){
-        //   //     this.totalMYL.push(c.value)
-
-        //   //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-        //   //     this.sumaTotalMY.sumaTotalTlMY = total
-        //   //     //console.log(total);
-        //   //   }
-        //   // }
-        // }
-
-        // if(c.key.mes == "09 SEP"){
-
-        //   if (c.cellElement && c.columnIndex == 2 ) {
-        //     if (this.cuautitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.cuatitlanSL.push(c.value)
-
-        //       let total = this.totalesArray.cuatitlanSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalCS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 3) {
-        //     if (this.tultitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.tultitlanSL.push(c.value)
-
-        //       let total = this.totalesArray.tultitlanSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalTS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 4) {
-        //     if (this.guadalajara >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.guadalajaraSL.push(c.value)
-
-        //       let total = this.totalesArray.guadalajaraSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalGS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 5) {
-        //     if (this.hermosillo >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.hermosilloSL.push(c.value)
-
-        //       let total = this.totalesArray.hermosilloSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalHS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 6) {
-        //     if (this.mexicali >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.mexicaliSL.push(c.value)
-
-        //       let total = this.totalesArray.mexicaliSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalMS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 7) {
-        //     if (this.orizaba >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.orizabaSL.push(c.value)
-
-        //       let total = this.totalesArray.orizabaSL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalOS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 8) {
-        //     if (this.ramisArispe >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.ramosASL.push(c.value)
-
-        //       let total = this.totalesArray.ramosASL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalS.sumaTotalRAS = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   // if (c.cellElement && c.columnIndex == 9) {
-        //   //   if (this.total >= c.value) {
-        //   //     c.cellElement.style.color = "red";
-        //   //   }
-
-        //   //   if(c.value != 0){
-        //   //     this.totalMYL.push(c.value)
-
-        //   //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-        //   //     this.sumaTotalMY.sumaTotalTlMY = total
-        //   //     //console.log(total);
-        //   //   }
-        //   // }
-        // }
-
-        // if(c.key.mes == "10 OCT"){
-
-        //   if (c.cellElement && c.columnIndex == 2 ) {
-        //     if (this.cuautitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.cuatitlanOCL.push(c.value)
-
-        //       let total = this.totalesArray.cuatitlanOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalCOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 3) {
-        //     if (this.tultitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.tultitlanOCL.push(c.value)
-
-        //       let total = this.totalesArray.tultitlanOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalTOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 4) {
-        //     if (this.guadalajara >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.guadalajaraOCL.push(c.value)
-
-        //       let total = this.totalesArray.guadalajaraOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalGOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 5) {
-        //     if (this.hermosillo >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.hermosilloOCL.push(c.value)
-
-        //       let total = this.totalesArray.hermosilloOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalHOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 6) {
-        //     if (this.mexicali >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.mexicaliOCL.push(c.value)
-
-        //       let total = this.totalesArray.mexicaliOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalMOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 7) {
-        //     if (this.orizaba >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.orizabaOCL.push(c.value)
-
-        //       let total = this.totalesArray.orizabaOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalOOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 8) {
-        //     if (this.ramisArispe >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.ramosAOCL.push(c.value)
-
-        //       let total = this.totalesArray.ramosAOCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalOC.sumaTotalRAOC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   // if (c.cellElement && c.columnIndex == 9) {
-        //   //   if (this.total >= c.value) {
-        //   //     c.cellElement.style.color = "red";
-        //   //   }
-
-        //   //   if(c.value != 0){
-        //   //     this.totalMYL.push(c.value)
-
-        //   //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-        //   //     this.sumaTotalMY.sumaTotalTlMY = total
-        //   //     //console.log(total);
-        //   //   }
-        //   // }
-        // }
-
-        // if(c.key.mes == "11 NOV"){
-
-        //   if (c.cellElement && c.columnIndex == 2 ) {
-        //     if (this.cuautitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.cuatitlanNVL.push(c.value)
-
-        //       let total = this.totalesArray.cuatitlanNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalCNV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 3) {
-        //     if (this.tultitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.tultitlanNVL.push(c.value)
-
-        //       let total = this.totalesArray.tultitlanNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalTNV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 4) {
-        //     if (this.guadalajara >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.guadalajaraNVL.push(c.value)
-
-        //       let total = this.totalesArray.guadalajaraNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalGNV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 5) {
-        //     if (this.hermosillo >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.hermosilloNVL.push(c.value)
-
-        //       let total = this.totalesArray.hermosilloNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalHNV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 6) {
-        //     if (this.mexicali >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.mexicaliNVL.push(c.value)
-
-        //       let total = this.totalesArray.mexicaliNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalMNV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 7) {
-        //     if (this.orizaba >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.orizabaNVL.push(c.value)
-
-        //       let total = this.totalesArray.orizabaNVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalONV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 8) {
-        //     if (this.ramisArispe >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.ramosANVL.push(c.value)
-
-        //       let total = this.totalesArray.ramosANVL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalNV.sumaTotalRANV = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   // if (c.cellElement && c.columnIndex == 9) {
-        //   //   if (this.total >= c.value) {
-        //   //     c.cellElement.style.color = "red";
-        //   //   }
-
-        //   //   if(c.value != 0){
-        //   //     this.totalMYL.push(c.value)
-
-        //   //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-        //   //     this.sumaTotalMY.sumaTotalTlMY = total
-        //   //     //console.log(total);
-        //   //   }
-        //   // }
-        // }
-
-        // if(c.key.mes == "12 DIC"){
-
-        //   if (c.cellElement && c.columnIndex == 2 ) {
-        //     if (this.cuautitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.cuatitlanDCL.push(c.value)
-
-        //       let total = this.totalesArray.cuatitlanDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalCDC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 3) {
-        //     if (this.tultitlan >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.tultitlanDCL.push(c.value)
-
-        //       let total = this.totalesArray.tultitlanDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalTDC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 4) {
-        //     if (this.guadalajara >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.guadalajaraDCL.push(c.value)
-
-        //       let total = this.totalesArray.guadalajaraDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalGDC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 5) {
-        //     if (this.hermosillo >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.hermosilloDCL.push(c.value)
-
-        //       let total = this.totalesArray.hermosilloDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalHDC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 6) {
-        //     if (this.mexicali >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.mexicaliDCL.push(c.value)
-
-        //       let total = this.totalesArray.mexicaliDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalMDC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 7) {
-        //     if (this.orizaba >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.orizabaDCL.push(c.value)
-
-        //       let total = this.totalesArray.orizabaDCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalODC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   if (c.cellElement && c.columnIndex == 8) {
-        //     if (this.ramisArispe >= c.value) {
-        //       c.cellElement.style.color = "red";
-        //     }
-
-        //     if(c.value != 0){
-        //       this.totalesArray.ramosADCL.push(c.value)
-
-        //       let total = this.totalesArray.ramosADCL.reduce((a, b) => a + b, 0);
-        //       this.sumaTotalDC.sumaTotalRADC = total
-        //       //console.log(total);
-        //     }
-        //   }
-        //   // if (c.cellElement && c.columnIndex == 9) {
-        //   //   if (this.total >= c.value) {
-        //   //     c.cellElement.style.color = "red";
-        //   //   }
-
-        //   //   if(c.value != 0){
-        //   //     this.totalMYL.push(c.value)
-
-        //   //     let total = this.totalMYL.reduce((a, b) => a + b, 0);
-        //   //     this.sumaTotalMY.sumaTotalTlMY = total
-        //   //     //console.log(total);
-        //   //   }
-        //   // }
-        // }
-      });
-    }
 
     if (e.rowType == 'group'){
 
@@ -4583,735 +3385,201 @@ onCellPreparedPM(e){
 
       if (e.data.key == '01 ENE') {
         if(e.isExpanded == true){
-          this.ingresosKEKV = new IngresosKEKV;
-          this.totalKEKV = new TotalKEKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKEKV.cuautitlanE = this.sumaTotalEKV.sumaTotalCE;
-        this.totalKEKV.cuautitlanTE =  this.ingresosKEKV.cuautitlanE / this.totalesArrayKV.cuatitlanEL.length;
-        e.summaryCells[2][0].value =  this.totalKEKV.cuautitlanTE;
-              
-        this.ingresosKEKV.tultitlanE = this.sumaTotalEKV.sumaTotalTE;
-        this.totalKEKV.tultitlanTE = this.ingresosKEKV.tultitlanE / this.totalesArrayKV.tultitlanEL.length;
-        e.summaryCells[3][0].value = this.totalKEKV.tultitlanTE;
-        
-        this.ingresosKEKV.guadalajaraE = this.sumaTotalEKV.sumaTotalGE;
-        this.totalKEKV.guadalajaraTE = this.ingresosKEKV.guadalajaraE / this.totalesArrayKV.guadalajaraEL.length;
-        e.summaryCells[4][0].value = this.totalKEKV.guadalajaraTE;
-
-        this.ingresosKEKV.hermosilloE = this.sumaTotalEKV.sumaTotalHE;
-        this.totalKEKV.hermosilloTE = this.ingresosKEKV.hermosilloE / this.totalesArrayKV.hermosilloEL.length;
-        e.summaryCells[5][0].value = this.totalKEKV.hermosilloTE;
-
-        this.ingresosKEKV.mexicaliE = this.sumaTotalEKV.sumaTotalME;
-        this.totalKEKV.mexicaliTE = this.ingresosKEKV.mexicaliE / this.totalesArrayKV.mexicaliEL.length;
-        e.summaryCells[6][0].value = this.totalKEKV.mexicaliTE;
-
-        this.ingresosKEKV.orizabaE = this.sumaTotalEKV.sumaTotalOE;
-        this.totalKEKV.orizabaTE = this.ingresosKEKV.orizabaE / this.totalesArrayKV.orizabaEL.length;
-        e.summaryCells[7][0].value = this.totalKEKV.orizabaTE;
-
-        this.ingresosKEKV.ramisArispeE = this.sumaTotalEKV.sumaTotalRAE;
-        this.totalKEKV.ramisArispeTE = this.ingresosKEKV.ramisArispeE / this.totalesArrayKV.ramosAEL.length;
-        e.summaryCells[8][0].value = this.totalKEKV.ramisArispeTE;
-
-        // this.ingresosKE.totalE = this.sumaTotalE.sumaTotalTlE;
-        // this.totalKE.totalTE = this.ingresosKE.totalE / this.totalEL.length;
-        // e.summaryCells[9][0].value = this.totalKE.totalTE;
+        e.summaryCells[2][0].value = totalKVCE.cuautitlan;
+        e.summaryCells[3][0].value = totalKVCE.tultitlan;
+        e.summaryCells[4][0].value = totalKVCE.guadalajara;
+        e.summaryCells[5][0].value = totalKVCE.hermosillo;
+        e.summaryCells[6][0].value = totalKVCE.mexicali;
+        e.summaryCells[7][0].value = totalKVCE.orizaba;
+        e.summaryCells[8][0].value = totalKVCE.ramosArispe;
+        e.summaryCells[9][0].value = totalKVCE.total;
       }
 
       if (e.data.key == '02 FEB') {
         if(e.isExpanded == true){
-          this.ingresosKFKV = new IngresosKFKV;
-          this.totalKFKV = new TotalKFKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKFKV.cuautitlanF = this.sumaTotalFKV.sumaTotalCF;
-        this.totalKFKV.cuautitlanTF =  this.ingresosKFKV.cuautitlanF / this.totalesArrayKV.cuatitlanFL.length;
-        e.summaryCells[2][0].value =  this.totalKFKV.cuautitlanTF;
-        
-        this.ingresosKFKV.tultitlanF = this.sumaTotalFKV.sumaTotalTF;
-        this.totalKFKV.tultitlanTF = this.ingresosKFKV.tultitlanF / this.totalesArrayKV.tultitlanFL.length;
-        e.summaryCells[3][0].value = this.totalKFKV.tultitlanTF;
-        
-        this.ingresosKFKV.guadalajaraF = this.sumaTotalFKV.sumaTotalGF;
-        this.totalKFKV.guadalajaraTF = this.ingresosKFKV.guadalajaraF / this.totalesArrayKV.guadalajaraFL.length;
-        e.summaryCells[4][0].value = this.totalKFKV.guadalajaraTF;
-
-        this.ingresosKFKV.hermosilloF = this.sumaTotalFKV.sumaTotalHF;
-        this.totalKFKV.hermosilloTF = this.ingresosKFKV.hermosilloF / this.totalesArrayKV.hermosilloFL.length;
-        e.summaryCells[5][0].value = this.totalKFKV.hermosilloTF;
-
-        this.ingresosKFKV.mexicaliF = this.sumaTotalFKV.sumaTotalMF;
-        this.totalKFKV.mexicaliTF = this.ingresosKFKV.mexicaliF / this.totalesArrayKV.mexicaliFL.length;
-        e.summaryCells[6][0].value = this.totalKFKV.mexicaliTF;
-
-        this.ingresosKFKV.orizabaF = this.sumaTotalFKV.sumaTotalOF;
-        this.totalKFKV.orizabaTF = this.ingresosKFKV.orizabaF / this.totalesArrayKV.orizabaFL.length;
-        e.summaryCells[7][0].value = this.totalKFKV.orizabaTF;
-
-        this.ingresosKFKV.ramisArispeF = this.sumaTotalFKV.sumaTotalRAF;
-        this.totalKFKV.ramisArispeTF = this.ingresosKFKV.ramisArispeF / this.totalesArrayKV.ramosAFL.length;
-        e.summaryCells[8][0].value = this.totalKFKV.ramisArispeTF;
-
-        // this.ingresosKF.totalF = this.sumaTotalF.sumaTotalTlF;
-        // this.totalKF.totalTF = this.ingresosKF.totalF / this.totalFL.length;
-        // e.summaryCells[9][0].value = this.totalKF.totalTF;
+        e.summaryCells[2][0].value = totalKVCF.cuautitlan;//this.totalKF.cuautitlanTF;
+        e.summaryCells[3][0].value = totalKVCF.tultitlan;//this.totalKF.tultitlanTF;
+        e.summaryCells[4][0].value = totalKVCF.guadalajara;//this.totalKF.guadalajaraTF;
+        e.summaryCells[5][0].value = totalKVCF.hermosillo;//this.totalKF.hermosilloTF;
+        e.summaryCells[6][0].value = totalKVCF.mexicali;//this.totalKF.mexicaliTF;
+        e.summaryCells[7][0].value = totalKVCF.orizaba;//this.totalKF.orizabaTF;
+        e.summaryCells[8][0].value = totalKVCF.ramosArispe;//this.totalKF.ramisArispeTF;
+        e.summaryCells[9][0].value = totalKVCF.total;//this.totalKF.totalTF;
 
 
       }
 
       if (e.data.key == '03 MAR') {
         if(e.isExpanded == true){
-          this.ingresosKMKV = new IngresosKMKV;
-          this.totalKMKV = new TotalKMKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKMKV.cuautitlanM = this.sumaTotalMKV.sumaTotalCM;
-        this.totalKMKV.cuautitlanTM =  this.ingresosKMKV.cuautitlanM / this.totalesArrayKV.cuatitlanML.length;
-        e.summaryCells[2][0].value =  this.totalKMKV.cuautitlanTM;
-        
-        this.ingresosKMKV.tultitlanM = this.sumaTotalMKV.sumaTotalTM;
-        this.totalKMKV.tultitlanTM = this.ingresosKMKV.tultitlanM / this.totalesArrayKV.tultitlanML.length;
-        e.summaryCells[3][0].value = this.totalKMKV.tultitlanTM;
-        
-        this.ingresosKMKV.guadalajaraM = this.sumaTotalMKV.sumaTotalGM;
-        this.totalKMKV.guadalajaraTM = this.ingresosKMKV.guadalajaraM / this.totalesArrayKV.guadalajaraML.length;
-        e.summaryCells[4][0].value = this.totalKMKV.guadalajaraTM;
-
-        this.ingresosKMKV.hermosilloM = this.sumaTotalMKV.sumaTotalHM;
-        this.totalKMKV.hermosilloTM = this.ingresosKMKV.hermosilloM / this.totalesArrayKV.hermosilloML.length;
-        e.summaryCells[5][0].value = this.totalKMKV.hermosilloTM;
-
-        this.ingresosKMKV.mexicaliM = this.sumaTotalMKV.sumaTotalMM;
-        this.totalKMKV.mexicaliTM = this.ingresosKMKV.mexicaliM / this.totalesArrayKV.mexicaliML.length;
-        e.summaryCells[6][0].value = this.totalKMKV.mexicaliTM;
-
-        this.ingresosKMKV.orizabaM = this.sumaTotalMKV.sumaTotalOM;
-        this.totalKMKV.orizabaTM = this.ingresosKMKV.orizabaM / this.totalesArrayKV.orizabaML.length;
-        e.summaryCells[7][0].value = this.totalKMKV.orizabaTM;
-
-        this.ingresosKMKV.ramisArispeM = this.sumaTotalMKV.sumaTotalRAM;
-        this.totalKMKV.ramisArispeTM = this.ingresosKMKV.ramisArispeM / this.totalesArrayKV.ramosAML.length;
-        e.summaryCells[8][0].value = this.totalKMKV.ramisArispeTM;
-
-        // this.ingresosKM.totalM = this.sumaTotalM.sumaTotalTlM;
-        // this.totalKM.totalTM = this.ingresosKM.totalM / this.totalML.length;
-        // e.summaryCells[9][0].value = this.totalKM.totalTM;
+        e.summaryCells[2][0].value = totalKVCM.cuautitlan;// this.totalKM.cuautitlanTM;
+        e.summaryCells[3][0].value = totalKVCM.tultitlan;//this.totalKM.tultitlanTM;
+        e.summaryCells[4][0].value = totalKVCM.guadalajara;//this.totalKM.guadalajaraTM;
+        e.summaryCells[5][0].value = totalKVCM.hermosillo;//this.totalKM.hermosilloTM;
+        e.summaryCells[6][0].value = totalKVCM.mexicali;//this.totalKM.mexicaliTM;
+        e.summaryCells[7][0].value = totalKVCM.orizaba;//this.totalKM.orizabaTM;
+        e.summaryCells[8][0].value = totalKVCM.ramosArispe;//this.totalKM.ramisArispeTM;
+        e.summaryCells[9][0].value = totalKVCM.total;//this.totalKM.totalTM;
 
 
       }
 
       if (e.data.key == '04 ABR') {
         if(e.isExpanded == true){
-          this.ingresosKAKV = new IngresosKAKV;
-          this.totalKAKV = new TotalKAKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
         }
 
-        this.ingresosKAKV.cuautitlanA = this.sumaTotalAKV.sumaTotalCA;
-        this.totalKAKV.cuautitlanTA =  this.ingresosKAKV.cuautitlanA / this.totalesArrayKV.cuatitlanAL.length;
-        if(Number.isNaN(this.totalKAKV.cuautitlanTA)){
-          this.totalKAKV.cuautitlanTA = 0.0;
-        }
-          e.summaryCells[2][0].value =  this.totalKAKV.cuautitlanTA;
-        
-        
-        this.ingresosKAKV.tultitlanA = this.sumaTotalAKV.sumaTotalTA;
-        this.totalKAKV.tultitlanTA = this.ingresosKAKV.tultitlanA / this.totalesArrayKV.tultitlanAL.length;
-        if(Number.isNaN(this.totalKAKV.tultitlanTA)){
-          this.totalKAKV.tultitlanTA = 0.0;
-        }
-        e.summaryCells[3][0].value = this.totalKAKV.tultitlanTA;
-        
-        this.ingresosKAKV.guadalajaraA = this.sumaTotalAKV.sumaTotalGA;
-        this.totalKAKV.guadalajaraTA = this.ingresosKAKV.guadalajaraA / this.totalesArrayKV.guadalajaraAL.length;
-        if(Number.isNaN(this.totalKAKV.guadalajaraTA)){
-          this.totalKAKV.guadalajaraTA = 0.0;
-        }
-        e.summaryCells[4][0].value = this.totalKAKV.guadalajaraTA;
-
-        this.ingresosKAKV.hermosilloA = this.sumaTotalAKV.sumaTotalHA;
-        this.totalKAKV.hermosilloTA = this.ingresosKAKV.hermosilloA / this.totalesArrayKV.hermosilloAL.length;
-        if(Number.isNaN(this.totalKAKV.hermosilloTA)){
-          this.totalKAKV.hermosilloTA = 0.0;
-        }
-        e.summaryCells[5][0].value = this.totalKAKV.hermosilloTA;
-
-        this.ingresosKAKV.mexicaliA = this.sumaTotalAKV.sumaTotalMA;
-        this.totalKAKV.mexicaliTA = this.ingresosKAKV.mexicaliA / this.totalesArrayKV.mexicaliAL.length;
-        if(Number.isNaN(this.totalKAKV.mexicaliTA)){
-          this.totalKAKV.mexicaliTA = 0.0;
-        }
-        e.summaryCells[6][0].value = this.totalKAKV.mexicaliTA;
-
-        this.ingresosKAKV.orizabaA = this.sumaTotalAKV.sumaTotalOA;
-        this.totalKAKV.orizabaTA = this.ingresosKAKV.orizabaA / this.totalesArrayKV.orizabaAL.length;
-        if(Number.isNaN(this.totalKAKV.orizabaTA)){
-          this.totalKAKV.orizabaTA = 0.0;
-        }
-        e.summaryCells[7][0].value = this.totalKAKV.orizabaTA;
-        
-
-        this.ingresosKAKV.ramisArispeA = this.sumaTotalAKV.sumaTotalRAA;
-        this.totalKAKV.ramisArispeTA = this.ingresosKAKV.ramisArispeA / this.totalesArrayKV.ramosAAL.length;
-        if(Number.isNaN(this.totalKAKV.ramisArispeTA)){
-          this.totalKAKV.ramisArispeTA = 0.0;
-        }
-        e.summaryCells[8][0].value = this.totalKAKV.ramisArispeTA;
-
-        // this.ingresosKA.totalA = this.sumaTotalA.sumaTotalTlA;
-        // this.totalKA.totalTA = this.ingresosKA.totalA / this.totalAL.length;
-        // if(Number.isNaN(this.totalKA.totalTA)){
-        //   this.totalKA.totalTA = 0.0;
-        // }
-        // e.summaryCells[9][0].value = this.totalKA.totalTA;
+        e.summaryCells[2][0].value = totalKVCA.cuautitlan;// this.totalKA.cuautitlanTA;
+        e.summaryCells[3][0].value = totalKVCA.tultitlan;//this.totalKA.tultitlanTA;
+        e.summaryCells[4][0].value = totalKVCA.guadalajara;//this.totalKA.guadalajaraTA;
+        e.summaryCells[5][0].value = totalKVCA.hermosillo;//this.totalKA.hermosilloTA;
+        e.summaryCells[6][0].value = totalKVCA.mexicali;//this.totalKA.mexicaliTA;
+        e.summaryCells[7][0].value = totalKVCA.orizaba;//this.totalKA.orizabaTA;
+        e.summaryCells[8][0].value = totalKVCA.ramosArispe;//this.totalKA.ramisArispeTA;
+        e.summaryCells[9][0].value = totalKVCA.total;//this.totalKA.totalTA;
 
 
       }
 
       if (e.data.key == '05 MAY') {
         if(e.isExpanded == true){
-          this.ingresosKMYKV = new IngresosKMYKV;
-          this.totalKMYKV = new TotalKMYKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKMYKV.cuautitlanMY = this.sumaTotalMYKV.sumaTotalCMY;
-        this.totalKMYKV.cuautitlanTMY =  this.ingresosKMYKV.cuautitlanMY / this.totalesArrayKV.cuatitlanMYL.length;
-        if(Number.isNaN(this.totalKMYKV.cuautitlanTMY)){
-          this.totalKMYKV.cuautitlanTMY = 0.0;
-        }
-          e.summaryCells[2][0].value =  this.totalKMYKV.cuautitlanTMY;
-        
-        
-        this.ingresosKMYKV.tultitlanMY = this.sumaTotalMYKV.sumaTotalTMY;
-        this.totalKMYKV.tultitlanTMY = this.ingresosKMYKV.tultitlanMY / this.totalesArrayKV.tultitlanMYL.length;
-        if(Number.isNaN(this.totalKMYKV.tultitlanTMY)){
-          this.totalKMYKV.tultitlanTMY = 0.0;
-        }
-        e.summaryCells[3][0].value = this.totalKMYKV.tultitlanTMY;
-        
-        this.ingresosKMYKV.guadalajaraMY = this.sumaTotalMYKV.sumaTotalGMY;
-        this.totalKMYKV.guadalajaraTMY = this.ingresosKMYKV.guadalajaraMY / this.totalesArrayKV.guadalajaraMYL.length;
-        if(Number.isNaN(this.totalKMYKV.guadalajaraTMY)){
-          this.totalKMYKV.guadalajaraTMY = 0.0;
-        }
-        e.summaryCells[4][0].value = this.totalKMYKV.guadalajaraTMY;
-
-        this.ingresosKMYKV.hermosilloMY = this.sumaTotalMYKV.sumaTotalHMY;
-        this.totalKMYKV.hermosilloTMY = this.ingresosKMYKV.hermosilloMY / this.totalesArrayKV.hermosilloMYL.length;
-        if(Number.isNaN(this.totalKMYKV.hermosilloTMY)){
-          this.totalKMYKV.hermosilloTMY = 0.0;
-        }
-        e.summaryCells[5][0].value = this.totalKMYKV.hermosilloTMY;
-
-        this.ingresosKMYKV.mexicaliMY = this.sumaTotalMYKV.sumaTotalMMY;
-        this.totalKMYKV.mexicaliTMY = this.ingresosKMYKV.mexicaliMY / this.totalesArrayKV.mexicaliMYL.length;
-        if(Number.isNaN(this.totalKMYKV.mexicaliTMY)){
-          this.totalKMYKV.mexicaliTMY = 0.0;
-        }
-        e.summaryCells[6][0].value = this.totalKMYKV.mexicaliTMY;
-
-        this.ingresosKMYKV.orizabaMY = this.sumaTotalMYKV.sumaTotalOMY;
-        this.totalKMYKV.orizabaTMY = this.ingresosKMYKV.orizabaMY / this.totalesArrayKV.orizabaMYL.length;
-        if(Number.isNaN(this.totalKMYKV.orizabaTMY)){
-          this.totalKMYKV.orizabaTMY = 0.0;
-        }
-        e.summaryCells[7][0].value = this.totalKMYKV.orizabaTMY;
-        
-
-        this.ingresosKMYKV.ramisArispeMY = this.sumaTotalMYKV.sumaTotalRAMY;
-        this.totalKMYKV.ramisArispeTMY = this.ingresosKMYKV.ramisArispeMY / this.totalesArrayKV.ramosAMYL.length;
-        if(Number.isNaN(this.totalKMYKV.ramisArispeTMY)){
-          this.totalKMYKV.ramisArispeTMY = 0.0;
-        }
-        e.summaryCells[8][0].value = this.totalKMYKV.ramisArispeTMY;
-
-        // this.ingresosKMY.totalMY = this.sumaTotalMY.sumaTotalTlMY;
-        // this.totalKMY.totalTMY = this.ingresosKMY.totalMY / this.totalMYL.length;
-        // if(Number.isNaN(this.totalKMY.totalTMY)){
-        //   this.totalKMY.totalTMY = 0.0;
-        // }
-        // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
+        e.summaryCells[2][0].value = totalKVCMY.cuautitlan;// this.totalKMY.cuautitlanTMY;
+        e.summaryCells[3][0].value = totalKVCMY.tultitlan;//this.totalKMY.tultitlanTMY;
+        e.summaryCells[4][0].value = totalKVCMY.guadalajara;//this.totalKMY.guadalajaraTMY;
+        e.summaryCells[5][0].value = totalKVCMY.hermosillo;//this.totalKMY.hermosilloTMY;
+        e.summaryCells[6][0].value = totalKVCMY.mexicali;//this.totalKMY.mexicaliTMY;
+        e.summaryCells[7][0].value = totalKVCMY.orizaba;//this.totalKMY.orizabaTMY;
+        e.summaryCells[8][0].value = totalKVCMY.ramosArispe;//this.totalKMY.ramisArispeTMY;
+        e.summaryCells[9][0].value = totalKVCMY.total;//this.totalKMY.totalTMY;
 
 
       }
 
       if (e.data.key == '06 JUN') {
         if(e.isExpanded == true){
-          this.ingresosKJNKV = new IngresosKJNKV;
-          this.totalKJNKV = new TotalKJNKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKJNKV.cuautitlanJN = this.sumaTotalJNKV.sumaTotalCJN;
-        this.totalKJNKV.cuautitlanTJN =  this.ingresosKJNKV.cuautitlanJN / this.totalesArrayKV.cuatitlanJNL.length;
-        if(Number.isNaN(this.totalKJNKV.cuautitlanTJN)){
-          this.totalKJNKV.cuautitlanTJN = 0.0;
-        }
-          e.summaryCells[2][0].value =  this.totalKJNKV.cuautitlanTJN;
-        
-        this.ingresosKJNKV.tultitlanJN = this.sumaTotalJNKV.sumaTotalTJN;
-        this.totalKJNKV.tultitlanTJN = this.ingresosKJNKV.tultitlanJN / this.totalesArrayKV.tultitlanJNL.length;
-        if(Number.isNaN(this.totalKJNKV.tultitlanTJN)){
-          this.totalKJNKV.tultitlanTJN = 0.0;
-        }
-        e.summaryCells[3][0].value = this.totalKJNKV.tultitlanTJN;
-        
-        this.ingresosKJNKV.guadalajaraJN = this.sumaTotalJNKV.sumaTotalGJN;
-        this.totalKJNKV.guadalajaraTJN = this.ingresosKJNKV.guadalajaraJN / this.totalesArrayKV.guadalajaraJNL.length;
-        if(Number.isNaN(this.totalKJNKV.guadalajaraTJN)){
-          this.totalKJNKV.guadalajaraTJN = 0.0;
-        }
-        e.summaryCells[4][0].value = this.totalKJNKV.guadalajaraTJN;
-
-        this.ingresosKJNKV.hermosilloJN = this.sumaTotalJNKV.sumaTotalHJN;
-        this.totalKJNKV.hermosilloTJN = this.ingresosKJNKV.hermosilloJN / this.totalesArrayKV.hermosilloJNL.length;
-        if(Number.isNaN(this.totalKJNKV.hermosilloTJN)){
-          this.totalKJNKV.hermosilloTJN = 0.0;
-        }
-        e.summaryCells[5][0].value = this.totalKJNKV.hermosilloTJN;
-
-        this.ingresosKJNKV.mexicaliJN = this.sumaTotalJNKV.sumaTotalMJN;
-        this.totalKJNKV.mexicaliTJN = this.ingresosKJNKV.mexicaliJN / this.totalesArrayKV.mexicaliJNL.length;
-        if(Number.isNaN(this.totalKJNKV.mexicaliTJN)){
-          this.totalKJNKV.mexicaliTJN = 0.0;
-        }
-        e.summaryCells[6][0].value = this.totalKJNKV.mexicaliTJN;
-
-        this.ingresosKJNKV.orizabaJN = this.sumaTotalJNKV.sumaTotalOJN;
-        this.totalKJNKV.orizabaTJN = this.ingresosKJNKV.orizabaJN / this.totalesArrayKV.orizabaJNL.length;
-        if(Number.isNaN(this.totalKJNKV.orizabaTJN)){
-          this.totalKJNKV.orizabaTJN = 0.0;
-        }
-        e.summaryCells[7][0].value = this.totalKJNKV.orizabaTJN;
-        
-
-        this.ingresosKJNKV.ramisArispeJN = this.sumaTotalJNKV.sumaTotalRAJN;
-        this.totalKJNKV.ramisArispeTJN = this.ingresosKJNKV.ramisArispeJN / this.totalesArrayKV.ramosAJNL.length;
-        if(Number.isNaN(this.totalKJNKV.ramisArispeTJN)){
-          this.totalKJNKV.ramisArispeTJN = 0.0;
-        }
-        e.summaryCells[8][0].value = this.totalKJNKV.ramisArispeTJN;
-
-        // this.ingresosKJN.totalMY = this.sumaTotalJN.sumaTotalTlMY;
-        // this.totalKMY.totalTMY = this.ingresosKJN.totalMY / this.totalMYL.length;
-        // if(Number.isNaN(this.totalKMY.totalTMY)){
-        //   this.totalKMY.totalTMY = 0.0;
-        // }
-        // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
+        e.summaryCells[2][0].value = totalKVCJN.cuautitlan;// this.totalKJN.cuautitlanTJN;
+        e.summaryCells[3][0].value = totalKVCJN.tultitlan;//this.totalKJN.tultitlanTJN;
+        e.summaryCells[4][0].value = totalKVCJN.guadalajara;//this.totalKJN.guadalajaraTJN;
+        e.summaryCells[5][0].value = totalKVCJN.hermosillo;//this.totalKJN.hermosilloTJN;
+        e.summaryCells[6][0].value = totalKVCJN.mexicali;//this.totalKJN.mexicaliTJN;
+        e.summaryCells[7][0].value = totalKVCJN.orizaba;//this.totalKJN.orizabaTJN;
+        e.summaryCells[8][0].value = totalKVCJN.ramosArispe;//this.totalKJN.ramisArispeTJN;
+        e.summaryCells[9][0].value = totalKVCJN.total;//this.totalKMY.totalTMY;
 
 
       }
 
       if (e.data.key == '07 JUL') {
         if(e.isExpanded == true){
-          this.ingresosKJLKV = new IngresosKJLKV;
-          this.totalKJL = new TotalKJLKV;
-          //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
+
         }
 
-        this.ingresosKJLKV.cuautitlanJL = this.sumaTotalJLKV.sumaTotalCJL;
-        this.totalKJLKV.cuautitlanTJL =  this.ingresosKJLKV.cuautitlanJL / this.totalesArrayKV.cuatitlanJLL.length;
-        if(Number.isNaN(this.totalKJLKV.cuautitlanTJL)){
-          this.totalKJLKV.cuautitlanTJL = 0.0;
-        }
-          e.summaryCells[2][0].value =  this.totalKJLKV.cuautitlanTJL;
-        
-        
-        this.ingresosKJLKV.tultitlanJL = this.sumaTotalJLKV.sumaTotalTJL;
-        this.totalKJLKV.tultitlanTJL = this.ingresosKJLKV.tultitlanJL / this.totalesArrayKV.tultitlanJLL.length;
-        if(Number.isNaN(this.totalKJLKV.tultitlanTJL)){
-          this.totalKJLKV.tultitlanTJL = 0.0;
-        }
-        e.summaryCells[3][0].value = this.totalKJLKV.tultitlanTJL;
-        
-        this.ingresosKJLKV.guadalajaraJL = this.sumaTotalJLKV.sumaTotalGJL;
-        this.totalKJLKV.guadalajaraTJL = this.ingresosKJLKV.guadalajaraJL / this.totalesArrayKV.guadalajaraJLL.length;
-        if(Number.isNaN(this.totalKJLKV.guadalajaraTJL)){
-          this.totalKJLKV.guadalajaraTJL = 0.0;
-        }
-        e.summaryCells[4][0].value = this.totalKJLKV.guadalajaraTJL;
-
-        this.ingresosKJLKV.hermosilloJL = this.sumaTotalJLKV.sumaTotalHJL;
-        this.totalKJLKV.hermosilloTJL = this.ingresosKJLKV.hermosilloJL / this.totalesArrayKV.hermosilloJLL.length;
-        if(Number.isNaN(this.totalKJLKV.hermosilloTJL)){
-          this.totalKJLKV.hermosilloTJL = 0.0;
-        }
-        e.summaryCells[5][0].value = this.totalKJLKV.hermosilloTJL;
-
-        this.ingresosKJLKV.mexicaliJL = this.sumaTotalJLKV.sumaTotalMJL;
-        this.totalKJLKV.mexicaliTJL = this.ingresosKJLKV.mexicaliJL / this.totalesArrayKV.mexicaliJLL.length;
-        if(Number.isNaN(this.totalKJLKV.mexicaliTJL)){
-          this.totalKJLKV.mexicaliTJL = 0.0;
-        }
-        e.summaryCells[6][0].value = this.totalKJLKV.mexicaliTJL;
-
-        this.ingresosKJLKV.orizabaJL = this.sumaTotalJLKV.sumaTotalOJL;
-        this.totalKJLKV.orizabaTJL = this.ingresosKJLKV.orizabaJL / this.totalesArrayKV.orizabaJLL.length;
-        if(Number.isNaN(this.totalKJLKV.orizabaTJL)){
-          this.totalKJLKV.orizabaTJL = 0.0;
-        }
-        e.summaryCells[7][0].value = this.totalKJLKV.orizabaTJL;
-        
-
-        this.ingresosKJLKV.ramisArispeJL = this.sumaTotalJLKV.sumaTotalRAJL;
-        this.totalKJLKV.ramisArispeTJL = this.ingresosKJLKV.ramisArispeJL / this.totalesArrayKV.ramosAJLL.length;
-        if(Number.isNaN(this.totalKJLKV.ramisArispeTJL)){
-          this.totalKJLKV.ramisArispeTJL = 0.0;
-        }
-        e.summaryCells[8][0].value = this.totalKJLKV.ramisArispeTJL;
-
-        // this.ingresosKJL.totalMY = this.sumaTotalJL.sumaTotalTlMY;
-        // this.totalKJL.totalTMY = this.ingresosKJL.totalMY / this.totalMYL.length;
-        // if(Number.isNaN(this.totalKJL.totalTMY)){
-        //   this.totalKJL.totalTMY = 0.0;
-        // }
-        // e.summaryCells[9][0].value = this.totalKJL.totalTMY;
+        e.summaryCells[2][0].value = totalKVCJL.cuautitlan;// this.totalKJL.cuautitlanTJL;
+        e.summaryCells[3][0].value = totalKVCJL.tultitlan;//this.totalKJL.tultitlanTJL;
+        e.summaryCells[4][0].value = totalKVCJL.guadalajara;//this.totalKJL.guadalajaraTJL;
+        e.summaryCells[5][0].value = totalKVCJL.hermosillo;//this.totalKJL.hermosilloTJL;
+        e.summaryCells[6][0].value = totalKVCJL.mexicali;//this.totalKJL.mexicaliTJL;
+        e.summaryCells[7][0].value = totalKVCJL.orizaba;//this.totalKJL.orizabaTJL;
+        e.summaryCells[8][0].value = totalKVCJL.ramosArispe;//this.totalKJL.ramisArispeTJL;
+        e.summaryCells[9][0].value = totalKVCJL.total;//this.totalKJL.totalTMY;
 
 
       }
 
       // if (e.data.key == '08 AGO') {
       //   if(e.isExpanded == true){
-      //     this.ingresosKAG = new IngresosKAG;
-      //     this.totalKAG = new TotalKAG;
-      //     //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
-      //   }
 
-      //   this.ingresosKAG.cuautitlanAG = this.sumaTotalAG.sumaTotalCAG;
-      //   this.totalKAG.cuautitlanTAG =  this.ingresosKAG.cuautitlanAG / this.totalesArray.cuatitlanAGL.length;
-      //   if(Number.isNaN(this.totalKAG.cuautitlanTAG)){
-      //     this.totalKAG.cuautitlanTAG = 0.0;
       //   }
-      //     e.summaryCells[2][0].value =  this.totalKAG.cuautitlanTAG;
-        
-        
-      //   this.ingresosKAG.tultitlanAG = this.sumaTotalAG.sumaTotalTAG;
-      //   this.totalKAG.tultitlanTAG = this.ingresosKAG.tultitlanAG / this.totalesArray.tultitlanAGL.length;
-      //   if(Number.isNaN(this.totalKAG.tultitlanTAG)){
-      //     this.totalKAG.tultitlanTAG = 0.0;
-      //   }
-      //   e.summaryCells[3][0].value = this.totalKAG.tultitlanTAG;
-        
-      //   this.ingresosKAG.guadalajaraAG = this.sumaTotalAG.sumaTotalGAG;
-      //   this.totalKAG.guadalajaraTAG = this.ingresosKAG.guadalajaraAG / this.totalesArray.guadalajaraAGL.length;
-      //   if(Number.isNaN(this.totalKAG.guadalajaraTAG)){
-      //     this.totalKAG.guadalajaraTAG = 0.0;
-      //   }
-      //   e.summaryCells[4][0].value = this.totalKAG.guadalajaraTAG;
-
-      //   this.ingresosKAG.hermosilloAG = this.sumaTotalAG.sumaTotalHAG;
-      //   this.totalKAG.hermosilloTAG = this.ingresosKAG.hermosilloAG / this.totalesArray.hermosilloAGL.length;
-      //   if(Number.isNaN(this.totalKAG.hermosilloTAG)){
-      //     this.totalKAG.hermosilloTAG = 0.0;
-      //   }
-      //   e.summaryCells[5][0].value = this.totalKAG.hermosilloTAG;
-
-      //   this.ingresosKAG.mexicaliAG = this.sumaTotalAG.sumaTotalMAG;
-      //   this.totalKAG.mexicaliTAG = this.ingresosKAG.mexicaliAG / this.totalesArray.mexicaliAGL.length;
-      //   if(Number.isNaN(this.totalKAG.mexicaliTAG)){
-      //     this.totalKAG.mexicaliTAG = 0.0;
-      //   }
-      //   e.summaryCells[6][0].value = this.totalKAG.mexicaliTAG;
-
-      //   this.ingresosKAG.orizabaAG = this.sumaTotalAG.sumaTotalOAG;
-      //   this.totalKAG.orizabaTAG = this.ingresosKAG.orizabaAG / this.totalesArray.orizabaAGL.length;
-      //   if(Number.isNaN(this.totalKAG.orizabaTAG)){
-      //     this.totalKAG.orizabaTAG = 0.0;
-      //   }
-      //   e.summaryCells[7][0].value = this.totalKAG.orizabaTAG;
-        
-
-      //   this.ingresosKAG.ramisArispeAG = this.sumaTotalAG.sumaTotalRAAG;
-      //   this.totalKAG.ramisArispeTAG = this.ingresosKAG.ramisArispeAG / this.totalesArray.ramosAAGL.length;
-      //   if(Number.isNaN(this.totalKAG.ramisArispeTAG)){
-      //     this.totalKAG.ramisArispeTAG = 0.0;
-      //   }
-      //   e.summaryCells[8][0].value = this.totalKAG.ramisArispeTAG;
-
-      //   // this.ingresosKAG.totalMY = this.sumaTotalAG.sumaTotalTlMY;
-      //   // this.totalKMY.totalTMY = this.ingresosKAG.totalMY / this.totalMYL.length;
-      //   // if(Number.isNaN(this.totalKMY.totalTMY)){
-      //   //   this.totalKMY.totalTMY = 0.0;
-      //   // }
-      //   // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
+      // e.summaryCells[2][0].value = totalIVC.cuautitlan;// this.totalKJL.cuautitlanTJL;
+      // e.summaryCells[3][0].value = totalIVC.tultitlan;//this.totalKJL.tultitlanTJL;
+      // e.summaryCells[4][0].value = totalIVC.guadalajara;//this.totalKJL.guadalajaraTJL;
+      // e.summaryCells[5][0].value = totalIVC.hermosillo;//this.totalKJL.hermosilloTJL;
+      // e.summaryCells[6][0].value = totalIVC.mexicali;//this.totalKJL.mexicaliTJL;
+      // e.summaryCells[7][0].value = totalIVC.orizaba;//this.totalKJL.orizabaTJL;
+      // e.summaryCells[8][0].value = totalIVC.ramosArispe;//this.totalKJL.ramisArispeTJL;
+      // e.summaryCells[9][0].value = totalIVC.total;//this.totalKJL.totalTMY;
 
 
       // }
 
       // if (e.data.key == '09 SEP') {
       //   if(e.isExpanded == true){
-      //     this.ingresosKS = new IngresosKS;
-      //     this.totalKS = new TotalKS;
-      //     //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
-      //   }
 
-      //   this.ingresosKS.cuautitlanS = this.sumaTotalS.sumaTotalCS;
-      //   this.totalKS.cuautitlanTS =  this.ingresosKS.cuautitlanS / this.totalesArray.cuatitlanSL.length;
-      //   if(Number.isNaN(this.totalKS.cuautitlanTS)){
-      //     this.totalKS.cuautitlanTS = 0.0;
       //   }
-      //     e.summaryCells[2][0].value =  this.totalKS.cuautitlanTS;
-        
-        
-      //   this.ingresosKS.tultitlanS = this.sumaTotalS.sumaTotalTS;
-      //   this.totalKS.tultitlanTS = this.ingresosKS.tultitlanS / this.totalesArray.tultitlanSL.length;
-      //   if(Number.isNaN(this.totalKS.tultitlanTS)){
-      //     this.totalKS.tultitlanTS = 0.0;
-      //   }
-      //   e.summaryCells[3][0].value = this.totalKS.tultitlanTS;
-        
-      //   this.ingresosKS.guadalajaraS = this.sumaTotalS.sumaTotalGS;
-      //   this.totalKS.guadalajaraTS = this.ingresosKS.guadalajaraS / this.totalesArray.guadalajaraSL.length;
-      //   if(Number.isNaN(this.totalKS.guadalajaraTS)){
-      //     this.totalKS.guadalajaraTS = 0.0;
-      //   }
-      //   e.summaryCells[4][0].value = this.totalKS.guadalajaraTS;
+      // e.summaryCells[2][0].value = totalIVC.cuautitlan;// this.totalKJL.cuautitlanTJL;
+      // e.summaryCells[3][0].value = totalIVC.tultitlan;//this.totalKJL.tultitlanTJL;
+      // e.summaryCells[4][0].value = totalIVC.guadalajara;//this.totalKJL.guadalajaraTJL;
+      // e.summaryCells[5][0].value = totalIVC.hermosillo;//this.totalKJL.hermosilloTJL;
+      // e.summaryCells[6][0].value = totalIVC.mexicali;//this.totalKJL.mexicaliTJL;
+      // e.summaryCells[7][0].value = totalIVC.orizaba;//this.totalKJL.orizabaTJL;
+      // e.summaryCells[8][0].value = totalIVC.ramosArispe;//this.totalKJL.ramisArispeTJL;
+      // e.summaryCells[9][0].value = totalIVC.total;//this.totalKJL.totalTMY;
 
-      //   this.ingresosKS.hermosilloS = this.sumaTotalS.sumaTotalHS;
-      //   this.totalKS.hermosilloTS = this.ingresosKS.hermosilloS / this.totalesArray.hermosilloSL.length;
-      //   if(Number.isNaN(this.totalKS.hermosilloTS)){
-      //     this.totalKS.hermosilloTS = 0.0;
-      //   }
-      //   e.summaryCells[5][0].value = this.totalKS.hermosilloTS;
-
-      //   this.ingresosKS.mexicaliS = this.sumaTotalS.sumaTotalMS;
-      //   this.totalKS.mexicaliTS = this.ingresosKS.mexicaliS / this.totalesArray.mexicaliSL.length;
-      //   if(Number.isNaN(this.totalKS.mexicaliTS)){
-      //     this.totalKS.mexicaliTS = 0.0;
-      //   }
-      //   e.summaryCells[6][0].value = this.totalKS.mexicaliTS;
-
-      //   this.ingresosKS.orizabaS = this.sumaTotalS.sumaTotalOS;
-      //   this.totalKS.orizabaTS = this.ingresosKS.orizabaS / this.totalesArray.orizabaSL.length;
-      //   if(Number.isNaN(this.totalKS.orizabaTS)){
-      //     this.totalKS.orizabaTS = 0.0;
-      //   }
-      //   e.summaryCells[7][0].value = this.totalKS.orizabaTS;
-        
-
-      //   this.ingresosKS.ramisArispeS = this.sumaTotalS.sumaTotalRAS;
-      //   this.totalKS.ramisArispeTS = this.ingresosKS.ramisArispeS / this.totalesArray.ramosASL.length;
-      //   if(Number.isNaN(this.totalKS.ramisArispeTS)){
-      //     this.totalKS.ramisArispeTS = 0.0;
-      //   }
-      //   e.summaryCells[8][0].value = this.totalKS.ramisArispeTS;
-
-      //   // this.ingresosKS.totalMY = this.sumaTotalS.sumaTotalTlMY;
-      //   // this.totalKMY.totalTMY = this.ingresosKS.totalMY / this.totalMYL.length;
-      //   // if(Number.isNaN(this.totalKMY.totalTMY)){
-      //   //   this.totalKMY.totalTMY = 0.0;
-      //   // }
-      //   // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
 
 
       // }
 
       // if (e.data.key == '10 OCT') {
-      //   if(e.isExpanded == true){
-      //     this.ingresosKOC = new IngresosKOC;
-      //     this.totalKOC = new TotalKOC;
-      //     //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
-      //   }
+              //   if(e.isExpanded == true){
 
-      //   this.ingresosKOC.cuautitlanOC = this.sumaTotalOC.sumaTotalCOC;
-      //   this.totalKOC.cuautitlanTOC =  this.ingresosKOC.cuautitlanOC / this.totalesArray.cuatitlanOCL.length;
-      //   if(Number.isNaN(this.totalKOC.cuautitlanTOC)){
-      //     this.totalKOC.cuautitlanTOC = 0.0;
       //   }
-      //     e.summaryCells[2][0].value =  this.totalKOC.cuautitlanTOC;
-        
-        
-      //   this.ingresosKOC.tultitlanOC = this.sumaTotalOC.sumaTotalTOC;
-      //   this.totalKOC.tultitlanTOC = this.ingresosKOC.tultitlanOC / this.totalesArray.tultitlanOCL.length;
-      //   if(Number.isNaN(this.totalKOC.tultitlanTOC)){
-      //     this.totalKOC.tultitlanTOC = 0.0;
-      //   }
-      //   e.summaryCells[3][0].value = this.totalKOC.tultitlanTOC;
-        
-      //   this.ingresosKOC.guadalajaraOC = this.sumaTotalOC.sumaTotalGOC;
-      //   this.totalKOC.guadalajaraTOC = this.ingresosKOC.guadalajaraOC / this.totalesArray.guadalajaraOCL.length;
-      //   if(Number.isNaN(this.totalKOC.guadalajaraTOC)){
-      //     this.totalKOC.guadalajaraTOC = 0.0;
-      //   }
-      //   e.summaryCells[4][0].value = this.totalKOC.guadalajaraTOC;
+      // e.summaryCells[2][0].value = totalIVC.cuautitlan;// this.totalKJL.cuautitlanTJL;
+      // e.summaryCells[3][0].value = totalIVC.tultitlan;//this.totalKJL.tultitlanTJL;
+      // e.summaryCells[4][0].value = totalIVC.guadalajara;//this.totalKJL.guadalajaraTJL;
+      // e.summaryCells[5][0].value = totalIVC.hermosillo;//this.totalKJL.hermosilloTJL;
+      // e.summaryCells[6][0].value = totalIVC.mexicali;//this.totalKJL.mexicaliTJL;
+      // e.summaryCells[7][0].value = totalIVC.orizaba;//this.totalKJL.orizabaTJL;
+      // e.summaryCells[8][0].value = totalIVC.ramosArispe;//this.totalKJL.ramisArispeTJL;
+      // e.summaryCells[9][0].value = totalIVC.total;//this.totalKJL.totalTMY;
 
-      //   this.ingresosKOC.hermosilloOC = this.sumaTotalOC.sumaTotalHOC;
-      //   this.totalKOC.hermosilloTOC = this.ingresosKOC.hermosilloOC / this.totalesArray.hermosilloOCL.length;
-      //   if(Number.isNaN(this.totalKOC.hermosilloTOC)){
-      //     this.totalKOC.hermosilloTOC = 0.0;
-      //   }
-      //   e.summaryCells[5][0].value = this.totalKOC.hermosilloTOC;
-
-      //   this.ingresosKOC.mexicaliOC = this.sumaTotalOC.sumaTotalMOC;
-      //   this.totalKOC.mexicaliTOC = this.ingresosKOC.mexicaliOC / this.totalesArray.mexicaliOCL.length;
-      //   if(Number.isNaN(this.totalKOC.mexicaliTOC)){
-      //     this.totalKOC.mexicaliTOC = 0.0;
-      //   }
-      //   e.summaryCells[6][0].value = this.totalKOC.mexicaliTOC;
-
-      //   this.ingresosKOC.orizabaOC = this.sumaTotalOC.sumaTotalOOC;
-      //   this.totalKOC.orizabaTOC = this.ingresosKOC.orizabaOC / this.totalesArray.orizabaOCL.length;
-      //   if(Number.isNaN(this.totalKOC.orizabaTOC)){
-      //     this.totalKOC.orizabaTOC = 0.0;
-      //   }
-      //   e.summaryCells[7][0].value = this.totalKOC.orizabaTOC;
-        
-
-      //   this.ingresosKOC.ramisArispeOC = this.sumaTotalOC.sumaTotalRAOC;
-      //   this.totalKOC.ramisArispeTOC = this.ingresosKOC.ramisArispeOC / this.totalesArray.ramosAOCL.length;
-      //   if(Number.isNaN(this.totalKOC.ramisArispeTOC)){
-      //     this.totalKOC.ramisArispeTOC = 0.0;
-      //   }
-      //   e.summaryCells[8][0].value = this.totalKOC.ramisArispeTOC;
-
-      //   // this.ingresosKOC.totalMY = this.sumaTotalOC.sumaTotalTlMY;
-      //   // this.totalKMY.totalTMY = this.ingresosKOC.totalMY / this.totalMYL.length;
-      //   // if(Number.isNaN(this.totalKMY.totalTMY)){
-      //   //   this.totalKMY.totalTMY = 0.0;
-      //   // }
-      //   // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
 
 
       // }
 
       // if (e.data.key == '11 NOV') {
-      //   if(e.isExpanded == true){
-      //     this.ingresosKNV = new IngresosKNV;
-      //     this.totalKNV = new TotalKNV;
-      //     //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
-      //   }
 
-      //   this.ingresosKNV.cuautitlanNV = this.sumaTotalNV.sumaTotalCNV;
-      //   this.totalKNV.cuautitlanTNV =  this.ingresosKNV.cuautitlanNV / this.totalesArray.cuatitlanNVL.length;
-      //   if(Number.isNaN(this.totalKNV.cuautitlanTNV)){
-      //     this.totalKNV.cuautitlanTNV = 0.0;
-      //   }
-      //     e.summaryCells[2][0].value =  this.totalKNV.cuautitlanTNV;
-        
-        
-      //   this.ingresosKNV.tultitlanNv = this.sumaTotalNV.sumaTotalTNV;
-      //   this.totalKNV.tultitlanTNV = this.ingresosKNV.tultitlanNv / this.totalesArray.tultitlanNVL.length;
-      //   if(Number.isNaN(this.totalKNV.tultitlanTNV)){
-      //     this.totalKNV.tultitlanTNV = 0.0;
-      //   }
-      //   e.summaryCells[3][0].value = this.totalKNV.tultitlanTNV;
-        
-      //   this.ingresosKNV.guadalajaraNV = this.sumaTotalNV.sumaTotalGNV;
-      //   this.totalKNV.guadalajaraTNV = this.ingresosKNV.guadalajaraNV / this.totalesArray.guadalajaraNVL.length;
-      //   if(Number.isNaN(this.totalKNV.guadalajaraTNV)){
-      //     this.totalKNV.guadalajaraTNV = 0.0;
-      //   }
-      //   e.summaryCells[4][0].value = this.totalKNV.guadalajaraTNV;
+            //   if(e.isExpanded == true){
 
-      //   this.ingresosKNV.hermosilloNV = this.sumaTotalNV.sumaTotalHNV;
-      //   this.totalKNV.hermosilloTNV = this.ingresosKNV.hermosilloNV / this.totalesArray.hermosilloNVL.length;
-      //   if(Number.isNaN(this.totalKNV.hermosilloTNV)){
-      //     this.totalKNV.hermosilloTNV = 0.0;
       //   }
-      //   e.summaryCells[5][0].value = this.totalKNV.hermosilloTNV;
+      // e.summaryCells[2][0].value = totalIVC.cuautitlan;// this.totalKJL.cuautitlanTJL;
+      // e.summaryCells[3][0].value = totalIVC.tultitlan;//this.totalKJL.tultitlanTJL;
+      // e.summaryCells[4][0].value = totalIVC.guadalajara;//this.totalKJL.guadalajaraTJL;
+      // e.summaryCells[5][0].value = totalIVC.hermosillo;//this.totalKJL.hermosilloTJL;
+      // e.summaryCells[6][0].value = totalIVC.mexicali;//this.totalKJL.mexicaliTJL;
+      // e.summaryCells[7][0].value = totalIVC.orizaba;//this.totalKJL.orizabaTJL;
+      // e.summaryCells[8][0].value = totalIVC.ramosArispe;//this.totalKJL.ramisArispeTJL;
+      // e.summaryCells[9][0].value = totalIVC.total;//this.totalKJL.totalTMY;
 
-      //   this.ingresosKNV.mexicaliNV = this.sumaTotalNV.sumaTotalMNV;
-      //   this.totalKNV.mexicaliTNV = this.ingresosKNV.mexicaliNV / this.totalesArray.mexicaliNVL.length;
-      //   if(Number.isNaN(this.totalKNV.mexicaliTNV)){
-      //     this.totalKNV.mexicaliTNV = 0.0;
-      //   }
-      //   e.summaryCells[6][0].value = this.totalKNV.mexicaliTNV;
-
-      //   this.ingresosKNV.orizabaNV = this.sumaTotalNV.sumaTotalONV;
-      //   this.totalKNV.orizabaTNV = this.ingresosKNV.orizabaNV / this.totalesArray.orizabaNVL.length;
-      //   if(Number.isNaN(this.totalKNV.orizabaTNV)){
-      //     this.totalKNV.orizabaTNV = 0.0;
-      //   }
-      //   e.summaryCells[7][0].value = this.totalKNV.orizabaTNV;
-        
-
-      //   this.ingresosKNV.ramisArispeNV = this.sumaTotalNV.sumaTotalRANV;
-      //   this.totalKNV.ramisArispeTNV = this.ingresosKNV.ramisArispeNV / this.totalesArray.ramosANVL.length;
-      //   if(Number.isNaN(this.totalKNV.ramisArispeTNV)){
-      //     this.totalKNV.ramisArispeTNV = 0.0;
-      //   }
-      //   e.summaryCells[8][0].value = this.totalKNV.ramisArispeTNV;
-
-      //   // this.ingresosKNV.totalMY = this.sumaTotalNV.sumaTotalTlMY;
-      //   // this.totalKMY.totalTMY = this.ingresosKNV.totalMY / this.totalMYL.length;
-      //   // if(Number.isNaN(this.totalKMY.totalTMY)){
-      //   //   this.totalKMY.totalTMY = 0.0;
-      //   // }
-      //   // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
 
 
       // }
 
       // if (e.data.key == '12 DIC') {
       //   if(e.isExpanded == true){
-      //     this.ingresosKDC = new IngresosKDC;
-      //     this.totalKDC = new TotalKDC;
-      //     //console.log("ENTRE!!!!!  "+ this.ingresosKE.cuautitlanE +" ---- "+ this.totalKE.cuautitlanTE)
-      //   }
 
-      //   this.ingresosKDC.cuautitlanDc = this.sumaTotalDC.sumaTotalCDC;
-      //   this.totalKDC.cuautitlanTDC =  this.ingresosKDC.cuautitlanDc / this.totalesArray.cuatitlanDCL.length;
-      //   if(Number.isNaN(this.totalKDC.cuautitlanTDC)){
-      //     this.totalKDC.cuautitlanTDC = 0.0;
       //   }
-      //     e.summaryCells[2][0].value =  this.totalKDC.cuautitlanTDC;
-        
-        
-      //   this.ingresosKDC.tultitlanDC = this.sumaTotalDC.sumaTotalTDC;
-      //   this.totalKDC.tultitlanTDC = this.ingresosKDC.tultitlanDC / this.totalesArray.tultitlanDCL.length;
-      //   if(Number.isNaN(this.totalKDC.tultitlanTDC)){
-      //     this.totalKDC.tultitlanTDC = 0.0;
-      //   }
-      //   e.summaryCells[3][0].value = this.totalKDC.tultitlanTDC;
-        
-      //   this.ingresosKDC.guadalajaraDC = this.sumaTotalDC.sumaTotalGDC;
-      //   this.totalKDC.guadalajaraTDC = this.ingresosKDC.guadalajaraDC / this.totalesArray.guadalajaraDCL.length;
-      //   if(Number.isNaN(this.totalKDC.guadalajaraTDC)){
-      //     this.totalKDC.guadalajaraTDC = 0.0;
-      //   }
-      //   e.summaryCells[4][0].value = this.totalKDC.guadalajaraTDC;
+      // e.summaryCells[2][0].value = totalIVC.cuautitlan;// this.totalKJL.cuautitlanTJL;
+      // e.summaryCells[3][0].value = totalIVC.tultitlan;//this.totalKJL.tultitlanTJL;
+      // e.summaryCells[4][0].value = totalIVC.guadalajara;//this.totalKJL.guadalajaraTJL;
+      // e.summaryCells[5][0].value = totalIVC.hermosillo;//this.totalKJL.hermosilloTJL;
+      // e.summaryCells[6][0].value = totalIVC.mexicali;//this.totalKJL.mexicaliTJL;
+      // e.summaryCells[7][0].value = totalIVC.orizaba;//this.totalKJL.orizabaTJL;
+      // e.summaryCells[8][0].value = totalIVC.ramosArispe;//this.totalKJL.ramisArispeTJL;
+      // e.summaryCells[9][0].value = totalIVC.total;//this.totalKJL.totalTMY;
 
-      //   this.ingresosKDC.hermosilloDC = this.sumaTotalDC.sumaTotalHDC;
-      //   this.totalKDC.hermosilloTDC = this.ingresosKDC.hermosilloDC / this.totalesArray.hermosilloDCL.length;
-      //   if(Number.isNaN(this.totalKDC.hermosilloTDC)){
-      //     this.totalKDC.hermosilloTDC = 0.0;
-      //   }
-      //   e.summaryCells[5][0].value = this.totalKDC.hermosilloTDC;
-
-      //   this.ingresosKDC.mexicaliDC = this.sumaTotalDC.sumaTotalMDC;
-      //   this.totalKDC.mexicaliTDC = this.ingresosKDC.mexicaliDC / this.totalesArray.mexicaliDCL.length;
-      //   if(Number.isNaN(this.totalKDC.mexicaliTDC)){
-      //     this.totalKDC.mexicaliTDC = 0.0;
-      //   }
-      //   e.summaryCells[6][0].value = this.totalKDC.mexicaliTDC;
-
-      //   this.ingresosKDC.orizabaDc = this.sumaTotalDC.sumaTotalODC;
-      //   this.totalKDC.orizabaTDC = this.ingresosKDC.orizabaDc / this.totalesArray.orizabaDCL.length;
-      //   if(Number.isNaN(this.totalKDC.orizabaTDC)){
-      //     this.totalKDC.orizabaTDC = 0.0;
-      //   }
-      //   e.summaryCells[7][0].value = this.totalKDC.orizabaTDC;
-        
-
-      //   this.ingresosKDC.ramisArispeDC = this.sumaTotalDC.sumaTotalRADC;
-      //   this.totalKDC.ramisArispeTDC = this.ingresosKDC.ramisArispeDC / this.totalesArray.ramosADCL.length;
-      //   if(Number.isNaN(this.totalKDC.ramisArispeTDC)){
-      //     this.totalKDC.ramisArispeTDC = 0.0;
-      //   }
-      //   e.summaryCells[8][0].value = this.totalKDC.ramisArispeTDC;
-
-      //   // this.ingresosKMY.totalMY = this.sumaTotalDC.sumaTotalTlMY;
-      //   // this.totalKMY.totalTMY = this.ingresosKMY.totalMY / this.totalMYL.length;
-      //   // if(Number.isNaN(this.totalKMY.totalTMY)){
-      //   //   this.totalKMY.totalTMY = 0.0;
-      //   // }
-      //   // e.summaryCells[9][0].value = this.totalKMY.totalTMY;
 
 
       // }
@@ -5326,7 +3594,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupCKV.push(c.value)
+            this.sumaTotalGroupC.push(c.value)
  
           }
         }
@@ -5339,7 +3607,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupTKV.push(c.value)
+            this.sumaTotalGroupT.push(c.value)
           }
 
         }
@@ -5352,7 +3620,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupGKV.push(c.value)
+            this.sumaTotalGroupG.push(c.value)
           }
 
         }
@@ -5365,7 +3633,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupHKV.push(c.value)
+            this.sumaTotalGroupH.push(c.value)
           }
 
         }
@@ -5378,7 +3646,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupMKV.push(c.value)
+            this.sumaTotalGroupM.push(c.value)
           }
 
         }
@@ -5391,7 +3659,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupOKV.push(c.value)
+            this.sumaTotalGroupO.push(c.value)
           }
 
         }
@@ -5404,7 +3672,7 @@ onCellPreparedPM(e){
           }
   
           if(c.value != 0){
-            this.sumaTotalGroupRAKV.push(c.value)
+            this.sumaTotalGroupRA.push(c.value)
           }
 
         }
@@ -5462,46 +3730,35 @@ onCellPreparedPM(e){
    
       e.totalItem.cells.forEach((c: any) => {
 
-        this.CuautitlanTSKV = this.totalKEKV.cuautitlanTE + this.totalKFKV.cuautitlanTF +this.totalKMKV.cuautitlanTM + this.totalKAKV.cuautitlanTA + this.totalKMYKV.cuautitlanTMY + this.totalKJNKV.cuautitlanTJN + this.totalKJLKV.cuautitlanTJL;
-        this.totalCuautitlanKV = this.CuautitlanTSKV / 7;//this.sumaTotalGroupC.length;
         if(c.totalItem.summaryCells[2][0]?.value != undefined){
-        c.totalItem.summaryCells[2][0].value = this.totalCuautitlanKV;
+          c.totalItem.summaryCells[2][0].value = totalOperacionKVC.cuautitlan;
         }
 
-        this.TultitlanTSKV = this.totalKEKV.tultitlanTE + this.totalKFKV.tultitlanTF +this.totalKMKV.tultitlanTM + this.totalKAKV.tultitlanTA + this.totalKMYKV.tultitlanTMY + this.totalKJNKV.tultitlanTJN + this.totalKJLKV.tultitlanTJL;
-        this.totalTultitlanKV = this.TultitlanTSKV / 7;//this.sumaTotalGroupT.length;
         if(c.totalItem.summaryCells[3][0]?.value != undefined){
-        c.totalItem.summaryCells[3][0].value = this.totalTultitlanKV;
+          c.totalItem.summaryCells[3][0].value = totalOperacionKVC.tultitlan;
         }
 
-        this.GuadalajaraTSKV = this.totalKEKV.guadalajaraTE + this.totalKFKV.guadalajaraTF +this.totalKMKV.guadalajaraTM + this.totalKAKV.guadalajaraTA + this.totalKMYKV.guadalajaraTMY + this.totalKJNKV.guadalajaraTJN + this.totalKJLKV.guadalajaraTJL;
-        this.totalGuadalajaraKV = this.GuadalajaraTSKV / 7;//this.sumaTotalGroupG.length;
         if(c.totalItem.summaryCells[4][0]?.value != undefined){
-       c.totalItem.summaryCells[4][0].value = this.totalGuadalajaraKV;
+          c.totalItem.summaryCells[4][0].value = totalOperacionKVC.guadalajara;
         }
 
-        this.HermosilloTSKV = this.totalKEKV.hermosilloTE + this.totalKFKV.hermosilloTF +this.totalKMKV.hermosilloTM + this.totalKAKV.hermosilloTA + this.totalKMYKV.hermosilloTMY + this.totalKJNKV.hermosilloTJN + this.totalKJLKV.hermosilloTJL;
-        this.totalHermosilloKV = this.HermosilloTSKV / 7;//this.sumaTotalGroupH.length;
         if(c.totalItem.summaryCells[5][0]?.value != undefined){
-       c.totalItem.summaryCells[5][0].value = this.totalHermosilloKV;
+          c.totalItem.summaryCells[5][0].value = totalOperacionKVC.hermosillo;          
         }
 
-        this.MexicaliTSKV = this.totalKEKV.mexicaliTE + this.totalKFKV.mexicaliTF +this.totalKMKV.mexicaliTM + this.totalKAKV.mexicaliTA + this.totalKMYKV.mexicaliTMY + this.totalKJNKV.mexicaliTJN + this.totalKJLKV.mexicaliTJL;
-        this.totalMexicaliKV = this.MexicaliTSKV / 7;//this.sumaTotalGroupM.length;
         if(c.totalItem.summaryCells[6][0]?.value != undefined){
-        c.totalItem.summaryCells[6][0].value = this.totalMexicaliKV;
+          c.totalItem.summaryCells[6][0].value = totalOperacionKVC.mexicali;
         }
 
-        this.OrizabaTSKV = this.totalKEKV.orizabaTE + this.totalKFKV.orizabaTF +this.totalKMKV.orizabaTM + this.totalKAKV.orizabaTA + this.totalKMYKV.orizabaTMY + this.totalKJNKV.orizabaTJN + this.totalKJLKV.orizabaTJL;
-        this.totalOrizabaKV = this.OrizabaTSKV / 7;//this.sumaTotalGroupO.length;
         if(c.totalItem.summaryCells[7][0]?.value != undefined){
-        c.totalItem.summaryCells[7][0].value = this.totalOrizabaKV;
+          c.totalItem.summaryCells[7][0].value = totalOperacionKVC.orizaba;
+        }
+        if(c.totalItem.summaryCells[8][0]?.value != undefined){
+          c.totalItem.summaryCells[8][0].value = totalOperacionKVC.ramosArispe;
         }
 
-        this.RamosATSKV = this.totalKEKV.ramisArispeTE + this.totalKFKV.ramisArispeTF +this.totalKMKV.ramisArispeTM + this.totalKAKV.ramisArispeTA + this.totalKMYKV.ramisArispeTMY + this.totalKJNKV.ramisArispeTJN + this.totalKJLKV.ramisArispeTJL;
-        this.totalRamosAKV = this.RamosATSKV / 7;//this.sumaTotalGroupRA.length;
-        if(c.totalItem.summaryCells[8][0]?.value != undefined){
-        c.totalItem.summaryCells[8][0].value = this.totalRamosAKV;
+        if(c.totalItem.summaryCells[9][0]?.value != undefined){
+          c.totalItem.summaryCells[9][0].value = totalOperacionKVC.total;
         }
 
 
@@ -5540,268 +3797,111 @@ onCellPreparedPM(e){
 
   customizeExportDataKV(cols, rows){
 
-    let sumaCuautitlaE = 0
-    let sumaTultitlanE = 0
-    let sumaGuadalajaraE = 0
-    let sumaHermosilloE = 0
-    let sumaMexicaliE = 0
-    let sumaOrizabaE = 0
-    let sumaRamozAE = 0
-
-    let sumaCuautitlaF = 0
-    let sumaTultitlanF = 0
-    let sumaGuadalajaraF = 0
-    let sumaHermosilloF = 0
-    let sumaMexicaliF = 0
-    let sumaOrizabaF = 0
-    let sumaRamozAF = 0
-
-    let sumaCuautitlaM = 0
-    let sumaTultitlanM = 0
-    let sumaGuadalajaraM = 0
-    let sumaHermosilloM = 0
-    let sumaMexicaliM = 0
-    let sumaOrizabaM = 0
-    let sumaRamozAM = 0
-
-    let sumaCuautitlaA = 0
-    let sumaTultitlanA = 0
-    let sumaGuadalajaraA = 0
-    let sumaHermosilloA = 0
-    let sumaMexicaliA = 0
-    let sumaOrizabaA = 0
-    let sumaRamozAA = 0
-
-    let sumaCuautitlaMY = 0
-    let sumaTultitlanMY = 0
-    let sumaGuadalajaraMY = 0
-    let sumaHermosilloMY = 0
-    let sumaMexicaliMY = 0
-    let sumaOrizabaMY = 0
-    let sumaRamozAMY = 0
-
-    let sumaCuautitlaJN = 0
-    let sumaTultitlanJN = 0
-    let sumaGuadalajaraJN = 0
-    let sumaHermosilloJN = 0
-    let sumaMexicaliJN = 0
-    let sumaOrizabaJN = 0
-    let sumaRamozAJN = 0
-
-    let sumaCuautitlaJL = 0
-    let sumaTultitlanJL = 0
-    let sumaGuadalajaraJL = 0
-    let sumaHermosilloJL = 0
-    let sumaMexicaliJL = 0
-    let sumaOrizabaJL = 0
-    let sumaRamozAJL = 0
-
-
-    let TotalSCuautitlan = 0
-    let TotalSTultitlan = 0
-    let TotalSGuadalajara = 0
-    let TotalSHermosillo = 0
-    let TotalSMexicali = 0
-    let TotalSOrizaba = 0
-    let TotalSRamozA = 0
-
     rows.forEach((row: any) =>{  
       
       var rowValues =  row.values;  
-      var myData = row.data
       
-      // if(myData?.mes == "01 ENE"){
-
-      //     //this.customTArrayL.cuatitlanEL
-      //     arrayCuatitlanEL.push(myData.cuatitlan)
-      //     console.log(arrayCuatitlanEL.length)
-          
-      //   if(row.data.tultitlan != 0){
-      //     arrayTultitlanEL.push(row.data.tultitlan)
-      //   }
-      //   if(row.data.guadalajara != 0){
-      //     arrayGuadalajaraEL.push(row.data.guadalajara)
-      //   }
-      //   if(row.data.hermosillo != 0){
-      //     arrayHermosilloEL.push(row.data.hermosillo)
-      //   }
-      //   if(row.data.mexicali != 0){
-      //     arrayMexicaliEL.push(row.data.mexicali)
-      //   }
-      //   if(row.data.orizaba != 0){
-      //     arrayOrizabaL.push(row.data.orizaba)
-      //   }
-      //   if(row.data.ramosArizpe != 0){
-      //     arrayRamosAEL.push(row.data.ramosArizpe)
-      //   }
-        
-
-      // }
 
       if(row.rowType == "group"){
         if(row.key[0] == '01 ENE'){
-
-          sumaCuautitlaE = row.summaryCells[1][0].value / 3;
-          sumaTultitlanE = row.summaryCells[2][0].value / 3;
-          sumaGuadalajaraE = row.summaryCells[3][0].value / 2;
-          sumaHermosilloE = row.summaryCells[4][0].value / 2;
-          sumaMexicaliE = row.summaryCells[5][0].value / 2;
-          sumaOrizabaE = row.summaryCells[6][0].value / 5;
-          sumaRamozAE = row.summaryCells[7][0].value / 3;
-
-          rowValues[1][0].value = sumaCuautitlaE;
-          rowValues[2][0].value = sumaTultitlanE;
-          rowValues[3][0].value = sumaGuadalajaraE;
-          rowValues[4][0].value = sumaHermosilloE;
-          rowValues[5][0].value = sumaMexicaliE;
-          rowValues[6][0].value = sumaOrizabaE;
-          rowValues[7][0].value = sumaRamozAE;
+  
+          rowValues[1][0].value = totalKVCE.cuautitlan;//sumaCuautitlaE;
+          rowValues[2][0].value = totalKVCE.tultitlan;//sumaTultitlanE;
+          rowValues[3][0].value = totalKVCE.guadalajara;//sumaGuadalajaraE;
+          rowValues[4][0].value = totalKVCE.hermosillo;//sumaHermosilloE;
+          rowValues[5][0].value = totalKVCE.mexicali;//sumaMexicaliE;
+          rowValues[6][0].value = totalKVCE.orizaba;//sumaOrizabaE;
+          rowValues[7][0].value = totalKVCE.ramosArispe;//sumaRamozAE;
+          rowValues[8][0].value = totalKVCE.total;
         }
-
+  
         if(row.key[0] == '02 FEB'){
-          sumaCuautitlaF = row.summaryCells[1][0].value / 4;
-          sumaTultitlanF = row.summaryCells[2][0].value / 3;
-          sumaGuadalajaraF = row.summaryCells[3][0].value / 2;
-          sumaHermosilloF = row.summaryCells[4][0].value / 2;
-          sumaMexicaliF = row.summaryCells[5][0].value / 2;
-          sumaOrizabaF = row.summaryCells[6][0].value / 5;
-          sumaRamozAF = row.summaryCells[7][0].value / 3;
-
-          rowValues[1][0].value = sumaCuautitlaF;
-          rowValues[2][0].value = sumaTultitlanF;
-          rowValues[3][0].value = sumaGuadalajaraF;
-          rowValues[4][0].value = sumaHermosilloF;
-          rowValues[5][0].value = sumaMexicaliF;
-          rowValues[6][0].value = sumaOrizabaF;
-          rowValues[7][0].value = sumaRamozAF;
+  
+          rowValues[1][0].value = totalKVCF.cuautitlan;
+          rowValues[2][0].value = totalKVCF.tultitlan;
+          rowValues[3][0].value = totalKVCF.guadalajara;
+          rowValues[4][0].value = totalKVCF.hermosillo;
+          rowValues[5][0].value = totalKVCF.mexicali;
+          rowValues[6][0].value = totalKVCF.orizaba;
+          rowValues[7][0].value = totalKVCF.ramosArispe;
+          rowValues[8][0].value = totalKVCF.total;
         }
-
+  
         if(row.key[0] == '03 MAR'){
-          sumaCuautitlaM = row.summaryCells[1][0].value / 4;
-          sumaTultitlanM = row.summaryCells[2][0].value / 4;
-          sumaGuadalajaraM = row.summaryCells[3][0].value / 2;
-          sumaHermosilloM = row.summaryCells[4][0].value / 2;
-          sumaMexicaliM = row.summaryCells[5][0].value / 2;
-          sumaOrizabaM = row.summaryCells[6][0].value / 6;
-          sumaRamozAM = row.summaryCells[7][0].value / 2;
-
-          rowValues[1][0].value = sumaCuautitlaM;
-          rowValues[2][0].value = sumaTultitlanM;
-          rowValues[3][0].value = sumaGuadalajaraM;
-          rowValues[4][0].value = sumaHermosilloM;
-          rowValues[5][0].value = sumaMexicaliM;
-          rowValues[6][0].value = sumaOrizabaM;
-          rowValues[7][0].value = sumaRamozAM;
+  
+          rowValues[1][0].value = totalKVCM.cuautitlan;
+          rowValues[2][0].value = totalKVCM.tultitlan;
+          rowValues[3][0].value = totalKVCM.guadalajara;
+          rowValues[4][0].value = totalKVCM.hermosillo;
+          rowValues[5][0].value = totalKVCM.mexicali;
+          rowValues[6][0].value = totalKVCM.orizaba;
+          rowValues[7][0].value = totalKVCM.ramosArispe;
+          rowValues[8][0].value = totalKVCM.total;
         }
-
+  
         if(row.key[0] == '04 ABR'){
-          sumaCuautitlaA = row.summaryCells[1][0].value / 4;
-          sumaTultitlanA = row.summaryCells[2][0].value / 3;
-          sumaGuadalajaraA = row.summaryCells[3][0].value / 3;
-          sumaHermosilloA = row.summaryCells[4][0].value / 3;
-          sumaMexicaliA = row.summaryCells[5][0].value / 3;
-          sumaOrizabaA = row.summaryCells[6][0].value / 6;
-          sumaRamozAA = row.summaryCells[7][0].value / 4;
-
-          rowValues[1][0].value = sumaCuautitlaA;
-          rowValues[2][0].value = sumaTultitlanA;
-          rowValues[3][0].value = sumaGuadalajaraA;
-          rowValues[4][0].value = sumaHermosilloA;
-          rowValues[5][0].value = sumaMexicaliA;
-          rowValues[6][0].value = sumaOrizabaA;
-          rowValues[7][0].value = sumaRamozAA;
+  
+          rowValues[1][0].value = totalKVCA.cuautitlan;
+          rowValues[2][0].value = totalKVCA.tultitlan;
+          rowValues[3][0].value = totalKVCA.guadalajara;
+          rowValues[4][0].value = totalKVCA.hermosillo;
+          rowValues[5][0].value = totalKVCA.mexicali;
+          rowValues[6][0].value = totalKVCA.orizaba;
+          rowValues[7][0].value = totalKVCA.ramosArispe;
+          rowValues[8][0].value = totalKVCA.total;
         }
-
+  
         if(row.key[0] == '05 MAY'){
-          sumaCuautitlaMY = row.summaryCells[1][0].value / 3;
-          sumaTultitlanMY = row.summaryCells[2][0].value / 2;
-          sumaGuadalajaraMY = row.summaryCells[3][0].value / 2;
-          sumaHermosilloMY = row.summaryCells[4][0].value / 2;
-          sumaMexicaliMY = row.summaryCells[5][0].value / 2;
-          sumaOrizabaMY = row.summaryCells[6][0].value / 4;
-          sumaRamozAMY = row.summaryCells[7][0].value / 3;
-
-          rowValues[1][0].value = sumaCuautitlaMY;
-          rowValues[2][0].value = sumaTultitlanMY;
-          rowValues[3][0].value = sumaGuadalajaraMY;
-          rowValues[4][0].value = sumaHermosilloMY;
-          rowValues[5][0].value = sumaMexicaliMY;
-          rowValues[6][0].value = sumaOrizabaMY;
-          rowValues[7][0].value = sumaRamozAMY;
+  
+          rowValues[1][0].value = totalKVCMY.cuautitlan;
+          rowValues[2][0].value = totalKVCMY.tultitlan;
+          rowValues[3][0].value = totalKVCMY.guadalajara;
+          rowValues[4][0].value = totalKVCMY.hermosillo;
+          rowValues[5][0].value = totalKVCMY.mexicali;
+          rowValues[6][0].value = totalKVCMY.orizaba;
+          rowValues[7][0].value = totalKVCMY.ramosArispe;
+          rowValues[8][0].value = totalKVCMY.total;
         }
-
+  
         if(row.key[0] == '06 JUN'){
-          sumaCuautitlaJN = row.summaryCells[1][0].value / 3;
-          sumaTultitlanJN = row.summaryCells[2][0].value / 2;
-          sumaGuadalajaraJN = row.summaryCells[3][0].value / 3;
-          sumaHermosilloJN = row.summaryCells[4][0].value / 1;
-          sumaMexicaliJN = row.summaryCells[5][0].value / 1;
-          sumaOrizabaJN = row.summaryCells[6][0].value / 4;
-          sumaRamozAJN = row.summaryCells[7][0].value / 2;
-
-          rowValues[1][0].value = sumaCuautitlaJN;
-          rowValues[2][0].value = sumaTultitlanJN;
-          rowValues[3][0].value = sumaGuadalajaraJN;
-          rowValues[4][0].value = sumaHermosilloJN;
-          rowValues[5][0].value = sumaMexicaliJN;
-          rowValues[6][0].value = sumaOrizabaJN;
-          rowValues[7][0].value = sumaRamozAJN;
+  
+          rowValues[1][0].value = totalKVCJN.cuautitlan;
+          rowValues[2][0].value = totalKVCJN.tultitlan;
+          rowValues[3][0].value = totalKVCJN.guadalajara;
+          rowValues[4][0].value = totalKVCJN.hermosillo;
+          rowValues[5][0].value = totalKVCJN.mexicali;
+          rowValues[6][0].value = totalKVCJN.orizaba;
+          rowValues[7][0].value = totalKVCJN.ramosArispe;
+          rowValues[8][0].value = totalKVCJN.total;
         }
-
+  
         if(row.key[0] == '07 JUL'){
-          sumaCuautitlaJL = row.summaryCells[1][0].value / 2;
-          sumaTultitlanJL = row.summaryCells[2][0].value / 2;
-          sumaGuadalajaraJL = row.summaryCells[3][0].value / 2;
-          sumaHermosilloJL = row.summaryCells[4][0].value / 1;
-          sumaMexicaliJL = row.summaryCells[5][0].value / 1;
-          sumaOrizabaJL = row.summaryCells[6][0].value / 5;
-          sumaRamozAJL = row.summaryCells[7][0].value / 1;
-
-          rowValues[1][0].value = sumaCuautitlaJL;
-          rowValues[2][0].value = sumaTultitlanJL;
-          rowValues[3][0].value = sumaGuadalajaraJL;
-          rowValues[4][0].value = sumaHermosilloJL;
-          rowValues[5][0].value = sumaMexicaliJL;
-          rowValues[6][0].value = sumaOrizabaJL;
-          rowValues[7][0].value = sumaRamozAJL;
-
+  
+          rowValues[1][0].value = totalKVCJL.cuautitlan;
+          rowValues[2][0].value = totalKVCJL.tultitlan;
+          rowValues[3][0].value = totalKVCJL.guadalajara;
+          rowValues[4][0].value = totalKVCJL.hermosillo;
+          rowValues[5][0].value = totalKVCJL.mexicali;
+          rowValues[6][0].value = totalKVCJL.orizaba;
+          rowValues[7][0].value = totalKVCJL.ramosArispe;
+          rowValues[8][0].value = totalKVCJL.total;
+  
         }
       }
-
-
-
+  
       if(row.rowType == "totalFooter"){
-
-        let sumaC = sumaCuautitlaE + sumaCuautitlaF + sumaCuautitlaM + sumaCuautitlaA + sumaCuautitlaMY + sumaCuautitlaJN + sumaCuautitlaJL;
-        TotalSCuautitlan = sumaC / 7;
-
-        let sumaT = sumaTultitlanE + sumaTultitlanF + sumaTultitlanM + sumaTultitlanA + sumaTultitlanMY + sumaTultitlanJN + sumaTultitlanJL;
-        TotalSTultitlan = sumaT / 7;
-
-        let sumaG = sumaGuadalajaraE + sumaGuadalajaraF + sumaGuadalajaraM + sumaGuadalajaraA + sumaGuadalajaraMY + sumaGuadalajaraJN + sumaGuadalajaraJL;
-        TotalSGuadalajara = sumaG / 7;
-
-        let sumaH = sumaHermosilloE + sumaHermosilloF + sumaHermosilloM + sumaHermosilloA + sumaHermosilloMY + sumaHermosilloJN + sumaHermosilloJL;
-        TotalSHermosillo = sumaH / 7;
-
-        let sumaM = sumaMexicaliE + sumaMexicaliF + sumaMexicaliM + sumaMexicaliA + sumaMexicaliMY + sumaMexicaliJN + sumaMexicaliJL;
-        TotalSMexicali = sumaM / 7;
-
-        let sumaO = sumaOrizabaE + sumaOrizabaF + sumaOrizabaM + sumaOrizabaA + sumaOrizabaMY + sumaOrizabaJN + sumaOrizabaJL;
-        TotalSOrizaba = sumaO / 7;
-
-        let sumaRA = sumaRamozAE + sumaRamozAF + sumaRamozAM + sumaRamozAA + sumaRamozAMY+ sumaRamozAJN+ sumaRamozAJL;
-        TotalSRamozA = sumaRA / 7;
-
-        row.values[1].value = TotalSCuautitlan;
-        row.values[2].value = TotalSTultitlan;
-        row.values[3].value = TotalSGuadalajara;
-        row.values[4].value = TotalSHermosillo;
-        row.values[5].value = TotalSMexicali;
-        row.values[6].value = TotalSOrizaba;
-        row.values[7].value = TotalSRamozA;
-
-
+        
+  
+        row.values[1].value = totalOperacionKVC.cuautitlan;//TotalSCuautitlan;
+        row.values[2].value = totalOperacionKVC.tultitlan;//TotalSTultitlan;
+        row.values[3].value = totalOperacionKVC.guadalajara;//TotalSGuadalajara;
+        row.values[4].value = totalOperacionKVC.hermosillo;//TotalSHermosillo;
+        row.values[5].value = totalOperacionKVC.mexicali;//TotalSMexicali;
+        row.values[6].value = totalOperacionKVC.orizaba;//TotalSOrizaba;
+        row.values[7].value = totalOperacionKVC.ramosArispe;//TotalSRamozA;
+        row.values[8].value = totalOperacionKVC.total;//TotalSRamozA;
+  
+  
       }
 
     });
@@ -6684,6 +4784,16 @@ onCellPreparedPM(e){
 
     // return str.join("."), t.match(regex)[0];;
 
+    var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return myFormat.join("");
+  }
+
+  separatorIV(value){
     var myvalue = Math.trunc(value);
 
     var myFormat = myvalue.toString().split(".");

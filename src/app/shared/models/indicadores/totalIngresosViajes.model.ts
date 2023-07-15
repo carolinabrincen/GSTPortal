@@ -143,6 +143,17 @@ export class TotalOperacionIVC{
     total: number;
 }
 
+export class TotalOperacionKVC{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+
 //================================================================================
 //=============================TOTAL INGRESOS / VIAJES CARGADOS===================
 //================================================================================
@@ -268,3 +279,127 @@ export class TotalIngresosVCDC{
     total: number;
 }
 
+//================================================================================
+//=============================TOTAL Kilomeotrs / VIAJES CARGADOS===================
+//================================================================================
+
+export class TotalKilomeotrsVCE{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCF{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCM{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCA{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCMY{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCJN{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCJL{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCAG{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCS{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCOC{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCNV{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
+export class TotalKilomeotrsVCDC{
+    cuautitlan: number;
+    tultitlan: number;
+    guadalajara: number;
+    hermosillo: number;
+    mexicali: number;
+    orizaba: number;
+    ramosArispe: number;
+    total: number;
+}
