@@ -503,9 +503,6 @@ export class IndicadoresComponent implements OnInit {
       this.ingresoViajes = data.data.scIngrViaje;
       this.precioMeta = data.data.scPrecioMeta;
 
-
-      console.log(data.data)
-
       var myPrecioM = data.data.scPrecioMeta;
       for (var i = 0; i<myPrecioM.length; i++){
         this.cuautitlan = myPrecioM[i].cuatitlan;
@@ -530,6 +527,9 @@ export class IndicadoresComponent implements OnInit {
 
       this.expandGroup = true;
       this.expandGroupKV = true;
+
+      this.loadingVisible = false;
+
     })
   }
 
@@ -4809,6 +4809,10 @@ onCellPreparedPM(e){
     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
 }
 
+    clickClientesRutas = (e: any) => {
+      this.loadingVisible = true;
+      this.getScoreCard();
+     };
 }
 
 
