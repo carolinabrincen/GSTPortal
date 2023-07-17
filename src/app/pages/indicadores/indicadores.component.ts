@@ -722,7 +722,8 @@ export class IndicadoresComponent implements OnInit {
       totalIngresos.mexicali = event.summaryCells[6][0].value;
       totalIngresos.orizaba = event.summaryCells[7][0].value;
       totalIngresos.ramosArispe = event.summaryCells[8][0].value;
-      totalIngresos.total = event.summaryCells[9][0].value
+      totalIngresos.total = event.summaryCells[9][0].value;
+      //console.log(totalIngresos.total);
     }
   }
   onCellPreparedI(e: any) {
@@ -1010,6 +1011,7 @@ export class IndicadoresComponent implements OnInit {
       totalKilomentros.orizaba = e.summaryCells[7][0].value;
       totalKilomentros.ramosArispe = e.summaryCells[8][0].value;
       totalKilomentros.total = e.summaryCells[9][0].value;
+      //console.log(totalKilomentros.total)
 
       totalOperacionIK.cuautitlan = totalIngresos.cuautitlan / totalKilomentros.cuautitlan;
       totalOperacionIK.tultitlan = totalIngresos.tultitlan / totalKilomentros.tultitlan;
@@ -1019,6 +1021,7 @@ export class IndicadoresComponent implements OnInit {
       totalOperacionIK.orizaba = totalIngresos.orizaba / totalKilomentros.orizaba;
       totalOperacionIK.ramosArispe = totalIngresos.ramosArispe / totalKilomentros.ramosArispe;
       totalOperacionIK.total = totalIngresos.total / totalKilomentros.total;
+      //console.log(totalOperacionIK.total)
     }
   }
   onCellPreparedK(e){
@@ -2755,7 +2758,7 @@ onCellPreparedPM(e){
         }
 
         if(c.totalItem.summaryCells[9][0]?.value != undefined){
-          c.totalItem.summaryCells[9][0].value = this.totalTotal;
+          c.totalItem.summaryCells[9][0].value = totalOperacionIK.total;
         }
 
         // this.CuautitlanTS = this.totalKE.cuautitlanTE + this.totalKF.cuautitlanTF +this.totalKM.cuautitlanTM + this.totalKA.cuautitlanTA + this.totalKMY.cuautitlanTMY + this.totalKJN.cuautitlanTJN + this.totalKJL.cuautitlanTJL;
