@@ -30,7 +30,8 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CostosAnualesNewComponent } from './pages/costos-anuales copy/costos-anuales.component';
   import { IndicadoresComponent } from './pages/indicadores/indicadores.component'; 
   import { CarteraClientesComponent } from './pages/carteraClientes/carteraClientes.component';
-  import { ValidacionIngresoComponent } from './pages/validacionIngreso/validacionIngreso.component'
+  import { ValidacionIngresoComponent } from './pages/validacionIngreso/validacionIngreso.component';
+  import { ProyeccionCostosComponent } from './pages/proyeccionCostos/proyeccionCostos.component';
 
 const routes: Routes = [
   {
@@ -151,6 +152,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService]
   },
   {
+    path: 'proyeccion-costos',
+    component: ProyeccionCostosComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -211,7 +217,8 @@ const routes: Routes = [
     CostosAnualesNewComponent,
     IndicadoresComponent,
     CarteraClientesComponent,
-    ValidacionIngresoComponent
+    ValidacionIngresoComponent,
+    ProyeccionCostosComponent
   ]
 })
 export class AppRoutingModule { }

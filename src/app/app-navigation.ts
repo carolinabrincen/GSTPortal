@@ -88,6 +88,12 @@ export const navigation = [
     text: 'Validación-Ingreso',
     icon: 'columnchooser',
     path: '/validacion-ingreso'
+  },
+  {
+    text: 'Proyección-Costos',
+    icon: 'columnchooser',
+    path: '/proyeccion-costos'
   } 
+ 
 
 ];
