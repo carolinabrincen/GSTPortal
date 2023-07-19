@@ -132,12 +132,12 @@
         
           
 
-                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="pryeccionCTS" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="proyeccionCTS1" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
                       
                       <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                       <dxo-paging [pageSize]="100"></dxo-paging>
-                      <dxo-export [enabled]="true" fileName="ESTADO DE RESULTADOS" [customizeExcelCell]="customizeCAER"></dxo-export>
+                      <dxo-export [enabled]="true" fileName="Proyección Costos" [customizeExcelCell]="customizeCAER"></dxo-export>
 
                         <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
                         <dxi-column caption="{{myCompania +' - '+ myUdN}}" >
@@ -164,9 +164,40 @@
                         </div> -->
 
                     </dx-data-grid>
-
+                    <br><br>
              
+                    <dx-data-grid  #ER id="gridContainer2" [dataSource]="proyeccionCTS2" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedCAER($event)" (onCellPrepared)="onCellPreparedCAER($event)">
+                      
+                      <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                      <dxo-paging [pageSize]="100"></dxo-paging>
+                      <dxo-export [enabled]="true" fileName="Proyección Costos" [customizeExcelCell]="customizeCAER"></dxo-export>
 
+                        <!-- <dxi-column dataField="clasificacion" caption="Clasificación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column> -->
+                        <dxi-column caption="{{myCompania +' - '+ myUdN}}" >
+
+
+                            <!-- <dxi-column caption="CONTABILIZADO DEL MES"> -->
+                                <dxi-column dataField="concepto" caption="Concepto"></dxi-column>
+                                <dxi-column dataField="real" caption="REAL" [format]="separator" [allowSorting]="false"></dxi-column>
+                                <dxi-column dataField="realP" caption="%" format="percent"></dxi-column>
+                                <dxi-column dataField="presupuesto" caption="PRESUP" [format]="separator" [allowSorting]="false"></dxi-column>
+                                <dxi-column dataField="presupuestoP" caption="%" format="percent"></dxi-column>
+                                <dxi-column dataField="presupuestoPC" caption="vs Real %" format="percent" [allowSorting]="false"></dxi-column>
+                                <dxi-column dataField="proyeccion" caption="PROYECC" [format]="separator" [allowSorting]="false"></dxi-column>
+                                <dxi-column dataField="proyeccionFactor" caption="PROYECC FACTOR" format="percent" [allowSorting]="false"></dxi-column>
+                            <!-- </dxi-column> -->
+                        </dxi-column>
+                        <!-- <dxi-column dataField="periodo" caption="Periodo"  headerCellTemplate="headerTemplate"></dxi-column>
+                        <dxi-column dataField="renglon" caption="Renglon" headerCellTemplate="headerTemplate"></dxi-column> -->
+
+                        <!-- <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="detalleCellTemplate"></dxi-column>
+
+                        <div *dxTemplate="let data of 'detalleCellTemplate'">
+                            <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="verDetallesClick(data)"></dx-button>
+                        </div> -->
+
+                    </dx-data-grid>
         </dxi-item>
     </dx-tab-panel>
    
@@ -179,7 +210,7 @@
     <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
 
-            <dx-data-grid class="data-grid" [dataSource]="pryeccionCTS" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+            <dx-data-grid class="data-grid" [dataSource]="proyeccionCTS1" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
              [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>

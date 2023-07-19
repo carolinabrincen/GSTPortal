@@ -36,17 +36,8 @@ export class ProyeccionCostosComponent implements OnInit {
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
   liquidaciones: any = liquidaciones;
-  fechaInicio: Date = new Date();
-  fechaFin: Date = new Date();
 
   costosAnuales: CostosAnuales[] = [];
-
-  DestalleCuenta: DetalleCuenta[] = [];
-  costosFTP: CostosTPS[] = [];
-  costosTPSOccidente: CostosTPSOccidente[] = [];
-  costosTPSGolfo: CostosTPSGolfo[] = [];
-  costosTPSGrafica: CostosTPSGrafica[] = [];
-
 
   col: string = '50';
 
@@ -129,18 +120,11 @@ export class ProyeccionCostosComponent implements OnInit {
 
   proyeccCosService!: ProyeccionCostosService;
 
-  mesSeleccionado: number = 0;
   anioSeleccionado: number = 0;
   udnSeleccionado: any;
-  tractoSeleccionado: string = '';
   selectedCompania: any;
   selectedCompaniaNew: string = ''
-  selectedAnioTPS: number = 0;
-  selectedMesTPS: number = 0;
   selectedClasficacion: number = 0;
-
-  objTracto: any;
-  objRentabilidad: any;
 
   //===========chart===================
   types: string[] = ['line', 'stackedline', 'fullstackedline'];
@@ -172,7 +156,9 @@ export class ProyeccionCostosComponent implements OnInit {
 
   rtlEnabled = false;
 
-  pryeccionCTS: ProyeccionCostosModel[] = []
+  proyeccionCTS1: ProyeccionCostosModel[] = []
+  proyeccionCTS2: ProyeccionCostosModel[] = []
+
   constructor(
     private proyeccionCostosService: ProyeccionCostosService,
   
@@ -190,6 +176,33 @@ export class ProyeccionCostosComponent implements OnInit {
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
+  getProyeccionCostos(){
+    const request = new Promise((resolve, reject) => {
+      this.proyeccCosService.postProyeccionCostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
+        
+        const orderdata: ProyeccionCostosModel[] = data.data;
+        let firstGrid = [];
+        firstGrid.push(orderdata[0],orderdata[1],orderdata[2],orderdata[3],orderdata[5],orderdata[6],orderdata[7],
+                        orderdata[8],orderdata[9],orderdata[10],orderdata[11],orderdata[12],orderdata[13],
+                        orderdata[14],orderdata[15],orderdata[16],orderdata[17],orderdata[18]);
+
+        let secondGrid = [];
+        secondGrid.push(orderdata[19],orderdata[20],orderdata[21],orderdata[22],
+                        orderdata[23],orderdata[24],orderdata[25],
+                        orderdata[26],orderdata[27]);
+        
+                          
+
+        
+        this.proyeccionCTS1 = firstGrid;
+        this.proyeccionCTS2 = secondGrid;
+
+        this.loadingVisible = false;
+      })
+    });
+    return request;
+  }
+  
   getCompanias(){
     this.proyeccCosService.getCompanias().subscribe(data => {
       this.companias = data.data;
@@ -253,18 +266,7 @@ export class ProyeccionCostosComponent implements OnInit {
 
   }
 
-  getProyeccionCostos(){
-    const request = new Promise((resolve, reject) => {
-      this.proyeccCosService.postProyeccionCostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
-        
-        console.log(data.data)
-        this.pryeccionCTS = data.data;
 
-        this.loadingVisible = false;
-      })
-    });
-    return request;
-  }
 
  
 
@@ -300,11 +302,6 @@ export class ProyeccionCostosComponent implements OnInit {
     this.selectedClasficacion = e.value;
   }
 
-
-
-
- 
-
   verDetallesClick(data) {
     var mydata = data.data;
   }
@@ -313,7 +310,6 @@ export class ProyeccionCostosComponent implements OnInit {
     this.selectTracto.value = '';
   }
 
-  
   buscarClick = (e: any) => {
     if (this.selectedClasficacion !==  undefined) {
       this.loadingVisible = true;
