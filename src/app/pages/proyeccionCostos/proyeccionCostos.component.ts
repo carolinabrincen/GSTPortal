@@ -223,8 +223,7 @@ export class ProyeccionCostosComponent implements OnInit {
       if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
           {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'ATMMAC', udn: 'ATMMAC'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
+          {idUdn: 'ATMMAC', udn: 'ATMMAC'}
         ]
       }else if(value == 'CORPORATIVO'){
         this.arrUnidadesNegocio = [
@@ -234,14 +233,12 @@ export class ProyeccionCostosComponent implements OnInit {
       }else if(value == 'GST FLETES Y SERVICIOS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
           {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'GSTFYS', udn: 'GSTFYS'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
+          {idUdn: 'GSTFYS', udn: 'GSTFYS'}
         ]
       }else if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
           {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'TEICUA', udn: 'TEICUA'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
+          {idUdn: 'TEICUA', udn: 'TEICUA'}
         ]
       }else if(value == 'TRANSPORTES BONAMPAK S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
@@ -250,14 +247,12 @@ export class ProyeccionCostosComponent implements OnInit {
           {idUdn: 'TBKRAM', udn: 'TBKRAM'},
           {idUdn: 'TBKORI', udn: 'TBKORI'},
           {idUdn: 'TBKGDL', udn: 'TBKGDL'},
-          {idUdn: 'TBKMEX', udn: 'TBKMEX'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
+          {idUdn: 'TBKMEX', udn: 'TBKMEX'}
         ]
       }else if(value == 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
           {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'TCGTUL', udn: 'TCGTUL'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
+          {idUdn: 'TCGTUL', udn: 'TCGTUL'}
         ]
       }
 
