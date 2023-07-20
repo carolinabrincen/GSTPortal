@@ -65,4 +65,5 @@ export enum API_URLS{
     GET_SCORE_CARD = 'api/Kilometros/ScoreCard',
     GET_INGRESO_OPERADOR = 'api/Kilometros/ViajeOperador/',
     GET_CARTERA_DETALLE = 'api/CarteraClientes/CarteraClientes',
+    GET_KMS_MENSUALES = 'api/Kilometros/KmsMensuales/'
 }

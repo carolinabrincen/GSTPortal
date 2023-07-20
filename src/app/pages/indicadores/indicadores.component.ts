@@ -189,6 +189,7 @@ import {
     TotalKilomeotrsVCDC,
     TotalOperacionKVC
    } from '../../shared/models/indicadores/totalIngresosViajes.model';
+   import { KMSMensuales } from '../../shared/models/indicadores/kmsMensuales.model'
 
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
@@ -408,13 +409,20 @@ export class IndicadoresComponent implements OnInit {
   customOperations: Array<any>;
   popupPosition: any;
 
-  ingresoOperador: IngresoOperador[] = [];
+  kmsMensykaes: KMSMensuales[] = [];
   periodo: any[] = [
     { id: 1, periodo: 202301 },
     { id: 2, periodo: 202302 },
     { id: 3, periodo: 202303 },
     { id: 4, periodo: 202304 },
-    //{ id: 5, periodo: 202305 },
+    { id: 5, periodo: 202305 },
+    { id: 6, periodo: 202306 },
+    { id: 7, periodo: 202307 },
+    { id: 8, periodo: 202308 },
+    { id: 9, periodo: 202309 },
+    { id: 10, periodo: 202310 },
+    { id: 11, periodo: 202311 },
+    { id: 12, periodo: 202312 },
   ];
 
   selectedPeriodo: number = 0;
@@ -533,11 +541,11 @@ export class IndicadoresComponent implements OnInit {
     })
   }
 
-  getIngresoOperador(){
+  getkmsMensuales(){
     const request = new Promise((resolve, reject) => {
-    this.indicadorService.getIgresoOperador(this.selectedPeriodo).subscribe(data => {
-      this.ingresoOperador = data.data;
-    
+    this.indicadorService.getkmsMensuales(this.selectedPeriodo).subscribe(data => {
+      this.kmsMensykaes = data.data;
+      console.log(this.kmsMensykaes)
 
       this.loadingVisible = false;
     })
@@ -580,7 +588,7 @@ export class IndicadoresComponent implements OnInit {
 
     if (this.selectedPeriodo) {
       this.loadingVisible = true;
-      this.getIngresoOperador().then(() => {
+      this.getkmsMensuales().then(() => {
         this.loadingVisible = false;
       });
     }
@@ -4763,6 +4771,18 @@ onCellPreparedPM(e){
 
   }
   }
+
+
+  onRowPreparedKMS(e){
+
+  }
+
+  onCellPreparedIKMS(e){
+
+  }
+
+
+
 
   newText: string = "";
   test(e){

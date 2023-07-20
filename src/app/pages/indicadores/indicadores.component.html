@@ -443,7 +443,7 @@
                     </dx-data-grid>
         </dxi-item>
 
-        <!-- <dxi-item title="Ingreso por operador">
+        <dxi-item title="KMS Mensuales">
             <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
@@ -488,7 +488,7 @@
 
             
 
-            <dx-chart id="chart" [dataSource]="graficaModel" palette="soft" title="Kilómetros por Udn">
+            <!-- <dx-chart id="chart" [dataSource]="graficaModel" palette="soft" title="Kilómetros por Udn">
             
                 <dxi-series valueField="kmstotalC" name="kilometros cargados" color="#363640">
                     <dxo-label [visible]="true" [format]="separator" position="inside">
@@ -509,71 +509,70 @@
                 <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
                 </dxo-legend>
                 <dxo-export [enabled]="true"></dxo-export>
-            </dx-chart>
+            </dx-chart> -->
 
            
             
          <br>
            
-            <dx-data-grid  #ER id="gridContainer2" [dataSource]="ingresoOperador" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
-            (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
+         <dx-data-grid  #ING id="gridContainer8" [dataSource]="kmsMensykaes" [height]="700"[showBorders]="true" [columnAutoWidth]="true" 
+                    (onRowPrepared)="onRowPreparedKMS($event)" (onCellPrepared)="onCellPreparedIKMS($event)">
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..." (textChange)="test($event)"></dxo-search-panel>
-            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-            <dxo-paging [pageSize]="100"></dxo-paging>
-            <dxo-export [enabled]="true" fileName="Ingreso-Operador" [customizeExcelCell]="customizeI"></dxo-export>
-            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                    <dxi-column dataField="anio" caption="Año" [width]="100"></dxi-column>
+                    <dxi-column dataField="mes" caption="Mes"[width]="70"></dxi-column>
+                    <dxi-column dataField="udN" caption="UdN"[width]="150"></dxi-column>
+                    <dxi-column dataField="noViaje" caption="No. Viaje" [width]="100"></dxi-column>
+                    <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                    <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column>
+                    <dxi-column dataField="tracto" caption="Tracto" [width]="100"></dxi-column>
+                    <dxi-column dataField="rem1" caption="Rem. 1" [width]="100"></dxi-column>
+                    <dxi-column dataField="descRem1" caption="Desc. Rem. 1" [width]="100"></dxi-column>
+                    <dxi-column dataField="rem2" caption="Rem. 2" [width]="100"></dxi-column>
+                    <dxi-column dataField="descripcion" caption="Descripción" [width]="170"></dxi-column>
+                    <dxi-column dataField="tipoViaje" caption="Tipo viaje" [width]="100"></dxi-column>
+                    <dxi-column dataField="operacion" caption="Operación" [width]="150"></dxi-column>
+                    <dxi-column dataField="fecha" caption="Fecha" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                    <dxi-column dataField="origen" caption="Origen" [width]="180"></dxi-column>
+                    <dxi-column dataField="edoOrigen" caption="Edo. Origen" [width]="120"></dxi-column>
+                    <dxi-column dataField="municipioOrigen" caption="Municipio origen" [width]="170"></dxi-column>
+                    <dxi-column dataField="destino" caption="Destino" [width]="180"></dxi-column>
+                    <dxi-column dataField="edoDestino" caption="Edo. Destino" [width]="120"></dxi-column>
+                    <dxi-column dataField="municipioDestino" caption="Municipio destino" [width]="170"></dxi-column>
+                    <dxi-column dataField="modelo" caption="Modelo" [width]="100"></dxi-column>
+                    <dxi-column dataField="kmsRuta" caption="Kms Ruta"[width]="100"></dxi-column>
+                    <dxi-column dataField="kmsReal" caption="Kms Real" [width]="100"></dxi-column>
+                    <dxi-column dataField="desviacion" caption="desviación" [width]="100"></dxi-column>
+                    <dxi-column dataField="autorizado" caption="Autorizado" [width]="100"></dxi-column>
+                    <dxi-column dataField="kmsReporte" caption="kms Reporte" [width]="100"></dxi-column>
+                    <dxi-column dataField="diesel" caption="Diesel" [width]="100"></dxi-column>
+                    <dxi-column dataField="rendimiento" caption="Rendimiento" [width]="100"></dxi-column>
+                    <dxi-column dataField="liquidado" caption="Liquidado" [width]="100"></dxi-column>
+                    <dxi-column dataField="no_liquidacion" caption="No. Liquidación" [width]="100"></dxi-column>
+                    <dxi-column dataField="fecha_liquidacion" caption="Fecha liquidación" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                    <dxi-column dataField="mesLiquidacion" caption="Mes liquidación" [width]="120"></dxi-column>
+                    <dxi-column dataField="despachoViaje" caption="Despacho viaje" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                    <dxi-column dataField="finViaje" caption="Fin viaje" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                    <dxi-column dataField="finalizado" caption="Finalizado" [width]="120"></dxi-column>
+                    <dxi-column dataField="diasSinLiquidar" caption="Días sin liquidar" [width]="150"></dxi-column>
+                    <dxi-column dataField="periodo" caption="Periodo" [width]="100"></dxi-column>
+                    <dxi-column dataField="flete" caption="Flete" [width]="100"></dxi-column>
+                    <dxi-column dataField="diaMes" caption="Día mes" [width]="100"></dxi-column>
+                    <dxi-column dataField="toneladas" caption="Toneladas" [width]="100"></dxi-column>
+                    
+                    
 
-              <dxi-column dataField="udN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
-              <dxi-column dataField="operacion" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
-  
-              <dxi-column dataField="operador" caption="Operador"></dxi-column>
-              <dxi-column caption="Kilometros">
-                  <dxi-column dataField="kmsCargados" caption="Cargados" [format]="separator"></dxi-column>
-                  <dxi-column dataField="kmsVacios" caption="Vacios" [format]="separator"></dxi-column>
-                  <dxi-column dataField="kmsTotal" caption="Total" [format]="separator"></dxi-column>
-              </dxi-column>
-              <dxi-column caption="Viajes">
-                  <dxi-column dataField="viajesCargados" caption="Cargados" [format]="separator"></dxi-column>
-                  <dxi-column dataField="viajesVacios" caption="Vacios" [format]="separator"></dxi-column>
-                  <dxi-column dataField="viajesTotal" caption="Total" [format]="separator"></dxi-column>
-              </dxi-column>
-              <dxi-column caption="Ingresos">
-                  <dxi-column dataField="ingresoCargados" caption="Cargados" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                  <dxi-column dataField="ingresoVacios" caption="Vacios" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                  <dxi-column dataField="ingresoTotal" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-              </dxi-column>
-  
-              <dxo-summary>
-               
-                  <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-              
-                  <dxi-group-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  
-                  <dxi-group-item column="ingresoCargados" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="ingresoVacios" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                  <dxi-group-item column="ingresoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-  
-            
-                  <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                  <dxi-total-item column="kmsVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                  <dxi-total-item column="kmsTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                
-                  <dxi-total-item column="viajesCargados" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                  <dxi-total-item column="viajesVacios" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                  <dxi-total-item column="viajesTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-                   
-                  <dxi-total-item column="ingresoCargados" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                  <dxi-total-item column="ingresoVacios" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-                  <dxi-total-item column="ingresoTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
-              </dxo-summary>
+                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                    <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                    <dxo-export [enabled]="true" fileName="KMS Mensuales" [customizeExcelCell]="customizeI"></dxo-export>
+                    <dxo-paging [pageSize]="60"></dxo-paging>
+                    <dxo-sorting mode="none"></dxo-sorting>
 
-            </dx-data-grid>
-        </dxi-item> -->
+                    </dx-data-grid>
+
+        </dxi-item>
     </dx-tab-panel>
    
         <!-- LOAD PANEL -->
