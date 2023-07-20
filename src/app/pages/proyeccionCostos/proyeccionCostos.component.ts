@@ -182,9 +182,10 @@ export class ProyeccionCostosComponent implements OnInit {
         
         const orderdata: ProyeccionCostosModel[] = data.data;
         let firstGrid = [];
-        firstGrid.push(orderdata[0],orderdata[1],orderdata[2],orderdata[3],orderdata[5],orderdata[6],orderdata[7],
-                        orderdata[8],orderdata[9],orderdata[10],orderdata[11],orderdata[12],orderdata[13],
-                        orderdata[14],orderdata[15],orderdata[16],orderdata[17],orderdata[18]);
+        firstGrid.push(orderdata[0],orderdata[1],orderdata[2],orderdata[3],orderdata[4],orderdata[5],
+                       orderdata[6],orderdata[7],orderdata[8],orderdata[9],orderdata[10],orderdata[11],
+                       orderdata[12],orderdata[13],orderdata[14],orderdata[15],orderdata[16],orderdata[17],
+                       orderdata[18]);
 
         let secondGrid = [];
         secondGrid.push(orderdata[19],orderdata[20],orderdata[21],orderdata[22],
