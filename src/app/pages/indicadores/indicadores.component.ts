@@ -4836,6 +4836,13 @@ onCellPreparedPM(e){
       this.loadingVisible = true;
       this.getScoreCard();
      };
+
+
+  redondearD(value){
+    const total = value.toFixed(2);
+
+    return total;
+  }
 }
 
 

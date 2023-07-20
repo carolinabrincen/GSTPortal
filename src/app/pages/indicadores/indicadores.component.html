@@ -544,11 +544,11 @@
                     <dxi-column dataField="modelo" caption="Modelo" [width]="100"></dxi-column>
                     <dxi-column dataField="kmsRuta" caption="Kms Ruta"[width]="100"></dxi-column>
                     <dxi-column dataField="kmsReal" caption="Kms Real" [width]="100"></dxi-column>
-                    <dxi-column dataField="desviacion" caption="desviación" [width]="100"></dxi-column>
+                    <dxi-column dataField="desviacion" caption="Desviación" format="percent" [width]="120"></dxi-column>
                     <dxi-column dataField="autorizado" caption="Autorizado" [width]="100"></dxi-column>
-                    <dxi-column dataField="kmsReporte" caption="kms Reporte" [width]="100"></dxi-column>
+                    <dxi-column dataField="kmsReporte" caption="Kms. Reporte" [width]="130"></dxi-column>
                     <dxi-column dataField="diesel" caption="Diesel" [width]="100"></dxi-column>
-                    <dxi-column dataField="rendimiento" caption="Rendimiento" [width]="100"></dxi-column>
+                    <dxi-column dataField="rendimiento" caption="Rendimiento" [format]="redondearD" [width]="130"></dxi-column>
                     <dxi-column dataField="liquidado" caption="Liquidado" [width]="100"></dxi-column>
                     <dxi-column dataField="no_liquidacion" caption="No. Liquidación" [width]="100"></dxi-column>
                     <dxi-column dataField="fecha_liquidacion" caption="Fecha liquidación" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
@@ -558,7 +558,7 @@
                     <dxi-column dataField="finalizado" caption="Finalizado" [width]="120"></dxi-column>
                     <dxi-column dataField="diasSinLiquidar" caption="Días sin liquidar" [width]="150"></dxi-column>
                     <dxi-column dataField="periodo" caption="Periodo" [width]="100"></dxi-column>
-                    <dxi-column dataField="flete" caption="Flete" [width]="100"></dxi-column>
+                    <dxi-column dataField="flete" caption="Flete" format="$ #,###,###.##;-$ #,##0.##" [width]="100"></dxi-column>
                     <dxi-column dataField="diaMes" caption="Día mes" [width]="100"></dxi-column>
                     <dxi-column dataField="toneladas" caption="Toneladas" [width]="100"></dxi-column>
                     
