@@ -61,43 +61,23 @@ export class ProyeccionCostosComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 0, anio: "TODOS" },    
-    { idAnio: 202301, anio: "202301" },
-    { idAnio: 202302, anio: "202302" },
-    { idAnio: 202303, anio: "202303" },
-    { idAnio: 202304, anio: "202304" },
-    { idAnio: 202305, anio: "202305" },
-    { idAnio: 202306, anio: "202306" },
+    // { idAnio: 202301, anio: "202301" },
+    // { idAnio: 202302, anio: "202302" },
+    // { idAnio: 202303, anio: "202303" },
+    // { idAnio: 202304, anio: "202304" },
+    // { idAnio: 202305, anio: "202305" },
+    // { idAnio: 202306, anio: "202306" },
     { idAnio: 202307, anio: "202307" },
-    { idAnio: 202308, anio: "202308" },
-    { idAnio: 202309, anio: "202309" },
-    { idAnio: 202310, anio: "202310" },
-    { idAnio: 202311, anio: "202311" },
-    { idAnio: 202312, anio: "202312" }
+    // { idAnio: 202308, anio: "202308" },
+    // { idAnio: 202309, anio: "202309" },
+    // { idAnio: 202310, anio: "202310" },
+    // { idAnio: 202311, anio: "202311" },
+    // { idAnio: 202312, anio: "202312" }
   ];
-
-  anio: AniosModel[] = [
-    { idAnio: 202301, anio: "202301" },
-    { idAnio: 202302, anio: "202302" },
-    { idAnio: 202303, anio: "202303" },
-    { idAnio: 202304, anio: "202304" },
-    { idAnio: 202305, anio: "202305" },
-    { idAnio: 202306, anio: "202306" },
-    { idAnio: 202307, anio: "202307" },
-    { idAnio: 202308, anio: "202308" },
-    { idAnio: 202309, anio: "202309" },
-    { idAnio: 202310, anio: "202310" },
-    { idAnio: 202311, anio: "202311" },
-    { idAnio: 202312, anio: "202312" }
-  ]
 
   companias: Compania[] =[]
 
   nweCompanias = [
-    {idCompania: 'TODOS', compania: 'TODOS'},
-    {idCompania: 'ATMMAC', compania: 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'},
-    {idCompania: 'CORPOR', compania: 'CORPORATIVO'},
-    {idCompania: 'GSTFYS', compania: 'GST FLETES Y SERVICIOS S.A. DE C.V.'},
     {idCompania: 'TEICUA', compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'},
     {idCompania: 'TBKHER', compania: 'TRANSPORTES BONAMPAK S.A. DE C.V.'},
     {idCompania: 'TCGTUL', compania: 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'},
@@ -177,6 +157,7 @@ export class ProyeccionCostosComponent implements OnInit {
 
   //=================GETS===========================
   getProyeccionCostos(){
+    this.anioSeleccionado = 202307
     const request = new Promise((resolve, reject) => {
       this.proyeccCosService.postProyeccionCostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         
@@ -216,34 +197,12 @@ export class ProyeccionCostosComponent implements OnInit {
       // this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
       //   this.arrUnidadesNegocio = data.data;
       // })
-      if(value == 'TODOS'){
+      if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
-        ]
-      }
-      if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
-        this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'ATMMAC', udn: 'ATMMAC'}
-        ]
-      }else if(value == 'CORPORATIVO'){
-        this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'CORPOR', udn: 'CORPOR'}
-        ]
-      }else if(value == 'GST FLETES Y SERVICIOS S.A. DE C.V.'){
-        this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
-          {idUdn: 'GSTFYS', udn: 'GSTFYS'}
-        ]
-      }else if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){
-        this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TEICUA', udn: 'TEICUA'}
         ]
       }else if(value == 'TRANSPORTES BONAMPAK S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TBKHER', udn: 'TBKHER'},
           {idUdn: 'TBKRAM', udn: 'TBKRAM'},
           {idUdn: 'TBKORI', udn: 'TBKORI'},
@@ -252,7 +211,6 @@ export class ProyeccionCostosComponent implements OnInit {
         ]
       }else if(value == 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
           {idUdn: 'TCGTUL', udn: 'TCGTUL'}
         ]
       }
@@ -268,9 +226,9 @@ export class ProyeccionCostosComponent implements OnInit {
 
   //=================SELECTS========================
   //Manejadores de Eventos
-  seleccionarAnio(e: any) {
-    this.anioSeleccionado = e.value;
-  }
+  // seleccionarAnio(e: any) {
+  //   this.anioSeleccionado = e.value;
+  // }
   
   selectCompania(e: any) {
     this.selectedCompania = e.value;
