@@ -37,6 +37,8 @@ export class IngresosDetalladosComponent implements OnInit {
   arrIngresosDiciembre: IngresosDModel[] = [];
   arrDetalleDiciembre: DetalleModel[] = [];
 
+  loadingVisible = false;
+
   constructor(private ingresosService: ServiceSales) 
   {
     // this.ingresosService.getIngresosDetalladosMensual().subscribe(res => {
@@ -46,39 +48,51 @@ export class IngresosDetalladosComponent implements OnInit {
       
     // });
 
-    // this.ingresosService.getIngresosDetalladosMensualFeb().subscribe(res => {
-      
-    //   this.arrIngresosFeb = res.data.resumen;
-    //   this.arrDetalleFeb = res.data.detalle;
-    // });
+  }
 
+  ngOnInit(): void {
+    this.getIDMMarzo();
+    this.getIDMAbril();
+    this.getIDMMayo();
+    this.getIDMJunio();
+    this.getIDMJulio();
+  }
+
+  getIDMMarzo(){
     this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
       this.arrIngresosMarzo = res.data.resumen;
       this.arrDetalleMarzo = res.data.detalle;
     });
-
+  }
+ 
+  getIDMAbril(){
     this.ingresosService.getIngresosDetalladosMensualAbr().subscribe(res => {
       this.arrIngresosAbril = res.data.resumen;
       this.arrDetalleAbril = res.data.detalle;
     });
+  }
 
+  getIDMMayo(){
     this.ingresosService.getIngresosDetalladosMensualMay().subscribe(res => {
       this.arrIngresosMayo = res.data.resumen;
       this.arrDetalleMayo = res.data.detalle;
     });
+  }
 
+  getIDMJunio(){
     this.ingresosService.getIngresosDetalladosMensualJun().subscribe(res => {
       this.arrIngresosJunio = res.data.resumen;
       this.arrDetalleJunio = res.data.detalle;
     });
-    
+  }
+  
+  getIDMJulio(){
     this.ingresosService.getIngresosDetalladosMensualJul().subscribe(res => {
       this.arrIngresosJulio = res.data.resumen;
       this.arrDetalleJulio = res.data.detalle;
-    });
-  }
 
-  ngOnInit(): void {
+      this.loadingVisible = false;
+    });
   }
 
   onRowPrepared(e: any) {
@@ -114,4 +128,12 @@ export class IngresosDetalladosComponent implements OnInit {
   }
 }
 
+Actualizar(e: any){
+  this.loadingVisible = true;
+  this.getIDMMarzo();
+  this.getIDMAbril();
+  this.getIDMMayo();
+  this.getIDMJunio();
+  this.getIDMJulio();
+}
 }
