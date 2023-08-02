@@ -25,9 +25,9 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleJunio: DetalleModel[] = [];
   arrIngresosJulio: IngresosDModel[] = [];
   arrDetalleJulio: DetalleModel[] = [];
-
   arrIngresosAgosto: IngresosDModel[] = [];
   arrDetalleAgosto: DetalleModel[] = [];
+
   arrIngresosSeptiembre: IngresosDModel[] = [];
   arrDetalleSeptiembre: DetalleModel[] = [];
   arrIngresosOctubre: IngresosDModel[] = [];
@@ -56,6 +56,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMMayo();
     this.getIDMJunio();
     this.getIDMJulio();
+    this.getIDMAgosto();
   }
 
   getIDMMarzo(){
@@ -95,6 +96,14 @@ export class IngresosDetalladosComponent implements OnInit {
     });
   }
 
+  getIDMAgosto(){
+    this.ingresosService.getIngresosDetalladosMensualAgo().subscribe(res => {
+      this.arrIngresosAgosto = res.data.resumen;
+      this.arrDetalleAgosto = res.data.detalle;
+
+      this.loadingVisible = false;
+    });
+  }
   onRowPrepared(e: any) {
     
 
