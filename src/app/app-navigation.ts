@@ -24,11 +24,11 @@ export const navigation = [
       //   path: '/kilometros',
       //   icon: 'map'
       // },
-      // {
-      //   text: 'Rent. Contable',
-      //   path: '/rentabilidadcontable',
-      //   icon: 'columnproperties'
-      // },
+      {
+        text: 'Rent. Contable',
+        path: '/rentabilidadcontable',
+        icon: 'columnproperties'
+      },
       // {
       //   text: 'Rent. Gerencial',
       //   path: '/rentabilidadgerencial',
