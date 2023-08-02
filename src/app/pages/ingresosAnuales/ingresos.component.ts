@@ -301,10 +301,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presupuestoJL = e.summaryCells[61][0].value;
         this.totalPor.proyeccionJL = e.summaryCells[63][0].value;
         //Agosto
-        // this.totalPor.totalAG = e.summaryCells[][0].value;
-        // this.totalPor.anioAntAG = e.summaryCells[][0].value;
-        // this.totalPor.presupuestoAG = e.summaryCells[][0].value;
-        // this.totalPor.proyeccionAG = e.summaryCells[][0].value;
+        this.totalPor.totalAG = e.summaryCells[67][0].value;
+        this.totalPor.anioAntAG = e.summaryCells[68][0].value;
+        this.totalPor.presupuestoAG = e.summaryCells[70][0].value;
+        this.totalPor.proyeccionAG = e.summaryCells[72][0].value;
         //Septiembre
         // this.totalPor.totalS = e.summaryCells[][0].value;
         // this.totalPor.anioAntS = e.summaryCells[][0].value;
@@ -355,9 +355,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presTotalJL = this.totalPor.totalJL / this.totalPor.presupuestoJL;
         this.totalPor.ProyTotalJL = this.totalPor.proyeccionJL / this.totalPor.presupuestoJL;
         //Agosto
-        // this.totalPor.aniATotalAG = this.totalPor.totalAG / this.totalPor.anioAntAG;
-        // this.totalPor.presTotalAG = this.totalPor.totalAG / this.totalPor.presupuestoAG;
-        // this.totalPor.ProyTotalAG = this.totalPor.proyeccionAG / this.totalPor.presupuestoAG;
+        this.totalPor.aniATotalAG = this.totalPor.totalAG / this.totalPor.anioAntAG;
+        this.totalPor.presTotalAG = this.totalPor.totalAG / this.totalPor.presupuestoAG;
+        this.totalPor.ProyTotalAG = this.totalPor.proyeccionAG / this.totalPor.presupuestoAG;
         //Septiembre
         // this.totalPor.aniATotalS = this.totalPor.totalS / this.totalPor.anioAntS;
         // this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
@@ -404,9 +404,9 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[62][0].value = this.totalPor.presTotalJL;
         e.summaryCells[64][0].value = this.totalPor.ProyTotalJL;
         //Agosto
-        // e.summaryCells[][0].value = this.totalPor.aniATotalAG;
-        // e.summaryCells[][0].value = this.totalPor.presTotalAG;
-        // e.summaryCells[][0].value = this.totalPor.ProyTotalAG;
+        e.summaryCells[69][0].value = this.totalPor.aniATotalAG;
+        e.summaryCells[71][0].value = this.totalPor.presTotalAG;
+        e.summaryCells[73][0].value = this.totalPor.ProyTotalAG;
         //Septiembre
         // e.summaryCells[][0].value = this.totalPor.aniATotalS;
         // e.summaryCells[][0].value = this.totalPor.presTotalS;
