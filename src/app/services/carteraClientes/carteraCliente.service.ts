@@ -27,5 +27,13 @@ export class CarteraClientesService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_CARTERA_DETALLE), this.httpOptions);
   }
 
-
+  
+  postCarteraCliente(periodo: number, compania: number){
+    let body = {
+      periodo: periodo,
+      compania: compania
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CARTERA_CLIENTE), body, this.httpOptions);
+  }
 }

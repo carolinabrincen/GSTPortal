@@ -22,42 +22,33 @@ export class CarteraClientesComponent implements OnInit {
   col: string = '50';
 
   boxCartera: Cartera[] = [
-    { id: 1, cartera: "ATM" },
-    { id: 2, cartera: "GEMINIS" },
-    { id: 3, cartera: "TBK" },
+    { id: 1, cartera: "TRANSPORTES BONAMPAK S.A. DE C.V." },
+    { id: 2, cartera: "AUTOTRANSPORTE MACUSPANA S.A. DE C.V." },
+    { id: 3, cartera: "TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V." },
+    { id: 4, cartera: "TRANSPORTES DE CARGA GEMINIS S.A. DE C.V." },
+    { id: 5, cartera: "GST FLETES Y SERVICIOS S.A. DE C.V." },
 
   ];
 
-  carteraClientes: CarteraClientes[] = [
-    {nombreCliente: 'AIRPAC', corriente: 0, dias1A30: 0, dias31A60: 30662.02, dias61A90: 0, mayorA90: 0, total: 30662.02},
-    {nombreCliente: 'BEST LOGISTIC SERVICES', corriente: 29139.26, dias1A30: 29139.26, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 58278.52},
-    {nombreCliente: 'BEBIDAS INTERNACIONAES BEPENSA', corriente: 143360.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 143360.00},
-    {nombreCliente: 'CAB LOGISTIC', corriente: 108039.48, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 108039.48},
-    {nombreCliente: 'CADENA COMERCIAL OXXO', corriente: 23200.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 23200.00},
-    {nombreCliente: 'CEMENTOS MOCTEZUMA', corriente: 2771672.13, dias1A30: 220685.34, dias31A60: 93517.66, dias61A90: 0, mayorA90: 0, total: 3085875.13},
-    {nombreCliente: 'CERVECERIA CUAUHTEMOC MOCTEZUMA', corriente: 27104.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 27104.00},
-    {nombreCliente: 'CERVECERIA MODELO DE MEXICO', corriente: 90720.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 90720.00},
-    {nombreCliente: 'DXT LOGISTICA', corriente: 67200.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 67200.00},
-    {nombreCliente: 'EUCOMEX', corriente: 405593.80, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 405593.80},
-    {nombreCliente: 'ENVASES UNIVERSALES', corriente: 0, dias1A30: 29344.00, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 29344.00},
-    {nombreCliente: 'FWD LOGISTICA', corriente: 0, dias1A30: 37408.00, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 37408.00},
-    {nombreCliente: 'GRUPO PGL MEXICO', corriente: 988400.00, dias1A30: 125440.00, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 1113840.00},
-    {nombreCliente: 'GRUPO ILIMEX', corriente: 28000.00, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 28000.00},
-    {nombreCliente: 'KLS', corriente: 208320.00, dias1A30: 35840.00, dias31A60: 1.12, dias61A90: 0, mayorA90: 0, total: 244161.12},
-    {nombreCliente: 'LA MADRILEÑA', corriente: 46017.68, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 46017.68},
-    {nombreCliente: 'LUIS EDUARDO ARELLANO VALDEZ', corriente: 0, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 60320.00, total: 60320.00},
-    {nombreCliente: 'OWENS AMERICA', corriente: 53180.96, dias1A30: 43376.48, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 96557.44},
-    {nombreCliente: 'PRODUCTOS UVA', corriente: 180549.60, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 180549.60},
-    {nombreCliente: 'SOLBE LOGISTICA', corriente: 73032.96, dias1A30: 0, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 73032.96},
-    {nombreCliente: 'SALES DEL VALLE', corriente: 0, dias1A30: 101329.76, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 101329.76},
-    {nombreCliente: 'VIDRIO PLANO DE MEXICO', corriente: 78400.00, dias1A30: 39200.00, dias31A60: 0, dias61A90: 0, mayorA90: 0, total: 117600.00},
-    {nombreCliente: 'SUMA TERCEROS', corriente: 5321932.87, dias1A30: 632623.58, dias31A60: 153230.06, dias61A90: 0, mayorA90: 60320.00, total: 6168196.51},
-    {nombreCliente: 'AVANCE AL 07 DE ABRIL', corriente: 382562.92, dias1A30: 220685.35, dias31A60: 124179.68, dias61A90: 0, mayorA90: 0, total: 0},
-    {nombreCliente: 'PORCENTAJE DE AVANCE', corriente: 7, dias1A30: 35, dias31A60: 81, dias61A90: 0, mayorA90: 0, total: 0},
-
-  ]
+  carteraClientes: CarteraClientes[] = []
+  carteraInfo: any;
 
   detalle: Detalle[] = [];
+
+  periodo: any[] = [
+    // { id: 1, periodo: 202301 },
+    // { id: 2, periodo: 202302 },
+    // { id: 3, periodo: 202303 },
+    // { id: 4, periodo: 202304 },
+    // { id: 5, periodo: 202305 },
+    // { id: 6, periodo: 202306 },
+    { id: 7, periodo: 202307 },
+    { id: 8, periodo: 202308 },
+    { id: 9, periodo: 202309 },
+    { id: 10, periodo: 202310 },
+    { id: 11, periodo: 202311 },
+    { id: 12, periodo: 202312 },
+  ];
 
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
@@ -71,6 +62,7 @@ export class CarteraClientesComponent implements OnInit {
 
   isVisible = false;
 
+  selectedPeriodo: number = 0;
 
   constructor(
     private carteraClientesService: CarteraClientesService,
@@ -99,9 +91,61 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   //=================SELECTS========================
-
+  printValue = "";
   selectBoxCartera(e: any) {
     this.selectedBoxCartera = e.value;
+
+    if(e.value == 1){
+      this.printValue = this.boxCartera[0].cartera
+    }
+    if(e.value == 2){
+      this.printValue = this.boxCartera[1].cartera
+    }
+    if(e.value == 3){
+      this.printValue = this.boxCartera[2].cartera
+    }
+    if(e.value == 3){
+      this.printValue = this.boxCartera[3].cartera
+    }
+    if(e.value == 3){
+      this.printValue = this.boxCartera[4].cartera
+    }
+
+  }
+
+  printPeriodo = ""
+  seleccionarPeriodo(e: any) {
+    this.selectedPeriodo = e.value
+
+    if(e.value == 202307){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2023"
+    }
+    if(e.value == 202308){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2023"
+    }
+    if(e.value == 202309){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2023"
+    }
+    if(e.value == 202310){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2023"
+    }
+    if(e.value == 202311){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2023"
+    }
+    if(e.value == 202312){}{
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
+    }
+
+  }
+
+
+  postCarteraCliente(){
+    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera).subscribe(data => {
+      this.carteraClientes = data.data.carteraMensual;
+      this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+      this.carteraInfo = data.data
+      this.loadingVisible = false;
+    })
   }
 
   ActuaizarDetalle(){
@@ -125,25 +169,12 @@ export class CarteraClientesComponent implements OnInit {
 
   
   buscarClick = (e: any) => {
-    // if (this.selectedClasficacion !==  undefined) {
-    //   this.loadingVisible = true;
-    //   this.modeSearch = 'true'
+    if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== 0) {
+      this.loadingVisible = true;
+      this.modeSearch = 'true'
 
-    //   this.totalesProvisiones = new Provisiones
-    //   this.totalesOtrosGO = new OtrosGastosOperacion
-    //   this.totalesOtrosGIE = new OtrosGastosIngresosEstraordinarios
-    //   this.totalesOtros = new Otros
-    //   this.totalesOperacion = new TotalesOperacion
-    //   this.totalesOGIO = new OtrosGastosIngresosOrdonarios
-    //   this.totalesGIF = new GastosIngresosFinancieros
-    //   this.totales  = new Totales0
-
-    //     // console.log('entre : '+this.totales.totalER)
-
-    //   this.callCostosAnuales().then(() => {
-    //     this.loadingVisible = false;
-    //   });
-    // }
+      this.postCarteraCliente();
+    }
 
   };
 
@@ -156,7 +187,7 @@ export class CarteraClientesComponent implements OnInit {
   onHidden() {
   }
 
-  onRowPreparedCAER(e: any){
+  onRowPreparedCC(e: any){
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
 
@@ -182,13 +213,16 @@ export class CarteraClientesComponent implements OnInit {
     }
   }
 
-  onCellPreparedCAER(e: any){
-    if (e.rowType == 'data') {
-
-      // if(e.colum.caption == 'Total'){
-       
-      //}
-
+  onCellPreparedCC(e: any){
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
     }
   }
 
@@ -206,6 +240,15 @@ export class CarteraClientesComponent implements OnInit {
     if (gridCell.rowType === 'header') {
       e.backgroundColor = "#DCDCDC";
     }
+
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+  }
   }
 
   onRowPreparedD(e){
@@ -231,6 +274,11 @@ export class CarteraClientesComponent implements OnInit {
 
   customizeColumns(columns) {
     columns[0].width = 70;
+  }
+
+  customizeDate(data) {
+    data = "SUMA TERCEROS"
+    return data;
   }
 
 
