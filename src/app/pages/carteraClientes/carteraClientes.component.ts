@@ -67,7 +67,6 @@ export class CarteraClientesComponent implements OnInit {
   constructor(
     private carteraClientesService: CarteraClientesService,
     ) {
-
   //===========chart===================
 
   }
@@ -75,6 +74,8 @@ export class CarteraClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCarteraDetalle();
+
+    
   }
 
   ngAfterViewInit(): void {}
@@ -142,9 +143,26 @@ export class CarteraClientesComponent implements OnInit {
 
   postCarteraCliente(){
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera).subscribe(data => {
+      
+
+      if(data.data != undefined || data.data != null){
+
+        var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
+        var sinCarta = new Intl.NumberFormat().format(data.data.facturasSinCarta);
+        var total = new Intl.NumberFormat().format(data.data.facturasTotal);
+
+        data.data.facturasConCarta = conCarta;
+        data.data.facturasSinCarta = sinCarta;
+        data.data.facturasTotal = total;
+        
+      }
+
+
+
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
       this.carteraInfo = data.data
+
       this.loadingVisible = false;
     })
   }
@@ -287,7 +305,15 @@ export class CarteraClientesComponent implements OnInit {
   }
 
 
+  separatorcon(value) {
+    var myvalue = Math.trunc(value);
 
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return '$ '+myFormat.join("");
+  }
 }
 
 

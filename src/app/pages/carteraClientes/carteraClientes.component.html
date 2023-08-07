@@ -59,14 +59,20 @@
 
             </dx-responsive-box>
 
-            <br><br><br>
+            <br>
 
-            <h3>Facturas con carta cobro: {{carteraInfo?.facturasConCarta}}</h3>
-            <h3>Facturas sin carta cobro:&nbsp; {{carteraInfo?.facturasSinCarta}}</h3>
-            <h3>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {{carteraInfo?.facturasTotal}}</h3>
+            <div class="dx-field">
+                <div class="dx-field-value d-block mr-0 ml-auto" style="width: 30%;">
+                    <h5>Facturas con carta cobro: <b>{{carteraInfo?.facturasConCarta}}</b></h5>
+                    <h5>Facturas sin carta cobro:&nbsp; <b>{{carteraInfo?.facturasSinCarta}}</b></h5>
+                    <h5>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b>{{carteraInfo?.facturasTotal}}</b></h5>                
+                </div>
+
+            </div>
+
             <br>
             <dx-data-grid  #ER id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedCC($event)" (onCellPrepared)="onCellPreparedCC($event)">
