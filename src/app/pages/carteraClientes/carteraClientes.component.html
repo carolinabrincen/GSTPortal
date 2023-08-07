@@ -78,22 +78,22 @@
                 
               <dxi-column caption="{{printValue+' - '+ printPeriodo}}">
                 <dxi-column dataField="cliente" caption="Nombre de cliente"></dxi-column>
-                <dxi-column dataField="corriente" caption="Corriente" [format]="formatSliderTooltip"></dxi-column>
-                <dxi-column dataField="per1a30" caption="1 A 30" [format]="formatSliderTooltip"></dxi-column>
-                <dxi-column dataField="per31a60" caption="31 A 60" [format]="formatSliderTooltip"></dxi-column>
-                <dxi-column dataField="per61a90" caption="61 A 90" [format]="formatSliderTooltip"></dxi-column>
-                <dxi-column dataField="permayor90" caption="MAS 90" [format]="formatSliderTooltip"></dxi-column>
-                <dxi-column dataField="total" caption="Total" [format]="formatSliderTooltip" cssClass="styletotal"></dxi-column>
+                <dxi-column dataField="corriente" caption="Corriente" [format]="separator"></dxi-column>
+                <dxi-column dataField="per1a30" caption="1 A 30" [format]="separator"></dxi-column>
+                <dxi-column dataField="per31a60" caption="31 A 60" [format]="separator"></dxi-column>
+                <dxi-column dataField="per61a90" caption="61 A 90" [format]="separator"></dxi-column>
+                <dxi-column dataField="permayor90" caption="MAS 90" [format]="separator"></dxi-column>
+                <dxi-column dataField="total" caption="Total" cssClass="styletotal" [format]="separator"></dxi-column>
               </dxi-column>
 
               <dxo-summary>
                 <dxi-total-item column="cliente" [customizeText]="customizeDate"></dxi-total-item>
-                <dxi-total-item column="corriente" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
-                <dxi-total-item column="per1a30" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
-                <dxi-total-item column="per31a60" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
-                <dxi-total-item column="per61a90" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
-                <dxi-total-item column="permayor90" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
-                <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" ></dxi-total-item>
+                <dxi-total-item column="corriente" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                <dxi-total-item column="per1a30" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                <dxi-total-item column="per31a60" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                <dxi-total-item column="per61a90" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                <dxi-total-item column="permayor90" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
               </dxo-summary>
 
             </dx-data-grid>
