@@ -104,10 +104,10 @@ export class CarteraClientesComponent implements OnInit {
     if(e.value == 3){
       this.printValue = this.boxCartera[2].cartera
     }
-    if(e.value == 3){
+    if(e.value == 4){
       this.printValue = this.boxCartera[3].cartera
     }
-    if(e.value == 3){
+    if(e.value == 5){
       this.printValue = this.boxCartera[4].cartera
     }
 
@@ -117,24 +117,25 @@ export class CarteraClientesComponent implements OnInit {
   seleccionarPeriodo(e: any) {
     this.selectedPeriodo = e.value
 
-    if(e.value == 202307){}{
+    if(this.selectedPeriodo == 202307){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2023"
     }
-    if(e.value == 202308){}{
+    if(this.selectedPeriodo  == 202308){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2023"
     }
-    if(e.value == 202309){}{
+    if(this.selectedPeriodo == 202309){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2023"
     }
-    if(e.value == 202310){}{
+    if(this.selectedPeriodo == 202310){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2023"
     }
-    if(e.value == 202311){}{
+    if(this.selectedPeriodo == 202311){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2023"
     }
-    if(e.value == 202312){}{
+    if(this.selectedPeriodo == 202312){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
     }
+
 
   }
 
