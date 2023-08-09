@@ -403,13 +403,103 @@ export class IndicadoresComponent implements OnInit {
   getScoreCard(){
     this.indicadorService.getScoreCard().subscribe(data => {
 
-      this.ingresos = data.data.scIng;
-      this.kilomentros = data.data.scKms;
-      this.ingresosKilometros = data.data.scIngXKm;
-      this.viajes = data.data.scViajes;
-      this.viajesCargados = data.data.scViajesC;
-      this.kilometroViajes = data.data.scKmsViaje;
-      this.ingresoViajes = data.data.scIngrViaje;
+      const orderIngreso: ScoreCard[] = data.data.scIng;
+      let neworderIngreso = [];
+      neworderIngreso.push(orderIngreso[0],orderIngreso[3],orderIngreso[2],orderIngreso[4],orderIngreso[1],
+                        orderIngreso[5],orderIngreso[8],orderIngreso[7],orderIngreso[9],orderIngreso[6],
+                        orderIngreso[10],orderIngreso[13],orderIngreso[12],orderIngreso[14],orderIngreso[11],
+                        orderIngreso[15],orderIngreso[18],orderIngreso[17],orderIngreso[19],orderIngreso[16],
+                        orderIngreso[20],orderIngreso[23],orderIngreso[22],orderIngreso[24],orderIngreso[21],
+                        orderIngreso[26],orderIngreso[28],orderIngreso[25],orderIngreso[29],orderIngreso[27],
+                        orderIngreso[31],orderIngreso[33],orderIngreso[30],orderIngreso[34],orderIngreso[32],
+                        orderIngreso[36],orderIngreso[38],orderIngreso[35],orderIngreso[39],orderIngreso[37]);
+      
+      this.ingresos = neworderIngreso;
+
+      data.data.scKms.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderKilometros: ScoreCard[] = data.data.scKms;
+      let neworderKlmts = [];
+      neworderKlmts.push(orderKilometros[4],orderKilometros[2 ],orderKilometros[3],orderKilometros[0],orderKilometros[1],
+                        orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
+                        orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
+                        orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
+                        orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
+                        orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
+                        orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
+                        orderKilometros[39],orderKilometros[38],orderKilometros[37],orderKilometros[40],orderKilometros[41],orderKilometros[42]);
+        console.log(neworderKlmts)
+      this.kilomentros = neworderKlmts;
+
+      data.data.scIngXKm.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderIngKlmts: ScoreCard[] = data.data.scIngXKm;
+      let neworderIngKlmts = [];
+      neworderIngKlmts.push(orderIngKlmts[4],orderIngKlmts[2],orderIngKlmts[3],orderIngKlmts[0],orderIngKlmts[1],
+                        orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
+                        orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
+                        orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
+                        orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
+                        orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
+                        orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
+                        orderKilometros[37],orderKilometros[40],orderKilometros[38],orderKilometros[39],orderKilometros[41],orderKilometros[42]);
+
+      this.ingresosKilometros = neworderIngKlmts;
+
+      data.data.scViajes.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderViajes: ScoreCard[] = data.data.scViajes;
+      let neworderViajes = [];
+      neworderViajes.push(orderViajes[4],orderViajes[2],orderViajes[3],orderViajes[0],orderViajes[1],
+                        orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
+                        orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
+                        orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
+                        orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
+                        orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
+                        orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
+                        orderViajes[37],orderViajes[38],orderViajes[39],orderViajes[41],orderViajes[40],orderViajes[42]);
+
+      this.viajes = neworderViajes;
+
+      data.data.scViajesC.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderVjsCgds: ScoreCard[] = data.data.scViajesC;
+      let neworderVjsCgds = [];
+      neworderVjsCgds.push(orderVjsCgds[4],orderVjsCgds[2],orderVjsCgds[3],orderVjsCgds[0],orderVjsCgds[1],
+                        orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
+                        orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
+                        orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
+                        orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
+                        orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
+                        orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
+                        orderViajes[38],orderViajes[39],orderViajes[37],orderViajes[41],orderViajes[40],orderViajes[42]);
+
+      this.viajesCargados = neworderVjsCgds;
+
+      data.data.scKmsViaje.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderKmsVjs: ScoreCard[] = data.data.scKmsViaje;
+      let neworderKmsVjs = [];
+      neworderKmsVjs.push(orderKmsVjs[4],orderKmsVjs[2],orderKmsVjs[3],orderKmsVjs[0],orderKmsVjs[1],
+                        orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
+                        orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
+                        orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
+                        orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
+                        orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
+                        orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
+                        orderViajes[38],orderViajes[40],orderViajes[37],orderViajes[41],orderViajes[39],orderViajes[42]);
+
+      this.kilometroViajes = neworderKmsVjs;
+
+      data.data.scIngrViaje.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderIngsVjs: ScoreCard[] = data.data.scIngrViaje;
+      let neworderIngsVjs = [];
+      neworderIngsVjs.push(orderIngsVjs[4],orderIngsVjs[2],orderIngsVjs[3],orderIngsVjs[0],orderIngsVjs[1],
+                        orderIngsVjs[5],orderIngsVjs[9],orderIngsVjs[8],orderIngsVjs[6],orderIngsVjs[7],
+                        orderIngsVjs[11],orderIngsVjs[12],orderIngsVjs[13],orderIngsVjs[10],orderIngsVjs[14],orderIngsVjs[15],
+                        orderIngsVjs[17],orderIngsVjs[20],orderIngsVjs[16],orderIngsVjs[18],orderIngsVjs[19],
+                        orderIngsVjs[21],orderIngsVjs[25],orderIngsVjs[23],orderIngsVjs[22],orderIngsVjs[24],
+                        orderIngsVjs[26],orderIngsVjs[29],orderIngsVjs[27],orderIngsVjs[28],orderIngsVjs[30],
+                        orderIngsVjs[32],orderIngsVjs[35],orderIngsVjs[33],orderIngsVjs[31],orderIngsVjs[34],orderIngsVjs[36],
+                        orderIngsVjs[38],orderIngsVjs[40],orderIngsVjs[37],orderIngsVjs[39],orderIngsVjs[42],orderIngsVjs[41]);
+
+      this.ingresoViajes = neworderIngsVjs;
+      
       this.precioMeta = data.data.scPrecioMeta;
 
       var myPrecioM = data.data.scPrecioMeta;
