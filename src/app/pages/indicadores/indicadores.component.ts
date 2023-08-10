@@ -1660,100 +1660,100 @@ onCellPreparedPM(e){
 
       if(row.rowType == "group"){
         if(row.key[0] == '01 ENE'){
-
-          rowValues[1][0].value = totalAgrupamientoIKE.cuautitlan;//sumaCuautitlaE;
-          rowValues[2][0].value = totalAgrupamientoIKE.tultitlan;//sumaTultitlanE;
-          rowValues[3][0].value = totalAgrupamientoIKE.guadalajara;//sumaGuadalajaraE;
-          rowValues[4][0].value = totalAgrupamientoIKE.hermosillo;//sumaHermosilloE;
-          rowValues[5][0].value = totalAgrupamientoIKE.mexicali;//sumaMexicaliE;
-          rowValues[6][0].value = totalAgrupamientoIKE.orizaba;//sumaOrizabaE;
-          rowValues[7][0].value = totalAgrupamientoIKE.ramosArispe;//sumaRamozAE;
-          rowValues[8][0].value = totalAgrupamientoIKE.total;
+          console.log(rowValues)
+          rowValues[3][0].value = totalAgrupamientoIKE.cuautitlan;//sumaCuautitlaE;
+          rowValues[4][0].value = totalAgrupamientoIKE.tultitlan;//sumaTultitlanE;
+          rowValues[5][0].value = totalAgrupamientoIKE.guadalajara;//sumaGuadalajaraE;
+          rowValues[6][0].value = totalAgrupamientoIKE.hermosillo;//sumaHermosilloE;
+          rowValues[7][0].value = totalAgrupamientoIKE.mexicali;//sumaMexicaliE;
+          rowValues[8][0].value = totalAgrupamientoIKE.orizaba;//sumaOrizabaE;
+          rowValues[9][0].value = totalAgrupamientoIKE.ramosArispe;//sumaRamozAE;
+          rowValues[10][0].value = totalAgrupamientoIKE.total;
         }
 
         if(row.key[0] == '02 FEB'){
 
-          rowValues[1][0].value = totalAgrupamientoIKF.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKF.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKF.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKF.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKF.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKF.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKF.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKF.total;
+          rowValues[3][0].value = totalAgrupamientoIKF.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKF.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKF.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKF.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKF.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKF.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKF.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKF.total;
         }
 
         if(row.key[0] == '03 MAR'){
 
-          rowValues[1][0].value = totalAgrupamientoIKM.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKM.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKM.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKM.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKM.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKM.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKM.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKM.total;
+          rowValues[3][0].value = totalAgrupamientoIKM.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKM.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKM.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKM.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKM.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKM.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKM.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKM.total;
         }
 
         if(row.key[0] == '04 ABR'){
 
-          rowValues[1][0].value = totalAgrupamientoIKA.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKA.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKA.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKA.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKA.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKA.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKA.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKA.total;
+          rowValues[3][0].value = totalAgrupamientoIKA.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKA.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKA.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKA.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKA.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKA.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKA.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKA.total;
         }
 
         if(row.key[0] == '05 MAY'){
 
-          rowValues[1][0].value = totalAgrupamientoIKMY.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKMY.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKMY.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKMY.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKMY.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKMY.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKMY.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKMY.total;
+          rowValues[3][0].value = totalAgrupamientoIKMY.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKMY.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKMY.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKMY.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKMY.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKMY.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKMY.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKMY.total;
         }
 
         if(row.key[0] == '06 JUN'){
 
-          rowValues[1][0].value = totalAgrupamientoIKJN.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKJN.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKJN.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKJN.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKJN.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKJN.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKJN.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKJN.total;
+          rowValues[3][0].value = totalAgrupamientoIKJN.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKJN.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKJN.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKJN.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKJN.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKJN.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKJN.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKJN.total;
         }
 
         if(row.key[0] == '07 JUL'){
 
-          rowValues[1][0].value = totalAgrupamientoIKJL.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKJL.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKJL.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKJL.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKJL.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKJL.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKJL.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKJL.total;
+          rowValues[3][0].value = totalAgrupamientoIKJL.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKJL.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKJL.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKJL.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKJL.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKJL.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKJL.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKJL.total;
 
         }
 
         if(row.key[0] == '08 AGO'){
 
-          rowValues[1][0].value = totalAgrupamientoIKAG.cuautitlan;
-          rowValues[2][0].value = totalAgrupamientoIKAG.tultitlan;
-          rowValues[3][0].value = totalAgrupamientoIKAG.guadalajara;
-          rowValues[4][0].value = totalAgrupamientoIKAG.hermosillo;
-          rowValues[5][0].value = totalAgrupamientoIKAG.mexicali;
-          rowValues[6][0].value = totalAgrupamientoIKAG.orizaba;
-          rowValues[7][0].value = totalAgrupamientoIKAG.ramosArispe;
-          rowValues[8][0].value = totalAgrupamientoIKAG.total;
+          rowValues[3][0].value = totalAgrupamientoIKAG.cuautitlan;
+          rowValues[4][0].value = totalAgrupamientoIKAG.tultitlan;
+          rowValues[5][0].value = totalAgrupamientoIKAG.guadalajara;
+          rowValues[6][0].value = totalAgrupamientoIKAG.hermosillo;
+          rowValues[7][0].value = totalAgrupamientoIKAG.mexicali;
+          rowValues[8][0].value = totalAgrupamientoIKAG.orizaba;
+          rowValues[9][0].value = totalAgrupamientoIKAG.ramosArispe;
+          rowValues[10][0].value = totalAgrupamientoIKAG.total;
 
         }
       }
@@ -1761,14 +1761,13 @@ onCellPreparedPM(e){
       if(row.rowType == "totalFooter"){
         
 
-        row.values[1].value = totalOperacionIK.cuautitlan;//TotalSCuautitlan;
-        console.log(totalOperacionIK.cuautitlan)
-        row.values[2].value = totalOperacionIK.tultitlan;//TotalSTultitlan;
-        row.values[3].value = totalOperacionIK.guadalajara;//TotalSGuadalajara;
-        row.values[4].value = totalOperacionIK.hermosillo;//TotalSHermosillo;
-        row.values[5].value = totalOperacionIK.mexicali;//TotalSMexicali;
-        row.values[6].value = totalOperacionIK.orizaba;//TotalSOrizaba;
-        row.values[7].value = totalOperacionIK.ramosArispe;//TotalSRamozA;
+        row.values[3].value = totalOperacionIK.cuautitlan;//TotalSCuautitlan;
+        row.values[4].value = totalOperacionIK.tultitlan;//TotalSTultitlan;
+        row.values[5].value = totalOperacionIK.guadalajara;//TotalSGuadalajara;
+        row.values[6].value = totalOperacionIK.hermosillo;//TotalSHermosillo;
+        row.values[7].value = totalOperacionIK.mexicali;//TotalSMexicali;
+        row.values[8].value = totalOperacionIK.orizaba;//TotalSOrizaba;
+        row.values[9].value = totalOperacionIK.ramosArispe;//TotalSRamozA;
 
 
       }
@@ -2731,99 +2730,99 @@ onCellPreparedPM(e){
       if(row.rowType == "group"){
         if(row.key[0] == '01 ENE'){
   
-          rowValues[1][0].value = totalKVCE.cuautitlan;//sumaCuautitlaE;
-          rowValues[2][0].value = totalKVCE.tultitlan;//sumaTultitlanE;
-          rowValues[3][0].value = totalKVCE.guadalajara;//sumaGuadalajaraE;
-          rowValues[4][0].value = totalKVCE.hermosillo;//sumaHermosilloE;
-          rowValues[5][0].value = totalKVCE.mexicali;//sumaMexicaliE;
-          rowValues[6][0].value = totalKVCE.orizaba;//sumaOrizabaE;
-          rowValues[7][0].value = totalKVCE.ramosArispe;//sumaRamozAE;
-          rowValues[8][0].value = totalKVCE.total;
+          rowValues[3][0].value = totalKVCE.cuautitlan;//sumaCuautitlaE;
+          rowValues[4][0].value = totalKVCE.tultitlan;//sumaTultitlanE;
+          rowValues[5][0].value = totalKVCE.guadalajara;//sumaGuadalajaraE;
+          rowValues[6][0].value = totalKVCE.hermosillo;//sumaHermosilloE;
+          rowValues[7][0].value = totalKVCE.mexicali;//sumaMexicaliE;
+          rowValues[8][0].value = totalKVCE.orizaba;//sumaOrizabaE;
+          rowValues[9][0].value = totalKVCE.ramosArispe;//sumaRamozAE;
+          rowValues[10][0].value = totalKVCE.total;
         }
   
         if(row.key[0] == '02 FEB'){
   
-          rowValues[1][0].value = totalKVCF.cuautitlan;
-          rowValues[2][0].value = totalKVCF.tultitlan;
-          rowValues[3][0].value = totalKVCF.guadalajara;
-          rowValues[4][0].value = totalKVCF.hermosillo;
-          rowValues[5][0].value = totalKVCF.mexicali;
-          rowValues[6][0].value = totalKVCF.orizaba;
-          rowValues[7][0].value = totalKVCF.ramosArispe;
-          rowValues[8][0].value = totalKVCF.total;
+          rowValues[3][0].value = totalKVCF.cuautitlan;
+          rowValues[4][0].value = totalKVCF.tultitlan;
+          rowValues[5][0].value = totalKVCF.guadalajara;
+          rowValues[6][0].value = totalKVCF.hermosillo;
+          rowValues[7][0].value = totalKVCF.mexicali;
+          rowValues[8][0].value = totalKVCF.orizaba;
+          rowValues[9][0].value = totalKVCF.ramosArispe;
+          rowValues[10][0].value = totalKVCF.total;
         }
   
         if(row.key[0] == '03 MAR'){
   
-          rowValues[1][0].value = totalKVCM.cuautitlan;
-          rowValues[2][0].value = totalKVCM.tultitlan;
-          rowValues[3][0].value = totalKVCM.guadalajara;
-          rowValues[4][0].value = totalKVCM.hermosillo;
-          rowValues[5][0].value = totalKVCM.mexicali;
-          rowValues[6][0].value = totalKVCM.orizaba;
-          rowValues[7][0].value = totalKVCM.ramosArispe;
-          rowValues[8][0].value = totalKVCM.total;
+          rowValues[3][0].value = totalKVCM.cuautitlan;
+          rowValues[4][0].value = totalKVCM.tultitlan;
+          rowValues[5][0].value = totalKVCM.guadalajara;
+          rowValues[6][0].value = totalKVCM.hermosillo;
+          rowValues[7][0].value = totalKVCM.mexicali;
+          rowValues[8][0].value = totalKVCM.orizaba;
+          rowValues[9][0].value = totalKVCM.ramosArispe;
+          rowValues[10][0].value = totalKVCM.total;
         }
   
         if(row.key[0] == '04 ABR'){
   
-          rowValues[1][0].value = totalKVCA.cuautitlan;
-          rowValues[2][0].value = totalKVCA.tultitlan;
-          rowValues[3][0].value = totalKVCA.guadalajara;
-          rowValues[4][0].value = totalKVCA.hermosillo;
-          rowValues[5][0].value = totalKVCA.mexicali;
-          rowValues[6][0].value = totalKVCA.orizaba;
-          rowValues[7][0].value = totalKVCA.ramosArispe;
-          rowValues[8][0].value = totalKVCA.total;
+          rowValues[3][0].value = totalKVCA.cuautitlan;
+          rowValues[4][0].value = totalKVCA.tultitlan;
+          rowValues[5][0].value = totalKVCA.guadalajara;
+          rowValues[6][0].value = totalKVCA.hermosillo;
+          rowValues[7][0].value = totalKVCA.mexicali;
+          rowValues[8][0].value = totalKVCA.orizaba;
+          rowValues[9][0].value = totalKVCA.ramosArispe;
+          rowValues[10][0].value = totalKVCA.total;
         }
   
         if(row.key[0] == '05 MAY'){
   
-          rowValues[1][0].value = totalKVCMY.cuautitlan;
-          rowValues[2][0].value = totalKVCMY.tultitlan;
-          rowValues[3][0].value = totalKVCMY.guadalajara;
-          rowValues[4][0].value = totalKVCMY.hermosillo;
-          rowValues[5][0].value = totalKVCMY.mexicali;
-          rowValues[6][0].value = totalKVCMY.orizaba;
-          rowValues[7][0].value = totalKVCMY.ramosArispe;
-          rowValues[8][0].value = totalKVCMY.total;
+          rowValues[3][0].value = totalKVCMY.cuautitlan;
+          rowValues[4][0].value = totalKVCMY.tultitlan;
+          rowValues[5][0].value = totalKVCMY.guadalajara;
+          rowValues[6][0].value = totalKVCMY.hermosillo;
+          rowValues[7][0].value = totalKVCMY.mexicali;
+          rowValues[8][0].value = totalKVCMY.orizaba;
+          rowValues[9][0].value = totalKVCMY.ramosArispe;
+          rowValues[10][0].value = totalKVCMY.total;
         }
   
         if(row.key[0] == '06 JUN'){
   
-          rowValues[1][0].value = totalKVCJN.cuautitlan;
-          rowValues[2][0].value = totalKVCJN.tultitlan;
-          rowValues[3][0].value = totalKVCJN.guadalajara;
-          rowValues[4][0].value = totalKVCJN.hermosillo;
-          rowValues[5][0].value = totalKVCJN.mexicali;
-          rowValues[6][0].value = totalKVCJN.orizaba;
-          rowValues[7][0].value = totalKVCJN.ramosArispe;
-          rowValues[8][0].value = totalKVCJN.total;
+          rowValues[3][0].value = totalKVCJN.cuautitlan;
+          rowValues[4][0].value = totalKVCJN.tultitlan;
+          rowValues[5][0].value = totalKVCJN.guadalajara;
+          rowValues[6][0].value = totalKVCJN.hermosillo;
+          rowValues[7][0].value = totalKVCJN.mexicali;
+          rowValues[8][0].value = totalKVCJN.orizaba;
+          rowValues[9][0].value = totalKVCJN.ramosArispe;
+          rowValues[10][0].value = totalKVCJN.total;
         }
   
         if(row.key[0] == '07 JUL'){
   
-          rowValues[1][0].value = totalKVCJL.cuautitlan;
-          rowValues[2][0].value = totalKVCJL.tultitlan;
-          rowValues[3][0].value = totalKVCJL.guadalajara;
-          rowValues[4][0].value = totalKVCJL.hermosillo;
-          rowValues[5][0].value = totalKVCJL.mexicali;
-          rowValues[6][0].value = totalKVCJL.orizaba;
-          rowValues[7][0].value = totalKVCJL.ramosArispe;
-          rowValues[8][0].value = totalKVCJL.total;
+          rowValues[3][0].value = totalKVCJL.cuautitlan;
+          rowValues[4][0].value = totalKVCJL.tultitlan;
+          rowValues[5][0].value = totalKVCJL.guadalajara;
+          rowValues[6][0].value = totalKVCJL.hermosillo;
+          rowValues[7][0].value = totalKVCJL.mexicali;
+          rowValues[8][0].value = totalKVCJL.orizaba;
+          rowValues[9][0].value = totalKVCJL.ramosArispe;
+          rowValues[10][0].value = totalKVCJL.total;
   
         }
 
         if(row.key[0] == '08 AGO'){
   
-          rowValues[1][0].value = totalKVCAG.cuautitlan;
-          rowValues[2][0].value = totalKVCAG.tultitlan;
-          rowValues[3][0].value = totalKVCAG.guadalajara;
-          rowValues[4][0].value = totalKVCAG.hermosillo;
-          rowValues[5][0].value = totalKVCAG.mexicali;
-          rowValues[6][0].value = totalKVCAG.orizaba;
-          rowValues[7][0].value = totalKVCAG.ramosArispe;
-          rowValues[8][0].value = totalKVCAG.total;
+          rowValues[3][0].value = totalKVCAG.cuautitlan;
+          rowValues[4][0].value = totalKVCAG.tultitlan;
+          rowValues[5][0].value = totalKVCAG.guadalajara;
+          rowValues[6][0].value = totalKVCAG.hermosillo;
+          rowValues[7][0].value = totalKVCAG.mexicali;
+          rowValues[8][0].value = totalKVCAG.orizaba;
+          rowValues[9][0].value = totalKVCAG.ramosArispe;
+          rowValues[10][0].value = totalKVCAG.total;
   
         }
       }
@@ -2831,14 +2830,14 @@ onCellPreparedPM(e){
       if(row.rowType == "totalFooter"){
         
   
-        row.values[1].value = totalOperacionKVC.cuautitlan;//TotalSCuautitlan;
-        row.values[2].value = totalOperacionKVC.tultitlan;//TotalSTultitlan;
-        row.values[3].value = totalOperacionKVC.guadalajara;//TotalSGuadalajara;
-        row.values[4].value = totalOperacionKVC.hermosillo;//TotalSHermosillo;
-        row.values[5].value = totalOperacionKVC.mexicali;//TotalSMexicali;
-        row.values[6].value = totalOperacionKVC.orizaba;//TotalSOrizaba;
-        row.values[7].value = totalOperacionKVC.ramosArispe;//TotalSRamozA;
-        row.values[8].value = totalOperacionKVC.total;//TotalSRamozA;
+        row.values[3].value = totalOperacionKVC.cuautitlan;//TotalSCuautitlan;
+        row.values[4].value = totalOperacionKVC.tultitlan;//TotalSTultitlan;
+        row.values[5].value = totalOperacionKVC.guadalajara;//TotalSGuadalajara;
+        row.values[6].value = totalOperacionKVC.hermosillo;//TotalSHermosillo;
+        row.values[7].value = totalOperacionKVC.mexicali;//TotalSMexicali;
+        row.values[8].value = totalOperacionKVC.orizaba;//TotalSOrizaba;
+        row.values[9].value = totalOperacionKVC.ramosArispe;//TotalSRamozA;
+        row.values[10].value = totalOperacionKVC.total;//TotalSRamozA;
   
   
       }
@@ -3398,99 +3397,99 @@ onCellPreparedPM(e){
     if(row.rowType == "group"){
       if(row.key[0] == '01 ENE'){
 
-        rowValues[1][0].value = totalIVCE.cuautitlan;//sumaCuautitlaE;
-        rowValues[2][0].value = totalIVCE.tultitlan;//sumaTultitlanE;
-        rowValues[3][0].value = totalIVCE.guadalajara;//sumaGuadalajaraE;
-        rowValues[4][0].value = totalIVCE.hermosillo;//sumaHermosilloE;
-        rowValues[5][0].value = totalIVCE.mexicali;//sumaMexicaliE;
-        rowValues[6][0].value = totalIVCE.orizaba;//sumaOrizabaE;
-        rowValues[7][0].value = totalIVCE.ramosArispe;//sumaRamozAE;
-        rowValues[8][0].value = totalIVCE.total;
+        rowValues[3][0].value = totalIVCE.cuautitlan;//sumaCuautitlaE;
+        rowValues[4][0].value = totalIVCE.tultitlan;//sumaTultitlanE;
+        rowValues[5][0].value = totalIVCE.guadalajara;//sumaGuadalajaraE;
+        rowValues[6][0].value = totalIVCE.hermosillo;//sumaHermosilloE;
+        rowValues[7][0].value = totalIVCE.mexicali;//sumaMexicaliE;
+        rowValues[8][0].value = totalIVCE.orizaba;//sumaOrizabaE;
+        rowValues[9][0].value = totalIVCE.ramosArispe;//sumaRamozAE;
+        rowValues[10][0].value = totalIVCE.total;
       }
 
       if(row.key[0] == '02 FEB'){
 
-        rowValues[1][0].value = totalIVCF.cuautitlan;
-        rowValues[2][0].value = totalIVCF.tultitlan;
-        rowValues[3][0].value = totalIVCF.guadalajara;
-        rowValues[4][0].value = totalIVCF.hermosillo;
-        rowValues[5][0].value = totalIVCF.mexicali;
-        rowValues[6][0].value = totalIVCF.orizaba;
-        rowValues[7][0].value = totalIVCF.ramosArispe;
-        rowValues[8][0].value = totalIVCF.total;
+        rowValues[3][0].value = totalIVCF.cuautitlan;
+        rowValues[4][0].value = totalIVCF.tultitlan;
+        rowValues[5][0].value = totalIVCF.guadalajara;
+        rowValues[6][0].value = totalIVCF.hermosillo;
+        rowValues[7][0].value = totalIVCF.mexicali;
+        rowValues[8][0].value = totalIVCF.orizaba;
+        rowValues[9][0].value = totalIVCF.ramosArispe;
+        rowValues[10][0].value = totalIVCF.total;
       }
 
       if(row.key[0] == '03 MAR'){
 
-        rowValues[1][0].value = totalIVCM.cuautitlan;
-        rowValues[2][0].value = totalIVCM.tultitlan;
-        rowValues[3][0].value = totalIVCM.guadalajara;
-        rowValues[4][0].value = totalIVCM.hermosillo;
-        rowValues[5][0].value = totalIVCM.mexicali;
-        rowValues[6][0].value = totalIVCM.orizaba;
-        rowValues[7][0].value = totalIVCM.ramosArispe;
-        rowValues[8][0].value = totalIVCM.total;
+        rowValues[3][0].value = totalIVCM.cuautitlan;
+        rowValues[4][0].value = totalIVCM.tultitlan;
+        rowValues[5][0].value = totalIVCM.guadalajara;
+        rowValues[6][0].value = totalIVCM.hermosillo;
+        rowValues[7][0].value = totalIVCM.mexicali;
+        rowValues[8][0].value = totalIVCM.orizaba;
+        rowValues[9][0].value = totalIVCM.ramosArispe;
+        rowValues[10][0].value = totalIVCM.total;
       }
 
       if(row.key[0] == '04 ABR'){
 
-        rowValues[1][0].value = totalIVCA.cuautitlan;
-        rowValues[2][0].value = totalIVCA.tultitlan;
-        rowValues[3][0].value = totalIVCA.guadalajara;
-        rowValues[4][0].value = totalIVCA.hermosillo;
-        rowValues[5][0].value = totalIVCA.mexicali;
-        rowValues[6][0].value = totalIVCA.orizaba;
-        rowValues[7][0].value = totalIVCA.ramosArispe;
-        rowValues[8][0].value = totalIVCA.total;
+        rowValues[3][0].value = totalIVCA.cuautitlan;
+        rowValues[4][0].value = totalIVCA.tultitlan;
+        rowValues[5][0].value = totalIVCA.guadalajara;
+        rowValues[6][0].value = totalIVCA.hermosillo;
+        rowValues[7][0].value = totalIVCA.mexicali;
+        rowValues[8][0].value = totalIVCA.orizaba;
+        rowValues[9][0].value = totalIVCA.ramosArispe;
+        rowValues[10][0].value = totalIVCA.total;
       }
 
       if(row.key[0] == '05 MAY'){
 
-        rowValues[1][0].value = totalIVCMY.cuautitlan;
-        rowValues[2][0].value = totalIVCMY.tultitlan;
-        rowValues[3][0].value = totalIVCMY.guadalajara;
-        rowValues[4][0].value = totalIVCMY.hermosillo;
-        rowValues[5][0].value = totalIVCMY.mexicali;
-        rowValues[6][0].value = totalIVCMY.orizaba;
-        rowValues[7][0].value = totalIVCMY.ramosArispe;
-        rowValues[8][0].value = totalIVCMY.total;
+        rowValues[3][0].value = totalIVCMY.cuautitlan;
+        rowValues[4][0].value = totalIVCMY.tultitlan;
+        rowValues[5][0].value = totalIVCMY.guadalajara;
+        rowValues[6][0].value = totalIVCMY.hermosillo;
+        rowValues[7][0].value = totalIVCMY.mexicali;
+        rowValues[8][0].value = totalIVCMY.orizaba;
+        rowValues[9][0].value = totalIVCMY.ramosArispe;
+        rowValues[10][0].value = totalIVCMY.total;
       }
 
       if(row.key[0] == '06 JUN'){
 
-        rowValues[1][0].value = totalIVCJN.cuautitlan;
-        rowValues[2][0].value = totalIVCJN.tultitlan;
-        rowValues[3][0].value = totalIVCJN.guadalajara;
-        rowValues[4][0].value = totalIVCJN.hermosillo;
-        rowValues[5][0].value = totalIVCJN.mexicali;
-        rowValues[6][0].value = totalIVCJN.orizaba;
-        rowValues[7][0].value = totalIVCJN.ramosArispe;
-        rowValues[8][0].value = totalIVCJN.total;
+        rowValues[3][0].value = totalIVCJN.cuautitlan;
+        rowValues[4][0].value = totalIVCJN.tultitlan;
+        rowValues[5][0].value = totalIVCJN.guadalajara;
+        rowValues[6][0].value = totalIVCJN.hermosillo;
+        rowValues[7][0].value = totalIVCJN.mexicali;
+        rowValues[8][0].value = totalIVCJN.orizaba;
+        rowValues[9][0].value = totalIVCJN.ramosArispe;
+        rowValues[10][0].value = totalIVCJN.total;
       }
 
       if(row.key[0] == '07 JUL'){
 
-        rowValues[1][0].value = totalIVCJL.cuautitlan;
-        rowValues[2][0].value = totalIVCJL.tultitlan;
-        rowValues[3][0].value = totalIVCJL.guadalajara;
-        rowValues[4][0].value = totalIVCJL.hermosillo;
-        rowValues[5][0].value = totalIVCJL.mexicali;
-        rowValues[6][0].value = totalIVCJL.orizaba;
-        rowValues[7][0].value = totalIVCJL.ramosArispe;
-        rowValues[8][0].value = totalIVCJL.total;
+        rowValues[3][0].value = totalIVCJL.cuautitlan;
+        rowValues[4][0].value = totalIVCJL.tultitlan;
+        rowValues[5][0].value = totalIVCJL.guadalajara;
+        rowValues[6][0].value = totalIVCJL.hermosillo;
+        rowValues[7][0].value = totalIVCJL.mexicali;
+        rowValues[8][0].value = totalIVCJL.orizaba;
+        rowValues[9][0].value = totalIVCJL.ramosArispe;
+        rowValues[10][0].value = totalIVCJL.total;
 
       }
 
       if(row.key[0] == '08 AGO'){
 
-        rowValues[1][0].value = totalIVCAG.cuautitlan;
-        rowValues[2][0].value = totalIVCAG.tultitlan;
-        rowValues[3][0].value = totalIVCAG.guadalajara;
-        rowValues[4][0].value = totalIVCAG.hermosillo;
-        rowValues[5][0].value = totalIVCAG.mexicali;
-        rowValues[6][0].value = totalIVCAG.orizaba;
-        rowValues[7][0].value = totalIVCAG.ramosArispe;
-        rowValues[8][0].value = totalIVCAG.total;
+        rowValues[3][0].value = totalIVCAG.cuautitlan;
+        rowValues[4][0].value = totalIVCAG.tultitlan;
+        rowValues[5][0].value = totalIVCAG.guadalajara;
+        rowValues[6][0].value = totalIVCAG.hermosillo;
+        rowValues[7][0].value = totalIVCAG.mexicali;
+        rowValues[8][0].value = totalIVCAG.orizaba;
+        rowValues[9][0].value = totalIVCAG.ramosArispe;
+        rowValues[10][0].value = totalIVCAG.total;
 
       }
     }
@@ -3498,14 +3497,14 @@ onCellPreparedPM(e){
     if(row.rowType == "totalFooter"){
       
 
-      row.values[1].value = totalOperacionIVC.cuautitlan;//TotalSCuautitlan;
-      row.values[2].value = totalOperacionIVC.tultitlan;//TotalSTultitlan;
-      row.values[3].value = totalOperacionIVC.guadalajara;//TotalSGuadalajara;
-      row.values[4].value = totalOperacionIVC.hermosillo;//TotalSHermosillo;
-      row.values[5].value = totalOperacionIVC.mexicali;//TotalSMexicali;
-      row.values[6].value = totalOperacionIVC.orizaba;//TotalSOrizaba;
-      row.values[7].value = totalOperacionIVC.ramosArispe;//TotalSRamozA;
-      row.values[8].value = totalOperacionIVC.total;//TotalSRamozA;
+      row.values[3].value = totalOperacionIVC.cuautitlan;//TotalSCuautitlan;
+      row.values[4].value = totalOperacionIVC.tultitlan;//TotalSTultitlan;
+      row.values[5].value = totalOperacionIVC.guadalajara;//TotalSGuadalajara;
+      row.values[6].value = totalOperacionIVC.hermosillo;//TotalSHermosillo;
+      row.values[7].value = totalOperacionIVC.mexicali;//TotalSMexicali;
+      row.values[8].value = totalOperacionIVC.orizaba;//TotalSOrizaba;
+      row.values[9].value = totalOperacionIVC.ramosArispe;//TotalSRamozA;
+      row.values[10].value = totalOperacionIVC.total;//TotalSRamozA;
 
 
     }
