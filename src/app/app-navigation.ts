@@ -93,7 +93,5 @@ export const navigation = [
     text: 'Proyección-Costos',
     icon: 'columnchooser',
     path: '/proyeccion-costos'
-  } 
- 
-
+  }
 ];

@@ -403,6 +403,7 @@ export class IndicadoresComponent implements OnInit {
   getScoreCard(){
     this.indicadorService.getScoreCard().subscribe(data => {
 
+// ====================================INGRESOS========================================================================================================
       const orderIngreso: ScoreCard[] = data.data.scIng;
       let neworderIngreso = [];
       neworderIngreso.push(orderIngreso[0],orderIngreso[3],orderIngreso[2],orderIngreso[4],orderIngreso[1],
@@ -415,7 +416,7 @@ export class IndicadoresComponent implements OnInit {
                         orderIngreso[36],orderIngreso[38],orderIngreso[35],orderIngreso[39],orderIngreso[37]);
       
       this.ingresos = neworderIngreso;
-
+// ====================================KILOMETROS========================================================================================================
       data.data.scKms.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderKilometros: ScoreCard[] = data.data.scKms;
       let neworderKlmts = [];
@@ -426,24 +427,10 @@ export class IndicadoresComponent implements OnInit {
                         orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
                         orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
                         orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
-                        orderKilometros[39],orderKilometros[38],orderKilometros[37],orderKilometros[40],orderKilometros[41],orderKilometros[42]);
-        console.log(neworderKlmts)
+                        orderKilometros[37],orderKilometros[40],orderKilometros[38],orderKilometros[39],orderKilometros[41]);
+                        
       this.kilomentros = neworderKlmts;
-
-      data.data.scIngXKm.sort((a, b) => (a.mes < b.mes ? -1 : 1));
-      const orderIngKlmts: ScoreCard[] = data.data.scIngXKm;
-      let neworderIngKlmts = [];
-      neworderIngKlmts.push(orderIngKlmts[4],orderIngKlmts[2],orderIngKlmts[3],orderIngKlmts[0],orderIngKlmts[1],
-                        orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
-                        orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
-                        orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
-                        orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
-                        orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
-                        orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
-                        orderKilometros[37],orderKilometros[40],orderKilometros[38],orderKilometros[39],orderKilometros[41],orderKilometros[42]);
-
-      this.ingresosKilometros = neworderIngKlmts;
-
+// ====================================VIAJES========================================================================================================
       data.data.scViajes.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderViajes: ScoreCard[] = data.data.scViajes;
       let neworderViajes = [];
@@ -454,10 +441,10 @@ export class IndicadoresComponent implements OnInit {
                         orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
                         orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
                         orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-                        orderViajes[37],orderViajes[38],orderViajes[39],orderViajes[41],orderViajes[40],orderViajes[42]);
-
+                        orderViajes[37],orderViajes[40],orderViajes[38],orderViajes[39],orderViajes[41]);
+        console.log(data.data.scViajes)
       this.viajes = neworderViajes;
-
+// ====================================VIAJES CARGADOS========================================================================================================
       data.data.scViajesC.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderVjsCgds: ScoreCard[] = data.data.scViajesC;
       let neworderVjsCgds = [];
@@ -468,10 +455,24 @@ export class IndicadoresComponent implements OnInit {
                         orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
                         orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
                         orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-                        orderViajes[38],orderViajes[39],orderViajes[37],orderViajes[41],orderViajes[40],orderViajes[42]);
+                        orderViajes[37],orderViajes[40],orderViajes[38],orderViajes[39],orderViajes[41]);
 
       this.viajesCargados = neworderVjsCgds;
+// ====================================INGRESO / KILOMETROS========================================================================================================
+      data.data.scIngXKm.sort((a, b) => (a.mes < b.mes ? -1 : 1));
+      const orderIngKlmts: ScoreCard[] = data.data.scIngXKm;
+      let neworderIngKlmts = [];
+      neworderIngKlmts.push(orderIngKlmts[4],orderIngKlmts[2],orderIngKlmts[3],orderIngKlmts[0],orderIngKlmts[1],
+                        orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
+                        orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
+                        orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
+                        orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
+                        orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
+                        orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
+                        orderKilometros[37],orderKilometros[40],orderKilometros[38],orderKilometros[39],orderKilometros[41]);
 
+      this.ingresosKilometros = neworderIngKlmts;
+// ====================================KILOMETROS / VIAJES========================================================================================================
       data.data.scKmsViaje.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderKmsVjs: ScoreCard[] = data.data.scKmsViaje;
       let neworderKmsVjs = [];
@@ -482,10 +483,10 @@ export class IndicadoresComponent implements OnInit {
                         orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
                         orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
                         orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-                        orderViajes[38],orderViajes[40],orderViajes[37],orderViajes[41],orderViajes[39],orderViajes[42]);
+                        orderViajes[37],orderViajes[40],orderViajes[38],orderViajes[39],orderViajes[41]);
 
       this.kilometroViajes = neworderKmsVjs;
-
+// ====================================INGRESO / VIAJES========================================================================================================
       data.data.scIngrViaje.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderIngsVjs: ScoreCard[] = data.data.scIngrViaje;
       let neworderIngsVjs = [];
@@ -496,7 +497,7 @@ export class IndicadoresComponent implements OnInit {
                         orderIngsVjs[21],orderIngsVjs[25],orderIngsVjs[23],orderIngsVjs[22],orderIngsVjs[24],
                         orderIngsVjs[26],orderIngsVjs[29],orderIngsVjs[27],orderIngsVjs[28],orderIngsVjs[30],
                         orderIngsVjs[32],orderIngsVjs[35],orderIngsVjs[33],orderIngsVjs[31],orderIngsVjs[34],orderIngsVjs[36],
-                        orderIngsVjs[38],orderIngsVjs[40],orderIngsVjs[37],orderIngsVjs[39],orderIngsVjs[42],orderIngsVjs[41]);
+                        orderIngsVjs[37],orderIngsVjs[40],orderIngsVjs[38],orderIngsVjs[39],orderIngsVjs[41]);
 
       this.ingresoViajes = neworderIngsVjs;
       
@@ -592,84 +593,84 @@ export class IndicadoresComponent implements OnInit {
       
       if (event.data.key == '01 ENE') {
         // console.log(event)
-        agrupamientoIE.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIE.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIE.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIE.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIE.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIE.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIE.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIE.total = event.summaryCells[9][0].value;
+        agrupamientoIE.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIE.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIE.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIE.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIE.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIE.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIE.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIE.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '02 FEB'){
-        agrupamientoIF.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIF.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIF.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIF.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIF.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIF.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIF.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIF.total = event.summaryCells[9][0].value;
+        agrupamientoIF.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIF.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIF.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIF.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIF.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIF.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIF.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIF.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '03 MAR'){
-        agrupamientoIM.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIM.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIM.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIM.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIM.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIM.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIM.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIM.total = event.summaryCells[9][0].value;
+        agrupamientoIM.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIM.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIM.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIM.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIM.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIM.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIM.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIM.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '04 ABR'){
-        agrupamientoIA.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIA.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIA.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIA.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIA.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIA.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIA.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIA.total = event.summaryCells[9][0].value;
+        agrupamientoIA.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIA.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIA.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIA.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIA.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIA.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIA.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIA.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '05 MAY'){
-        agrupamientoIMY.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIMY.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIMY.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIMY.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIMY.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIMY.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIMY.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIMY.total = event.summaryCells[9][0].value;
+        agrupamientoIMY.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIMY.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIMY.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIMY.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIMY.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIMY.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIMY.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIMY.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '06 JUN'){
-        agrupamientoIJN.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIJN.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIJN.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIJN.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIJN.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIJN.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIJN.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIJN.total = event.summaryCells[9][0].value;
+        agrupamientoIJN.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIJN.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIJN.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIJN.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIJN.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIJN.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIJN.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIJN.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '07 JUL'){
-        agrupamientoIJL.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIJL.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIJL.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIJL.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIJL.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIJL.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIJL.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIJL.total = event.summaryCells[9][0].value;
+        agrupamientoIJL.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIJL.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIJL.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIJL.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIJL.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIJL.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIJL.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIJL.total = event.summaryCells[9][0]?.value;
       }
       if (event.data.key == '08 AGO'){
-        agrupamientoIAG.cuautitlan = event.summaryCells[2][0].value;
-        agrupamientoIAG.tultitlan = event.summaryCells[3][0].value;
-        agrupamientoIAG.guadalajara = event.summaryCells[4][0].value;
-        agrupamientoIAG.hermosillo = event.summaryCells[5][0].value;
-        agrupamientoIAG.mexicali = event.summaryCells[6][0].value;
-        agrupamientoIAG.orizaba = event.summaryCells[7][0].value;
-        agrupamientoIAG.ramosArispe = event.summaryCells[8][0].value;
-        agrupamientoIAG.total = event.summaryCells[9][0].value;
+        agrupamientoIAG.cuautitlan = event.summaryCells[2][0]?.value;
+        agrupamientoIAG.tultitlan = event.summaryCells[3][0]?.value;
+        agrupamientoIAG.guadalajara = event.summaryCells[4][0]?.value;
+        agrupamientoIAG.hermosillo = event.summaryCells[5][0]?.value;
+        agrupamientoIAG.mexicali = event.summaryCells[6][0]?.value;
+        agrupamientoIAG.orizaba = event.summaryCells[7][0]?.value;
+        agrupamientoIAG.ramosArispe = event.summaryCells[8][0]?.value;
+        agrupamientoIAG.total = event.summaryCells[9][0]?.value;
       }
       // if (event.data.key == '09 SEP'){
         // agrupamientoIF.cuautitlan = event.summaryCells[2][0].value;
@@ -714,14 +715,14 @@ export class IndicadoresComponent implements OnInit {
     }
 
     if(event.rowType == "totalFooter"){
-      totalIngresos.cuautitlan = event.summaryCells[2][0].value;
-      totalIngresos.tultitlan = event.summaryCells[3][0].value;
-      totalIngresos.guadalajara = event.summaryCells[4][0].value;
-      totalIngresos.hermosillo = event.summaryCells[5][0].value;
-      totalIngresos.mexicali = event.summaryCells[6][0].value;
-      totalIngresos.orizaba = event.summaryCells[7][0].value;
-      totalIngresos.ramosArispe = event.summaryCells[8][0].value;
-      totalIngresos.total = event.summaryCells[9][0].value;
+      totalIngresos.cuautitlan = event.summaryCells[2][0]?.value;
+      totalIngresos.tultitlan = event.summaryCells[3][0]?.value;
+      totalIngresos.guadalajara = event.summaryCells[4][0]?.value;
+      totalIngresos.hermosillo = event.summaryCells[5][0]?.value;
+      totalIngresos.mexicali = event.summaryCells[6][0]?.value;
+      totalIngresos.orizaba = event.summaryCells[7][0]?.value;
+      totalIngresos.ramosArispe = event.summaryCells[8][0]?.value;
+      totalIngresos.total = event.summaryCells[9][0]?.value;
       //console.log(totalIngresos.total);
     }
   }
@@ -770,14 +771,14 @@ export class IndicadoresComponent implements OnInit {
       
       if (e.data.key == '01 ENE') {
         // console.log(event)
-        agrupamientoKE.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKE.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKE.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKE.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKE.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKE.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKE.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKE.total = e.summaryCells[9][0].value;
+        agrupamientoKE.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKE.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKE.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKE.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKE.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKE.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKE.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKE.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKE.cuautitlan = agrupamientoIE.cuautitlan / agrupamientoKE.cuautitlan;
         totalAgrupamientoIKE.tultitlan = agrupamientoIE.tultitlan / agrupamientoKE.tultitlan;
@@ -789,14 +790,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKE.total = agrupamientoIE.total / agrupamientoKE.total
       }
       if (e.data.key == '02 FEB'){
-        agrupamientoKF.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKF.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKF.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKF.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKF.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKF.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKF.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKF.total = e.summaryCells[9][0].value;
+        agrupamientoKF.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKF.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKF.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKF.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKF.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKF.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKF.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKF.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKF.cuautitlan = agrupamientoIF.cuautitlan / agrupamientoKF.cuautitlan;
         totalAgrupamientoIKF.tultitlan = agrupamientoIF.tultitlan / agrupamientoKF.tultitlan;
@@ -808,14 +809,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKF.total = agrupamientoIF.total / agrupamientoKF.total;
       }
       if (e.data.key == '03 MAR'){
-        agrupamientoKM.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKM.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKM.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKM.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKM.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKM.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKM.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKM.total = e.summaryCells[9][0].value;
+        agrupamientoKM.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKM.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKM.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKM.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKM.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKM.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKM.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKM.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKM.cuautitlan = agrupamientoIM.cuautitlan / agrupamientoKM.cuautitlan;
         totalAgrupamientoIKM.tultitlan = agrupamientoIM.tultitlan / agrupamientoKM.tultitlan;
@@ -827,14 +828,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKM.total = agrupamientoIM.total / agrupamientoKM.total;
       }
       if (e.data.key == '04 ABR'){
-        agrupamientoKA.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKA.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKA.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKA.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKA.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKA.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKA.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKA.total = e.summaryCells[9][0].value;
+        agrupamientoKA.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKA.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKA.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKA.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKA.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKA.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKA.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKA.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKA.cuautitlan = agrupamientoIA.cuautitlan / agrupamientoKA.cuautitlan;
         totalAgrupamientoIKA.tultitlan = agrupamientoIA.tultitlan / agrupamientoKA.tultitlan;
@@ -846,14 +847,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKA.total = agrupamientoIA.total / agrupamientoKA.total;
       }
       if (e.data.key == '05 MAY'){
-        agrupamientoKMY.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKMY.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKMY.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKMY.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKMY.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKMY.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKMY.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKMY.total = e.summaryCells[9][0].value;
+        agrupamientoKMY.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKMY.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKMY.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKMY.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKMY.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKMY.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKMY.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKMY.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKMY.cuautitlan = agrupamientoIMY.cuautitlan / agrupamientoKMY.cuautitlan;
         totalAgrupamientoIKMY.tultitlan = agrupamientoIMY.tultitlan / agrupamientoKMY.tultitlan;
@@ -865,14 +866,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKMY.total = agrupamientoIMY.total / agrupamientoKMY.total;
       }
       if (e.data.key == '06 JUN'){
-        agrupamientoKJN.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKJN.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKJN.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKJN.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKJN.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKJN.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKJN.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKJN.total = e.summaryCells[9][0].value;
+        agrupamientoKJN.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKJN.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKJN.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKJN.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKJN.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKJN.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKJN.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKJN.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKJN.cuautitlan = agrupamientoIJN.cuautitlan / agrupamientoKJN.cuautitlan;
         totalAgrupamientoIKJN.tultitlan = agrupamientoIJN.tultitlan / agrupamientoKJN.tultitlan;
@@ -884,14 +885,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKJN.total = agrupamientoIJN.total / agrupamientoKJN.total;
       }
       if (e.data.key == '07 JUL'){
-        agrupamientoKJL.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKJL.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKJL.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKJL.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKJL.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKJL.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKJL.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKJL.total = e.summaryCells[9][0].value;
+        agrupamientoKJL.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKJL.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKJL.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKJL.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKJL.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKJL.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKJL.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKJL.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKJL.cuautitlan = agrupamientoIJL.cuautitlan / agrupamientoKJL.cuautitlan;
         totalAgrupamientoIKJL.tultitlan = agrupamientoIJL.tultitlan / agrupamientoKJL.tultitlan;
@@ -903,14 +904,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKJL.total = agrupamientoIJL.total / agrupamientoKJL.total;
       }
       if (e.data.key == '08 AGO'){
-        agrupamientoKAG.cuautitlan = e.summaryCells[2][0].value;
-        agrupamientoKAG.tultitlan = e.summaryCells[3][0].value;
-        agrupamientoKAG.guadalajara = e.summaryCells[4][0].value;
-        agrupamientoKAG.hermosillo = e.summaryCells[5][0].value;
-        agrupamientoKAG.mexicali = e.summaryCells[6][0].value;
-        agrupamientoKAG.orizaba = e.summaryCells[7][0].value;
-        agrupamientoKAG.ramosArispe = e.summaryCells[8][0].value;
-        agrupamientoKAG.total = e.summaryCells[9][0].value;
+        agrupamientoKAG.cuautitlan = e.summaryCells[2][0]?.value;
+        agrupamientoKAG.tultitlan = e.summaryCells[3][0]?.value;
+        agrupamientoKAG.guadalajara = e.summaryCells[4][0]?.value;
+        agrupamientoKAG.hermosillo = e.summaryCells[5][0]?.value;
+        agrupamientoKAG.mexicali = e.summaryCells[6][0]?.value;
+        agrupamientoKAG.orizaba = e.summaryCells[7][0]?.value;
+        agrupamientoKAG.ramosArispe = e.summaryCells[8][0]?.value;
+        agrupamientoKAG.total = e.summaryCells[9][0]?.value;
 
         totalAgrupamientoIKAG.cuautitlan = agrupamientoIAG.cuautitlan / agrupamientoKAG.cuautitlan;
         totalAgrupamientoIKAG.tultitlan = agrupamientoIAG.tultitlan / agrupamientoKAG.tultitlan;
@@ -1002,14 +1003,14 @@ export class IndicadoresComponent implements OnInit {
     }
 
     if(e.rowType == "totalFooter"){
-      totalKilomentros.cuautitlan = e.summaryCells[2][0].value;
-      totalKilomentros.tultitlan = e.summaryCells[3][0].value;
-      totalKilomentros.guadalajara = e.summaryCells[4][0].value;
-      totalKilomentros.hermosillo = e.summaryCells[5][0].value;
-      totalKilomentros.mexicali = e.summaryCells[6][0].value;
-      totalKilomentros.orizaba = e.summaryCells[7][0].value;
-      totalKilomentros.ramosArispe = e.summaryCells[8][0].value;
-      totalKilomentros.total = e.summaryCells[9][0].value;
+      totalKilomentros.cuautitlan = e.summaryCells[2][0]?.value;
+      totalKilomentros.tultitlan = e.summaryCells[3][0]?.value;
+      totalKilomentros.guadalajara = e.summaryCells[4][0]?.value;
+      totalKilomentros.hermosillo = e.summaryCells[5][0]?.value;
+      totalKilomentros.mexicali = e.summaryCells[6][0]?.value;
+      totalKilomentros.orizaba = e.summaryCells[7][0]?.value;
+      totalKilomentros.ramosArispe = e.summaryCells[8][0]?.value;
+      totalKilomentros.total = e.summaryCells[9][0]?.value;
       //console.log(totalKilomentros.total)
 
       totalOperacionIK.cuautitlan = totalIngresos.cuautitlan / totalKilomentros.cuautitlan;
@@ -1723,14 +1724,14 @@ onCellPreparedPM(e){
       
       if (event.data.key == '01 ENE') {
          
-        viajesCargadosE.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosE.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosE.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosE.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosE.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosE.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosE.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosE.total = event.summaryCells[9][0].value;
+        viajesCargadosE.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosE.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosE.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosE.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosE.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosE.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosE.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosE.total = event.summaryCells[9][0]?.value;
 
         totalIVCE.cuautitlan = agrupamientoIE.cuautitlan / viajesCargadosE.cuautitlan;
         totalIVCE.tultitlan = agrupamientoIE.tultitlan / viajesCargadosE.tultitlan;
@@ -1753,14 +1754,14 @@ onCellPreparedPM(e){
 
       }
       if (event.data.key == '02 FEB'){
-        viajesCargadosF.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosF.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosF.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosF.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosF.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosF.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosF.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosF.total = event.summaryCells[9][0].value;
+        viajesCargadosF.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosF.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosF.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosF.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosF.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosF.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosF.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosF.total = event.summaryCells[9][0]?.value;
 
         totalIVCF.cuautitlan = agrupamientoIF.cuautitlan / viajesCargadosF.cuautitlan;
         totalIVCF.tultitlan = agrupamientoIF.tultitlan / viajesCargadosF.tultitlan;
@@ -1781,14 +1782,14 @@ onCellPreparedPM(e){
         totalKVCF.total = agrupamientoKF.total / viajesCargadosF.total;
       }
       if (event.data.key == '03 MAR'){
-        viajesCargadosM.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosM.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosM.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosM.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosM.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosM.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosM.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosM.total = event.summaryCells[9][0].value;
+        viajesCargadosM.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosM.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosM.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosM.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosM.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosM.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosM.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosM.total = event.summaryCells[9][0]?.value;
 
         totalIVCM.cuautitlan = agrupamientoIM.cuautitlan / viajesCargadosM.cuautitlan;
         totalIVCM.tultitlan = agrupamientoIM.tultitlan / viajesCargadosM.tultitlan;
@@ -1809,14 +1810,14 @@ onCellPreparedPM(e){
         totalKVCM.total = agrupamientoKM.total / viajesCargadosM.total;
       }
       if (event.data.key == '04 ABR'){
-        viajesCargadosA.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosA.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosA.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosA.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosA.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosA.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosA.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosA.total = event.summaryCells[9][0].value;
+        viajesCargadosA.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosA.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosA.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosA.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosA.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosA.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosA.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosA.total = event.summaryCells[9][0]?.value;
 
         totalIVCA.cuautitlan = agrupamientoIA.cuautitlan / viajesCargadosA.cuautitlan;
         totalIVCA.tultitlan = agrupamientoIA.tultitlan / viajesCargadosA.tultitlan;
@@ -1837,14 +1838,14 @@ onCellPreparedPM(e){
         totalKVCA.total = agrupamientoKA.total / viajesCargadosA.total;
       }
       if (event.data.key == '05 MAY'){
-        viajesCargadosMY.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosMY.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosMY.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosMY.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosMY.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosMY.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosMY.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosMY.total = event.summaryCells[9][0].value;
+        viajesCargadosMY.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosMY.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosMY.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosMY.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosMY.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosMY.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosMY.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosMY.total = event.summaryCells[9][0]?.value;
 
         totalIVCMY.cuautitlan = agrupamientoIMY.cuautitlan / viajesCargadosMY.cuautitlan;
         totalIVCMY.tultitlan = agrupamientoIMY.tultitlan / viajesCargadosMY.tultitlan;
@@ -1865,14 +1866,14 @@ onCellPreparedPM(e){
         totalKVCMY.total = agrupamientoKMY.total / viajesCargadosMY.total;
       }
       if (event.data.key == '06 JUN'){
-        viajesCargadosJN.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosJN.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosJN.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosJN.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosJN.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosJN.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosJN.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosJN.total = event.summaryCells[9][0].value;
+        viajesCargadosJN.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosJN.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosJN.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosJN.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosJN.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosJN.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosJN.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosJN.total = event.summaryCells[9][0]?.value;
 
         totalIVCJN.cuautitlan = agrupamientoIJN.cuautitlan / viajesCargadosJN.cuautitlan;
         totalIVCJN.tultitlan = agrupamientoIJN.tultitlan / viajesCargadosJN.tultitlan;
@@ -1893,14 +1894,14 @@ onCellPreparedPM(e){
         totalKVCJN.total = agrupamientoKJN.total / viajesCargadosJN.total;
       }
       if (event.data.key == '07 JUL'){
-        viajesCargadosJL.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosJL.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosJL.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosJL.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosJL.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosJL.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosJL.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosJL.total = event.summaryCells[9][0].value;
+        viajesCargadosJL.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosJL.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosJL.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosJL.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosJL.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosJL.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosJL.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosJL.total = event.summaryCells[9][0]?.value;
 
         totalIVCJL.cuautitlan = agrupamientoIJL.cuautitlan / viajesCargadosJL.cuautitlan;
         totalIVCJL.tultitlan = agrupamientoIJL.tultitlan / viajesCargadosJL.tultitlan;
@@ -1921,14 +1922,14 @@ onCellPreparedPM(e){
         totalKVCJL.total = agrupamientoKJL.total / viajesCargadosJL.total;
       }
       if (event.data.key == '08 AGO'){
-        viajesCargadosAG.cuautitlan = event.summaryCells[2][0].value;
-        viajesCargadosAG.tultitlan = event.summaryCells[3][0].value;
-        viajesCargadosAG.guadalajara = event.summaryCells[4][0].value;
-        viajesCargadosAG.hermosillo = event.summaryCells[5][0].value;
-        viajesCargadosAG.mexicali = event.summaryCells[6][0].value;
-        viajesCargadosAG.orizaba = event.summaryCells[7][0].value;
-        viajesCargadosAG.ramosArispe = event.summaryCells[8][0].value;
-        viajesCargadosAG.total = event.summaryCells[9][0].value;
+        viajesCargadosAG.cuautitlan = event.summaryCells[2][0]?.value;
+        viajesCargadosAG.tultitlan = event.summaryCells[3][0]?.value;
+        viajesCargadosAG.guadalajara = event.summaryCells[4][0]?.value;
+        viajesCargadosAG.hermosillo = event.summaryCells[5][0]?.value;
+        viajesCargadosAG.mexicali = event.summaryCells[6][0]?.value;
+        viajesCargadosAG.orizaba = event.summaryCells[7][0]?.value;
+        viajesCargadosAG.ramosArispe = event.summaryCells[8][0]?.value;
+        viajesCargadosAG.total = event.summaryCells[9][0]?.value;
 
         totalIVCAG.cuautitlan = agrupamientoIAG.cuautitlan / viajesCargadosAG.cuautitlan;
         totalIVCAG.tultitlan = agrupamientoIAG.tultitlan / viajesCargadosAG.tultitlan;
@@ -2027,14 +2028,14 @@ onCellPreparedPM(e){
     }
 
     if(event.rowType == "totalFooter"){
-      totalVC.cuautitlan = event.summaryCells[2][0].value;
-      totalVC.tultitlan = event.summaryCells[3][0].value;
-      totalVC.guadalajara = event.summaryCells[4][0].value;
-      totalVC.hermosillo = event.summaryCells[5][0].value;
-      totalVC.mexicali = event.summaryCells[6][0].value;
-      totalVC.orizaba = event.summaryCells[7][0].value;
-      totalVC.ramosArispe = event.summaryCells[8][0].value;
-      totalVC.total = event.summaryCells[9][0].value
+      totalVC.cuautitlan = event.summaryCells[2][0]?.value;
+      totalVC.tultitlan = event.summaryCells[3][0]?.value;
+      totalVC.guadalajara = event.summaryCells[4][0]?.value;
+      totalVC.hermosillo = event.summaryCells[5][0]?.value;
+      totalVC.mexicali = event.summaryCells[6][0]?.value;
+      totalVC.orizaba = event.summaryCells[7][0]?.value;
+      totalVC.ramosArispe = event.summaryCells[8][0]?.value;
+      totalVC.total = event.summaryCells[9][0]?.value
 
       totalOperacionIVC.cuautitlan = totalIngresos.cuautitlan / totalVC.cuautitlan;
       totalOperacionIVC.tultitlan = totalIngresos.tultitlan / totalVC.tultitlan;
