@@ -55,7 +55,7 @@
 
             </dx-responsive-box>
             <br><br>-->
-                    <h3>Ingresos</h3>
+                    <h3>Ingresos por flete (sin ajuste por provisiones)</h3>
 
                     <dx-data-grid  #ING id="gridContainer1" [dataSource]="ingresos" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedI($event)" (onCellPrepared)="onCellPreparedI($event)">
@@ -65,7 +65,7 @@
 
                     <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                    <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                    <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                     <dxi-column dataField="cuatitlan" caption="Cuautitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                     <dxi-column dataField="tultitlan" caption="Tultitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                     <dxi-column dataField="guadalajara" caption="Guadalajara" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
@@ -115,7 +115,7 @@
 
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                         
-                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separator"></dxi-column>
@@ -164,7 +164,7 @@
 
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separator"></dxi-column>
@@ -213,7 +213,7 @@
 
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separator"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separator"></dxi-column>
@@ -258,7 +258,7 @@
                     <dx-data-grid #priceDataGrid [dataSource]="precioMeta" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [allowColumnReordering]="false"
                     [columnAutoWidth]="true" [showBorders]="true" (onCellPrepared)="onCellPreparedPM($event)">
                        
-                       <dxi-column dataField="operacion" caption="Descripción" [width]="180"></dxi-column>
+                       <dxi-column dataField="operacion" caption="Descripción" [fixed]="true" [width]="180"></dxi-column>
                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                        <dxi-column dataField="tultitlan" caption="Tultitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                        <dxi-column dataField="guadalajara" caption="Guadalajara" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
@@ -305,7 +305,7 @@
 
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                         
-                        <dxi-column dataField="operacion" caption="Operación" [width]="150"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="150"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
@@ -354,7 +354,7 @@
                         
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorKV"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorKV"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorKV"></dxi-column>
@@ -403,7 +403,7 @@
                         
                         <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
 
-                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
                         <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorIV"></dxi-column>
                         <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorIV"></dxi-column>
                         <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorIV"></dxi-column>
