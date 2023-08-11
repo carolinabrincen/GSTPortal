@@ -9,4 +9,5 @@ export class ScoreCard {
     ramosArizpe: number;
     total: number;
     tultitlan: number;
+    orden: number;
 }
