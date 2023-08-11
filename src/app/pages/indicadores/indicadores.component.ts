@@ -449,13 +449,13 @@ export class IndicadoresComponent implements OnInit {
       const orderVjsCgds: ScoreCard[] = data.data.scViajesC;
       let neworderVjsCgds = [];
       neworderVjsCgds.push(orderVjsCgds[4],orderVjsCgds[2],orderVjsCgds[3],orderVjsCgds[0],orderVjsCgds[1],
-                        orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
-                        orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
-                        orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
-                        orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
-                        orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
-                        orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-                        orderViajes[37],orderViajes[40],orderViajes[38],orderViajes[39],orderViajes[41]);
+                        orderVjsCgds[5],orderVjsCgds[9],orderVjsCgds[8],orderVjsCgds[6],orderVjsCgds[7],
+                        orderVjsCgds[11],orderVjsCgds[12],orderVjsCgds[13],orderVjsCgds[10],orderVjsCgds[14],orderVjsCgds[15],
+                        orderVjsCgds[17],orderVjsCgds[20],orderVjsCgds[16],orderVjsCgds[18],orderVjsCgds[19],
+                        orderVjsCgds[21],orderVjsCgds[25],orderVjsCgds[23],orderVjsCgds[22],orderVjsCgds[24],
+                        orderVjsCgds[26],orderVjsCgds[29],orderVjsCgds[27],orderVjsCgds[28],orderVjsCgds[30],
+                        orderVjsCgds[32],orderVjsCgds[35],orderVjsCgds[33],orderVjsCgds[31],orderVjsCgds[34],orderVjsCgds[36],
+                        orderVjsCgds[37],orderVjsCgds[40],orderVjsCgds[38],orderVjsCgds[39],orderVjsCgds[41]);
 
       this.viajesCargados = neworderVjsCgds;
 // ====================================INGRESO / KILOMETROS========================================================================================================
@@ -463,27 +463,27 @@ export class IndicadoresComponent implements OnInit {
       const orderIngKlmts: ScoreCard[] = data.data.scIngXKm;
       let neworderIngKlmts = [];
       neworderIngKlmts.push(orderIngKlmts[4],orderIngKlmts[2],orderIngKlmts[3],orderIngKlmts[0],orderIngKlmts[1],
-                        orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
-                        orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
-                        orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
-                        orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
-                        orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
-                        orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
-                        orderKilometros[37],orderKilometros[40],orderKilometros[38],orderKilometros[39],orderKilometros[41]);
-
+                        orderIngKlmts[5],orderIngKlmts[9],orderIngKlmts[8],orderIngKlmts[6],orderIngKlmts[7],
+                        orderIngKlmts[11],orderIngKlmts[12],orderIngKlmts[13],orderIngKlmts[10],orderIngKlmts[14],orderIngKlmts[15],
+                        orderIngKlmts[17],orderIngKlmts[20],orderIngKlmts[16],orderIngKlmts[18],orderIngKlmts[19],
+                        orderIngKlmts[21],orderIngKlmts[25],orderIngKlmts[23],orderIngKlmts[22],orderIngKlmts[24],
+                        orderIngKlmts[26],orderIngKlmts[29],orderIngKlmts[27],orderIngKlmts[28],orderIngKlmts[30],
+                        orderIngKlmts[32],orderIngKlmts[35],orderIngKlmts[33],orderIngKlmts[31],orderIngKlmts[34],orderIngKlmts[36],
+                        orderIngKlmts[37],orderIngKlmts[40],orderIngKlmts[38],orderIngKlmts[39],orderIngKlmts[41]);
       this.ingresosKilometros = neworderIngKlmts;
+      
 // ====================================KILOMETROS / VIAJES========================================================================================================
       data.data.scKmsViaje.sort((a, b) => (a.mes < b.mes ? -1 : 1));
       const orderKmsVjs: ScoreCard[] = data.data.scKmsViaje;
       let neworderKmsVjs = [];
       neworderKmsVjs.push(orderKmsVjs[4],orderKmsVjs[2],orderKmsVjs[3],orderKmsVjs[0],orderKmsVjs[1],
-                        orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
-                        orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
-                        orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
-                        orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
-                        orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
-                        orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-                        orderViajes[37],orderViajes[40],orderViajes[38],orderViajes[39],orderViajes[41]);
+                        orderKmsVjs[5],orderKmsVjs[9],orderKmsVjs[8],orderKmsVjs[6],orderKmsVjs[7],
+                        orderKmsVjs[11],orderKmsVjs[12],orderKmsVjs[13],orderKmsVjs[10],orderKmsVjs[14],orderKmsVjs[15],
+                        orderKmsVjs[17],orderKmsVjs[20],orderKmsVjs[16],orderKmsVjs[18],orderKmsVjs[19],
+                        orderKmsVjs[21],orderKmsVjs[25],orderKmsVjs[23],orderKmsVjs[22],orderKmsVjs[24],
+                        orderKmsVjs[26],orderKmsVjs[29],orderKmsVjs[27],orderKmsVjs[28],orderKmsVjs[30],
+                        orderKmsVjs[32],orderKmsVjs[35],orderKmsVjs[33],orderKmsVjs[31],orderKmsVjs[34],orderKmsVjs[36],
+                        orderKmsVjs[37],orderKmsVjs[40],orderKmsVjs[38],orderKmsVjs[39],orderKmsVjs[41]);
 
       this.kilometroViajes = neworderKmsVjs;
 // ====================================INGRESO / VIAJES========================================================================================================
@@ -1105,8 +1105,6 @@ onCellPreparedPM(e){
 }  
 
   onRowPreparedIK(e){
-    
-  
     if (e.rowType == 'group'){
 
       if(e.isExpanded == true){
