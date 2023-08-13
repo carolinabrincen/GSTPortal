@@ -22,6 +22,7 @@ export class CarteraClientesComponent implements OnInit {
   col: string = '50';
 
   boxCartera: Cartera[] = [
+    { id: 0, cartera: 'GST Consolidado'},
     { id: 1, cartera: "TRANSPORTES BONAMPAK S.A. DE C.V." },
     { id: 2, cartera: "AUTOTRANSPORTE MACUSPANA S.A. DE C.V." },
     { id: 3, cartera: "TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V." },
@@ -188,7 +189,7 @@ export class CarteraClientesComponent implements OnInit {
 
   
   buscarClick = (e: any) => {
-    if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== 0) {
+    if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
       this.loadingVisible = true;
       this.modeSearch = 'true'
 

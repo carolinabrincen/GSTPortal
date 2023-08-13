@@ -24,11 +24,6 @@ export const navigation = [
       //   path: '/kilometros',
       //   icon: 'map'
       // },
-      {
-        text: 'Rent. Contable',
-        path: '/rentabilidadcontable',
-        icon: 'columnproperties'
-      },
       // {
       //   text: 'Rent. Gerencial',
       //   path: '/rentabilidadgerencial',
@@ -37,23 +32,48 @@ export const navigation = [
     ]
   },
   {
+    text: 'Utilidad',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Utilidad Contable',
+        icon: 'columnchooser',
+        path: '/costos-anuales-new'
+      },
+      {
+        text: 'Proyección Utilidad',
+        icon: 'columnchooser',
+        path: '/proyeccion-costos'
+      }
+    ]
+  },
+  {
+    text: 'Indicadores',
+    icon: 'columnchooser',
+    path: '/indicadores'
+  },
+  {
+    text: 'Cartera Clientes',
+    icon: 'columnchooser',
+    path: '/cartera-clientes'
+  },
+  {
     text: 'Cotizador',
     icon: 'columnchooser',
-    path: '/cotizador'
-    
+    path: '/cotizador' 
+  },
+  {
+    text: 'Rent. Contable',
+    path: '/rentabilidadcontable',
+    icon: 'columnproperties'
   }
-  ,
   // {
   //   text: 'Costos',//Mensuales
   //   icon: 'columnchooser',
   //   path: '/costos'
     
   // },
-  {
-    text: 'Costos Anuales',
-    icon: 'columnchooser',
-    path: '/costos-anuales-new'
-  },
+
   // {
   //   text: 'Ciclo Viaje',
   //   icon: 'columnchooser',
@@ -74,24 +94,10 @@ export const navigation = [
   //   icon: 'columnchooser',
   //   path: '/balanza'
   // },
-  {
-    text: 'Indicadores',
-    icon: 'columnchooser',
-    path: '/indicadores'
-  },
-  {
-    text: 'Cartera-Clientes',
-    icon: 'columnchooser',
-    path: '/cartera-clientes'
-  },
-  {
-    text: 'Validación-Ingreso',
-    icon: 'columnchooser',
-    path: '/validacion-ingreso'
-  },
-  {
-    text: 'Proyección-Costos',
-    icon: 'columnchooser',
-    path: '/proyeccion-costos'
-  }
+
+  // {
+  //   text: 'Validación-Ingreso',
+  //   icon: 'columnchooser',
+  //   path: '/validacion-ingreso'
+  // },
 ];
