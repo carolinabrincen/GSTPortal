@@ -78,7 +78,7 @@ export class ProyeccionCostosComponent implements OnInit {
   companias: Compania[] =[]
 
   nweCompanias = [
-    {idcompania: 'GSTCON', compania: 'GST Consolidado'},
+    {idcompania: 'GSTCON', compania: 'GST CONSOLIDADO'},
     {idCompania: 'TEICUA', compania: 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'},
     {idCompania: 'TBKHER', compania: 'TRANSPORTES BONAMPAK S.A. DE C.V.'},
     {idCompania: 'TCGTUL', compania: 'TRANSPORTES DE CARGA GEMINIS S.A. DE C.V.'},
@@ -198,9 +198,9 @@ export class ProyeccionCostosComponent implements OnInit {
       // this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
       //   this.arrUnidadesNegocio = data.data;
       // })
-      if(value == 'GST Consolidado'){
+      if(value == 'GST CONSOLIDADO'){
         this.arrUnidadesNegocio = [
-          {idUdn: 'GST Consolidado', udn: 'GST Consolidado'}
+          {idUdn: 'GST CONSOLIDADO', udn: 'GST CONSOLIDADO'}
         ]
       }
       if(value == 'TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V.'){

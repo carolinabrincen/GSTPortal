@@ -22,7 +22,7 @@ export class CarteraClientesComponent implements OnInit {
   col: string = '50';
 
   boxCartera: Cartera[] = [
-    { id: 0, cartera: 'GST Consolidado'},
+    { id: 0, cartera: 'GST CONSOLIDADO'},
     { id: 1, cartera: "TRANSPORTES BONAMPAK S.A. DE C.V." },
     { id: 2, cartera: "AUTOTRANSPORTE MACUSPANA S.A. DE C.V." },
     { id: 3, cartera: "TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V." },

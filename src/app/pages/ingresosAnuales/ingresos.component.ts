@@ -121,9 +121,20 @@ export class IngresosComponent implements OnInit {
     var myUdN = 0;
       this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
-        this.indicadores = response.data;
-        console.log(this.indicadores)
-       });
+
+         const orderIngreso: IngresosModel[] = response.data;
+      let neworderIngreso = [];
+      neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
+                        orderIngreso[6],orderIngreso[7],orderIngreso[5],
+                        orderIngreso[9],orderIngreso[8],
+                        orderIngreso[11],orderIngreso[10],
+                        orderIngreso[13],orderIngreso[12],
+                        orderIngreso[15],orderIngreso[16],orderIngreso[14],
+                        orderIngreso[18],orderIngreso[17]);
+
+        this.indicadores = neworderIngreso;
+
+      });
   }
 
     getIngresosAnualesChart (Anio: number, UnidadNegocio: number)
@@ -264,7 +275,6 @@ export class IngresosComponent implements OnInit {
   onRowPreparedDetalle(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
-         console.log(e)
         //Enero
         this.totalPor.totalE = e.summaryCells[4][0].value;
         this.totalPor.anioAntE = e.summaryCells[5][0].value;
