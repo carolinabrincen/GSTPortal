@@ -61,35 +61,95 @@ export class IngresosDetalladosComponent implements OnInit {
 
   getIDMMarzo(){
     this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
-      this.arrIngresosMarzo = res.data.resumen;
+      
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoM = [];
+      neworderIngresoM.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[4],orderIngreso[5],orderIngreso[3],
+                        orderIngreso[6],orderIngreso[7],
+                        orderIngreso[8],orderIngreso[9],
+                        orderIngreso[10],orderIngreso[11],
+                        orderIngreso[12],orderIngreso[13],
+                        orderIngreso[14],orderIngreso[15]);
+ 
+      this.arrIngresosMarzo = neworderIngresoM;
+
       this.arrDetalleMarzo = res.data.detalle;
     });
   }
  
   getIDMAbril(){
     this.ingresosService.getIngresosDetalladosMensualAbr().subscribe(res => {
-      this.arrIngresosAbril = res.data.resumen;
+
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoA = [];
+      neworderIngresoA.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[3],
+                        orderIngreso[4],orderIngreso[5],
+                        orderIngreso[6],orderIngreso[7],
+                        orderIngreso[8],orderIngreso[10],orderIngreso[9],orderIngreso[11],orderIngreso[12],
+                        orderIngreso[13],orderIngreso[14],
+                        orderIngreso[15],orderIngreso[16]);
+
+      this.arrIngresosAbril = neworderIngresoA;
+
       this.arrDetalleAbril = res.data.detalle;
     });
   }
 
   getIDMMayo(){
     this.ingresosService.getIngresosDetalladosMensualMay().subscribe(res => {
-      this.arrIngresosMayo = res.data.resumen;
+
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoMY = [];
+      neworderIngresoMY.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[3],
+                        orderIngreso[4],orderIngreso[5],
+                        orderIngreso[6],orderIngreso[7],
+                        orderIngreso[8],orderIngreso[10],orderIngreso[9],orderIngreso[11],orderIngreso[12],
+                        orderIngreso[13],orderIngreso[14],orderIngreso[15],
+                        orderIngreso[16],orderIngreso[17]);
+
+      this.arrIngresosMayo = neworderIngresoMY;
+
       this.arrDetalleMayo = res.data.detalle;
     });
   }
 
   getIDMJunio(){
     this.ingresosService.getIngresosDetalladosMensualJun().subscribe(res => {
-      this.arrIngresosJunio = res.data.resumen;
+
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoJN = [];
+      neworderIngresoJN.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[3],orderIngreso[4],
+                        orderIngreso[5],
+                        orderIngreso[6],
+                        orderIngreso[7],orderIngreso[9],orderIngreso[8],orderIngreso[10],orderIngreso[11],
+                        orderIngreso[12],orderIngreso[13],orderIngreso[14],
+                        orderIngreso[15],orderIngreso[16]);
+
+      this.arrIngresosJunio = neworderIngresoJN;
+
       this.arrDetalleJunio = res.data.detalle;
     });
   }
   
   getIDMJulio(){
     this.ingresosService.getIngresosDetalladosMensualJul().subscribe(res => {
+
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoJL = [];
+      neworderIngresoJL.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[3],orderIngreso[4],
+                        orderIngreso[5],
+                        orderIngreso[6],orderIngreso[7],
+                        orderIngreso[8],orderIngreso[10],orderIngreso[9],orderIngreso[11],
+                        orderIngreso[12],orderIngreso[13],
+                        orderIngreso[14],orderIngreso[15]);
+
       this.arrIngresosJulio = res.data.resumen;
+
       this.arrDetalleJulio = res.data.detalle;
 
       this.loadingVisible = false;
@@ -98,7 +158,19 @@ export class IngresosDetalladosComponent implements OnInit {
 
   getIDMAgosto(){
     this.ingresosService.getIngresosDetalladosMensualAgo().subscribe(res => {
-      this.arrIngresosAgosto = res.data.resumen;
+
+      const orderIngreso: IngresosDModel[] = res.data.resumen;
+      let neworderIngresoAG = [];
+      neworderIngresoAG.push(orderIngreso[0],orderIngreso[1],
+                        orderIngreso[2],orderIngreso[3],orderIngreso[4],
+                        orderIngreso[5],
+                        orderIngreso[6],
+                        orderIngreso[7],orderIngreso[9],orderIngreso[8],orderIngreso[10],
+                        orderIngreso[11],orderIngreso[12],
+                        orderIngreso[13],orderIngreso[14]);
+                        console.log(res.data.resumen)
+      this.arrIngresosAgosto = neworderIngresoAG;
+
       this.arrDetalleAgosto = res.data.detalle;
 
       this.loadingVisible = false;
