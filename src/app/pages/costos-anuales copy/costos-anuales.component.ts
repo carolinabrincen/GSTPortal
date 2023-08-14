@@ -81,7 +81,6 @@ export class CostosAnualesNewComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 0, anio: "TODOS" },    
     { idAnio: 202301, anio: "202301" },
     { idAnio: 202302, anio: "202302" },
     { idAnio: 202303, anio: "202303" },
@@ -114,7 +113,7 @@ export class CostosAnualesNewComponent implements OnInit {
   companias: Compania[] =[]
 
   nweCompanias = [
-    {idCompania: 'TODOS', compania: 'TODOS'},
+    {idCompania: 'GST CONSOLIDADO', compania: 'GST CONSOLIDADO'},
     {idCompania: 'ATMMAC', compania: 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'},
     {idCompania: 'CORPOR', compania: 'CORPORATIVO'},
     {idCompania: 'GSTFYS', compania: 'GST FLETES Y SERVICIOS S.A. DE C.V.'},
@@ -229,12 +228,11 @@ export class CostosAnualesNewComponent implements OnInit {
       // this.costosAnuService.postUnidadesNegocio(id).subscribe(data =>{
       //   this.arrUnidadesNegocio = data.data;
       // })
-      if(value == 'TODOS'){
+      if(value == 'GST CONSOLIDADO'){
         this.arrUnidadesNegocio = [
-          {idUdn: '', udn: 'TODOS'},
+          {idUdn: 'GST CONSOLIDADO', udn: 'GST CONSOLIDADO'},
         ]
-      }
-      if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
+      }else if(value == 'AUTOTRANSPORTE MACUSPANA S.A. DE C.V.'){
         this.arrUnidadesNegocio = [
           {idUdn: '', udn: 'TODOS'},
           {idUdn: 'ATMMAC', udn: 'ATMMAC'},
