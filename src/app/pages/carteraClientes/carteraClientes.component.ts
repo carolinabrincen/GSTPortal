@@ -96,21 +96,23 @@ export class CarteraClientesComponent implements OnInit {
   printValue = "";
   selectBoxCartera(e: any) {
     this.selectedBoxCartera = e.value;
-
-    if(e.value == 1){
+    if(e.value == 0){
       this.printValue = this.boxCartera[0].cartera
     }
-    if(e.value == 2){
+    if(e.value == 1){
       this.printValue = this.boxCartera[1].cartera
     }
-    if(e.value == 3){
+    if(e.value == 2){
       this.printValue = this.boxCartera[2].cartera
     }
-    if(e.value == 4){
+    if(e.value == 3){
       this.printValue = this.boxCartera[3].cartera
     }
-    if(e.value == 5){
+    if(e.value == 4){
       this.printValue = this.boxCartera[4].cartera
+    }
+    if(e.value == 5){
+      this.printValue = this.boxCartera[5].cartera
     }
 
   }
