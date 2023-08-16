@@ -551,7 +551,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getkmsMensuales(this.selectedPeriodo).subscribe(data => {
       this.kmsMensykaes = data.data;
       this.kmsMensykaes.sort((a, b) => (a.udN < b.udN ? -1 : 1));
-
+      console.log(this.kmsMensykaes)
       this.loadingVisible = false;
     })
 

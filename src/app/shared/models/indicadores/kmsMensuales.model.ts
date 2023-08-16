@@ -39,4 +39,5 @@ export class KMSMensuales{
     flete: number;
     diaMes: number;
     toneladas: number;
+    dolly: string;
 }
