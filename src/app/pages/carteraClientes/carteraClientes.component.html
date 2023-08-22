@@ -126,20 +126,27 @@
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
 
+            <dxi-column dataField="compania" caption="" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="nombre" caption="" [groupIndex]="1"></dxi-column>
+            
             <dxi-column dataField="iD_AREA" caption="ID ÁREA" [width]="100"></dxi-column>
             <dxi-column dataField="compania" caption="COMPAÑIA" [width]="100"></dxi-column>
             <dxi-column dataField="cliente" caption="CLIENTE" [width]="100"></dxi-column>
-            <dxi-column dataField="nombre" caption="NOMBRE" [width]="100"></dxi-column>
+            <dxi-column dataField="nombre" caption="NOMBRE" [width]="250"></dxi-column>
             <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
             <dxi-column dataField="documento" caption="DOCUMENTO" [width]="120"></dxi-column>            
             <dxi-column dataField="fechA_GUIA" caption="FEHCA GUÍA" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
             <dxi-column dataField="nocarta" caption="NUM. CARTA" [width]="100"></dxi-column> 
-            <dxi-column dataField="f_CARTACROBRO" caption="FECHA CARTA COBRO" dataType="date" format="dd/mm/yyyy" [width]="160"></dxi-column> 
             <dxi-column dataField="fechA_VENCIMIENTO" caption="FEHCA VENCIMIENTO" dataType="date" format="dd/mm/yyyy" [width]="160"></dxi-column>
-            <dxi-column dataField="remision" caption="REMISIÓN" [width]="250"></dxi-column>
-            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column> 
+            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column>
             <dxi-column dataField="observaciones" caption="OBSERVACIONES" [width]="200"></dxi-column> 
             <dxi-column dataField="recogeR_EN" caption="RECOGER EN" [width]="100"></dxi-column> 
+            <dxi-column dataField="saldO_SIN_CCOBRO" caption="SALDO SIN COBRO" [width]="160" [format]="separator"></dxi-column>
+            <dxi-column dataField="totaL_INTEGRADO" caption="TOTAL INTEGRADO" [width]="160" [format]="separator"></dxi-column>
+            <dxi-column dataField="diaS_DE_CREDITO" caption="DÍAS DE CRÉDITO" [width]="150"></dxi-column>
+            <dxi-column dataField="f_CARTACROBRO" caption="FECHA CARTA COBRO" dataType="date" format="dd/mm/yyyy" [width]="160"></dxi-column> 
+            <dxi-column dataField="remision" caption="REMISIÓN" [width]="250"></dxi-column>
+            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column> 
             <dxi-column dataField="totaL_SALDO" caption="TOTAL SALDO" [width]="120" [format]="separator"></dxi-column> 
             <dxi-column dataField="totaL_VENCIDOS" caption="TOTAL VENCIDOS" [width]="130" [format]="separator"></dxi-column> 
             <dxi-column dataField="v1A15" caption="1-15" [width]="100" [format]="separator"></dxi-column> 
@@ -155,11 +162,10 @@
             <dxi-column dataField="p8A15" caption="8-15" [width]="100" [format]="separator"></dxi-column> 
             <dxi-column dataField="p16A30" caption="16-30" [width]="100" [format]="separator"></dxi-column> 
             <dxi-column dataField="p31" caption="> 31" [width]="100" [format]="separator"></dxi-column> 
-            <dxi-column dataField="saldO_SIN_CCOBRO" caption="SALDO SIN COBRO" [width]="160" [format]="separator"></dxi-column>
-            <dxi-column dataField="totaL_INTEGRADO" caption="TOTAL INTEGRADO" [width]="160" [format]="separator"></dxi-column>
-            <dxi-column dataField="diaS_DE_CREDITO" caption="DÍAS DE CRÉDITO" [width]="150"></dxi-column>
             <dxi-column dataField="diaS_SIN_CARTA_C" caption="DÍAS SIN CARTA" [width]="150"></dxi-column>
-
+            
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
             <!-- <dxo-summary>
                 <dxi-group-item column="totaL_SALDO" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>
                 <dxi-group-item column="totaL_VENCIDOS" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true"></dxi-group-item>

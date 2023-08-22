@@ -86,6 +86,7 @@ export class CarteraClientesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
+        console.log(this.detalle)
         this.loadingVisible = false;
       })
     });
@@ -274,6 +275,19 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   onRowPreparedD(e){
+
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+      else {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+    }
 
   }
 
