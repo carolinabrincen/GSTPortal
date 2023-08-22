@@ -173,13 +173,13 @@ export class RentabilidadViajesComponent implements OnInit {
           }
 
           //negrita columna margen utilidad
-          if (c.columnIndex == 7  || c.columnIndex == 8  ||
-              c.columnIndex == 23 || c.columnIndex == 24 ||
-              c.columnIndex == 37 || c.columnIndex == 38) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "14px";
-            c.cellElement.style.background = "#f5f5f5";
-          }
+          // if (c.columnIndex == 7  || c.columnIndex == 8  ||
+          //     c.columnIndex == 23 || c.columnIndex == 24 ||
+          //     c.columnIndex == 37 || c.columnIndex == 38) {
+          //   c.cellElement.style.fontWeight = "bolder";
+          //   c.cellElement.style.fontSize = "14px";
+          //   c.cellElement.style.background = "#f5f5f5";
+          // }
 
           //porcentaje de combistuble > .25 en rojo
           if (c.columnIndex == 16 && c.value >= .25) {
