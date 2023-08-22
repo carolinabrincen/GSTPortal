@@ -66,6 +66,6 @@ export interface RentContModel {
   margenUtilida: number,
   margenUtilidaPor: number
   tipoViaje: string;
-  tipoSeguimiento: string;
+  tipoSegumiento: string;
   ruta: string;
 }
