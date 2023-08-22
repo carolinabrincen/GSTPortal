@@ -21,4 +21,5 @@ export interface IngresosDModel{
     marIgresosOtrosMeses: number,
     marIngreso: number,
     marProvision: number,
+    notasCredito: number;
 }

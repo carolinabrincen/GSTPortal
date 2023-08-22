@@ -1280,7 +1280,13 @@
                     </dxi-column>
                 </dxi-column>
 
+                <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="left" headerCellTemplate="headerTemplate">
+                    <dxo-format type="currency" [precision]="3"> </dxo-format>
+                </dxi-column>
+
                 <dxi-column caption="RESUMEN" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    
+
                     <dxi-column dataField="otrosIngresos" caption="Otros ingresos" alignment="right" headerCellTemplate="headerTemplate">
                         <dxo-format type="currency" [precision]="2"> </dxo-format>
                     </dxi-column>

@@ -1,4 +1,4 @@
-<h2 class="content-block">Rentabilidad Vajes</h2>
+<h2 class="content-block">Rentabilidad Viajes</h2>
 
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
@@ -130,6 +130,8 @@
         <dxi-column dataField="unidadNegocio" caption="Unidad Negocio" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="0"></dxi-column>
         <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" headerCellTemplate="headerTemplate" [groupIndex]="1"></dxi-column>
         <dxi-column dataField="operador" caption="Operador" [fixed]="true" headerCellTemplate="headerTemplate" [width]="5"></dxi-column>
+
+        <dxi-column dataField="viajes" caption="No. Viaje" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="noLiquidacion" caption="Liquidación" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="inicio" caption="Inicio" format="dd-MM-yy HH:mm" type="date" [fixed]="true" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="fin" caption="Fin" [fixed]="true" format="dd-MM-yy HH:mm" headerCellTemplate="headerTemplate"></dxi-column>
@@ -138,7 +140,6 @@
         <dxi-column dataField="margenUtilida" caption="Margen Utilidad" [fixed]="true" format="$ #,###,###.##;-$ #,##0.##" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="margenUtilidaPor" caption="%" [fixed]="true" format="percent" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="diasViaje" caption="Días Viaje" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
-        <dxi-column dataField="viajes" caption="Num. Viajes" [fixed]="false" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="kmsCargados" caption="Kms. Cargado" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="kmsVacios" caption="Kms. Vacio" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
         <dxi-column dataField="lstDiesel" caption="Lts. Diesel" [fixed]="false" format="fixedPoint" headerCellTemplate="headerTemplate"></dxi-column>
