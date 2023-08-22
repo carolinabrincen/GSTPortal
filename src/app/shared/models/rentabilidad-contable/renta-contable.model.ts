@@ -65,4 +65,7 @@ export interface RentContModel {
   costosAdicionalesPor: number,
   margenUtilida: number,
   margenUtilidaPor: number
+  tipoViaje: string;
+  tipoSeguimiento: string;
+  ruta: string;
 }

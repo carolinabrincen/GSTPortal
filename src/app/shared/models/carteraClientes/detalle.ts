@@ -33,5 +33,6 @@ export class Detalle {
     totaL_INTEGRADO: number;
     diaS_DE_CREDITO: number;
     diaS_SIN_CARTA_C: number;
+    fechaCierre: string;
 
 }
