@@ -1340,6 +1340,12 @@
                     </dxi-group-item>
                     <dxi-total-item column="totalFlete" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
                     </dxi-total-item>
+
+                    <dxi-group-item column="notasCredito" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="notasCredito" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+
                     <dxi-group-item column="otrosIngresos" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     <dxi-total-item column="otrosIngresos" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
