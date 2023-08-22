@@ -292,7 +292,22 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   onCellPreparedD(e){
+    if (e.rowType == 'group'){
 
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "14px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
   }
 
 //==================Formato a la data de la grafica==================================
@@ -321,6 +336,10 @@ export class CarteraClientesComponent implements OnInit {
     return data;
   }
 
+  customizeDateDetalle(data) {
+    data = "TOTAL"
+    return data;
+  }
 
   separatorcon(value) {
     var myvalue = Math.trunc(value);
