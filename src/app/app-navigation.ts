@@ -66,6 +66,10 @@ export const navigation = [
     text: 'Rent. Contable',
     path: '/rentabilidadcontable',
     icon: 'columnproperties'
+  },{
+    text: 'Rentabilidad Viajes',
+    path: '/rentabilidad-viajes',
+    icon: 'columnproperties'
   }
   // {
   //   text: 'Costos',//Mensuales
