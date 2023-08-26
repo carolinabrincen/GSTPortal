@@ -34,8 +34,6 @@ export interface RentContModel {
   fin: Date,
   diasViaje: number,
   viajes: number,
-  kmsCargados: number,
-  kmsVacios: number,
   lstDiesel: number,
   rendimiento:number,
   ingresoTotal: number,
@@ -68,4 +66,6 @@ export interface RentContModel {
   tipoViaje: string;
   tipoSegumiento: string;
   ruta: string;
+  cliente: string;
+  kms: number;
 }

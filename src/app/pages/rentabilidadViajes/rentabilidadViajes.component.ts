@@ -160,6 +160,11 @@ export class RentabilidadViajesComponent implements OnInit {
         //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
         // })
     }
+
+    if (e.rowType == 'totalFooter') {
+      console.log(e)
+    }
+    
 }
 
   onRowPrepared(e: any) {
@@ -172,23 +177,11 @@ export class RentabilidadViajesComponent implements OnInit {
             c.cellElement.style.color = "red";
           }
 
-          //negrita columna margen utilidad
-          // if (c.columnIndex == 7  || c.columnIndex == 8  ||
-          //     c.columnIndex == 23 || c.columnIndex == 24 ||
-          //     c.columnIndex == 37 || c.columnIndex == 38) {
-          //   c.cellElement.style.fontWeight = "bolder";
-          //   c.cellElement.style.fontSize = "14px";
-          //   c.cellElement.style.background = "#f5f5f5";
-          // }
-
           //porcentaje de combistuble > .25 en rojo
-          if (c.columnIndex == 16 && c.value >= .25) {
-            c.cellElement.style.color = "red";
-          }
+          // if (c.columnIndex == 16 && c.value >= .25) {
+          //   c.cellElement.style.color = "red";
+          // }
         }
-
-
-
       });
     }
 
@@ -205,57 +198,58 @@ export class RentabilidadViajesComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter') {
-      let ingresoTotal = e.summaryCells[6][0].value;
-      let margenUtilidad = e.summaryCells[7][0].value;
-      let combustible = e.summaryCells[15][0].value;
-      let casetas = e.summaryCells[17][0].value;
-      let sueldosLiquidacion = e.summaryCells[19][0].value;
-      let otros = e.summaryCells[21][0].value;
-      let costosDirectos = e.summaryCells[23][0].value;
-      let sueldoBase = e.summaryCells[25][0].value;
-      let cargaSocial = e.summaryCells[27][0].value;
-      let fijoMtto = e.summaryCells[29][0].value;
-      let varMtto = e.summaryCells[31][0].value;
-      let fijoTrans = e.summaryCells[33][0].value;
-      let varTrans = e.summaryCells[35][0].value;
-      let ctosAdicionales = e.summaryCells[37][0].value;
+      //  console.log(e.summaryCells)
+      let ingresoTotal = e.summaryCells[12][0].value;
+      let margenUtilidad = e.summaryCells[13][0].value;
+      // let combustible = e.summaryCells[15][0].value;
+      // let casetas = e.summaryCells[17][0].value;
+      // let sueldosLiquidacion = e.summaryCells[19][0].value;
+      // let otros = e.summaryCells[21][0].value;
+      // let costosDirectos = e.summaryCells[23][0].value;
+      // let sueldoBase = e.summaryCells[25][0].value;
+      // let cargaSocial = e.summaryCells[27][0].value;
+      // let fijoMtto = e.summaryCells[29][0].value;
+      // let varMtto = e.summaryCells[31][0].value;
+      // let fijoTrans = e.summaryCells[33][0].value;
+      // let varTrans = e.summaryCells[35][0].value;
+      // let ctosAdicionales = e.summaryCells[37][0].value;
 
 
       //Porcentajes Margen utilidad
-      ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = margenUtilidad/ingresoTotal;
+      ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
       //Combustible
-      ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
-      //Casetas
-      ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
-      //Sueldos Liq
-      ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
-      //Otros
-      ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
-      //costosDirectos
-      ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
-      //sueldoBAse
-      ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
-      //Carga Social
-      ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
-      //Fijo Mtto
-      ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
-      //Variable Mtto
-      ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
-      //fijo Transportacion
-      ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
-      //variable Transportacion
-      ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
-      //Costso Adicionales
-      ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
+      // ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
+      // //Casetas
+      // ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
+      // //Sueldos Liq
+      // ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
+      // //Otros
+      // ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
+      // //costosDirectos
+      // ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
+      // //sueldoBAse
+      // ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
+      // //Carga Social
+      // ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
+      // //Fijo Mtto
+      // ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
+      // //Variable Mtto
+      // ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
+      // //fijo Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
+      // //variable Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
+      // //Costso Adicionales
+      // ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
 
 
       if (e.groupIndex === 1) {
-        e.summaryCells[5][0].displayFormat = 'SUBTOTAL TRACTO';
+        //e.summaryCells[5][0].displayFormat = 'SUBTOTAL TRACTO';
        // console.log('🌲', e);
 
       }
       if (e.groupIndex === 0) {
-        e.summaryCells[5][0].displayFormat = 'SUBTOTAL ' + e.key[0];
+        //e.summaryCells[5][0].displayFormat = 'SUBTOTAL ' + e.key[0];
         //e.rowElement.style.backgroundColor = '#dcdcdc';
       }
 
@@ -266,49 +260,50 @@ export class RentabilidadViajesComponent implements OnInit {
     }
 
     if (e.rowType == 'totalFooter') {
-      console.log('TOT:', e);
-
-      let ingresoTotal = e.summaryCells[6][0].value;
-      let margenUtilidad = e.summaryCells[7][0].value;
-      let combustible = e.summaryCells[15][0].value;
-      let casetas = e.summaryCells[17][0].value;
-      let sueldosLiquidacion = e.summaryCells[19][0].value;
-      let otros = e.summaryCells[21][0].value;
-      let costosDirectos = e.summaryCells[23][0].value;
-      let sueldoBase = e.summaryCells[25][0].value;
-      let cargaSocial = e.summaryCells[27][0].value;
-      let fijoMtto = e.summaryCells[29][0].value;
-      let varMtto = e.summaryCells[31][0].value;
-      let fijoTrans = e.summaryCells[33][0].value;
-      let varTrans = e.summaryCells[35][0].value;
-      let ctosAdicionales = e.summaryCells[37][0].value;
+     
+    //  console.log(e.summaryCells)
+      let ingresoTotal = e.summaryCells[12][0].value;
+      let margenUtilidad = e.summaryCells[13][0].value;
+      // let combustible = e.summaryCells[15][0].value;
+      // let casetas = e.summaryCells[17][0].value;
+      // let sueldosLiquidacion = e.summaryCells[19][0].value;
+      // let otros = e.summaryCells[21][0].value;
+      // let costosDirectos = e.summaryCells[23][0].value;
+      // let sueldoBase = e.summaryCells[25][0].value;
+      // let cargaSocial = e.summaryCells[27][0].value;
+      // let fijoMtto = e.summaryCells[29][0].value;
+      // let varMtto = e.summaryCells[31][0].value;
+      // let fijoTrans = e.summaryCells[33][0].value;
+      // let varTrans = e.summaryCells[35][0].value;
+      // let ctosAdicionales = e.summaryCells[37][0].value;
 
       //Porcentajes Margen utilidad
-      ingresoTotal === 0 ? e.summaryCells[8][0].value = 0 : e.summaryCells[8][0].value = margenUtilidad/ingresoTotal;
+      ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
+     
       //Combustible
-      ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
-      //Casetas
-      ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
-      //Sueldos Liq
-      ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
-      //Otros
-      ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
-      //costosDirectos
-      ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
-      //sueldoBAse
-      ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
-      //Carga Social
-      ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
-      //Fijo Mtto
-      ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
-      //Variable Mtto
-      ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
-      //fijo Transportacion
-      ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
-      //variable Transportacion
-      ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
-      //Costso Adicionales
-      ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
+      // ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
+      // //Casetas
+      // ingresoTotal === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = casetas/ingresoTotal;
+      // //Sueldos Liq
+      // ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
+      // //Otros
+      // ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = otros/ingresoTotal;
+      // //costosDirectos
+      // ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = costosDirectos/ingresoTotal;
+      // //sueldoBAse
+      // ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = sueldoBase/ingresoTotal;
+      // //Carga Social
+      // ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = cargaSocial/ingresoTotal;
+      // //Fijo Mtto
+      // ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = fijoMtto/ingresoTotal;
+      // //Variable Mtto
+      // ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = varMtto/ingresoTotal;
+      // //fijo Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoTrans/ingresoTotal;
+      // //variable Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varTrans/ingresoTotal;
+      // //Costso Adicionales
+      // ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
 
 
 
@@ -390,39 +385,3 @@ export class RentabilidadViajesComponent implements OnInit {
 
 }
 
-
-// onRowPrepared(e: any) {
-//   if (e.rowType == 'data' && (e.data.concepto == "Ingreso Total" ||
-//     e.data.concepto == "Costo Directo Viaje" ||
-//     e.data.concepto == "Adicionales" ||
-//     e.data.concepto == "Total Costos Adicionales" ||
-//     e.data.concepto == "Margen de Utilidad Bruta")) {
-//     e.cells.forEach((c: any) => {
-
-//       if (c.cellElement) {
-//         c.cellElement.style.fontWeight = "bolder";
-
-//         if (c.value.length > 1 && c.value.toString().startsWith('-')) {
-//           c.cellElement.style.color = "red";
-//         }
-
-//         if ((c.cellElement) && (c.value === "-$ 14,341.00")) {
-//           c.cellElement.style.color = "red";
-//         }
-//       }
-
-//     })
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Adicionales") {
-//     e.rowElement.style.backgroundColor = 'gainsboro';
-//   }
-
-//   if (e.rowType == 'data' && e.data.concepto == "Margen de Utilidad Bruta") {
-//     e.rowElement.style.backgroundColor = 'darkGrey';
-//     e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
-//     e.cells.forEach((c: any) => {
-//       c.cellElement ? c.cellElement.style.fontSize = "16px" : null;
-//     })
-//   }
-// }
