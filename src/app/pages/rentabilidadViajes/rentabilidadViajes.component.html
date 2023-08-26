@@ -228,6 +228,8 @@
           <!-- PORCENTAJES TOTALES -->
             <dxi-total-item showInColumn="margenUtilidaPor" name="TotMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [customizeText]="mostrarporcentaje">
             </dxi-total-item>
+            <dxi-total-item showInColumn="rendimiento" name="Totrendimiento" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            </dxi-total-item>
             <!-- <dxi-total-item showInColumn="combustiblePor" name="TotCombustiblePor" summaryType="custom" displayFormat="*{0}" valueFormat="percent">
             </dxi-total-item>
             <dxi-total-item showInColumn="casetasPor" name="TotCasetasPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
@@ -297,6 +299,8 @@
             </dxi-group-item>
             <!-- PORCENTAJES GRUPO -->
             <dxi-group-item showInColumn="margenUtilidaPor" name="grupMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
+            </dxi-group-item>
+            <dxi-group-item showInColumn="rendimiento" name="grupRendimiento" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
             </dxi-group-item>
             <dxi-group-item showInColumn="combustiblePor" name="grupCombustiblePor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
             </dxi-group-item>
