@@ -192,9 +192,9 @@
             </dxi-total-item>
             <dxi-total-item column="viajes" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
             </dxi-total-item>
-            <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item>
-            <dxi-total-item column="kmsVacios" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            <!-- <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item> -->
+            <dxi-total-item column="kms" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
             </dxi-total-item>
             <dxi-total-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
             </dxi-total-item>
@@ -226,9 +226,9 @@
 
 
           <!-- PORCENTAJES TOTALES -->
-            <dxi-total-item showInColumn="margenUtilidaPor" name="TotMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
+            <dxi-total-item showInColumn="margenUtilidaPor" name="TotMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [customizeText]="mostrarporcentaje">
             </dxi-total-item>
-            <dxi-total-item showInColumn="combustiblePor" name="TotCombustiblePor" summaryType="custom" displayFormat="*{0}" valueFormat="percent">
+            <!-- <dxi-total-item showInColumn="combustiblePor" name="TotCombustiblePor" summaryType="custom" displayFormat="*{0}" valueFormat="percent">
             </dxi-total-item>
             <dxi-total-item showInColumn="casetasPor" name="TotCasetasPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
@@ -251,7 +251,7 @@
             <dxi-total-item showInColumn="varTransPor" name="TotVarTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
             </dxi-total-item>
             <dxi-total-item showInColumn="costosAdicionalesPor" name="TotCostosAdicionalesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
+            </dxi-total-item> -->
 
 
           <!-- SUMARY DE GRUPO -->
@@ -261,9 +261,9 @@
             </dxi-group-item>
             <dxi-group-item column="viajes" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
             </dxi-group-item>
-            <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
-            </dxi-group-item>
-            <dxi-group-item column="kmsVacios" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            <!-- <dxi-group-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
+            </dxi-group-item> -->
+            <dxi-group-item column="kms" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
             </dxi-group-item>
             <dxi-group-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
             </dxi-group-item>

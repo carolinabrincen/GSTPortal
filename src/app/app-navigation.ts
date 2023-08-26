@@ -70,7 +70,7 @@ export const navigation = [
     text: 'Rentabilidad Viajes',
     path: '/rentabilidad-viajes',
     icon: 'columnproperties'
-  }
+  },
   // {
   //   text: 'Costos',//Mensuales
   //   icon: 'columnchooser',

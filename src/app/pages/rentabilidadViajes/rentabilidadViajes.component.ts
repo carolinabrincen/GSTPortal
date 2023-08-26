@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import liquidaciones from 'src/assets/rc02.json';
 import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
+import { type } from 'os';
 
 @Component({
 
@@ -13,6 +14,9 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 })
 export class RentabilidadViajesComponent implements OnInit {
 
+
+
+  @ViewChild('rentCont2', {static: false}) gridRentCont: any;
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
   liquidaciones: any = liquidaciones;
@@ -67,6 +71,7 @@ export class RentabilidadViajesComponent implements OnInit {
   constructor(private rentViajesService: RentabilidadViajesService) {
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+    this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.rentContServ = rentViajesService;
     this.getUnidadesNegocio();
   }
@@ -92,6 +97,7 @@ export class RentabilidadViajesComponent implements OnInit {
       });
     }
 
+    this.gridRentCont.instance.refresh();
   };
 
   getRentabilidad() {
@@ -161,12 +167,21 @@ export class RentabilidadViajesComponent implements OnInit {
         // })
     }
 
-    if (e.rowType == 'totalFooter') {
-      console.log(e)
-    }
-    
+    // if (e.rowType == 'totalFooter') {
+   
+    //   e.totalItem.cells.forEach((c: any) => {
+
+    //     let ingresoTotal = e.summaryCells[12][0].value;
+    //   let margenUtilidad = e.summaryCells[13][0].value;
+
+    //   let total = margenUtilidad/ingresoTotal
+    //   this.mostrarporcentaje(total)
+    //     // console.log(c.totalItem.summaryCells)
+    //   })
+    // }
 }
 
+  valueData: number = 0;
   onRowPrepared(e: any) {
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -277,9 +292,12 @@ export class RentabilidadViajesComponent implements OnInit {
       // let varTrans = e.summaryCells[35][0].value;
       // let ctosAdicionales = e.summaryCells[37][0].value;
 
+      let total = margenUtilidad/ingresoTotal
       //Porcentajes Margen utilidad
       ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
-     
+      //console.log(JSON.stringify(e.summaryCells[14][0].value))
+      //this.valueData = e.summaryCells[14][0].value;
+      this.mostrarporcentaje(total)
       //Combustible
       // ingresoTotal === 0 ? e.summaryCells[16][0].value = 0 : e.summaryCells[16][0].value = combustible/ingresoTotal;
       // //Casetas
@@ -383,5 +401,16 @@ export class RentabilidadViajesComponent implements OnInit {
 
 
 
+  mostrarporcentaje(e: any): string{
+    let valor = 0
+    console.log(typeof e)
+     if(e == typeof Number){
+      valor = e
+      console.log(e)
+    }
+
+
+    return valor.toString() //= this.valueData+'%';
+  }
 }
 
