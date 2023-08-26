@@ -99,7 +99,7 @@ export class RentabilidadViajesComponent implements OnInit {
       });
     }
     this.start = 'true';
-    // this.gridRentCont.instance.refresh();
+    this.gridRentCont.instance.refresh();
   };
 
   getRentabilidad() {
@@ -168,19 +168,6 @@ export class RentabilidadViajesComponent implements OnInit {
         //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
         // })
     }
-
-    // if (e.rowType == 'totalFooter') {
-   
-    //   e.totalItem.cells.forEach((c: any) => {
-
-    //     let ingresoTotal = e.summaryCells[12][0].value;
-    //   let margenUtilidad = e.summaryCells[13][0].value;
-
-    //   let total = margenUtilidad/ingresoTotal
-    //   this.mostrarporcentaje(total)
-    //     // console.log(c.totalItem.summaryCells)
-    //   })
-    // }
 }
 
   valueData: number = 0;
@@ -215,7 +202,7 @@ export class RentabilidadViajesComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter') {
-      console.log(e.summaryCells)
+      //console.log(e.summaryCells)
       let ingresoTotal = e.summaryCells[12][0].value;
       let margenUtilidad = e.summaryCells[13][0].value;
       let kilometros = e.summaryCells[16][0].value;
@@ -237,7 +224,7 @@ export class RentabilidadViajesComponent implements OnInit {
       //Porcentajes Margen utilidad
       ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
       //Rendimiento
-      kilometros === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = ltsDisel/kilometros;
+      ltsDisel === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = kilometros/ltsDisel;
       //Combustible
       ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = combustible/ingresoTotal;
       //Casetas
@@ -307,34 +294,34 @@ export class RentabilidadViajesComponent implements OnInit {
       
       //console.log(JSON.stringify(e.summaryCells[14][0].value))
       //this.valueData = e.summaryCells[14][0].value;
-      this.mostrarporcentaje(total)
+      this.mostrarporcentaje(e.summaryCells[14][0].value)
     
       //Rendimiento
-      kilometros === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = ltsDisel/kilometros;
-      //Combustible
-      ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = combustible/ingresoTotal;
-      //Casetas
-      ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = casetas/ingresoTotal;
-      //Sueldos Liq
-      ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = sueldosLiquidacion/ingresoTotal;
-      //Otros
-      ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = otros/ingresoTotal;
-      //costosDirectos
-      ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = costosDirectos/ingresoTotal;
-      //sueldoBAse
-      ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = sueldoBase/ingresoTotal;
-      //Carga Social
-      ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = cargaSocial/ingresoTotal;
-      //Fijo Mtto
-      ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoMtto/ingresoTotal;
-      //Variable Mtto
-      ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varMtto/ingresoTotal;
-      //fijo Transportacion
-      ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = fijoTrans/ingresoTotal;
-      //variable Transportacion
-      ingresoTotal === 0 ? e.summaryCells[40][0].value = 0 : e.summaryCells[40][0].value = varTrans/ingresoTotal;
-      //Costso Adicionales
-      ingresoTotal === 0 ? e.summaryCells[42][0].value = 0 : e.summaryCells[42][0].value = ctosAdicionales/ingresoTotal;
+      // kilometros === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = ltsDisel/kilometros;
+      // //Combustible
+      // ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = combustible/ingresoTotal;
+      // //Casetas
+      // ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = casetas/ingresoTotal;
+      // //Sueldos Liq
+      // ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = sueldosLiquidacion/ingresoTotal;
+      // //Otros
+      // ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = otros/ingresoTotal;
+      // //costosDirectos
+      // ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = costosDirectos/ingresoTotal;
+      // //sueldoBAse
+      // ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = sueldoBase/ingresoTotal;
+      // //Carga Social
+      // ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = cargaSocial/ingresoTotal;
+      // //Fijo Mtto
+      // ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoMtto/ingresoTotal;
+      // //Variable Mtto
+      // ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varMtto/ingresoTotal;
+      // //fijo Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = fijoTrans/ingresoTotal;
+      // //variable Transportacion
+      // ingresoTotal === 0 ? e.summaryCells[40][0].value = 0 : e.summaryCells[40][0].value = varTrans/ingresoTotal;
+      // //Costso Adicionales
+      // ingresoTotal === 0 ? e.summaryCells[42][0].value = 0 : e.summaryCells[42][0].value = ctosAdicionales/ingresoTotal;
 
 
 
@@ -414,21 +401,15 @@ export class RentabilidadViajesComponent implements OnInit {
 
 
 
-  mostrarporcentaje(e: any): string{
+  mostrarporcentaje(e: number): number{
     let valor = 0
-    // console.log(this.start)
-    // if(this.start == 'true'){
-    //   valor = e
-    //   console.log(valor)
-    // }
+    console.log(this.start)
+    if(this.start == 'true'){
+      valor = e
+      console.log(valor)
+    }
 
-    //  if(e.value !== undefined){
-    //   valor = e
-      
-    // }
-
-
-    return valor.toString()+ ' %' //= this.valueData+'%';
+    return valor;
   }
 }
 

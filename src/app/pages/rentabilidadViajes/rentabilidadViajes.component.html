@@ -269,6 +269,8 @@
             </dxi-group-item>
             <dxi-group-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint" [showInGroupFooter]="true">
             </dxi-group-item>
+            <dxi-group-item showInColumn="rendimiento" summaryType="custom" displayFormat="{0}" valueFormat="#,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+            </dxi-group-item>
             <dxi-group-item column="ingresoTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
             </dxi-group-item>
             <dxi-group-item column="combustible" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
@@ -299,8 +301,6 @@
             </dxi-group-item>
             <!-- PORCENTAJES GRUPO -->
             <dxi-group-item showInColumn="margenUtilidaPor" name="grupMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
-            </dxi-group-item>
-            <dxi-group-item showInColumn="rendimiento" name="grupRendimiento" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
             </dxi-group-item>
             <dxi-group-item showInColumn="combustiblePor" name="grupCombustiblePor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true">
             </dxi-group-item>
