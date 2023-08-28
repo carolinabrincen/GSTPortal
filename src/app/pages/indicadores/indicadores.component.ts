@@ -292,6 +292,8 @@ export class IndicadoresComponent implements OnInit {
   ingresoViajes: ScoreCard[] = [];
   precioMeta: ScoreCard[] = [];
   viajesCargados: ScoreCard[] = [];
+  operadoresUDN: ScoreCard[] = [];
+  ingresoOperador: ScoreCard[] = [];
 
 
   paginacion: number = 0;
@@ -403,116 +405,35 @@ export class IndicadoresComponent implements OnInit {
   getScoreCard(){
     this.indicadorService.getScoreCard().subscribe(data => {
       
-// ====================================INGRESOS========================================================================================================
+// ====================================INGRESOS======================================================================================================
       
       this.ingresos = data.data.scIng;
       this.ingresos.sort((a, b) => (a.orden < b.orden ? -1 : 1))
-      // for(var i = 0; i<myIngresos.length; i ++){
-      //   console.log(myIngresos[i])
-      // } 
-      // const orderIngreso: ScoreCard[] = data.data.scIng;
-      // let neworderIngreso = [];
-      // neworderIngreso.push(orderIngreso[0],orderIngreso[3],orderIngreso[2],orderIngreso[4],orderIngreso[1],
-      //                   orderIngreso[5],orderIngreso[8],orderIngreso[7],orderIngreso[9],orderIngreso[6],
-      //                   orderIngreso[10],orderIngreso[13],orderIngreso[12],orderIngreso[14],orderIngreso[11],
-      //                   orderIngreso[15],orderIngreso[18],orderIngreso[17],orderIngreso[19],orderIngreso[16],
-      //                   orderIngreso[20],orderIngreso[23],orderIngreso[22],orderIngreso[24],orderIngreso[21],
-      //                   orderIngreso[26],orderIngreso[28],orderIngreso[25],orderIngreso[29],orderIngreso[27],
-      //                   orderIngreso[31],orderIngreso[33],orderIngreso[30],orderIngreso[34],orderIngreso[32],
-      //                   orderIngreso[36],orderIngreso[38],orderIngreso[35],orderIngreso[39],orderIngreso[37]);
-      
-      //this.ingresos ///= neworderIngreso;
-// ====================================KILOMETROS========================================================================================================
+   
+// ====================================KILOMETROS====================================================================================================
       this.kilomentros = data.data.scKms;      
       this.kilomentros.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderKilometros: ScoreCard[] = data.data.scKms;
-      // let neworderKlmts = [];
-      // neworderKlmts.push(orderKilometros[4],orderKilometros[2 ],orderKilometros[3],orderKilometros[0],orderKilometros[1],
-      //                   orderKilometros[5],orderKilometros[9],orderKilometros[8],orderKilometros[6],orderKilometros[7],
-      //                   orderKilometros[11],orderKilometros[12],orderKilometros[13],orderKilometros[10],orderKilometros[14],orderKilometros[15],
-      //                   orderKilometros[17],orderKilometros[20],orderKilometros[16],orderKilometros[18],orderKilometros[19],
-      //                   orderKilometros[21],orderKilometros[25],orderKilometros[23],orderKilometros[22],orderKilometros[24],
-      //                   orderKilometros[26],orderKilometros[29],orderKilometros[27],orderKilometros[28],orderKilometros[30],
-      //                   orderKilometros[32],orderKilometros[35],orderKilometros[33],orderKilometros[31],orderKilometros[34],orderKilometros[36],
-      //                   orderKilometros[38],orderKilometros[39],orderKilometros[37],orderKilometros[40],orderKilometros[41]);
-
-      // this.kilomentros = neworderKlmts;
 // ====================================VIAJES========================================================================================================
       this.viajes = data.data.scViajes;
       this.viajes.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderViajes: ScoreCard[] = data.data.scViajes;
-      // let neworderViajes = [];
-      // neworderViajes.push(orderViajes[4],orderViajes[2],orderViajes[3],orderViajes[0],orderViajes[1],
-      //                   orderViajes[5],orderViajes[9],orderViajes[8],orderViajes[6],orderViajes[7],
-      //                   orderViajes[11],orderViajes[12],orderViajes[13],orderViajes[10],orderViajes[14],orderViajes[15],
-      //                   orderViajes[17],orderViajes[20],orderViajes[16],orderViajes[18],orderViajes[19],
-      //                   orderViajes[21],orderViajes[25],orderViajes[23],orderViajes[22],orderViajes[24],
-      //                   orderViajes[26],orderViajes[29],orderViajes[27],orderViajes[28],orderViajes[30],
-      //                   orderViajes[32],orderViajes[35],orderViajes[33],orderViajes[31],orderViajes[34],orderViajes[36],
-      //                   orderViajes[38],orderViajes[39],orderViajes[37],orderViajes[40],orderViajes[41]);
-      
-      // this.viajes = neworderViajes;
-// ====================================VIAJES CARGADOS========================================================================================================
+// ====================================VIAJES CARGADOS===============================================================================================
       this.viajesCargados = data.data.scViajesC;      
       this.viajesCargados.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderVjsCgds: ScoreCard[] = data.data.scViajesC;
-      // let neworderVjsCgds = [];
-      // neworderVjsCgds.push(orderVjsCgds[4],orderVjsCgds[2],orderVjsCgds[3],orderVjsCgds[0],orderVjsCgds[1],
-      //                   orderVjsCgds[5],orderVjsCgds[9],orderVjsCgds[8],orderVjsCgds[6],orderVjsCgds[7],
-      //                   orderVjsCgds[11],orderVjsCgds[12],orderVjsCgds[13],orderVjsCgds[10],orderVjsCgds[14],orderVjsCgds[15],
-      //                   orderVjsCgds[17],orderVjsCgds[20],orderVjsCgds[16],orderVjsCgds[18],orderVjsCgds[19],
-      //                   orderVjsCgds[21],orderVjsCgds[25],orderVjsCgds[23],orderVjsCgds[22],orderVjsCgds[24],
-      //                   orderVjsCgds[26],orderVjsCgds[29],orderVjsCgds[27],orderVjsCgds[28],orderVjsCgds[30],
-      //                   orderVjsCgds[32],orderVjsCgds[35],orderVjsCgds[33],orderVjsCgds[31],orderVjsCgds[34],orderVjsCgds[36],
-      //                   orderVjsCgds[38],orderVjsCgds[39],orderVjsCgds[37],orderVjsCgds[40],orderVjsCgds[41]);
-
-      // this.viajesCargados = neworderVjsCgds;
-// ====================================INGRESO / KILOMETROS========================================================================================================
+// ====================================INGRESO / KILOMETROS==========================================================================================
       this.ingresosKilometros = data.data.scIngXKm;
       this.ingresosKilometros.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderIngKlmts: ScoreCard[] = data.data.scIngXKm;
-      // let neworderIngKlmts = [];
-      // neworderIngKlmts.push(orderIngKlmts[4],orderIngKlmts[2],orderIngKlmts[3],orderIngKlmts[0],orderIngKlmts[1],
-      //                   orderIngKlmts[5],orderIngKlmts[9],orderIngKlmts[8],orderIngKlmts[6],orderIngKlmts[7],
-      //                   orderIngKlmts[11],orderIngKlmts[12],orderIngKlmts[13],orderIngKlmts[10],orderIngKlmts[14],orderIngKlmts[15],
-      //                   orderIngKlmts[17],orderIngKlmts[20],orderIngKlmts[16],orderIngKlmts[18],orderIngKlmts[19],
-      //                   orderIngKlmts[21],orderIngKlmts[25],orderIngKlmts[23],orderIngKlmts[22],orderIngKlmts[24],
-      //                   orderIngKlmts[26],orderIngKlmts[29],orderIngKlmts[27],orderIngKlmts[28],orderIngKlmts[30],
-      //                   orderIngKlmts[32],orderIngKlmts[35],orderIngKlmts[33],orderIngKlmts[31],orderIngKlmts[34],orderIngKlmts[36],
-      //                   orderIngKlmts[38],orderIngKlmts[39],orderIngKlmts[37],orderIngKlmts[40],orderIngKlmts[41]);
-
-      // this.ingresosKilometros = neworderIngKlmts;
-      
-// ====================================KILOMETROS / VIAJES========================================================================================================
+// ====================================KILOMETROS / VIAJES===========================================================================================
       this.kilometroViajes = data.data.scKmsViaje;      
       this.kilometroViajes.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderKmsVjs: ScoreCard[] = data.data.scKmsViaje;
-      // let neworderKmsVjs = [];
-      // neworderKmsVjs.push(orderKmsVjs[4],orderKmsVjs[2],orderKmsVjs[3],orderKmsVjs[0],orderKmsVjs[1],
-      //                   orderKmsVjs[5],orderKmsVjs[9],orderKmsVjs[8],orderKmsVjs[6],orderKmsVjs[7],
-      //                   orderKmsVjs[11],orderKmsVjs[12],orderKmsVjs[13],orderKmsVjs[10],orderKmsVjs[14],orderKmsVjs[15],
-      //                   orderKmsVjs[17],orderKmsVjs[20],orderKmsVjs[16],orderKmsVjs[18],orderKmsVjs[19],
-      //                   orderKmsVjs[21],orderKmsVjs[25],orderKmsVjs[23],orderKmsVjs[22],orderKmsVjs[24],
-      //                   orderKmsVjs[26],orderKmsVjs[29],orderKmsVjs[27],orderKmsVjs[28],orderKmsVjs[30],
-      //                   orderKmsVjs[32],orderKmsVjs[35],orderKmsVjs[33],orderKmsVjs[31],orderKmsVjs[34],orderKmsVjs[36],
-      //                   orderKmsVjs[38],orderKmsVjs[39],orderKmsVjs[37],orderKmsVjs[40],orderKmsVjs[41]);
-
-      // this.kilometroViajes = neworderKmsVjs;
-// ====================================INGRESO / VIAJES========================================================================================================
+// ====================================INGRESO / VIAJES==============================================================================================
       this.ingresoViajes = data.data.scIngrViaje      
       this.ingresoViajes.sort((a, b) => (a.orden < b.orden ? -1 : 1));
-      // const orderIngsVjs: ScoreCard[] = data.data.scIngrViaje;
-      // let neworderIngsVjs = [];
-      // neworderIngsVjs.push(orderIngsVjs[4],orderIngsVjs[2],orderIngsVjs[3],orderIngsVjs[0],orderIngsVjs[1],
-      //                   orderIngsVjs[5],orderIngsVjs[9],orderIngsVjs[8],orderIngsVjs[6],orderIngsVjs[7],
-      //                   orderIngsVjs[11],orderIngsVjs[12],orderIngsVjs[13],orderIngsVjs[10],orderIngsVjs[14],orderIngsVjs[15],
-      //                   orderIngsVjs[17],orderIngsVjs[20],orderIngsVjs[16],orderIngsVjs[18],orderIngsVjs[19],
-      //                   orderIngsVjs[21],orderIngsVjs[25],orderIngsVjs[23],orderIngsVjs[22],orderIngsVjs[24],
-      //                   orderIngsVjs[26],orderIngsVjs[29],orderIngsVjs[27],orderIngsVjs[28],orderIngsVjs[30],
-      //                   orderIngsVjs[32],orderIngsVjs[35],orderIngsVjs[33],orderIngsVjs[31],orderIngsVjs[34],orderIngsVjs[36],
-      //                   orderIngsVjs[38],orderIngsVjs[39],orderIngsVjs[37],orderIngsVjs[40],orderIngsVjs[41]);
+// ====================================OPERADORES UDN ===============================================================================================  
+      this.operadoresUDN = data.data.scOperadores;
+// ====================================INGRESO POR OPERADOR =========================================================================================      
+      this.ingresoOperador = data.data.scIngrXOperador;
+      console.log(data.data.scIngrXOperador)
 
-      // this.ingresoViajes = neworderIngsVjs;
       
       this.precioMeta = data.data.scPrecioMeta;
 
@@ -569,27 +490,6 @@ export class IndicadoresComponent implements OnInit {
 
 
   buscarClick = (e: any) => {
-
-   this.kmsTotalCC = 0;
-   this.kmsTotalVC = 0;
-   this.kmsTotalCG = 0;
-   this.kmsTotalVG = 0;
-   this.kmsTotalCH = 0;
-   this.kmsTotalVH = 0;
-   this.kmsTotalCLP = 0;
-   this.kmsTotalVLP = 0;
-   this.kmsTotalCM = 0;
-   this.kmsTotalVM = 0;
-   this.kmsTotalCMH = 0;
-   this.kmsTotalVMH = 0;
-   this.kmsTotalCMCA = 0;
-   this.kmsTotalVMCA = 0;
-   this.kmsTotalCO = 0;
-   this.kmsTotalVO = 0;
-   this.kmsTotalCRA = 0;
-   this.kmsTotalVRA = 0;
-   this.kmsTotalCT = 0;
-   this.kmsTotalVT = 0;
 
     if (this.selectedPeriodo) {
       this.loadingVisible = true;
@@ -3523,306 +3423,32 @@ onCellPreparedPM(e){
   });
 
   }
-//==============================INGRESO OPERADOR===================================
-    kmsTotalCC: number = 0;
-    kmsTotalVC: number = 0;
-    kmsTotalCG: number = 0;
-    kmsTotalVG: number = 0;
-    kmsTotalCH: number = 0;
-    kmsTotalVH: number = 0;
-    kmsTotalCLP: number = 0;
-    kmsTotalVLP: number = 0;
-    kmsTotalCM: number = 0;
-    kmsTotalVM: number = 0;
-    kmsTotalCMH: number = 0;
-    kmsTotalVMH: number = 0;
-    kmsTotalCMCA: number = 0;
-    kmsTotalVMCA: number = 0;
-    kmsTotalCO: number = 0;
-    kmsTotalVO: number = 0;
-    kmsTotalCRA: number = 0;
-    kmsTotalVRA: number = 0;
-    kmsTotalCT: number = 0;
-    kmsTotalVT: number = 0;
 
-    myDataKey = [];
-    myDataKeyG = [];
-    myDataKeyH = [];
-    myDataKeyM = [];
-    myDataKeyO = [];
-    myDataKeyRA = [];
-    myDataKeyT = [];
-  onRowPreparedIO(e){
-    if(e.rowType == 'group'){
-
-//==================================CUAUTITLAN====================================================
-      if(e.data.key == "CUAUTITLAN"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCC = e.summaryCells[3][0].value;
-        this.kmsTotalVC = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "CUAUTITLAN"){
-            this.myDataKey.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKey.includes("CUAUTITLAN")
-        if(myKey == true && e.data.key == "CUAUTITLAN"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCC = e.summaryCells[3][0].value;
-            this.kmsTotalVC = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCC = 0;
-          this.kmsTotalVC = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKey = []
-      }
-
-//==================================GUADALAJARA====================================================
-      if(e.data.key == "GUADALAJARA"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCG = e.summaryCells[3][0].value;
-        this.kmsTotalVG = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "GUADALAJARA"){
-            this.myDataKeyG.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyG.includes("GUADALAJARA")
-        if(myKey == true && e.data.key == "GUADALAJARA"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCG = e.summaryCells[3][0].value;
-            this.kmsTotalVG = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCG = 0;
-          this.kmsTotalVG = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyG = []
-      }
-//==================================HERMOSILLO====================================================     
-      if(e.data.key == "HERMOSILLO"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCH = e.summaryCells[3][0].value;
-        this.kmsTotalVH = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "HERMOSILLO"){
-            this.myDataKeyH.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyH.includes("HERMOSILLO")
-        if(myKey == true && e.data.key == "HERMOSILLO"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCH = e.summaryCells[3][0].value;
-            this.kmsTotalVH = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCH = 0;
-          this.kmsTotalVH = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyH = []
-      }
-//==================================MEXICALI====================================================
-      if(e.data.key == "MEXICALI"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCM = e.summaryCells[3][0].value;
-        this.kmsTotalVM = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "MEXICALI"){
-            this.myDataKeyM.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyM.includes("MEXICALI")
-        if(myKey == true && e.data.key == "MEXICALI"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCM = e.summaryCells[3][0].value;
-            this.kmsTotalVM = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCM = 0;
-          this.kmsTotalVM = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyM = []
-      }
-//==================================ORIZABA====================================================     
-      if(e.data.key == "ORIZABA"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCO = e.summaryCells[3][0].value;
-        this.kmsTotalVO = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "ORIZABA"){
-            this.myDataKeyO.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyO.includes("ORIZABA")
-        if(myKey == true && e.data.key == "ORIZABA"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCO = e.summaryCells[3][0].value;
-            this.kmsTotalVO = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCO = 0;
-          this.kmsTotalVO = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyO = []
-      }
-//==================================RAMOS ARIZPE====================================================
-      if(e.data.key == "RAMOS ARIZPE"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCRA = e.summaryCells[3][0].value;
-        this.kmsTotalVRA = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "RAMOS ARIZPE"){
-            this.myDataKeyRA.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyRA.includes("RAMOS ARIZPE")
-        if(myKey == true && e.data.key == "RAMOS ARIZPE"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCRA = e.summaryCells[3][0].value;
-            this.kmsTotalVRA = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCRA = 0;
-          this.kmsTotalVRA = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyRA = []
-      }
-//==================================TULTITLAN====================================================
-      if(e.data.key == "TULTITLAN"){
-        if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-        this.kmsTotalCT = e.summaryCells[3][0].value;
-        this.kmsTotalVT = e.summaryCells[4][0].value;
-        }
-      }
-      if(this.newText != ""){
-        e.cells.forEach((c: any) => {
-          if(c.data.key == "TULTITLAN"){
-            this.myDataKeyT.push(c.data.key);
-          }
-
-        })
-        var myKey = this.myDataKeyT.includes("TULTITLAN")
-        if(myKey == true && e.data.key == "TULTITLAN"){
-          if(e.summaryCells[3][0].value != undefined || e.summaryCells[4][0].value != undefined){
-            this.kmsTotalCT = e.summaryCells[3][0].value;
-            this.kmsTotalVT = e.summaryCells[4][0].value;
-            }
-        }
-        if(myKey == false){
-          this.kmsTotalCT = 0;
-          this.kmsTotalVT = 0;
-        }
-      }else if(this.newText == ""){
-        this.myDataKeyT = []
-      }
-  
-      
-      this.graficaModel = [
-        {udN: "CUAUTITLAN", kmstotalC: this.kmsTotalCC ,  kmstotalV: this.kmsTotalVC},
-        {udN: "GUADALAJARA", kmstotalC: this.kmsTotalCG, kmstotalV: this.kmsTotalVG},
-        {udN: "HERMOSILLO", kmstotalC: this.kmsTotalCH, kmstotalV: this.kmsTotalVH},
-        //{udN: "MACUSPANA", kmstotalC: this.kmsTotalCMCA, kmstotalV: this.kmsTotalVMCA},
-        //{udN: "LA PAZ", kmstotalC: this.kmsTotalCLP, kmstotalV: this.kmsTotalVLP},
-        {udN: "MEXICALI", kmstotalC: this.kmsTotalCM, kmstotalV: this.kmsTotalVM},
-        //{udN: "MIGUEL HIDALGO", kmstotalC: this.kmsTotalCMH, kmstotalV: this.kmsTotalVMH},
-        {udN: "ORIZABA", kmstotalC: this.kmsTotalCO, kmstotalV: this.kmsTotalVO},
-        {udN: "RAMOS ARIZPE", kmstotalC: this.kmsTotalCRA, kmstotalV: this.kmsTotalVRA},
-        {udN: "TULTITLAN", kmstotalC: this.kmsTotalCT, kmstotalV: this.kmsTotalVT},
-        
-      ]
-
-    }
-
+//=============================OPERADORE UDN====================================
+  onRowPreparedOUDN(e){
     
-    if (e.rowType == 'totalFooter') {
-
-      // e.summaryCells[7][0].value
-
-
-      e.cells.forEach((c: any) => {
-        if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
-      });
-    };
   }
-  onCellPreparedIO(e: any) {
-    if (e.rowType == 'group'){
 
+  onCellPreparedOUDN(e){
+    if (e.rowType == 'data'){
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
+  }
 
-    if (e.rowType == 'totalFooter') {
-      e.totalItem.cells.forEach((c: any) => {
-        if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
-      });
+//==============================INGRESO OPERADOR===================================
+  onRowPreparedIO(e){
+  
+  }
+  
+  onCellPreparedIO(e){
+    if (e.rowType == 'data'){
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
     }
   }
-  customizeIO(e) {  
+   
 
-    var gridCell = e.gridCell;
-    if (gridCell.rowType === 'group') {
-      
-      e.backgroundColor = "#DCDCDC";
-      e.fontWeight = "bolder"
-      e.font = {bold: true}
-
-  }
-
-  if (gridCell.rowType === 'totalFooter') {
-      
-    e.backgroundColor = "#ff9460";
-    e.fontWeight = "bolder"
-    e.font = {bold: true}
-
-  }
-  }
 
 
   onRowPreparedKMS(e){
@@ -3882,6 +3508,16 @@ onCellPreparedPM(e){
     
 
     return "$ "+myFormat.join("");
+  }
+
+  separatorOUDN(value){
+    var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return myFormat.join("");
   }
 
    //==================Formato a la data de la grafica==================================

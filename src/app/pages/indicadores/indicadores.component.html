@@ -462,6 +462,61 @@
                         <dxo-sorting mode="none"></dxo-sorting>
 
                     </dx-data-grid>
+                    <br><br>
+
+                    <h3>Operadores UDN</h3>
+                    <dx-data-grid  #OUDN id="gridContainer7" [dataSource]="operadoresUDN" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedOUDN($event)" (onCellPrepared)="onCellPreparedOUDN($event)" >
+
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        
+                        <dxi-column dataField="mes" caption="Mes" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separatorOUDN"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" [format]="separatorOUDN"></dxi-column>
+                        
+                   
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
+                        <dxo-export [enabled]="true" fileName="Operadores UDN"></dxo-export>
+                        <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
+                        <dxo-sorting mode="none"></dxo-sorting>
+
+                    </dx-data-grid>
+                    <br><br>
+
+                    <h3>Ingreso por Operador</h3>
+                    <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="ingresoOperador" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedIO($event)" (onCellPrepared)="onCellPreparedIO($event)">
+
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        
+                        <dxi-column dataField="mes" caption="Mes" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="total" caption="Total" [format]="separatorIV"></dxi-column>
+                        
+                   
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
+                        <dxo-export [enabled]="true" fileName="Ingreso por Operador" ></dxo-export>
+                        <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
+                        <dxo-sorting mode="none"></dxo-sorting>
+
+                    </dx-data-grid>
+
         </dxi-item>
 
         <dxi-item title="KMS Mensuales">

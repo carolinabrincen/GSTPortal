@@ -70,6 +70,10 @@ export const navigation = [
     text: 'Rentabilidad Viajes',
     path: '/rentabilidad-viajes',
     icon: 'columnproperties'
+  },{
+    text: 'Rendimiento Diesel',
+    path: '/rendimiento-diesel',
+    icon: 'columnproperties'
   },
   // {
   //   text: 'Costos',//Mensuales
