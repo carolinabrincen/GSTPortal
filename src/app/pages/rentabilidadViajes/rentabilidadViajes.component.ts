@@ -115,7 +115,7 @@ export class RentabilidadViajesComponent implements OnInit {
             element.inicio = new Date(element.inicio);
             element.fin = new Date(element.fin);
           });
-          console.log(res.data.total)
+          //console.log(res.data.total)
           this.arrRentContItems = res.data.resumen;
         });
     });
@@ -202,7 +202,7 @@ export class RentabilidadViajesComponent implements OnInit {
       // //Rendimiento
       if(c.totalItem.summaryCells[18][0] !== undefined){
         kilometros === 0 ? c.totalItem.summaryCells[18][0].value = 0 : c.totalItem.summaryCells[18][0].value = kilometros/ltsDisel;
-        console.log(ltsDisel/kilometros)
+        //console.log(ltsDisel/kilometros)
       }
 
       //Combustible
@@ -458,7 +458,7 @@ export class RentabilidadViajesComponent implements OnInit {
       valor = e
     }
 
-    console.log(valor)
+    //console.log(valor)
     return valor;
   }
 
