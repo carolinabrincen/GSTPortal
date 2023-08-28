@@ -179,8 +179,8 @@ export class RendimientoDieselComponent implements OnInit {
       // let ingresoTotal = c.totalItem.summaryCells[12][0].value;
       // let margenUtilidad = c.totalItem.summaryCells[13][0].value;
       
-      let kilometros = c.totalItem.summaryCells[8][0].value;
-      let ltsDisel = c.totalItem.summaryCells[9][0].value;
+      let kilometros = c.totalItem.summaryCells[9][0].value;
+      let ltsDisel = c.totalItem.summaryCells[10][0].value;
 
       // let combustible = c.totalItem.summaryCells[19][0].value;
       // let casetas = c.totalItem.summaryCells[21][0].value;
@@ -201,8 +201,8 @@ export class RendimientoDieselComponent implements OnInit {
       //   ingresoTotal === 0 ? c.totalItem.summaryCells[14][0].value = 0 : c.totalItem.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
       // }
       // //Rendimiento
-      if(c.totalItem.summaryCells[10][0] !== undefined){
-        kilometros === 0 ? c.totalItem.summaryCells[10][0].value = 0 : c.totalItem.summaryCells[10][0].value = kilometros/ltsDisel;
+      if(c.totalItem.summaryCells[11][0] !== undefined){
+        kilometros === 0 ? c.totalItem.summaryCells[11][0].value = 0 : c.totalItem.summaryCells[11][0].value = kilometros/ltsDisel;
         //console.log(ltsDisel/kilometros)
       }
 
@@ -303,11 +303,11 @@ export class RendimientoDieselComponent implements OnInit {
     }
 
     if (e.rowType == 'groupFooter') {
-      //console.log(e.summaryCells)
+      console.log(e.summaryCells)
       // let ingresoTotal = e.summaryCells[12][0].value;
       // let margenUtilidad = e.summaryCells[13][0].value;
-      let kilometros = e.summaryCells[8][0].value;
-      let ltsDisel = e.summaryCells[9][0].value;
+      let kilometros = e.summaryCells[9][0].value;
+      let ltsDisel = e.summaryCells[10][0].value;
       // let combustible = e.summaryCells[19][0].value;
       // let casetas = e.summaryCells[21][0].value;
       // let sueldosLiquidacion = e.summaryCells[23][0].value;
@@ -325,7 +325,7 @@ export class RendimientoDieselComponent implements OnInit {
       //Porcentajes Margen utilidad
       // ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
       //Rendimiento
-      ltsDisel === 0 ? e.summaryCells[10][0].value = 0 : e.summaryCells[10][0].value = kilometros/ltsDisel;
+      ltsDisel === 0 ? e.summaryCells[11][0].value = 0 : e.summaryCells[11][0].value = kilometros/ltsDisel;
       //Combustible
       // ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = combustible/ingresoTotal;
       // //Casetas
