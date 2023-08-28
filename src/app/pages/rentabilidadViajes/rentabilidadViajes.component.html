@@ -181,7 +181,7 @@
         <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
         <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-          <!-- SUMARY TOTALES -->
+       
             <dxi-total-item column="ingresoTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
             </dxi-total-item>
             <dxi-total-item column="margenUtilida" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
@@ -192,11 +192,11 @@
             </dxi-total-item>
             <dxi-total-item column="viajes" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
             </dxi-total-item>
-            <!-- <dxi-total-item column="kmsCargados" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
-            </dxi-total-item> -->
             <dxi-total-item column="kms" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
             </dxi-total-item>
             <dxi-total-item column="lstDiesel" summaryType="sum" displayFormat="{0}" valueFormat="fixedPoint">
+            </dxi-total-item>
+            <dxi-total-item column="rendimiento" summaryType="avg" displayFormat="{0}" valueFormat="#,###,###.##;-$ #,##0.##">
             </dxi-total-item>
             <dxi-total-item column="combustible" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##">
             </dxi-total-item>
@@ -224,37 +224,19 @@
             </dxi-total-item>
 
 
-
-          <!-- PORCENTAJES TOTALES -->
-            <dxi-total-item showInColumn="margenUtilidaPor" name="TotMargenUtilidaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [customizeText]="mostrarporcentaje">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="rendimiento" name="Totrendimiento" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <!-- <dxi-total-item showInColumn="combustiblePor" name="TotCombustiblePor" summaryType="custom" displayFormat="*{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="casetasPor" name="TotCasetasPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="sueldosLiquidacionPor" name="TotSueldosLiquidacionPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="otrosPor" name="TotOtrosPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="costosDirectosViajePor" name="TotCostosDirectosViajePor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="sueldoBasePor" name="TotSueldoBasePor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="cargaSocialNominaPor" name="TotCargaSocialNominaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="fijoMttoPor" name="TotFijoMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="varMttoPor" name="TotVarMttoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="fijoTransPor" name="TotFijoTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="varTransPor" name="TotVarTransPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item>
-            <dxi-total-item showInColumn="costosAdicionalesPor" name="TotCostosAdicionalesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent">
-            </dxi-total-item> -->
-
+            <dxi-total-item column="margenUtilidaPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="{0}"></dxi-total-item>
+            <dxi-total-item column="combustiblePor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="casetasPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="sueldosLiquidacionPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="otrosPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="costosDirectosViajePor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="sueldoBasePor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="cargaSocialNominaPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="fijoMttoPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="varMttoPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="fijoTransPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="varTransPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
+            <dxi-total-item column="costosAdicionalesPor" summaryType="avg" [valueFormat]="separatorIV" displayFormat="*{0}"></dxi-total-item>
 
           <!-- SUMARY DE GRUPO -->
             <dxi-group-item column="margenUtilida" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">

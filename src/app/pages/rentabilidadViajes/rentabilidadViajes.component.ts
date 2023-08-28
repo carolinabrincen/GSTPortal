@@ -115,7 +115,7 @@ export class RentabilidadViajesComponent implements OnInit {
             element.inicio = new Date(element.inicio);
             element.fin = new Date(element.fin);
           });
-          console.log(res.data.resumen)
+          console.log(res.data.total)
           this.arrRentContItems = res.data.resumen;
         });
     });
@@ -167,6 +167,106 @@ export class RentabilidadViajesComponent implements OnInit {
         // }, function() {
         //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
         // })
+    }
+
+    if (e.rowType == 'totalFooter') {
+   
+      e.totalItem.cells.forEach((c: any) => {
+        //  console.log(c.totalItem.summaryCells)
+
+         // //console.log(e.summaryCells)
+      let ingresoTotal = c.totalItem.summaryCells[12][0].value;
+      let margenUtilidad = c.totalItem.summaryCells[13][0].value;
+      
+      let kilometros = c.totalItem.summaryCells[16][0].value;
+      let ltsDisel = c.totalItem.summaryCells[17][0].value;
+
+      let combustible = c.totalItem.summaryCells[19][0].value;
+      let casetas = c.totalItem.summaryCells[21][0].value;
+      let sueldosLiquidacion = c.totalItem.summaryCells[23][0].value;
+      let otros = c.totalItem.summaryCells[25][0].value;
+      let costosDirectos = c.totalItem.summaryCells[27][0].value;
+      let sueldoBase = c.totalItem.summaryCells[29][0].value;
+      let cargaSocial = c.totalItem.summaryCells[31][0].value;
+      let fijoMtto = c.totalItem.summaryCells[33][0].value;
+      let varMtto = c.totalItem.summaryCells[35][0].value;
+      let fijoTrans = c.totalItem.summaryCells[37][0].value;
+      let varTrans = c.totalItem.summaryCells[39][0].value;
+      let ctosAdicionales = c.totalItem.summaryCells[41][0].value;
+
+
+      // //Porcentajes Margen utilidad
+      if(c.totalItem.summaryCells[14][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[14][0].value = 0 : c.totalItem.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
+      }
+      // //Rendimiento
+      if(c.totalItem.summaryCells[18][0] !== undefined){
+        kilometros === 0 ? c.totalItem.summaryCells[18][0].value = 0 : c.totalItem.summaryCells[18][0].value = kilometros/ltsDisel;
+        console.log(ltsDisel/kilometros)
+      }
+
+      //Combustible
+      if(c.totalItem.summaryCells[20][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[20][0].value = 0 : c.totalItem.summaryCells[20][0].value = combustible/ingresoTotal;
+      }
+
+      //Casetas
+      if(c.totalItem.summaryCells[22][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[22][0].value = 0 : c.totalItem.summaryCells[22][0].value = casetas/ingresoTotal;
+      }
+
+      //Sueldos Liq
+      if(c.totalItem.summaryCells[24][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[24][0].value = 0 : c.totalItem.summaryCells[24][0].value = sueldosLiquidacion/ingresoTotal;
+      }
+
+      //Otros
+      if(c.totalItem.summaryCells[26][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[26][0].value = 0 : c.totalItem.summaryCells[26][0].value = otros/ingresoTotal;
+      }
+
+      //costosDirectos
+      if(c.totalItem.summaryCells[28][0] !== undefined){
+      ingresoTotal === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = costosDirectos/ingresoTotal;
+
+      }
+      //sueldoBAse
+      if(c.totalItem.summaryCells[30][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[30][0].value = 0 : c.totalItem.summaryCells[30][0].value = sueldoBase/ingresoTotal;
+      }
+
+      //Carga Social
+      if(c.totalItem.summaryCells[32][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[32][0].value = 0 : c.totalItem.summaryCells[32][0].value = cargaSocial/ingresoTotal;
+      }
+
+      //Fijo Mtto
+      if(c.totalItem.summaryCells[34][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[34][0].value = 0 : c.totalItem.summaryCells[34][0].value = fijoMtto/ingresoTotal;
+      }
+
+      //Variable Mtto
+      if(c.totalItem.summaryCells[36][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[36][0].value = 0 : c.totalItem.summaryCells[36][0].value = varMtto/ingresoTotal;
+      }
+
+      //fijo Transportacion
+      if(c.totalItem.summaryCells[38][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[38][0].value = 0 : c.totalItem.summaryCells[38][0].value = fijoTrans/ingresoTotal;
+      }
+
+      //variable Transportacion
+      if(c.totalItem.summaryCells[40][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[40][0].value = 0 : c.totalItem.summaryCells[40][0].value = varTrans/ingresoTotal;
+      }
+
+      //Costso Adicionales
+      if(c.totalItem.summaryCells[42][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[42][0].value = 0 : c.totalItem.summaryCells[42][0].value = ctosAdicionales/ingresoTotal;
+      }
+
+
+      })
     }
 }
 
@@ -268,62 +368,13 @@ export class RentabilidadViajesComponent implements OnInit {
     }
 
     if (e.rowType == 'totalFooter') {
-     
       //console.log(e.summaryCells)
-      let ingresoTotal = e.summaryCells[12][0].value;
-      let margenUtilidad = e.summaryCells[13][0].value;
-      let kilometros = e.summaryCells[16][0].value;
-      let ltsDisel = e.summaryCells[17][0].value;
-      let combustible = e.summaryCells[19][0].value;
-      let casetas = e.summaryCells[21][0].value;
-      let sueldosLiquidacion = e.summaryCells[23][0].value;
-      let otros = e.summaryCells[25][0].value;
-      let costosDirectos = e.summaryCells[27][0].value;
-      let sueldoBase = e.summaryCells[29][0].value;
-      let cargaSocial = e.summaryCells[31][0].value;
-      let fijoMtto = e.summaryCells[33][0].value;
-      let varMtto = e.summaryCells[35][0].value;
-      let fijoTrans = e.summaryCells[37][0].value;
-      let varTrans = e.summaryCells[39][0].value;
-      let ctosAdicionales = e.summaryCells[41][0].value;
 
+      // let kilometros = e.summaryCells[16][0].value;
+      // let ltsDisel = e.summaryCells[17][0].value;
 
-      let total = margenUtilidad/ingresoTotal
-      //Porcentajes Margen utilidad
-      ingresoTotal === 0 ? e.summaryCells[14][0].value = 0 : e.summaryCells[14][0].value = margenUtilidad/ingresoTotal;
-      
-      //console.log(JSON.stringify(e.summaryCells[14][0].value))
-      //this.valueData = e.summaryCells[14][0].value;
-      this.mostrarporcentaje(e.summaryCells[14][0].value)
-    
-      //Rendimiento
+      // // //Rendimiento
       // kilometros === 0 ? e.summaryCells[18][0].value = 0 : e.summaryCells[18][0].value = ltsDisel/kilometros;
-      // //Combustible
-      // ingresoTotal === 0 ? e.summaryCells[20][0].value = 0 : e.summaryCells[20][0].value = combustible/ingresoTotal;
-      // //Casetas
-      // ingresoTotal === 0 ? e.summaryCells[22][0].value = 0 : e.summaryCells[22][0].value = casetas/ingresoTotal;
-      // //Sueldos Liq
-      // ingresoTotal === 0 ? e.summaryCells[24][0].value = 0 : e.summaryCells[24][0].value = sueldosLiquidacion/ingresoTotal;
-      // //Otros
-      // ingresoTotal === 0 ? e.summaryCells[26][0].value = 0 : e.summaryCells[26][0].value = otros/ingresoTotal;
-      // //costosDirectos
-      // ingresoTotal === 0 ? e.summaryCells[28][0].value = 0 : e.summaryCells[28][0].value = costosDirectos/ingresoTotal;
-      // //sueldoBAse
-      // ingresoTotal === 0 ? e.summaryCells[30][0].value = 0 : e.summaryCells[30][0].value = sueldoBase/ingresoTotal;
-      // //Carga Social
-      // ingresoTotal === 0 ? e.summaryCells[32][0].value = 0 : e.summaryCells[32][0].value = cargaSocial/ingresoTotal;
-      // //Fijo Mtto
-      // ingresoTotal === 0 ? e.summaryCells[34][0].value = 0 : e.summaryCells[34][0].value = fijoMtto/ingresoTotal;
-      // //Variable Mtto
-      // ingresoTotal === 0 ? e.summaryCells[36][0].value = 0 : e.summaryCells[36][0].value = varMtto/ingresoTotal;
-      // //fijo Transportacion
-      // ingresoTotal === 0 ? e.summaryCells[38][0].value = 0 : e.summaryCells[38][0].value = fijoTrans/ingresoTotal;
-      // //variable Transportacion
-      // ingresoTotal === 0 ? e.summaryCells[40][0].value = 0 : e.summaryCells[40][0].value = varTrans/ingresoTotal;
-      // //Costso Adicionales
-      // ingresoTotal === 0 ? e.summaryCells[42][0].value = 0 : e.summaryCells[42][0].value = ctosAdicionales/ingresoTotal;
-
-
 
 
       e.rowElement.style.backgroundColor = '#f5f5f5';
@@ -401,15 +452,24 @@ export class RentabilidadViajesComponent implements OnInit {
 
 
 
-  mostrarporcentaje(e: number): number{
+  mostrarporcentaje(e: any): any{
     let valor = 0
-    console.log(this.start)
     if(this.start == 'true'){
       valor = e
-      console.log(valor)
     }
 
+    console.log(valor)
     return valor;
+  }
+
+  separatorIV(value){
+    
+    var result = 0;
+    result = value * 100;
+    
+    var round = Math.round(result)
+  
+    return round+" %";
   }
 }
 
