@@ -163,11 +163,11 @@ export class IngresosDetalladosComponent implements OnInit {
       let neworderIngresoAG = [];
       neworderIngresoAG.push(orderIngreso[0],orderIngreso[1],
                         orderIngreso[2],orderIngreso[3],orderIngreso[4],
-                        orderIngreso[5],
-                        orderIngreso[6],
-                        orderIngreso[7],orderIngreso[9],orderIngreso[8],orderIngreso[10],
-                        orderIngreso[11],orderIngreso[12],
-                        orderIngreso[13],orderIngreso[14]);
+                        orderIngreso[5],orderIngreso[6],
+                        orderIngreso[7],
+                        orderIngreso[8],orderIngreso[10],orderIngreso[9],orderIngreso[11],
+                        orderIngreso[12],orderIngreso[13],
+                        orderIngreso[14],orderIngreso[15]);
                         console.log(res.data.resumen)
       this.arrIngresosAgosto = neworderIngresoAG;
 
