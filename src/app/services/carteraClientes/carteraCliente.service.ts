@@ -45,7 +45,7 @@ export class CarteraClientesService extends AbstractManagerService {
       usuario: usuario,
       contrasenia: contrasenia
     }
-    console.log(body)
+
     return this.post<any>((this.API_URL + API_URLS.POST_CIERRE_CARTERA), body, this.httpOptions);
   }
 
