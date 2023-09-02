@@ -84,6 +84,8 @@ export interface IngresosModel{
     sepPor: number;
     sepPres: number;
     sepPorP: number;
+    sepProyeccion: number;
+    sepPorProy: number;
     octFlete: number;
     octOtros: number;
     octTotal: number;
@@ -108,5 +110,4 @@ export interface IngresosModel{
     dicPor: number;
     dicPres: number;
     dicPorP: number;
-
 } 

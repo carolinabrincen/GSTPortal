@@ -133,6 +133,7 @@ export class IngresosComponent implements OnInit {
                         orderIngreso[18],orderIngreso[17]);
 
         this.indicadores = neworderIngreso;
+        console.log(this.indicadores)
 
       });
   }
@@ -316,10 +317,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presupuestoAG = e.summaryCells[70][0].value;
         this.totalPor.proyeccionAG = e.summaryCells[72][0].value;
         //Septiembre
-        // this.totalPor.totalS = e.summaryCells[][0].value;
-        // this.totalPor.anioAntS = e.summaryCells[][0].value;
-        // this.totalPor.presupuestoS = e.summaryCells[][0].value;
-        // this.totalPor.proyeccionS = e.summaryCells[][0].value;
+        this.totalPor.totalS = e.summaryCells[76][0].value;
+        this.totalPor.anioAntS = e.summaryCells[77][0].value;
+        this.totalPor.presupuestoS = e.summaryCells[79][0].value;
+        this.totalPor.proyeccionS = e.summaryCells[81][0].value;
         //Octubre
         // this.totalPor.totalOC = e.summaryCells[][0].value;
         // this.totalPor.anioAntOC = e.summaryCells[][0].value;
@@ -369,9 +370,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presTotalAG = this.totalPor.totalAG / this.totalPor.presupuestoAG;
         this.totalPor.ProyTotalAG = this.totalPor.proyeccionAG / this.totalPor.presupuestoAG;
         //Septiembre
-        // this.totalPor.aniATotalS = this.totalPor.totalS / this.totalPor.anioAntS;
-        // this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
-        // this.totalPor.ProyTotalS = this.totalPor.proyeccionS / this.totalPor.presupuestoS;
+        this.totalPor.aniATotalS = this.totalPor.totalS / this.totalPor.anioAntS;
+        this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
+        this.totalPor.ProyTotalS = this.totalPor.proyeccionS / this.totalPor.presupuestoS;
         //Octubre
         // this.totalPor.aniATotalOC = this.totalPor.totalOC / this.totalPor.anioAntOC;
         // this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
@@ -418,9 +419,9 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[71][0].value = this.totalPor.presTotalAG;
         e.summaryCells[73][0].value = this.totalPor.ProyTotalAG;
         //Septiembre
-        // e.summaryCells[][0].value = this.totalPor.aniATotalS;
-        // e.summaryCells[][0].value = this.totalPor.presTotalS;
-        // e.summaryCells[][0].value = this.totalPor.ProyTotalS;
+        e.summaryCells[78][0].value = this.totalPor.aniATotalS;
+        e.summaryCells[80][0].value = this.totalPor.presTotalS;
+        e.summaryCells[82][0].value = this.totalPor.ProyTotalS;
         //Octubre
         // e.summaryCells[][0].value = this.totalPor.aniATotalOC;
         // e.summaryCells[][0].value = this.totalPor.presTotalOC;

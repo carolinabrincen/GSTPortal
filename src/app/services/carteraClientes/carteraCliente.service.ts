@@ -27,6 +27,9 @@ export class CarteraClientesService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_CARTERA_DETALLE), this.httpOptions);
   }
 
+  getPeriodoActual(){
+    return this.get<any>((this.API_URL + API_URLS.GET_PERIODO_ACTUAL), this.httpOptions);
+  }
   
   postCarteraCliente(periodo: number, compania: number){
     let body = {
@@ -36,4 +39,15 @@ export class CarteraClientesService extends AbstractManagerService {
     console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_CARTERA_CLIENTE), body, this.httpOptions);
   }
+
+  postCierreCartera(usuario: string, contrasenia: string){
+    let body = {
+      usuario: usuario,
+      contrasenia: contrasenia
+    }
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CIERRE_CARTERA), body, this.httpOptions);
+  }
+
+
 }

@@ -10,6 +10,7 @@ import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
 import { DxSelectBoxModule, DxButtonModule, DxTabPanelModule, DxDataGridModule  } from 'devextreme-angular';
 import { HttpClientModule} from '@angular/common/http';
+import { StorageService } from './shared/services/storage.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { HttpClientModule} from '@angular/common/http';
     DxTabPanelModule,
     HttpClientModule
   ],
-  providers: [AuthService, ScreenService, AppInfoService],
+  providers: [AuthService, ScreenService, AppInfoService,StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

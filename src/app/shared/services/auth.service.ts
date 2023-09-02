@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AbstractManagerService } from './abstractManagerService';
 import { API_URLS } from '../models/apiURL';
 import notify from 'devextreme/ui/notify';
+import { StorageService } from './storage.service';
 
 export interface IUser {
   idUsuario: string,
@@ -40,7 +41,11 @@ export class AuthService extends AbstractManagerService{
     this._lastAuthenticatedPath = value;
   }
 
-  constructor(private router: Router, http: HttpClient) {
+  constructor(
+    private router: Router, 
+    http: HttpClient,
+    private storageService: StorageService
+    ) {
      super(http);
   }
 
@@ -55,7 +60,8 @@ export class AuthService extends AbstractManagerService{
       let xUser = this.post<any>((this.API_URL + API_URLS.LOGEO),{usuario:email, password: password},this.httpOptions).subscribe(data => {
 
         console.log('💙',data);
-        
+        this.storageService.setSession("username", data.data.data.idUsuario)
+
         sessionStorage.setItem('token', data.data.token.tokenUsuario);
         sessionStorage.setItem('idUsuario', data.data.data.idUsuario);
 

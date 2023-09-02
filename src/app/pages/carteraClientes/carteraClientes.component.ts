@@ -1,7 +1,7 @@
 import { CostosAnualesService } from '../../services/costos-anuales/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent, DxFormComponent} from 'devextreme-angular';
 
 import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
 
@@ -10,6 +10,9 @@ import { CarteraClientes } from '../..//shared/models/carteraClientes/carteraCli
 import { Detalle } from '../../shared/models/carteraClientes/detalle';
 
 import { CarteraClientesService } from '../../services/carteraClientes/carteraCliente.service';
+import Validator from 'devextreme/ui/validator';
+import { StorageService } from '../../shared/services/storage.service';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   templateUrl: './carteraClientes.component.html',
@@ -18,7 +21,8 @@ import { CarteraClientesService } from '../../services/carteraClientes/carteraCl
 export class CarteraClientesComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
-
+  @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
+  
   col: string = '50';
 
   boxCartera: Cartera[] = [
@@ -51,6 +55,7 @@ export class CarteraClientesComponent implements OnInit {
     { id: 12, periodo: 202312 },
   ];
 
+  periodoActual: number;
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
@@ -65,18 +70,79 @@ export class CarteraClientesComponent implements OnInit {
 
   selectedPeriodo: number = 0;
 
-  constructor(
-    private carteraClientesService: CarteraClientesService,
-    ) {
-  //===========chart===================
+  modPeriodo: boolean;
+
+  buttonOptions: any = {
+    text: 'Guardar',
+    type: 'success',
+    useSubmitBehavior: true,
+
+  };
+
+  buttonOptionsVariables: any;
+  buttonOptionsPre: any;
+  positionOf: string = '#myDiv';
+
+  formCierre: any = {
+    usuario: "",
+    contrasenia: "",
 
   }
+  buttonOptionsCancelar: any
+  bolFormSoloLectura = false;
+  
+  passwordOptions: any = {
+    mode: 'password',
+    // onValueChanged: () => {
+    //   let editor = this.form.instance.getEditor('ConfirmPassword');
+    //   if (editor.option('value')) {
+    //     let instance = Validator.getInstance(editor.element()) as Validator;
+    //     instance.validate();
+    //   }
+    // },
+    buttons: [
+      {
+        name: 'password',
+        location: 'after',
+        options: {
+          icon: 'assets/ojo.png',
+          type: 'default',
+          onClick: () => this.changePasswordMode('Contraseña'),
+        },
+      },
+    ],
+  };
+
+  changePasswordMode = (name) => {
+    let editor = this.form.instance.getEditor(name);
+    editor.option(
+      'mode',
+      editor.option('mode') === 'text' ? 'password' : 'text',
+    );
+  };
+
+  
+  constructor(
+    private carteraClientesService: CarteraClientesService,
+    private storageService: StorageService
+    ) {
+      const that = this;
+
+        this.buttonOptionsCancelar= {
+          text: 'Cancelar',
+          type: 'danger',
+          onClick(e: any) {
+            that.modPeriodo = false;
+          },
+        };
+      }
+
 
 
   ngOnInit(): void {
     this.getCarteraDetalle();
-
-    
+    this.getPeriodo();
+    this.getUserName();
   }
 
   ngAfterViewInit(): void {}
@@ -91,6 +157,13 @@ export class CarteraClientesComponent implements OnInit {
       })
     });
     return request;
+  }
+
+  getPeriodo(){
+    this.carteraClientesService.getPeriodoActual().subscribe(data => {
+      this.periodoActual = data.data;
+      console.log(data)
+    })
   }
 
   //=================SELECTS========================
@@ -165,10 +238,69 @@ export class CarteraClientesComponent implements OnInit {
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+      console.log(data.data)
       this.carteraInfo = data.data
 
       this.loadingVisible = false;
     })
+  }
+
+  username: string
+  getUserName(){
+    this.username = this.storageService.getSession("username");
+
+    console.log(this.username)
+  }
+
+  guardarCotizacionClick(e) {
+    e.preventDefault();
+
+    this.loadingVisible = true;
+
+    this.carteraClientesService.postCierreCartera(this.username, this.formCierre.Contraseña).subscribe(data =>{
+      console.log(data)
+
+      if (data.responseCode === 200) {
+
+        if(data.data == "¡Cierre exitoso!"){
+          notify({
+            message: data.data,
+            position: {
+              my: 'center center',
+              at: 'center center',
+            },
+          }, 'success', 3000);
+  
+          this.modPeriodo = false;
+          this.bolFormSoloLectura = false;
+          this.loadingVisible = false;
+          
+        }else if(data.data == "¡Usuario inválido o contraseña incorrecta!"){
+          notify({
+            message: data.data,
+            position: {
+              my: 'center center',
+              at: 'center center',
+            },
+          }, 'warning', 3000);
+
+          this.loadingVisible = false;
+        }
+        
+        
+      } else {
+        notify({
+          message: "No se puedo completar el cierre",
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'error', 3000);
+
+        this.loadingVisible = false;
+      }
+    })
+   
   }
 
   ActuaizarDetalle(){
@@ -184,7 +316,6 @@ export class CarteraClientesComponent implements OnInit {
     });
     return request;
   }
-
 
   borrarClick = (e: any) =>{
     this.selectTracto.value = '';
@@ -349,6 +480,15 @@ export class CarteraClientesComponent implements OnInit {
     
 
     return '$ '+myFormat.join("");
+  }
+
+  changePeriodoClick() {
+    this.modPeriodo = true;
+  }
+
+  Cancelar(e){
+    console.log(e)
+    this.modPeriodo = false;
   }
 }
 
