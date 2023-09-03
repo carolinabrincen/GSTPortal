@@ -94,13 +94,11 @@ export class ServiceSales extends AbstractManagerService{
     
     
   }
-
   getIngresosDetalladosMensualFeb( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_febrero),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualMar( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_marzo),this.httpOptions);    
@@ -116,23 +114,24 @@ export class ServiceSales extends AbstractManagerService{
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_mayo),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualJun( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_junio),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualJul( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio),this.httpOptions);    
     
-  }
-  
-
+  }  
   getIngresosDetalladosMensualAgo( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_agosto),this.httpOptions);    
+    
+  }
+  getIngresosDetalladosMensualSep( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_septiembre),this.httpOptions);    
     
   }
   

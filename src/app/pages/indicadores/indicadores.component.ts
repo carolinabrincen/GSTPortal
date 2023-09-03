@@ -2316,59 +2316,59 @@ onCellPreparedPM(e){
 
       if (e.data.key == '09 SEP') {
         if(e.summaryCells[4][0].length !== 0){
-          if(Number.isNaN(totalIVCS.cuautitlan)){
+          if(Number.isNaN(totalKVCS.cuautitlan)){
             e.summaryCells[4][0].value = 0;
           }else{
-            e.summaryCells[4][0].value = totalIVCS.cuautitlan;
+            e.summaryCells[4][0].value = totalKVCS.cuautitlan;
           }
         }
         if(e.summaryCells[5][0].length !== 0){
-          if(Number.isNaN(totalIVCS.tultitlan)){
+          if(Number.isNaN(totalKVCS.tultitlan)){
             e.summaryCells[5][0].value = 0;
           }else{
-            e.summaryCells[5][0].value = totalIVCS.tultitlan;
+            e.summaryCells[5][0].value = totalKVCS.tultitlan;
           }
         }
         if(e.summaryCells[6][0].length !== 0){
-          if(Number.isNaN(totalIVCS.guadalajara)){
+          if(Number.isNaN(totalKVCS.guadalajara)){
             e.summaryCells[6][0].value = 0;
           }else{
-            e.summaryCells[6][0].value = totalIVCS.guadalajara;
+            e.summaryCells[6][0].value = totalKVCS.guadalajara;
           }
         }
         if(e.summaryCells[7][0].length !== 0){
-          if(Number.isNaN(totalIVCS.hermosillo)){
+          if(Number.isNaN(totalKVCS.hermosillo)){
             e.summaryCells[7][0].value = 0;  
           }else{
-            e.summaryCells[7][0].value = totalIVCS.hermosillo;
+            e.summaryCells[7][0].value = totalKVCS.hermosillo;
           }
         }
         if(e.summaryCells[8][0].length !== 0){
-          if(Number.isNaN(totalIVCS.mexicali)){
+          if(Number.isNaN(totalKVCS.mexicali)){
             e.summaryCells[8][0].value = 0;
           }else{
-            e.summaryCells[8][0].value = totalIVCS.mexicali;
+            e.summaryCells[8][0].value = totalKVCS.mexicali;
           }
         }
         if(e.summaryCells[9][0].value.length !== 0){
-          if(Number.isNaN(totalIVCS.orizaba)){
+          if(Number.isNaN(totalKVCS.orizaba)){
             e.summaryCells[9][0].value = 0;
           }else{
-            e.summaryCells[9][0].value = totalIVCS.orizaba;
+            e.summaryCells[9][0].value = totalKVCS.orizaba;
           }
         }
         if(e.summaryCells[10][0].length !== 0){
-          if(Number.isNaN(totalIVCS.ramosArispe)){
+          if(Number.isNaN(totalKVCS.ramosArispe)){
             e.summaryCells[10][0].value = 0;  
           }else{
-            e.summaryCells[10][0].value = totalIVCS.ramosArispe;
+            e.summaryCells[10][0].value = totalKVCS.ramosArispe;
           }
         }
         if(e.summaryCells[11][0].length !== 0){
-          if(Number.isNaN(totalIVCS.total)){
+          if(Number.isNaN(totalKVCS.total)){
             e.summaryCells[11][0].value = 0;
           }else{
-            e.summaryCells[11][0].value = totalIVCS.total;
+            e.summaryCells[11][0].value = totalKVCS.total;
           }
         }
       }
