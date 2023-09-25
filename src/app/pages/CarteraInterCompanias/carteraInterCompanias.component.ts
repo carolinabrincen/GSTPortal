@@ -438,7 +438,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
     if(event.row?.isSelected == true){
       //console.log("TRUE ==>")
-      console.log(event)
+      //console.log(event)
 
       myAsignacion.idModifico = idUsuario;
       myAsignacion.idCliente = this.selectCliente;
