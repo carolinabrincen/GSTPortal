@@ -58,6 +58,11 @@ export const navigation = [
     path: '/cartera-clientes'
   },
   {
+    text: 'Cartera Intercompañias',
+    icon: 'columnchooser',
+    path: '/carteraInterCompanias'
+  },
+  {
     text: 'Cotizador',
     icon: 'columnchooser',
     path: '/cotizador' 

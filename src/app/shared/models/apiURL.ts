@@ -61,6 +61,8 @@ export enum API_URLS{
     POST_CARTERA_CLIENTE = 'api/CarteraClientes/ResumenCarteraClientes',
     POST_RENTABILIDAD_VIAJES = 'api/Rentabilidad/RCViajes',
     POST_CIERRE_CARTERA = 'api/CarteraClientes/CierreCartera',
+    POST_CARTERA_TERCEROS = 'api/CarteraClientes/CarteraTerceros',
+    POST_ASIGNAR_CLIENTE = 'api/CarteraClientes/AsignarCliente',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
@@ -71,5 +73,6 @@ export enum API_URLS{
     GET_INGRESO_OPERADOR = 'api/Kilometros/ViajeOperador/',
     GET_CARTERA_DETALLE = 'api/CarteraClientes/CarteraClientes',
     GET_KMS_MENSUALES = 'api/Kilometros/KmsMensuales/',
-    GET_PERIODO_ACTUAL = 'api/CarteraClientes/Periodo'
+    GET_PERIODO_ACTUAL = 'api/CarteraClientes/Periodo',
+    GET_CARTERA_CLIENTES = 'api/CarteraClientes/Clientes',
 }
