@@ -10,6 +10,7 @@ import { StorageService } from '../../shared/services/storage.service';
 import themes from 'devextreme/ui/themes';
 import notify from 'devextreme/ui/notify';
 import { ActivatedRoute, Router } from '@angular/router';
+import SelectBox from "devextreme/ui/select_box";
 
 @Component({
   templateUrl: './carteraInterCompanias.component.html',
@@ -92,6 +93,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
   checkBoxesMode: string;
 
   clientesAsignados: ClientesAsignados[]=[]
+  
 
   constructor(
     private carteaInterService: CarteraInterCompaniasService,
@@ -214,30 +216,44 @@ export class CarteraInterCompaniasComponent implements OnInit {
   }
 
   postAsignarCliente(){
+    if(this.selectCliente !== undefined){
+      this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
 
-    this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
+        console.log(data)
 
-      console.log(data)
+        if (data.responseCode === 200) {
+          notify({
+            message: "La asignación fue exitosa",
+            position: {
+              my: 'center center',
+              at: 'center center',
+            },
+          }, 'success', 3000);
 
-      if (data.responseCode === 200) {
-        notify({
-          message: "La asignación fue exitosa",
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'success', 3000);
-      }else{
-        notify({
-          message: "No se puedo asignar el cliente, intente mas tarde",
-          position: {
-            my: 'center center',
-            at: 'center center',
-          },
-        }, 'error', 3000);
-      }
+          this.postCarteraCliente();
 
-    })
+          this.selectCliente = undefined
+
+          let element = document.getElementById("select");
+          let instance = SelectBox.getInstance(element) as SelectBox;
+
+            // get value
+            let currentValue = instance.option("value");
+            // change value
+            instance.option("value", "myvalue");
+
+        }else{
+          notify({
+            message: "No se puedo asignar el cliente, intente mas tarde",
+            position: {
+              my: 'center center',
+              at: 'center center',
+            },
+          }, 'error', 3000);
+        }
+
+      })
+    }
   }
 
 
