@@ -196,9 +196,8 @@ export class CarteraInterCompaniasComponent implements OnInit {
   }
 
   selectedClientes(e: any){
-    console.log(e)
     this.selectCliente = e.value
-    //console.log(this.selectCliente)
+    console.log(this.selectCliente)
   }
 
 
@@ -217,6 +216,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
   postAsignarCliente(){
     if(this.selectCliente !== undefined){
+      console.log(this.clientesAsignados)
       this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
 
         console.log(data)
@@ -232,15 +232,17 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
           this.postCarteraCliente();
 
-          this.selectCliente = undefined
-
           let element = document.getElementById("select");
           let instance = SelectBox.getInstance(element) as SelectBox;
 
             // get value
             let currentValue = instance.option("value");
             // change value
-            instance.option("value", "myvalue");
+            instance.option("value", "");
+
+
+            this.selectCliente = undefined
+            this.clientesAsignados = [];
 
         }else{
           notify({
