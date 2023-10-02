@@ -321,11 +321,12 @@ export class IngresosComponent implements OnInit {
         this.totalPor.anioAntS = e.summaryCells[77][0].value;
         this.totalPor.presupuestoS = e.summaryCells[79][0].value;
         this.totalPor.proyeccionS = e.summaryCells[81][0].value;
+        //console.log(e.summaryCells)
         //Octubre
-        // this.totalPor.totalOC = e.summaryCells[][0].value;
-        // this.totalPor.anioAntOC = e.summaryCells[][0].value;
-        // this.totalPor.presupuestoOC = e.summaryCells[][0].value;
-        // this.totalPor.proyeccionOC = e.summaryCells[][0].value;
+        this.totalPor.totalOC = e.summaryCells[86][0].value;
+        this.totalPor.anioAntOC = e.summaryCells[87][0].value;
+        this.totalPor.presupuestoOC = e.summaryCells[89][0].value;
+        this.totalPor.proyeccionOC = e.summaryCells[91][0].value;
         //Noviembre
         // this.totalPor.totalNV = e.summaryCells[][0].value;
         // this.totalPor.anioAntNV = e.summaryCells[][0].value;
@@ -374,9 +375,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
         this.totalPor.ProyTotalS = this.totalPor.proyeccionS / this.totalPor.presupuestoS;
         //Octubre
-        // this.totalPor.aniATotalOC = this.totalPor.totalOC / this.totalPor.anioAntOC;
-        // this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
-        // this.totalPor.ProyTotalOC = this.totalPor.proyeccionOC / this.totalPor.presupuestoOC;
+        this.totalPor.aniATotalOC = this.totalPor.totalOC / this.totalPor.anioAntOC;
+        this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
+        this.totalPor.ProyTotalOC = this.totalPor.proyeccionOC / this.totalPor.presupuestoOC;
         //Noviembre
         // this.totalPor.aniATotalNV = this.totalPor.totalNV / this.totalPor.anioAntNV;
         // this.totalPor.presTotalNV = this.totalPor.totalNV / this.totalPor.presupuestoNV;
@@ -423,9 +424,9 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[80][0].value = this.totalPor.presTotalS;
         e.summaryCells[82][0].value = this.totalPor.ProyTotalS;
         //Octubre
-        // e.summaryCells[][0].value = this.totalPor.aniATotalOC;
-        // e.summaryCells[][0].value = this.totalPor.presTotalOC;
-        // e.summaryCells[][0].value = this.totalPor.ProyTotalOC;
+        e.summaryCells[88][0].value = this.totalPor.aniATotalOC;
+        e.summaryCells[90][0].value = this.totalPor.presTotalOC;
+        e.summaryCells[92][0].value = this.totalPor.ProyTotalOC;
         //Noviembre
         // e.summaryCells[][0].value = this.totalPor.aniATotalNV;
         // e.summaryCells[][0].value = this.totalPor.presTotalNV;

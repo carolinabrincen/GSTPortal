@@ -67,24 +67,34 @@
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-            <dxi-column dataField="clienteAtendido" caption="Cliente atendido" [width]="150"></dxi-column>
-            <dxi-column dataField="dias" caption="Días" [width]="100"></dxi-column>
-            <dxi-column dataField="inicio" caption="Fecha inicio" dataType="date" format="dd/mm/yyyy" [width]="130"></dxi-column>
-            <dxi-column dataField="fin" caption="Fecha fin" dataType="date" format="dd/mm/yyyy" [width]="130"></dxi-column>
-            <dxi-column dataField="flete" caption="Flete" [width]="100"></dxi-column>
-            <dxi-column dataField="ingrXKm" caption="Ingreso por Kilometro" [format]="redondear" [width]="180"></dxi-column>
-            <dxi-column dataField="kms" caption="Kilometros" [format]="separator" [width]="120"></dxi-column>
-            <dxi-column dataField="kmsCargados" caption="Kms. Cargados" [format]="separator" [width]="130"></dxi-column>
-            <dxi-column dataField="kmsCargadosPor" caption="%" format="percent" [width]="100"></dxi-column>
-            <dxi-column dataField="kmsVacios" caption="Kms. Vacios" [format]="separator" [width]="130"></dxi-column>
-            <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [width]="100"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operación" [width]="130"></dxi-column>
-            <dxi-column dataField="operadorCiclo" caption="Operacion ciclo" [width]="130"></dxi-column>
-            <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
             <dxi-column dataField="udN" caption="UdN" [width]="100"></dxi-column>
+            <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operación" [width]="130"></dxi-column>
             <dxi-column dataField="viajes" caption="Viajes" [width]="100"></dxi-column>
             <dxi-column dataField="viajesCargados" caption="Viajes cargados" [width]="150"></dxi-column>
-            <dxi-column dataField="viajesVacio" caption="Viajes vacios" [width]="130"></dxi-column>
+            <dxi-column dataField="kmsCargados" caption="Kms. Cargados" [format]="separator" [width]="130"></dxi-column>
+            <dxi-column dataField="kmsCargadosPor" caption="%" format="percent" [width]="100"></dxi-column>
+            <dxi-column dataField="viajesVacios" caption="Viajes vacios" [width]="130"></dxi-column>
+            <dxi-column dataField="kmsVacios" caption="Kms. Vacios" [format]="separator" [width]="130"></dxi-column>
+            <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [width]="100"></dxi-column>
+            <dxi-column dataField="clienteAtendido" caption="Cliente atendido" [width]="150"></dxi-column>
+            <dxi-column dataField="operadorCiclo" caption="Operadores" [width]="130"></dxi-column>
+            <dxi-column dataField="inicio" caption="Fecha inicio" dataType="date" format="dd/mm/yyyy" [width]="130"></dxi-column>
+            <dxi-column dataField="fin" caption="Fecha fin" dataType="date" format="dd/mm/yyyy" [width]="130"></dxi-column>
+            <dxi-column dataField="dias" caption="Días" [width]="100"></dxi-column>
+            <dxi-column dataField="kms" caption="Kilometros" [format]="separator" [width]="120"></dxi-column>
+            <dxi-column dataField="flete" caption="Flete" [width]="100"></dxi-column>
+            <dxi-column dataField="ingrXKm" caption="Ingreso por Kilometro" [format]="redondear" [width]="180"></dxi-column>
+
+
+
+
+
+
+
+
+
+
 
             <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate"></dxi-column>
 
@@ -123,31 +133,31 @@
 
                 <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
                 
-                <dxi-column dataField="area" caption="Área" ></dxi-column>
-                <dxi-column dataField="ciclo" caption="Ciclo" ></dxi-column>
-                <dxi-column dataField="cicloCliente" caption="Ciclo cliente" ></dxi-column>
-                <dxi-column dataField="cliente" caption="Cliente" ></dxi-column>
-                <dxi-column dataField="destino" caption="Destino" ></dxi-column>
-                <dxi-column dataField="edoDestino" caption="Edo. Destino" ></dxi-column>
-                <dxi-column dataField="edoOrigen" caption="Edo. Origen" ></dxi-column>
-                <dxi-column dataField="inicio" caption="Fecha inicio" ></dxi-column>
-                <dxi-column dataField="fin" caption="Fecha fin" ></dxi-column>
-                <dxi-column dataField="flete" caption="Flete" ></dxi-column>
-                <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" ></dxi-column>
-                <dxi-column dataField="idArea" caption="Id área" ></dxi-column>
-                <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" ></dxi-column>
-                <dxi-column dataField="ingrXKmAcumulado" caption="Ingr. kms. Acumulado" ></dxi-column>
-                <dxi-column dataField="kms" caption="Kilometros" ></dxi-column>
-                <dxi-column dataField="kmsAcumulado" caption="Kms. Acumulado" ></dxi-column>
-                <dxi-column dataField="municipioDestino" caption="Municipio Destino" ></dxi-column>
-                <dxi-column dataField="municipioOrigen" caption="Municipio Origen" ></dxi-column>
-                <dxi-column dataField="noViaje" caption="No. Viaje" ></dxi-column>
-                <dxi-column dataField="operacion" caption="Operción" ></dxi-column>
-                <dxi-column dataField="operador" caption="Operador" ></dxi-column>
-                <dxi-column dataField="origen" caption="Origen" ></dxi-column>
-                <dxi-column dataField="ruta" caption="Ruta" ></dxi-column>
-                <dxi-column dataField="tipoViaje" caption="Tipo viaje" ></dxi-column>
-                <dxi-column dataField="tracto" caption="Tracto" ></dxi-column>
+                <dxi-column dataField="area" caption="Área" [width]="100"></dxi-column>
+                <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>
+                <dxi-column dataField="cicloCliente" caption="Ciclo cliente" [width]="140"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="100"></dxi-column>
+                <dxi-column dataField="destino" caption="Destino" [width]="100"></dxi-column>
+                <dxi-column dataField="edoDestino" caption="Edo. Destino" [width]="150"></dxi-column>
+                <dxi-column dataField="edoOrigen" caption="Edo. Origen" [width]="150"></dxi-column>
+                <dxi-column dataField="inicio" caption="Fecha inicio" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
+                <dxi-column dataField="fin" caption="Fecha fin" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
+                <dxi-column dataField="flete" caption="Flete" format="$ #,###,###.##;-$ #,##0.##" [width]="100"></dxi-column>
+                <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
+                <dxi-column dataField="idArea" caption="Id área" [width]="100"></dxi-column>
+                <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" [width]="150"></dxi-column>
+                <dxi-column dataField="ingrXKmAcumulado" caption="Ingr. kms. Acumulado" [width]="150"></dxi-column>
+                <dxi-column dataField="kms" caption="Kilometros" [format]="separator" [width]="100"></dxi-column>
+                <dxi-column dataField="kmsAcumulado" caption="Kms. Acumulado" [format]="separator" [width]="130"></dxi-column>
+                <dxi-column dataField="municipioDestino" caption="Municipio Destino" [width]="130"></dxi-column>
+                <dxi-column dataField="municipioOrigen" caption="Municipio Origen" [width]="130"></dxi-column>
+                <dxi-column dataField="noViaje" caption="No. Viaje" [width]="100"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operción" [width]="100"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="100"></dxi-column>
+                <dxi-column dataField="origen" caption="Origen" [width]="100"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="100"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo viaje" [width]="100"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [width]="100"></dxi-column>
 
 
                 <div *dxTemplate="let data of 'headerTemplate'">
