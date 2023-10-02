@@ -80,6 +80,11 @@ export const navigation = [
     path: '/rendimiento-diesel',
     icon: 'columnproperties'
   },
+  {
+    text: 'Macrociclo',
+    path: '/macroCiclo',
+    icon: 'columnproperties'
+  },
   // {
   //   text: 'Costos',//Mensuales
   //   icon: 'columnchooser',

@@ -63,6 +63,8 @@ export enum API_URLS{
     POST_CIERRE_CARTERA = 'api/CarteraClientes/CierreCartera',
     POST_CARTERA_TERCEROS = 'api/CarteraClientes/CarteraTerceros',
     POST_ASIGNAR_CLIENTE = 'api/CarteraClientes/AsignarCliente',
+    POST_MACROCICLO = 'api/Rentabilidad/MacroCiclo',
+    POST_MACROCICLO_DETALLE = 'api/Rentabilidad/MacroCicloDet',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',

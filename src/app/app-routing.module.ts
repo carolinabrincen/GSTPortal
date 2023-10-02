@@ -35,6 +35,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { RentabilidadViajesComponent } from './pages/rentabilidadViajes/rentabilidadViajes.component';
   import { RendimientoDieselComponent } from './pages/rendimientoDiesel/rendimientoDiesel.component';
   import { CarteraInterCompaniasComponent } from './pages/CarteraInterCompanias/carteraInterCompanias.component';
+  import { MarcroCicloCompaniasComponent } from './pages/macroCiclo/macroCiclo.component';
 
 const routes: Routes = [
   {
@@ -175,6 +176,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'macroCiclo',
+    component: MarcroCicloCompaniasComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -239,7 +245,8 @@ const routes: Routes = [
     ProyeccionCostosComponent,
     RentabilidadViajesComponent,
     RendimientoDieselComponent,
-    CarteraInterCompaniasComponent
+    CarteraInterCompaniasComponent,
+    MarcroCicloCompaniasComponent
   ]
 })
 export class AppRoutingModule { }
