@@ -65,10 +65,10 @@
             (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
 
-            <dxi-column dataField="udN" caption="UdN" [width]="100"></dxi-column>
-            <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
+            <dxi-column dataField="udN" caption="UdN" [allowSorting]="true" [width]="100"></dxi-column>
+            <dxi-column dataField="ruta" caption="Ruta" [allowSorting]="true" [width]="250"></dxi-column>
             <dxi-column dataField="operacion" caption="Operación" [width]="130"></dxi-column>
             <dxi-column dataField="viajes" caption="Viajes" [width]="100"></dxi-column>
             <dxi-column dataField="viajesCargados" caption="Viajes cargados" [width]="150"></dxi-column>
@@ -103,7 +103,7 @@
             <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
             <dxo-export [enabled]="true" fileName="Macrocilo"></dxo-export>
             <dxo-paging [pageSize]="60"></dxo-paging>
-            <dxo-sorting mode="none"></dxo-sorting>
+            <dxo-sorting mode="multiple"></dxo-sorting>
 
             </dx-data-grid>
 

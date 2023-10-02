@@ -248,6 +248,8 @@ export class MarcroCicloCompaniasComponent implements OnInit {
       this.macrocicloService.postMacrocicloDetalle(idArea, ciclo).subscribe(data =>{
         console.log(data.data)
         this.detalleMacro = data.data
+        this.detalleMacro.sort((a, b) => (a.noViaje < b.noViaje ? -1 : 1));
+
         this.modDetalle = true;
         this.loadingVisible = false;
       })
