@@ -86,17 +86,7 @@
             <dxi-column dataField="flete" caption="Flete" [width]="100"></dxi-column>
             <dxi-column dataField="ingrXKm" caption="Ingreso por Kilometro" [format]="redondear" [width]="180"></dxi-column>
 
-
-
-
-
-
-
-
-
-
-
-            <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate"></dxi-column>
+            <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
 
             <div *dxTemplate="let data of 'detalleCellTemplate'">
                 <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openDetalle(data)"></dx-button>
@@ -111,7 +101,7 @@
 
             <dxo-group-panel [visible]="false"></dxo-group-panel>
             <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-            <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
+            <dxo-export [enabled]="true" fileName="Macrocilo"></dxo-export>
             <dxo-paging [pageSize]="60"></dxo-paging>
             <dxo-sorting mode="none"></dxo-sorting>
 
@@ -136,10 +126,10 @@
                 <dxi-column dataField="area" caption="Área" [width]="100"></dxi-column>
                 <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>
                 <dxi-column dataField="cicloCliente" caption="Ciclo cliente" [width]="140"></dxi-column>
-                <dxi-column dataField="cliente" caption="Cliente" [width]="100"></dxi-column>
-                <dxi-column dataField="destino" caption="Destino" [width]="100"></dxi-column>
-                <dxi-column dataField="edoDestino" caption="Edo. Destino" [width]="150"></dxi-column>
-                <dxi-column dataField="edoOrigen" caption="Edo. Origen" [width]="150"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="150"></dxi-column>
+                <dxi-column dataField="destino" caption="Destino" [width]="180"></dxi-column>
+                <dxi-column dataField="edoDestino" caption="Edo. Destino" [width]="130"></dxi-column>
+                <dxi-column dataField="edoOrigen" caption="Edo. Origen" [width]="130"></dxi-column>
                 <dxi-column dataField="inicio" caption="Fecha inicio" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
                 <dxi-column dataField="fin" caption="Fecha fin" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
                 <dxi-column dataField="flete" caption="Flete" format="$ #,###,###.##;-$ #,##0.##" [width]="100"></dxi-column>
@@ -152,10 +142,10 @@
                 <dxi-column dataField="municipioDestino" caption="Municipio Destino" [width]="130"></dxi-column>
                 <dxi-column dataField="municipioOrigen" caption="Municipio Origen" [width]="130"></dxi-column>
                 <dxi-column dataField="noViaje" caption="No. Viaje" [width]="100"></dxi-column>
-                <dxi-column dataField="operacion" caption="Operción" [width]="100"></dxi-column>
-                <dxi-column dataField="operador" caption="Operador" [width]="100"></dxi-column>
-                <dxi-column dataField="origen" caption="Origen" [width]="100"></dxi-column>
-                <dxi-column dataField="ruta" caption="Ruta" [width]="100"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operción" [width]="140"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="170"></dxi-column>
+                <dxi-column dataField="origen" caption="Origen" [width]="180"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
                 <dxi-column dataField="tipoViaje" caption="Tipo viaje" [width]="100"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="100"></dxi-column>
 

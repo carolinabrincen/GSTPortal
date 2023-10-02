@@ -29,9 +29,9 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleAgosto: DetalleModel[] = [];
   arrIngresosSeptiembre: IngresosDModel[] = [];
   arrDetalleSeptiembre: DetalleModel[] = [];
-
   arrIngresosOctubre: IngresosDModel[] = [];
   arrDetalleOctubre: DetalleModel[] = [];
+
   arrIngresosNoviembre: IngresosDModel[] = [];
   arrDetalleNoviembre: DetalleModel[] = [];
   arrIngresosDiciembre: IngresosDModel[] = [];
@@ -58,6 +58,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMJulio();
     this.getIDMAgosto();
     this.getIDMSeptiembre();
+    this.getIDMOctubre();
   }
 
   getIDMMarzo(){
@@ -153,7 +154,7 @@ export class IngresosDetalladosComponent implements OnInit {
 
       this.arrDetalleJulio = res.data.detalle;
 
-      this.loadingVisible = false;
+      //this.loadingVisible = false;
     });
   }
 
@@ -175,7 +176,7 @@ export class IngresosDetalladosComponent implements OnInit {
 
       this.arrDetalleAgosto = res.data.detalle;
 
-      this.loadingVisible = false;
+      //this.loadingVisible = false;
     });
   }
 
@@ -186,9 +187,23 @@ export class IngresosDetalladosComponent implements OnInit {
   
       this.arrDetalleSeptiembre = res.data.detalle;
 
+      //this.loadingVisible = false;
+    });
+  }
+
+  getIDMOctubre(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualOct().subscribe(res => {
+
+      this.arrIngresosOctubre = res.data.resumen;
+  
+      this.arrDetalleOctubre = res.data.detalle;
+
       this.loadingVisible = false;
     });
   }
+
+
   onRowPrepared(e: any) {
     
 
@@ -210,10 +225,10 @@ export class IngresosDetalladosComponent implements OnInit {
 
           //negrita columna margen utilidad
           if (c.columnIndex == 9  || c.columnIndex == 12) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "14px";
-            c.cellElement.style.background = "#f5f5f5";
-            c.cellElement.style.color = "red";
+            //c.cellElement.style.fontWeight = "bolder";
+            //c.cellElement.style.fontSize = "14px";
+            //c.cellElement.style.background = "#f5f5f5";
+            //c.cellElement.style.color = "red";
           }
 
           

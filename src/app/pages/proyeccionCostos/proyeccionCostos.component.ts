@@ -68,7 +68,7 @@ export class ProyeccionCostosComponent implements OnInit {
     // { idAnio: 202305, anio: "202305" },
     // { idAnio: 202306, anio: "202306" },
     // { idAnio: 202307, anio: "202307" },
-    { idAnio: 202309, anio: "202309" },
+    { idAnio: 202309, anio: "202310" },
     // { idAnio: 202309, anio: "202309" },
     // { idAnio: 202310, anio: "202310" },
     // { idAnio: 202311, anio: "202311" },
@@ -158,7 +158,7 @@ export class ProyeccionCostosComponent implements OnInit {
 
   //=================GETS===========================
   getProyeccionCostos(){
-    this.anioSeleccionado = 202309
+    this.anioSeleccionado = 202310
     const request = new Promise((resolve, reject) => {
       this.proyeccCosService.postProyeccionCostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         
