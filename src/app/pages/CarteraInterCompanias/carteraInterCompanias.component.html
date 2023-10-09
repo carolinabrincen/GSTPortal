@@ -112,7 +112,7 @@
                 <dxi-item *ngIf="carteraTerceros.length !== 0">
                     <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="areaInter" displayExpr="nombre" valueExpr="idArea" (onValueChanged)="selectAreaInter($event)">
+                    <dx-select-box [items]="areaInter" displayExpr="nombre" valueExpr="idArea" (onValueChanged)="selectAreaInter($event)" id="areaInter">
                     </dx-select-box>
                 </dxi-item>
 
@@ -143,7 +143,10 @@
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
-            <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+            
+            <dxo-selection *ngIf="selectCliente !== undefined && selectedIdAreaInter !== undefined" [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+            <dxo-selection *ngIf="selectedIdAreaInter !== undefined && validationChecBox === true"  [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+
 
             <dxi-column dataField="compania" caption="" [groupIndex]="0"></dxi-column>
             <dxi-column dataField="nombre" caption="" [groupIndex]="1"></dxi-column>

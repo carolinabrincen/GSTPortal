@@ -276,6 +276,12 @@ export class CarteraInterCompaniasComponent implements OnInit {
               // change value
               instance.option("value", "");
 
+              let areaInter = document.getElementById("areaInter");
+              let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
+          
+              let current = instanceArea.option("value");
+              instanceArea.option("value", "");
+
 
               this.selectCliente = undefined
               this.clientesAsignados = [];
@@ -330,6 +336,11 @@ export class CarteraInterCompaniasComponent implements OnInit {
               // change value
               instance.option("value", "");
 
+              let areaInter = document.getElementById("areaInter");
+              let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
+          
+              let current = instanceArea.option("value");
+              instanceArea.option("value", "");
 
               this.selectCliente = undefined
               this.clientesAsignados = [];
@@ -650,18 +661,32 @@ export class CarteraInterCompaniasComponent implements OnInit {
       
       let element = document.getElementById("select");
       let instance = SelectBox.getInstance(element) as SelectBox;
+  
+      let currentValue = instance.option("value");
+      instance.option("value", "");
 
-        // get value
-        let currentValue = instance.option("value");
-        // change value
-        instance.option("value", "");
+      let areaInter = document.getElementById("areaInter");
+      let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
+  
+      let current = instanceArea.option("value");
+      instanceArea.option("value", "");
 
 
         this.selectCliente = undefined;
+        this.selectedIdAreaInter = undefined
         this.clientesAsignados = [];
 
       console.log(value.value)
     }else if(value.value == false){
+
+      let areaInter = document.getElementById("areaInter");
+      let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
+  
+      let current = instanceArea.option("value");
+      instanceArea.option("value", "");
+
+      this.selectedIdAreaInter = undefined
+      this.clientesAsignados = [];
       this.showClientes = false;
       console.log(value.value)
     }
