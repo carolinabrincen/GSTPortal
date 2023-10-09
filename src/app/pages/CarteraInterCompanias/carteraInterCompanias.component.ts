@@ -294,6 +294,14 @@ export class CarteraInterCompaniasComponent implements OnInit {
           }
 
         })
+      }else{
+        notify({
+          message: "Porfavor seleccione los campos necesarios",
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'warning', 3000);
       }
     }else if(this.validationChecBox ==true){
       if(this.selectedIdAreaInter !== undefined){
@@ -340,6 +348,14 @@ export class CarteraInterCompaniasComponent implements OnInit {
           }
 
         })
+      }else{
+        notify({
+          message: "Porfavor seleccione los campos necesarios",
+          position: {
+            my: 'center center',
+            at: 'center center',
+          },
+        }, 'warning', 3000);
       }
     }
   }
