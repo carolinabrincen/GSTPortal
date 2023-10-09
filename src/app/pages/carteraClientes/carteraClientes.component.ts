@@ -35,8 +35,10 @@ export class CarteraClientesComponent implements OnInit {
 
   ];
 
-  carteraClientes: CarteraClientes[] = []
+  carteraClientes: CarteraClientes[] = [];
+  carteraMI: CarteraClientes[] = [];
   carteraInfo: any;
+
 
   detalle: Detalle[] = [];
 
@@ -153,6 +155,7 @@ export class CarteraClientesComponent implements OnInit {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
         console.log(this.detalle)
+
         this.loadingVisible = false;
       })
     });
@@ -234,11 +237,13 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-
+      console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
-      console.log(data.data)
+
+      this.carteraMI = data.data.carteraMensualIntercompanias;
+
       this.carteraInfo = data.data
 
       this.loadingVisible = false;
