@@ -385,6 +385,34 @@ export class CarteraClientesComponent implements OnInit {
     }
   }
 
+  onRowPreparedCMI(e: any){
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = 'black';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+    }
+  }
+
+  onCellPreparedCMI(e: any){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
 //====================personalize style excel========================================
   customizeCAER(e) {  
     var gridCell = e.gridCell;
@@ -469,6 +497,11 @@ export class CarteraClientesComponent implements OnInit {
 
   customizeDate(data) {
     data = "SUMA TERCEROS"
+    return data;
+  }
+
+  customizeIC(data){
+    data = "SUMA INTERCOMPAÑIAS "
     return data;
   }
 
