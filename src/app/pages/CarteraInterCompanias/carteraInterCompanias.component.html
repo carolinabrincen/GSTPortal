@@ -63,12 +63,19 @@
 <!--================================================= COMBO CLIENTES ASIGNACION====================================================================-->
             <dx-responsive-box>
                 
-                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
                 <dxi-col [ratio]="2"></dxi-col>
                 <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]="1.50"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".80"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
 
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
@@ -85,12 +92,34 @@
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
                     <dx-select-box [items]="clientes" displayExpr="cliente" valueExpr="idCliente" [searchEnabled]="true"
-                    [searchExpr]="['cliente']" (onValueChanged)="selectedClientes($event)" id="select">
+                    [searchExpr]="['cliente']" (onValueChanged)="selectedClientes($event)" id="select" [disabled]="showClientes">
                     </dx-select-box>
                 </dxi-item>
 
-                <dxi-item>
+                <dxi-item *ngIf="carteraTerceros.length !== 0">
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <div class="option">
+                        <dx-check-box text="GASTOS INTERCOMPAÑIAS" (onValueChanged)="checkBox($event)"></dx-check-box>
+                    </div>
+                </dxi-item>
+
+                <dxi-item *ngIf="carteraTerceros.length !== 0">
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Área intercompañia:</div>
+                </dxi-item>
+        
+                <dxi-item *ngIf="carteraTerceros.length !== 0">
+                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="areaInter" displayExpr="nombre" valueExpr="idArea" (onValueChanged)="selectAreaInter($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="2" [col]="8"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button *ngIf="clientesAsignados.length !== 0" stylingMode="contained" text="Asignar" type="success" [width]="120" (onClick)="postAsignarCliente()">
@@ -99,7 +128,7 @@
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+                    <dxi-location screen="md lg" [row]="2" [col]="9"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button *ngIf="clientesAsignados.length !== 0" stylingMode="contained" text="Limpiar" type="danger" [width]="120" (onClick)="limpiar()">
@@ -114,7 +143,7 @@
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
-            <dxo-selection *ngIf="selectCliente !== undefined" [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+            <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
 
             <dxi-column dataField="compania" caption="" [groupIndex]="0"></dxi-column>
             <dxi-column dataField="nombre" caption="" [groupIndex]="1"></dxi-column>
@@ -126,7 +155,8 @@
             <dxi-column dataField="documento" caption="DOCUMENTO" ></dxi-column>
             <dxi-column dataField="interIdCliente" caption="ID" ></dxi-column>
             <dxi-column dataField="interCliente" caption="CLIENTE INTERCOMPAÑIA" ></dxi-column>
-
+            <dxi-column dataField="interIdArea" caption="IdArea" ></dxi-column>
+            <dxi-column dataField="interArea" caption="Area" ></dxi-column>
             <!-- <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
             
             <dxi-column dataField="fechA_GUIA" caption="GUÍA" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>

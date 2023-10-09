@@ -51,6 +51,20 @@ export class CarteraInterCompaniasComponent implements OnInit {
     { id: 12, periodo: 202312 },
   ];
 
+  areaInter: any[] = [
+    {idArea: 1, nombre: 'TBK ORI' },
+    {idArea: 2, nombre: 'TBK GDL' },
+    {idArea: 3, nombre: 'TBK RAMOS' },
+    {idArea: 4, nombre: 'TBK MEX' },
+    {idArea: 5, nombre: 'TBK HER' },
+    {idArea: 6, nombre: 'TBK PAZ' },
+    {idArea: 7, nombre: 'ATM' },
+    {idArea: 8, nombre: 'TEISA' },
+    {idArea: 9, nombre: 'GEMINIS' },
+    {idArea: 10, nombre: 'GST' },
+
+  ]
+
   periodoActual: number;
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
@@ -70,6 +84,9 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
   clientes: CarteraInterCompanias[] = []
   selectCliente: number;
+
+  selectedIdAreaInter: number;
+  selectedAreaInter: string;
 
   buttonOptions: any = {
     text: 'Guardar',
@@ -94,6 +111,8 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
   clientesAsignados: ClientesAsignados[]=[]
   
+  showClientes: boolean = false;
+  validationChecBox: boolean = false;
 
   constructor(
     private carteaInterService: CarteraInterCompaniasService,
@@ -197,7 +216,21 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
   selectedClientes(e: any){
     this.selectCliente = e.value
-    console.log(this.selectCliente)
+  }
+
+  selectAreaInter(e: any){
+    this.selectedIdAreaInter = e.value;
+
+    if(e.value == 1){this.selectedAreaInter = "TBK ORI";}
+    if(e.value == 2){this.selectedAreaInter = "TBK GDL";}
+    if(e.value == 3){this.selectedAreaInter = "TBK RAMOS";}
+    if(e.value == 4){this.selectedAreaInter = "TBK MEX";}
+    if(e.value == 5){this.selectedAreaInter = "TBK HER";}
+    if(e.value == 6){this.selectedAreaInter = "TBK PAZ";}
+    if(e.value == 7){this.selectedAreaInter = "ATM";}
+    if(e.value == 8){this.selectedAreaInter = "TEISA";}
+    if(e.value == 9){this.selectedAreaInter = "GEMINIS";}
+    if(e.value == 10){this.selectedAreaInter = "GST";}
   }
 
 
@@ -215,46 +248,99 @@ export class CarteraInterCompaniasComponent implements OnInit {
   }
 
   postAsignarCliente(){
-    if(this.selectCliente !== undefined){
-      console.log(this.clientesAsignados)
-      this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
 
-        console.log(data)
+    if(this.validationChecBox == false){
+      if(this.selectCliente !== undefined && this.selectedIdAreaInter !== undefined){
+        console.log(this.clientesAsignados)
+        this.loadingVisible = true;
+        this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
 
-        if (data.responseCode === 200) {
-          notify({
-            message: "La asignación fue exitosa",
-            position: {
-              my: 'center center',
-              at: 'center center',
-            },
-          }, 'success', 3000);
+          console.log(data)
 
-          this.postCarteraCliente();
+          if (data.responseCode === 200) {
+            notify({
+              message: "La asignación fue exitosa",
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
 
-          let element = document.getElementById("select");
-          let instance = SelectBox.getInstance(element) as SelectBox;
+            this.postCarteraCliente();
 
-            // get value
-            let currentValue = instance.option("value");
-            // change value
-            instance.option("value", "");
+            let element = document.getElementById("select");
+            let instance = SelectBox.getInstance(element) as SelectBox;
+
+              // get value
+              let currentValue = instance.option("value");
+              // change value
+              instance.option("value", "");
 
 
-            this.selectCliente = undefined
-            this.clientesAsignados = [];
+              this.selectCliente = undefined
+              this.clientesAsignados = [];
 
-        }else{
-          notify({
-            message: "No se puedo asignar el cliente, intente mas tarde",
-            position: {
-              my: 'center center',
-              at: 'center center',
-            },
-          }, 'error', 3000);
-        }
+              this.loadingVisible = false;
+          }else{
+            notify({
+              message: "No se puedo asignar el cliente, intente mas tarde",
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 3000);
 
-      })
+            this.loadingVisible = false;
+          }
+
+        })
+      }
+    }else if(this.validationChecBox ==true){
+      if(this.selectedIdAreaInter !== undefined){
+        console.log(this.clientesAsignados)
+        this.loadingVisible = true;
+        this.carteaInterService.postAsignarCliente(this.clientesAsignados).subscribe(data =>{
+
+          console.log(data)
+
+          if (data.responseCode === 200) {
+            notify({
+              message: "La asignación fue exitosa",
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'success', 3000);
+
+            this.postCarteraCliente();
+
+            let element = document.getElementById("select");
+            let instance = SelectBox.getInstance(element) as SelectBox;
+
+              // get value
+              let currentValue = instance.option("value");
+              // change value
+              instance.option("value", "");
+
+
+              this.selectCliente = undefined
+              this.clientesAsignados = [];
+
+              this.loadingVisible = false;
+          }else{
+            notify({
+              message: "No se puedo asignar el cliente, intente mas tarde",
+              position: {
+                my: 'center center',
+                at: 'center center',
+              },
+            }, 'error', 3000);
+
+            this.loadingVisible = false;
+          }
+
+        })
+      }
     }
   }
 
@@ -453,42 +539,85 @@ export class CarteraInterCompaniasComponent implements OnInit {
     var myAsignacion = new ClientesAsignados;
     var idUsuario = this.storageService.getSession("username")
 
+    if(this.validationChecBox == false){
+      if(event.row?.isSelected == true){
+        //console.log("TRUE ==>")
+        //console.log(event)
 
-    if(event.row?.isSelected == true){
-      //console.log("TRUE ==>")
-      //console.log(event)
+        myAsignacion.idModifico = idUsuario;
+        myAsignacion.idCliente = this.selectCliente;
+        myAsignacion.idCompania = event.row.data.iD_AREA;
+        myAsignacion.documento = event.row.data.documento;
+        myAsignacion.idAreaCliente = this.selectedIdAreaInter;
+        myAsignacion.areaCliente = this.selectedAreaInter;
 
-      myAsignacion.idModifico = idUsuario;
-      myAsignacion.idCliente = this.selectCliente;
-      myAsignacion.idCompania = event.row.data.iD_AREA;
-      myAsignacion.documento = event.row.data.documento;
-
-      this.clientesAsignados.push(myAsignacion)
-      console.log(this.clientesAsignados)
-    }
-
-    if(event.row?.isSelected == false){
-      //console.log("FALSE ==>")
-
-      // Definir variable que tendrá la posición del elemento a borrar
-      let borrar = -1;
-      // Recorrer arreglo por elemento y posición
-      this.clientesAsignados.forEach((item, index) => {
-        if(item.documento == event.row.data.documento) {
-            // Si el elemento coincide, actualizar variable
-            borrar = index;
-            // No hay posibilidad de usar break para cancelar
-            // En todo caso, si son muchos elementos, conviene mejor usar un ciclo for
-        }
-      });
-      
-      // Borrar el elemento si existe en el arreglo
-      if(borrar >= 0) {
-        this.clientesAsignados.splice(borrar, 1);
+        this.clientesAsignados.push(myAsignacion)
+        console.log(this.clientesAsignados)
       }
-      console.log(this.clientesAsignados);
 
+      if(event.row?.isSelected == false){
+        //console.log("FALSE ==>")
+  
+        // Definir variable que tendrá la posición del elemento a borrar
+        let borrar = -1;
+        // Recorrer arreglo por elemento y posición
+        this.clientesAsignados.forEach((item, index) => {
+          if(item.documento == event.row.data.documento) {
+              // Si el elemento coincide, actualizar variable
+              borrar = index;
+              // No hay posibilidad de usar break para cancelar
+              // En todo caso, si son muchos elementos, conviene mejor usar un ciclo for
+          }
+        });
+        
+        // Borrar el elemento si existe en el arreglo
+        if(borrar >= 0) {
+          this.clientesAsignados.splice(borrar, 1);
+        }
+        console.log(this.clientesAsignados);
+  
+      }
+    }else if(this.validationChecBox == true){
+      if(event.row?.isSelected == true){
+        //console.log("TRUE ==>")
+        //console.log(event)
+
+        myAsignacion.idModifico = idUsuario;
+        myAsignacion.idCliente = 0;
+        myAsignacion.idCompania = event.row.data.iD_AREA;
+        myAsignacion.documento = event.row.data.documento;
+        myAsignacion.idAreaCliente = this.selectedIdAreaInter;
+        myAsignacion.areaCliente = this.selectedAreaInter;
+
+        this.clientesAsignados.push(myAsignacion)
+        console.log(this.clientesAsignados)
+      }
+
+      if(event.row?.isSelected == false){
+        //console.log("FALSE ==>")
+  
+        // Definir variable que tendrá la posición del elemento a borrar
+        let borrar = -1;
+        // Recorrer arreglo por elemento y posición
+        this.clientesAsignados.forEach((item, index) => {
+          if(item.documento == event.row.data.documento) {
+              // Si el elemento coincide, actualizar variable
+              borrar = index;
+              // No hay posibilidad de usar break para cancelar
+              // En todo caso, si son muchos elementos, conviene mejor usar un ciclo for
+          }
+        });
+        
+        // Borrar el elemento si existe en el arreglo
+        if(borrar >= 0) {
+          this.clientesAsignados.splice(borrar, 1);
+        }
+        console.log(this.clientesAsignados);
+  
+      }
     }
+
+
 
   }
 
@@ -496,6 +625,30 @@ export class CarteraInterCompaniasComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./carteraInterCompanias'])
+  }
+
+  checkBox(value){
+    this.validationChecBox = value.value;
+    if(value.value == true){
+      this.showClientes = true;
+      
+      let element = document.getElementById("select");
+      let instance = SelectBox.getInstance(element) as SelectBox;
+
+        // get value
+        let currentValue = instance.option("value");
+        // change value
+        instance.option("value", "");
+
+
+        this.selectCliente = undefined;
+        this.clientesAsignados = [];
+
+      console.log(value.value)
+    }else if(value.value == false){
+      this.showClientes = false;
+      console.log(value.value)
+    }
   }
 }
 
