@@ -116,10 +116,24 @@
                     </dx-select-box>
                 </dxi-item>
 
+            </dx-responsive-box>
+            <br><br>
+            <dx-responsive-box>
 
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="8"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button *ngIf="clientesAsignados.length !== 0" stylingMode="contained" text="Asignar" type="success" [width]="120" (onClick)="postAsignarCliente()">
@@ -128,7 +142,7 @@
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="9"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button *ngIf="clientesAsignados.length !== 0" stylingMode="contained" text="Limpiar" type="danger" [width]="120" (onClick)="limpiar()">
@@ -151,16 +165,16 @@
             <dxi-column dataField="compania" caption="" [groupIndex]="0"></dxi-column>
             <dxi-column dataField="nombre" caption="" [groupIndex]="1"></dxi-column>
             
-            <dxi-column dataField="iD_AREA" caption="ID"></dxi-column>
-            <dxi-column dataField="compania" caption="COMPAÑIA"></dxi-column>
-            <dxi-column dataField="cliente" caption="CLIENTE"></dxi-column>
-            <dxi-column dataField="nombre" caption="NOMBRE"></dxi-column>
-            <dxi-column dataField="documento" caption="DOCUMENTO" ></dxi-column>
-            <dxi-column dataField="totaL_INTEGRADO" caption="Monto" [format]="separator" ></dxi-column>
-            <dxi-column dataField="interIdCliente" caption="ID" ></dxi-column>
-            <dxi-column dataField="interCliente" caption="CLIENTE INTERCOMPAÑIA" ></dxi-column>
-            <dxi-column dataField="interIdArea" caption="IdArea" ></dxi-column>
-            <dxi-column dataField="interArea" caption="Area" ></dxi-column>
+            <dxi-column dataField="iD_AREA" caption="ID" [width]="100"></dxi-column>
+            <dxi-column dataField="compania" caption="COMPAÑIA" [width]="100"></dxi-column>
+            <dxi-column dataField="cliente" caption="CLIENTE" [width]="100"></dxi-column>
+            <dxi-column dataField="nombre" caption="NOMBRE" [width]="100"></dxi-column>
+            <dxi-column dataField="documento" caption="DOCUMENTO" [width]="100"></dxi-column>
+            <dxi-column dataField="totaL_INTEGRADO" caption="MONTO" [width]="100" [format]="separator" ></dxi-column>
+            <dxi-column dataField="interIdCliente" caption="ID" [width]="100"></dxi-column>
+            <dxi-column dataField="interCliente" caption="CLIENTE INTERCOMPAÑIA" [width]="150"></dxi-column>
+            <dxi-column dataField="interIdArea" caption="ID ÁREA" [width]="130"></dxi-column>
+            <dxi-column dataField="interArea" caption="ÁREA" [width]="100"></dxi-column>
             <!-- <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
             
             <dxi-column dataField="fechA_GUIA" caption="GUÍA" dataType="date" format="dd/mm/yyyy" [width]="150"></dxi-column>
