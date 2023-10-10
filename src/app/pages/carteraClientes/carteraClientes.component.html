@@ -144,6 +144,7 @@
             </dx-popup>
 
             <br><br>
+<!--================================================CARTERA INTER ====================================================================================-->
             <dx-data-grid  #ER id="gridContainer3" [dataSource]="carteraMI" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedCMI($event)" (onCellPrepared)="onCellPreparedCMI($event)">
 
@@ -175,9 +176,36 @@
               </dxo-summary>
 
             </dx-data-grid>
+            
+            <br><br>
+<!--=========================================TOTAL CARTERA CIENTE Y CARTERA INTER======================================================================-->
+            <dx-data-grid  #ER id="gridContainer3" [dataSource]="myTotal" [showBorders]="true" [height]="120" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedCMI($event)" (onCellPrepared)="onCellPreparedCMI($event)">
 
+              <dxo-scrolling showScrollbar="never"></dxo-scrolling>
+             <!--  <dxo-paging [pageSize]="100"></dxo-paging>
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel> -->
+              <dxo-export [enabled]="true" fileName="Total carteras" [customizeExcelCell]="customizeCAER"></dxo-export>
+            
+                <dxi-column dataField="intercompania" caption=""></dxi-column>
+                <dxi-column dataField="corriente" caption="" [format]="separator"></dxi-column>
+                <dxi-column dataField="unoA30" caption="" [format]="separator"></dxi-column>
+                <dxi-column dataField="tre1A60" caption="" [format]="separator"></dxi-column>
+                <dxi-column dataField="ses0A90" caption="" [format]="separator"></dxi-column>
+                <dxi-column dataField="mas90" caption="" [format]="separator"></dxi-column>
+                <dxi-column dataField="total" caption="" cssClass="styletotal" [format]="separator"></dxi-column>
+              
+                <!-- <dxo-summary>
+                    <dxi-total-item column="1" [customizeText]="customizeTotal"></dxi-total-item>
+                    <dxi-total-item column="2" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                    <dxi-total-item column="3" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                    <dxi-total-item column="4" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                    <dxi-total-item column="5" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                    <dxi-total-item column="6" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                    <dxi-total-item column="7" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" ></dxi-total-item>
+                  </dxo-summary> -->
 
-
+            </dx-data-grid>
         </dxi-item>
 
         <dxi-item title="Detalle">

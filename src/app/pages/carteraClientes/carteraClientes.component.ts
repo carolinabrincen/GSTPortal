@@ -14,6 +14,10 @@ import Validator from 'devextreme/ui/validator';
 import { StorageService } from '../../shared/services/storage.service';
 import notify from 'devextreme/ui/notify';
 
+import { Totales, Total } from '../../shared/models/carteraClientes/totales';
+
+const totales = new Totales;
+const total = new Total;
 @Component({
   templateUrl: './carteraClientes.component.html',
   styleUrls: ['./carteraClientes.component.scss'],
@@ -154,7 +158,7 @@ export class CarteraClientesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
-        console.log(this.detalle)
+        //console.log(this.detalle)
 
         this.loadingVisible = false;
       })
@@ -165,7 +169,7 @@ export class CarteraClientesComponent implements OnInit {
   getPeriodo(){
     this.carteraClientesService.getPeriodoActual().subscribe(data => {
       this.periodoActual = data.data;
-      console.log(data)
+     // console.log(data)
     })
   }
 
@@ -237,7 +241,7 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-      console.log(data.data)
+     // console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
@@ -254,7 +258,7 @@ export class CarteraClientesComponent implements OnInit {
   getUserName(){
     this.username = this.storageService.getSession("username");
 
-    console.log(this.username)
+    //console.log(this.username)
   }
 
   guardarCotizacionClick(e) {
@@ -263,7 +267,7 @@ export class CarteraClientesComponent implements OnInit {
     this.loadingVisible = true;
 
     this.carteraClientesService.postCierreCartera(this.username, this.formCierre.Contraseña).subscribe(data =>{
-      console.log(data)
+      //console.log(data)
 
       if (data.responseCode === 200) {
 
@@ -370,6 +374,27 @@ export class CarteraClientesComponent implements OnInit {
       }
      
     }
+
+    if(e.rowType == 'totalFooter'){
+      if(e.summaryCells[1].length !== 0){
+      totales.corriente =  e.summaryCells[1][0].value
+      }
+      if(e.summaryCells[2].length !== 0){
+      totales.unoA30 = e.summaryCells[2][0].value
+      }
+      if(e.summaryCells[3].length !== 0){
+      totales.tre1A60 = e.summaryCells[3][0].value
+      }
+      if(e.summaryCells[4].length !== 0){
+      totales.ses0A90 = e.summaryCells[4][0].value
+      }
+      if(e.summaryCells[5].length !== 0){
+      totales.mas90 = e.summaryCells[5][0].value
+      }
+      if(e.summaryCells[6].length !== 0){
+      totales.total = e.summaryCells[6][0].value
+      }
+    }
   }
 
   onCellPreparedCC(e: any){
@@ -385,12 +410,54 @@ export class CarteraClientesComponent implements OnInit {
     }
   }
 
+  myTotal: any[] = [];
   onRowPreparedCMI(e: any){
     if (e.rowType == 'group') {
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = 'black';
         e.rowElement.style.color = "black";
         e.rowElement.style.fontWeight = "bolder";
+      }
+    }
+
+
+    if(e.rowType == 'totalFooter'){
+      if(e.summaryCells[2].length !== 0){
+        total.corriente = totales.corriente + e.summaryCells[2][0].value
+      }
+      if(e.summaryCells[3].length !== 0){
+        total.unoA30 = totales.unoA30 + e.summaryCells[3][0].value
+      }
+      if(e.summaryCells[4].length !== 0){
+        total.tre1A60 = totales.tre1A60 + e.summaryCells[4][0].value
+      }
+      if(e.summaryCells[5].length !== 0){
+        total.ses0A90 = totales.ses0A90 + e.summaryCells[5][0].value
+      }
+      if(e.summaryCells[6].length !== 0){
+        total.mas90 = totales.mas90 + e.summaryCells[6][0].value
+      }
+      if(e.summaryCells[7].length !== 0){
+        total.total = totales.total + e.summaryCells[7][0].value
+      }
+
+      if(total.corriente !==undefined){
+        var myTotales = new Total;
+
+        myTotales.intercompania = "Suma total de cartera"
+        myTotales.corriente = total.corriente;
+        myTotales.unoA30 = total.unoA30;
+        myTotales.tre1A60 = total.tre1A60;
+        myTotales.ses0A90 = total.ses0A90;
+        myTotales.mas90 = total.mas90;
+        myTotales.total = total.total;
+        
+        this.myTotal.push(myTotales);
+        console.log(this.myTotal)
+      }
+
+      if(this.myTotal.length !== 0){
+        this.myTotal.sort((a, b) => (a.corriente > b.corriente ? -1 : 1));
       }
     }
   }
@@ -411,6 +478,19 @@ export class CarteraClientesComponent implements OnInit {
             c.cellElement.style.color = "black"; 
         }   
       });
+    }
+  }
+
+  onRowPreparedTotal(e: any){
+
+  }
+  onCellPreparedTotal(e: any){
+//console.log(e)
+    if (e.rowType == 'totalFooter') {
+      //console.log(e)
+      e.totalItem.cells.forEach((c: any) => {
+        //console.log(c)
+      })
     }
   }
 //====================personalize style excel========================================
@@ -505,6 +585,10 @@ export class CarteraClientesComponent implements OnInit {
     return data;
   }
 
+  customizeTotal(data){
+    data = "Suma total de cartera"
+    return data;
+  }
   customizeDateDetalle(data) {
     data = "TOTAL"
     return data;
@@ -525,7 +609,7 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   Cancelar(e){
-    console.log(e)
+   // console.log(e)
     this.modPeriodo = false;
   }
 }
