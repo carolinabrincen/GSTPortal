@@ -227,18 +227,19 @@
             (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
 
             <dxi-column dataField="compania" caption="" [groupIndex]="0"></dxi-column>
             <dxi-column dataField="nombre" caption="" [groupIndex]="1"></dxi-column>
             
-            <dxi-column dataField="iD_AREA" caption="ID" [width]="50" [fixed]="true"></dxi-column>
-            <dxi-column dataField="compania" caption="COMPAÑIA" [width]="100" [fixed]="true"></dxi-column>
-            <dxi-column dataField="cliente" caption="CLIENTE" [width]="80" [fixed]="true"></dxi-column>
+            <dxi-column dataField="iD_AREA" caption="ID" [width]="80" [fixed]="true"></dxi-column>
+            <dxi-column dataField="compania" caption="COMPAÑIA" [width]="120" [fixed]="true"></dxi-column>
+            <dxi-column dataField="cliente" caption="CLIENTE" [width]="100" [fixed]="true"></dxi-column>
             <dxi-column dataField="nombre" caption="NOMBRE" [width]="250" [fixed]="true"></dxi-column>
             <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
             <dxi-column dataField="documento" caption="DOCUMENTO" [width]="120"></dxi-column>            
             <dxi-column dataField="fechA_GUIA" caption="GUÍA" dataType="date" format="MM/dd/yyyy" [width]="150"></dxi-column>
+            <dxi-column dataField="diaS_SIN_CARTA_C" caption="DÍAS SIN CARTA" [width]="160"></dxi-column>
             <dxi-column dataField="nocarta" caption="NO. CARTA" [width]="100"></dxi-column> 
             <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column>
             <dxi-column dataField="observaciones" caption="OBSERVACIONES" [width]="200"></dxi-column> 

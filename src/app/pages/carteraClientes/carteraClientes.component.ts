@@ -158,7 +158,7 @@ export class CarteraClientesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
-        //console.log(this.detalle)
+        console.log(this.detalle)
 
         this.loadingVisible = false;
       })
