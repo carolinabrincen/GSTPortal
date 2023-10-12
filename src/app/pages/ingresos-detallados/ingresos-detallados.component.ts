@@ -206,14 +206,18 @@ export class IngresosDetalladosComponent implements OnInit {
 
   onRowPrepared(e: any) {
     
+    if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
 
-    // if (e.rowType == 'group') {
-    //   if (e.groupIndex == 0) {
-    //     e.rowElement.style.backgroundColor = '#ff9460';
-    //     e.rowElement.style.color = "white";
-    //   }
-      
-    // }
+        if (c.cellElement) {
+          if (c.columnIndex == 15){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+        }
+      });
+    }
 
     if (e.rowType == 'groupFooter') {
 

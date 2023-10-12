@@ -1727,7 +1727,8 @@
         <dxi-item title="Oct 2023">
             <!--#region :::: GRID PRINCIPAL::::  -->
 
-            <dx-data-grid #Abr id="gridContainer3" [dataSource]="arrIngresosOctubre" [height]="500" [showBorders]="true" [columnAutoWidth]="true" (onRowPrepared)="onRowPrepared($event)">
+            <dx-data-grid #Abr id="gridContainer3" [dataSource]="arrIngresosOctubre" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
+             (onRowPrepared)="onRowPrepared($event)">
 
                 <dxo-export [enabled]="true"></dxo-export>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
@@ -1740,7 +1741,7 @@
                     <dxi-column dataField="refacturado" caption="Refacturado" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="cancelacionProvision" caption="Prov. Cancelada" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="maSolicitudCancelacion" caption="Cancelado" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="maTotal" caption="Total Mes Anterior" headerCellTemplate="headerTemplate"></dxi-column>
                 </dxi-column>
 
@@ -1751,9 +1752,9 @@
                     <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" alignment="right" headerCellTemplate="headerTemplate"></dxi-column>
                 </dxi-column>
 
-                <dxi-column caption="INGRESO DEL MES" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
-                    <dxi-column dataField="maTotal" caption="Total Mes Anterior" headerCellTemplate="headerTemplate"></dxi-column>
-                    <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" alignment="right" headerCellTemplate="headerTemplate"></dxi-column>
+                <dxi-column caption="RESUMEN DEL MES" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
+                    <dxi-column dataField="maTotal" caption="Total Mes Anterior" [width]="150" headerCellTemplate="headerTemplate"></dxi-column>
+                    <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" [width]="150" alignment="right" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="right" [width]="120" headerCellTemplate="headerTemplate"></dxi-column>
                     <dxi-column dataField="total" caption="TOTAL" alignment="right" headerCellTemplate="headerTemplate"></dxi-column>
                 </dxi-column>    
