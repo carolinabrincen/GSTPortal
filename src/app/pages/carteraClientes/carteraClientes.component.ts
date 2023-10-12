@@ -228,6 +228,7 @@ export class CarteraClientesComponent implements OnInit {
   postCarteraCliente(){
     var myTipo = 0;
     this.loadingVisible = true;
+    this.myTotal = [];
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
 
@@ -317,6 +318,7 @@ export class CarteraClientesComponent implements OnInit {
   Actualizar(){
     var myTipo = 1
     this.loadingVisible = true;
+    this.myTotal = [];
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
 
