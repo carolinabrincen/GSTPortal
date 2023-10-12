@@ -226,7 +226,8 @@ export class CarteraClientesComponent implements OnInit {
 
 
   postCarteraCliente(){
-    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera).subscribe(data => {
+    var myTipo = 0;
+    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
 
       if(data.data != undefined || data.data != null){
@@ -311,6 +312,37 @@ export class CarteraClientesComponent implements OnInit {
     })
    
   }
+
+  Actualizar(){
+    var myTipo = 1
+    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
+      
+
+      if(data.data != undefined || data.data != null){
+
+        var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
+        var sinCarta = new Intl.NumberFormat().format(data.data.facturasSinCarta);
+        var total = new Intl.NumberFormat().format(data.data.facturasTotal);
+
+        data.data.facturasConCarta = conCarta;
+        data.data.facturasSinCarta = sinCarta;
+        data.data.facturasTotal = total;
+        
+      }
+
+     // console.log(data.data)
+
+      this.carteraClientes = data.data.carteraMensual;
+      this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+
+      this.carteraMI = data.data.carteraMensualIntercompanias;
+
+      this.carteraInfo = data.data
+
+      this.loadingVisible = false;
+    })
+  }
+
 
   ActuaizarDetalle(){
     this.getCarteraDetalle();

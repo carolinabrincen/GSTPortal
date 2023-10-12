@@ -269,11 +269,17 @@ onRowPreparedOct(e: any) {
   }
 
   if (e.rowType == 'group') {
-    console.log(e.summaryCells)
+    //console.log(e.summaryCells)
   }
 }
 
 onCellPreparedOct(e: any){
+
+  if(e.rowType === 'header') {  
+    //console.log(e)
+       //e.cellElement.css("backgroundColor", "blue");  
+  }  
+ 
   if (e.rowType == 'group') {
     //console.log(e.summaryCells)
   }
