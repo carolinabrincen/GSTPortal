@@ -562,12 +562,13 @@ export class CarteraClientesComponent implements OnInit {
 
 //==================Formato solo comas===============================================  
   separator(value) {
-    var myvalue = Math.trunc(value);
+    var x = Math.round(value)
+
+    var myvalue = Math.trunc(x);
 
     var myFormat = myvalue.toString().split(".");
     myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
-
     return '$ '+myFormat.join("");
   }
 
