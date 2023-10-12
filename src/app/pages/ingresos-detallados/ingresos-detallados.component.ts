@@ -207,25 +207,32 @@ export class IngresosDetalladosComponent implements OnInit {
   onRowPrepared(e: any) {
     
     if (e.rowType == 'data') {
+
       e.cells.forEach((c: any) => {
 
+        // if (c.value && c.value.toString().startsWith('-')) {
+        //   c.cellElement.style.color = "red";
+        // }
+
         if (c.cellElement) {
-          if (c.columnIndex == 15){
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
-          }
+          // if (c.columnIndex == 15){
+          //   c.cellElement.style.fontWeight = "bolder";
+          //   c.cellElement.style.fontSize = "15px";
+          //   c.cellElement.style.background = "#f5f5f5";
+          // }
         }
       });
     }
 
-    if (e.rowType == 'groupFooter') {
+    if (e.rowType == 'group') {
 
-      
 
       e.cells.forEach((c: any) => {
 
-        
+          //poner en rojo negativos
+          if (c.summaryCells && c.summaryCells[6][0].value.toString().startsWith('-')) {
+            c.cellElement.style.color = "red";
+          }
 
           //negrita columna margen utilidad
           if (c.columnIndex == 9  || c.columnIndex == 12) {
@@ -238,6 +245,37 @@ export class IngresosDetalladosComponent implements OnInit {
           
         });
 
+  }
+}
+
+onRowPreparedOct(e: any) {
+    
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+      if (c.value && c.value.toString().startsWith('-')) {
+        c.cellElement.style.color = "red";
+      }
+
+      if (c.cellElement) {
+        if (c.columnIndex == 15){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#f5f5f5";
+        }
+      }
+    });
+  }
+
+  if (e.rowType == 'group') {
+    console.log(e.summaryCells)
+  }
+}
+
+onCellPreparedOct(e: any){
+  if (e.rowType == 'group') {
+    //console.log(e.summaryCells)
   }
 }
 
