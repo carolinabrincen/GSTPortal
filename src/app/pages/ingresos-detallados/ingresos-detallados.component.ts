@@ -292,5 +292,8 @@ Actualizar(e: any){
   this.getIDMMayo();
   this.getIDMJunio();
   this.getIDMJulio();
+  this.getIDMAgosto();
+  this.getIDMSeptiembre();
+  this.getIDMOctubre();
 }
 }
