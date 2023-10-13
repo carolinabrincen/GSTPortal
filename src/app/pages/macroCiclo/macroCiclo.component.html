@@ -65,7 +65,7 @@
             (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
 
             <dxi-column dataField="udN" caption="UdN" [allowSorting]="true" [width]="100"></dxi-column>
             <dxi-column dataField="ruta" caption="Ruta" [allowSorting]="true" [width]="250"></dxi-column>
@@ -120,8 +120,8 @@
              [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-
                 <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
                 
                 <dxi-column dataField="area" caption="Área" [fixed]="true" [width]="100"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" [width]="100"></dxi-column>
@@ -152,18 +152,6 @@
                 <dxi-column dataField="idArea" caption="Id área" [width]="100"></dxi-column> -->
 
 
-
-
-
-
- 
-
-
-
-
-
-
-
                 <div *dxTemplate="let data of 'headerTemplate'">
                     <div style="font-weight: bolder; color: black">
                         {{ data.column.caption }}
@@ -176,7 +164,7 @@
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
                 </dxo-pager>
-                <dxo-sorting mode="none"></dxo-sorting>
+                <dxo-sorting mode="multiple"></dxo-sorting>
             </dx-data-grid>
         </dx-scroll-view>
     </div>
