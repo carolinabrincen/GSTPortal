@@ -156,7 +156,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
     this.macrocicloService.postMacrociclo(anio, mes, udn, tipoOp).subscribe(data => {
       this.macroCiclo = data.data
-        //console.log(data.data)
+        console.log(data.data)
       
       this.loadingVisible = false;
     })
@@ -271,6 +271,21 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     
 
     return myFormat.join("");
+  }
+
+  separatorPesos(value) {
+
+    // var str = value.toString().split(".");
+    // str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // return str.join(".");
+
+    var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return '$ '+myFormat.join("");
   }
 
   redondear(value){
