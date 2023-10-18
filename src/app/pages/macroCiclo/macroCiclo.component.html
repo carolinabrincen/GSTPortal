@@ -68,16 +68,23 @@
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
 
-            <dxi-column dataField="udN" caption="UdN" [allowSorting]="true" [width]="100"></dxi-column>
-            <dxi-column dataField="ruta" caption="Ruta" [allowSorting]="true" [width]="250"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operación" [width]="130"></dxi-column>
+            <dxi-column dataField="udN" caption="UdN" [fixed]="true" [allowSorting]="true" [width]="100"></dxi-column>
+            <dxi-column dataField="ruta" caption="Ruta" [fixed]="true" [allowSorting]="true" [width]="250"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="130"></dxi-column>
+
             <dxi-column dataField="viajes" caption="Viajes" [allowFiltering]="false" [width]="100"></dxi-column>
-            <dxi-column dataField="viajesCargados" caption="Viajes cargados" [allowFiltering]="false" [width]="150"></dxi-column>
-            <dxi-column dataField="kmsCargados" caption="Kms. Cargados" [format]="separator" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="kmsCargadosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
-            <dxi-column dataField="viajesVacio" caption="Viajes vacios" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="kmsVacios" caption="Kms. Vacios" [format]="separator" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
+
+            <dxi-column caption="Viajes Cargados">            
+                <dxi-column dataField="viajesCargados" caption="Viajes cargados" [allowFiltering]="false" [width]="150"></dxi-column>
+                <dxi-column dataField="kmsCargados" caption="Kms. Cargados" [format]="separator" [allowFiltering]="false" [width]="130"></dxi-column>
+                <dxi-column dataField="kmsCargadosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="Viajes Vacíos">
+                <dxi-column dataField="viajesVacio" caption="Cantidad" [allowFiltering]="false" [width]="130"></dxi-column>
+                <dxi-column dataField="kmsVacios" caption="Kms. Vacios" [format]="separator" [allowFiltering]="false" [width]="130"></dxi-column>
+                <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
+            </dxi-column>
+
             <dxi-column dataField="clienteAtendido" caption="Cliente atendido" [allowFiltering]="false" [width]="150"></dxi-column>
             <dxi-column dataField="operadorCiclo" caption="Operadores" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="inicio" caption="Fecha inicio" dataType="date" format="dd/mm/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
