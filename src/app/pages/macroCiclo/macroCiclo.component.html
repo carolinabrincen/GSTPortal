@@ -1,3 +1,5 @@
+<h2 class="content-block">Ingreso por Kilómetro (Macrociclo)</h2>
+
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
 
@@ -85,7 +87,7 @@
             <dxi-column dataField="operadorCiclo" caption="Operadores" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/MM/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="dias" caption="Días" [allowFiltering]="false" [width]="100" ></dxi-column>
+            <dxi-column dataField="dias" caption="Días" [allowFiltering]="false" [width]="70" ></dxi-column>
            
             <dxi-column caption="Total">
                 <dxi-column dataField="viajes" caption="Viajes" [allowFiltering]="false" [width]="100"></dxi-column>
@@ -130,15 +132,15 @@
                 <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 
-                <dxi-column dataField="area" caption="Área" [fixed]="true" [width]="100"></dxi-column>
+                <dxi-column dataField="area" caption="UdN" [fixed]="true" [width]="150"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" [width]="100"></dxi-column>
-                <dxi-column dataField="operador" caption="Operador" [fixed]="true" [width]="170"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [fixed]="true" [width]="200"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="140"></dxi-column>
                 <dxi-column dataField="noViaje" caption="No. Viaje" [fixed]="true" [width]="100"></dxi-column>
-                <dxi-column dataField="tipoViaje" caption="Tipo viaje" [fixed]="true" [width]="100"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo de Viaje" [fixed]="true" [width]="150"></dxi-column>
                 
                 <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
-                <dxi-column dataField="cliente" caption="Cliente" [width]="150"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="180"></dxi-column>
                 <dxi-column dataField="origen" caption="Origen" [width]="180"></dxi-column>
                 <dxi-column dataField="municipioOrigen" caption="Municipio Origen" [width]="130"></dxi-column>
                 <dxi-column dataField="edoOrigen" caption="Edo. Origen" [width]="130"></dxi-column>
