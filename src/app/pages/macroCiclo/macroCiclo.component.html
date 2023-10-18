@@ -71,9 +71,6 @@
             <dxi-column dataField="udN" caption="UdN" [fixed]="true" [allowSorting]="true" [width]="100"></dxi-column>
             <dxi-column dataField="ruta" caption="Ruta" [fixed]="true" [allowSorting]="true" [width]="250"></dxi-column>
             <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="130"></dxi-column>
-
-            <dxi-column dataField="viajes" caption="Viajes" [allowFiltering]="false" [width]="100"></dxi-column>
-
             <dxi-column caption="Viajes Cargados">            
                 <dxi-column dataField="viajesCargados" caption="Cantidad" [allowFiltering]="false" [width]="100"></dxi-column>
                 <dxi-column dataField="kmsCargados" caption="Kms" [format]="separator" [allowFiltering]="false" [width]="100"></dxi-column>
@@ -84,12 +81,12 @@
                 <dxi-column dataField="kmsVacios" caption="Kms" [format]="separator" [allowFiltering]="false" [width]="100"></dxi-column>
                 <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
             </dxi-column>
-
             <dxi-column dataField="clienteAtendido" caption="Clientes Atendidos" [allowFiltering]="false" [width]="150"></dxi-column>
             <dxi-column dataField="operadorCiclo" caption="Operadores" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/mm/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/mm/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
             <dxi-column dataField="dias" caption="Días" [allowFiltering]="false" [width]="100" ></dxi-column>
+            <dxi-column dataField="viajes" caption="Viajes" [allowFiltering]="false" [width]="100"></dxi-column>
             <dxi-column dataField="kms" caption="Kilometros" [format]="separator" [allowFiltering]="false" [width]="120"></dxi-column>
             <dxi-column dataField="flete" caption="Flete" [format]="separatorPesos" [allowFiltering]="false" [width]="100"></dxi-column>
             <dxi-column dataField="ingrXKm" caption="Ingreso por Kilometro" [format]="redondear" [allowFiltering]="false" [width]="180"></dxi-column>
