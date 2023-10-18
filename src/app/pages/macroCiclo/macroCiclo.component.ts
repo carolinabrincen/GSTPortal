@@ -70,13 +70,27 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   modDetalle: boolean;
 
+  showFilterRow: boolean;
+  currentFilter: any;
+  applyFilterTypes: any;
+
   constructor(
     private macrocicloService: MarcroCicloService,
     private storageService: StorageService,
     private router: Router,
     private route: ActivatedRoute,
     ) {
+        this.showFilterRow = true;
 
+
+        this.applyFilterTypes = [{
+          key: 'auto',
+          name: 'Immediately',
+        }, {
+          key: 'onClick',
+          name: 'On Button Click',
+        }];
+        this.currentFilter = this.applyFilterTypes[0].key;
     }
 
 
