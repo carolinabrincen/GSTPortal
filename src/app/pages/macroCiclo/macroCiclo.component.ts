@@ -34,20 +34,56 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   macroCiclo: MacroCiclo[] = [];
   detalleMacro: any[] = [];
 
-  periodo: any[] = [
-    // { id: 1, periodo: 202301 },
-    // { id: 2, periodo: 202302 },
-    // { id: 3, periodo: 202303 },
-    // { id: 4, periodo: 202304 },
-    // { id: 5, periodo: 202305 },
-    // { id: 6, periodo: 202306 },
-    { id: 7, periodo: 202307 },
-    { id: 8, periodo: 202308 },
-    { id: 9, periodo: 202309 },
-    { id: 10, periodo: 202310 },
-    { id: 11, periodo: 202311 },
-    { id: 12, periodo: 202312 },
+  area: any[] = [
+    {id: 0, area: 'TODOS'}
   ];
+
+  operacion: any[] = [
+    {id: 0, operacion: 'TODOS'},
+    {id: 1, operacion: 'CAJA SECA'},
+    {id: 2, operacion: 'ENCORTINADO'},
+    {id: 3, operacion: 'GONDOLA'},
+    {id: 4, operacion: 'GRADO ALIMENT'},
+    {id: 5, operacion: 'TOLVA GRANEL'},
+  ];
+
+  estados: any[] = [
+    {id: 1, estado: 'AGS'},
+    {id: 2, estado: 'BCN'},
+    {id: 3, estado: 'BCS'},
+    {id: 4, estado: 'CAMP'},
+    {id: 5, estado: 'CHIH'},
+    {id: 6, estado: 'CHIS'},
+    {id: 7, estado: 'COAH'},
+    {id: 8, estado: 'COL'},
+    {id: 9, estado: 'DF'},
+    {id: 10, estado: 'DGO'},
+    {id: 11, estado: 'GRO'},
+    {id: 12, estado: 'GTO'},
+    {id: 13, estado: 'HGO'},
+    {id: 14, estado: 'JAL'},
+    {id: 15, estado: 'MEX'},
+    {id: 16, estado: 'MICH'}, 
+    {id: 17, estado: 'MOR'},
+    {id: 18, estado: 'NA'},
+    {id: 19, estado: 'NAY'},
+    {id: 20, estado: 'NL'},
+    {id: 21, estado: 'OAX'},
+    {id: 22, estado: 'PUE'},
+    {id: 23, estado: 'QR'},
+    {id: 24, estado: 'QROO'},
+    {id: 25, estado: 'SIN'},
+    {id: 26, estado: 'SLP'},
+    {id: 27, estado: 'SON'},
+    {id: 28, estado: 'TAB'},
+    {id: 29, estado: 'TAMP'},
+    {id: 31, estado: 'TLAX'},
+    {id: 32, estado: 'VER'},
+    {id: 33, estado: 'YUC'},
+    {id: 34, estado: 'ZAC'}
+  ]
+
+  unidadNegoios: any[] = [];
 
   periodoActual: number;
 
@@ -74,6 +110,10 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   currentFilter: any;
   applyFilterTypes: any;
 
+  selectedEstados: string[] = [];
+  selectedUdN: number;
+  selectedOperacion: string;
+
   constructor(
     private macrocicloService: MarcroCicloService,
     private storageService: StorageService,
@@ -97,78 +137,40 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getCarteraDetalle();
-    this.postMacroCiclo()
+    this.getUnidadesNegocio();
   }
 
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
+  getUnidadesNegocio() {
+    this.macrocicloService.getUnidadesNegocio().subscribe(res => {
+      this.unidadNegoios = res.data;
+      
+    });
 
+  }
   //=================SELECTS========================
-  printValue = "";
-  selectBoxCartera(e: any) {
-    this.selectedBoxCartera = e.value;
-    if(e.value == 0){
-      this.printValue = this.boxCartera[0].cartera
-    }
-    if(e.value == 1){
-      this.printValue = this.boxCartera[1].cartera
-    }
-    if(e.value == 2){
-      this.printValue = this.boxCartera[2].cartera
-    }
-    if(e.value == 3){
-      this.printValue = this.boxCartera[3].cartera
-    }
-    if(e.value == 4){
-      this.printValue = this.boxCartera[4].cartera
-    }
-    if(e.value == 5){
-      this.printValue = this.boxCartera[5].cartera
-    }
-
+  selectOperacion(e: any) {
+    this.selectedOperacion = e.value;
   }
 
-  printPeriodo = ""
-  seleccionarPeriodo(e: any) {
-    this.selectedPeriodo = e.value
-
-    if(this.selectedPeriodo == 202307){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2023"
-    }
-    if(this.selectedPeriodo  == 202308){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2023"
-    }
-    if(this.selectedPeriodo == 202309){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2023"
-    }
-    if(this.selectedPeriodo == 202310){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2023"
-    }
-    if(this.selectedPeriodo == 202311){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2023"
-    }
-    if(this.selectedPeriodo == 202312){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
-    }
-
-
+  selectArea(e: any) {
+    this.selectedUdN = e.value;
   }
-
-  selectedClientes(e: any){
-    this.selectCliente = e.value
-    console.log(this.selectCliente)
+  
+  selectEstado(e: any) {
+    this.selectedEstados = e.value;
+    console.log(this.selectedEstados)
   }
-
 
   postMacroCiclo(){
     this.loadingVisible = true;
-    var anio = 0;
-    var mes = 0;
-    var udn = [0];
-    var tipoOp = [0];
 
-    this.macrocicloService.postMacrociclo(anio, mes, udn, tipoOp).subscribe(data => {
+    if(this.selectedUdN == undefined){
+      this.selectedUdN = 0;
+    }
+    this.macrocicloService.postMacrociclo(this.selectedUdN, this.selectedOperacion, this.selectedEstados).subscribe(data => {
       this.macroCiclo = data.data
         console.log(data.data)
       
@@ -198,11 +200,19 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   
   buscarClick = (e: any) => {
-    if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
+    if (this.selectedEstados.length !==  0 && this.selectedOperacion !== undefined) {
       this.loadingVisible = true;
       this.modeSearch = 'true'
 
-      //this.postCarteraCliente();
+      this.postMacroCiclo();
+    }else{
+      notify({
+        message: "Porfavor seleccione los campos necesarios",
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
     }
 
   };

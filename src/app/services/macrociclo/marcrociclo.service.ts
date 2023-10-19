@@ -28,15 +28,17 @@ export class MarcroCicloService extends AbstractManagerService {
   //   return this.get<any>((this.API_URL + API_URLS.GET_CARTERA_CLIENTES), this.httpOptions);
   // }
 
+  getUnidadesNegocio(){
+    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
+  }
 
-  postMacrociclo(anio: number, mes: number, udn: any[], tipoOpercion: any[]){
+  postMacrociclo(idArea: number, operacion: string, estados: any[]){
     let body = {
-      anio: anio,
-      mes: mes,
-      unidadesNegocio: udn,
-      tipoOperaciones: tipoOpercion
+      idArea: idArea,
+      operacion: operacion,
+      estados: estados,
     }
-    // console.log(body)
+    console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_MACROCICLO), body, this.httpOptions);
   }
 

@@ -4,18 +4,22 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
 
-            <!-- <br><br>
+            <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
-                <dxi-col [ratio]=".40"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
                 <dxi-col [ratio]=".15"></dxi-col>
                 <dxi-col [ratio]=".30"></dxi-col>
-                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
                 <dxi-col [ratio]=".15"></dxi-col>
-                <dxi-col [ratio]="1"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".80"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
 
 
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
@@ -29,30 +33,43 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Periodo:</div>
+                    <div>UdN:</div>
                 </dxi-item>
         
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="periodo" displayExpr="periodo" valueExpr="periodo" (onValueChanged)="seleccionarPeriodo($event)">
+                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="selectArea($event)">
                     </dx-select-box>
                 </dxi-item>
 
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Compañía:</div>
+                    <div>Operación:</div>
                 </dxi-item>
         
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="boxCartera" displayExpr="cartera" valueExpr="id" (onValueChanged)="selectBoxCartera($event)">
+                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" (onValueChanged)="selectOperacion($event)">
                     </dx-select-box>
                 </dxi-item>
+
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Estados:</div>
+                </dxi-item>
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-tag-box [items]="estados" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="estados" displayExpr="estado" valueExpr="estado" (onValueChanged)="selectEstado($event)">
+                    </dx-tag-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
@@ -61,39 +78,39 @@
                 </dxi-item>
 
             </dx-responsive-box>
-            <br><br> -->
+            <br><br>
 
             <dx-data-grid  #ING id="gridContainer1" [dataSource]="macroCiclo" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
-            <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
+            <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row> -->
 
             <dxi-column dataField="udN" caption="UdN" [fixed]="true" [allowSorting]="true" [width]="150"></dxi-column>
             <dxi-column dataField="ruta" caption="Ruta" [fixed]="true" [allowSorting]="true" [width]="250"></dxi-column>
             <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="130"></dxi-column>
             <dxi-column caption="Viajes Cargados">            
-                <dxi-column dataField="viajesCargados" caption="Cantidad" [allowFiltering]="false" [width]="100"></dxi-column>
-                <dxi-column dataField="kmsCargados" caption="Kms" [format]="separator" [allowFiltering]="false" [width]="100"></dxi-column>
-                <dxi-column dataField="kmsCargadosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
+                <dxi-column dataField="viajesCargados" caption="Cantidad"  [width]="100"></dxi-column>
+                <dxi-column dataField="kmsCargados" caption="Kms" [format]="separator"  [width]="100"></dxi-column>
+                <dxi-column dataField="kmsCargadosPor" caption="%" format="percent"  [width]="100"></dxi-column>
             </dxi-column>
             <dxi-column caption="Viajes Vacíos">
-                <dxi-column dataField="viajesVacio" caption="Cantidad" [allowFiltering]="false" [width]="100"></dxi-column>
-                <dxi-column dataField="kmsVacios" caption="Kms" [format]="separator" [allowFiltering]="false" [width]="100"></dxi-column>
-                <dxi-column dataField="kmsVaciosPor" caption="%" format="percent" [allowFiltering]="false" [width]="100"></dxi-column>
+                <dxi-column dataField="viajesVacio" caption="Cantidad"  [width]="100"></dxi-column>
+                <dxi-column dataField="kmsVacios" caption="Kms" [format]="separator"  [width]="100"></dxi-column>
+                <dxi-column dataField="kmsVaciosPor" caption="%" format="percent"  [width]="100"></dxi-column>
             </dxi-column>
-            <dxi-column dataField="clienteAtendido" caption="Clientes Atendidos" [allowFiltering]="false" [width]="150"></dxi-column>
-            <dxi-column dataField="operadorCiclo" caption="Operadores" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/MM/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy" [allowFiltering]="false" [width]="130"></dxi-column>
-            <dxi-column dataField="dias" caption="Días" [allowFiltering]="false" [width]="70" ></dxi-column>
+            <dxi-column dataField="clienteAtendido" caption="Clientes Atendidos"  [width]="150"></dxi-column>
+            <dxi-column dataField="operadorCiclo" caption="Operadores"  [width]="130"></dxi-column>
+            <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/MM/yyyy"  [width]="130"></dxi-column>
+            <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy"  [width]="130"></dxi-column>
+            <dxi-column dataField="dias" caption="Días"  [width]="70" ></dxi-column>
            
             <dxi-column caption="Viajes Totales">
-                <dxi-column dataField="viajes" caption="Cantidad" [allowFiltering]="false" [width]="100"></dxi-column>
-                <dxi-column dataField="kms" caption="Kms" [format]="separator" [allowFiltering]="false" [width]="120"></dxi-column>
-                <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="separatorPesos" [allowFiltering]="false" [width]="160"></dxi-column>
-                <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetro" [format]="redondear" [allowFiltering]="false" [width]="180"></dxi-column>
+                <dxi-column dataField="viajes" caption="Cantidad"  [width]="100"></dxi-column>
+                <dxi-column dataField="kms" caption="Kms" [format]="separator"  [width]="120"></dxi-column>
+                <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="separatorPesos"  [width]="160"></dxi-column>
+                <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetro" [format]="redondear"  [width]="180"></dxi-column>
             </dxi-column>
             <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
 
