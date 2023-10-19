@@ -113,6 +113,8 @@
                 <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="separatorPesos"  [width]="160"></dxi-column>
                 <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetro" [format]="redondear"  [width]="180"></dxi-column>
             </dxi-column>
+            <dxi-column dataField="idArea" caption="ID AREA" [width]="100"></dxi-column>
+            <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>
             <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
 
             <div *dxTemplate="let data of 'detalleCellTemplate'">
