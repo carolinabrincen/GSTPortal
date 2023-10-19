@@ -83,7 +83,17 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     {id: 34, estado: 'ZAC'}
   ]
 
-  unidadNegoios: any[] = [];
+  unidadNegoios: any[] = [
+    {idUnidad: 0, ciudad: 'TODOS'},
+    {idUnidad: 1, ciudad: 'ORIZABA'},
+    {idUnidad: 2, ciudad: 'GUADALAJARA'},
+    {idUnidad: 3, ciudad: 'RAMOS ARIZPE'},
+    {idUnidad: 4, ciudad: 'MEXICALI'},
+    {idUnidad: 5, ciudad: 'HERMOSILLO'},
+    {idUnidad: 8, ciudad: 'CUAUTITLAN'},
+    {idUnidad: 9, ciudad: 'TULTITLAN'},
+    {idUnidad: 10, ciudad: 'MIGUEL HIDALGO'},
+  ];
 
   periodoActual: number;
 
@@ -111,8 +121,8 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   applyFilterTypes: any;
 
   selectedEstados: string[] = [];
-  selectedUdN: number;
-  selectedOperacion: string;
+  selectedUdN: number = 0;
+  selectedOperacion: string = 'TODOS';
 
   constructor(
     private macrocicloService: MarcroCicloService,
@@ -137,19 +147,19 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getCarteraDetalle();
-    this.getUnidadesNegocio();
+    //this.getUnidadesNegocio();
   }
 
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
-  getUnidadesNegocio() {
-    this.macrocicloService.getUnidadesNegocio().subscribe(res => {
-      this.unidadNegoios = res.data;
-      
-    });
+  // getUnidadesNegocio() {
+  //   this.macrocicloService.getUnidadesNegocio().subscribe(res => {
+  //     this.unidadNegoios = res.data;
+  //     console.log(this.unidadNegoios)
+  //   });
 
-  }
+  // }
   //=================SELECTS========================
   selectOperacion(e: any) {
     this.selectedOperacion = e.value;
@@ -166,10 +176,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   postMacroCiclo(){
     this.loadingVisible = true;
-
-    if(this.selectedUdN == undefined){
-      this.selectedUdN = 0;
-    }
+    
     this.macrocicloService.postMacrociclo(this.selectedUdN, this.selectedOperacion, this.selectedEstados).subscribe(data => {
       this.macroCiclo = data.data
         console.log(data.data)

@@ -47,7 +47,7 @@ export class MarcroCicloService extends AbstractManagerService {
       idArea: idArea,
       ciclo: ciclo,
     }
-    // console.log(body)
+     console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_MACROCICLO_DETALLE), body, this.httpOptions);
   }
 }

@@ -3,7 +3,8 @@
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
 
-
+    <dx-tab-panel>
+        <dxi-item title="Ingreso por Kilómetro">
             <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
@@ -39,7 +40,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="selectArea($event)">
+                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectArea($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -52,7 +53,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" (onValueChanged)="selectOperacion($event)">
+                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" [value]="operacion[0].operacion" (onValueChanged)="selectOperacion($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -132,6 +133,71 @@
             <dxo-sorting mode="multiple"></dxo-sorting>
 
             </dx-data-grid>
+        </dxi-item>
+
+        <dxi-item title="Ingreso X Km Rutas">
+            <dx-data-grid class="data-grid" [dataSource]="detalleMacro" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+             [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Detalle"></dxo-export>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                
+                <dxi-column dataField="area" caption="UdN" [fixed]="true" [width]="150"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" [width]="100"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [fixed]="true" [width]="200"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [fixed]="true" [width]="140"></dxi-column>
+                <dxi-column dataField="noViaje" caption="No. Viaje" [fixed]="true" [width]="100"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo de Viaje" [fixed]="true" [width]="150"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="250"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="180"></dxi-column>
+                <dxi-column caption="Origen">
+                    <dxi-column dataField="origen" caption="Origen" [width]="180"></dxi-column>
+                    <dxi-column dataField="municipioOrigen" caption="Municipio" [width]="130"></dxi-column>
+                    <dxi-column dataField="edoOrigen" caption="Estado" [width]="130"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Destino">
+                    <dxi-column dataField="destino" caption="Destino" [width]="180"></dxi-column>
+                    <dxi-column dataField="municipioDestino" caption="Municipio" [width]="130"></dxi-column>
+                    <dxi-column dataField="edoDestino" caption="Estado" [width]="130"></dxi-column>
+                </dxi-column>
+                <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
+                <dxi-column caption="Por Viaje">
+                    <dxi-column dataField="kms" caption="Kms" [format]="separator" [width]="100"></dxi-column>
+                    <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros" [width]="150"></dxi-column>
+                    <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Por Viajes Acumulados">
+                    <dxi-column dataField="kmsAcumulado" caption="Kms. Acumulado" [format]="separator" [width]="150"></dxi-column>
+                    <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" [format]="enteros" [width]="150"></dxi-column>
+                    <dxi-column dataField="ingrXKmAcumulado" caption="Ingr. kms. Acumulado" format="$ #,###,###.##;-$ #,##0.##" [width]="170"></dxi-column>
+                </dxi-column>
+
+
+                <!-- <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>
+                <dxi-column dataField="cicloCliente" caption="Ciclo cliente" [width]="140"></dxi-column>
+                <dxi-column dataField="idArea" caption="Id área" [width]="100"></dxi-column> -->
+
+
+                <div *dxTemplate="let data of 'headerTemplate'">
+                    <div style="font-weight: bolder; color: black">
+                        {{ data.column.caption }}
+                    </div>
+                </div>
+                <div *dxTemplate="let cell of 'cellTemplateBold'">
+                    <div style="font-weight: bold;">{{cell.text}}</div>
+                </div>
+                <dxo-paging [pageSize]="20"></dxo-paging>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                </dxo-pager>
+                <dxo-sorting mode="multiple"></dxo-sorting>
+            </dx-data-grid>
+        </dxi-item>    
+    </dx-tab-panel>
+
+
 
 
 <!--==========================MODAL REAL=========================================================-->
