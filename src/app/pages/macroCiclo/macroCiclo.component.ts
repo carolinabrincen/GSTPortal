@@ -302,6 +302,16 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     return '$ '+myFormat.join("");
   }
 
+  enteros(value){
+    var myvalue = Math.trunc(value);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+
+    return "$ "+myFormat.join("");
+  }
+
   redondear(value){
     const total = value.toFixed(2);
 

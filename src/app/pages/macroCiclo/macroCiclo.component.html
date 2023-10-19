@@ -154,12 +154,12 @@
                 <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
                 <dxi-column caption="Por Viaje">
                     <dxi-column dataField="kms" caption="Kms" [format]="separator" [width]="100"></dxi-column>
-                    <dxi-column dataField="flete" caption="Ingreso por Flete" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
+                    <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros" [width]="150"></dxi-column>
                     <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
                 </dxi-column>
                 <dxi-column caption="Por Viajes Acumulados">
                     <dxi-column dataField="kmsAcumulado" caption="Kms. Acumulado" [format]="separator" [width]="150"></dxi-column>
-                    <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
+                    <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" [format]="enteros" [width]="150"></dxi-column>
                     <dxi-column dataField="ingrXKmAcumulado" caption="Ingr. kms. Acumulado" format="$ #,###,###.##;-$ #,##0.##" [width]="170"></dxi-column>
                 </dxi-column>
 
