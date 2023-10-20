@@ -1,10 +1,10 @@
-<h2 class="content-block">Ingreso por Kilómetro (Macrociclo)</h2>
+<h2 class="content-block">Ingreso por Kilómetro</h2>
 
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
-        <dxi-item title="Ingreso por Kilómetro">
+        <dxi-item title="INGRESO X KM MACROCICLO">
             <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".20"></dxi-col>
@@ -113,8 +113,8 @@
                 <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="separatorPesos"  [width]="160"></dxi-column>
                 <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetro" [format]="redondear"  [width]="180"></dxi-column>
             </dxi-column>
-            <dxi-column dataField="idArea" caption="ID AREA" [width]="100"></dxi-column>
-            <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>
+            <!-- <dxi-column dataField="idArea" caption="ID AREA" [width]="100"></dxi-column>
+            <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column> -->
             <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
 
             <div *dxTemplate="let data of 'detalleCellTemplate'">
@@ -292,8 +292,72 @@
             </dx-responsive-box>
             
             <br><br>
+            <h3>Clientes</h3>
+            <dx-data-grid class="data-grid" [dataSource]="clientes" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+            [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
 
-            <dx-data-grid class="data-grid" [dataSource]="rutas" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+               <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+               <dxo-export [enabled]="true" fileName="Clientes"></dxo-export>
+               <dxo-header-filter [visible]="true"></dxo-header-filter>
+               
+               <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
+               <dxi-column dataField="flete" caption="Flete" ></dxi-column>
+               <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetros"></dxi-column>
+               <dxi-column dataField="kms" caption="Kms" ></dxi-column>
+               <dxi-column dataField="viajes" caption="Viajes" ></dxi-column>
+              
+
+               <div *dxTemplate="let data of 'headerTemplate'">
+                   <div style="font-weight: bolder; color: black">
+                       {{ data.column.caption }}
+                   </div>
+               </div>
+               <div *dxTemplate="let cell of 'cellTemplateBold'">
+                   <div style="font-weight: bold;">{{cell.text}}</div>
+               </div>
+               <dxo-paging [pageSize]="20"></dxo-paging>
+               <dxo-group-panel [visible]="false"></dxo-group-panel>
+               <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+               </dxo-pager>
+               <dxo-sorting mode="multiple"></dxo-sorting>
+           </dx-data-grid>
+           <br><br>
+
+           <h3>Rutas</h3>
+           <dx-data-grid class="data-grid" [dataSource]="rutas" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
+           [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
+
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+              <dxo-export [enabled]="true" fileName="Rutas"></dxo-export>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              
+              <dxi-column dataField="cliente" caption="Cliente" [fixed]="true" [width]="100"></dxi-column>
+              <dxi-column dataField="estado" caption="Estado" [fixed]="true" [width]="100"></dxi-column>
+              <dxi-column dataField="flete" caption="Flete" [fixed]="true" [width]="100"></dxi-column>
+              <dxi-column dataField="ingrXKm" caption="Ingreso por Kilómetro" [fixed]="true" [width]="150"></dxi-column>
+              <dxi-column dataField="kms" caption="Kms" [fixed]="true" [width]="100"></dxi-column>
+              <dxi-column dataField="ruta" caption="Ruta" [fixed]="true" [width]="150"></dxi-column>
+              <dxi-column dataField="viajes" caption="Viajes" [fixed]="true" [width]="100"></dxi-column>
+
+
+              <div *dxTemplate="let data of 'headerTemplate'">
+                  <div style="font-weight: bolder; color: black">
+                      {{ data.column.caption }}
+                  </div>
+              </div>
+              <div *dxTemplate="let cell of 'cellTemplateBold'">
+                  <div style="font-weight: bold;">{{cell.text}}</div>
+              </div>
+              <dxo-paging [pageSize]="20"></dxo-paging>
+              <dxo-group-panel [visible]="false"></dxo-group-panel>
+              <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+              </dxo-pager>
+              <dxo-sorting mode="multiple"></dxo-sorting>
+          </dx-data-grid>
+          <br><br>
+          
+          <h3>Viajes</h3>
+            <dx-data-grid class="data-grid" [dataSource]="viajes" [showColumnLines]="true" [rowAlternationEnabled]="true" [columnAutoWidth]="true"
              [allowColumnResizing]="true" [allowColumnReordering]="false" [columnAutoWidth]="true" [showBorders]="true">
 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
@@ -325,11 +389,11 @@
                     <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros" [width]="150"></dxi-column>
                     <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
                 </dxi-column>
-                <dxi-column caption="Por Viajes Acumulados">
+                <!-- <dxi-column caption="Por Viajes Acumulados">
                     <dxi-column dataField="kmsAcumulado" caption="Kms. Acumulado" [format]="separator" [width]="150"></dxi-column>
                     <dxi-column dataField="fleteAcumulado" caption="Flete acumulado" [format]="enteros" [width]="150"></dxi-column>
                     <dxi-column dataField="ingrXKmAcumulado" caption="Ingr. kms. Acumulado" format="$ #,###,###.##;-$ #,##0.##" [width]="170"></dxi-column>
-                </dxi-column>
+                </dxi-column> -->
 
 
                 <!-- <dxi-column dataField="ciclo" caption="Ciclo" [width]="100"></dxi-column>

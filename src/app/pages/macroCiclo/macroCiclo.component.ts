@@ -130,7 +130,10 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   rutaOrigen: any[] = [];
   rutaDestino: any[] = [];
   rutaClientes: any[] = [];
+
+  clientes: any[] = [];
   rutas: any[] = [];
+  viajes: any[] = [];
   
   selectedRutaOrigen: string = "";
   selectedRutaDestino: string = "";
@@ -240,9 +243,13 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   postRutas(){
     var operador = ""
     this.macrocicloService.postRutas(this.selectedUdNRuta, this.selectedOperacionRuta, operador, this.selectedClientes, this.selectedRutaOrigen, this.selectedRutaDestino).subscribe(data =>{
-      this.rutas = data.data
-      console.log(this.rutas)
-    this.loadingVisible = false;
+      
+      this.clientes = data.data.clientes;
+      this.rutas = data.data.ruta;
+      this.viajes = data.data.rentCiclo;
+
+      console.log(data.data)
+      this.loadingVisible = false;
 
     })
   }
@@ -445,7 +452,10 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     this.rutaOrigen = [];
     this.rutaDestino = [];
     this.rutaClientes = [];
+
+    this.clientes = [];
     this.rutas = [];
+    this.viajes = [];
   }
 
 }
