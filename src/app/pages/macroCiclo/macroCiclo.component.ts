@@ -413,9 +413,39 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   }
 
   limpiar(){
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['./macroCiclo'])
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    // this.router.onSameUrlNavigation = 'reload';
+    // this.router.navigate(['./macroCiclo'])
+    let udn = document.getElementById("selectUdN");
+    let instanceUdn = SelectBox.getInstance(udn) as SelectBox;
+    instanceUdn.option("value", "");
+
+    let operacion = document.getElementById("selectOperacion");
+    let instanceOperacion = SelectBox.getInstance(operacion) as SelectBox;
+    instanceOperacion.option("value", "");
+    
+    let clientes = document.getElementById("selectClientes");
+    let instanceClientes = SelectBox.getInstance(clientes) as SelectBox;
+    instanceClientes.option("value", "");
+    
+    let origen = document.getElementById("selectOrigen");
+    let instanceOrigen = SelectBox.getInstance(origen) as SelectBox;
+    instanceOrigen.option("value", "");
+    
+    let destino = document.getElementById("selectDestino");
+    let instanceDestino = SelectBox.getInstance(destino) as SelectBox;
+    instanceDestino.option("value", "");
+
+    this.selectedUdNRuta = undefined;
+    this.selectedOperacionRuta = undefined;
+    this.selectedClientes = undefined;
+    this.selectedRutaOrigen = undefined;
+    this.selectedRutaDestino = undefined;
+
+    this.rutaOrigen = [];
+    this.rutaDestino = [];
+    this.rutaClientes = [];
+    this.rutas = [];
   }
 
 }

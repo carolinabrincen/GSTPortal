@@ -140,10 +140,10 @@
         <dxi-item title="Ingreso X Km Rutas">
             <br><br>
             <dx-responsive-box>
-                <dxi-col [ratio]=".49"></dxi-col>
-                <dxi-col [ratio]="1.8"></dxi-col>
-                <dxi-col [ratio]=".52"></dxi-col>
-                <dxi-col [ratio]=".70"></dxi-col>
+                <dxi-col [ratio]=".46"></dxi-col>
+                <dxi-col [ratio]="1.84"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+                <dxi-col [ratio]=".45"></dxi-col>
                 <dxi-col [ratio]="1.8"></dxi-col>
                 <dxi-col [ratio]=".15"></dxi-col>
                 <dxi-col [ratio]="2"></dxi-col>
@@ -170,7 +170,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectUdN($event)">
+                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" id="selectUdN" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectUdN($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -183,7 +183,7 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" [value]="operacion[0].operacion" (onValueChanged)="selectOperaRuta($event)">
+                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" id="selectOperacion" [value]="operacion[0].operacion" (onValueChanged)="selectOperaRuta($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -225,12 +225,14 @@
             </dx-responsive-box>
             <br>
             <dx-responsive-box>
-                <dxi-col [ratio]=".11"></dxi-col>
-                <dxi-col [ratio]=".45"></dxi-col>
+                <dxi-col [ratio]=".186"></dxi-col>
+                <dxi-col [ratio]=".75"></dxi-col>
                 <dxi-col [ratio]=".10"></dxi-col>
-                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".17"></dxi-col>
+                <dxi-col [ratio]=".73"></dxi-col>
+                <dxi-col [ratio]=".044"></dxi-col>
                 <dxi-col [ratio]=".40"></dxi-col>
-                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".10"></dxi-col>
                 <dxi-col [ratio]=".30"></dxi-col>
 
 
@@ -273,28 +275,16 @@
                     <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
-                        <dx-button stylingMode="contained" text="Buscar" type="normal" [width]="130" (onClick)="buscarRutas($event)">
+                        <dx-button stylingMode="contained" text="Buscar" type="normal" [width]="150" (onClick)="buscarRutas($event)">
                         </dx-button>
                     </div>
                 </dxi-item>
 
-            </dx-responsive-box>
-            <br><br>
-            <dx-responsive-box>
-                <dxi-col [ratio]="1"></dxi-col>
-                <dxi-col [ratio]="2"></dxi-col>
-
-
-
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-        
-
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                <dxi-item *ngIf="rutaOrigen.length !== 0">
+                    <dxi-location screen="md lg" [row]="0" [col]="8"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
-                        <dx-button *ngIf="rutaOrigen.length !== 0" stylingMode="contained" text="Limpiar" type="danger" [width]="120" (onClick)="limpiar()">
+                        <dx-button  stylingMode="contained" text="Limpiar" type="danger" [width]="150" (onClick)="limpiar()">
                         </dx-button>
                     </div>
                 </dxi-item>
