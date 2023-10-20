@@ -279,6 +279,20 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   cargarRutaClientes = (e: any) =>{
     this.loadingVisible = true;
 
+    if(this.rutaOrigen.length !== 0){
+      let clientes = document.getElementById("selectClientes");
+      let instanceClientes = SelectBox.getInstance(clientes) as SelectBox;
+      instanceClientes.option("value", "");
+
+      let origen = document.getElementById("selectOrigen");
+      let instanceOrigen = SelectBox.getInstance(origen) as SelectBox;
+      instanceOrigen.option("value", "");
+
+      let destino = document.getElementById("selectDestino");
+      let instanceDestino = SelectBox.getInstance(destino) as SelectBox;
+      instanceDestino.option("value", "");
+    }
+
     this.postClienteRutaOri()
   }
 
@@ -396,6 +410,12 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     const total = value.toFixed(2);
 
     return "$ "+total;
+  }
+
+  limpiar(){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./macroCiclo'])
   }
 
 }
