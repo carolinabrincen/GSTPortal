@@ -124,6 +124,17 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   selectedUdN: number = 0;
   selectedOperacion: string = 'TODOS';
 
+  selectedUdNRuta: number = 0;
+  selectedOperacionRuta: string = 'TODOS';
+
+  rutaOrigen: any[] = [];
+  rutaDestino: any[] = [];
+  rutaClientes: any[] = [];
+  
+  selectedRutaOrigen: string = "";
+  selectedRutaDestino: string = "";
+  selectedClientes: string = "";
+
   constructor(
     private macrocicloService: MarcroCicloService,
     private storageService: StorageService,
@@ -171,17 +182,66 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   
   selectEstado(e: any) {
     this.selectedEstados = e.value;
-    console.log(this.selectedEstados)
   }
+
+  selectUdN(e: any){
+    this.selectedUdNRuta = e.value;
+  }
+
+  selectOperaRuta(e: any){
+    this.selectedOperacionRuta = e.value;
+  }
+
+  selectClientes(e: any){
+    this.selectedClientes = e.value;
+  }
+
+  selectRutaOri(e: any){
+    this.selectedRutaOrigen = e.value;
+    this.postRutaDestino()
+  }
+
+  selectRutaDestino(e: any){
+    this.selectedRutaDestino = e.value;
+  }
+
+
 
   postMacroCiclo(){
     this.loadingVisible = true;
     
     this.macrocicloService.postMacrociclo(this.selectedUdN, this.selectedOperacion, this.selectedEstados).subscribe(data => {
       this.macroCiclo = data.data
-        console.log(data.data)
+        //console.log(data.data)
       
       this.loadingVisible = false;
+    })
+  }
+
+
+  postClienteRutaOri(){
+    this.macrocicloService.postClienteRutaOri(this.selectedUdNRuta, this.selectedOperacionRuta).subscribe(data =>{
+      
+      this.rutaOrigen = data.data.rutasOrigen;
+      this.rutaClientes = data.data.clientes
+      console.log(data.data)
+      this.loadingVisible = false;
+    });
+  }
+
+  postRutaDestino(){
+    this.macrocicloService.postRutaDestino(this.selectedUdNRuta, this.selectedOperacionRuta, this.selectedRutaOrigen).subscribe(data => {
+      this.rutaDestino = data.data
+      console.log(this.rutaDestino)
+    })
+  }
+
+  postRutas(){
+    var operador = ""
+    this.macrocicloService.postRutas(this.selectedUdNRuta, this.selectedOperacionRuta, operador, this.selectedClientes, this.selectedRutaOrigen, this.selectedRutaDestino).subscribe(data =>{
+      console.log(data)
+    this.loadingVisible = false;
+
     })
   }
 
@@ -213,6 +273,17 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
       this.postMacroCiclo();
   };
+
+  cargarRutaClientes = (e: any) =>{
+    this.loadingVisible = true;
+
+    this.postClienteRutaOri()
+  }
+
+  buscarRutas = (e: any) =>{
+    this.loadingVisible = true;
+    this.postRutas();
+  }
 
   onShown() {
     // setTimeout(() => {

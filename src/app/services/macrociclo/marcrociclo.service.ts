@@ -50,4 +50,38 @@ export class MarcroCicloService extends AbstractManagerService {
      console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_MACROCICLO_DETALLE), body, this.httpOptions);
   }
+
+  postClienteRutaOri(idArea: number, operacion: string){
+    let body = {
+      idArea: idArea,
+      operacion: operacion,
+    }
+     console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_CLIENTE_RUTA_ORIGEN), body, this.httpOptions);
+  }
+
+  postRutaDestino(idArea: number, operacion: string, rutaOrigen: string){
+    let body = {
+      idArea: idArea,
+      operacion: operacion,
+      rutaOrigen: rutaOrigen
+    }
+     console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_RUTA_DESTINO), body, this.httpOptions);
+  }
+
+  postRutas(idArea: number, operacion: string, operador: string, cliente: string, origen: string, destino: string){
+    let body = {
+      idArea: idArea,
+      operacion: operacion,
+      operador: operador,
+      cliente: cliente,
+      origen: origen,
+      destino: destino
+    }
+     console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_RUTAS), body, this.httpOptions);
+  }
+
+
 }
