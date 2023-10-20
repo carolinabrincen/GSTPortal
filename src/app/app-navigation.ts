@@ -81,7 +81,7 @@ export const navigation = [
     icon: 'columnproperties'
   },
   {
-    text: 'Macrociclo',
+    text: 'Ingreso X Km.',
     path: '/macroCiclo',
     icon: 'columnproperties'
   },
