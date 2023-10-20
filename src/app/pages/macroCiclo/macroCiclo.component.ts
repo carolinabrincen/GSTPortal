@@ -130,6 +130,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   rutaOrigen: any[] = [];
   rutaDestino: any[] = [];
   rutaClientes: any[] = [];
+  rutas: any[] = [];
   
   selectedRutaOrigen: string = "";
   selectedRutaDestino: string = "";
@@ -239,7 +240,8 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   postRutas(){
     var operador = ""
     this.macrocicloService.postRutas(this.selectedUdNRuta, this.selectedOperacionRuta, operador, this.selectedClientes, this.selectedRutaOrigen, this.selectedRutaDestino).subscribe(data =>{
-      console.log(data)
+      this.rutas = data.data
+      console.log(this.rutas)
     this.loadingVisible = false;
 
     })
