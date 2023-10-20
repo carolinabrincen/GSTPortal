@@ -207,21 +207,11 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   
   buscarClick = (e: any) => {
-    if (this.selectedEstados.length !==  0 && this.selectedOperacion !== undefined) {
+
       this.loadingVisible = true;
       this.modeSearch = 'true'
 
       this.postMacroCiclo();
-    }else{
-      notify({
-        message: "Porfavor seleccione los campos necesarios",
-        position: {
-          my: 'center center',
-          at: 'center center',
-        },
-      }, 'warning', 3000);
-    }
-
   };
 
   onShown() {
