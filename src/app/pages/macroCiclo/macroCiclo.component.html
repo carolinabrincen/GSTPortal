@@ -301,8 +301,8 @@
                <dxo-header-filter [visible]="true"></dxo-header-filter>
                
                <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
-               <dxi-column dataField="flete" caption="Flete" ></dxi-column>
-               <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetros"></dxi-column>
+               <dxi-column dataField="flete" caption="Flete" [format]="enteros" ></dxi-column>
+               <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [format]="redondear"></dxi-column>
                <dxi-column dataField="kms" caption="Kms" ></dxi-column>
                <dxi-column dataField="viajes" caption="Viajes" ></dxi-column>
               
@@ -331,14 +331,13 @@
               <dxo-export [enabled]="true" fileName="Rutas"></dxo-export>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
               
-              <dxi-column dataField="cliente" caption="Cliente" [fixed]="true" [width]="100"></dxi-column>
-              <dxi-column dataField="estado" caption="Estado" [fixed]="true" [width]="100"></dxi-column>
-              <dxi-column dataField="flete" caption="Flete" [fixed]="true" [width]="100"></dxi-column>
-              <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [fixed]="true" [width]="150"></dxi-column>
-              <dxi-column dataField="kms" caption="Kms" [fixed]="true" [width]="100"></dxi-column>
-              <dxi-column dataField="ruta" caption="Ruta" [fixed]="true" [width]="150"></dxi-column>
-              <dxi-column dataField="viajes" caption="Viajes" [fixed]="true" [width]="100"></dxi-column>
-
+              <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
+              <dxi-column dataField="ruta" caption="Ruta"></dxi-column>
+              <dxi-column dataField="viajes" caption="Viajes"></dxi-column>
+              <dxi-column dataField="kms" caption="Kms"></dxi-column>
+              <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros"></dxi-column>
+              <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [format]="redondear"></dxi-column>
+              <!-- <dxi-column dataField="estado" caption="Estado" [fixed]="true" [width]="100"></dxi-column> -->
 
               <div *dxTemplate="let data of 'headerTemplate'">
                   <div style="font-weight: bolder; color: black">
