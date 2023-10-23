@@ -55,4 +55,15 @@
   .ml-auto { margin-left:auto; } 
   .d-block { display:block; }
   
- 
+  ::ng-deep .border-right {
+     border-right: 1px solid black !important;
+    //border-right: 1px #e0e0e096 !important;
+  }
+
+  // ::ng-deep .style-movimiento{
+  //   background-color: #FF6D2A !important;
+  // }
+
+  // ::ng-deep .style-facturada{
+  //   background-color: #8BC34A !important;
+  // }

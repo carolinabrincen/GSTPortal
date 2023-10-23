@@ -264,6 +264,12 @@ onRowPreparedOct(e: any) {
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#f5f5f5";
         }
+
+        if(c.columnIndex == 7){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
       }
     });
   }
@@ -276,20 +282,34 @@ onRowPreparedOct(e: any) {
         c.cellElement.style.fontSize = "15px";
         c.cellElement.style.background = "#f5f5f5";
       }
+
+      if(c.columnIndex == 7){
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "15px";
+        c.cellElement.style.background = "#cdcbcb";
+      }
     });
   }
+
 }
 
 onCellPreparedOct(e: any){
 
   if (e.rowType == 'groupFooter'){
-
+    
     if(e.columnIndex == 15){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
       e.cellElement.style.background = "#f5f5f5";
     }
-}
+
+    if(e.columnIndex == 7){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+    
+  }
 }
 
 Actualizar(e: any){
@@ -303,4 +323,15 @@ Actualizar(e: any){
   this.getIDMSeptiembre();
   this.getIDMOctubre();
 }
+
+formating(value){
+  var myvalue = Math.trunc(value);
+
+  var myFormat = myvalue.toString().split(".");
+  myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+
+  return "$ "+myFormat.join("");
+}
+
 }

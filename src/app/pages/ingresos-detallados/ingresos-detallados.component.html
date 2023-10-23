@@ -1733,32 +1733,32 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                 
                 <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
-                <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
+                <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true" cssClass="border-right"></dxi-column>
 
                 <dxi-column caption="MOVIMIENTOS DEL MES ANTERIOR"  alignment="center" [allowSorting]="false">
-                    <dxi-column dataField="facturadoProvision" caption="Prov. Facturada" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="refacturado" caption="Refacturado" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="cancelacionProvision" caption="Prov. Cancelada" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="maSolicitudCancelacion" caption="Cancelado" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos" [width]="150" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="maTotal" caption="Total Mes Anterior" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="facturadoProvision" caption="Prov. Facturada" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="refacturado" caption="Refacturado" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="cancelacionProvision" caption="Prov. Cancelada" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="maSolicitudCancelacion" caption="Cancelado" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingresos" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="maTotal" caption="Total Mes Anterior" [width]="150"  cssClass="border-right" [format]="formating"></dxi-column>
                 </dxi-column>
 
                 <dxi-column caption="INGRESO DEL MES"  alignment="center" [allowSorting]="false">
-                    <dxi-column dataField="facturado" caption="Facturado" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="provision" caption="Provisión" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="otrosIngresos" caption="Otros ingresos" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="facturado" caption="Facturado" alignment="right" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="provision" caption="Provisión" alignment="right" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="otrosIngresos" caption="Otros ingresos" alignment="right" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" alignment="right" [width]="150" [format]="formating"></dxi-column>
                 </dxi-column>
 
                 <dxi-column caption="RESUMEN DEL MES"  alignment="center" [allowSorting]="false">
-                    <dxi-column dataField="maTotal2" caption="Total Mes Anterior" [width]="150" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="totalFlete2" caption="Total Ingreso Mes" [width]="150" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="right" [width]="120" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="total" caption="TOTAL" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="maTotal2" caption="Total Mes Anterior" [width]="150" [format]="formating"></dxi-column>
+                    <dxi-column dataField="totalFlete2" caption="Total Ingreso Mes" [width]="150" alignment="right" [format]="formating"></dxi-column>
+                    <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="right" [width]="120" [format]="formating"></dxi-column>
+                    <dxi-column dataField="total" caption="TOTAL" alignment="right" [width]="150" [format]="formating"></dxi-column>
                 </dxi-column>    
 
-                <dxi-column dataField="facturasDirectas" caption="Facturas directas" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                <dxi-column dataField="facturasDirectas" caption="Facturas directas" alignment="right" [width]="150" [format]="formating"></dxi-column>
 
                 <!-- <dxi-column caption="RESUMEN" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
                     
@@ -1774,79 +1774,79 @@
 
 
                 <dxo-summary>
-                    <dxi-group-item column="cancelacionProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="cancelacionProvision" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="cancelacionProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="cancelacionProvision" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="facturadoProvision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="facturadoProvision" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="facturadoProvision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="facturadoProvision" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="refacturado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="refacturado" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="refacturado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="refacturado" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="maSolicitudCancelacion" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="maSolicitudCancelacion" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="maSolicitudCancelacion" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="maSolicitudCancelacion" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="maCancelacionOtros" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="maCancelacionOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="maCancelacionOtros" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="maCancelacionOtros" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="maTotal" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="maTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="maTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="maTotal" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="maTotal2" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="maTotal2" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="maTotal2" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="maTotal2" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="facturado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="facturado" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="facturado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="facturado" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="provision" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="provision" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="provision" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="provision" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="totalFlete" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="totalFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="totalFlete" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="totalFlete" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <dxi-group-item column="totalFlete2" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="totalFlete2" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="totalFlete2" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
-                    </dxi-total-item>
-
-                    <dxi-group-item column="notasCredito" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
-                    </dxi-group-item>
-                    <dxi-total-item column="notasCredito" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="totalFlete2" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
 
-                    <dxi-group-item column="otrosIngresos" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="notasCredito" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="otrosIngresos" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="notasCredito" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
-                    <!-- <dxi-group-item column="totalMes" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+
+                    <dxi-group-item column="otrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="totalMes" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="otrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
+                    </dxi-total-item>
+                    <!-- <dxi-group-item column="totalMes" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="totalMes" summaryType="sum"  displayFormat="{0}">
                     </dxi-total-item> -->
-                    <!-- <dxi-group-item column="diferencias2022" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <!-- <dxi-group-item column="diferencias2022" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="diferencias2022" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="diferencias2022" summaryType="sum"  displayFormat="{0}">
                     </dxi-total-item> -->
 
 
 
-                    <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="total" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
 
-                    <dxi-group-item column="facturasDirectas" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    <dxi-group-item column="facturasDirectas" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                     </dxi-group-item>
-                    <dxi-total-item column="facturasDirectas" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    <dxi-total-item column="facturasDirectas" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                     </dxi-total-item>
 
 
