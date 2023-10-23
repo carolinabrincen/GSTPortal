@@ -196,7 +196,6 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualOct().subscribe(res => {
 
       this.arrIngresosOctubre = res.data.resumen;
-      console.log(this.arrIngresosOctubre)
   
       this.arrDetalleOctubre = res.data.detalle;
 
