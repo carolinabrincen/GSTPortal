@@ -1,9 +1,9 @@
 export const navigation = [
-  {
-    text: 'Inicio',
-    path: '/home',
-    icon: 'home'
-  },
+  // {
+  //   text: 'Inicio',
+  //   path: '/home',
+  //   icon: 'home'
+  // },
   {
     text: 'Gerenciales',
     icon: 'datafield',
@@ -53,14 +53,20 @@ export const navigation = [
     path: '/indicadores'
   },
   {
-    text: 'Cartera Clientes',
-    icon: 'columnchooser',
-    path: '/cartera-clientes'
-  },
-  {
-    text: 'Cartera Intercompañias',
-    icon: 'columnchooser',
-    path: '/carteraInterCompanias'
+    text: 'Cartera',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Cartera Clientes',
+        icon: 'columnchooser',
+        path: '/cartera-clientes'
+      },
+      {
+        text: 'Cartera Intercompañias',
+        icon: 'columnchooser',
+        path: '/carteraInterCompanias'
+      },
+    ]
   },
   {
     text: 'Cotizador',

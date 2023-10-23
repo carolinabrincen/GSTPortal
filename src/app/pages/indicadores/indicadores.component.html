@@ -650,6 +650,87 @@
                     </dx-data-grid>
 
         </dxi-item>
+
+        <dxi-item title="KPI´s">
+            <dx-chart id="chart1" [dataSource]="kmsXOperacion" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-chart id="chart2" [dataSource]="kmsXUdn" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="MILLONES KMS RECORRIDOS UDN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="MILLONES KMS RECORRIDOS UDN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-chart id="chart3" [dataSource]="porXOperacion" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="% KMS POR TIPO OPERACIÓN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="% KMS POR TIPO OPERACIÓN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-chart id="chart4" [dataSource]="porXCargadosUdn" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="% KMS CARGADOS UDN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="% KMS CARGADOS UDN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-chart id="chart5" [dataSource]="porXFlotaOperacion" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-chart id="chart6" [dataSource]="porXFlotaUdn" palette="violet" >
+                <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                        <dxo-font size="10" color="black"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text="% FLOTA ACTIVA UDN"></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA UDN"></dxo-export>
+            </dx-chart>
+            <br><br>
+
+        </dxi-item>
     </dx-tab-panel>
    
         <!-- LOAD PANEL -->

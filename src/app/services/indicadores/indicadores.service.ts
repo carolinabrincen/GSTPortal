@@ -35,4 +35,10 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_KMS_MENSUALES+ periodo), this.httpOptions);
   }
 
+  getIndicadoresChart(){
+    return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART), this.httpOptions);
+  }
+
+  
+
 }

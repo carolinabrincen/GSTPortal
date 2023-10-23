@@ -190,6 +190,7 @@ import {
     TotalOperacionKVC
    } from '../../shared/models/indicadores/totalIngresosViajes.model';
    import { KMSMensuales } from '../../shared/models/indicadores/kmsMensuales.model'
+   import { Chart } from '../../shared/models/indicadores/chart.model';
 
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
@@ -295,6 +296,15 @@ export class IndicadoresComponent implements OnInit {
   operadoresUDN: ScoreCard[] = [];
   ingresoOperador: ScoreCard[] = [];
 
+  chartData: any[] = [];
+
+  kmsXOperacion: Chart[] = [];
+  kmsXUdn: Chart[] = [];
+  porXCargadosUdn: Chart[] = [];
+  porXFlotaOperacion: Chart[] = [];
+  porXFlotaUdn: Chart[] = [];
+  porXOperacion: Chart[] = [];
+
 
   paginacion: number = 0;
   paginacionKV: number = 0;
@@ -378,9 +388,15 @@ export class IndicadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getScoreCard();
+    this.getIndicadoresChart();
   }
 
   ngAfterViewInit(): void {}
+
+  customizeSeries(valueFromNameField: number) {
+    return valueFromNameField === 2009
+      ? { type: 'line', label: { visible: true }, color: '#ff3f7a' } : {};
+  }
 
   //=================GETS===========================
   cuautitlan: number;
@@ -480,6 +496,18 @@ export class IndicadoresComponent implements OnInit {
     return request;
   }
 
+  getIndicadoresChart(){
+    this.indicadorService.getIndicadoresChart().subscribe(data => {
+      this.kmsXOperacion = data.data.kmsXOperacion;
+      this.kmsXUdn = data.data.kmsXUDN;
+      this.porXCargadosUdn = data.data.porXCargadosUDN;
+      this.porXFlotaOperacion = data.data.porXFlotaOperacion;
+      this.porXFlotaUdn = data.data.porXFlotaUDN;
+      this.porXOperacion = data.data.porXOperacion;
+      console.log(data.data)
+    })
+  }
+  
   seleccionarTipoOpe(e: any) {}
 
   seleccionarPeriodo(e: any) {

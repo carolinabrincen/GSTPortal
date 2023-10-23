@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DxSelectBoxModule, DxButtonModule, DxTabPanelModule, DxDataGridModule  } from 'devextreme-angular';
 import { HttpClientModule} from '@angular/common/http';
 import { StorageService } from './shared/services/storage.service';
+import { Service } from './pages/proyeccionCostos/proyeccionCostos.service'
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { StorageService } from './shared/services/storage.service';
     DxTabPanelModule,
     HttpClientModule
   ],
-  providers: [AuthService, ScreenService, AppInfoService,StorageService],
+  providers: [AuthService, ScreenService, AppInfoService,StorageService, Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

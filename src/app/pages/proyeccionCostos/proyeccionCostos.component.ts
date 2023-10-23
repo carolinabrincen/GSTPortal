@@ -26,6 +26,7 @@ import { Compania } from '../../shared/models/costos-anuales/compania.model';
 import { ProyeccionCostosModel } from '../../shared/models/proyeccionCostos/proyeccionCostos.model';
 
 import notify from 'devextreme/ui/notify';
+
 @Component({
 
   templateUrl: './proyeccionCostos.component.html',
@@ -142,13 +143,10 @@ export class ProyeccionCostosComponent implements OnInit {
 
   constructor(
     private proyeccionCostosService: ProyeccionCostosService,
-  
     ) {
     this.verDetallesClick = this.verDetallesClick.bind(this)
     this.proyeccCosService = proyeccionCostosService;
-
   }
-
 
   ngOnInit(): void {
     this.getCompanias();

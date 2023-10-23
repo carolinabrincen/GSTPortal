@@ -81,4 +81,5 @@ export enum API_URLS{
     GET_KMS_MENSUALES = 'api/Kilometros/KmsMensuales/',
     GET_PERIODO_ACTUAL = 'api/CarteraClientes/Periodo',
     GET_CARTERA_CLIENTES = 'api/CarteraClientes/Clientes',
+    GET_INDICADORES_CHART = 'api/Kilometros/Indicadores',
 }

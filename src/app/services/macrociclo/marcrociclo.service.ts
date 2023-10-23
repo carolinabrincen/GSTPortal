@@ -70,14 +70,15 @@ export class MarcroCicloService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_RUTA_DESTINO), body, this.httpOptions);
   }
 
-  postRutas(idArea: number, operacion: string, operador: string, cliente: string, origen: string, destino: string){
+  postRutas(area: string, operacion: string, operador: string, cliente: string, origen: string, destino: string, periodo: number){
     let body = {
-      idArea: idArea,
+      area: area,
       operacion: operacion,
       operador: operador,
       cliente: cliente,
       origen: origen,
-      destino: destino
+      destino: destino,
+      periodo: periodo
     }
      console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_RUTAS), body, this.httpOptions);

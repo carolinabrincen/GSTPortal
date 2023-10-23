@@ -141,7 +141,10 @@
             <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".46"></dxi-col>
-                <dxi-col [ratio]="1.84"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+                <dxi-col [ratio]=".90"></dxi-col>
                 <dxi-col [ratio]=".25"></dxi-col>
                 <dxi-col [ratio]=".45"></dxi-col>
                 <dxi-col [ratio]="1.8"></dxi-col>
@@ -164,24 +167,37 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>UdN:</div>
+                    <div>Periodo:</div>
                 </dxi-item>
         
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" id="selectUdN" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectUdN($event)">
+                    <dx-select-box [items]="periodo" displayExpr="periodo" valueExpr="periodo" id="selectPeriodo" (onValueChanged)="selectPeriodo($event)">
                     </dx-select-box>
                 </dxi-item>
 
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
                     <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Operación:</div>
+                    <div>UdN:</div>
                 </dxi-item>
         
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" id="selectUdN" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectUdN($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Operación:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
                     <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" id="selectOperacion" [value]="operacion[0].operacion" (onValueChanged)="selectOperaRuta($event)">
                     </dx-select-box>
@@ -189,7 +205,7 @@
 
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="CARGAR RUTAS/CLIENTES" type="normal" [width]="230" (onClick)="cargarRutaClientes($event)">

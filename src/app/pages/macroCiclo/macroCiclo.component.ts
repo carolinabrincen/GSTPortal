@@ -21,16 +21,6 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   
   col: string = '50';
 
-  boxCartera: Cartera[] = [
-    { id: 0, cartera: 'GST CONSOLIDADO'},
-    { id: 1, cartera: "TRANSPORTES BONAMPAK S.A. DE C.V." },
-    { id: 2, cartera: "AUTOTRANSPORTE MACUSPANA S.A. DE C.V." },
-    { id: 3, cartera: "TRANSPORTADORA ESPECIALIZADA INDUSTRIAL S.A. DE C.V." },
-    { id: 4, cartera: "TRANSPORTES DE CARGA GEMINIS S.A. DE C.V." },
-    { id: 5, cartera: "GST FLETES Y SERVICIOS S.A. DE C.V." },
-
-  ];
-
   macroCiclo: MacroCiclo[] = [];
   detalleMacro: any[] = [];
 
@@ -95,6 +85,22 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     {idUnidad: 10, ciudad: 'MIGUEL HIDALGO'},
   ];
 
+  periodo: any[] = [
+    {id: 0, periodo:2023 },
+    {id: 1, periodo: 202301 },
+    {id: 2, periodo: 202302 },
+    {id: 3, periodo: 202303 },
+    {id: 4, periodo: 202304 },
+    {id: 5, periodo: 202305 },
+    {id: 6, periodo: 202306 },
+    {id: 7, periodo: 202307 },
+    {id: 8, periodo: 202308 },
+    {id: 9, periodo: 202309 },
+    {id: 10, periodo: 202310 },
+    {id: 11, periodo: 202311 },
+    {id: 12, periodo: 202312 },
+  ]
+
   periodoActual: number;
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
@@ -125,6 +131,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   selectedOperacion: string = 'TODOS';
 
   selectedUdNRuta: number = 0;
+  selectedUdNRutaS: string = "";
   selectedOperacionRuta: string = 'TODOS';
 
   rutaOrigen: any[] = [];
@@ -138,6 +145,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   selectedRutaOrigen: string = "";
   selectedRutaDestino: string = "";
   selectedClientes: string = "";
+  selectedPerido: number = 0;
 
   constructor(
     private macrocicloService: MarcroCicloService,
@@ -188,8 +196,40 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     this.selectedEstados = e.value;
   }
 
+  selectPeriodo(e: any){
+    this.selectedPerido = e.value;
+  }
+
   selectUdN(e: any){
     this.selectedUdNRuta = e.value;
+
+    if(e.value == 0){
+      this.selectedUdNRutaS = 'TODOS'
+    }
+    if(e.value == 1){
+      this.selectedUdNRutaS = 'ORIZABA'
+    }
+    if(e.value == 2){
+      this.selectedUdNRutaS = 'GUADALAJARA'
+    }
+    if(e.value == 3){
+      this.selectedUdNRutaS = 'RAMOS ARIZPE'
+    }
+    if(e.value == 4){
+      this.selectedUdNRutaS = 'MEXICALI'
+    }
+    if(e.value == 5){
+      this.selectedUdNRutaS = 'HERMOSILLO'
+    }
+    if(e.value == 8){
+      this.selectedUdNRutaS = 'CUAUTITLAN'
+    }
+    if(e.value == 9){
+      this.selectedUdNRutaS = 'TULTITLAN'
+    }
+    if(e.value == 10){
+      this.selectedUdNRutaS = 'MIGUEL HIDALGO'
+    }
   }
 
   selectOperaRuta(e: any){
@@ -242,7 +282,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   postRutas(){
     var operador = ""
-    this.macrocicloService.postRutas(this.selectedUdNRuta, this.selectedOperacionRuta, operador, this.selectedClientes, this.selectedRutaOrigen, this.selectedRutaDestino).subscribe(data =>{
+    this.macrocicloService.postRutas(this.selectedUdNRutaS, this.selectedOperacionRuta, operador, this.selectedClientes, this.selectedRutaOrigen, this.selectedRutaDestino, this.selectedPerido).subscribe(data =>{
       
       this.clientes = data.data.clientes;
       this.rutas = data.data.ruta;
@@ -423,6 +463,11 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.router.onSameUrlNavigation = 'reload';
     // this.router.navigate(['./macroCiclo'])
+    
+    let periodo = document.getElementById("selectPeriodo");
+    let instancePerido = SelectBox.getInstance(periodo) as SelectBox;
+    instancePerido.option("value", "");
+
     let udn = document.getElementById("selectUdN");
     let instanceUdn = SelectBox.getInstance(udn) as SelectBox;
     instanceUdn.option("value", "");
