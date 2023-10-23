@@ -1752,8 +1752,8 @@
                 </dxi-column>
 
                 <dxi-column caption="RESUMEN DEL MES"  alignment="center" [allowSorting]="false">
-                    <dxi-column dataField="maTotal" caption="Total Mes Anterior" [width]="150" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                    <dxi-column dataField="totalFlete" caption="Total Ingreso Mes" [width]="150" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="maTotal2" caption="Total Mes Anterior" [width]="150" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="totalFlete2" caption="Total Ingreso Mes" [width]="150" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                     <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="right" [width]="120" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                     <dxi-column dataField="total" caption="TOTAL" alignment="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                 </dxi-column>    
@@ -1798,6 +1798,10 @@
                     </dxi-group-item>
                     <dxi-total-item column="maTotal" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
                     </dxi-total-item>
+                    <dxi-group-item column="maTotal2" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="maTotal2" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
                     <dxi-group-item column="facturado" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     <dxi-total-item column="facturado" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
@@ -1809,6 +1813,10 @@
                     <dxi-group-item column="totalFlete" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
                     </dxi-group-item>
                     <dxi-total-item column="totalFlete" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
+                    </dxi-total-item>
+                    <dxi-group-item column="totalFlete2" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">
+                    </dxi-group-item>
+                    <dxi-total-item column="totalFlete2" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}">
                     </dxi-total-item>
 
                     <dxi-group-item column="notasCredito" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true">

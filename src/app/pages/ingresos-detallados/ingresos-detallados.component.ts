@@ -196,6 +196,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualOct().subscribe(res => {
 
       this.arrIngresosOctubre = res.data.resumen;
+      console.log(this.arrIngresosOctubre)
   
       this.arrDetalleOctubre = res.data.detalle;
 
@@ -268,21 +269,28 @@ onRowPreparedOct(e: any) {
     });
   }
 
-  if (e.rowType == 'group') {
-    //console.log(e)
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+      if(c.columnIndex == 15){
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "15px";
+        c.cellElement.style.background = "#f5f5f5";
+      }
+    });
   }
 }
 
 onCellPreparedOct(e: any){
 
-  if(e.rowType === 'header') {  
-    //console.log(e)
-       //e.cellElement.css("backgroundColor", "blue");  
-  }  
- 
-  if (e.rowType == 'group') {
-    //console.log(e.summaryCells)
-  }
+  if (e.rowType == 'groupFooter'){
+
+    if(e.columnIndex == 15){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#f5f5f5";
+    }
+}
 }
 
 Actualizar(e: any){

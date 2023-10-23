@@ -234,7 +234,8 @@
                 <dxi-item *ngIf="rutaOrigen.length !== 0">
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="rutaClientes" displayExpr="nombre" valueExpr="nombre" id="selectClientes" (onValueChanged)="selectClientes($event)">
+                    <dx-select-box [items]="rutaClientes" displayExpr="nombre" valueExpr="nombre" id="selectClientes" [searchEnabled]="true"
+                    [searchExpr]="['nombre']" (onValueChanged)="selectClientes($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -268,7 +269,8 @@
                 <dxi-item *ngIf="rutaOrigen.length !== 0">
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="rutaOrigen" displayExpr="nombre" valueExpr="nombre" id="selectOrigen" (onValueChanged)="selectRutaOri($event)">
+                    <dx-select-box [items]="rutaOrigen" displayExpr="nombre" valueExpr="nombre" id="selectOrigen" [searchEnabled]="true"
+                    [searchExpr]="['nombre']" (onValueChanged)="selectRutaOri($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -281,7 +283,8 @@
                 <dxi-item *ngIf="rutaOrigen.length !== 0">
                     <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="rutaDestino" displayExpr="nombre" valueExpr="nombre" id="selectDestino"  (onValueChanged)="selectRutaDestino($event)">
+                    <dx-select-box [items]="rutaDestino" displayExpr="nombre" valueExpr="nombre" id="selectDestino"  [searchEnabled]="true"
+                    [searchExpr]="['nombre']"(onValueChanged)="selectRutaDestino($event)">
                     </dx-select-box>
                 </dxi-item>
 
@@ -316,11 +319,16 @@
                <dxo-export [enabled]="true" fileName="Clientes"></dxo-export>
                <dxo-header-filter [visible]="true"></dxo-header-filter>
                
-               <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
-               <dxi-column dataField="flete" caption="Flete" [format]="enteros" ></dxi-column>
-               <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [format]="redondear"></dxi-column>
-               <dxi-column dataField="kms" caption="Kms" ></dxi-column>
+               <dxi-column dataField="cliente" caption="Cliente"></dxi-column>               
                <dxi-column dataField="viajes" caption="Viajes" ></dxi-column>
+               <dxi-column dataField="kms" caption="Kms" [format]="separator"></dxi-column>
+               <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros" ></dxi-column>
+               <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [format]="redondear"></dxi-column>
+
+
+
+
+
               
 
                <div *dxTemplate="let data of 'headerTemplate'">
@@ -350,7 +358,7 @@
               <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
               <dxi-column dataField="ruta" caption="Ruta"></dxi-column>
               <dxi-column dataField="viajes" caption="Viajes"></dxi-column>
-              <dxi-column dataField="kms" caption="Kms"></dxi-column>
+              <dxi-column dataField="kms" caption="Kms" [format]="separator"></dxi-column>
               <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros"></dxi-column>
               <dxi-column dataField="ingrXKm" caption="Ingreso Kilómetro" [format]="redondear"></dxi-column>
               <!-- <dxi-column dataField="estado" caption="Estado" [fixed]="true" [width]="100"></dxi-column> -->
