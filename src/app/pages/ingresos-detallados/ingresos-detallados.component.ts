@@ -283,10 +283,19 @@ onRowPreparedOct(e: any) {
         c.cellElement.style.background = "#f5f5f5";
       }
 
+      if(c.columnIndex == 4){
+        if (e.summaryCells[4][0].value.toString().startsWith('-')) {
+          //e.cellElement.css("color", "red");
+          // e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+        }
+        //console.log(e)
+      }
+
       if(c.columnIndex == 7){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         c.cellElement.style.background = "#cdcbcb";
+        c.cellElement.style.color = "red";
       }
     });
   }
@@ -295,20 +304,78 @@ onRowPreparedOct(e: any) {
 
 onCellPreparedOct(e: any){
 
-  if (e.rowType == 'groupFooter'){
+  if (e.rowType === 'groupFooter'){
     
-    if(e.columnIndex == 15){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#f5f5f5";
+    if(e.columnIndex == 4){
+      if (e.row.summaryCells[4][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
     }
-
+    if(e.columnIndex == 5){
+      if (e.row.summaryCells[5][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+    if(e.columnIndex == 6){
+      if (e.row.summaryCells[6][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
     if(e.columnIndex == 7){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
       e.cellElement.style.background = "#cdcbcb";
+      e.cellElement.style.color = "#ff0000";
+
+      if (e.row.summaryCells[7][0].value.toString().startsWith('-')) {
+      e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 12){
+      if (e.row.summaryCells[12][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 14){
+      if (e.row.summaryCells[14][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 15){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#f5f5f5";
+    }    
+    
+  }
+
+  if (e.rowType == 'totalFooter') {
+    if(e.columnIndex == 4){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
     }
     
+    if(e.columnIndex == 5){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 6){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 14){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
   }
 }
 
