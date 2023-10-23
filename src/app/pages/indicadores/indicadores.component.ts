@@ -499,12 +499,23 @@ export class IndicadoresComponent implements OnInit {
   getIndicadoresChart(){
     this.indicadorService.getIndicadoresChart().subscribe(data => {
       this.kmsXOperacion = data.data.kmsXOperacion;
+      this.kmsXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
       this.kmsXUdn = data.data.kmsXUDN;
+      this.kmsXUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
       this.porXCargadosUdn = data.data.porXCargadosUDN;
+      this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
       this.porXFlotaOperacion = data.data.porXFlotaOperacion;
+      this.porXFlotaOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
       this.porXFlotaUdn = data.data.porXFlotaUDN;
+      this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
       this.porXOperacion = data.data.porXOperacion;
-      console.log(data.data)
+      this.porXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
     })
   }
   
@@ -3734,7 +3745,7 @@ onCellPreparedPM(e){
    //==================Formato a la data de la grafica==================================
    formatSliderTooltip (value) {
     
-    return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
+    return ((value.valueText) * 100).toFixed(2).toString() + '%';
 }
 
     clickClientesRutas = (e: any) => {

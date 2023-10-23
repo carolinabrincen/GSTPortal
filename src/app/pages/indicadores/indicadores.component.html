@@ -653,6 +653,7 @@
 
         <dxi-item title="KPI´s">
             <dx-chart id="chart1" [dataSource]="kmsXOperacion" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
                     <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
@@ -666,6 +667,7 @@
             <br><br>
 
             <dx-chart id="chart2" [dataSource]="kmsXUdn" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
                     <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
@@ -679,8 +681,9 @@
             <br><br>
 
             <dx-chart id="chart3" [dataSource]="porXOperacion" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
-                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                    <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
                     </dxo-label>
                 </dxo-common-series-settings>
@@ -692,8 +695,9 @@
             <br><br>
 
             <dx-chart id="chart4" [dataSource]="porXCargadosUdn" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
-                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                    <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
                     </dxo-label>
                 </dxo-common-series-settings>
@@ -705,8 +709,9 @@
             <br><br>
 
             <dx-chart id="chart5" [dataSource]="porXFlotaOperacion" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
-                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                    <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
                     </dxo-label>
                 </dxo-common-series-settings>
@@ -718,8 +723,9 @@
             <br><br>
 
             <dx-chart id="chart6" [dataSource]="porXFlotaUdn" palette="violet" >
+                <dxi-value-axis [maxValueMargin]=".22"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor">
-                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90" backgroundColor="transparent">
+                    <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip" [rotationAngle]="-90" backgroundColor="transparent">
                         <dxo-font size="10" color="black"></dxo-font>
                     </dxo-label>
                 </dxo-common-series-settings>

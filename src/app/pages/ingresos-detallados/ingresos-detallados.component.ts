@@ -269,7 +269,7 @@ onRowPreparedOct(e: any) {
   }
 
   if (e.rowType == 'group') {
-    //console.log(e.summaryCells)
+    //console.log(e)
   }
 }
 
