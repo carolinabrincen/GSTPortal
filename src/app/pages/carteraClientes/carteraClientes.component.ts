@@ -1,7 +1,7 @@
 import { CostosAnualesService } from '../../services/costos-anuales/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { DxSelectBoxComponent, DxFormComponent} from 'devextreme-angular';
+import { DxSelectBoxComponent, DxFormComponent, DxDataGridComponent} from 'devextreme-angular';
 
 import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
 
@@ -16,6 +16,10 @@ import notify from 'devextreme/ui/notify';
 
 import { Totales, Total } from '../../shared/models/carteraClientes/totales';
 
+import { Workbook } from 'exceljs';
+import { exportDataGrid } from 'devextreme/excel_exporter';
+import { saveAs } from 'file-saver-es';
+
 const totales = new Totales;
 const total = new Total;
 @Component({
@@ -27,6 +31,10 @@ export class CarteraClientesComponent implements OnInit {
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
   @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
   
+  @ViewChild('gridCartera', { static: false }) gridCartera: DxDataGridComponent;
+  @ViewChild('gridInter', { static: false }) gridInter: DxDataGridComponent;
+  @ViewChild('gridCliCartInt', { static: false }) gridCliCartInt: DxDataGridComponent;
+
   col: string = '50';
 
   boxCartera: Cartera[] = [
@@ -448,6 +456,7 @@ export class CarteraClientesComponent implements OnInit {
 
   myTotal: any[] = [];
   onRowPreparedCMI(e: any){
+    
     if (e.rowType == 'group') {
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = 'black';
@@ -480,7 +489,7 @@ export class CarteraClientesComponent implements OnInit {
       if(total.corriente !==undefined){
         var myTotales = new Total;
 
-        myTotales.intercompania = "Suma total de cartera"
+        myTotales.intercompania = "SUMA TOTAL CARTERA"
         myTotales.corriente = total.corriente;
         myTotales.unoA30 = total.unoA30;
         myTotales.tre1A60 = total.tre1A60;
@@ -489,7 +498,7 @@ export class CarteraClientesComponent implements OnInit {
         myTotales.total = total.total;
         
         this.myTotal.push(myTotales);
-        console.log(this.myTotal)
+        //console.log(this.myTotal)
       }
 
       if(this.myTotal.length !== 0){
@@ -517,17 +526,20 @@ export class CarteraClientesComponent implements OnInit {
     }
   }
 
-  onRowPreparedTotal(e: any){
+  onRowPreparedCCI(e: any){
+    if(e.rowType === 'data'){
+      e.cells.forEach((c: any) => {
 
-  }
-  onCellPreparedTotal(e: any){
-//console.log(e)
-    if (e.rowType == 'totalFooter') {
-      //console.log(e)
-      e.totalItem.cells.forEach((c: any) => {
-        //console.log(c)
-      })
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#FF9460";
+        }
+      });
     }
+  }
+  onCellPreparedCCI(e: any){
+
   }
 //====================personalize style excel========================================
   customizeCAER(e) {  
@@ -590,6 +602,104 @@ export class CarteraClientesComponent implements OnInit {
     }
   }
 
+  exportGrids(e) {
+    const context = this;
+    const workbook = new Workbook();
+
+    const carteraSheet = workbook.addWorksheet('CARTERA DE CLIENTES');
+    // const interSheet = workbook.addWorksheet('CarteraInter');
+    // const carteraCIgSheet = workbook.addWorksheet('CarteraClienteInter');
+
+    carteraSheet.getRow(2).getCell(2).value = 'CARTERA DE CLIENTES';
+    carteraSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+
+    function setAlternatingRowsBackground(gridCell, excelCell) {
+      if (gridCell.rowType === 'data') {
+        
+        if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
+            var x = Math.round(excelCell.value)
+            var myvalue = Math.trunc(x);
+        
+            var myFormat = myvalue.toString().split(".");
+            myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            
+            excelCell.value = '$ '+myFormat;
+          
+        }
+
+      if(gridCell.column.caption == "Total"){
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+          };
+        }
+      }
+
+      if (gridCell.rowType === 'header') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        };
+      }
+  
+  
+      if (gridCell.rowType === 'totalFooter') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
+        };
+      }
+
+      if (gridCell.rowType === 'group') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        };
+      }
+    }
+
+    function setAlternatingRowsBackground3(gridCell, excelCell) {
+      if (gridCell.rowType === 'data') {
+
+          if(excelCell.address !== 'B113'){
+            var x = Math.round(excelCell.value)
+            var myvalue = Math.trunc(x);
+        
+            var myFormat = myvalue.toString().split(".");
+            myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            excelCell.value = '$ '+myFormat;
+          }
+          console.log(excelCell)
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460', }, bgColor: { argb: 'FF9460' }, bold: true
+          };
+      }
+    }
+
+    exportDataGrid({
+      worksheet: carteraSheet,
+      component: context.gridCartera.instance,
+      topLeftCell: { row: 4, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground(gridCell, excelCell);
+      },
+    }).then(() => exportDataGrid({
+      worksheet: carteraSheet,
+      component: context.gridInter.instance,
+      topLeftCell: { row: 71, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraSheet,
+      component: context.gridCliCartInt.instance,
+      topLeftCell: { row: 112, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground3(gridCell, excelCell);
+      },
+    })).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer) => {
+        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
+      });
+    });
+  }
 //==================Formato a la data de la grafica==================================
   formatSliderTooltip (value) {
     

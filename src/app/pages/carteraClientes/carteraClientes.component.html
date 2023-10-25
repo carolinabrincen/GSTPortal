@@ -85,9 +85,13 @@
                 </div>
 
             </div>
-
+            <br><br>
+            <div id="exportContainer">
+              <dx-button text="Exportar todos los grids" icon="xlsxfile" (onClick)="exportGrids($event)"></dx-button>
+            </div>
             <br>
-            <dx-data-grid  #ER id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+            <br>
+            <dx-data-grid  #gridCartera id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedCC($event)" (onCellPrepared)="onCellPreparedCC($event)">
 
               <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
@@ -156,7 +160,7 @@
 
             <br><br>
 <!--================================================CARTERA INTER ====================================================================================-->
-            <dx-data-grid  #ER id="gridContainer3" [dataSource]="carteraMI" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+            <dx-data-grid  #gridInter id="gridContainer2" [dataSource]="carteraMI" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedCMI($event)" (onCellPrepared)="onCellPreparedCMI($event)">
 
               <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
@@ -190,8 +194,8 @@
             
             <br><br>
 <!--=========================================TOTAL CARTERA CIENTE Y CARTERA INTER======================================================================-->
-            <dx-data-grid  #ER id="gridContainer3" [dataSource]="myTotal" [showBorders]="true" [height]="120" [columnAutoWidth]="true"
-            (onRowPrepared)="onRowPreparedCMI($event)" (onCellPrepared)="onCellPreparedCMI($event)">
+            <dx-data-grid  #gridCliCartInt id="gridContainer3" class="grid3" [dataSource]="myTotal" [showBorders]="true" [height]="120" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedCCI($event)" (onCellPrepared)="onCellPreparedCCI($event)">
 
               <dxo-scrolling showScrollbar="never"></dxo-scrolling>
              <!--  <dxo-paging [pageSize]="100"></dxo-paging>
@@ -204,7 +208,7 @@
                 <dxi-column dataField="tre1A60" caption="" [format]="separator"></dxi-column>
                 <dxi-column dataField="ses0A90" caption="" [format]="separator"></dxi-column>
                 <dxi-column dataField="mas90" caption="" [format]="separator"></dxi-column>
-                <dxi-column dataField="total" caption="" cssClass="styletotal" [format]="separator"></dxi-column>
+                <dxi-column dataField="total" caption="" [format]="separator"></dxi-column>
               
                 <!-- <dxo-summary>
                     <dxi-total-item column="1" [customizeText]="customizeTotal"></dxi-total-item>

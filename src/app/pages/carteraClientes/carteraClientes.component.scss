@@ -1,10 +1,14 @@
-::ng-deep .styletotal {
-  background: #DCDCDC;
-}
+// ::ng-deep .styletotal {
+//   background: #DCDCDC;
+// }
 
-::ng-deep .dx-datagrid-headers {  
+::ng-deep .dx-datagrid-headers{  
   background: #DCDCDC;  
 } 
+
+::ng-deep .dx-datagrid-headers .grid3{  
+  background: white;  
+}
 
 ::ng-deep .dx-toast-content {
     min-width: 200px;
@@ -45,6 +49,11 @@
   font-size: 28px;
   text-align: center;
   margin-bottom: 20px;
+}
+
+
+::ng-deep #exportContainer {
+  text-align: right;
 }
 
   
