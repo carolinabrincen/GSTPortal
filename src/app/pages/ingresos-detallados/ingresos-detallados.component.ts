@@ -313,19 +313,19 @@ onRowPreparedOct(e: any) {
       if(c.columnIndex == 7){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
-        c.cellElement.style.background = "#cdcbcb";
+        // c.cellElement.style.background = "#cdcbcb";
       }
 
       if(c.columnIndex == 11){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
-        c.cellElement.style.background = "#cdcbcb";
+        // c.cellElement.style.background = "#cdcbcb";
       }
 
       if(c.columnIndex == 15){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
-        c.cellElement.style.background = "#cdcbcb";
+        // c.cellElement.style.background = "#cdcbcb";
       }
 
 
@@ -644,14 +644,6 @@ customizeOct(e) {
     e.fontWeight = "bolder"
     e.font = {bold: true}
 
-    if(e.gridCell.column.dataField == "totalFlete"){
-      e.backgroundColor = "#DCDCDC";
-    }
-
-    if(e.gridCell.column.dataField == "total"){
-      e.backgroundColor = "#DCDCDC";
-    }
-
     if(e.gridCell.column.dataField == "cancelacionProvision"){
       if(e.gridCell.value.toString().startsWith('-')){
         e.font.color = '#ff0000'
@@ -671,7 +663,7 @@ customizeOct(e) {
     }
 
     if(e.gridCell.column.dataField == "maTotal"){
-      e.backgroundColor = "#DCDCDC";
+      // e.backgroundColor = "#DCDCDC";
 
       if(e.gridCell.value.toString().startsWith('-')){
         e.font.color = '#ff0000'
