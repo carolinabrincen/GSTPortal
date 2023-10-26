@@ -510,6 +510,189 @@ onCellPreparedOct(e: any){
   }
 }
 
+customizeOct(e) {  
+  var gridCell = e.gridCell;
+  if (gridCell.rowType === 'data') {
+
+    if(e.gridCell.column.dataField !== 'tipoOperacion'){
+      var x = Math.round(e.value)
+
+      var myvalue = Math.trunc(x);
+      var myFormat = myvalue.toString().split(".");
+      myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      e.value = '$ '+myFormat;
+    }
+
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+
+    if(e.gridCell.column.dataField == "refacturado"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "totalFlete"){
+      e.backgroundColor = "#DCDCDC";
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#DCDCDC";
+    }
+  }
+
+  if (gridCell.rowType === 'groupFooter') {
+    
+    e.backgroundColor = "#DCDCDC";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      e.backgroundColor = "#DCDCDC";
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+    if(e.gridCell.column.dataField == "totalFlete"){
+      e.backgroundColor = "#DCDCDC";
+    }
+
+    if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#DCDCDC";
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      e.backgroundColor = "#DCDCDC";
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+  }
+}
+
+
 Actualizar(e: any){
   this.loadingVisible = true;
   this.getIDMMarzo();

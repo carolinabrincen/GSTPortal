@@ -1729,7 +1729,7 @@
              <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosOctubre" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
              (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
              
-                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                 
                 <dxi-column dataField="unidadNegocio" [groupIndex]="0"></dxi-column>
