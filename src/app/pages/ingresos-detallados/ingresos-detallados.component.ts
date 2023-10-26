@@ -497,6 +497,16 @@ onCellPreparedOct(e: any){
          e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
       }
     }
+
+
+    e.totalItem.cells.forEach((c: any) => {
+      if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black"; 
+      }   
+    });
   }
 }
 
