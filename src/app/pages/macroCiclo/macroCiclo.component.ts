@@ -287,8 +287,8 @@ export class MarcroCicloCompaniasComponent implements OnInit {
       this.clientes = data.data.clientes;
       this.rutas = data.data.ruta;
       this.viajes = data.data.rentCiclo;
-
-      console.log(data.data)
+      
+      console.log(this.viajes)
       this.loadingVisible = false;
 
     })
