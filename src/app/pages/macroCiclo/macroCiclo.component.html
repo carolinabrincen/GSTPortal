@@ -406,14 +406,14 @@
                 </dxi-column>
                 <dxi-column dataField="inicio" caption="Inicio" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
                 <dxi-column dataField="fin" caption="Fin" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
-                <dxi-column caption="Por Viaje">
+                <dxi-column caption="Ingreso Convenio Comercial">   
+                    <dxi-column dataField="kmsRuta" caption="Kms. Ruta" [format]="separator" [width]="130"></dxi-column>
+                    <dxi-column dataField="ingrXKmRuta" caption="Ingr. Km. Ruta" format="$ #,###,###.##;-$ #,##0.##" [width]="160"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Ingreso por Flete Real">
                     <dxi-column dataField="kms" caption="Kms" [format]="separator" [width]="100"></dxi-column>
                     <dxi-column dataField="flete" caption="Ingreso por Flete" [format]="enteros" [width]="150"></dxi-column>
                     <dxi-column dataField="ingrXKm" caption="Ingreso Kilometro" format="$ #,###,###.##;-$ #,##0.##" [width]="150"></dxi-column>
-                </dxi-column>
-                <dxi-column caption="Ingreso Convenio Comercial">   
-                    <dxi-column dataField="kmsRuta" caption="Kms. Ruta" format="$ #,###,###.##;-$ #,##0.##" [width]="130"></dxi-column>
-                    <dxi-column dataField="ingrXKmRuta" caption="Ingr. Km. Ruta" format="$ #,###,###.##;-$ #,##0.##" [width]="160"></dxi-column>
                 </dxi-column>
                 <dxi-column caption="Desviación Kms. Comercial vs Real">
                     <dxi-column dataField="desvKms" caption="Desv. Kms." [format]="separator" [width]="130"></dxi-column>
