@@ -102,6 +102,8 @@ export interface IngresosModel{
     novPor: number;
     novPres: number;
     novPorP: number;
+    novPorProy
+    novProyeccion
     dicFlete: number;
     dicOtros: number;
     dicTotal: number;
@@ -110,4 +112,6 @@ export interface IngresosModel{
     dicPor: number;
     dicPres: number;
     dicPorP: number;
+
+
 } 

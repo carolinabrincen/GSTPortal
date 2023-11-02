@@ -133,7 +133,7 @@ export class IngresosComponent implements OnInit {
                         orderIngreso[18],orderIngreso[17]);
 
         this.indicadores = neworderIngreso;
-        console.log(this.indicadores)
+        //console.log(this.indicadores)
 
       });
   }
@@ -328,10 +328,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presupuestoOC = e.summaryCells[89][0].value;
         this.totalPor.proyeccionOC = e.summaryCells[91][0].value;
         //Noviembre
-        // this.totalPor.totalNV = e.summaryCells[][0].value;
-        // this.totalPor.anioAntNV = e.summaryCells[][0].value;
-        // this.totalPor.presupuestoNV = e.summaryCells[][0].value;
-        // this.totalPor.proyeccionNV = e.summaryCells[][0].value;
+        this.totalPor.totalNV = e.summaryCells[95][0].value;
+        this.totalPor.anioAntNV = e.summaryCells[96][0].value;
+        this.totalPor.presupuestoNV = e.summaryCells[98][0].value;
+        this.totalPor.proyeccionNV = e.summaryCells[100][0].value;
         //Diciembre
         // this.totalPor.totalDC = e.summaryCells[][0].value;
         // this.totalPor.anioAntDC = e.summaryCells[][0].value;
@@ -379,9 +379,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
         this.totalPor.ProyTotalOC = this.totalPor.proyeccionOC / this.totalPor.presupuestoOC;
         //Noviembre
-        // this.totalPor.aniATotalNV = this.totalPor.totalNV / this.totalPor.anioAntNV;
-        // this.totalPor.presTotalNV = this.totalPor.totalNV / this.totalPor.presupuestoNV;
-        // this.totalPor.ProyTotalNV = this.totalPor.proyeccionNV / this.totalPor.presupuestoNV;
+        this.totalPor.aniATotalNV = this.totalPor.totalNV / this.totalPor.anioAntNV;
+        this.totalPor.presTotalNV = this.totalPor.totalNV / this.totalPor.presupuestoNV;
+        this.totalPor.ProyTotalNV = this.totalPor.proyeccionNV / this.totalPor.presupuestoNV;
         //Diciembre
         // this.totalPor.aniATotalDC = this.totalPor.totalDC / this.totalPor.anioAntDC;
         // this.totalPor.presTotalDC = this.totalPor.totalDC / this.totalPor.presupuestoDC;
@@ -428,9 +428,9 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[90][0].value = this.totalPor.presTotalOC;
         e.summaryCells[92][0].value = this.totalPor.ProyTotalOC;
         //Noviembre
-        // e.summaryCells[][0].value = this.totalPor.aniATotalNV;
-        // e.summaryCells[][0].value = this.totalPor.presTotalNV;
-        // e.summaryCells[][0].value = this.totalPor.ProyTotalNV;
+        e.summaryCells[97][0].value = this.totalPor.aniATotalNV;
+        e.summaryCells[99][0].value = this.totalPor.presTotalNV;
+        e.summaryCells[101][0].value = this.totalPor.ProyTotalNV;
         //Diciembre
         // e.summaryCells[][0].value = this.totalPor.aniATotalDC;
         // e.summaryCells[][0].value = this.totalPor.presTotalDC;

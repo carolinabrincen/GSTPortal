@@ -31,9 +31,9 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleSeptiembre: DetalleModel[] = [];
   arrIngresosOctubre: IngresosDModel[] = [];
   arrDetalleOctubre: DetalleModel[] = [];
-
   arrIngresosNoviembre: IngresosDModel[] = [];
   arrDetalleNoviembre: DetalleModel[] = [];
+
   arrIngresosDiciembre: IngresosDModel[] = [];
   arrDetalleDiciembre: DetalleModel[] = [];
 
@@ -59,6 +59,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMAgosto();
     this.getIDMSeptiembre();
     this.getIDMOctubre();
+    this.getIDMNoviembre();
   }
 
   getIDMMarzo(){
@@ -198,6 +199,18 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrIngresosOctubre = res.data.resumen;
   
       this.arrDetalleOctubre = res.data.detalle;
+
+      this.loadingVisible = false;
+    });
+  }
+
+  getIDMNoviembre(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualNov().subscribe(res => {
+
+      this.arrIngresosNoviembre = res.data.resumen;
+      console.log(this.arrIngresosNoviembre)
+      this.arrDetalleNoviembre = res.data.detalle;
 
       this.loadingVisible = false;
     });
@@ -422,6 +435,10 @@ onCellPreparedOct(e: any){
     }
 
     if(e.columnIndex == 15){
+      if (e.row.summaryCells[15][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
       e.cellElement.style.background = "#cdcbcb";
@@ -468,6 +485,10 @@ onCellPreparedOct(e: any){
     }
 
     if(e.columnIndex == 7){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+     }
+     
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
     }
@@ -492,7 +513,19 @@ onCellPreparedOct(e: any){
       e.cellElement.style.fontSize = "15px";
     }
 
+    if(e.columnIndex == 12){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
     if(e.columnIndex == 14){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 15){
       if (e.summaryItems[0].value.toString().startsWith('-')) {
          e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
       }
