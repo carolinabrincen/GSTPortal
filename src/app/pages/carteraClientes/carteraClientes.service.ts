@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export class CountryInfo {
+export class Avance {
   totalIni: string;
   corriente: number;
   unoA30: number;
@@ -10,7 +10,7 @@ export class CountryInfo {
   totalFin: number;
 }
 
-const countriesInfo: CountryInfo[] = [
+const countriesInfo: Avance[] = [
 {
   totalIni: 'Clientes Terceros',
   corriente:81175767,
@@ -69,7 +69,7 @@ const countriesInfo: CountryInfo[] = [
 
 @Injectable()
 export class Service {
-  getCountriesInfo(): CountryInfo[] {
+  getAvance(): Avance[] {
     return countriesInfo;
   }
 }

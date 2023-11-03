@@ -1,16 +1,11 @@
-import { CostosAnualesService } from '../../services/costos-anuales/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { DxSelectBoxComponent, DxFormComponent, DxDataGridComponent} from 'devextreme-angular';
-
-import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
 
 import { Cartera } from '../../shared/models/carteraClientes/cartera';
 import { CarteraClientes } from '../..//shared/models/carteraClientes/carteraClientes';
 import { Detalle } from '../../shared/models/carteraClientes/detalle';
 
 import { CarteraClientesService } from '../../services/carteraClientes/carteraCliente.service';
-import Validator from 'devextreme/ui/validator';
 import { StorageService } from '../../shared/services/storage.service';
 import notify from 'devextreme/ui/notify';
 
@@ -18,7 +13,8 @@ import { Totales, Total } from '../../shared/models/carteraClientes/totales';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
-import { saveAs } from 'file-saver-es';
+import { saveAs} from 'file-saver-es';
+
 
 const totales = new Totales;
 const total = new Total;
@@ -34,6 +30,12 @@ export class CarteraClientesComponent implements OnInit {
   @ViewChild('gridCartera', { static: false }) gridCartera: DxDataGridComponent;
   @ViewChild('gridInter', { static: false }) gridInter: DxDataGridComponent;
   @ViewChild('gridCliCartInt', { static: false }) gridCliCartInt: DxDataGridComponent;
+  @ViewChild('grid1', { static: false }) grid1: DxDataGridComponent;
+  @ViewChild('grid2', { static: false }) grid2: DxDataGridComponent;
+  @ViewChild('grid3', { static: false }) grid3: DxDataGridComponent;
+  @ViewChild('grid4', { static: false }) grid4: DxDataGridComponent;
+  @ViewChild('grid5', { static: false }) grid5: DxDataGridComponent;
+  @ViewChild('grid6', { static: false }) grid6: DxDataGridComponent;
 
   col: string = '50';
 
@@ -50,7 +52,12 @@ export class CarteraClientesComponent implements OnInit {
   carteraClientes: CarteraClientes[] = [];
   carteraMI: CarteraClientes[] = [];
   carteraInfo: any;
-
+  avance1: any[] = [];
+  avance2: any[] = [];
+  avance3: any[] = [];
+  avance4: any[] = [];
+  avance5: any[] = [];
+  avance6: any[] = [];
 
   detalle: Detalle[] = [];
 
@@ -138,8 +145,9 @@ export class CarteraClientesComponent implements OnInit {
   
   constructor(
     private carteraClientesService: CarteraClientesService,
-    private storageService: StorageService
+    private storageService: StorageService,
     ) {
+
       const that = this;
 
         this.buttonOptionsCancelar= {
@@ -166,7 +174,7 @@ export class CarteraClientesComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.carteraClientesService.getCarteraDetalle().subscribe(data => {
         this.detalle = data.data;
-        console.log(this.detalle)
+        //console.log(this.detalle)
 
         this.loadingVisible = false;
       })
@@ -260,6 +268,14 @@ export class CarteraClientesComponent implements OnInit {
       this.carteraMI = data.data.carteraMensualIntercompanias;
 
       this.carteraInfo = data.data
+
+      this.avance1.push(data.data.avanceCartera1);
+      this.avance2.push(data.data.avanceCartera2);
+      this.avance3.push(data.data.avanceCartera3);
+      this.avance4.push(data.data.avanceCartera4);
+      this.avance5.push(data.data.avanceCartera5);
+      this.avance6.push(data.data.avanceCartera6);
+      console.log(this.avance1)
 
       this.loadingVisible = false;
     })
@@ -541,6 +557,16 @@ export class CarteraClientesComponent implements OnInit {
   onCellPreparedCCI(e: any){
 
   }
+
+  onRowPreparedA(e: any){
+    
+    //console.log(e)
+  }
+
+  onCellPreparedA(e: any){
+    //console.log(e)
+    
+  }
 //====================personalize style excel========================================
   customizeCAER(e) {  
     var gridCell = e.gridCell;
@@ -607,11 +633,13 @@ export class CarteraClientesComponent implements OnInit {
     const workbook = new Workbook();
 
     const carteraSheet = workbook.addWorksheet('CARTERA DE CLIENTES');
-    // const interSheet = workbook.addWorksheet('CarteraInter');
-    // const carteraCIgSheet = workbook.addWorksheet('CarteraClienteInter');
+    const carteraAvance = workbook.addWorksheet('% DE AVANCE');
 
     carteraSheet.getRow(2).getCell(2).value = 'CARTERA DE CLIENTES';
     carteraSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+
+    carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
+    carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
     function setAlternatingRowsBackground(gridCell, excelCell) {
       if (gridCell.rowType === 'data') {
@@ -666,10 +694,31 @@ export class CarteraClientesComponent implements OnInit {
 
             excelCell.value = '$ '+myFormat;
           }
-          console.log(excelCell)
+          //console.log(excelCell)
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460', }, bgColor: { argb: 'FF9460' }, bold: true
           };
+      }
+    }
+
+    function setAlterRowsBackAvance(gridCell, excelCell){
+      if (gridCell.rowType === 'data') {
+
+        if(excelCell.address !== 'B5' && excelCell.address !== 'B8'){
+          var x = Math.round(excelCell.value)
+          var myvalue = Math.trunc(x);
+      
+          var myFormat = myvalue.toString().split(".");
+          myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+          excelCell.value = '$ '+myFormat;
+        }
+      }
+
+      if (gridCell.rowType === 'header') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        };
       }
     }
 
@@ -694,6 +743,36 @@ export class CarteraClientesComponent implements OnInit {
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
       },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid1.instance,
+      topLeftCell: { row: 4, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid2.instance,
+      topLeftCell: { row: 6, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid3.instance,
+      topLeftCell: { row: 7, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid4.instance,
+      topLeftCell: { row: 8, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid5.instance,
+      topLeftCell: { row: 9, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid6.instance,
+      topLeftCell: { row: 10, column: 2 },
     })).then(() => {
       workbook.xlsx.writeBuffer().then((buffer) => {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');

@@ -6,7 +6,6 @@ import liquidaciones from 'src/assets/rc02.json';
 import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
-import { CountryInfo, EnergyDescription, Service  } from './costos-anuales.service';
 import { CostosAnuales } from '../../shared/models/costos-anuales/costosAnuales.model';
 import { DetalleCuenta } from '../../shared/models/costos-anuales/detalleCuenta.model'
 import { TotalesOperacion } from '../../shared/models/costos-anuales/totalesOperacion.model';
@@ -37,7 +36,6 @@ import notify from 'devextreme/ui/notify';
 
   templateUrl: './costos-anuales.component.html',
   styleUrls: ['./costos-anuales.component.scss'],
-  providers: [Service],
 })
 export class CostosAnualesNewComponent implements OnInit {
 
@@ -153,8 +151,6 @@ export class CostosAnualesNewComponent implements OnInit {
   objRentabilidad: any;
 
   //===========chart===================
-  countriesInfo: CountryInfo[];
-  energySources: EnergyDescription[];
   types: string[] = ['line', 'stackedline', 'fullstackedline'];
 
   openModReal: boolean = false;
@@ -198,14 +194,9 @@ export class CostosAnualesNewComponent implements OnInit {
 
   constructor(
     private costosAnualesService: CostosAnualesService,
-    private service: Service
     ) {
     this.verDetallesClick = this.verDetallesClick.bind(this)
     this.costosAnuService = costosAnualesService;
-
-  //===========chart===================
-    this.countriesInfo = service.getCountriesInfo();
-    this.energySources = service.getEnergySources();
   }
 
 
