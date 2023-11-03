@@ -942,14 +942,14 @@ export class IndicadoresComponent implements OnInit {
         totalAgrupamientoIKOC.total = agrupamientoIOC.total / agrupamientoKOC.total;
       }
       if (e.data.key == '11 NOV'){
-        agrupamientoINV.cuautitlan = e.summaryCells[4][0].value;
-        agrupamientoINV.tultitlan = e.summaryCells[5][0].value;
-        agrupamientoINV.guadalajara = e.summaryCells[6][0].value;
-        agrupamientoINV.hermosillo = e.summaryCells[7][0].value;
-        agrupamientoINV.mexicali = e.summaryCells[8][0].value;
-        agrupamientoINV.orizaba = e.summaryCells[9][0].value;
-        agrupamientoINV.ramosArispe = e.summaryCells[10][0].value;
-        agrupamientoINV.total = e.summaryCells[11][0].value;
+        agrupamientoKNV.cuautitlan = e.summaryCells[4][0].value;
+        agrupamientoKNV.tultitlan = e.summaryCells[5][0].value;
+        agrupamientoKNV.guadalajara = e.summaryCells[6][0].value;
+        agrupamientoKNV.hermosillo = e.summaryCells[7][0].value;
+        agrupamientoKNV.mexicali = e.summaryCells[8][0].value;
+        agrupamientoKNV.orizaba = e.summaryCells[9][0].value;
+        agrupamientoKNV.ramosArispe = e.summaryCells[10][0].value;
+        agrupamientoKNV.total = e.summaryCells[11][0].value;
 
         totalAgrupamientoIKNV.cuautitlan = agrupamientoINV.cuautitlan / agrupamientoKNV.cuautitlan;
         totalAgrupamientoIKNV.tultitlan = agrupamientoINV.tultitlan / agrupamientoKNV.tultitlan;
@@ -1445,7 +1445,7 @@ onCellPreparedPM(e){
         if(e.summaryCells[9][0].length !== 0){
           if(Number.isNaN(totalAgrupamientoIKNV.orizaba)){
             e.summaryCells[9][0].value = 0;
-          }{
+          }else{
             e.summaryCells[9][0].value = totalAgrupamientoIKNV.orizaba;
           }
         }
@@ -1464,6 +1464,7 @@ onCellPreparedPM(e){
           }
         }
 
+        console.log(e.summaryCells)
       }
 
       // if (e.data.key == '12 DIC') {
