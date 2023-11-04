@@ -233,66 +233,66 @@
                   <h5 class="avance">30 DE SEPTIEMBRE DEL 2023</h5>
                 </div>
                 <br>
-                <dx-data-grid  #grid1 id="gridContainer1" [dataSource]="avance1" [height]="80"[showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid  #grid1 id="gridContainer1" [dataSource]="avance1" [height]="81"[showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedA($event)" (onCellPrepared)="onCellPreparedA($event)">
                     
-                    <dxi-column dataField="concepto" caption="TOTAL"[width]="140"></dxi-column>
-                    <dxi-column dataField="corriente" caption="Corriente" [format]="separator"[width]="120"></dxi-column>
-                    <dxi-column dataField="de1a30" caption="1 A 30" [format]="separator"[width]="120"></dxi-column>
-                    <dxi-column dataField="de31a60" caption="31 A 60" [format]="separator"[width]="120"></dxi-column>
-                    <dxi-column dataField="de61a90" caption="61 A 90" [format]="separator"[width]="120"></dxi-column>
-                    <dxi-column dataField="mas90" caption="MAS 90" [format]="separator"[width]="120"></dxi-column>
-                    <dxi-column dataField="total" caption="Total" [format]="separator"[width]="120"></dxi-column>
+                    <dxi-column dataField="concepto" caption="TOTAL" [width]="200" alignment="left"></dxi-column>
+                    <dxi-column dataField="corriente" caption="Corriente" [format]="separator" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de1a30" caption="1 A 30" [format]="separator" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de31a60" caption="31 A 60" [format]="separator" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de61a90" caption="61 A 90" [format]="separator" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="mas90" caption="MAS 90" [format]="separator" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" [format]="separator" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
-                <dx-data-grid  #grid2 id="gridContainer2" [dataSource]="avance2" [height]="39"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
-                    <dxi-column dataField="concepto"[width]="140"></dxi-column>
-                    <dxi-column dataField="corriente" format="percent"[width]="120"></dxi-column>
-                    <dxi-column dataField="de1a30" format="percent"[width]="120"></dxi-column>
-                    <dxi-column dataField="de31a60" format="percent"[width]="120"></dxi-column>
-                    <dxi-column dataField="de61a90" format="percent"[width]="120"></dxi-column>
-                    <dxi-column dataField="mas90" format="percent"[width]="120"></dxi-column>
-                    <dxi-column dataField="total" format="percent"[width]="120"></dxi-column>
+                <dx-data-grid  #grid2 id="gridContainer2" [dataSource]="avance2" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
+                    <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                    <dxi-column dataField="corriente" format="percent" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de1a30" format="percent" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de31a60" format="percent" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="de61a90" format="percent" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="mas90" format="percent" width="100%" alignment="left"></dxi-column>
+                    <dxi-column dataField="total" format="percent" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
-                <dx-data-grid  #grid3 id="gridContainer3" [dataSource]="avance3" [height]="39"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
-                  <dxi-column dataField="concepto"[width]="140"></dxi-column>
-                  <dxi-column dataField="corriente"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de1a30"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de31a60"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de61a90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="mas90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="total"  format="percent"[width]="120"></dxi-column>
+                <dx-data-grid  #grid3 id="gridContainer3" [dataSource]="avance3" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
+                  <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de61a90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="mas90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="total"  format="percent" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
-                <dx-data-grid  #grid4 id="gridContainer4" [dataSource]="avance4" [height]="39"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
-                  <dxi-column dataField="concepto"[width]="140"></dxi-column>
-                  <dxi-column dataField="corriente"  [format]="separator"[width]="120"></dxi-column>
-                  <dxi-column dataField="de1a30"  [format]="separator"[width]="120"></dxi-column>
-                  <dxi-column dataField="de31a60"  [format]="separator"[width]="120"></dxi-column>
-                  <dxi-column dataField="de61a90"  [format]="separator"[width]="120"></dxi-column>
-                  <dxi-column dataField="mas90"  [format]="separator"[width]="120"></dxi-column>
-                  <dxi-column dataField="total"  [format]="separator"[width]="120"></dxi-column>
+                <dx-data-grid  #grid4 id="gridContainer4" [dataSource]="avance4" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
+                  <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="corriente" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de1a30" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de31a60" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de61a90" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="mas90" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="total" [format]="separator" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
-                <dx-data-grid  #grid5 id="gridContainer5" [dataSource]="avance5" [height]="39"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
-                  <dxi-column dataField="concepto"[width]="140"></dxi-column>
-                  <dxi-column dataField="corriente"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de1a30"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de31a60"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de61a90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="mas90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="total"  format="percent"[width]="120"></dxi-column>
+                <dx-data-grid  #grid5 id="gridContainer5" [dataSource]="avance5" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
+                  <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de61a90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="mas90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="total"  format="percent" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
-                <dx-data-grid  #grid6 id="gridContainer6" [dataSource]="avance6" [height]="39"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
-                  <dxi-column dataField="concepto"[width]="140"></dxi-column>
-                  <dxi-column dataField="corriente"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de1a30"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de31a60"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="de61a90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="mas90"  format="percent"[width]="120"></dxi-column>
-                  <dxi-column dataField="total"  format="percent"[width]="120"></dxi-column>
+                <dx-data-grid  #grid6 id="gridContainer6" [dataSource]="avance6" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
+                  <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="de61a90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="mas90"  format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="total"  format="percent" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
 
 
