@@ -648,11 +648,11 @@ export class CarteraClientesComponent implements OnInit {
     carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
     carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
-    carteraAvance.getRow(4).getCell(5).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
-    carteraAvance.getRow(4).getCell(5).font = { bold: true, size: 16,};
+    carteraAvance.getRow(4).getCell(4).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
+    carteraAvance.getRow(4).getCell(4).font = { bold: true, size: 16,};
 
-    carteraAvance.getRow(5).getCell(5).value = '31 DE OCTUBRE DEL 2023';
-    carteraAvance.getRow(5).getCell(5).font = { bold: true, size: 16};
+    carteraAvance.getRow(5).getCell(4).value = '31 DE OCTUBRE DEL 2023';
+    carteraAvance.getRow(5).getCell(4).font = { bold: true, size: 16};
 
 
     var totalGrid2 = this.calcularGrid2(this.numRowsMI);
@@ -680,36 +680,6 @@ export class CarteraClientesComponent implements OnInit {
       }
 
       if (gridCell.rowType === 'header') {
-
-          const columnDataField = gridCell.column.dataField;
-         //console.log(gridCell)
-          if(columnDataField === 'corriente') {
-              const stateColumn = carteraSheet.getColumn(excelCell.col);
-              stateColumn.width = 100;
-          }
-          if(columnDataField === 'per1a30') {
-            const stateColumn = carteraSheet.getColumn(excelCell.col);
-            stateColumn.width = 100;
-          }
-          if(columnDataField === 'per31a60') {
-            const stateColumn = carteraSheet.getColumn(excelCell.col);
-            stateColumn.width = 100;
-          }
-          if(columnDataField === 'per61a90') {
-            const stateColumn = carteraSheet.getColumn(excelCell.col);
-            stateColumn.width = 100;
-          }
-          if(columnDataField === 'permayor90') {
-            const stateColumn = carteraSheet.getColumn(excelCell.col);
-            stateColumn.width = 100;
-          }
-          if(columnDataField === 'total') {
-            const stateColumn = carteraSheet.getColumn(excelCell.col);
-            stateColumn.width = 100;
-          } 
-        
-
-
 
         excelCell.fill = {
           type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
@@ -754,7 +724,7 @@ export class CarteraClientesComponent implements OnInit {
     }
 
     function setAlterRowsBackAvance(gridCell, excelCell){
-      console.log(gridCell)
+      //console.log(gridCell)
       if (gridCell.rowType === 'data') {
 
         if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
@@ -775,9 +745,18 @@ export class CarteraClientesComponent implements OnInit {
       }
     }
 
+    carteraSheet.columns = [
+      { width: 10 }, { width: 35 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
+    ];
+
+    carteraAvance.columns = [
+      { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
+    ];
+
     exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridCartera.instance,
+      keepColumnWidths: false,
       topLeftCell: { row: 4, column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground(gridCell, excelCell);
@@ -785,6 +764,7 @@ export class CarteraClientesComponent implements OnInit {
     }).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridInter.instance,
+      keepColumnWidths: false,
       topLeftCell: { row: this.calcularGrid1(this.numRowsCarClien), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground(gridCell, excelCell);
@@ -792,6 +772,7 @@ export class CarteraClientesComponent implements OnInit {
     })).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridCliCartInt.instance,
+      keepColumnWidths: false,
       topLeftCell: { row: this.calcularGrid2(this.numRowsMI), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
