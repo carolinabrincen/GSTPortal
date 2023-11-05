@@ -632,6 +632,12 @@ export class CarteraClientesComponent implements OnInit {
     carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
     carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
+    carteraAvance.getRow(4).getCell(5).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
+    carteraAvance.getRow(4).getCell(5).font = { bold: true, size: 16,};
+
+    carteraAvance.getRow(5).getCell(5).value = '30 DE OCTUBRE DEL 2023';
+    carteraAvance.getRow(5).getCell(5).font = { bold: true, size: 16};
+
     function setAlternatingRowsBackground(gridCell, excelCell) {
       if (gridCell.rowType === 'data') {
         
@@ -695,7 +701,7 @@ export class CarteraClientesComponent implements OnInit {
     function setAlterRowsBackAvance(gridCell, excelCell){
       if (gridCell.rowType === 'data') {
 
-        if(excelCell.address !== 'B5' && excelCell.address !== 'B8'){
+        if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
           var x = Math.round(excelCell.value)
           var myvalue = Math.trunc(x);
       
@@ -737,33 +743,33 @@ export class CarteraClientesComponent implements OnInit {
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid1.instance,
-      topLeftCell: { row: 4, column: 2 },
+      topLeftCell: { row: 7, column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlterRowsBackAvance(gridCell, excelCell);
       },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid2.instance,
-      topLeftCell: { row: 6, column: 2 },
+      topLeftCell: { row: 9, column: 2 },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid3.instance,
-      topLeftCell: { row: 7, column: 2 },
+      topLeftCell: { row: 10, column: 2 },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid4.instance,
-      topLeftCell: { row: 8, column: 2 },
+      topLeftCell: { row: 11, column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlterRowsBackAvance(gridCell, excelCell);
       },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid5.instance,
-      topLeftCell: { row: 9, column: 2 },
+      topLeftCell: { row: 12, column: 2 },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid6.instance,
-      topLeftCell: { row: 10, column: 2 },
+      topLeftCell: { row: 13, column: 2 },
     })).then(() => {
       workbook.xlsx.writeBuffer().then((buffer) => {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');

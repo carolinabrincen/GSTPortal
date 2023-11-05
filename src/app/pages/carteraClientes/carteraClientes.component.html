@@ -73,7 +73,7 @@
             <br>
 
             <div class="dx-field">
-                <h5>Periodo actual: <b>{{ periodoActual }}</b></h5>
+                <h5>PERIODO: <b>{{ periodoActual }}</b></h5>
                 <div class="dx-field-value d-block mr-0 ml-auto" style="width: 30%;">
                     
                     <h5>Facturas con carta cobro: <b>{{carteraInfo?.facturasConCarta}}</b></h5>
@@ -230,10 +230,10 @@
                 
                 <div>
                   <h5 class="avance">GST FLETES Y SERVICIOS, S.A. DE C.V.</h5>
-                  <h5 class="avance">30 DE SEPTIEMBRE DEL 2023</h5>
+                  <h5 class="avance">30 DE OCTUBRE DEL 2023</h5>
                 </div>
                 <br>
-                <dx-data-grid  #grid1 id="gridContainer1" [dataSource]="avance1" [height]="81"[showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid  #grid1 id="gridContainer1" [dataSource]="avance1" [height]="82"[showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedA($event)" (onCellPrepared)="onCellPreparedA($event)">
                     
                     <dxi-column dataField="concepto" caption="TOTAL" [width]="200" alignment="left"></dxi-column>
