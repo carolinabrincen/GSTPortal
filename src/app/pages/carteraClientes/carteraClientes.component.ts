@@ -651,7 +651,7 @@ export class CarteraClientesComponent implements OnInit {
     carteraAvance.getRow(4).getCell(5).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
     carteraAvance.getRow(4).getCell(5).font = { bold: true, size: 16,};
 
-    carteraAvance.getRow(5).getCell(5).value = '30 DE OCTUBRE DEL 2023';
+    carteraAvance.getRow(5).getCell(5).value = '31 DE OCTUBRE DEL 2023';
     carteraAvance.getRow(5).getCell(5).font = { bold: true, size: 16};
 
 
@@ -682,7 +682,7 @@ export class CarteraClientesComponent implements OnInit {
       if (gridCell.rowType === 'header') {
 
           const columnDataField = gridCell.column.dataField;
-         console.log(gridCell)
+         //console.log(gridCell)
           if(columnDataField === 'corriente') {
               const stateColumn = carteraSheet.getColumn(excelCell.col);
               stateColumn.width = 100;
@@ -754,6 +754,7 @@ export class CarteraClientesComponent implements OnInit {
     }
 
     function setAlterRowsBackAvance(gridCell, excelCell){
+      console.log(gridCell)
       if (gridCell.rowType === 'data') {
 
         if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
@@ -900,6 +901,10 @@ export class CarteraClientesComponent implements OnInit {
   Cancelar(e){
    // console.log(e)
     this.modPeriodo = false;
+  }
+
+  tabAvance(value){
+    value.event.isTrusted = true;
   }
 }
 

@@ -90,8 +90,7 @@
               <dx-button text="EXPORTAR TODO" icon="xlsxfile" (onClick)="exportGrids($event)"></dx-button>
             </div>
             <br>
-            <dx-tab-panel>
-              <dxi-item title="Cartera">
+
                 <br>
                 <dx-data-grid  #gridCartera id="gridContainer2" [dataSource]="carteraClientes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedCC($event)" (onCellPrepared)="onCellPreparedCC($event)">
@@ -224,13 +223,11 @@
 
                 </dx-data-grid>
 
-              </dxi-item>
-
-              <dxi-item title="% DE AVANCE">
-                
+                <br><br>
+<!--===============================================% DE AVANCE=============================================================================================-->
                 <div>
                   <h5 class="avance">GST FLETES Y SERVICIOS, S.A. DE C.V.</h5>
-                  <h5 class="avance">30 DE OCTUBRE DEL 2023</h5>
+                  <h5 class="avance">31 DE OCTUBRE DEL 2023</h5>
                 </div>
                 <br>
                 <dx-data-grid  #grid1 id="gridContainer1" [dataSource]="avance1" [height]="82"[showBorders]="true" [columnAutoWidth]="true"
@@ -294,13 +291,6 @@
                   <dxi-column dataField="mas90"  format="percent" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="total"  format="percent" width="100%" alignment="left"></dxi-column>
                 </dx-data-grid>
-
-
-
-
-
-              </dxi-item>
-            </dx-tab-panel>
         </dxi-item>
 
         <dxi-item title="Detalle">
