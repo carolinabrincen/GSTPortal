@@ -61,6 +61,9 @@ export class CarteraClientesComponent implements OnInit {
 
   detalle: Detalle[] = [];
 
+  numRowsCarClien: number = 0;
+  numRowsMI: number = 0;
+
   periodo: any[] = [
     // { id: 1, periodo: 202301 },
     // { id: 2, periodo: 202302 },
@@ -247,12 +250,13 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-     console.log(data.data)
+    //  console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
-      // this.carteraClientes.sort((a, b) => (a.idArea < b.idArea ? -1 : 1));
-
       this.carteraMI = data.data.carteraMensualIntercompanias;
+
+      this.numRowsCarClien = this.carteraClientes.length;
+      this.numRowsMI = this.carteraMI.length;
 
       this.carteraInfo = data.data
 
@@ -267,6 +271,18 @@ export class CarteraClientesComponent implements OnInit {
 
       this.loadingVisible = false;
     })
+  }
+
+  calcularGrid1(value): number{
+    return value +++ 9
+  }
+
+  calcularGrid2(value): number{
+
+    var totalGrid1 = this.calcularGrid1(this.numRowsCarClien);
+    
+    var totalgrid2 = totalGrid1 + value;
+    return totalgrid2 +++ 15
   }
 
   username: string
@@ -638,7 +654,11 @@ export class CarteraClientesComponent implements OnInit {
     carteraAvance.getRow(5).getCell(5).value = '30 DE OCTUBRE DEL 2023';
     carteraAvance.getRow(5).getCell(5).font = { bold: true, size: 16};
 
+
+    var totalGrid2 = this.calcularGrid2(this.numRowsMI);
+
     function setAlternatingRowsBackground(gridCell, excelCell) {
+
       if (gridCell.rowType === 'data') {
         
         if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
@@ -660,6 +680,37 @@ export class CarteraClientesComponent implements OnInit {
       }
 
       if (gridCell.rowType === 'header') {
+
+          const columnDataField = gridCell.column.dataField;
+         console.log(gridCell)
+          if(columnDataField === 'corriente') {
+              const stateColumn = carteraSheet.getColumn(excelCell.col);
+              stateColumn.width = 100;
+          }
+          if(columnDataField === 'per1a30') {
+            const stateColumn = carteraSheet.getColumn(excelCell.col);
+            stateColumn.width = 100;
+          }
+          if(columnDataField === 'per31a60') {
+            const stateColumn = carteraSheet.getColumn(excelCell.col);
+            stateColumn.width = 100;
+          }
+          if(columnDataField === 'per61a90') {
+            const stateColumn = carteraSheet.getColumn(excelCell.col);
+            stateColumn.width = 100;
+          }
+          if(columnDataField === 'permayor90') {
+            const stateColumn = carteraSheet.getColumn(excelCell.col);
+            stateColumn.width = 100;
+          }
+          if(columnDataField === 'total') {
+            const stateColumn = carteraSheet.getColumn(excelCell.col);
+            stateColumn.width = 100;
+          } 
+        
+
+
+
         excelCell.fill = {
           type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
         };
@@ -682,7 +733,10 @@ export class CarteraClientesComponent implements OnInit {
     function setAlternatingRowsBackground3(gridCell, excelCell) {
       if (gridCell.rowType === 'data') {
 
-          if(excelCell.address !== 'B125'){
+        var totalFin = totalGrid2 +1;
+        var myPosition = 'B'+totalFin.toString();
+        
+          if(excelCell.address !== myPosition){
             var x = Math.round(excelCell.value)
             var myvalue = Math.trunc(x);
         
@@ -695,6 +749,7 @@ export class CarteraClientesComponent implements OnInit {
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460', }, bgColor: { argb: 'FF9460' }, bold: true
           };
+        
       }
     }
 
@@ -729,14 +784,14 @@ export class CarteraClientesComponent implements OnInit {
     }).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridInter.instance,
-      topLeftCell: { row: 80, column: 2 },
+      topLeftCell: { row: this.calcularGrid1(this.numRowsCarClien), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground(gridCell, excelCell);
       },
     })).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridCliCartInt.instance,
-      topLeftCell: { row: 124, column: 2 },
+      topLeftCell: { row: this.calcularGrid2(this.numRowsMI), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
       },
