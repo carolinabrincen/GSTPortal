@@ -305,19 +305,6 @@
 
         <dxi-item title="Detalle">
             <br>
-            <div>
-
-                <div class="dx-field">
-        
-                    <div class="dx-field-value d-block mr-0 ml-auto" style="width: 20%;">
-                        <dx-button stylingMode="contained" text="Actualizar" icon="refresh" type="normal" [width]="240" (onClick)="ActuaizarDetalle()">
-                        </dx-button>
-                    </div>
-        
-                </div>
-            </div>
-            <br>
-
             <dx-data-grid  #ING id="gridContainer1" [dataSource]="detalle" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)">
 

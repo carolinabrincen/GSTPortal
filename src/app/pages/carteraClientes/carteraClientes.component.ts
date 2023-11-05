@@ -162,7 +162,6 @@ export class CarteraClientesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCarteraDetalle();
     this.getPeriodo();
     this.getUserName();
   }
@@ -170,18 +169,6 @@ export class CarteraClientesComponent implements OnInit {
   ngAfterViewInit(): void {}
 
   //=================GETS===========================
-  getCarteraDetalle(){
-    const request = new Promise((resolve, reject) => {
-      this.carteraClientesService.getCarteraDetalle().subscribe(data => {
-        this.detalle = data.data;
-        //console.log(this.detalle)
-
-        this.loadingVisible = false;
-      })
-    });
-    return request;
-  }
-
   getPeriodo(){
     this.carteraClientesService.getPeriodoActual().subscribe(data => {
       this.periodoActual = data.data;
@@ -276,6 +263,8 @@ export class CarteraClientesComponent implements OnInit {
       this.avance5.push(data.data.avanceCartera5);
       this.avance6.push(data.data.avanceCartera6);
 
+      this.detalle = data.data.detalleCartera;
+
       this.loadingVisible = false;
     })
   }
@@ -357,7 +346,7 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-     // console.log(data.data)
+     //console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
@@ -366,14 +355,17 @@ export class CarteraClientesComponent implements OnInit {
 
       this.carteraInfo = data.data
 
+      this.avance1.push(data.data.avanceCartera1);
+      this.avance2.push(data.data.avanceCartera2);
+      this.avance3.push(data.data.avanceCartera3);
+      this.avance4.push(data.data.avanceCartera4);
+      this.avance5.push(data.data.avanceCartera5);
+      this.avance6.push(data.data.avanceCartera6);
+
+      this.detalle = data.data.detalleCartera;
+
       this.loadingVisible = false;
     })
-  }
-
-
-  ActuaizarDetalle(){
-    this.getCarteraDetalle();
-    this.loadingVisible = true;
   }
 
   callCostosAnuales() {
