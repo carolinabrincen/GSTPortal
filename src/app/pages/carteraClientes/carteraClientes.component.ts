@@ -250,7 +250,7 @@ export class CarteraClientesComponent implements OnInit {
      console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
-      // this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+      // this.carteraClientes.sort((a, b) => (a.idArea < b.idArea ? -1 : 1));
 
       this.carteraMI = data.data.carteraMensualIntercompanias;
 
