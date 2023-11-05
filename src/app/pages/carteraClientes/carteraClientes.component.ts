@@ -260,7 +260,7 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-     // console.log(data.data)
+     console.log(data.data)
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
@@ -275,7 +275,6 @@ export class CarteraClientesComponent implements OnInit {
       this.avance4.push(data.data.avanceCartera4);
       this.avance5.push(data.data.avanceCartera5);
       this.avance6.push(data.data.avanceCartera6);
-      console.log(this.avance1)
 
       this.loadingVisible = false;
     })
@@ -651,7 +650,7 @@ export class CarteraClientesComponent implements OnInit {
             var myFormat = myvalue.toString().split(".");
             myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             
-            excelCell.value = '$ '+myFormat;
+            excelCell.value = myFormat.join("");
           
         }
 
@@ -685,14 +684,14 @@ export class CarteraClientesComponent implements OnInit {
     function setAlternatingRowsBackground3(gridCell, excelCell) {
       if (gridCell.rowType === 'data') {
 
-          if(excelCell.address !== 'B113'){
+          if(excelCell.address !== 'B125'){
             var x = Math.round(excelCell.value)
             var myvalue = Math.trunc(x);
         
             var myFormat = myvalue.toString().split(".");
             myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            excelCell.value = '$ '+myFormat;
+            excelCell.value = '$ '+myFormat.join("");
           }
           //console.log(excelCell)
           excelCell.fill = {
@@ -732,14 +731,14 @@ export class CarteraClientesComponent implements OnInit {
     }).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridInter.instance,
-      topLeftCell: { row: 71, column: 2 },
+      topLeftCell: { row: 80, column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground(gridCell, excelCell);
       },
     })).then(() => exportDataGrid({
       worksheet: carteraSheet,
       component: context.gridCliCartInt.instance,
-      topLeftCell: { row: 112, column: 2 },
+      topLeftCell: { row: 124, column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
       },
@@ -795,6 +794,17 @@ export class CarteraClientesComponent implements OnInit {
     myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
     return '$ '+myFormat.join("");
+  }
+
+  formatMoneda(value) {
+    var x = Math.round(value)
+
+    var myvalue = Math.trunc(x);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    return myFormat.join("");
   }
 
   customizeColumns(columns) {

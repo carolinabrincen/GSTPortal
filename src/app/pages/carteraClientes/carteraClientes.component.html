@@ -103,12 +103,12 @@
                     
                   <dxi-column caption="{{printValue+' - '+ printPeriodo}}">
                     <dxi-column dataField="cliente" caption="Nombre de cliente"></dxi-column>
-                    <dxi-column dataField="corriente" caption="Corriente" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per1a30" caption="1 A 30" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per31a60" caption="31 A 60" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per61a90" caption="61 A 90" [format]="separator"></dxi-column>
-                    <dxi-column dataField="permayor90" caption="MAS 90" [format]="separator"></dxi-column>
-                    <dxi-column dataField="total" caption="Total" cssClass="styletotal" [format]="separator"></dxi-column>
+                    <dxi-column dataField="corriente" caption="Corriente" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per1a30" caption="1 A 30" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per31a60" caption="31 A 60" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per61a90" caption="61 A 90" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="permayor90" caption="MAS 90" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" cssClass="styletotal" [format]="formatMoneda"></dxi-column>
                   </dxi-column>
 
                   <dxo-summary>
@@ -173,12 +173,12 @@
                   <dxi-column caption="{{printValue+' - '+ printPeriodo}}">
                     <dxi-column dataField="cliente" caption="" [groupIndex]="0"></dxi-column>
                     <dxi-column dataField="intercompania" caption="Intercompañia"></dxi-column>
-                    <dxi-column dataField="corriente" caption="Corriente" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per1a30" caption="1 A 30" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per31a60" caption="31 A 60" [format]="separator"></dxi-column>
-                    <dxi-column dataField="per61a90" caption="61 A 90" [format]="separator"></dxi-column>
-                    <dxi-column dataField="permayor90" caption="MAS 90" [format]="separator"></dxi-column>
-                    <dxi-column dataField="total" caption="Total" cssClass="styletotal" [format]="separator"></dxi-column>
+                    <dxi-column dataField="corriente" caption="Corriente" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per1a30" caption="1 A 30" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per31a60" caption="31 A 60" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="per61a90" caption="61 A 90" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="permayor90" caption="MAS 90" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" cssClass="styletotal" [format]="formatMoneda"></dxi-column>
                   </dxi-column>
 
                   <dxo-summary>
@@ -333,19 +333,20 @@
             <dxi-column dataField="nombre" caption="NOMBRE" [width]="250" [fixed]="true"></dxi-column>
             <dxi-column dataField="serie" caption="SERIE" [width]="100"></dxi-column>
             <dxi-column dataField="documento" caption="DOCUMENTO" [width]="120"></dxi-column>            
-            <dxi-column dataField="fechA_GUIA" caption="GUÍA" dataType="date" format="MM/dd/yyyy" [width]="150"></dxi-column>
+            <dxi-column dataField="fechA_GUIA" caption="GUÍA" dataType="date" format="dd/MM/yyyy" [width]="150"></dxi-column>
             <dxi-column dataField="diaS_SIN_CARTA_C" caption="DÍAS SIN CARTA" [width]="160"></dxi-column>
-            <dxi-column dataField="nocarta" caption="NO. CARTA" [width]="100"></dxi-column> 
-            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column>
-            <dxi-column dataField="observaciones" caption="OBSERVACIONES" [width]="200"></dxi-column> 
-            <dxi-column dataField="recogeR_EN" caption="RECOGER EN" [width]="100"></dxi-column> 
+            <dxi-column dataField="nocarta" caption="NO. CARTA" [width]="130"></dxi-column> 
+            <dxi-column dataField="referencia" caption="REFERENCIA" [width]="150"></dxi-column>
+            <dxi-column dataField="observaciones" caption="OBSERVACIONES" [width]="220"></dxi-column> 
+            <dxi-column dataField="recogeR_EN" caption="RECOGER EN" [width]="130"></dxi-column> 
             <dxi-column dataField="saldO_SIN_CCOBRO" caption="SALDO SIN COBRO" [width]="160" [format]="separator"></dxi-column>
             <dxi-column dataField="totaL_INTEGRADO" caption="TOTAL INTEGRADO" [width]="160" [format]="separator"></dxi-column>
             <dxi-column dataField="diaS_DE_CREDITO" caption="DÍAS DE CRÉDITO" [width]="150"></dxi-column>
-            <dxi-column dataField="f_CARTACROBRO" caption="CARTA COBRO" dataType="date" format="MM/dd/yyyy" [width]="160"></dxi-column>
-            <dxi-column dataField="fechaCierre" caption="CIERRE" dataType="date" format="MM/dd/yyyy" [width]="140" ></dxi-column>
-            <dxi-column dataField="fechA_VENCIMIENTO" caption="VENCIMIENTO" dataType="date" format="MM/dd/yyyy" [width]="140"></dxi-column>
-            <dxi-column dataField="diasVencimiento" caption="VENCIDOS" alignment="right" [width]="100"></dxi-column>
+            <dxi-column dataField="f_CARTACROBRO" caption="CARTA COBRO" dataType="date" format="dd/MM/yyyy" [width]="160"></dxi-column>
+            <dxi-column dataField="fechaCierre" caption="CIERRE" dataType="date" format="dd/MM/yyyy" [width]="140" ></dxi-column>
+            <dxi-column dataField="fechA_VENCIMIENTO" caption="VENCIMIENTO" dataType="date" format="dd/MM/yyyy" [width]="140"></dxi-column>
+            <dxi-column dataField="diasVencimiento" caption="VENCIDOS" alignment="right" [width]="130"></dxi-column>
+            <dxi-column dataField="" caption="" [width]="10"></dxi-column>
 
             <!-- <dxi-column dataField="remision" caption="REMISIÓN" [width]="250"></dxi-column>
             <dxi-column dataField="referencia" caption="REFERENCIA" [width]="100"></dxi-column> 
