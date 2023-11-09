@@ -205,26 +205,33 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   printPeriodo = ""
+  printPAvance = "";
   seleccionarPeriodo(e: any) {
     this.selectedPeriodo = e.value
 
     if(this.selectedPeriodo == 202307){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2023"
+      this.printPAvance = "31 DE JUIO DEL 2023"
     }
     if(this.selectedPeriodo  == 202308){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2023"
+      this.printPAvance = "31 DE AGOSTO DEL 2023"
     }
     if(this.selectedPeriodo == 202309){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2023"
+      this.printPAvance = "30 DE SEPTIEMBRE DEL 2023"
     }
     if(this.selectedPeriodo == 202310){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2023"
+      this.printPAvance = "31 DE OCTUBRE DEL 2023"
     }
     if(this.selectedPeriodo == 202311){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2023"
+      this.printPAvance = "30 DE NOVIEMBRE DEL 2023"
     }
     if(this.selectedPeriodo == 202312){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
+      this.printPAvance = "31 DE DICIEMBRE DEL 2023"
     }
 
 
@@ -344,6 +351,12 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   Actualizar(){
+    this.avance1 = [];
+    this.avance2 = [];
+    this.avance3 = [];
+    this.avance4 = [];
+    this.avance5 = [];
+    this.avance6 = [];
     var myTipo = 1
     this.loadingVisible = true;
     this.myTotal = [];
@@ -402,6 +415,13 @@ export class CarteraClientesComponent implements OnInit {
     if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
       this.loadingVisible = true;
       this.modeSearch = 'true'
+
+      this.avance1 = [];
+      this.avance2 = [];
+      this.avance3 = [];
+      this.avance4 = [];
+      this.avance5 = [];
+      this.avance6 = [];
 
       this.postCarteraCliente();
     }
@@ -640,19 +660,19 @@ export class CarteraClientesComponent implements OnInit {
     const workbook = new Workbook();
 
     const carteraSheet = workbook.addWorksheet('CARTERA DE CLIENTES');
-    const carteraAvance = workbook.addWorksheet('% DE AVANCE');
+    //const carteraAvance = workbook.addWorksheet('% DE AVANCE');
 
     carteraSheet.getRow(2).getCell(2).value = 'CARTERA DE CLIENTES';
     carteraSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
-    carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
-    carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+    // carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
+    // carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
-    carteraAvance.getRow(4).getCell(4).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
-    carteraAvance.getRow(4).getCell(4).font = { bold: true, size: 16,};
+    // carteraAvance.getRow(4).getCell(4).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
+    // carteraAvance.getRow(4).getCell(4).font = { bold: true, size: 16,};
 
-    carteraAvance.getRow(5).getCell(4).value = '31 DE OCTUBRE DEL 2023';
-    carteraAvance.getRow(5).getCell(4).font = { bold: true, size: 16};
+    // carteraAvance.getRow(5).getCell(4).value = '31 DE OCTUBRE DEL 2023';
+    // carteraAvance.getRow(5).getCell(4).font = { bold: true, size: 16};
 
 
     var totalGrid2 = this.calcularGrid2(this.numRowsMI);
@@ -723,35 +743,35 @@ export class CarteraClientesComponent implements OnInit {
       }
     }
 
-    function setAlterRowsBackAvance(gridCell, excelCell){
-      //console.log(gridCell)
-      if (gridCell.rowType === 'data') {
+    // function setAlterRowsBackAvance(gridCell, excelCell){
+    //   //console.log(gridCell)
+    //   if (gridCell.rowType === 'data') {
 
-        if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
-          var x = Math.round(excelCell.value)
-          var myvalue = Math.trunc(x);
+    //     if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
+    //       var x = Math.round(excelCell.value)
+    //       var myvalue = Math.trunc(x);
       
-          var myFormat = myvalue.toString().split(".");
-          myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //       var myFormat = myvalue.toString().split(".");
+    //       myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-          excelCell.value = '$ '+myFormat;
-        }
-      }
+    //       excelCell.value = '$ '+myFormat;
+    //     }
+    //   }
 
-      if (gridCell.rowType === 'header') {
-        excelCell.fill = {
-          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-        };
-      }
-    }
+    //   if (gridCell.rowType === 'header') {
+    //     excelCell.fill = {
+    //       type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+    //     };
+    //   }
+    // }
 
     carteraSheet.columns = [
       { width: 10 }, { width: 35 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
     ];
 
-    carteraAvance.columns = [
-      { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
-    ];
+    // carteraAvance.columns = [
+    //   { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
+    // ];
 
     exportDataGrid({
       worksheet: carteraSheet,
@@ -777,7 +797,14 @@ export class CarteraClientesComponent implements OnInit {
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
       },
-    })).then(() => exportDataGrid({
+    })).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer) => {
+        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
+      });
+    });
+
+    /**
+     * .then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid1.instance,
       topLeftCell: { row: 7, column: 2 },
@@ -807,11 +834,91 @@ export class CarteraClientesComponent implements OnInit {
       worksheet: carteraAvance,
       component: context.grid6.instance,
       topLeftCell: { row: 13, column: 2 },
+    }))
+     */
+  }
+
+  exportGridsAva(e) {
+    const context = this;
+    const workbook = new Workbook();
+
+
+    const carteraAvance = workbook.addWorksheet('% DE AVANCE');
+
+    carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
+    carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
+
+    carteraAvance.getRow(4).getCell(4).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
+    carteraAvance.getRow(4).getCell(4).font = { bold: true, size: 16,};
+
+    carteraAvance.getRow(5).getCell(4).value = this.printPAvance;
+    carteraAvance.getRow(5).getCell(4).font = { bold: true, size: 16};
+
+    function setAlterRowsBackAvance(gridCell, excelCell){
+      //console.log(gridCell)
+      if (gridCell.rowType === 'data') {
+
+        if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
+          var x = Math.round(excelCell.value)
+          var myvalue = Math.trunc(x);
+      
+          var myFormat = myvalue.toString().split(".");
+          myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+          excelCell.value = '$ '+myFormat;
+        }
+      }
+
+      if (gridCell.rowType === 'header') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        };
+      }
+    }
+
+    carteraAvance.columns = [
+      { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
+    ];
+
+    exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid1.instance,
+      topLeftCell: { row: 7, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance(gridCell, excelCell);
+      },
+    }).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid2.instance,
+      topLeftCell: { row: 9, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid3.instance,
+      topLeftCell: { row: 10, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid4.instance,
+      topLeftCell: { row: 11, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid5.instance,
+      topLeftCell: { row: 12, column: 2 },
+    })).then(() => exportDataGrid({
+      worksheet: carteraAvance,
+      component: context.grid6.instance,
+      topLeftCell: { row: 13, column: 2 },
     })).then(() => {
       workbook.xlsx.writeBuffer().then((buffer) => {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
       });
     });
+
+    /**
+     *
+     */
   }
 //==================Formato a la data de la grafica==================================
   formatSliderTooltip (value) {

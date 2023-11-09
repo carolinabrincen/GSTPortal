@@ -256,7 +256,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     
     this.macrocicloService.postMacrociclo(this.selectedUdN, this.selectedOperacion, this.selectedEstados).subscribe(data => {
       this.macroCiclo = data.data
-        //console.log(data.data)
+        console.log(data.data)
       
       this.loadingVisible = false;
     })
