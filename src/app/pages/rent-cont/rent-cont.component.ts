@@ -1,11 +1,12 @@
 import { RentContModel, UnidadesNegocioModel, MesesModel, AniosModel } from './../../shared/models/rentabilidad-contable/renta-contable.model';
 import { RentContService } from 'src/app/services/rentabilidad-contable/rent-cont.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { TotalPorcentaje } from '../../shared/models/rentabilidad-contable/totalPorcentajes.model';
 import liquidaciones from 'src/assets/rc02.json';
 import dxSelectBox from 'devextreme/ui/select_box';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
+const totalPorcentajes = new TotalPorcentaje;
 @Component({
 
   templateUrl: './rent-cont.component.html',
@@ -160,6 +161,108 @@ export class RentContComponent implements OnInit {
         // }, function() {
         //     e.cellElement.style.color = e.data.Amount >= 10000 ? "green" : "red";
         // })
+    }
+
+    if(e.rowType == 'totalFooter'){
+
+      e.totalItem.cells.forEach((c: any) => {
+
+      let ingresoTotal = c.totalItem.summaryCells[6][0].value;
+      let margenUtilidad = c.totalItem.summaryCells[7][0].value;
+      let combustible = c.totalItem.summaryCells[15][0].value;
+      let casetas = c.totalItem.summaryCells[17][0].value;
+      let sueldosLiquidacion = c.totalItem.summaryCells[19][0].value;
+      let otros = c.totalItem.summaryCells[21][0].value;
+      let costosDirectos = c.totalItem.summaryCells[23][0].value;
+      let sueldoBase = c.totalItem.summaryCells[25][0].value;
+      let cargaSocial = c.totalItem.summaryCells[27][0].value;
+      let fijoMtto = c.totalItem.summaryCells[29][0].value;
+      let varMtto = c.totalItem.summaryCells[31][0].value;
+      let fijoTrans = c.totalItem.summaryCells[33][0].value;
+      let varTrans = c.totalItem.summaryCells[35][0].value;
+      let ctosAdicionales = c.totalItem.summaryCells[37][0].value;
+
+      //Porcentajes Margen utilidad
+      if(c.totalItem.summaryCells[8][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = margenUtilidad/ingresoTotal;
+
+        totalPorcentajes.margenUtilidad = c.totalItem.summaryCells[8][0].value
+      }
+      //Combustible
+      if(c.totalItem.summaryCells[16][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[16][0].value = 0 : c.totalItem.summaryCells[16][0].value = combustible/ingresoTotal;
+
+        totalPorcentajes.combustible = c.totalItem.summaryCells[16][0].value
+      }
+      //Casetas
+      if(c.totalItem.summaryCells[18][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[18][0].value = 0 : c.totalItem.summaryCells[18][0].value = casetas/ingresoTotal;
+
+        totalPorcentajes.casetas = c.totalItem.summaryCells[18][0].value
+      }
+      //Sueldos Liq
+      if(c.totalItem.summaryCells[20][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[20][0].value = 0 : c.totalItem.summaryCells[20][0].value = sueldosLiquidacion/ingresoTotal;
+
+        totalPorcentajes.sueldosLiquidacion = c.totalItem.summaryCells[20][0].value
+      }
+      //Otros
+      if(c.totalItem.summaryCells[22][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[22][0].value = 0 : c.totalItem.summaryCells[22][0].value = otros/ingresoTotal;
+
+        totalPorcentajes.otros = c.totalItem.summaryCells[22][0].value
+      }
+      //costosDirectos
+      if(c.totalItem.summaryCells[24][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[24][0].value = 0 : c.totalItem.summaryCells[24][0].value = costosDirectos/ingresoTotal;
+
+        totalPorcentajes.costosDirectos = c.totalItem.summaryCells[24][0].value
+      }
+      //sueldoBAse
+      if(c.totalItem.summaryCells[26][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[26][0].value = 0 : c.totalItem.summaryCells[26][0].value = sueldoBase/ingresoTotal;
+
+        totalPorcentajes.sueldoBase = c.totalItem.summaryCells[26][0].value
+      }
+      //Carga Social
+      if(c.totalItem.summaryCells[28][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = cargaSocial/ingresoTotal;
+
+        totalPorcentajes.cargaSocial = c.totalItem.summaryCells[26][0].value
+      }
+      //Fijo Mtto
+      if(c.totalItem.summaryCells[30][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[30][0].value = 0 : c.totalItem.summaryCells[30][0].value = fijoMtto/ingresoTotal;
+
+        totalPorcentajes.fijoMtto = c.totalItem.summaryCells[30][0].value
+      }
+      //Variable Mtto
+      if(c.totalItem.summaryCells[32][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[32][0].value = 0 : c.totalItem.summaryCells[32][0].value = varMtto/ingresoTotal;
+
+        totalPorcentajes.varMtto = c.totalItem.summaryCells[32][0].value
+      }
+      //fijo Transportacion
+      if(c.totalItem.summaryCells[34][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[34][0].value = 0 : c.totalItem.summaryCells[34][0].value = fijoTrans/ingresoTotal;
+
+        totalPorcentajes.fijoTrans = c.totalItem.summaryCells[34][0].value
+      }
+      //variable Transportacion
+      if(c.totalItem.summaryCells[36][0] !== undefined){
+       ingresoTotal === 0 ? c.totalItem.summaryCells[36][0].value = 0 : c.totalItem.summaryCells[36][0].value = varTrans/ingresoTotal;
+
+       totalPorcentajes.varTrans = c.totalItem.summaryCells[36][0].value
+      }
+      //Costso Adicionales
+      if(c.totalItem.summaryCells[38][0] !== undefined){
+        ingresoTotal === 0 ? c.totalItem.summaryCells[38][0].value = 0 : c.totalItem.summaryCells[38][0].value = ctosAdicionales/ingresoTotal;
+
+        totalPorcentajes.ctosAdicionales = c.totalItem.summaryCells[38][0].value
+      }
+      });
+      
+
     }
 }
 
@@ -350,6 +453,30 @@ export class RentContComponent implements OnInit {
     }
   }
 
+  customizeExportData(cols, rows){  
+
+    rows.forEach((row: any) =>{  
+
+      if(row.rowType == "totalFooter"){
+        //Enero
+        console.log(row.values)
+        row.values[6].value = totalPorcentajes.margenUtilidad;
+        row.values[14].value = totalPorcentajes.combustible;
+        row.values[16].value = totalPorcentajes.casetas;
+        row.values[18].value = totalPorcentajes.sueldosLiquidacion;
+        row.values[20].value = totalPorcentajes.otros;
+        row.values[22].value = totalPorcentajes.costosDirectos;
+        row.values[24].value = totalPorcentajes.sueldoBase;
+        row.values[26].value = totalPorcentajes.cargaSocial;
+        row.values[28].value = totalPorcentajes.fijoMtto;
+        row.values[30].value = totalPorcentajes.varMtto;
+        row.values[32].value = totalPorcentajes.fijoTrans;
+        row.values[34].value = totalPorcentajes.varTrans;
+        row.values[36].value = totalPorcentajes.ctosAdicionales;
+      }
+
+    });
+  } 
   calcularPorcentajes(options: any) {
     // //
     // if (options.summaryProcess === 'calculate') {

@@ -250,7 +250,7 @@
                 <br>
 
                 <dx-data-grid #indidcaores id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
-                 (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)">
+                 (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)" [customizeExportData]="customizeExportData">
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
@@ -629,43 +629,43 @@
                         <!-- FEBRERO -->
                         <dxi-total-item showInColumn="febreroPor" name="TotFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="febreroPorP" name="TotFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="febPorProy" name="TotFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="febPorProy" name="TotFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- MARZO -->
                         <dxi-total-item showInColumn="marzoPor" name="TotMarzoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="marzoPorP" name="TotMarzoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="marPorProy" name="TotMarzoPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="marPorProy" name="TotMarzoPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- ABRIL -->
                         <dxi-total-item showInColumn="abrilPor" name="TotAbrilPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="abrilPorP" name="TotAbrilPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="abrPorProy" name="TotAbrilPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="abrPorProy" name="TotAbrilPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- MAYO -->
                         <dxi-total-item showInColumn="mayoPor" name="TotMayoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="mayoPorP" name="TotMayoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="mayPorProy" name="TotMayoPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="mayPorProy" name="TotMayoPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- JUNIO -->
                         <dxi-total-item showInColumn="junioPor" name="TotJunioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="junioPorP" name="TotJunioPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="junPorProy" name="TotJunioPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="junPorProy" name="TotJunioPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- JULIO -->
                         <dxi-total-item showInColumn="julioPor" name="TotJulioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="julioPorP" name="TotJulioPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="julPorProy" name="TotJulioPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="julPorProy" name="TotJulioPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- AGOSTO -->
                         <dxi-total-item showInColumn="agostoPor" name="TotAgostoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="agostoPorP" name="TotAgostoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="agoPorProy" name="TotAgostPorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="agoPorProy" name="TotAgostPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- SEPTIEMBRE -->
                         <dxi-total-item showInColumn="sepPor" name="TotSeptiembrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="sepPorP" name="TotSetiembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="sepPorProy" name="TotSeptiembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="sepPorProy" name="TotSeptiembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- OCTUBRE -->
                         <dxi-total-item showInColumn="octPor" name="TotOcubrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="octPorP" name="TotOctubrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="octPorProy" name="TotOctubrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="octPorProy" name="TotOctubrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- NOVIEMBRE -->
                         <dxi-total-item showInColumn="novPor" name="TotNoviembrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="novPorP" name="TotNoviembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="novPorProy" name="TotNoviembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="$percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="novPorProy" name="TotNoviembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- DICIEMBRE -->
                         <!-- <dxi-total-item showInColumn="diciembrePor" name="TotDiciembrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="diciembrePorP" name="TotDiciembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
