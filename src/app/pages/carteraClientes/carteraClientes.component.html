@@ -245,12 +245,13 @@
                   <dxo-export [enabled]="true" fileName="Total carteras" [customizeExcelCell]="customizeCAER"></dxo-export>
                 
                     <dxi-column dataField="intercompania" caption=""></dxi-column>
-                    <dxi-column dataField="corriente" caption="" [format]="separator"></dxi-column>
-                    <dxi-column dataField="unoA30" caption="" [format]="separator"></dxi-column>
-                    <dxi-column dataField="tre1A60" caption="" [format]="separator"></dxi-column>
-                    <dxi-column dataField="ses0A90" caption="" [format]="separator"></dxi-column>
-                    <dxi-column dataField="mas90" caption="" [format]="separator"></dxi-column>
-                    <dxi-column dataField="total" caption="" [format]="separator"></dxi-column>
+                    <dxi-column dataField="sinCarta" caption="Sin Carta Cobro" [format]="separator"></dxi-column>
+                    <dxi-column dataField="corriente" caption="Corriente" [format]="separator"></dxi-column>
+                    <dxi-column dataField="unoA30" caption="1 A 30" [format]="separator"></dxi-column>
+                    <dxi-column dataField="tre1A60" caption="31 A 60" [format]="separator"></dxi-column>
+                    <dxi-column dataField="ses0A90" caption="61 A 90" [format]="separator"></dxi-column>
+                    <dxi-column dataField="mas90" caption="MAS 90" [format]="separator"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" [format]="separator"></dxi-column>
                   
                     <!-- <dxo-summary>
                         <dxi-total-item column="1" [customizeText]="customizeTotal"></dxi-total-item>

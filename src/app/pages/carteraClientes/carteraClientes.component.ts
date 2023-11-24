@@ -315,7 +315,7 @@ export class CarteraClientesComponent implements OnInit {
     var totalGrid1 = this.calcularGrid2(this.numRowsMI);
     
     var totalgrid2 = totalGrid1 + value;
-    return totalgrid2 +++ 7
+    return totalgrid2 +++ 8
   }
 
   username: string
@@ -491,23 +491,26 @@ export class CarteraClientesComponent implements OnInit {
 
     if(e.rowType == 'totalFooter'){
       //console.log(e.summaryCells)
+      if(e.summaryCells[1].length !== 0){
+      totales.sinCarta =  e.summaryCells[1][0].value
+      }
       if(e.summaryCells[2].length !== 0){
-      totales.corriente =  e.summaryCells[1][0].value
+      totales.corriente =  e.summaryCells[2][0].value
       }
       if(e.summaryCells[3].length !== 0){
-      totales.unoA30 = e.summaryCells[2][0].value
+      totales.unoA30 = e.summaryCells[3][0].value
       }
       if(e.summaryCells[4].length !== 0){
-      totales.tre1A60 = e.summaryCells[3][0].value
+      totales.tre1A60 = e.summaryCells[4][0].value
       }
       if(e.summaryCells[5].length !== 0){
-      totales.ses0A90 = e.summaryCells[4][0].value
+      totales.ses0A90 = e.summaryCells[5][0].value
       }
       if(e.summaryCells[6].length !== 0){
-      totales.mas90 = e.summaryCells[5][0].value
+      totales.mas90 = e.summaryCells[6][0].value
       }
       if(e.summaryCells[7].length !== 0){
-      totales.total = e.summaryCells[6][0].value
+      totales.total = e.summaryCells[7][0].value
       }
     }
   }
@@ -578,28 +581,32 @@ export class CarteraClientesComponent implements OnInit {
 
     if(e.rowType == 'totalFooter'){
       if(e.summaryCells[2].length !== 0){
-        total.corriente = totales.corriente + e.summaryCells[2][0].value
+        total.sinCarta = totales.sinCarta + e.summaryCells[2][0].value
       }
       if(e.summaryCells[3].length !== 0){
-        total.unoA30 = totales.unoA30 + e.summaryCells[3][0].value
+        total.corriente = totales.corriente + e.summaryCells[3][0].value
       }
       if(e.summaryCells[4].length !== 0){
-        total.tre1A60 = totales.tre1A60 + e.summaryCells[4][0].value
+        total.unoA30 = totales.unoA30 + e.summaryCells[4][0].value
       }
       if(e.summaryCells[5].length !== 0){
-        total.ses0A90 = totales.ses0A90 + e.summaryCells[5][0].value
+        total.tre1A60 = totales.tre1A60 + e.summaryCells[5][0].value
       }
       if(e.summaryCells[6].length !== 0){
-        total.mas90 = totales.mas90 + e.summaryCells[6][0].value
+        total.ses0A90 = totales.ses0A90 + e.summaryCells[6][0].value
       }
       if(e.summaryCells[7].length !== 0){
-        total.total = totales.total + e.summaryCells[7][0].value
+        total.mas90 = totales.mas90 + e.summaryCells[7][0].value
+      }
+      if(e.summaryCells[8].length !== 0){
+        total.total = totales.total + e.summaryCells[8][0].value
       }
 
       if(total.corriente !==undefined){
         var myTotales = new Total;
 
         myTotales.intercompania = "SUMA TOTAL CARTERA"
+        myTotales.sinCarta = total.sinCarta;
         myTotales.corriente = total.corriente;
         myTotales.unoA30 = total.unoA30;
         myTotales.tre1A60 = total.tre1A60;
@@ -823,6 +830,13 @@ export class CarteraClientesComponent implements OnInit {
           };
         
       }
+
+      if (gridCell.rowType === 'header') {
+
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+      }
+    }
     }
 
     carteraSheet.columns = [
