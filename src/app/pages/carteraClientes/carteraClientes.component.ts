@@ -300,7 +300,7 @@ export class CarteraClientesComponent implements OnInit {
     var totalGrid1 = this.calcularGrid1(this.numRowsCarClien)
 
     var totalgrid2 = totalGrid1 + value;
-    return totalgrid2 +++ 10
+    return totalgrid2 +++ 5
 
   }
   calcularGrid2(value): number{
@@ -315,7 +315,7 @@ export class CarteraClientesComponent implements OnInit {
     var totalGrid1 = this.calcularGrid2(this.numRowsMI);
     
     var totalgrid2 = totalGrid1 + value;
-    return totalgrid2 +++ 10
+    return totalgrid2 +++ 7
   }
 
   username: string
@@ -475,7 +475,7 @@ export class CarteraClientesComponent implements OnInit {
           }
         }
 
-
+        
 
       });
     }
@@ -757,15 +757,11 @@ export class CarteraClientesComponent implements OnInit {
 
     const carteraSheet = workbook.addWorksheet('CARTERA DE CLIENTES');
 
-    carteraSheet.getRow(2).getCell(2).value = 'CARTERA DE CLIENTES';
-    carteraSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
-
     var totalGrid2 = this.calcularGridIntSinCart(this.numRowsIntSinCart);
 
     function setAlternatingRowsBackground(gridCell, excelCell) {
 
       if (gridCell.rowType === 'data') {
-        
         if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
             var x = Math.round(excelCell.value)
             var myvalue = Math.trunc(x);
@@ -786,22 +782,23 @@ export class CarteraClientesComponent implements OnInit {
 
       if (gridCell.rowType === 'header') {
 
-        excelCell.fill = {
-          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-        };
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        }
       }
   
   
       if (gridCell.rowType === 'totalFooter') {
-        excelCell.fill = {
-          type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
-        };
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
+          };
       }
 
       if (gridCell.rowType === 'group') {
-        excelCell.fill = {
-          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-        };
+
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        }
       }
     }
 
@@ -831,6 +828,8 @@ export class CarteraClientesComponent implements OnInit {
     carteraSheet.columns = [
       { width: 10 }, { width: 35 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
     ];
+
+    carteraSheet.views = [{state: 'normal'}];
 
     exportDataGrid({
       worksheet: carteraSheet,
