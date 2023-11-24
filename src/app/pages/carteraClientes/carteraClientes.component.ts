@@ -278,6 +278,7 @@ export class CarteraClientesComponent implements OnInit {
       this.carteraInfo = data.data
 
       this.avance1.push(data.data.avanceCartera1);
+      console.log(this.avance1)
       this.avance2.push(data.data.avanceCartera2);
       this.avance3.push(data.data.avanceCartera3);
       this.avance4.push(data.data.avanceCartera4);

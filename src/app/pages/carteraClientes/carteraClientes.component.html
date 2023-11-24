@@ -320,6 +320,8 @@
               (onRowPrepared)="onRowPreparedA($event)" (onCellPrepared)="onCellPreparedA($event)">
                   
                   <dxi-column dataField="concepto" caption="TOTAL" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="sinCartera1a30" caption="Sin Cartera 1 a 30" [format]="separator" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="sinCarteraMas30" caption="Sin Cartera Más 30" [format]="separator" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="corriente" caption="Corriente" [format]="separator" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="de1a30" caption="1 A 30" [format]="separator" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="de31a60" caption="31 A 60" [format]="separator" width="100%" alignment="left"></dxi-column>
@@ -330,6 +332,8 @@
 
               <dx-data-grid  #grid2 id="gridContainer2" [dataSource]="avance2" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
                   <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                  <dxi-column dataField="sinCartera1a30" format="percent" width="100%" alignment="left"></dxi-column>
+                  <dxi-column dataField="sinCarteraMas30" format="percent" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="corriente" format="percent" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="de1a30" format="percent" width="100%" alignment="left"></dxi-column>
                   <dxi-column dataField="de31a60" format="percent" width="100%" alignment="left"></dxi-column>
@@ -340,6 +344,8 @@
 
               <dx-data-grid  #grid3 id="gridContainer3" [dataSource]="avance3" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
                 <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCartera1a30" format="percent" width="100%" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCarteraMas30" format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
@@ -350,6 +356,8 @@
 
               <dx-data-grid  #grid4 id="gridContainer4" [dataSource]="avance4" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
                 <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCartera1a30" [format]="separator" width="100%" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCarteraMas30" [format]="separator" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="corriente" [format]="separator" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de1a30" [format]="separator" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de31a60" [format]="separator" width="100%" alignment="left"></dxi-column>
@@ -360,6 +368,8 @@
 
               <dx-data-grid  #grid5 id="gridContainer5" [dataSource]="avance5" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
                 <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCartera1a30" format="percent" width="100%" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCarteraMas30" format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
@@ -370,6 +380,8 @@
 
               <dx-data-grid  #grid6 id="gridContainer6" [dataSource]="avance6" [height]="40"[showBorders]="true" [columnAutoWidth]="true" [showColumnHeaders]="false">
                 <dxi-column dataField="concepto" [width]="200" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCartera1a30" format="percent" width="100%" alignment="left"></dxi-column>
+                <dxi-column dataField="sinCarteraMas30" format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="corriente"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de1a30"  format="percent" width="100%" alignment="left"></dxi-column>
                 <dxi-column dataField="de31a60"  format="percent" width="100%" alignment="left"></dxi-column>
