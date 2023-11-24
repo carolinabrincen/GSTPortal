@@ -689,13 +689,55 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   onRowPreparedA(e: any){
-    
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+  
+        if (c.value && c.value.toString().startsWith('-')) {
+          c.cellElement.style.color = "red";
+        }
+  
+        if (c.cellElement) {
+          if(c.columnIndex == 1){
+            // c.cellElement.style.fontWeight = "bolder";
+            // c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#b5e6b5";
+          }
+          if(c.columnIndex == 3){
+            // c.cellElement.style.fontWeight = "bolder";
+            // c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#b5e6b5";
+          }
+          if(c.columnIndex == 4){
+            // c.cellElement.style.fontWeight = "bolder";
+            // c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#b5e6b5";
+          }
+        }
+      });
+    }
     //console.log(e)
   }
 
   onCellPreparedA(e: any){
     //console.log(e)
     
+  }
+
+  onRowPreparedAT(e: any){
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+  
+        if (c.cellElement) {
+          if(c.columnIndex == 3){
+            // c.cellElement.style.fontWeight = "bolder";
+            // c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#b5e6b5";
+          }
+        }
+      });
+    }
   }
 //====================personalize style excel========================================
   customizeCAER(e) {  
@@ -954,13 +996,58 @@ export class CarteraClientesComponent implements OnInit {
           myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
           excelCell.value = '$ '+myFormat;
+
+          if(gridCell.column.dataField == "sinCartera1a30"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
+
+          if(gridCell.column.dataField == "corriente"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
+
+          if(gridCell.column.dataField == "de1a30"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
         }
+
       }
 
       if (gridCell.rowType === 'header') {
         excelCell.fill = {
           type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
         };
+      }
+    }
+
+    function setAlterRowsBackAvance2(gridCell, excelCell){
+      //console.log(gridCell)
+      if (gridCell.rowType === 'data') {
+
+          if(gridCell.column.dataField == "sinCartera1a30"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
+
+          if(gridCell.column.dataField == "corriente"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
+
+          if(gridCell.column.dataField == "de1a30"){
+            excelCell.fill = {
+              type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+            };
+          }
+        
+
       }
     }
 
@@ -979,10 +1066,16 @@ export class CarteraClientesComponent implements OnInit {
       worksheet: carteraAvance,
       component: context.grid2.instance,
       topLeftCell: { row: 9, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance2(gridCell, excelCell);
+      },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid3.instance,
       topLeftCell: { row: 10, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance2(gridCell, excelCell);
+      },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid4.instance,
@@ -994,10 +1087,16 @@ export class CarteraClientesComponent implements OnInit {
       worksheet: carteraAvance,
       component: context.grid5.instance,
       topLeftCell: { row: 12, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance2(gridCell, excelCell);
+      },
     })).then(() => exportDataGrid({
       worksheet: carteraAvance,
       component: context.grid6.instance,
       topLeftCell: { row: 13, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackAvance2(gridCell, excelCell);
+      },
     })).then(() => {
       workbook.xlsx.writeBuffer().then((buffer) => {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
