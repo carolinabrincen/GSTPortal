@@ -28,8 +28,12 @@ export class CarteraClientesComponent implements OnInit {
   @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
   
   @ViewChild('gridCartera', { static: false }) gridCartera: DxDataGridComponent;
+  @ViewChild('gridSinCart', { static: false }) gridSinCart: DxDataGridComponent;
   @ViewChild('gridInter', { static: false }) gridInter: DxDataGridComponent;
+  @ViewChild('gridInerSinCart', { static: false }) gridInerSinCart: DxDataGridComponent;
+
   @ViewChild('gridCliCartInt', { static: false }) gridCliCartInt: DxDataGridComponent;
+
   @ViewChild('grid1', { static: false }) grid1: DxDataGridComponent;
   @ViewChild('grid2', { static: false }) grid2: DxDataGridComponent;
   @ViewChild('grid3', { static: false }) grid3: DxDataGridComponent;
@@ -50,7 +54,9 @@ export class CarteraClientesComponent implements OnInit {
   ];
 
   carteraClientes: CarteraClientes[] = [];
+  sinCartera: CarteraClientes[] = [];
   carteraMI: CarteraClientes[] = [];
+  carteraInterSinC: CarteraClientes[] = [];
   carteraInfo: any;
   avance1: any[] = [];
   avance2: any[] = [];
@@ -62,7 +68,9 @@ export class CarteraClientesComponent implements OnInit {
   detalle: Detalle[] = [];
 
   numRowsCarClien: number = 0;
+  numRowsSinCart: number = 0;
   numRowsMI: number = 0;
+  numRowsIntSinCart: number = 0;
 
   periodo: any[] = [
     // { id: 1, periodo: 202301 },
@@ -257,13 +265,15 @@ export class CarteraClientesComponent implements OnInit {
         
       }
 
-    //  console.log(data.data)
-
       this.carteraClientes = data.data.carteraMensual;
       this.carteraMI = data.data.carteraMensualIntercompanias;
+      this.carteraInterSinC = data.data.sinCartaIntercompanias;
+      this.sinCartera = data.data.sinCartaTerceros;
 
       this.numRowsCarClien = this.carteraClientes.length;
+      this.numRowsSinCart = this.sinCartera.length;
       this.numRowsMI = this.carteraMI.length;
+      this.numRowsIntSinCart = this.carteraInterSinC.length;
 
       this.carteraInfo = data.data
 
@@ -284,12 +294,27 @@ export class CarteraClientesComponent implements OnInit {
     return value +++ 9
   }
 
+  calcularGridSinC(value): number{
+
+    var totalGrid1 = this.calcularGrid1(this.numRowsCarClien)
+
+    var totalgrid2 = totalGrid1 + value;
+    return totalgrid2 +++ 10
+
+  }
   calcularGrid2(value): number{
 
-    var totalGrid1 = this.calcularGrid1(this.numRowsCarClien);
+    var totalGrid1 = this.calcularGridSinC(this.numRowsSinCart);
     
     var totalgrid2 = totalGrid1 + value;
     return totalgrid2 +++ 15
+  }
+  calcularGridIntSinCart(value): number{
+
+    var totalGrid1 = this.calcularGrid2(this.numRowsMI);
+    
+    var totalgrid2 = totalGrid1 + value;
+    return totalgrid2 +++ 10
   }
 
   username: string
@@ -379,8 +404,9 @@ export class CarteraClientesComponent implements OnInit {
 
       this.carteraClientes = data.data.carteraMensual;
       this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
-
+      this.sinCartera = data.data.sinCartaTerceros;
       this.carteraMI = data.data.carteraMensualIntercompanias;
+      this.carteraInterSinC = data.data.sinCartaIntercompanias;
 
       this.carteraInfo = data.data
 
@@ -463,28 +489,68 @@ export class CarteraClientesComponent implements OnInit {
     }
 
     if(e.rowType == 'totalFooter'){
-      if(e.summaryCells[1].length !== 0){
+      //console.log(e.summaryCells)
+      if(e.summaryCells[2].length !== 0){
       totales.corriente =  e.summaryCells[1][0].value
       }
-      if(e.summaryCells[2].length !== 0){
+      if(e.summaryCells[3].length !== 0){
       totales.unoA30 = e.summaryCells[2][0].value
       }
-      if(e.summaryCells[3].length !== 0){
+      if(e.summaryCells[4].length !== 0){
       totales.tre1A60 = e.summaryCells[3][0].value
       }
-      if(e.summaryCells[4].length !== 0){
+      if(e.summaryCells[5].length !== 0){
       totales.ses0A90 = e.summaryCells[4][0].value
       }
-      if(e.summaryCells[5].length !== 0){
+      if(e.summaryCells[6].length !== 0){
       totales.mas90 = e.summaryCells[5][0].value
       }
-      if(e.summaryCells[6].length !== 0){
+      if(e.summaryCells[7].length !== 0){
       totales.total = e.summaryCells[6][0].value
       }
     }
   }
 
   onCellPreparedCC(e: any){
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+  onRowPreparedSinC(e: any){
+ if (e.rowType == 'data') {
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if (c.value && c.value.toString().startsWith('-')) {
+            c.cellElement.style.color = "red";
+            c.cellElement.style.fontWeight = "bolder";
+          }
+        }
+
+
+
+      });
+    }
+
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedSinC(e: any){
     if (e.rowType == 'totalFooter') {
       e.totalItem.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -561,7 +627,36 @@ export class CarteraClientesComponent implements OnInit {
       e.totalItem.cells.forEach((c: any) => {
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+  onRowPreparedISC(e: any){
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = 'black';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+    }
+  }
+
+  onCellPreparedISC(e: any){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
         }   
@@ -660,22 +755,11 @@ export class CarteraClientesComponent implements OnInit {
     const workbook = new Workbook();
 
     const carteraSheet = workbook.addWorksheet('CARTERA DE CLIENTES');
-    //const carteraAvance = workbook.addWorksheet('% DE AVANCE');
 
     carteraSheet.getRow(2).getCell(2).value = 'CARTERA DE CLIENTES';
     carteraSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
 
-    // carteraAvance.getRow(2).getCell(2).value = '% DE AVANCE';
-    // carteraAvance.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
-
-    // carteraAvance.getRow(4).getCell(4).value = 'GST FLETES Y SERVICIOS, S.A. DE C.V.';
-    // carteraAvance.getRow(4).getCell(4).font = { bold: true, size: 16,};
-
-    // carteraAvance.getRow(5).getCell(4).value = '31 DE OCTUBRE DEL 2023';
-    // carteraAvance.getRow(5).getCell(4).font = { bold: true, size: 16};
-
-
-    var totalGrid2 = this.calcularGrid2(this.numRowsMI);
+    var totalGrid2 = this.calcularGridIntSinCart(this.numRowsIntSinCart);
 
     function setAlternatingRowsBackground(gridCell, excelCell) {
 
@@ -743,35 +827,9 @@ export class CarteraClientesComponent implements OnInit {
       }
     }
 
-    // function setAlterRowsBackAvance(gridCell, excelCell){
-    //   //console.log(gridCell)
-    //   if (gridCell.rowType === 'data') {
-
-    //     if(excelCell.address !== 'B8' && excelCell.address !== 'B11'){
-    //       var x = Math.round(excelCell.value)
-    //       var myvalue = Math.trunc(x);
-      
-    //       var myFormat = myvalue.toString().split(".");
-    //       myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    //       excelCell.value = '$ '+myFormat;
-    //     }
-    //   }
-
-    //   if (gridCell.rowType === 'header') {
-    //     excelCell.fill = {
-    //       type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-    //     };
-    //   }
-    // }
-
     carteraSheet.columns = [
       { width: 10 }, { width: 35 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
     ];
-
-    // carteraAvance.columns = [
-    //   { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
-    // ];
 
     exportDataGrid({
       worksheet: carteraSheet,
@@ -783,7 +841,7 @@ export class CarteraClientesComponent implements OnInit {
       },
     }).then(() => exportDataGrid({
       worksheet: carteraSheet,
-      component: context.gridInter.instance,
+      component: context.gridSinCart.instance,
       keepColumnWidths: false,
       topLeftCell: { row: this.calcularGrid1(this.numRowsCarClien), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
@@ -791,9 +849,25 @@ export class CarteraClientesComponent implements OnInit {
       },
     })).then(() => exportDataGrid({
       worksheet: carteraSheet,
-      component: context.gridCliCartInt.instance,
+      component: context.gridInter.instance,
+      keepColumnWidths: false,
+      topLeftCell: { row: this.calcularGridSinC(this.numRowsSinCart), column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraSheet,
+      component: context.gridInerSinCart.instance,
       keepColumnWidths: false,
       topLeftCell: { row: this.calcularGrid2(this.numRowsMI), column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlternatingRowsBackground(gridCell, excelCell);
+      },
+    })).then(() => exportDataGrid({
+      worksheet: carteraSheet,
+      component: context.gridCliCartInt.instance,
+      keepColumnWidths: false,
+      topLeftCell: { row: this.calcularGridIntSinCart(this.numRowsIntSinCart), column: 2 },
       customizeCell: ({ gridCell, excelCell }) => {
         setAlternatingRowsBackground3(gridCell, excelCell);
       },
@@ -958,8 +1032,18 @@ export class CarteraClientesComponent implements OnInit {
     return data;
   }
 
+  CustomizeSinCart(data){
+    data = "SUMA TERCEROS SIN CARTA COBRO";
+    return data;
+  }
+
   customizeIC(data){
-    data = "SUMA INTERCOMPAÑIAS "
+    data = "SUMA INTERCOMPAÑÍAS "
+    return data;
+  }
+
+  customizeISC(data){
+    data = "SUMA INTERCOMPAÑÍAS SIN CARTA COBRO "
     return data;
   }
 

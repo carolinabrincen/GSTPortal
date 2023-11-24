@@ -244,12 +244,9 @@
     <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
         <div *dxTemplate="let data of 'content'">
             <dx-scroll-view width="100%" height="100%">
-                <!-- <div id="exportContainer" class="d-block mr-0 ml-auto">
-                    <dx-button text="Excel" icon="xlsxfile" (onClick)="exportGrids($event)"></dx-button>
-                </div> -->
                 <br>
-
-                <dx-data-grid #indidcaores id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+            
+                <dx-data-grid #gridModal id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)" [customizeExportData]="customizeExportData">
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
@@ -486,9 +483,9 @@
 
                         <!-- PORCENTAJES GRUPO -->
                         <!--ENERO-->
-                        <dxi-group-item showInColumn="eneroPor" name="grupEneroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="eneroPorP" name="grupEneroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="enePorProy" name="grupEneroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPor" name="grupEnero" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPorP" name="grupEnero" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="enePorProy" name="grupEnero" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--FEBRERO-->
                         <dxi-group-item showInColumn="febreroPor" name="grupFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="febreroPorP" name="grupFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>

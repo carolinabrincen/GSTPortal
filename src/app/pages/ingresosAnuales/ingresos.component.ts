@@ -11,12 +11,17 @@ import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-con
 import {Service} from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
+import { Modelos } from '../../shared/models/ingresos/modelos.model';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
+import { group } from 'console';
 
-const totalesPor  = new TotalPorcentajes
+const totalesPor  = new TotalPorcentajes;
+const totalesPorGr  = new TotalPorcentajes;
+
+const groupName = new Modelos;
 
 @Component({
   templateUrl: './ingresos.component.html',
@@ -29,9 +34,7 @@ export class IngresosComponent implements OnInit {
 
   @ViewChild('dataGridVar', { static: false }) dataGrid: DxDataGridComponent | undefined;
 
-  @ViewChild('priceDataGrid', { static: false }) priceDataGrid: DxDataGridComponent;
-
-  @ViewChild('ratingDataGrid', { static: false }) ratingDataGrid: DxDataGridComponent;
+  @ViewChild('gridModal', {static: false}) gridModal: DxDataGridComponent;
 
   employee: any;
   treeBoxValue: string[];
@@ -346,6 +349,7 @@ export class IngresosComponent implements OnInit {
         this.totalPor.aniATotalE = this.totalPor.totalE / this.totalPor.anioAntE;
         this.totalPor.presTotalE = this.totalPor.totalE / this.totalPor.presupuestoE;
         this.totalPor.ProyTotalE = this.totalPor.proyeccionE / this.totalPor.presupuestoE;
+
         //Febrero
         this.totalPor.aniATotalFB = this.totalPor.totalFB / this.totalPor.anioAntFB;
         this.totalPor.presTotalFB = this.totalPor.totalFB / this.totalPor.presupuestoFB;
@@ -689,42 +693,6 @@ export class IngresosComponent implements OnInit {
   }
 
 
-  exportGrids(e) {
-    const context = this;
-    const workbook = new Workbook();
-    const priceSheet = workbook.addWorksheet('Price');
-    // const ratingSheet = workbook.addWorksheet('Rating');
-
-    priceSheet.getRow(2).getCell(2).value = 'Price';
-    priceSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
-
-    // ratingSheet.getRow(2).getCell(2).value = 'Rating';
-    // ratingSheet.getRow(2).getCell(2).font = { bold: true, size: 16, underline: 'double' };
-
-    function setAlternatingRowsBackground(gridCell, excelCell) {
-      if (gridCell.rowType === 'header' || gridCell.rowType === 'data') {
-        if (excelCell.fullAddress.row % 2 === 0) {
-          excelCell.fill = {
-            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-          };
-        }
-      }
-    }
-
-    exportDataGrid({
-      worksheet: priceSheet,
-      component: context.priceDataGrid.instance,
-      topLeftCell: { row: 4, column: 2 },
-      customizeCell: ({ gridCell, excelCell }) => {
-        setAlternatingRowsBackground(gridCell, excelCell);
-      },
-    }).then(() => {
-      workbook.xlsx.writeBuffer().then((buffer) => {
-        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'MultipleGrids.xlsx');
-      });
-    });
-  }
-
   customizeK(e) {  
 
     var gridCell = e.gridCell;
@@ -748,149 +716,14 @@ export class IngresosComponent implements OnInit {
   }
 
   customizeExportData(cols, rows){  
-
+    //console.log(cols)
     rows.forEach((row: any) =>{  
       
-      var rowValues =  row.values;  
+      //console.log(row)
+      if(row.rowType == "groupFooter"){
+        
 
-      // if(row.rowType == "group"){
-      //   if(row.key[0] == '01 ENE'){
-      //     console.log(rowValues)
-      //     rowValues[3][0].value = totalAgrupamientoIKE.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKE.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKE.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKE.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKE.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKE.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKE.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKE.total;
-      //   }
-
-      //   if(row.key[0] == '02 FEB'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKF.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKF.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKF.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKF.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKF.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKF.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKF.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKF.total;
-      //   }
-
-      //   if(row.key[0] == '03 MAR'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKM.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKM.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKM.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKM.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKM.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKM.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKM.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKM.total;
-      //   }
-
-      //   if(row.key[0] == '04 ABR'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKA.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKA.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKA.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKA.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKA.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKA.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKA.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKA.total;
-      //   }
-
-      //   if(row.key[0] == '05 MAY'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKMY.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKMY.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKMY.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKMY.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKMY.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKMY.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKMY.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKMY.total;
-      //   }
-
-      //   if(row.key[0] == '06 JUN'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKJN.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKJN.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKJN.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKJN.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKJN.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKJN.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKJN.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKJN.total;
-      //   }
-
-      //   if(row.key[0] == '07 JUL'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKJL.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKJL.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKJL.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKJL.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKJL.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKJL.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKJL.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKJL.total;
-
-      //   }
-
-      //   if(row.key[0] == '08 AGO'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKAG.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKAG.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKAG.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKAG.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKAG.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKAG.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKAG.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKAG.total;
-
-      //   }
-
-      //   if(row.key[0] == '09 SEP'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKS.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKS.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKS.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKS.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKS.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKS.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKS.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKS.total;
-
-      //   }
-
-      //   if(row.key[0] == '10 OCT'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKOC.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKOC.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKOC.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKOC.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKOC.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKOC.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKOC.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKOC.total;
-
-      //   }
-
-      //   if(row.key[0] == '11 NOV'){
-
-      //     rowValues[3][0].value = totalAgrupamientoIKNV.cuautitlan;
-      //     rowValues[4][0].value = totalAgrupamientoIKNV.tultitlan;
-      //     rowValues[5][0].value = totalAgrupamientoIKNV.guadalajara;
-      //     rowValues[6][0].value = totalAgrupamientoIKNV.hermosillo;
-      //     rowValues[7][0].value = totalAgrupamientoIKNV.mexicali;
-      //     rowValues[8][0].value = totalAgrupamientoIKNV.orizaba;
-      //     rowValues[9][0].value = totalAgrupamientoIKNV.ramosArispe;
-      //     rowValues[10][0].value = totalAgrupamientoIKNV.total;
-
-      //   }
-      // }
+      }
 
       if(row.rowType == "totalFooter"){
         //Enero
