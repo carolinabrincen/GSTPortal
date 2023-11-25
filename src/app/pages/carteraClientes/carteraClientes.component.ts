@@ -245,11 +245,14 @@ export class CarteraClientesComponent implements OnInit {
 
   }
 
-
+  clientes3 = [];
+  cliente4 = [];
   postCarteraCliente(){
     var myTipo = 0;
     this.loadingVisible = true;
     this.myTotal = [];
+    this.clientes3 = [];
+    this.cliente4 = [];
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
 
@@ -266,19 +269,56 @@ export class CarteraClientesComponent implements OnInit {
       }
 
       this.carteraClientes = data.data.carteraMensual;
+      this.sinCartera = data.data.sinCartaTerceros;
       this.carteraMI = data.data.carteraMensualIntercompanias;
       this.carteraInterSinC = data.data.sinCartaIntercompanias;
-      this.sinCartera = data.data.sinCartaTerceros;
+
 
       this.numRowsCarClien = this.carteraClientes.length;
       this.numRowsSinCart = this.sinCartera.length;
       this.numRowsMI = this.carteraMI.length;
       this.numRowsIntSinCart = this.carteraInterSinC.length;
 
+      var myInter = this.carteraMI;
+      for(var i = 0; i<myInter.length; i ++){
+        var myData = new CarteraClientes;
+
+        myData.cliente = myInter[i].cliente;
+        this.clientes3.push(myData)
+      }
+
+      if(this.clientes3.length !== 0){
+        var hash = {};
+        this.clientes3 = this.clientes3.filter(function(current) {
+          var exists = !hash[current.cliente];
+          hash[current.cliente] = true;
+          return exists;
+        });
+      }
+
+      var myInterSC = this.carteraInterSinC;
+      for(var i = 0; i<myInterSC.length; i ++){
+        var myData = new CarteraClientes;
+
+        myData.cliente = myInter[i].cliente;
+        this.cliente4.push(myData)
+      }
+
+      if(this.cliente4.length !== 0){
+        var hash = {};
+        this.cliente4 = this.cliente4.filter(function(current) {
+          var exists = !hash[current.cliente];
+          hash[current.cliente] = true;
+          return exists;
+        });
+      }
+
+      console.log(this.clientes3.length)
+      console.log(this.cliente4.length)
+
       this.carteraInfo = data.data
 
       this.avance1.push(data.data.avanceCartera1);
-      console.log(this.avance1)
       this.avance2.push(data.data.avanceCartera2);
       this.avance3.push(data.data.avanceCartera3);
       this.avance4.push(data.data.avanceCartera4);
@@ -308,14 +348,24 @@ export class CarteraClientesComponent implements OnInit {
     var totalGrid1 = this.calcularGridSinC(this.numRowsSinCart);
     
     var totalgrid2 = totalGrid1 + value;
-    return totalgrid2 +++ 15
+
+    var totalAgrup3 = this.clientes3.length
+
+    var totalFin = totalgrid2 + 5 + totalAgrup3;
+
+    return totalFin;
   }
   calcularGridIntSinCart(value): number{
 
     var totalGrid1 = this.calcularGrid2(this.numRowsMI);
     
     var totalgrid2 = totalGrid1 + value;
-    return totalgrid2 +++ 8
+
+    var totalAgrup4 = this.cliente4.length
+
+    var totalFin = totalgrid2 + 6 + totalAgrup4;
+
+    return totalFin;
   }
 
   username: string
@@ -571,6 +621,7 @@ export class CarteraClientesComponent implements OnInit {
   onRowPreparedCMI(e: any){
     
     if (e.rowType == 'group') {
+      //console.log(e.key)
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = 'black';
         e.rowElement.style.color = "black";
@@ -844,7 +895,7 @@ export class CarteraClientesComponent implements OnInit {
       }
 
       if (gridCell.rowType === 'group') {
-
+        //console.log(gridCell)
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
         }
