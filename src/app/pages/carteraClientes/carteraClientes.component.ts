@@ -14,7 +14,10 @@ import { Totales, Total } from '../../shared/models/carteraClientes/totales';
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs} from 'file-saver-es';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import deMessages from "devextreme/localization/messages/es.json";
+import { locale, loadMessages } from "devextreme/localization";
 
 const totales = new Totales;
 const total = new Total;
@@ -157,6 +160,7 @@ export class CarteraClientesComponent implements OnInit {
   constructor(
     private carteraClientesService: CarteraClientesService,
     private storageService: StorageService,
+    private router: Router,
     ) {
 
       const that = this;
@@ -168,6 +172,9 @@ export class CarteraClientesComponent implements OnInit {
             that.modPeriodo = false;
           },
         };
+
+        loadMessages(deMessages);
+        locale(navigator.language);
       }
 
 
@@ -255,7 +262,7 @@ export class CarteraClientesComponent implements OnInit {
     this.cliente4 = [];
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
-
+      console.log(data.data)
       if(data.data != undefined || data.data != null){
 
         var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
@@ -274,20 +281,20 @@ export class CarteraClientesComponent implements OnInit {
       this.carteraInterSinC = data.data.sinCartaIntercompanias;
 
 
-      this.numRowsCarClien = this.carteraClientes.length;
-      this.numRowsSinCart = this.sinCartera.length;
-      this.numRowsMI = this.carteraMI.length;
-      this.numRowsIntSinCart = this.carteraInterSinC.length;
+      this.numRowsCarClien = this.carteraClientes?.length;
+      this.numRowsSinCart = this.sinCartera?.length;
+      this.numRowsMI = this.carteraMI?.length;
+      this.numRowsIntSinCart = this.carteraInterSinC?.length;
 
       var myInter = this.carteraMI;
-      for(var i = 0; i<myInter.length; i ++){
+      for(var i = 0; i<myInter?.length; i ++){
         var myData = new CarteraClientes;
 
         myData.cliente = myInter[i].cliente;
         this.clientes3.push(myData)
       }
 
-      if(this.clientes3.length !== 0){
+      if(this.clientes3?.length !== 0){
         var hash = {};
         this.clientes3 = this.clientes3.filter(function(current) {
           var exists = !hash[current.cliente];
@@ -297,7 +304,7 @@ export class CarteraClientesComponent implements OnInit {
       }
 
       var myInterSC = this.carteraInterSinC;
-      for(var i = 0; i<myInterSC.length; i ++){
+      for(var i = 0; i<myInterSC?.length; i ++){
         var myData = new CarteraClientes;
 
         myData.cliente = myInter[i].cliente;
@@ -312,9 +319,6 @@ export class CarteraClientesComponent implements OnInit {
           return exists;
         });
       }
-
-      console.log(this.clientes3.length)
-      console.log(this.cliente4.length)
 
       this.carteraInfo = data.data
 
@@ -394,6 +398,11 @@ export class CarteraClientesComponent implements OnInit {
             },
           }, 'success', 3000);
   
+
+          // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          // this.router.onSameUrlNavigation = 'reload';
+          // this.router.navigate(['./cartera-clientes'])
+
           this.modPeriodo = false;
           this.bolFormSoloLectura = false;
           this.loadingVisible = false;
