@@ -403,7 +403,11 @@
 
         <dxi-item title="Detalle">
             <br>
-            <dx-data-grid  #ING id="gridContainer1" [dataSource]="detalle" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            <div id="exportContainer">
+              <dx-button text="EXPORTAR DETALLE" icon="xlsxfile" (onClick)="exportGridsDetll($event)"></dx-button>
+            </div>
+            <br>
+            <dx-data-grid  #gridDetalle id="gridContainer1" [dataSource]="detalle" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
             (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>

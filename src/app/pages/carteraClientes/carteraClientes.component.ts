@@ -37,6 +37,8 @@ export class CarteraClientesComponent implements OnInit {
 
   @ViewChild('gridCliCartInt', { static: false }) gridCliCartInt: DxDataGridComponent;
 
+  @ViewChild('gridDetalle', { static: false }) gridDetalle: DxDataGridComponent;
+
   @ViewChild('grid1', { static: false }) grid1: DxDataGridComponent;
   @ViewChild('grid2', { static: false }) grid2: DxDataGridComponent;
   @ViewChild('grid3', { static: false }) grid3: DxDataGridComponent;
@@ -330,6 +332,7 @@ export class CarteraClientesComponent implements OnInit {
       this.avance6.push(data.data.avanceCartera6);
 
       this.detalle = data.data.detalleCartera;
+      console.log(this.detalle)
 
       this.loadingVisible = false;
     })
@@ -898,15 +901,15 @@ export class CarteraClientesComponent implements OnInit {
   
   
       if (gridCell.rowType === 'totalFooter') {
-      //   if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
-      //     // console.log(excelCell._value.model.value)
-      //     var monto = excelCell._value.model.value;
-      //     var montoFormat = monto.replace(/[$.]/g,'');
-      //     console.log(montoFormat)
+        if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
+          // console.log(excelCell._value.model.value)
+          var monto = excelCell._value.model.value;
+          var montoFormat = monto.replace(/[$.]/g,'');
+          console.log(montoFormat)
           
-      //     excelCell._value.model.value = montoFormat;
+          excelCell._value.model.value = montoFormat;
           
-      //  }
+       }
 
 
           excelCell.fill = {
@@ -935,7 +938,7 @@ export class CarteraClientesComponent implements OnInit {
             var myFormat = myvalue.toString().split(".");
             myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            excelCell.value = '$ '+myFormat.join("");
+            excelCell.value = myFormat.join("");
           }
           //console.log(excelCell)
           excelCell.fill = {
@@ -1171,6 +1174,88 @@ export class CarteraClientesComponent implements OnInit {
     })).then(() => {
       workbook.xlsx.writeBuffer().then((buffer) => {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
+      });
+    });
+
+    /**
+     *
+     */
+  }
+
+  exportGridsDetll(e) {
+    const context = this;
+    const workbook = new Workbook();
+
+
+    const carteraDetalle = workbook.addWorksheet('DETALLE');
+
+    function setAlterRowsBackDetalle(gridCell, excelCell){
+      //console.log(gridCell)
+      if (gridCell.rowType === 'data') {
+
+
+      }
+
+      if (gridCell.rowType === 'header') {
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        };
+      }
+
+      if (gridCell.rowType === 'groupFooter') {
+
+        if(gridCell.column.caption === "TOTAL INTEGRADO"){
+          
+          var monto = excelCell._value.model.value;
+          var montoFormat = monto.replace(/[$.]/g,'');
+          console.log(montoFormat)
+          
+          excelCell._value.model.value = montoFormat;
+          
+        }
+        
+        //console.log(gridCell)
+          excelCell.fill = {
+            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
+        }
+      }
+
+
+      if (gridCell.rowType === 'totalFooter') {
+        if(gridCell.column.caption === "TOTAL INTEGRADO"){
+          // console.log(excelCell._value.model.value)
+          var monto = excelCell._value.model.value;
+          var montoFormat = monto.replace(/[$.]/g,'');
+          console.log(montoFormat)
+          
+          excelCell._value.model.value = montoFormat;
+          
+        }
+        
+        excelCell.fill = {
+          type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
+        };
+      }
+
+     
+
+    }
+
+  
+    // carteraDetalle.columns = [
+    //   { width: 10 }, { width: 25 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
+    // ];
+
+    exportDataGrid({
+      worksheet: carteraDetalle,
+      component: context.gridDetalle.instance,
+      topLeftCell: { row: 2, column: 2 },
+      customizeCell: ({ gridCell, excelCell }) => {
+        setAlterRowsBackDetalle(gridCell, excelCell);
+      },
+    }).then(() => {
+      workbook.xlsx.writeBuffer().then((buffer) => {
+        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Detalle.xlsx');
       });
     });
 
