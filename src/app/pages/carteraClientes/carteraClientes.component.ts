@@ -878,7 +878,7 @@ export class CarteraClientesComponent implements OnInit {
             var myFormat = myvalue.toString().split(".");
             myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             
-            excelCell.value = "$ "+myFormat.join("");
+            excelCell.value = myFormat.join("");
           
         }
 
