@@ -878,7 +878,7 @@ export class CarteraClientesComponent implements OnInit {
             var myFormat = myvalue.toString().split(".");
             myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             
-            excelCell.value = myFormat.join("");
+            excelCell.value = "$ "+myFormat.join("");
           
         }
 
@@ -898,6 +898,17 @@ export class CarteraClientesComponent implements OnInit {
   
   
       if (gridCell.rowType === 'totalFooter') {
+      //   if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
+      //     // console.log(excelCell._value.model.value)
+      //     var monto = excelCell._value.model.value;
+      //     var montoFormat = monto.replace(/[$.]/g,'');
+      //     console.log(montoFormat)
+          
+      //     excelCell._value.model.value = montoFormat;
+          
+      //  }
+
+
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
           };
