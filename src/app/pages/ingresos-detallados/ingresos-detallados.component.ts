@@ -33,7 +33,6 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleOctubre: DetalleModel[] = [];
   arrIngresosNoviembre: IngresosDModel[] = [];
   arrDetalleNoviembre: DetalleModel[] = [];
-
   arrIngresosDiciembre: IngresosDModel[] = [];
   arrDetalleDiciembre: DetalleModel[] = [];
 
@@ -60,6 +59,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMSeptiembre();
     this.getIDMOctubre();
     this.getIDMNoviembre();
+    this.getIDMDiciembre();
   }
 
   getIDMMarzo(){
@@ -209,8 +209,20 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualNov().subscribe(res => {
 
       this.arrIngresosNoviembre = res.data.resumen;
-      console.log(this.arrIngresosNoviembre)
       this.arrDetalleNoviembre = res.data.detalle;
+      //console.log(this.arrDetalleNoviembre)
+
+      this.loadingVisible = false;
+    });
+  }
+
+  getIDMDiciembre(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualDic().subscribe(res => {
+
+      this.arrIngresosDiciembre = res.data.resumen;
+      this.arrDetalleDiciembre = res.data.detalle;
+      //console.log(this.arrDetalleNoviembre)
 
       this.loadingVisible = false;
     });
@@ -356,6 +368,10 @@ onCellPreparedOct(e: any){
     if(e.columnIndex == 2){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[2][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+        }
     }
 
     if(e.columnIndex == 3){
@@ -450,6 +466,10 @@ onCellPreparedOct(e: any){
     if(e.columnIndex == 2){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
+
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+     }
     }
 
     if(e.columnIndex == 3){
@@ -560,6 +580,10 @@ customizeOct(e) {
     if(e.gridCell.column.dataField == "facturadoProvision"){
       e.fontWeight = "bolder"
       e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
     }
 
     if(e.gridCell.column.dataField == "refacturado"){
@@ -631,6 +655,12 @@ customizeOct(e) {
     e.fontWeight = "bolder"
     e.font = {bold: true}
 
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
     if(e.gridCell.column.dataField == "cancelacionProvision"){
       if(e.gridCell.value.toString().startsWith('-')){
         e.font.color = '#ff0000'
@@ -676,6 +706,12 @@ customizeOct(e) {
     e.backgroundColor = "#ff9460";
     e.fontWeight = "bolder"
     e.font = {bold: true}
+
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
 
     if(e.gridCell.column.dataField == "cancelacionProvision"){
       if(e.gridCell.value.toString().startsWith('-')){

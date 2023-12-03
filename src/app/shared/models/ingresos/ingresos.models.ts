@@ -112,6 +112,7 @@ export interface IngresosModel{
     dicPor: number;
     dicPres: number;
     dicPorP: number;
-
+    dicPorProy
+    dicProyeccion
 
 } 
