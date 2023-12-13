@@ -82,7 +82,6 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     {idUnidad: 5, ciudad: 'HERMOSILLO'},
     {idUnidad: 8, ciudad: 'CUAUTITLAN'},
     {idUnidad: 9, ciudad: 'TULTITLAN'},
-    {idUnidad: 10, ciudad: 'MIGUEL HIDALGO'},
   ];
 
   periodo: any[] = [
@@ -226,9 +225,6 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     }
     if(e.value == 9){
       this.selectedUdNRutaS = 'TULTITLAN'
-    }
-    if(e.value == 10){
-      this.selectedUdNRutaS = 'MIGUEL HIDALGO'
     }
   }
 

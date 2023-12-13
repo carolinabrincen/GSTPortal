@@ -525,7 +525,7 @@ export class CarteraClientesComponent implements OnInit {
 
   onHidden() {
   }
-
+/*===============================================GRID 1 CARTERA CLIENTE==================================================*/
   onRowPreparedCC(e: any){
     if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -589,7 +589,7 @@ export class CarteraClientesComponent implements OnInit {
       });
     }
   }
-
+/*===============================================GRID 2 SIN CARTERA=======================================================*/
   onRowPreparedSinC(e: any){
  if (e.rowType == 'data') {
       e.cells.forEach((c: any) => {
@@ -628,7 +628,7 @@ export class CarteraClientesComponent implements OnInit {
       });
     }
   }
-
+/*===============================================GRID 3 CARTERA INTERCOMPANIAS============================================*/
   myTotal: any[] = [];
   onRowPreparedCMI(e: any){
     
@@ -705,7 +705,7 @@ export class CarteraClientesComponent implements OnInit {
       });
     }
   }
-
+/*================================================GRID 4 SIN CARTERA INTERCOMPAÑIAS=======================================*/
   onRowPreparedISC(e: any){
     if (e.rowType == 'group') {
       if (e.groupIndex == 0) {
@@ -734,7 +734,7 @@ export class CarteraClientesComponent implements OnInit {
       });
     }
   }
-
+/*================================================GRID 5 TOTAL CARTERA CIENTE Y CARTERA INTER==============================*/
   onRowPreparedCCI(e: any){
     if(e.rowType === 'data'){
       e.cells.forEach((c: any) => {
@@ -874,16 +874,16 @@ export class CarteraClientesComponent implements OnInit {
     function setAlternatingRowsBackground(gridCell, excelCell) {
 
       if (gridCell.rowType === 'data') {
-        if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
-            var x = Math.round(excelCell.value)
-            var myvalue = Math.trunc(x);
+        // if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
+        //     var x = Math.round(excelCell.value)
+        //     var myvalue = Math.trunc(x);
         
-            var myFormat = myvalue.toString().split(".");
-            myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     var myFormat = myvalue.toString().split(".");
+        //     myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             
-            excelCell.value = myFormat.join("");
+        //     excelCell.value = myFormat.join("");
           
-        }
+        // }
 
       if(gridCell.column.caption == "Total"){
           excelCell.fill = {
@@ -903,11 +903,14 @@ export class CarteraClientesComponent implements OnInit {
       if (gridCell.rowType === 'totalFooter') {
         if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
           // console.log(excelCell._value.model.value)
-          var monto = excelCell._value.model.value;
-          var montoFormat = monto.replace(/[$.]/g,'');
-          console.log(montoFormat)
+          // var monto = excelCell._value.model.value;
+          // var montoFormat = monto.replace(/[$.]/g,'');
+          // console.log(montoFormat)
+
+          var currency = excelCell._value.model.value;
+          var number = Number(currency.replace(/[^0-9.-]+/g,""));
           
-          excelCell._value.model.value = montoFormat;
+          excelCell._value.model.value = number;
           
        }
 
@@ -931,15 +934,15 @@ export class CarteraClientesComponent implements OnInit {
         var totalFin = totalGrid2 +1;
         var myPosition = 'B'+totalFin.toString();
         
-          if(excelCell.address !== myPosition){
-            var x = Math.round(excelCell.value)
-            var myvalue = Math.trunc(x);
+          // if(excelCell.address !== myPosition){
+          //   var x = Math.round(excelCell.value)
+          //   var myvalue = Math.trunc(x);
         
-            var myFormat = myvalue.toString().split(".");
-            myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          //   var myFormat = myvalue.toString().split(".");
+          //   myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            excelCell.value = myFormat.join("");
-          }
+          //   excelCell.value = myFormat.join("");
+          // }
           //console.log(excelCell)
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460', }, bgColor: { argb: 'FF9460' }, bold: true
@@ -1006,40 +1009,6 @@ export class CarteraClientesComponent implements OnInit {
         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
       });
     });
-
-    /**
-     * .then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid1.instance,
-      topLeftCell: { row: 7, column: 2 },
-      customizeCell: ({ gridCell, excelCell }) => {
-        setAlterRowsBackAvance(gridCell, excelCell);
-      },
-    })).then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid2.instance,
-      topLeftCell: { row: 9, column: 2 },
-    })).then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid3.instance,
-      topLeftCell: { row: 10, column: 2 },
-    })).then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid4.instance,
-      topLeftCell: { row: 11, column: 2 },
-      customizeCell: ({ gridCell, excelCell }) => {
-        setAlterRowsBackAvance(gridCell, excelCell);
-      },
-    })).then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid5.instance,
-      topLeftCell: { row: 12, column: 2 },
-    })).then(() => exportDataGrid({
-      worksheet: carteraAvance,
-      component: context.grid6.instance,
-      topLeftCell: { row: 13, column: 2 },
-    }))
-     */
   }
 
   exportGridsAva(e) {
@@ -1206,11 +1175,14 @@ export class CarteraClientesComponent implements OnInit {
 
         if(gridCell.column.caption === "TOTAL INTEGRADO"){
           
-          var monto = excelCell._value.model.value;
-          var montoFormat = monto.replace(/[$.]/g,'');
-          console.log(montoFormat)
-          
-          excelCell._value.model.value = montoFormat;
+          // var monto = excelCell._value.model.value;
+          // var montoFormat = monto.replace(/[$.]/g,'');
+          // console.log(montoFormat)
+
+          var currency = excelCell._value.model.value;
+          var number = Number(currency.replace(/[^0-9.-]+/g,""));
+
+          excelCell._value.model.value = number;
           
         }
         
@@ -1224,11 +1196,14 @@ export class CarteraClientesComponent implements OnInit {
       if (gridCell.rowType === 'totalFooter') {
         if(gridCell.column.caption === "TOTAL INTEGRADO"){
           // console.log(excelCell._value.model.value)
-          var monto = excelCell._value.model.value;
-          var montoFormat = monto.replace(/[$.]/g,'');
-          console.log(montoFormat)
+          // var monto = excelCell._value.model.value;
+          // var montoFormat = monto.replace(/[$.]/g,'');
+          // console.log(montoFormat)
           
-          excelCell._value.model.value = montoFormat;
+          var currency = excelCell._value.model.value;
+          var number = Number(currency.replace(/[^0-9.-]+/g,""));
+
+          excelCell._value.model.value = number;
           
         }
         

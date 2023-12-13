@@ -1,0 +1,294 @@
+<h2 class="content-block">Indicador de Diponibilidad de Unidades</h2>
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+    <br><br>
+            <dx-responsive-box>
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".80"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]=".40"></dxi-col>
+                <dxi-col [ratio]=".15"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>UdN:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="selectUdn($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Operación:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="operacion" [value]="operacion[0].operacion" (onValueChanged)="selectOperacion($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Transporte:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="transporte" displayExpr="transporte" valueExpr="transporte" [value]="transporte[0].transporte" (onValueChanged)="selectTransporte($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Periodo:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="periodo" displayExpr="periodo" valueExpr="periodo" (onValueChanged)="selectPeriodo($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="12"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+            <br><br>
+
+    <div>
+
+        <br><br>
+
+        <!--==========================Bar and Line Chart==================-->
+        <dx-chart id="chart" [dataSource]="graficaModel">
+
+            <dxi-series argumentField="mes" valueField="total" name="Sinestrado" type="bar" color="#363640">
+                <dxo-label [visible]="true" [format]="formatSliderTooltip" position="inside">
+                    <dxo-font size="9"></dxo-font>
+                </dxo-label>
+            </dxi-series>
+
+            <dxi-series argumentField="mes" valueField="presupuesto" name="Gestoria" type="line" color="#FA593F">
+                <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside">
+                    <dxo-font size="9"></dxo-font>
+                </dxo-label>
+
+            </dxi-series>
+
+
+            <dxi-series argumentField="mes" valueField="Diponibilidad" name="Disponiblidad" type="line" color="#1A9D2A">
+                <dxo-label [visible]="true" [format]="formatSliderTooltip" position="outside">
+                    <dxo-font size="9"></dxo-font>
+                </dxo-label>
+
+            </dxi-series>
+
+            <dxo-title text="Indicadores de Disponibilidad de Unidades">
+                <dxo-subtitle text="(GST)"> </dxo-subtitle>
+            </dxo-title>
+
+            <dxo-export [enabled]="true"></dxo-export>
+        </dx-chart>
+
+        <!--====================================Finish chart==========-->
+        <br>
+
+        <dx-data-grid *ngIf="selectedUdn === 0" #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-export [enabled]="true"></dxo-export>
+
+            <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
+
+            <dxi-column caption="ORIZABA">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="GUADALAJARA">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="RAMOS ARIZPE">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="MEXICALI">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="HERMOSILLO">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="LA PAZ">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="CUAUTITLAN">
+                <dxi-column dataField="" caption="IngUeso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+            <dxi-column caption="TULTITLAN">
+                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+            </dxi-column>
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        </dx-data-grid>
+        <br>
+
+        <dx-data-grid *ngIf="selectedUdn !== 0" #total id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
+           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+           <dxo-paging [pageSize]="100"></dxo-paging>
+           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+           <dxo-export [enabled]="true"></dxo-export>
+
+           <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0"></dxi-column>
+           <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
+
+           <dxi-column caption="{{ printUdn }}">
+               <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue"></dxi-column>
+               <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue"></dxi-column>
+           </dxi-column>
+
+           <dxo-group-panel [visible]="false"></dxo-group-panel>
+           <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        </dx-data-grid>
+        <br>
+
+        <dx-data-grid #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
+           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+           <dxo-paging [pageSize]="100"></dxo-paging>
+           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+           <dxo-export [enabled]="true"></dxo-export>
+
+            <dxi-column dataField="" caption="Estatus" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Remolque" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Operación" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Razon Rep" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Area Taller" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Descripcion" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Fecha Ingreso" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Fecha Compromiso" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="No Orden" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Dias Estatuus" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Fecha Prometida" [fixed]="false"></dxi-column>
+            <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
+
+            <div *dxTemplate="let data of 'detalleCellTemplate'">
+                <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openDetalle(data)"></dx-button>
+            </div>
+
+           <dxo-group-panel [visible]="false"></dxo-group-panel>
+           <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+       </dx-data-grid>
+
+       <dx-data-grid #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+       (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
+          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+          <dxo-paging [pageSize]="100"></dxo-paging>
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+          <dxo-export [enabled]="true"></dxo-export>
+
+           <dxi-column dataField="" caption="Total Unidad" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Disponibles" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Variación" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Taller" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Siniestrado" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Disponibles" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Operando" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Variacón" [fixed]="false"></dxi-column>
+           <dxi-column dataField="" caption="Patio" [fixed]="false"></dxi-column>
+
+          <dxo-group-panel [visible]="false"></dxo-group-panel>
+          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+      </dx-data-grid>
+    </div>
+
+
+    <!--==========================MODAL REAL=========================================================-->
+    <dx-popup width="100%" height="100%" [showTitle]="true" title="Historico de la unidad" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModReal">
+        <div *dxTemplate="let data of 'content'">
+            <dx-scroll-view width="100%" height="100%">
+                <br>
+            
+                <dx-data-grid #gridModal id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+                 (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)" [customizeExportData]="customizeExportData">
+                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                    <dxo-paging [pageSize]="100"></dxo-paging>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
+                    <dxo-export [enabled]="true" fileName="Detalle Ingreso" [customizeExcelCell]="customizeK"></dxo-export>
+
+                    <dxi-column dataField="" caption="Unidad" [fixed]="false"></dxi-column>
+                    <dxi-column dataField="" caption="Estatus" [fixed]="false"></dxi-column>
+                    <dxi-column dataField="" caption="Descripcion" [fixed]="false"></dxi-column>
+                    <dxi-column dataField="" caption="Fecha Cambio" [fixed]="false"></dxi-column>
+                    <dxi-column dataField="" caption="Fecha Creacion" [fixed]="false"></dxi-column>
+                    
+                    
+
+                </dx-data-grid>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+    <!--=============================================FIN MODAL==========================================-->
+
+
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+
+    <dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">
+        <dxo-position my="top" at="right" of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>

@@ -36,6 +36,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { RendimientoDieselComponent } from './pages/rendimientoDiesel/rendimientoDiesel.component';
   import { CarteraInterCompaniasComponent } from './pages/CarteraInterCompanias/carteraInterCompanias.component';
   import { MarcroCicloCompaniasComponent } from './pages/macroCiclo/macroCiclo.component';
+  import { disponiblidadComponent } from './pages/disponibilidad/disponiblidad.component';
 
 const routes: Routes = [
   {
@@ -181,6 +182,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'diponiblidad',
+    component: disponiblidadComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -247,7 +253,8 @@ const routes: Routes = [
     RentabilidadViajesComponent,
     RendimientoDieselComponent,
     CarteraInterCompaniasComponent,
-    MarcroCicloCompaniasComponent
+    MarcroCicloCompaniasComponent,
+    disponiblidadComponent
   ]
 })
 export class AppRoutingModule { }

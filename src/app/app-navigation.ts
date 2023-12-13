@@ -53,6 +53,11 @@ export const navigation = [
     path: '/indicadores'
   },
   {
+    text: 'Diponibilidad',
+    icon: 'columnchooser',
+    path: '/diponiblidad'
+  },
+  {
     text: 'Cartera',
     icon: 'datafield',
     items: [
