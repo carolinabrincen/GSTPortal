@@ -3,20 +3,19 @@ import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
 
-import { DxDataGridComponent, } from 'devextreme-angular';
+import { DxDataGridComponent, DxDataGridModule, DxButtonModule} from 'devextreme-angular';
 import { CurrencyPipe } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
 import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-contable.model';
-import {Service} from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 
-import { Workbook } from 'exceljs';
-import { exportDataGrid } from 'devextreme/excel_exporter';
-import { saveAs } from 'file-saver-es';
-import { group } from 'console';
+import { Customer, Service } from './app.service';
+
+import deMessages from "devextreme/localization/messages/es.json";
+import { locale, loadMessages } from "devextreme/localization";
 
 const totalesPor  = new TotalPorcentajes;
 const totalesPorGr  = new TotalPorcentajes;
@@ -24,19 +23,18 @@ const totalesPorGr  = new TotalPorcentajes;
 const groupName = new Modelos;
 
 @Component({
-  templateUrl: './ingresos.component.html',
-  styleUrls: ['./ingresos.component.scss'],
+  templateUrl: './disponibilidadOperadores.component.html',
+  styleUrls: ['./disponibilidadOperadores.component.scss'],
   providers: [UnidadesService,ServiceSales, CurrencyPipe, Service],
 })
 
-export class IngresosComponent implements OnInit {
+export class DisponibilidadOperadoresComponent implements OnInit {
+
   @ViewChild(DxChartComponent, { static: false }) chart: any;
 
   @ViewChild('dataGridVar', { static: false }) dataGrid: DxDataGridComponent | undefined;
 
   @ViewChild('gridModal', {static: false}) gridModal: DxDataGridComponent;
-
-  @ViewChild('gridDetalleI', { static: false }) gridDetalleI: DxDataGridComponent;
 
   employee: any;
   treeBoxValue: string[];
@@ -75,8 +73,6 @@ export class IngresosComponent implements OnInit {
     { idAnio: 2022, anio: "2022" }
   ];
 
-  anioSeleccionado: number;
-
   paginacion = 5; 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
   
@@ -98,12 +94,79 @@ export class IngresosComponent implements OnInit {
 
   graficaModel: ModeloGrafica[] = [];
 
+
+
+  unidadNegoios: any[] = [
+    {idUnidad: 0, ciudad: 'TODOS'},
+    {idUnidad: 1, ciudad: 'ORIZABA'},
+    {idUnidad: 2, ciudad: 'GUADALAJARA'},
+    {idUnidad: 3, ciudad: 'RAMOS ARIZPE'},
+    {idUnidad: 4, ciudad: 'MEXICALI'},
+    {idUnidad: 5, ciudad: 'HERMOSILLO'},
+    {idUnidad: 8, ciudad: 'CUAUTITLAN'},
+    {idUnidad: 9, ciudad: 'TULTITLAN'},
+  ];
+
+  operacion: any[] = [
+    // {id: 0, operacion: 'TODOS'},
+    {id: 1, operacion: 'CAJA SECA'},
+    {id: 2, operacion: 'ENCORTINADO'},
+    {id: 3, operacion: 'GONDOLA'},
+    {id: 4, operacion: 'GRADO ALIMENT'},
+    {id: 5, operacion: 'TOLVA GRANEL'},
+  ];
+
+  transporte: any[] = [
+    {id: 0, transporte: 'TODOS'},
+    {id: 1, transporte: 'TRATOCAMIONES'},
+    {id: 2, transporte: 'REMOLQUES'},
+    {id: 3, transporte: 'DOLLYS'},
+  ]
+
+  periodo: any[] = [
+    { id: 1, periodo: 202301 },
+    { id: 2, periodo: 202302 },
+    { id: 3, periodo: 202303 },
+    { id: 4, periodo: 202304 },
+    { id: 5, periodo: 202305 },
+    { id: 6, periodo: 202306 },
+    { id: 7, periodo: 202307 },
+    { id: 8, periodo: 202308 },
+    { id: 9, periodo: 202309 },
+    { id: 10, periodo: 202310 },
+    { id: 11, periodo: 202311 },
+    { id: 12, periodo: 202312 },
+  ];
+
+  estadosOp: any[] = [
+    {logistica: 'Ausentismo/Suspendido', operativo: 'No Disponible'},
+    {logistica: 'Baja programada', operativo: 'No Disponible'},
+    {logistica: 'Capacitación', operativo: 'No Disponible'},
+    {logistica: 'Descanso/Vacaciones', operativo: 'No Disponible'},
+    {logistica: 'Incapacidad', operativo: 'No Disponible'},
+    {logistica: 'Incapacidad Permanente', operativo: 'No Disponible'},
+    {logistica: 'Instructor', operativo: 'No Disponible'},
+    {logistica: 'Operando', operativo: 'Diponible'},
+    {logistica: 'Patio', operativo: 'No Disponible'},
+  ]
+
+  selectedUdn: number = 0;
+  selectedOperacion: number = 0;
+  selectedTransporte: number = 0;
+  selectedPeriodo: number = 0;
+
+  printUdn: string = "";
+
+  customers: Customer[];
+
   constructor( 
     private unidadesService: UnidadesService, 
     private service: ServiceSales, 
     private currencyPipe: CurrencyPipe,
-    testService: Service
+    localService: Service
     ) {
+
+      this.customers = localService.getCustomers();
 
     this.IdUnidadNegocio = 0;
     this.UnidadNegocio = "Nacional";
@@ -116,10 +179,13 @@ export class IngresosComponent implements OnInit {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+
+    loadMessages(deMessages);
+    locale(navigator.language);
   }
 
   ngOnInit(): void {
-    this.getIngresosAnuales();
+    //this.getIngresosAnuales();
   }
 
   getIngresosAnuales()
@@ -128,23 +194,23 @@ export class IngresosComponent implements OnInit {
     this.loadingVisible = true;
     var myanio = 2023;
     var myUdN = 0;
-      this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
+      // this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
 
-         const orderIngreso: IngresosModel[] = response.data;
-      let neworderIngreso = [];
-      neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
-                        orderIngreso[6],orderIngreso[7],orderIngreso[5],
-                        orderIngreso[9],orderIngreso[8],
-                        orderIngreso[11],orderIngreso[10],
-                        orderIngreso[13],orderIngreso[12],
-                        orderIngreso[15],orderIngreso[16],orderIngreso[14],
-                        orderIngreso[18],orderIngreso[17]);
+      //    const orderIngreso: IngresosModel[] = response.data;
+      // let neworderIngreso = [];
+      // neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
+      //                   orderIngreso[6],orderIngreso[7],orderIngreso[5],
+      //                   orderIngreso[9],orderIngreso[8],
+      //                   orderIngreso[11],orderIngreso[10],
+      //                   orderIngreso[13],orderIngreso[12],
+      //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
+      //                   orderIngreso[18],orderIngreso[17]);
 
-        this.indicadores = neworderIngreso;
-        console.log(this.indicadores)
+      //   this.indicadores = neworderIngreso;
+      //   console.log(this.indicadores)
 
-      });
+      // });
   }
 
     getIngresosAnualesChart (Anio: number, UnidadNegocio: number)
@@ -158,16 +224,61 @@ export class IngresosComponent implements OnInit {
     });
     }
 
-    seleccionarAnio(e: any) {
-      this.anioSeleccionado = e.value;
+/*======================SELECTE FUNCIONS================================================*/
+    selectUdn(value: any){
+      this.selectedUdn = value.value;
+      if(this.selectedUdn === 0){
+        this.printUdn = "TODOS";
+      }
+      if(this.selectedUdn === 1){
+        this.printUdn = "ORIZABA";
+      }
+      if(this.selectedUdn === 2){
+        this.printUdn = "GUADALAJARA";
+      }
+      if(this.selectedUdn === 3){
+        this.printUdn = "RAMOS ARIZPE";
+      }
+      if(this.selectedUdn === 4){
+        this.printUdn = "MEXICALI";
+      }
+      if(this.selectedUdn === 5){
+        this.printUdn = "HERMOSILLO";
+      }
+      if(this.selectedUdn === 8){
+        this.printUdn = "CUAUTITLAN";
+      }
+      if(this.selectedUdn === 9){
+        this.printUdn = "TULTITLAN";
+      }
     }
 
+    selectOperacion(value: any){
+      this.selectedOperacion = value.value;
+    }
+
+    selectTransporte(value: any){
+      this.selectedTransporte = value.value;
+    }
+
+    selectPeriodo(value: any){
+      this.selectedPeriodo = value.value;
+    }
 
     clickClientesRutas = (e: any) => {
       this.getIngresosAnuales();
       this.dataGrid?.instance.refresh();
      };
 
+
+    buscarClick = (e: any) => {
+      // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
+        this.loadingVisible = true;
+  
+        // this.postCarteraCliente();
+      // }
+  
+    };
   saveGridInstance (e:any) {
     this.dataGridInstance = e.component;
   }
@@ -229,34 +340,50 @@ export class IngresosComponent implements OnInit {
 
   onRowPrepared(e: any) {
 
-    if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
-      this.graficaModel = [
-        {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
-        {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
-        {mes: "MARZO", total: e.summaryCells[6][0].value, presupuesto: e.summaryCells[7][0].value},
-        {mes: "ABRIL", total: e.summaryCells[8][0].value, presupuesto: e.summaryCells[9][0].value},
-        {mes: "MAYO", total: e.summaryCells[10][0].value, presupuesto: e.summaryCells[11][0].value},
-        {mes: "JUNIO", total: e.summaryCells[12][0].value, presupuesto: e.summaryCells[13][0].value},
-        {mes: "JULIO", total: e.summaryCells[14][0].value, presupuesto: e.summaryCells[15][0].value},
-        {mes: "AGOSTO", total: e.summaryCells[16][0].value, presupuesto: e.summaryCells[17][0].value},
-        {mes: "SEPTIEMBRE", total: e.summaryCells[18][0].value, presupuesto: e.summaryCells[19][0].value},
-        {mes: "OCTUBRE", total: e.summaryCells[20][0].value, presupuesto: e.summaryCells[21][0].value},
-        {mes: "NOVIEMBRE", total: e.summaryCells[22][0].value, presupuesto: e.summaryCells[23][0].value},
-        {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},  
-      ]
-      // e.summaryCells[7][0].value
-
+    if (e.rowType == 'data') {
 
       e.cells.forEach((c: any) => {
+  
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          if(c.columnIndex == 0){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if(c.columnIndex == 1){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+          if(c.columnIndex == 2){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+
+          if(c.columnIndex == 3){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if(c.columnIndex == 4){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if(c.columnIndex == 5){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if(c.columnIndex == 6){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if(c.columnIndex == 7){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+          if (c.columnIndex == 8){
+            c.cellElement.style.background = "#cdcbcb";
+          }
+  
+  
+        }
       });
-    };
+    }
   }
 
   calcularPorcentajes(options: any) {
@@ -400,8 +527,6 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[6][0].value = this.totalPor.aniATotalE;
         e.summaryCells[8][0].value = this.totalPor.presTotalE;
         e.summaryCells[10][0].value = this.totalPor.ProyTotalE;
-
-        totalesPorGr.totalE = e.summaryCells[6][0].value;
         //Febrero
         e.summaryCells[15][0].value = this.totalPor.aniATotalFB;
         e.summaryCells[17][0].value = this.totalPor.presTotalFB;
@@ -671,7 +796,7 @@ export class IngresosComponent implements OnInit {
     || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
 
       // if(this.indicadores.length !== 0){
-        this.openModReal = true;
+        //this.openModReal = true;
       // }else{
       //   this.isVisible = true;
       // } 
@@ -725,8 +850,8 @@ export class IngresosComponent implements OnInit {
       
       //console.log(row)
       if(row.rowType == "groupFooter"){
-          // row.values[5].value = 123;
-          // console.log(row.values[5])
+        
+
       }
 
       if(row.rowType == "totalFooter"){
@@ -784,67 +909,6 @@ export class IngresosComponent implements OnInit {
     });
   } 
 
-  /**================TEST==================================*/
-  exportGrids(e) {
-    const context = this;
-    const workbook = new Workbook();
-
-    const carteraSheet = workbook.addWorksheet('DETALLE INGRESO');
-
-    function setAlternatingRowsBackground(gridCell, excelCell) {
-      if (gridCell.rowType === 'header') {
-
-          excelCell.fill = {
-            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-        }
-      }
-  
-      if(gridCell.rowType == 'groupFooter'){
-        if(gridCell.column.dataField == 'eneroPor'){
-          console.log(gridCell)
-        }
-
-      }
-  
-      if (gridCell.rowType === 'totalFooter') {
-        // if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
-        //   var currency = excelCell._value.model.value;
-        //   var number = Number(currency.replace(/[^0-9.-]+/g,""));
-        //   excelCell._value.model.value = number;
-        // }
-
-          excelCell.fill = {
-            type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460' }, bgColor: { argb: 'FF9460' },
-          };
-      }
-
-      if (gridCell.rowType === 'group') {
-          excelCell.fill = {
-            type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
-          }
-      }
-    }
-
-    // carteraSheet.columns = [
-    //   { width: 10 }, { width: 35 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 }, { width: 18 },{ width: 18 }
-    // ];
-
-    carteraSheet.views = [{state: 'normal'}];
-
-    exportDataGrid({
-      worksheet: carteraSheet,
-      component: context.gridDetalleI.instance,
-      keepColumnWidths: false,
-      topLeftCell: { row: 4, column: 2 },
-      customizeCell: ({ gridCell, excelCell }) => {
-        setAlternatingRowsBackground(gridCell, excelCell);
-      },
-    }).then(() => {
-      workbook.xlsx.writeBuffer().then((buffer) => {
-        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Cartera Cliente.xlsx');
-      });
-    });
-  }
 
   formatValue(value) {
     var myvalue = Math.trunc(value);
@@ -855,6 +919,25 @@ export class IngresosComponent implements OnInit {
 
     return "$ "+myFormat.join("");
 
+  }
+
+  openDetalle(value){
+    // this.loadingVisible = true;
+    // var idArea = value.row.data.idArea;
+    // var ciclo = value.row.data.ciclo;
+    
+    // if(idArea !== undefined && ciclo !== undefined){
+    
+      // this.macrocicloService.postMacrocicloDetalle(idArea, ciclo).subscribe(data =>{
+      //   console.log(data.data)
+      //   this.detalleMacro = data.data
+      //   this.detalleMacro.sort((a, b) => (a.noViaje < b.noViaje ? -1 : 1));
+
+        this.openModReal = true;
+    //     this.loadingVisible = false;
+    //   })
+
+    // }
   }
 
 }

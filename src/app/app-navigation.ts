@@ -53,9 +53,20 @@ export const navigation = [
     path: '/indicadores'
   },
   {
-    text: 'Diponibilidad',
-    icon: 'columnchooser',
-    path: '/diponiblidad'
+    text: 'Estatus Logistico',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Disponibilidad Unidades',
+        icon: 'columnchooser',
+        path: '/disponiblidad-Unidades'
+      },
+      {
+        text: 'Disponibilidad Operadores',
+        icon: 'columnchooser',
+        path: '/disponibilidad-Operadores'
+      },
+    ],
   },
   {
     text: 'Cartera',

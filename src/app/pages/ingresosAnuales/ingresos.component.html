@@ -245,8 +245,12 @@
         <div *dxTemplate="let data of 'content'">
             <dx-scroll-view width="100%" height="100%">
                 <br>
-            
-                <dx-data-grid #gridModal id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+                <!-- <div id="exportContainer">
+                  <dx-button text="EXPORTAR TODO" icon="xlsxfile" (onClick)="exportGrids($event)"></dx-button>
+                </div>
+                <br><br> -->
+            <!-- [customizeExportData]="customizeExportData" -->
+                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDetalle($event)" (onCellPrepared)="onCellPreparedDetalle($event)" [customizeExportData]="customizeExportData">
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
