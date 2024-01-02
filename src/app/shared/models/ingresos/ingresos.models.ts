@@ -2,6 +2,17 @@ export interface IngresosModel{
     id: number;
     unidadNegocio: string;
     tipoOperacion: string;
+    
+    ene24Ant
+    ene24Flete
+    ene24Otros
+    ene24Por
+    ene24PorP
+    ene24PorProy
+    ene24Pres
+    ene24Proyeccion
+    ene24Total
+    
     eneroFlete: number;
     eneroOtros: number;
     eneroTotal: number;

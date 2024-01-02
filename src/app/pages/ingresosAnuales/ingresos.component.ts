@@ -142,7 +142,7 @@ export class IngresosComponent implements OnInit {
                         orderIngreso[18],orderIngreso[17]);
 
         this.indicadores = neworderIngreso;
-        console.log(this.indicadores)
+       // console.log(this.indicadores)
 
       });
   }
@@ -345,12 +345,17 @@ export class IngresosComponent implements OnInit {
         this.totalPor.anioAntDC = e.summaryCells[105][0].value;
         this.totalPor.presupuestoDC = e.summaryCells[107][0].value;
         this.totalPor.proyeccionDC = e.summaryCells[109][0].value;
+        //ENERO 2024
+        this.totalPor.total24E = e.summaryCells[113][0].value;
+        this.totalPor.anioAnt24E = e.summaryCells[114][0].value;
+        this.totalPor.presupuesto24E = e.summaryCells[116][0].value;
+        this.totalPor.proyeccion24E = e.summaryCells[118][0].value;
+        //console.log(e.summaryCells)
 
         //Enero
         this.totalPor.aniATotalE = this.totalPor.totalE / this.totalPor.anioAntE;
         this.totalPor.presTotalE = this.totalPor.totalE / this.totalPor.presupuestoE;
         this.totalPor.ProyTotalE = this.totalPor.proyeccionE / this.totalPor.presupuestoE;
-
         //Febrero
         this.totalPor.aniATotalFB = this.totalPor.totalFB / this.totalPor.anioAntFB;
         this.totalPor.presTotalFB = this.totalPor.totalFB / this.totalPor.presupuestoFB;
@@ -395,6 +400,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor.aniATotalDC = this.totalPor.totalDC / this.totalPor.anioAntDC;
         this.totalPor.presTotalDC = this.totalPor.totalDC / this.totalPor.presupuestoDC;
         this.totalPor.ProyTotalDC = this.totalPor.proyeccionDC / this.totalPor.presupuestoDC;
+        //ENERO2024
+        this.totalPor.aniATotal24E = this.totalPor.total24E / this.totalPor.anioAnt24E;
+        this.totalPor.presTotal24E = this.totalPor.total24E / this.totalPor.presupuesto24E;
+        this.totalPor.ProyTotal24E = this.totalPor.proyeccion24E / this.totalPor.presupuesto24E;
 
         //Enero
         e.summaryCells[6][0].value = this.totalPor.aniATotalE;
@@ -446,6 +455,10 @@ export class IngresosComponent implements OnInit {
         e.summaryCells[106][0].value = this.totalPor.aniATotalDC;
         e.summaryCells[108][0].value = this.totalPor.presTotalDC;
         e.summaryCells[110][0].value = this.totalPor.ProyTotalDC;
+        //ENERO2024
+        e.summaryCells[115][0].value = this.totalPor.aniATotalDC;
+        e.summaryCells[117][0].value = this.totalPor.presTotalDC;
+        e.summaryCells[119][0].value = this.totalPor.ProyTotalDC;
 
       }
     }
@@ -534,6 +547,12 @@ export class IngresosComponent implements OnInit {
         let anioAntDC = c.totalItem.summaryCells[105][0].value;
         let presupuestoDC = c.totalItem.summaryCells[107][0].value;
         let proyeccionDC = c.totalItem.summaryCells[109][0].value;
+        //ENERO 2024
+        let total24E = c.totalItem.summaryCells[113][0].value;
+        let anioAnt24E = c.totalItem.summaryCells[114][0].value;
+        let presupuesto24E = c.totalItem.summaryCells[116][0].value;
+        let proyeccion24E = c.totalItem.summaryCells[118][0].value;
+        //console.log(c.totalItem.summaryCells)
 
         //Calculo de Porcentajes
         //Enero
@@ -656,6 +675,17 @@ export class IngresosComponent implements OnInit {
           totalesPor.totalDC = c.totalItem.summaryCells[106][0].value
           totalesPor.presupuestoDC = c.totalItem.summaryCells[108][0].value
           totalesPor.proyeccionDC = c.totalItem.summaryCells[110][0].value
+        }
+
+        //ENERO 2024
+        if(c.totalItem.summaryCells[113][0] !== undefined){
+          total24E === 0 ? c.totalItem.summaryCells[115][0].value = 0 : c.totalItem.summaryCells[115][0].value = total24E/anioAnt24E;
+          presupuesto24E === 0 ? c.totalItem.summaryCells[117][0].value = 0 : c.totalItem.summaryCells[117][0].value = total24E/presupuesto24E;
+          proyeccion24E === 0 ? c.totalItem.summaryCells[119][0].value = 0 : c.totalItem.summaryCells[119][0].value = total24E/presupuesto24E;
+
+          totalesPor.total24E = c.totalItem.summaryCells[115][0].value
+          totalesPor.presupuesto24E = c.totalItem.summaryCells[117][0].value
+          totalesPor.proyeccion24E = c.totalItem.summaryCells[119][0].value
         }
 
       })

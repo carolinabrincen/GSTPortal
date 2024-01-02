@@ -36,6 +36,9 @@ export class IngresosDetalladosComponent implements OnInit {
   arrIngresosDiciembre: IngresosDModel[] = [];
   arrDetalleDiciembre: DetalleModel[] = [];
 
+  arrIngresosEne2024: IngresosDModel[] = [];
+  arrDetalleEne2024: DetalleModel[] = [];
+
   loadingVisible = false;
 
   constructor(private ingresosService: ServiceSales) 
@@ -60,6 +63,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMOctubre();
     this.getIDMNoviembre();
     this.getIDMDiciembre();
+    this.getIDMDEnero2024();
   }
 
   getIDMMarzo(){
@@ -222,7 +226,20 @@ export class IngresosDetalladosComponent implements OnInit {
 
       this.arrIngresosDiciembre = res.data.resumen;
       this.arrDetalleDiciembre = res.data.detalle;
-      //console.log(this.arrDetalleNoviembre)
+      //console.log(this.arrIngresosDiciembre)
+
+      this.loadingVisible = false;
+    });
+  }
+
+  getIDMDEnero2024(){
+    //console.log("entre")
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualEne2024().subscribe(res => {
+      //console.log("entre 2")
+      this.arrIngresosEne2024 = res.data.resumen;
+      this.arrDetalleEne2024 = res.data.detalle;
+      console.log(this.arrIngresosEne2024)
 
       this.loadingVisible = false;
     });

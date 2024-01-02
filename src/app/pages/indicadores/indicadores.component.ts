@@ -426,6 +426,7 @@ export class IndicadoresComponent implements OnInit {
       
       this.ingresos = data.data.scIng;
       this.ingresos.sort((a, b) => (a.orden < b.orden ? -1 : 1))
+      console.log(this.ingresos)
    
 // ====================================KILOMETROS====================================================================================================
       this.kilomentros = data.data.scKms;      
