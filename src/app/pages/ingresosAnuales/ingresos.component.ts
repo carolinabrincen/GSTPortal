@@ -243,9 +243,10 @@ export class IngresosComponent implements OnInit {
         {mes: "SEPTIEMBRE", total: e.summaryCells[18][0].value, presupuesto: e.summaryCells[19][0].value},
         {mes: "OCTUBRE", total: e.summaryCells[20][0].value, presupuesto: e.summaryCells[21][0].value},
         {mes: "NOVIEMBRE", total: e.summaryCells[22][0].value, presupuesto: e.summaryCells[23][0].value},
-        {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},  
+        {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},
+        {mes: "ENERO2024", total: e.summaryCells[26][0].value, presupuesto: e.summaryCells[27][0].value},  
       ]
-      // e.summaryCells[7][0].value
+       console.log(e.summaryCells)
 
 
       e.cells.forEach((c: any) => {
