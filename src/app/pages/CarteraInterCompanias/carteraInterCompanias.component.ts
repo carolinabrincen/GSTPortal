@@ -210,7 +210,10 @@ export class CarteraInterCompaniasComponent implements OnInit {
     if(this.selectedPeriodo == 202312){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
     }
+    // if(this.selectedPeriodo == 202401){
 
+    //   this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
+    // }
 
   }
 
