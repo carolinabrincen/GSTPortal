@@ -49,6 +49,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
     { id: 10, periodo: 202310 },
     { id: 11, periodo: 202311 },
     { id: 12, periodo: 202312 },
+    { id: 13, periodo: 202401 },
   ];
 
   areaInter: any[] = [
@@ -210,10 +211,10 @@ export class CarteraInterCompaniasComponent implements OnInit {
     if(this.selectedPeriodo == 202312){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
     }
-    // if(this.selectedPeriodo == 202401){
+    if(this.selectedPeriodo == 202401){
 
-    //   this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
-    // }
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
+    }
 
   }
 
