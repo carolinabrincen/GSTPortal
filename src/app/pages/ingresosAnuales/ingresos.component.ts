@@ -143,8 +143,7 @@ export class IngresosComponent implements OnInit {
                         orderIngreso[18],orderIngreso[17]);
 
         this.indicadores = neworderIngreso;
-        this.indicadores2024 = neworderIngreso;
-        console.log(this.indicadores)
+        //console.log(this.indicadores)
       });
   }
 
@@ -164,7 +163,7 @@ export class IngresosComponent implements OnInit {
       //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
       //                   orderIngreso[18],orderIngreso[17]);
         this.indicadores2024 = response.data;
-        console.log(response.data)
+        console.log(this.indicadores2024)
       });
   }
 
