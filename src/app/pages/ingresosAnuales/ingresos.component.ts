@@ -144,7 +144,7 @@ export class IngresosComponent implements OnInit {
 
         this.indicadores = neworderIngreso;
         this.indicadores2024 = neworderIngreso;
-       // console.log(this.indicadores)
+        console.log(this.indicadores)
       });
   }
 
@@ -164,7 +164,7 @@ export class IngresosComponent implements OnInit {
       //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
       //                   orderIngreso[18],orderIngreso[17]);
         this.indicadores2024 = response.data;
-        console.log(response)
+        console.log(response.data)
       });
   }
 
@@ -268,20 +268,7 @@ export class IngresosComponent implements OnInit {
         {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
       ]
   /*====================================PERIODO 2024==================================================*/
-      this.graficaModel2024 = [
-        {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
-        {mes: "FEBRERO", total:0, presupuesto:0},
-        {mes: "MARZO", total:0, presupuesto:0},
-        {mes: "ABRIL", total:0, presupuesto:0},
-        {mes: "MAYO", total:0, presupuesto:0},
-        {mes: "JUNIO", total:0, presupuesto:0},
-        {mes: "JULIO", total:0, presupuesto:0},
-        {mes: "AGOSTO", total:0, presupuesto:0},
-        {mes: "SEPTIEMBRE", total:0, presupuesto:0},
-        {mes: "OCTUBRE", total:0, presupuesto:0},
-        {mes: "NOVIEMBRE", total:0, presupuesto:0},
-        {mes: "DICIEMBRE", total:0, presupuesto:0},
-      ]
+    
 
        //console.log(e.summaryCells)
 
@@ -304,6 +291,53 @@ export class IngresosComponent implements OnInit {
     }
   }
   onContentReady(e: any) {
+
+    this.loadingVisible = false;
+
+  }
+
+  onRowPrepared2024(e: any) {
+
+    if (e.rowType == 'totalFooter') {
+      //console.log(e.summaryCells)
+  /*====================================PERIODO 2024==================================================*/
+  this.graficaModel2024 = [
+    {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
+    {mes: "FEBRERO", total:0, presupuesto:0},
+    {mes: "MARZO", total:0, presupuesto:0},
+    {mes: "ABRIL", total:0, presupuesto:0},
+    {mes: "MAYO", total:0, presupuesto:0},
+    {mes: "JUNIO", total:0, presupuesto:0},
+    {mes: "JULIO", total:0, presupuesto:0},
+    {mes: "AGOSTO", total:0, presupuesto:0},
+    {mes: "SEPTIEMBRE", total:0, presupuesto:0},
+    {mes: "OCTUBRE", total:0, presupuesto:0},
+    {mes: "NOVIEMBRE", total:0, presupuesto:0},
+    {mes: "DICIEMBRE", total:0, presupuesto:0},
+  ]
+  //console.log(e.summaryCells)
+
+       //console.log(e.summaryCells)
+
+
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
+  }
+  onCellPrepared2024(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+    }
+  }
+  onContentReady2024(e: any) {
 
     this.loadingVisible = false;
 

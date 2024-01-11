@@ -45,7 +45,7 @@
                 <br>
 
                 <dx-data-grid #ingresosGrid2024 id="gridContainer2024" [dataSource]="indicadores2024" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick2024($event)">
+                (onRowPrepared)="onRowPrepared2024($event)" (onContentReady)="onContentReady2024($event)" (onCellPrepared)="onCellPrepared2024($event)" (onCellClick)="verDetallesClick2024($event)">
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
