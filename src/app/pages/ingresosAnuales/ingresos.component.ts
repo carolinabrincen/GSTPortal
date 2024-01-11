@@ -123,17 +123,15 @@ export class IngresosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIngresosAnuales();
+    this.getIngresosAnuales2024();
   }
 
-  getIngresosAnuales()
-  {
-
+  getIngresosAnuales(){
     this.loadingVisible = true;
     var myanio = 2023;
     var myUdN = 0;
       this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
     
-
          const orderIngreso: IngresosModel[] = response.data;
       let neworderIngreso = [];
       neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
@@ -147,7 +145,26 @@ export class IngresosComponent implements OnInit {
         this.indicadores = neworderIngreso;
         this.indicadores2024 = neworderIngreso;
        // console.log(this.indicadores)
+      });
+  }
 
+  getIngresosAnuales2024(){
+    this.loadingVisible = true;
+    var myanio = 2024;
+    var myUdN = 0;
+      this.service.getIndicadores2024(myanio, myUdN).subscribe((response) => {
+    
+         const orderIngreso: IngresosModel[] = response.data;
+      // let neworderIngreso = [];
+      // neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
+      //                   orderIngreso[6],orderIngreso[7],orderIngreso[5],
+      //                   orderIngreso[9],orderIngreso[8],
+      //                   orderIngreso[11],orderIngreso[10],
+      //                   orderIngreso[13],orderIngreso[12],
+      //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
+      //                   orderIngreso[18],orderIngreso[17]);
+        this.indicadores2024 = response.data;
+        console.log(response)
       });
   }
 
@@ -237,25 +254,36 @@ export class IngresosComponent implements OnInit {
       //console.log(e.summaryCells)
   /*====================================PERIODO 2023==================================================*/
       this.graficaModel2023 = [
-        {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
-        {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
-        {mes: "MARZO", total: e.summaryCells[6][0].value, presupuesto: e.summaryCells[7][0].value},
-        {mes: "ABRIL", total: e.summaryCells[8][0].value, presupuesto: e.summaryCells[9][0].value},
-        {mes: "MAYO", total: e.summaryCells[10][0].value, presupuesto: e.summaryCells[11][0].value},
-        {mes: "JUNIO", total: e.summaryCells[12][0].value, presupuesto: e.summaryCells[13][0].value},
-        {mes: "JULIO", total: e.summaryCells[14][0].value, presupuesto: e.summaryCells[15][0].value},
-        {mes: "AGOSTO", total: e.summaryCells[16][0].value, presupuesto: e.summaryCells[17][0].value},
-        {mes: "SEPTIEMBRE", total: e.summaryCells[18][0].value, presupuesto: e.summaryCells[19][0].value},
-        {mes: "OCTUBRE", total: e.summaryCells[20][0].value, presupuesto: e.summaryCells[21][0].value},
-        {mes: "NOVIEMBRE", total: e.summaryCells[22][0].value, presupuesto: e.summaryCells[23][0].value},
-        {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},
+        {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},
+        {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
+        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+        {mes: "ABRIL", total: e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
+        {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
+        {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
+        {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
+        {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
+        {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
+        {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
+        {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
+        {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
       ]
   /*====================================PERIODO 2024==================================================*/
       this.graficaModel2024 = [
-        {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},  
+        {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
+        {mes: "FEBRERO", total:0, presupuesto:0},
+        {mes: "MARZO", total:0, presupuesto:0},
+        {mes: "ABRIL", total:0, presupuesto:0},
+        {mes: "MAYO", total:0, presupuesto:0},
+        {mes: "JUNIO", total:0, presupuesto:0},
+        {mes: "JULIO", total:0, presupuesto:0},
+        {mes: "AGOSTO", total:0, presupuesto:0},
+        {mes: "SEPTIEMBRE", total:0, presupuesto:0},
+        {mes: "OCTUBRE", total:0, presupuesto:0},
+        {mes: "NOVIEMBRE", total:0, presupuesto:0},
+        {mes: "DICIEMBRE", total:0, presupuesto:0},
       ]
 
-       console.log(e.summaryCells)
+       //console.log(e.summaryCells)
 
 
       e.cells.forEach((c: any) => {

@@ -1,6 +1,7 @@
 export enum API_URLS{
     LOGEO = 'api/Login',
     GET_INGRESOS_ANUALES = 'api/Ingresos/IngresosAnuales',
+    GET_INGRESOS_ANUALES_2024 = 'api/Ingresos/IngresosAnuales2024',
     GET_INGRESOS_ANUALES_DETALLADO_enero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202301/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202302/02',
     GET_INGRESOS_ANUALES_DETALLADO_marzo = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202303/03',
