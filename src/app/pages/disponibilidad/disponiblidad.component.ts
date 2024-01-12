@@ -137,6 +137,7 @@ export class disponiblidadComponent implements OnInit {
     { id: 10, periodo: 202310 },
     { id: 11, periodo: 202311 },
     { id: 12, periodo: 202312 },
+    { id: 12, periodo: 202401 },
   ];
 
   selectedUdn: number = 0;
