@@ -724,10 +724,10 @@ export class IngresosComponent implements OnInit {
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
         //ENERO 2024
-        this.totalPor.total24E = e.summaryCells[4][0].value;
-        this.totalPor.anioAnt24E = e.summaryCells[5][0].value;
-        this.totalPor.presupuesto24E = e.summaryCells[7][0].value;
-        this.totalPor.proyeccion24E = e.summaryCells[9][0].value;
+        this.totalPor.total24E = e.summaryCells[4][0]?.value;
+        this.totalPor.anioAnt24E = e.summaryCells[5][0]?.value;
+        this.totalPor.presupuesto24E = e.summaryCells[7][0]?.value;
+        this.totalPor.proyeccion24E = e.summaryCells[9][0]?.value;
         //Febrero
         // this.totalPor.totalFB = e.summaryCells[13][0].value;
         // this.totalPor.anioAntFB = e.summaryCells[14][0].value;
@@ -836,11 +836,14 @@ export class IngresosComponent implements OnInit {
      
 
         //ENERO2024
-        e.summaryCells[6][0].value = this.totalPor.aniATotal24E;
-        e.summaryCells[8][0].value = this.totalPor.presTotal24E;
-        e.summaryCells[10][0].value = this.totalPor.ProyTotal24E;
+        if(e.summaryCells[10][0].value != undefined){
+          e.summaryCells[6][0].value = this.totalPor.aniATotal24E;
+          e.summaryCells[8][0].value = this.totalPor.presTotal24E;
+          e.summaryCells[10][0].value = this.totalPor.ProyTotal24E;
+  
+        }
 
-        totalesPorGr.totalE = e.summaryCells[6][0].value;
+        totalesPorGr.totalE = e.summaryCells[6][0]?.value;
         //Febrero
         // e.summaryCells[15][0].value = this.totalPor.aniATotalFB;
         // e.summaryCells[17][0].value = this.totalPor.presTotalFB;
@@ -912,10 +915,10 @@ export class IngresosComponent implements OnInit {
 
       e.totalItem.cells.forEach((c: any) => {
         //ENERO 2024
-        let total24E = c.totalItem.summaryCells[4][0].value;
-        let anioAnt24E = c.totalItem.summaryCells[5][0].value;
-        let presupuesto24E = c.totalItem.summaryCells[7][0].value;
-        let proyeccion24E = c.totalItem.summaryCells[9][0].value;
+        let total24E = c.totalItem.summaryCells[4][0]?.value;
+        let anioAnt24E = c.totalItem.summaryCells[5][0]?.value;
+        let presupuesto24E = c.totalItem.summaryCells[7][0]?.value;
+        let proyeccion24E = c.totalItem.summaryCells[9][0]?.value;
         // //Febrero
         // let totalFB = c.totalItem.summaryCells[13][0].value;
         // let anioAntFB = c.totalItem.summaryCells[14][0].value;

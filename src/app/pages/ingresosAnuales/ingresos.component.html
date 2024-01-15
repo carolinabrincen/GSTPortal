@@ -918,7 +918,7 @@
                 </div>
                 <br><br> -->
             <!-- [customizeExportData]="customizeExportData" -->
-                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="indicadores" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="indicadores2024" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDetalle2024($event)" (onCellPrepared)="onCellPreparedDetalle2024($event)" [customizeExportData]="customizeExportData">
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
@@ -930,13 +930,13 @@
                     <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
 
                     <dxi-column caption="Enero">
-                        <dxi-column dataField="eneFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                        <dxi-column dataField="eneOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                        <dxi-column dataField="eneTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                        <dxi-column dataField="eneAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
-                        <dxi-column dataField="enePor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
-                        <dxi-column dataField="enePres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
-                        <dxi-column dataField="enePorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
+                        <dxi-column dataField="eneroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="eneroAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
+                        <dxi-column dataField="eneroPor" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
+                        <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
+                        <dxi-column dataField="eneroPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
                         <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="enePorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
@@ -1069,11 +1069,11 @@
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                         <!-- SUMARY DE GRUPO -->
                         <!-- ENERO 2024 -->
-                        <dxi-group-item column="eneFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item column="eneOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item column="eneTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item column="eneAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item column="enePres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="eneroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="eneroOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="eneroTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="eneroAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="eneroPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="eneProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
 
                         <!--FEBRERO-->
@@ -1157,8 +1157,8 @@
 
                         <!-- PORCENTAJES GRUPO -->
                         <!--ENERO 2024-->
-                        <dxi-group-item showInColumn="enePor" name="grupEnero24Por" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="enePorP" name="grupAEnero24PorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPor" name="grupEnero24Por" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPorP" name="grupAEnero24PorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="enePorProy" name="grupAEnero24PorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--FEBRERO-->
                         <!-- <dxi-group-item showInColumn="febreroPor" name="grupFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
@@ -1207,11 +1207,11 @@
 
                         <!-- TOTAL TOTOAL -->
                         <!-- ENERO 2024 -->
-                        <dxi-total-item column="eneFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
-                        <dxi-total-item column="eneOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
-                        <dxi-total-item column="eneTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
-                        <dxi-total-item column="eneAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
-                        <dxi-total-item column="enePres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="eneroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="eneroOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="eneroTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="eneroAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="eneroPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="eneProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <!-- FEBRERO -->
                         <!-- <dxi-total-item column="febreroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
@@ -1293,8 +1293,8 @@
 
                         <!-- TOTAL TOTAL PORCENTAJE -->
                         <!-- ENERO 2024 -->
-                        <dxi-total-item showInColumn="enePor" name="TotDiciembrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="enePorP" name="TotDiciembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="eneroPor" name="TotDiciembrePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="eneroPorP" name="TotDiciembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="enePorProy" name="TotDiciembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- FEBRERO -->
                         <!-- <dxi-total-item showInColumn="febreroPor" name="TotFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
