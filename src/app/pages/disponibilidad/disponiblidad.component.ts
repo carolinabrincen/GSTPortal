@@ -60,10 +60,38 @@ export class disponiblidadComponent implements OnInit {
     {idUnidad: 9, ciudad: 'TULTITLAN'},
   ];
 
+  status: any[] = [
+    {id: 1, descripcion: 'Ausentismo/Suspendido', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 3, descripcion: 'Baja programada ', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 4, descripcion: 'Capacitacion', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 5, descripcion: 'Descanso/Vacaciones', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 6, descripcion: 'Incapacidad', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 7, descripcion: 'Instructor', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 8, descripcion: 'En espera de viaje', disponible: 'Disponible', status: 'A', tipo: 'Automatico'},
+    {id: 9, descripcion: 'Operando', disponible: 'Disponible', status: 'A', tipo: 'Automatico'},
+    {id: 10, descripcion: 'Disponible (Patio)', disponible: 'Disponible', status: 'A', tipo: 'Mixto'},
+    {id: 11, descripcion: 'Taller', disponible: 'No Disponible', status: 'A', tipo: 'Automatico'},
+    {id: 12, descripcion: 'Sin Estado', disponible: 'No Disponible', status: 'A', tipo: 'Automatico'},
+  ]
+
+  operaciones: any[] = [
+    {id: 0, descripcion: 'SIN ASIGNAR'},
+    {id: 4, descripcion: 'CAJA SECA'},
+    {id: 10, descripcion: 'GONDOLA'},
+    {id: 11, descripcion: 'TOLVA GRANEL'},
+    {id: 8, descripcion: 'GRADO ALIMENT'},
+    {id: 9, descripcion: 'ENCORTINADO'},
+
+
+
+  ];
+
   selectedUdn: number = 0;
   selectedOperacion: number = 0;
   selectedTransporte: number = 0;
   selectedPeriodo: number = 0;
+  selectedStatus: number = 0;
+
 
   printUdn: string = "";
 
@@ -78,6 +106,8 @@ export class disponiblidadComponent implements OnInit {
   showFilterRow: boolean;
   currentFilter: any;
   applyFilterTypes: any;
+
+  now: Date = new Date();
   constructor( 
     private disponibilidadService: DisponibilidadAnualService, 
     private service: ServiceSales, 
@@ -112,53 +142,88 @@ export class disponiblidadComponent implements OnInit {
         this.resumen = response.data.resumen;
         this.tractos = response.data.tractos;
         this.operadores = response.data.operadores;
-        console.log(this.tractos)
+        console.log(this.operadores)
         this.loadingVisible = false
+
+        this.selectedOperacion = undefined;
+        this.selectedStatus = undefined;
       });
   }
 
 /*======================SELECTE FUNCIONS================================================*/
-    selectUdn(value: any){
-      this.selectedUdn = value.value;
-      console.log(this.selectedUdn)
-      if(this.selectedUdn === 0){
-        this.printUdn = "TODOS";
-      }
-      if(this.selectedUdn === 1){
-        this.printUdn = "ORIZABA";
-      }
-      if(this.selectedUdn === 2){
-        this.printUdn = "GUADALAJARA";
-      }
-      if(this.selectedUdn === 3){
-        this.printUdn = "RAMOS ARIZPE";
-      }
-      if(this.selectedUdn === 4){
-        this.printUdn = "MEXICALI";
-      }
-      if(this.selectedUdn === 5){
-        this.printUdn = "HERMOSILLO";
-      }
-      if(this.selectedUdn === 8){
-        this.printUdn = "CUAUTITLAN";
-      }
-      if(this.selectedUdn === 9){
-        this.printUdn = "TULTITLAN";
-      }
+  selectUdn(value: any){
+    this.selectedUdn = value.value;
+    //console.log(this.selectedUdn)
+    if(this.selectedUdn === 0){
+      this.printUdn = "TODOS";
     }
-
-    selectFecha(value: any){
-      console.log(value)
+    if(this.selectedUdn === 1){
+      this.printUdn = "ORIZABA";
     }
+    if(this.selectedUdn === 2){
+      this.printUdn = "GUADALAJARA";
+    }
+    if(this.selectedUdn === 3){
+      this.printUdn = "RAMOS ARIZPE";
+    }
+    if(this.selectedUdn === 4){
+      this.printUdn = "MEXICALI";
+    }
+    if(this.selectedUdn === 5){
+      this.printUdn = "HERMOSILLO";
+    }
+    if(this.selectedUdn === 8){
+      this.printUdn = "CUAUTITLAN";
+    }
+    if(this.selectedUdn === 9){
+      this.printUdn = "TULTITLAN";
+    }
+  }
+  selectFecha(value: any){
+    //console.log(value)
+  }
+  selectOperacion(value: any){
+    this.selectedOperacion = value.value
+    console.log(this.selectedOperacion)
+  }
+  selectStatus(value: any){
+    this.selectedStatus = value.value;
+    console.log(this.selectedStatus)
+  }
+/*========================Guardar Status Manual=========================================*/
 
-    buscarClick = (e: any) => {
-      // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
-        this.loadingVisible = true;
-  
-        this.getDisponiblidadAnual();
-      // }
-  
-    };
+  saveStatusManual(value){
+    let myValue = value.data
+    let myIdUser = sessionStorage.getItem('idUsuario')
+
+    this.loadingVisible = true;
+
+    this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data =>{
+      console.log(data)
+      this.getDisponiblidadAnual()
+    })
+  }
+/*========================Guardar Tipo Operacion Operador=========================================*/
+saveTipoOperacionOper(value){
+    let myValue = value.data
+    let myIdUser = sessionStorage.getItem('idUsuario')
+   
+    this.loadingVisible = true;
+
+    this.disponibilidadService.postTipoOperacionOpe(myValue.id_personal, this.selectedOperacion, myIdUser).subscribe(data =>{
+      console.log(data)
+      this.getDisponiblidadAnual()
+    })
+  }
+
+  buscarClick = (e: any) => {
+    // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
+      this.loadingVisible = true;
+
+      this.getDisponiblidadAnual();
+    // }
+
+  };
 
   ngAfterViewInit() {
     
@@ -188,24 +253,6 @@ export class disponiblidadComponent implements OnInit {
   onRowPreparedResumen(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
-      // this.graficaModel = [
-      //   {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
-      //   {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
-      //   {mes: "MARZO", total: e.summaryCells[6][0].value, presupuesto: e.summaryCells[7][0].value},
-      //   {mes: "ABRIL", total: e.summaryCells[8][0].value, presupuesto: e.summaryCells[9][0].value},
-      //   {mes: "MAYO", total: e.summaryCells[10][0].value, presupuesto: e.summaryCells[11][0].value},
-      //   {mes: "JUNIO", total: e.summaryCells[12][0].value, presupuesto: e.summaryCells[13][0].value},
-      //   {mes: "JULIO", total: e.summaryCells[14][0].value, presupuesto: e.summaryCells[15][0].value},
-      //   {mes: "AGOSTO", total: e.summaryCells[16][0].value, presupuesto: e.summaryCells[17][0].value},
-      //   {mes: "SEPTIEMBRE", total: e.summaryCells[18][0].value, presupuesto: e.summaryCells[19][0].value},
-      //   {mes: "OCTUBRE", total: e.summaryCells[20][0].value, presupuesto: e.summaryCells[21][0].value},
-      //   {mes: "NOVIEMBRE", total: e.summaryCells[22][0].value, presupuesto: e.summaryCells[23][0].value},
-      //   {mes: "DICIEMBRE", total: e.summaryCells[24][0].value, presupuesto: e.summaryCells[25][0].value},  
-      // ]
-      // e.summaryCells[7][0].value
-
-
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
@@ -218,6 +265,11 @@ export class disponiblidadComponent implements OnInit {
   }
   
   onCellPreparedResumen(e: any) {
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
     if (e.rowType == 'groupFooter'){
 
         e.cellElement.style.fontSize = '15px';
@@ -631,23 +683,7 @@ export class disponiblidadComponent implements OnInit {
 
   }
 
-  openDetalle(value){
-    // this.loadingVisible = true;
-    // var idArea = value.row.data.idArea;
-    // var ciclo = value.row.data.ciclo;
-    
-    // if(idArea !== undefined && ciclo !== undefined){
-    
-      // this.macrocicloService.postMacrocicloDetalle(idArea, ciclo).subscribe(data =>{
-      //   console.log(data.data)
-      //   this.detalleMacro = data.data
-      //   this.detalleMacro.sort((a, b) => (a.noViaje < b.noViaje ? -1 : 1));
-
-        this.openModReal = true;
-    //     this.loadingVisible = false;
-    //   })
-
-    // }
+  dateBixInicio(value){
+    console.log(value)
   }
-
 }

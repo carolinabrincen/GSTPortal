@@ -47,7 +47,33 @@ export class DisponibilidadAnualService extends AbstractManagerService {
       idArea: idArea,
       fecha: fecha,
     };
+    console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_DISPONIBILIDAD_ANUAL), body, this.httpOptions);
+  }
+
+  postStatusManual(cveOperador: number, idStatus: number, idUsuario: string, inicio: string, fin: string, observaciones: string) {
+    let body = {
+      cveOperador:cveOperador,
+      idStatus: idStatus,
+      idUsuario: idUsuario,
+      inicio: inicio,
+      fin: fin,
+      observaciones: observaciones
+    };
+    console.log("status")
+    console.log(JSON.stringify(body))
+    return this.post<any>((this.API_URL + API_URLS.POST_STATUS_MANUAL), body, this.httpOptions);
+  }
+
+  postTipoOperacionOpe(cveOperador: number, idTipoOperacion: number, idUsuario: string) {
+    let body = {
+      cveOperador:cveOperador,
+      idTipoOperacion: idTipoOperacion,
+      idUsuario: idUsuario,
+    };
+    console.log("operacion")
+    console.log(JSON.stringify(body))
+    return this.post<any>((this.API_URL + API_URLS.POST_TIPO_OPERACION_OPERADOR), body, this.httpOptions);
   }
 
  

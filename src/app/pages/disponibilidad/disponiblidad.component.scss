@@ -63,3 +63,8 @@
 .styleButton{
   padding-top: 1.5em;
 }
+
+::ng-deep .dx-datagrid-headers{  
+  background: #DCDCDC;  
+} 
+

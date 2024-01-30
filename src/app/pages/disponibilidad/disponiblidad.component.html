@@ -89,11 +89,21 @@
                         <dxi-column dataField="totalOpe" caption="Total"></dxi-column>
                     </dxi-column>
 
-
-        <!-- 
-                    <div *dxTemplate="let data of 'detalleCellTemplate'">
-                        <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openDetalle(data)"></dx-button>
-                    </div> -->
+                    <dxo-summary>
+                        <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="operandoOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="variacionOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="patioOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="esperaViaje" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="instructorOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="tallerOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="totalOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -105,10 +115,11 @@
                 <dx-data-grid #totales id="gridContainer2" [dataSource]="tractos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedTractos($event)" (onCellPrepared)="onCellPreparedTractos($event)">
                     
-                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                     <dxo-export [enabled]="true"></dxo-export>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                     <dxo-filter-row
                     [visible]="showFilterRow"
@@ -162,11 +173,12 @@
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                     <dxo-export [enabled]="true"></dxo-export>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                     <dxo-editing mode="cell" [allowUpdating]="true"></dxo-editing>
 
                     <dxi-column dataField="operadorUdN" caption="" [fixed]="true" [allowEditing]="false" [groupIndex]="0"></dxi-column>
-                    <dxi-column dataField="operacion" caption="" [fixed]="true" [allowEditing]="false" [groupIndex]="1"></dxi-column>
+                    <!-- <dxi-column dataField="operacion" caption="" [fixed]="true" [allowEditing]="false" [groupIndex]="1"></dxi-column> -->
 
                     <dxi-column caption="Operador">
                         <dxi-column dataField="id_personal" caption="Clave" [fixed]="false" [allowEditing]="false"></dxi-column>
@@ -192,37 +204,43 @@
                         <dxi-column dataField="ordenMttoInicio" caption="Inicio" [fixed]="false" [allowEditing]="false"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Tipo de Operación Operador">
-                        <dxi-column dataField="operacion" caption="Operación" [fixed]="false" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación" [fixed]="false" [width]="150" editCellTemplate="selectBoxOperacion"></dxi-column>
                         <dxi-column dataField="fechaModifico" caption="Modifico" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="nombreTipoOp" caption="Usuario" [fixed]="false" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="" caption="Guardar" [fixed]="false" cellTemplate="tipoOperaOpeardCellTemplate" [width]="100"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Status Logístico Manual">
-                        <dxi-column dataField="descripcionStManual" caption="Status" [fixed]="false" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="false" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="descripcionStManual" caption="Status" [fixed]="false" [width]="180" editCellTemplate="selectBoxStatus"></dxi-column>
+                        <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="false" [allowEditing]="true"></dxi-column>
                         <dxi-column dataField="nombreUsSt" caption="Modifico" [fixed]="false" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="inicio" caption="Inicio" [fixed]="false" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="fin" caption="Fin" [fixed]="false" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="inicio" caption="Inicio" [fixed]="false" dataType="date" format="dd/MM/yyyy" [width]="130"></dxi-column>
+                        <dxi-column dataField="fin" caption="Fin" [fixed]="false" dataType="date" format="dd/MM/yyyy" [width]="130"></dxi-column>
+                        <dxi-column dataField="" caption="Guardar" [fixed]="false" cellTemplate="statusMAnualCellTemplate" [width]="100"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Status Disponibilidad">
                         <dxi-column dataField="status" caption="Status" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="descripcion" caption="Descripción" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="tipo" caption="Tipo" [fixed]="false" [allowEditing]="false"></dxi-column>
                     </dxi-column>
-
-                    <!-- <dxi-column caption="Asignación Operación">
-                        <dxi-column dataField="asigOperacion" caption="Operación" [fixed]="false" [width]="130">
-                            <dxo-lookup [dataSource]="operacion" displayExpr="operacion" valueExpr="id">
-                            </dxo-lookup></dxi-column>
-                        <dxi-column dataField="asigModifico" caption="Modificó" [fixed]="false" dataType="date" format="dd/MM/yyyy" [width]="130"></dxi-column>    
-                    </dxi-column>
-                    <dxi-column caption="Status Logístico">
-                        <dxi-column dataField="statLogistico" caption="Status Logístico" [fixed]="false" [width]="150">
-                            <dxo-lookup [dataSource]="estadosOp" displayExpr="logistica" valueExpr="operativo">
-                            </dxo-lookup>
-                        </dxi-column>
-                        <dxi-column dataField="statModifico" caption="Modificó" [fixed]="false" dataType="date" format="dd/MM/yyyy" [width]="130"></dxi-column>    
-                        <dxi-column dataField="statRetorno" caption="Retorno" [fixed]="false" dataType="date" format="dd/MM/yyyy" [width]="130"></dxi-column>
-                    </dxi-column> -->
+                    <!-- <div *dxTemplate="let cellInfo of 'dateBoxInicioCell'">
+                        <dx-date-box type="date" [value]="now" displayFormat="dd/MM/yyyy" [inputAttr]="{ 'aria-label': 'Custom Format' }" (onChange)="dateBixInicio($event)"> </dx-date-box>
+                    </div> -->
+                    <!--=============================Select Box Operacion============================-->
+                    <div *dxTemplate="let cellInfo of 'selectBoxOperacion'">
+                        <dx-select-box [dataSource]="operaciones" valueExpr="id" displayExpr="descripcion" (onValueChanged)="selectOperacion($event)"></dx-select-box>
+                    </div>
+                    <!--=============================Select Box Status============================-->
+                    <div *dxTemplate="let cellInfo of 'selectBoxStatus'">
+                      <dx-select-box [dataSource]="status" valueExpr="id" displayExpr="descripcion" (onValueChanged)="selectStatus($event)"></dx-select-box>
+                    </div>
+                    <!--=============================Button save Status Manual============================-->
+                    <div *dxTemplate="let data of 'statusMAnualCellTemplate'">
+                        <dx-button icon="save" stylingMode="outlined" type="success" (onClick)="saveStatusManual(data)"></dx-button>
+                    </div>
+                    <!--=============================Button save Operacion============================-->
+                    <div *dxTemplate="let data of 'tipoOperaOpeardCellTemplate'">
+                        <dx-button icon="save" stylingMode="outlined" type="success" (onClick)="saveTipoOperacionOper(data)"></dx-button>
+                    </div>
 
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -230,123 +248,6 @@
                 <br>
         </dxi-item>
     </dx-tab-panel>
-
-        <!-- <dx-data-grid *ngIf="selectedUdn === 0" #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-         (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
-            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-            <dxo-paging [pageSize]="100"></dxo-paging>
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-export [enabled]="true"></dxo-export>
-
-            <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0"></dxi-column>
-            <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
-
-            <dxi-column caption="ORIZABA">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="GUADALAJARA">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="RAMOS ARIZPE">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="MEXICALI">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="HERMOSILLO">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="LA PAZ">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="CUAUTITLAN">
-                <dxi-column dataField="" caption="IngUeso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-            <dxi-column caption="TULTITLAN">
-                <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-            </dxi-column>
-
-            <dxo-group-panel [visible]="false"></dxo-group-panel>
-            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-        </dx-data-grid>
-        <br>
-
-        <dx-data-grid *ngIf="selectedUdn !== 0" #total id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
-           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-           <dxo-paging [pageSize]="100"></dxo-paging>
-           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-           <dxo-export [enabled]="true"></dxo-export>
-
-           <dxi-column dataField="unidadNegocio" caption="" [groupIndex]="0"></dxi-column>
-           <dxi-column dataField="tipoOperacion" caption="Operación" [fixed]="true"></dxi-column>
-
-           <dxi-column caption="{{ printUdn }}">
-               <dxi-column dataField="" caption="U" [fixed]="false" [format]="formatValue"></dxi-column>
-               <dxi-column dataField="" caption="%" [fixed]="false" [format]="formatValue"></dxi-column>
-           </dxi-column>
-
-           <dxo-group-panel [visible]="false"></dxo-group-panel>
-           <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-        </dx-data-grid>
-        <br>
-
-        <dx-data-grid #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-        (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
-           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-           <dxo-paging [pageSize]="100"></dxo-paging>
-           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-           <dxo-export [enabled]="true"></dxo-export>
-
-            <dxi-column dataField="" caption="Estatus" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Remolque" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Operación" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Razon Rep" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Area Taller" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Descripcion" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Fecha Ingreso" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Fecha Compromiso" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="No Orden" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Dias Estatuus" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Fecha Prometida" [fixed]="false"></dxi-column>
-            <dxi-column dataField="" caption="Detalle" [fixed]="false" cellTemplate="detalleCellTemplate" [width]="100"></dxi-column>
-
-            <div *dxTemplate="let data of 'detalleCellTemplate'">
-                <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openDetalle(data)"></dx-button>
-            </div>
-
-           <dxo-group-panel [visible]="false"></dxo-group-panel>
-           <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-       </dx-data-grid>
-
-       <dx-data-grid #totales id="gridContainer2" [dataSource]="indicadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-       (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)" (onCellClick)="verDetallesClick($event)">
-          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-          <dxo-paging [pageSize]="100"></dxo-paging>
-          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-          <dxo-export [enabled]="true"></dxo-export>
-
-           <dxi-column dataField="" caption="Total Unidad" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Disponibles" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Variación" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Taller" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Siniestrado" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Disponibles" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Operando" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Variacón" [fixed]="false"></dxi-column>
-           <dxi-column dataField="" caption="Patio" [fixed]="false"></dxi-column>
-
-          <dxo-group-panel [visible]="false"></dxo-group-panel>
-          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-      </dx-data-grid> -->
     </div>
 
 
