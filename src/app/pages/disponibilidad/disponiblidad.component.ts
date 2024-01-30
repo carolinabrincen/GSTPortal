@@ -75,8 +75,9 @@ export class disponiblidadComponent implements OnInit {
   tractos: any = []
   operadores: any = []
   
-
-
+  showFilterRow: boolean;
+  currentFilter: any;
+  applyFilterTypes: any;
   constructor( 
     private disponibilidadService: DisponibilidadAnualService, 
     private service: ServiceSales, 
@@ -87,6 +88,17 @@ export class disponiblidadComponent implements OnInit {
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.formFilter
+    this.showFilterRow = true;
+
+    this.applyFilterTypes = [{
+      key: 'auto',
+      name: 'Immediately',
+    }, {
+      key: 'onClick',
+      name: 'On Button Click',
+    }];
+
+    this.currentFilter = this.applyFilterTypes[0].key;
   }
 
   ngOnInit(): void {
