@@ -90,6 +90,21 @@
                     </dxi-column>
 
                     <dxo-summary>
+                        <dxi-group-item column="totalUds" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="operandoOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="variacionOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="patioOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="esperaViaje" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="instructorOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="tallerOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="totalOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+
+
                         <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -121,10 +136,10 @@
                     <dxo-export [enabled]="true"></dxo-export>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-                    <dxo-filter-row
+                    <!-- <dxo-filter-row
                     [visible]="showFilterRow"
                     [applyFilter]="currentFilter"
-                    ></dxo-filter-row>
+                    ></dxo-filter-row> -->
                     
                     <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                     <dxi-column dataField="tractoOperacion" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
@@ -145,7 +160,7 @@
                             <dxi-column dataField="viajeCarNum" caption="Cant. Viajes"></dxi-column>
                             <dxi-column dataField="viajeCarGuias" caption="Cant. CP"></dxi-column>
                         </dxi-column>
-                        <dxi-column caption="">
+                        <dxi-column caption="Última Orden de Mantemiento ">
                             <dxi-column dataField="ordenMttoIdOrden" caption="Num Orden"></dxi-column>
                             <dxi-column dataField="ordenMttoObservaciones" caption="Observaciones"></dxi-column>
                             <dxi-column dataField="ordenMttoEstado" caption="Status"></dxi-column>
