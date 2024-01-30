@@ -11,6 +11,7 @@ import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-con
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
+import { DisponibilidadAnualService } from '../../services/disponibilidadAnual/disponibilidadAnual.service';
 
 import { Customer, Service } from './app.service';
 
@@ -160,8 +161,13 @@ export class DisponibilidadOperadoresComponent implements OnInit {
 
   customers: Customer[];
 
+  formFilter: any = {
+    Fecha: ''
+  }
+
+  operadores: any = []
   constructor( 
-    private unidadesService: UnidadesService, 
+    private disponiblidadService: DisponibilidadAnualService, 
     private service: ServiceSales, 
     private currencyPipe: CurrencyPipe,
     localService: Service
@@ -172,7 +178,6 @@ export class DisponibilidadOperadoresComponent implements OnInit {
     this.IdUnidadNegocio = 0;
     this.UnidadNegocio = "Nacional";
     this.Anio = 2022;
-    this.treeDataSource = unidadesService.getUnidades();
     
     this.isTreeBoxOpened = false;
     
@@ -183,47 +188,22 @@ export class DisponibilidadOperadoresComponent implements OnInit {
 
     loadMessages(deMessages);
     locale(navigator.language);
+
+    this.formFilter
   }
 
   ngOnInit(): void {
     //this.getIngresosAnuales();
   }
 
-  getIngresosAnuales()
-  {
+  getIngresosAnuales(){
 
-    this.loadingVisible = true;
-    var myanio = 2023;
-    var myUdN = 0;
-      // this.service.getIndicadores(myanio, myUdN).subscribe((response) => {
-    
-
-      //    const orderIngreso: IngresosModel[] = response.data;
-      // let neworderIngreso = [];
-      // neworderIngreso.push(orderIngreso[3],orderIngreso[2],orderIngreso[0],orderIngreso[1],orderIngreso[4],
-      //                   orderIngreso[6],orderIngreso[7],orderIngreso[5],
-      //                   orderIngreso[9],orderIngreso[8],
-      //                   orderIngreso[11],orderIngreso[10],
-      //                   orderIngreso[13],orderIngreso[12],
-      //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
-      //                   orderIngreso[18],orderIngreso[17]);
-
-      //   this.indicadores = neworderIngreso;
-      //   console.log(this.indicadores)
-
-      // });
+      this.disponiblidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
+        this.operadores = response.data.operadores
+        console.log(this.operadores)
+        this.loadingVisible = false
+      });
   }
-
-    getIngresosAnualesChart (Anio: number, UnidadNegocio: number)
-   {
-    this.service.getIndicadoresGrafica(Anio, UnidadNegocio).subscribe((response) => {
-       
-      this.indicadoresGrafica = response.data;
-      
-      
-      
-    });
-    }
 
 /*======================SELECTE FUNCIONS================================================*/
     selectUdn(value: any){
@@ -276,7 +256,7 @@ export class DisponibilidadOperadoresComponent implements OnInit {
       // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
         this.loadingVisible = true;
   
-        // this.postCarteraCliente();
+        this.getIngresosAnuales();
       // }
   
     };
@@ -343,47 +323,47 @@ export class DisponibilidadOperadoresComponent implements OnInit {
 
     if (e.rowType == 'data') {
 
-      e.cells.forEach((c: any) => {
+      // e.cells.forEach((c: any) => {
   
-        if (c.cellElement) {
-          if(c.columnIndex == 0){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //   if (c.cellElement) {
+      //     if(c.columnIndex == 0){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if(c.columnIndex == 1){
-            c.cellElement.style.background = "#cdcbcb";
-          }
-          if(c.columnIndex == 2){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 1){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
+      //     if(c.columnIndex == 2){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
 
-          if(c.columnIndex == 3){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 3){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if(c.columnIndex == 4){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 4){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if(c.columnIndex == 5){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 5){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if(c.columnIndex == 6){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 6){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if(c.columnIndex == 7){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if(c.columnIndex == 7){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
-          if (c.columnIndex == 8){
-            c.cellElement.style.background = "#cdcbcb";
-          }
+      //     if (c.columnIndex == 8){
+      //       c.cellElement.style.background = "#cdcbcb";
+      //     }
   
   
-        }
-      });
+      //   }
+      // });
     }
   }
 

@@ -73,6 +73,7 @@ export enum API_URLS{
     POST_CLIENTE_RUTA_ORIGEN = 'api/Rentabilidad/ClienteRutaOrigen',
     POST_RUTA_DESTINO = 'api/Rentabilidad/RutaDestino',
     POST_RUTAS = 'api/Rentabilidad/IngrXKmViaje',
+    POST_DISPONIBILIDAD_ANUAL = 'api/Disponibilidad/Disponibilidad',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',

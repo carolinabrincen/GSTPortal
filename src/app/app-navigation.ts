@@ -57,15 +57,15 @@ export const navigation = [
     icon: 'datafield',
     items: [
       {
-        text: 'Disponibilidad Unidades',
+        text: 'Disponibilidad',
         icon: 'columnchooser',
         path: '/disponiblidad-Unidades'
       },
-      {
-        text: 'Disponibilidad Operadores',
-        icon: 'columnchooser',
-        path: '/disponibilidad-Operadores'
-      },
+      // {
+      //   text: 'Disponibilidad Operadores',
+      //   icon: 'columnchooser',
+      //   path: '/disponibilidad-Operadores'
+      // },
     ],
   },
   {
