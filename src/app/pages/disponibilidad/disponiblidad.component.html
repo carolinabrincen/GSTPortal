@@ -242,6 +242,7 @@
                         <dxi-column dataField="status" caption="Status" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="descripcion" caption="Descripción" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="tipo" caption="Tipo" [fixed]="false" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="disponible" caption="Diponible" [fixed]="false" [allowEditing]="false"></dxi-column>
                     </dxi-column>
                     <!-- <div *dxTemplate="let cellInfo of 'dateBoxInicioCell'">
                         <dx-date-box type="date" [value]="now" displayFormat="dd/MM/yyyy" [inputAttr]="{ 'aria-label': 'Custom Format' }" (onChange)="dateBixInicio($event)"> </dx-date-box>
@@ -251,8 +252,8 @@
                         <dx-select-box [dataSource]="operaciones" valueExpr="id" displayExpr="descripcion" (onValueChanged)="selectOperacion($event)"></dx-select-box>
                     </div>
                     <!--=============================Select Box Status============================-->
-                    <div *dxTemplate="let cellInfo of 'selectBoxStatus'">
-                      <dx-select-box [dataSource]="status" valueExpr="id" displayExpr="descripcion" (onValueChanged)="selectStatus($event)"></dx-select-box>
+                    <div *dxTemplate="let cellData of 'selectBoxStatus'">
+                      <dx-select-box [dataSource]="status" valueExpr="id" displayExpr="descripcion" (onBlur)="blurStatus(cellData)" (onValueChanged)="selectStatus($event)"></dx-select-box>
                     </div>
                     <!--=============================Button save Status Manual============================-->
                     <div *dxTemplate="let data of 'statusMAnualCellTemplate'">

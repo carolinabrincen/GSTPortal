@@ -14,6 +14,8 @@ import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model'
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { DisponibilidadAnualService } from '../../services/disponibilidadAnual/disponibilidadAnual.service';
 
+import notify from 'devextreme/ui/notify';
+
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
@@ -62,7 +64,7 @@ export class disponiblidadComponent implements OnInit {
 
   status: any[] = [
     {id: 1, descripcion: 'Ausentismo/Suspendido', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 3, descripcion: 'Baja programada ', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
+    {id: 3, descripcion: 'Baja programada', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
     {id: 4, descripcion: 'Capacitacion', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
     {id: 5, descripcion: 'Descanso/Vacaciones', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
     {id: 6, descripcion: 'Incapacidad', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
@@ -190,7 +192,17 @@ export class disponiblidadComponent implements OnInit {
   }
   selectStatus(value: any){
     this.selectedStatus = value.value;
-    console.log(this.selectedStatus)
+    console.log(value)
+  }
+
+  blurStatus(value:any){
+    console.log(value)
+    this.status.forEach(element => {
+      if(element.id === this.selectedStatus){
+        value.data.descripcionStManual = element.descripcion;
+
+      }
+    });
   }
 /*========================Guardar Status Manual=========================================*/
 
@@ -203,6 +215,14 @@ export class disponiblidadComponent implements OnInit {
     this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data =>{
       console.log(data)
       this.getDisponiblidadAnual()
+
+      notify({
+        message: data.data,
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'success', 4000);
     })
   }
 /*========================Guardar Tipo Operacion Operador=========================================*/
@@ -215,6 +235,14 @@ saveTipoOperacionOper(value){
     this.disponibilidadService.postTipoOperacionOpe(myValue.id_personal, this.selectedOperacion, myIdUser).subscribe(data =>{
       console.log(data)
       this.getDisponiblidadAnual()
+
+      notify({
+        message: data.data,
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'success', 4000);
     })
   }
 
