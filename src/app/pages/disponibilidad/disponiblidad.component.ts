@@ -210,6 +210,7 @@ export class disponiblidadComponent implements OnInit {
     let myValue = value.data
     let myIdUser = sessionStorage.getItem('idUsuario')
 
+    if(myValue.inicio !== null && myValue.fin !== null){
     this.loadingVisible = true;
 
     this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data =>{
@@ -224,6 +225,17 @@ export class disponiblidadComponent implements OnInit {
         },
       }, 'success', 4000);
     })
+  
+    }else{
+      notify({
+        message: 'Falta datos por seleccionar o confirmar',
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+
   }
 /*========================Guardar Tipo Operacion Operador=========================================*/
 saveTipoOperacionOper(value){
