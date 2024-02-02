@@ -102,6 +102,7 @@ export class disponiblidadComponent implements OnInit {
   resumen: any = []
   tractos: any = []
   operadores: any = []
+  remolque: any = []
   
   showFilterRow: boolean;
   currentFilter: any;
@@ -142,7 +143,8 @@ export class disponiblidadComponent implements OnInit {
         this.resumen = response.data.resumen;
         this.tractos = response.data.tractos;
         this.operadores = response.data.operadores;
-        console.log(this.operadores)
+        this.remolque = response.data.remolques;
+        console.log(this.remolque)
         this.loadingVisible = false
 
         this.selectedOperacion = undefined;
@@ -350,6 +352,33 @@ saveTipoOperacionOper(value){
   }
   
   onCellPreparedOperador(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+    }
+  }
+
+  onRowPreparedRemolques(e: any) {
+
+    if (e.rowType == 'totalFooter') {
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
+  }
+  
+  onCellPreparedRemolques(e: any) {
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
     if (e.rowType == 'groupFooter'){
 
         e.cellElement.style.fontSize = '15px';

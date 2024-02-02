@@ -77,6 +77,7 @@
                         <dxi-column dataField="variacion" caption="Variación"></dxi-column>
                         <dxi-column dataField="taller" caption="Taller"></dxi-column>
                         <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                        <dxi-column dataField="noDisponibles" caption="No Disponibles"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Disponibilidad Operadores">
                         <dxi-column dataField="disponiblesOpe" caption="Disponibles"></dxi-column>
@@ -147,6 +148,9 @@
                         <dxi-column caption="Información del Tracto" [fixed]="true">
                             <dxi-column dataField="tracto" caption="Tracto"></dxi-column>
                             <dxi-column dataField="tractoTipoUnidad" caption="Tipo de Tracto"></dxi-column>
+                            <dxi-column dataField="idRemolque1" caption="Remolque 1"></dxi-column>
+                            <dxi-column dataField="idRemolque2" caption="Remolque 2"></dxi-column>
+                            <dxi-column dataField="dolly" caption="Dolly"></dxi-column>
                             <dxi-column dataField="tractoEstado" caption="Status"></dxi-column>
                         </dxi-column>
                         <dxi-column caption="Información del Último Viaje">
@@ -154,7 +158,7 @@
                             <dxi-column dataField="viajeNoViaje" caption="No. Viaje"></dxi-column>
                             <dxi-column dataField="viajeDespachado" caption="Fecha Despacho"></dxi-column>
                             <dxi-column dataField="viajeFin" caption="Fecha Fin"></dxi-column>
-                            <dxi-column dataField="viajeEnFin" caption="¿En viaje?"></dxi-column>
+                            <dxi-column dataField="viajeEnViaje" caption="¿En viaje?"></dxi-column>
                         </dxi-column>
                         <dxi-column caption="Viajes Cargados del Día">
                             <dxi-column dataField="viajeCarNum" caption="Cant. Viajes"></dxi-column>
@@ -261,7 +265,39 @@
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
                 </dx-data-grid>
                 <br>
-        </dxi-item>
+            </dxi-item>
+            <dxi-item title="Remolques">
+                <br>
+                <dx-data-grid #totales id="gridContainer4" [dataSource]="remolque" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedRemolques($event)" (onCellPrepared)="onCellPreparedRemolques($event)">
+                    
+                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                    <dxo-paging [pageSize]="100"></dxo-paging>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    
+                    <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                    <dxi-column dataField="tractoOperacion" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+
+                        <dxi-column caption="Información del Remolque" [fixed]="true">
+                            <dxi-column dataField="tracto" caption="Unidad"></dxi-column>
+                            <dxi-column dataField="tractoTipoUnidad" caption="Tipo"></dxi-column>
+                            <dxi-column dataField="tractoEstado" caption="Status"></dxi-column>
+                        </dxi-column>
+                        <dxi-column caption="Ultima Orden de Mantenimiento">
+                            <dxi-column dataField="ordenMttoIdOrden" caption="Num. Orden"></dxi-column>
+                            <dxi-column dataField="ordenMttoObservaciones" caption="Observaciones"></dxi-column>
+                            <dxi-column dataField="ordenMttoEstado" caption="Status"></dxi-column>
+                            <dxi-column dataField="ordenMttoInicio" caption="Inicio"></dxi-column>
+                            <dxi-column dataField="ordenMttoCierre" caption="Cierre"></dxi-column>
+                            <dxi-column dataField="ordenMttoDias" caption="Dias Abierta"></dxi-column>
+                        </dxi-column>
+                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                </dx-data-grid>
+                <br>
+            </dxi-item>
     </dx-tab-panel>
     </div>
 
