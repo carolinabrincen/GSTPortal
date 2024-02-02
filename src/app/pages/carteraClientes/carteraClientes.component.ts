@@ -376,7 +376,14 @@ export class CarteraClientesComponent implements OnInit {
 
     var totalAgrup4 = this.cliente4.length
 
-    var totalFin = totalgrid2 + 6 + totalAgrup4;
+    if(this.selectedBoxCartera !== 0){
+      console.log("Size = 6")
+      var totalFin = totalgrid2 + 6 + totalAgrup4;
+    }else{
+      console.log("Size = 10")
+      var totalFin = totalgrid2 + 10 + totalAgrup4;
+    }
+
 
     return totalFin;
   }
@@ -880,17 +887,6 @@ export class CarteraClientesComponent implements OnInit {
     function setAlternatingRowsBackground(gridCell, excelCell) {
 
       if (gridCell.rowType === 'data') {
-        // if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
-        //     var x = Math.round(excelCell.value)
-        //     var myvalue = Math.trunc(x);
-        
-        //     var myFormat = myvalue.toString().split(".");
-        //     myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            
-        //     excelCell.value = myFormat.join("");
-          
-        // }
-
       if(gridCell.column.caption == "Total"){
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'D3D3D3' }, bgColor: { argb: 'D3D3D3' },
@@ -908,11 +904,7 @@ export class CarteraClientesComponent implements OnInit {
   
       if (gridCell.rowType === 'totalFooter') {
         if(gridCell.column.caption !== "Nombre de cliente" && gridCell.column.caption !== "Intercompañia"){
-          // console.log(excelCell._value.model.value)
-          // var monto = excelCell._value.model.value;
-          // var montoFormat = monto.replace(/[$.]/g,'');
-          // console.log(montoFormat)
-
+  
           var currency = excelCell._value.model.value;
           var number = Number(currency.replace(/[^0-9.-]+/g,""));
           
@@ -939,17 +931,7 @@ export class CarteraClientesComponent implements OnInit {
 
         var totalFin = totalGrid2 +1;
         var myPosition = 'B'+totalFin.toString();
-        
-          // if(excelCell.address !== myPosition){
-          //   var x = Math.round(excelCell.value)
-          //   var myvalue = Math.trunc(x);
-        
-          //   var myFormat = myvalue.toString().split(".");
-          //   myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-          //   excelCell.value = myFormat.join("");
-          // }
-          //console.log(excelCell)
+  
           excelCell.fill = {
             type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF9460', }, bgColor: { argb: 'FF9460' }, bold: true
           };
