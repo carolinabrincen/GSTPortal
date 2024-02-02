@@ -96,6 +96,7 @@
                         <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="operandoOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="variacionOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -111,6 +112,7 @@
                         <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="operandoOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="variacionOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -199,7 +201,7 @@
                     <dxi-column dataField="operadorUdN" caption="" [fixed]="true" [allowEditing]="false" [groupIndex]="0"></dxi-column>
                     <!-- <dxi-column dataField="operacion" caption="" [fixed]="true" [allowEditing]="false" [groupIndex]="1"></dxi-column> -->
 
-                    <dxi-column caption="Operador">
+                    <dxi-column caption="Operador" [fixed]="true">
                         <dxi-column dataField="id_personal" caption="Clave" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="operadorNombre" caption="Nombre" [fixed]="false" [allowEditing]="false"></dxi-column>
                     </dxi-column>
