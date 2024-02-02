@@ -59,8 +59,8 @@
                         <dxi-column dataField="eneroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Febrero">
-                        <dxi-column dataField="" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                        <dxi-column dataField="" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="febreroTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Marzo">
                         <dxi-column dataField="" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -940,7 +940,7 @@
                         <dxi-column dataField="eneProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="enePorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
-                    <!-- <dxi-column caption="Febrero">
+                     <dxi-column caption="Febrero">
                         <dxi-column dataField="febreroFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febreroOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febreroTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -951,7 +951,7 @@
                         <dxi-column dataField="febProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="febPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
-                    <dxi-column caption="Marzo">
+                    <!--<dxi-column caption="Marzo">
                         <dxi-column dataField="marzoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -1077,12 +1077,12 @@
                         <dxi-group-item column="eneProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
 
                         <!--FEBRERO-->
-                        <!-- <dxi-group-item column="febreroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="febreroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="febreroOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="febreroTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="febreroAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="febreroPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item column="febProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item> -->
+                        <dxi-group-item column="febProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <!-- MARZO -->
                         <!-- <dxi-group-item column="marzoFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="marzoOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
@@ -1161,9 +1161,9 @@
                         <dxi-group-item showInColumn="eneroPorP" name="grupAEnero24PorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="enePorProy" name="grupAEnero24PorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--FEBRERO-->
-                        <!-- <dxi-group-item showInColumn="febreroPor" name="grupFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="febreroPor" name="grupFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="febreroPorP" name="grupFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="febPorProy" name="grupFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item> -->
+                        <dxi-group-item showInColumn="febPorProy" name="grupFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--MARZO-->
                         <!-- <dxi-group-item showInColumn="marzoPor" name="grupMarzoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="marzoPorP" name="grupMarzoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
@@ -1214,12 +1214,12 @@
                         <dxi-total-item column="eneroPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="eneProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <!-- FEBRERO -->
-                        <!-- <dxi-total-item column="febreroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="febreroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="febreroOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="febreroTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="febreroAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="febreroPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
-                        <dxi-total-item column="febProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item> -->
+                        <dxi-total-item column="febProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <!-- MARZO -->
                         <!-- <dxi-total-item column="marzoFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="marzoOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
@@ -1297,9 +1297,9 @@
                         <dxi-total-item showInColumn="eneroPorP" name="TotDiciembrePorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="enePorProy" name="TotDiciembrePorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- FEBRERO -->
-                        <!-- <dxi-total-item showInColumn="febreroPor" name="TotFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item showInColumn="febreroPor" name="TotFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="febreroPorP" name="TotFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
-                        <dxi-total-item showInColumn="febPorProy" name="TotFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item> -->
+                        <dxi-total-item showInColumn="febPorProy" name="TotFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <!-- MARZO -->
                         <!-- <dxi-total-item showInColumn="marzoPor" name="TotMarzoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item showInColumn="marzoPorP" name="TotMarzoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>

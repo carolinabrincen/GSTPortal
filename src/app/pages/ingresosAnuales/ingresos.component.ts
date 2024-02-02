@@ -302,7 +302,7 @@ export class IngresosComponent implements OnInit {
   /*====================================PERIODO 2024==================================================*/
   this.graficaModel2024 = [
     {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
-    {mes: "FEBRERO", total:0, presupuesto:0},
+    {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
     {mes: "MARZO", total:0, presupuesto:0},
     {mes: "ABRIL", total:0, presupuesto:0},
     {mes: "MAYO", total:0, presupuesto:0},
@@ -729,10 +729,11 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presupuesto24E = e.summaryCells[7][0]?.value;
         this.totalPor.proyeccion24E = e.summaryCells[9][0]?.value;
         //Febrero
-        // this.totalPor.totalFB = e.summaryCells[13][0].value;
-        // this.totalPor.anioAntFB = e.summaryCells[14][0].value;
-        // this.totalPor.presupuestoFB = e.summaryCells[16][0].value;
-        // this.totalPor.proyeccionFB = e.summaryCells[18][0].value;
+        // console.log(e.summaryCells)
+        this.totalPor.totalFB = e.summaryCells[13][0].value;
+        this.totalPor.anioAntFB = e.summaryCells[14][0].value;
+        this.totalPor.presupuestoFB = e.summaryCells[16][0].value;
+        this.totalPor.proyeccionFB = e.summaryCells[18][0].value;
         // //Marzo
         // this.totalPor.totalM = e.summaryCells[22][0].value;
         // this.totalPor.anioAntM = e.summaryCells[23][0].value;
@@ -790,9 +791,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor.presTotal24E = this.totalPor.total24E / this.totalPor.presupuesto24E;
         this.totalPor.ProyTotal24E = this.totalPor.proyeccion24E / this.totalPor.presupuesto24E;
         // //Febrero
-        // this.totalPor.aniATotalFB = this.totalPor.totalFB / this.totalPor.anioAntFB;
-        // this.totalPor.presTotalFB = this.totalPor.totalFB / this.totalPor.presupuestoFB;
-        // this.totalPor.ProyTotalFB = this.totalPor.proyeccionFB / this.totalPor.presupuestoFB;
+        this.totalPor.aniATotalFB = this.totalPor.totalFB / this.totalPor.anioAntFB;
+        this.totalPor.presTotalFB = this.totalPor.totalFB / this.totalPor.presupuestoFB;
+        this.totalPor.ProyTotalFB = this.totalPor.proyeccionFB / this.totalPor.presupuestoFB;
         // //Marzo
         // this.totalPor.aniATotalM = this.totalPor.totalM / this.totalPor.anioAntM;
         // this.totalPor.presTotalM = this.totalPor.totalM / this.totalPor.presupuestoM;
@@ -836,7 +837,7 @@ export class IngresosComponent implements OnInit {
      
 
         //ENERO2024
-        if(e.summaryCells[10][0].value != undefined){
+        if(e.summaryCells[10][0].value !== undefined){
           e.summaryCells[6][0].value = this.totalPor.aniATotal24E;
           e.summaryCells[8][0].value = this.totalPor.presTotal24E;
           e.summaryCells[10][0].value = this.totalPor.ProyTotal24E;
@@ -845,9 +846,11 @@ export class IngresosComponent implements OnInit {
 
         totalesPorGr.totalE = e.summaryCells[6][0]?.value;
         //Febrero
-        // e.summaryCells[15][0].value = this.totalPor.aniATotalFB;
-        // e.summaryCells[17][0].value = this.totalPor.presTotalFB;
-        // e.summaryCells[19][0].value = this.totalPor.ProyTotalFB;
+        if(e.summaryCells[15][0].value !== undefined){
+          e.summaryCells[15][0].value = this.totalPor.aniATotalFB;
+          e.summaryCells[17][0].value = this.totalPor.presTotalFB;
+          e.summaryCells[19][0].value = this.totalPor.ProyTotalFB;
+        }
         // //Marzo
         // e.summaryCells[24][0].value = this.totalPor.aniATotalM;
         // e.summaryCells[26][0].value = this.totalPor.presTotalM;
@@ -920,10 +923,10 @@ export class IngresosComponent implements OnInit {
         let presupuesto24E = c.totalItem.summaryCells[7][0]?.value;
         let proyeccion24E = c.totalItem.summaryCells[9][0]?.value;
         // //Febrero
-        // let totalFB = c.totalItem.summaryCells[13][0].value;
-        // let anioAntFB = c.totalItem.summaryCells[14][0].value;
-        // let presupuestoFB = c.totalItem.summaryCells[16][0].value;
-        // let proyeccionFB = c.totalItem.summaryCells[18][0].value;
+        let totalFB = c.totalItem.summaryCells[13][0].value;
+        let anioAntFB = c.totalItem.summaryCells[14][0].value;
+        let presupuestoFB = c.totalItem.summaryCells[16][0].value;
+        let proyeccionFB = c.totalItem.summaryCells[18][0].value;
         // //Marzo
         // let totalM = c.totalItem.summaryCells[22][0].value;
         // let anioAntM = c.totalItem.summaryCells[23][0].value;
@@ -999,15 +1002,15 @@ export class IngresosComponent implements OnInit {
 
         // }
         // //Febrero
-        // if(c.totalItem.summaryCells[13][0] !== undefined){
-        //   totalFB === 0 ? c.totalItem.summaryCells[15][0].value = 0 : c.totalItem.summaryCells[15][0].value = totalFB/anioAntFB;
-        //   presupuestoFB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = totalFB/presupuestoFB;
-        //   proyeccionFB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = totalFB/proyeccionFB;
+        if(c.totalItem.summaryCells[15][0] !== undefined){
+          totalFB === 0 ? c.totalItem.summaryCells[15][0].value = 0 : c.totalItem.summaryCells[15][0].value = totalFB/anioAntFB;
+          presupuestoFB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = totalFB/presupuestoFB;
+          proyeccionFB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = totalFB/proyeccionFB;
 
-        //   totalesPor.totalFB = c.totalItem.summaryCells[15][0].value
-        //   totalesPor.presupuestoFB = c.totalItem.summaryCells[17][0].value
-        //   totalesPor.proyeccionFB = c.totalItem.summaryCells[19][0].value
-        // }
+          totalesPor.totalFB = c.totalItem.summaryCells[15][0].value
+          totalesPor.presupuestoFB = c.totalItem.summaryCells[17][0].value
+          totalesPor.proyeccionFB = c.totalItem.summaryCells[19][0].value
+        }
         // //Marzo
         // if(c.totalItem.summaryCells[22][0] !== undefined){
         //   totalM === 0 ? c.totalItem.summaryCells[24][0].value = 0 : c.totalItem.summaryCells[24][0].value = totalM/anioAntM;
