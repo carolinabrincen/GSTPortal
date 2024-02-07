@@ -84,6 +84,7 @@ export enum API_URLS{
     GET_COSTOS_TIPOS = 'api/Costos/GetTipos',
     GET_COSTOS_CLASES = 'api/Costos/GetClases',
     GET_SCORE_CARD = 'api/Kilometros/ScoreCard',
+    GET_SCORE_CARD_2024 = 'api/Kilometros/ScoreCard2024',
     GET_INGRESO_OPERADOR = 'api/Kilometros/ViajeOperador/',
     GET_CARTERA_DETALLE = 'api/CarteraClientes/CarteraClientes',
     GET_KMS_MENSUALES = 'api/Kilometros/KmsMensuales/',
