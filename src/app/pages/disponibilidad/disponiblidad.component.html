@@ -1,4 +1,4 @@
-<h2 class="content-block">Indicador de Disponibilidad</h2>
+<h2 class="content-block">Disponibilidad</h2>
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
     <br><br>
 
@@ -60,6 +60,7 @@
         <dx-tab-panel>
             <dxi-item title="Disponibilidad">
                 <br>
+                <h3>Tractos y Operadores</h3>
                 <dx-data-grid #resmen id="gridContainer1" [dataSource]="resumen" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
                 
@@ -166,6 +167,7 @@
                 <br>
 
                 <br>
+                <h3>Remolques</h3>
                 <dx-data-grid #resumenR id="gridContainer1" [dataSource]="resumenRemolques" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
                 
@@ -174,6 +176,7 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                 <dxo-export [enabled]="true"></dxo-export>
 
+                <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="tractoOperacion" caption="Operación"></dxi-column>
                 <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
                 <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
@@ -187,9 +190,22 @@
                 <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
                 <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
                 <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
-                  
+                
+                <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
 
-s -->
+                    <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="disponibilidad" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porDisponibilidad" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="PorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -197,6 +213,7 @@ s -->
                 <br>
 
                 <br>
+                <h3>Dolly</h3>
                 <dx-data-grid #resumenD id="gridContainer1" [dataSource]="resumenDolly" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
                 
@@ -205,6 +222,7 @@ s -->
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                 <dxo-export [enabled]="true"></dxo-export>
 
+                <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="tractoOperacion" caption="Operación"></dxi-column>
                 <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
                 <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
@@ -218,10 +236,23 @@ s -->
                 <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
                 <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
                 <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
-                  
+                
+                <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
 
-s -->
-
+                    <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="disponibilidad" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porDisponibilidad" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="PorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                </dxo-summary>
+                
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
                 </dx-data-grid>
