@@ -193,6 +193,19 @@
                 
                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
 
+                    <dxi-group-item column="totalUds" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="disponibilidad" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porDisponibilidad" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="PorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+
                     <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                     <dxi-total-item column="disponibilidad" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -236,8 +249,21 @@
                 <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
                 <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
                 <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
-                
+
                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+
+                    <dxi-group-item column="totalUds" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="disponibilidad" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porDisponibilidad" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="PorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
 
                     <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
