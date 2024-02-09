@@ -102,6 +102,8 @@ export class disponiblidadComponent implements OnInit {
   }
 
   resumen: any = []
+  resumenRemolques: any = []
+  resumenDolly: any = []
   tractos: any = []
   operadores: any = []
   remolque: any = []
@@ -143,10 +145,12 @@ export class disponiblidadComponent implements OnInit {
    
       this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
         this.resumen = response.data.resumen;
+        this.resumenRemolques = response.data.resumenRemolques;
+        this.resumenDolly = response.data.resumenDollys;
+        console.log(response.data)
         this.tractos = response.data.tractos;
         this.operadores = response.data.operadores;
         this.remolque = response.data.remolques;
-        console.log(this.remolque)
         this.loadingVisible = false
 
         this.selectedOperacion = undefined;

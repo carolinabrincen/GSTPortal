@@ -257,6 +257,10 @@ export class CarteraClientesComponent implements OnInit {
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
       this.printPAvance = "31 DE ENERO DEL 2024"
     }
+    if(this.selectedPeriodo == 202402){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO FEBRERO 2024"
+      this.printPAvance = "29 DE FEBRERO DEL 2024"
+    }
 
 
   }

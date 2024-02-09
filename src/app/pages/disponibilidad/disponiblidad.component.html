@@ -60,7 +60,7 @@
         <dx-tab-panel>
             <dxi-item title="Disponibilidad">
                 <br>
-                <dx-data-grid #totales id="gridContainer1" [dataSource]="resumen" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid #resmen id="gridContainer1" [dataSource]="resumen" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
                 
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
@@ -74,54 +74,153 @@
                     <dxi-column caption="Disponibilidad Unidades">
                         <dxi-column dataField="totalUds" caption="Total Uds Asignadas"></dxi-column>
                         <dxi-column dataField="disponibles" caption="Disponibles"></dxi-column>
+                        <dxi-column dataField="udsPorDisp" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="variacion" caption="Variación"></dxi-column>
+                        <dxi-column dataField="udsPorVariacion" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="taller" caption="Taller"></dxi-column>
+                        <dxi-column dataField="udsPorTaller" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                        <dxi-column dataField="udsPorSiniestrado" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="noDisponibles" caption="No Disponibles"></dxi-column>
+                        <dxi-column dataField="udsPorNoDisponibles" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Disponibilidad Operadores">
                         <dxi-column dataField="disponiblesOpe" caption="Disponibles"></dxi-column>
+                        <dxi-column dataField="opePorDisp" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="operandoOpe" caption="Operando"></dxi-column>
+                        <dxi-column dataField="opePorOperando" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="variacionOpe" caption="Variación"></dxi-column>
+                        <dxi-column dataField="opePorVariacion" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="patioOpe" caption="Patio"></dxi-column>
+                        <dxi-column dataField="opePorPatio" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="esperaViaje" caption="En espera"></dxi-column>
+                        <dxi-column dataField="opePorEspera" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="instructorOpe" caption="Instructor"></dxi-column>
+                        <dxi-column dataField="opePorInstructor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="tallerOpe" caption="Taller"></dxi-column>
+                        <dxi-column dataField="opePorTaller" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="totalOpe" caption="Total"></dxi-column>
                     </dxi-column>
 
-                    <dxo-summary>
+                    <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="totalUds" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="operandoOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="variacionOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="patioOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="esperaViaje" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="instructorOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="tallerOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="totalOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <!-- <dxi-group-item showInColumn="udsPorDisp" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item> -->
+                        <dxi-group-item showInColumn="udsPorDisp" name="grupEnero" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
 
+                        <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="udsPorVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="udsPorTaller"  summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="udsPorSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="udsPorNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorDisp" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="operandoOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorOperando" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="variacionOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="patioOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorPatio" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="esperaViaje" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorEspera" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="instructorOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorInstructor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="tallerOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item showInColumn="opePorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="totalOpe" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
 
                         <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="udsPorDisp" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="udsPorVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="udsPorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="udsPorSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="udsPorNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="disponiblesOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorDisp" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="operandoOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorOperando" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="variacionOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorVariacion" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="patioOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorPatio" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="esperaViaje" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorEspera" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="instructorOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorInstructor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="tallerOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item showInColumn="opePorTaller" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="totalOpe" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     </dxo-summary>
+
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                </dx-data-grid>
+                <br>
+
+                <br>
+                <dx-data-grid #resumenR id="gridContainer1" [dataSource]="resumenRemolques" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
+                
+                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                <dxo-paging [pageSize]="100"></dxo-paging>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true"></dxo-export>
+
+                <dxi-column dataField="tractoOperacion" caption="Operación"></dxi-column>
+                <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
+                <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="disponibilidad" caption="Disponibles"></dxi-column>
+                <dxi-column dataField="porDisponibilidad" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="variacion" caption="Variación"></dxi-column>
+                <dxi-column dataField="porVariacion" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="taller" caption="Taller"></dxi-column>
+                <dxi-column dataField="PorTaller" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
+                <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
+                  
+
+s -->
+
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                </dx-data-grid>
+                <br>
+
+                <br>
+                <dx-data-grid #resumenD id="gridContainer1" [dataSource]="resumenDolly" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
+                
+                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                <dxo-paging [pageSize]="100"></dxo-paging>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true"></dxo-export>
+
+                <dxi-column dataField="tractoOperacion" caption="Operación"></dxi-column>
+                <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
+                <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="disponibilidad" caption="Disponibles"></dxi-column>
+                <dxi-column dataField="porDisponibilidad" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="variacion" caption="Variación"></dxi-column>
+                <dxi-column dataField="porVariacion" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="taller" caption="Taller"></dxi-column>
+                <dxi-column dataField="PorTaller" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
+                <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
+                <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
+                  
+
+s -->
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -263,6 +362,10 @@
                     <div *dxTemplate="let data of 'tipoOperaOpeardCellTemplate'">
                         <dx-button icon="save" stylingMode="outlined" type="success" (onClick)="saveTipoOperacionOper(data)"></dx-button>
                     </div>
+
+                    <dxo-summary>
+                        <dxi-group-item column="operadorNombre" summaryType="count"> </dxi-group-item>
+                    </dxo-summary>
 
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
