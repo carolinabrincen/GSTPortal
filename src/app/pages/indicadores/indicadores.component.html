@@ -1080,7 +1080,13 @@
         </dxi-item>
 
         <dxi-item title="KPI´s">
-            <dx-chart id="chart1" [dataSource]="kmsXOperacion" palette="pastel" [rotated]="false" [barGroupWidth]="120">
+            <br><br>
+            <div class="controls-pane" style="text-align: right;">
+                <dx-button icon="export" text="Exportar Todo" type="default" [width]="175" (onClick)="export()"></dx-button>
+              </div>
+            <br>
+
+            <dx-chart #chart1 [dataSource]="kmsXOperacion" palette="pastel" [rotated]="false" [barGroupWidth]="120">
                 <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                     <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
@@ -1095,7 +1101,7 @@
             </dx-chart>
             <br><br>
 
-            <dx-chart id="chart2" [dataSource]="kmsXUdn" palette="pastel" [rotated]="false" [barGroupWidth]="100">
+            <dx-chart #chart2 [dataSource]="kmsXUdn" palette="pastel" [rotated]="false" [barGroupWidth]="100">
                 <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barPadding]="0.01">
                     <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
@@ -1110,7 +1116,7 @@
             </dx-chart>
             <br><br>
 
-            <dx-chart id="chart3" [dataSource]="porXOperacion" palette="pastel" [rotated]="false" >
+            <dx-chart #chart3 [dataSource]="porXOperacion" palette="pastel" [rotated]="false" >
                 <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                     <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
@@ -1125,7 +1131,7 @@
             </dx-chart>
             <br><br>
 
-            <dx-chart id="chart4" [dataSource]="porXCargadosUdn" palette="pastel" [rotated]="false" >
+            <dx-chart #chart4 [dataSource]="porXCargadosUdn" palette="pastel" [rotated]="false" >
                 <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                     <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
@@ -1140,7 +1146,7 @@
             </dx-chart>
             <br><br>
 
-            <dx-chart id="chart5" [dataSource]="porXFlotaOperacion" palette="pastel" [rotated]="false">
+            <dx-chart #chart5 [dataSource]="porXFlotaOperacion" palette="pastel" [rotated]="false">
                 <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                     <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
@@ -1155,7 +1161,7 @@
             </dx-chart>
             <br><br>
 
-            <dx-chart id="chart6" [dataSource]="porXFlotaUdn" palette="pastel" [rotated]="false">
+            <dx-chart #chart6 [dataSource]="porXFlotaUdn" palette="pastel" [rotated]="false">
                 <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
                 <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                     <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"

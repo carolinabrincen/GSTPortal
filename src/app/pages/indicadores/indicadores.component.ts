@@ -2,96 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { DxChartComponent, } from 'devextreme-angular';
-
-import { 
-  SumaTotalE,
-  SumaTotalF,
-  SumaTotalM,
-  SumaTotalA,
-  SumaTotalMY,
-  SumaTotalJN,
-  SumaTotalJL,
-  SumaTotalAG,
-  SumaTotalS,
-  SumaTotalOC,
-  SumaTotalNV,
-  SumaTotalDC
- } from '../../shared/models/indicadores/sumaTotal.model';
- import { 
-  SumaTotalEKV,
-  SumaTotalFKV,
-  SumaTotalMKV,
-  SumaTotalAKV,
-  SumaTotalMYKV,
-  SumaTotalJNKV,
-  SumaTotalJLKV,
-  SumaTotalAGKV,
-  SumaTotalSKV,
-  SumaTotalOCKV,
-  SumaTotalNVKV,
-  SumaTotalDCKV
- } from '../../shared/models/indicadores/sumaTotalKV.model';
 import { IndicadoresService } from '../../services/indicadores/indicadores.service';
 import { ScoreCard } from '../../shared/models/indicadores/scoreCard.model';
-import { 
-  IngresosKE,
-  TotalKE,
-  IngresosKF,
-  TotalKF,
-  IngresosKM,
-  TotalKM,
-  IngresosKA,
-  TotalKA,
-  IngresosKMY,
-  TotalKMY,
-  IngresosKJN,
-  TotalKJN,
-  IngresosKJL,
-  TotalKJL,
-  IngresosKAG,
-  TotalKAG,
-  IngresosKS,
-  TotalKS,
-  IngresosKOC,
-  TotalKOC,
-  IngresosKNV,
-  TotalKNV,
-  IngresosKDC,
-  TotalKDC,
- } from '../../shared/models/indicadores/ingresosKilometros.model';
- import { 
-  IngresosKEKV,
-  TotalKEKV,
-  IngresosKFKV,
-  TotalKFKV,
-  IngresosKMKV,
-  TotalKMKV,
-  IngresosKAKV,
-  TotalKAKV,
-  IngresosKMYKV,
-  TotalKMYKV,
-  IngresosKJNKV,
-  TotalKJNKV,
-  IngresosKJLKV,
-  TotalKJLKV,
-  IngresosKAGKV,
-  TotalKAGKV,
-  IngresosKSKV,
-  TotalKSKV,
-  IngresosKOCKV,
-  TotalKOCKV,
-  IngresosKNVKV,
-  TotalKNVKV,
-  IngresosKDCKV,
-  TotalKDCKV,
- } from '../../shared/models/indicadores/ingresosKilometrosKV.model';
-
- import { TotalesLength } from '../../shared/models/indicadores/totalesLength.model';
-
-import { IngresoOperador } from '../../shared/models/indicadores/ingresoOperador.model';
 import { GraficaIngresoO } from '../../shared/models/indicadores/graficaIngresosO.model';
 import { SubtotalesKCV } from '../../shared/models/indicadores/subtotalesKCV.model';
-
 import { 
   CustomTotalKE,
   CustomTotalKF,
@@ -191,6 +105,7 @@ import {
    } from '../../shared/models/indicadores/totalIngresosViajes.model';
    import { KMSMensuales } from '../../shared/models/indicadores/kmsMensuales.model'
    import { Chart } from '../../shared/models/indicadores/chart.model';
+   import { exportWidgets } from 'devextreme/viz/export';
 
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
@@ -361,7 +276,14 @@ const totalKVCDC24 = new TotalKilomeotrsVCDC;
   styleUrls: ['./indicadores.component.scss'],
 })
 export class IndicadoresComponent implements OnInit {
-  @ViewChild(DxChartComponent, { static: false }) chart: any;
+
+  @ViewChild("chart1", { static: false }) chart1: DxChartComponent;
+  @ViewChild("chart2", { static: false }) chart2: DxChartComponent;
+  @ViewChild("chart3", { static: false }) chart3: DxChartComponent;
+  @ViewChild("chart4", { static: false }) chart4: DxChartComponent;
+  @ViewChild("chart5", { static: false }) chart5: DxChartComponent;
+  @ViewChild("chart6", { static: false }) chart6: DxChartComponent;
+
 
   ingresos: ScoreCard[] = [];
   ingresos24: ScoreCard[] = [];
@@ -6861,6 +6783,21 @@ onCellPreparedIO2024(e){
     
 
     return myFormat.join("");
+  }
+
+  /*================================EXPORTAR TODOS LOS KAPIS==========================*/
+  export() {
+    const chartInstance1 = this.chart1.instance;
+    const chartInstance2 = this.chart2.instance;
+    const chartInstance3 = this.chart3.instance;
+    const chartInstance4 = this.chart4.instance;
+    const chartInstance5 = this.chart5.instance;
+    const chartInstance6 = this.chart6.instance;
+
+    exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
+      fileName: 'KPI´s',
+      format: 'PDF',
+    });
   }
 
    //==================Formato a la data de la grafica==================================
