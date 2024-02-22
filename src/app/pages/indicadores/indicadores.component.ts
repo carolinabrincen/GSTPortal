@@ -6792,23 +6792,25 @@ onCellPreparedIO2024(e){
 
   /*================================EXPORTAR TODOS LOS KAPIS==========================*/
   export() {
-    // const chartInstance1 = this.chart1.instance;
-    // const chartInstance2 = this.chart2.instance;
-    // const chartInstance3 = this.chart3.instance;
-    // const chartInstance4 = this.chart4.instance;
-    // const chartInstance5 = this.chart5.instance;
-    // const chartInstance6 = this.chart6.instance;
+    const chartInstance1 = this.chart1.instance;
+    const chartInstance2 = this.chart2.instance;
+    const chartInstance3 = this.chart3.instance;
+    const chartInstance4 = this.chart4.instance;
+    const chartInstance5 = this.chart5.instance;
+    const chartInstance6 = this.chart6.instance;
 
-    const chartTest = this.chartTest.instance;
-    exportWidgets([[chartTest]], {
+    exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
       fileName: 'KPI´s',
       format: 'PDF',
     });
 
-    // exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
+    // const chartTest = this.chartTest.instance;
+    // exportWidgets([[chartTest]], {
     //   fileName: 'KPI´s',
     //   format: 'PDF',
     // });
+
+    
   }
 
    //==================Formato a la data de la grafica==================================
