@@ -39,6 +39,7 @@
         "@types/jasmine": "~3.8.0",
         "@types/node": "^12.11.1",
         "@types/pdfmake": "^0.1.20",
+        "canvg": "^4.0.1",
         "devextreme-cli": "latest",
         "devextreme-themebuilder": "^21.1.5",
         "jasmine-core": "~3.8.0",

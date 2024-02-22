@@ -147,7 +147,7 @@ export class disponiblidadComponent implements OnInit {
         this.resumen = response.data.resumen;
         this.resumenRemolques = response.data.resumenRemolques;
         this.resumenDolly = response.data.resumenDollys;
-        console.log(response.data)
+        // console.log(this.resumen)
         this.tractos = response.data.tractos;
         this.operadores = response.data.operadores;
         this.remolque = response.data.remolques;

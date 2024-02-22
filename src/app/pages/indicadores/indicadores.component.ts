@@ -107,6 +107,9 @@ import {
    import { Chart } from '../../shared/models/indicadores/chart.model';
    import { exportWidgets } from 'devextreme/viz/export';
 
+   import { exportFromMarkup } from 'devextreme/viz/export';
+   import canvg from 'canvg';
+
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
 };
@@ -284,6 +287,8 @@ export class IndicadoresComponent implements OnInit {
   @ViewChild("chart5", { static: false }) chart5: DxChartComponent;
   @ViewChild("chart6", { static: false }) chart6: DxChartComponent;
 
+  @ViewChild("chart6", { static: false }) chartTest: DxChartComponent;
+
 
   ingresos: ScoreCard[] = [];
   ingresos24: ScoreCard[] = [];
@@ -375,7 +380,7 @@ export class IndicadoresComponent implements OnInit {
 
   customTArrayL = new CustomTArrayL;
 
-
+  oilProductionData = [];
 
   constructor(
     private indicadorService: IndicadoresService
@@ -6787,17 +6792,23 @@ onCellPreparedIO2024(e){
 
   /*================================EXPORTAR TODOS LOS KAPIS==========================*/
   export() {
-    const chartInstance1 = this.chart1.instance;
-    const chartInstance2 = this.chart2.instance;
-    const chartInstance3 = this.chart3.instance;
-    const chartInstance4 = this.chart4.instance;
-    const chartInstance5 = this.chart5.instance;
-    const chartInstance6 = this.chart6.instance;
+    // const chartInstance1 = this.chart1.instance;
+    // const chartInstance2 = this.chart2.instance;
+    // const chartInstance3 = this.chart3.instance;
+    // const chartInstance4 = this.chart4.instance;
+    // const chartInstance5 = this.chart5.instance;
+    // const chartInstance6 = this.chart6.instance;
 
-    exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
+    const chartTest = this.chartTest.instance;
+    exportWidgets([[chartTest]], {
       fileName: 'KPI´s',
       format: 'PDF',
     });
+
+    // exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
+    //   fileName: 'KPI´s',
+    //   format: 'PDF',
+    // });
   }
 
    //==================Formato a la data de la grafica==================================
