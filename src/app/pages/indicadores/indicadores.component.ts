@@ -606,27 +606,8 @@ export class IndicadoresComponent implements OnInit {
         myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
         myKMSO[i].kmsDiferencia = myFormat.join("");
+
       }
-
-
-      // let originalText =document.getElementById("kmsDiferencia1");
-
-//       const el = document.querySelector('#mytext');
-// keywords.map(kw => el.innerText = el.innerText.replace(new RegExp(kw, 'g'), '<span style="color: oragne">' + kw + '</span>'))
-// el.innerHTML = el.innerText
-
-      // for(let i =0; i<myKMSO.length; i++){
-      //   if (myKMSO[i].kmsDiferencia.toString().startsWith('-')) {
-      //    // originalText.innerHTML=originalText.innerHTML.replace(myKMSO[i].kmsDiferencia,"<span style='color:orange;'>"+ myKMSO[i].kmsDiferencia +"</span>");
-      //     //originalText = originalText.replace(new RegExp(myKMSO[i].kmsDiferencia, "g"), `<div class="orange">${myKMSO[i].kmsDiferencia}</div>`)
-      //   }
-
-      //   if (myKMSO[i].udsDiferencia.toString().startsWith('-')) {
-      //     this.negativoUdsOperacion = true;
-      //   }
-      // }
-
-     
 /*==========================MILLONES KMS RECORRIDOS UDN==================================================*/
       var myKMSRUDN = data.data.varKmsXUDN
 
@@ -664,7 +645,6 @@ export class IndicadoresComponent implements OnInit {
         var discountFormat = formatter.format(myKMSTOP[i].kmsDiferencia);
         
         myKMSTOP[i].kmsDiferencia = discountFormat;
-        console.log(myKMSTOP[i].kmsDiferencia) 
       }
 
 /*===========================*% KMS CARGADOS UDN========================================================*/
@@ -684,7 +664,7 @@ export class IndicadoresComponent implements OnInit {
         var discountFormat2 = formatter2.format(myKMSCUDN[i].kmsDiferencia);
         
         myKMSCUDN[i].kmsDiferencia = discountFormat2;
-        console.log(myKMSCUDN[i].kmsDiferencia) 
+ 
       }
 
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
@@ -694,10 +674,14 @@ export class IndicadoresComponent implements OnInit {
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
       this.porXFlotaOperacionDescription = result;
+
+      var myFATO = result;
 /*===========================% FLOTA ACTIVA UDN=========================================================*/
       this.porXFlotaUdn = data.data.porXFlotaUDN;
       this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
       this.porXFlotaUdnDescription = data.data.varPorXFlotaUDN;
+
+      var myFAUDN = data.data.varPorXFlotaUDN;
     })
   }
 
@@ -6835,10 +6819,6 @@ onCellPreparedIO2024(e){
     e.cellElement.style.background = "#DCDCDC";
   }
 }
-
-
-
-
 
 // ======================================KMS MENSUALEs==============================
   onRowPreparedKMS(e){
