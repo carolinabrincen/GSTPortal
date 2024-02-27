@@ -104,11 +104,12 @@ import {
     TotalOperacionKVC
    } from '../../shared/models/indicadores/totalIngresosViajes.model';
    import { KMSMensuales } from '../../shared/models/indicadores/kmsMensuales.model'
-   import { Chart } from '../../shared/models/indicadores/chart.model';
+   import { Chart, ChartDescription } from '../../shared/models/indicadores/chart.model';
    import { exportWidgets } from 'devextreme/viz/export';
 
    import { exportFromMarkup } from 'devextreme/viz/export';
    import canvg from 'canvg';
+  //  import { Canvg } from 'canvg';
 
 const getOrderDay = function (rowData: any): number {
   return (new Date(rowData.OrderDate)).getDay();
@@ -287,7 +288,8 @@ export class IndicadoresComponent implements OnInit {
   @ViewChild("chart5", { static: false }) chart5: DxChartComponent;
   @ViewChild("chart6", { static: false }) chart6: DxChartComponent;
 
-  @ViewChild("chart6", { static: false }) chartTest: DxChartComponent;
+  @ViewChild("chart1Test", { static: false }) chart1Test: DxChartComponent;
+  @ViewChild("canvas", { static: false }) canvas;
 
 
   ingresos: ScoreCard[] = [];
@@ -314,12 +316,20 @@ export class IndicadoresComponent implements OnInit {
   chartData: any[] = [];
 
   kmsXOperacion: Chart[] = [];
+  kmsXOperacionDescription: ChartDescription[] = [];
   kmsXUdn: Chart[] = [];
+  KmsXUdnDescription: ChartDescription[] = [];
+  kmsXUdnTotal: ChartDescription[] = [];
   porXCargadosUdn: Chart[] = [];
+  porXCargadosUdnDescription: ChartDescription[] = [];
   porXFlotaOperacion: Chart[] = [];
+  porXFlotaOperacionDescription: ChartDescription[] = [];
   porXFlotaUdn: Chart[] = [];
+  porXFlotaUdnDescription: ChartDescription[] = [];
   porXOperacion: Chart[] = [];
+  porXOperacionDescription: ChartDescription[] = [];
 
+  periodoVariacion: string = "";
 
   paginacion: number = 0;
   paginacionKV: number = 0;
@@ -572,27 +582,135 @@ export class IndicadoresComponent implements OnInit {
     return request;
   }
 
+  
+  negativoKmsOperacion = false;
+  negativoUdsOperacion = false;
   getIndicadoresChart(){
     this.indicadorService.getIndicadoresChart().subscribe(data => {
+    
+      this.periodoVariacion = data.data.periodoVariacion;
+      console.log(data.data)
+/*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
+      var myKMSO = data.data.varKmsXOperacion;
+
       this.kmsXOperacion = data.data.kmsXOperacion;
-      this.kmsXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.kmsXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
+      
+      const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
+      this.kmsXOperacionDescription = dataKMSO;
+
+      for(let i =0; i<myKMSO.length; i++){
+        var myvalue = Math.trunc(myKMSO[i].kmsDiferencia);
+
+        var myFormat = myvalue.toString().split(".");
+        myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        
+        myKMSO[i].kmsDiferencia = myFormat.join("");
+      }
+
+
+      // let originalText =document.getElementById("kmsDiferencia1");
+
+//       const el = document.querySelector('#mytext');
+// keywords.map(kw => el.innerText = el.innerText.replace(new RegExp(kw, 'g'), '<span style="color: oragne">' + kw + '</span>'))
+// el.innerHTML = el.innerText
+
+      // for(let i =0; i<myKMSO.length; i++){
+      //   if (myKMSO[i].kmsDiferencia.toString().startsWith('-')) {
+      //    // originalText.innerHTML=originalText.innerHTML.replace(myKMSO[i].kmsDiferencia,"<span style='color:orange;'>"+ myKMSO[i].kmsDiferencia +"</span>");
+      //     //originalText = originalText.replace(new RegExp(myKMSO[i].kmsDiferencia, "g"), `<div class="orange">${myKMSO[i].kmsDiferencia}</div>`)
+      //   }
+
+      //   if (myKMSO[i].udsDiferencia.toString().startsWith('-')) {
+      //     this.negativoUdsOperacion = true;
+      //   }
+      // }
+
+     
+/*==========================MILLONES KMS RECORRIDOS UDN==================================================*/
+      var myKMSRUDN = data.data.varKmsXUDN
 
       this.kmsXUdn = data.data.kmsXUDN;
       this.kmsXUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.KmsXUdnDescription = data.data.varKmsXUDN
+      var myTotal = []
+      myTotal.push(data.data.varKmsXOperacion[0])
+      this.kmsXUdnTotal = myTotal;
 
-      this.porXCargadosUdn = data.data.porXCargadosUDN;
-      this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      for(let i =0; i<myKMSRUDN.length; i++){
+        var myvalue = Math.trunc(myKMSRUDN[i].kmsDiferencia);
 
-      this.porXFlotaOperacion = data.data.porXFlotaOperacion;
-      this.porXFlotaOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-
-      this.porXFlotaUdn = data.data.porXFlotaUDN;
-      this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+        var myFormat = myvalue.toString().split(".");
+        myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        
+        myKMSRUDN[i].kmsDiferencia = myFormat.join("");
+      }
+/*===========================% KMS POR TIPO OPERACIÓN===================================================*/
+      var myKMSTOP = data.data.varPorXOperacion;
 
       this.porXOperacion = data.data.porXOperacion;
       this.porXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXOperacionDescription = data.data.varPorXOperacion;
 
+      for(let i =0; i<myKMSTOP.length; i++){
+
+        var option = {
+          style: 'percent',
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        };
+        
+        var formatter = new Intl.NumberFormat("en-US", option);
+        var discountFormat = formatter.format(myKMSTOP[i].kmsDiferencia);
+        
+        myKMSTOP[i].kmsDiferencia = discountFormat;
+        console.log(myKMSTOP[i].kmsDiferencia) 
+      }
+
+/*===========================*% KMS CARGADOS UDN========================================================*/
+      var myKMSCUDN = data.data.varPorXCargadosUDN;
+      this.porXCargadosUdn = data.data.porXCargadosUDN;
+      this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXCargadosUdnDescription = data.data.varPorXCargadosUDN;
+
+      for(let i =0; i<myKMSCUDN.length; i++){
+        var option = {
+          style: 'percent',
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        };
+        
+        var formatter2 = new Intl.NumberFormat("en-US", option);
+        var discountFormat2 = formatter2.format(myKMSCUDN[i].kmsDiferencia);
+        
+        myKMSCUDN[i].kmsDiferencia = discountFormat2;
+        console.log(myKMSCUDN[i].kmsDiferencia) 
+      }
+
+/*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
+      this.porXFlotaOperacion = data.data.porXFlotaOperacion;
+      this.porXFlotaOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+
+
+      const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
+      this.porXFlotaOperacionDescription = result;
+/*===========================% FLOTA ACTIVA UDN=========================================================*/
+      this.porXFlotaUdn = data.data.porXFlotaUDN;
+      this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXFlotaUdnDescription = data.data.varPorXFlotaUDN;
     })
+  }
+
+  toPercenage(num) {
+    return `${Math.round(num * 100)}%`;
+  }
+
+  percentageFormatter(num) {
+    return new Intl.NumberFormat('default', {
+      style: 'percent',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(num);
   }
   
   seleccionarTipoOpe(e: any) {}
@@ -6810,7 +6928,32 @@ onCellPreparedIO2024(e){
     //   format: 'PDF',
     // });
 
+    // exportFromMarkup(this.prepareMarkup(), {
+    //   width: 2000,
+    //   height: 420,
+    //   margin: 0,
+    //   format: 'pdf',
+    //   svgToCanvas(svg, canvas) {
+    //     return new Promise((resolve) => {
+    //       canvg(canvas, new XMLSerializer().serializeToString(svg), {
+    //         ignoreDimensions: true,
+    //         ignoreClear: true,
+    //         renderCallback: resolve,
+    //       });
+    //     });
+    //   },
+    // });
+
     
+  }
+
+  prepareMarkup() {
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="820px" height="420px">${
+      document.getElementById('custom_markup_container').innerHTML
+    }<g transform="translate(305,12)">${
+      this.chart1.instance.svg()
+    }</g>`
+            + '</svg>';
   }
 
    //==================Formato a la data de la grafica==================================
