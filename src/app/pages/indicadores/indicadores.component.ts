@@ -598,6 +598,7 @@ export class IndicadoresComponent implements OnInit {
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
       this.kmsXOperacionDescription = dataKMSO;
+      this.kmsXOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSO.length; i++){
         var myvalue = Math.trunc(myKMSO[i].kmsDiferencia);
@@ -614,6 +615,8 @@ export class IndicadoresComponent implements OnInit {
       this.kmsXUdn = data.data.kmsXUDN;
       this.kmsXUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
       this.KmsXUdnDescription = data.data.varKmsXUDN
+      this.KmsXUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+
       var myTotal = []
       myTotal.push(data.data.varKmsXOperacion[0])
       this.kmsXUdnTotal = myTotal;
@@ -632,6 +635,7 @@ export class IndicadoresComponent implements OnInit {
       this.porXOperacion = data.data.porXOperacion;
       this.porXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
       this.porXOperacionDescription = data.data.varPorXOperacion;
+      this.porXOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSTOP.length; i++){
 
@@ -652,6 +656,7 @@ export class IndicadoresComponent implements OnInit {
       this.porXCargadosUdn = data.data.porXCargadosUDN;
       this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
       this.porXCargadosUdnDescription = data.data.varPorXCargadosUDN;
+      this.porXCargadosUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSCUDN.length; i++){
         var option = {
@@ -664,6 +669,9 @@ export class IndicadoresComponent implements OnInit {
         var discountFormat2 = formatter2.format(myKMSCUDN[i].kmsDiferencia);
         
         myKMSCUDN[i].kmsDiferencia = discountFormat2;
+
+        var textMayus = myKMSCUDN[i].clasificacion.toUpperCase();
+        myKMSCUDN[i].clasificacion = textMayus;
  
       }
 
@@ -674,12 +682,14 @@ export class IndicadoresComponent implements OnInit {
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
       this.porXFlotaOperacionDescription = result;
+      this.porXFlotaOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myFATO = result;
 /*===========================% FLOTA ACTIVA UDN=========================================================*/
       this.porXFlotaUdn = data.data.porXFlotaUDN;
       this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
       this.porXFlotaUdnDescription = data.data.varPorXFlotaUDN;
+      this.porXFlotaUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myFAUDN = data.data.varPorXFlotaUDN;
     })
