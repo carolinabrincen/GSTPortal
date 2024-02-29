@@ -288,6 +288,13 @@ export class IndicadoresComponent implements OnInit {
   @ViewChild("chart5", { static: false }) chart5: DxChartComponent;
   @ViewChild("chart6", { static: false }) chart6: DxChartComponent;
 
+  @ViewChild("chart1", { static: false }) chart124: DxChartComponent;
+  @ViewChild("chart2", { static: false }) chart224: DxChartComponent;
+  @ViewChild("chart3", { static: false }) chart324: DxChartComponent;
+  @ViewChild("chart4", { static: false }) chart424: DxChartComponent;
+  @ViewChild("chart5", { static: false }) chart524: DxChartComponent;
+  @ViewChild("chart6", { static: false }) chart624: DxChartComponent;
+
   @ViewChild("chart1Test", { static: false }) chart1Test: DxChartComponent;
   @ViewChild("canvas", { static: false }) canvas;
 
@@ -316,18 +323,25 @@ export class IndicadoresComponent implements OnInit {
   chartData: any[] = [];
 
   kmsXOperacion: Chart[] = [];
-  kmsXOperacionDescription: ChartDescription[] = [];
   kmsXUdn: Chart[] = [];
-  KmsXUdnDescription: ChartDescription[] = [];
-  kmsXUdnTotal: ChartDescription[] = [];
   porXCargadosUdn: Chart[] = [];
-  porXCargadosUdnDescription: ChartDescription[] = [];
   porXFlotaOperacion: Chart[] = [];
-  porXFlotaOperacionDescription: ChartDescription[] = [];
   porXFlotaUdn: Chart[] = [];
-  porXFlotaUdnDescription: ChartDescription[] = [];
   porXOperacion: Chart[] = [];
-  porXOperacionDescription: ChartDescription[] = [];
+
+  kmsXOperacion24: Chart[] = [];
+  kmsXOperacionDescription24: ChartDescription[] = [];
+  kmsXUdn24: Chart[] = [];
+  KmsXUdnDescription24: ChartDescription[] = [];
+  kmsXUdnTotal24: ChartDescription[] = [];
+  porXCargadosUdn24: Chart[] = [];
+  porXCargadosUdnDescription24: ChartDescription[] = [];
+  porXFlotaOperacion24: Chart[] = [];
+  porXFlotaOperacionDescription24: ChartDescription[] = [];
+  porXFlotaUdn24: Chart[] = [];
+  porXFlotaUdnDescription24: ChartDescription[] = [];
+  porXOperacion24: Chart[] = [];
+  porXOperacionDescription24: ChartDescription[] = [];
 
   periodoVariacion: string = "";
 
@@ -363,6 +377,7 @@ export class IndicadoresComponent implements OnInit {
     { id: 12, periodo: 202312 },
     { id: 13, periodo: 202401 },
     { id: 14, periodo: 202402 },
+    { id: 15, periodo: 202403 },
   ];
 
   selectedPeriodo: number = 0;
@@ -417,6 +432,7 @@ export class IndicadoresComponent implements OnInit {
     this.getScoreCard();
     this.getScoreCard2024();
     this.getIndicadoresChart();
+    this.getIndicadoresChart24();
   }
 
   ngAfterViewInit(): void {}
@@ -582,23 +598,46 @@ export class IndicadoresComponent implements OnInit {
     return request;
   }
 
-  
-  negativoKmsOperacion = false;
-  negativoUdsOperacion = false;
   getIndicadoresChart(){
     this.indicadorService.getIndicadoresChart().subscribe(data => {
     
       this.periodoVariacion = data.data.periodoVariacion;
       console.log(data.data)
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
-      var myKMSO = data.data.varKmsXOperacion;
-
       this.kmsXOperacion = data.data.kmsXOperacion;
       this.kmsXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
+/*==========================MILLONES KMS RECORRIDOS UDN==================================================*/
+      this.kmsXUdn = data.data.kmsXUDN;
+      this.kmsXUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+/*===========================% KMS POR TIPO OPERACIÓN===================================================*/
+      this.porXOperacion = data.data.porXOperacion;
+      this.porXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+/*===========================*% KMS CARGADOS UDN========================================================*/
+      this.porXCargadosUdn = data.data.porXCargadosUDN;
+      this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+/*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
+      this.porXFlotaOperacion = data.data.porXFlotaOperacion;
+      this.porXFlotaOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+/*===========================% FLOTA ACTIVA UDN=========================================================*/
+      this.porXFlotaUdn = data.data.porXFlotaUDN;
+      this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+    })
+  }
+
+  getIndicadoresChart24(){
+    this.indicadorService.getIndicadoresChart24().subscribe(data => {
+    
+      this.periodoVariacion = data.data.periodoVariacion;
+      console.log(data.data)
+/*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
+      var myKMSO = data.data.varKmsXOperacion;
+
+      this.kmsXOperacion24 = data.data.kmsXOperacion;
+      this.kmsXOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
-      this.kmsXOperacionDescription = dataKMSO;
-      this.kmsXOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.kmsXOperacionDescription24 = dataKMSO;
+      this.kmsXOperacionDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSO.length; i++){
         var myvalue = Math.trunc(myKMSO[i].kmsDiferencia);
@@ -612,14 +651,14 @@ export class IndicadoresComponent implements OnInit {
 /*==========================MILLONES KMS RECORRIDOS UDN==================================================*/
       var myKMSRUDN = data.data.varKmsXUDN
 
-      this.kmsXUdn = data.data.kmsXUDN;
-      this.kmsXUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      this.KmsXUdnDescription = data.data.varKmsXUDN
-      this.KmsXUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.kmsXUdn24 = data.data.kmsXUDN;
+      this.kmsXUdn24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.KmsXUdnDescription24 = data.data.varKmsXUDN
+      this.KmsXUdnDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myTotal = []
       myTotal.push(data.data.varKmsXOperacion[0])
-      this.kmsXUdnTotal = myTotal;
+      this.kmsXUdnTotal24 = myTotal;
 
       for(let i =0; i<myKMSRUDN.length; i++){
         var myvalue = Math.trunc(myKMSRUDN[i].kmsDiferencia);
@@ -632,10 +671,10 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% KMS POR TIPO OPERACIÓN===================================================*/
       var myKMSTOP = data.data.varPorXOperacion;
 
-      this.porXOperacion = data.data.porXOperacion;
-      this.porXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      this.porXOperacionDescription = data.data.varPorXOperacion;
-      this.porXOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.porXOperacion24 = data.data.porXOperacion;
+      this.porXOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXOperacionDescription24 = data.data.varPorXOperacion;
+      this.porXOperacionDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSTOP.length; i++){
 
@@ -653,10 +692,10 @@ export class IndicadoresComponent implements OnInit {
 
 /*===========================*% KMS CARGADOS UDN========================================================*/
       var myKMSCUDN = data.data.varPorXCargadosUDN;
-      this.porXCargadosUdn = data.data.porXCargadosUDN;
-      this.porXCargadosUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      this.porXCargadosUdnDescription = data.data.varPorXCargadosUDN;
-      this.porXCargadosUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.porXCargadosUdn24 = data.data.porXCargadosUDN;
+      this.porXCargadosUdn24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXCargadosUdnDescription24 = data.data.varPorXCargadosUDN;
+      this.porXCargadosUdnDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSCUDN.length; i++){
         var option = {
@@ -676,20 +715,20 @@ export class IndicadoresComponent implements OnInit {
       }
 
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
-      this.porXFlotaOperacion = data.data.porXFlotaOperacion;
-      this.porXFlotaOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXFlotaOperacion24 = data.data.porXFlotaOperacion;
+      this.porXFlotaOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
-      this.porXFlotaOperacionDescription = result;
-      this.porXFlotaOperacionDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.porXFlotaOperacionDescription24 = result;
+      this.porXFlotaOperacionDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myFATO = result;
 /*===========================% FLOTA ACTIVA UDN=========================================================*/
-      this.porXFlotaUdn = data.data.porXFlotaUDN;
-      this.porXFlotaUdn.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      this.porXFlotaUdnDescription = data.data.varPorXFlotaUDN;
-      this.porXFlotaUdnDescription.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
+      this.porXFlotaUdn24 = data.data.porXFlotaUDN;
+      this.porXFlotaUdn24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      this.porXFlotaUdnDescription24 = data.data.varPorXFlotaUDN;
+      this.porXFlotaUdnDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myFAUDN = data.data.varPorXFlotaUDN;
     })
@@ -6908,6 +6947,44 @@ onCellPreparedIO2024(e){
     const chartInstance6 = this.chart6.instance;
 
     exportWidgets([[chartInstance1], [chartInstance2], [chartInstance3], [chartInstance4], [chartInstance5], [chartInstance6]], {
+      fileName: 'KPI´s',
+      format: 'PDF',
+    });
+
+    // const chartTest = this.chartTest.instance;
+    // exportWidgets([[chartTest]], {
+    //   fileName: 'KPI´s',
+    //   format: 'PDF',
+    // });
+
+    // exportFromMarkup(this.prepareMarkup(), {
+    //   width: 2000,
+    //   height: 420,
+    //   margin: 0,
+    //   format: 'pdf',
+    //   svgToCanvas(svg, canvas) {
+    //     return new Promise((resolve) => {
+    //       canvg(canvas, new XMLSerializer().serializeToString(svg), {
+    //         ignoreDimensions: true,
+    //         ignoreClear: true,
+    //         renderCallback: resolve,
+    //       });
+    //     });
+    //   },
+    // });
+
+    
+  }
+
+  export24() {
+    const chartInstance124 = this.chart124.instance;
+    const chartInstance224 = this.chart224.instance;
+    const chartInstance324 = this.chart324.instance;
+    const chartInstance424 = this.chart424.instance;
+    const chartInstance524 = this.chart524.instance;
+    const chartInstance624 = this.chart624.instance;
+
+    exportWidgets([[chartInstance124], [chartInstance224], [chartInstance324], [chartInstance424], [chartInstance524], [chartInstance624]], {
       fileName: 'KPI´s',
       format: 'PDF',
     });

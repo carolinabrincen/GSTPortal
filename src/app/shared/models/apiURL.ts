@@ -16,6 +16,7 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_diciembre = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202312/12',
     GET_INGRESOS_ANUALES_DETALLADO_enero2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202401/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202402/02',
+    GET_INGRESOS_ANUALES_DETALLADO_marzo2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202403/03',
     
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
@@ -91,4 +92,5 @@ export enum API_URLS{
     GET_PERIODO_ACTUAL = 'api/CarteraClientes/Periodo',
     GET_CARTERA_CLIENTES = 'api/CarteraClientes/Clientes',
     GET_INDICADORES_CHART = 'api/Kilometros/Indicadores',
+    GET_INDICADORES_CHART24 = 'api/Kilometros/Indicadores2024',
 }

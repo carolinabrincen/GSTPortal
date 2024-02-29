@@ -43,6 +43,10 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART), this.httpOptions);
   }
 
+  getIndicadoresChart24(){
+    return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART24), this.httpOptions);
+  }
+
   
 
 }

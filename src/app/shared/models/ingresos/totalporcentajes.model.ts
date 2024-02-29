@@ -95,12 +95,4 @@ export class TotalPorcentajes {
     aniATotalDC: number = 0;
     presTotalDC: number = 0;
     ProyTotalDC: number = 0;
-//=====================2024========================
-    total24E: number = 0;
-    anioAnt24E: number = 0;
-    presupuesto24E: number = 0;
-    proyeccion24E: number = 0;
-    aniATotal24E: number = 0;
-    presTotal24E: number = 0;
-    ProyTotal24E: number = 0;
 }

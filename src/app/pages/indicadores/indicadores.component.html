@@ -1080,212 +1080,315 @@
         </dxi-item>
 
         <dxi-item title="KPI´s">
-            <br><br>
-            <div class="controls-pane" style="text-align: right;">
-                <dx-button icon="export" text="Exportar Todo" type="default" [width]="175" (onClick)="export()"></dx-button>
-              </div>
-            <br>
-           
-            <dx-box direction="col" width="100%" [height]="400" id="custom_markup_container">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart1 [dataSource]="kmsXOperacion" palette="pastel" [rotated]="false" [barGroupWidth]="120">
-                            <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
-                                <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                 backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of kmsXUdnTotal">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <!-- [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}" -->
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li *ngFor="let value of kmsXOperacionDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                                <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
-                </dxi-item>
-            </dx-box>
-            <br><br>
 
-            <dx-box direction="col" width="100%" [height]="400">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart2 [dataSource]="kmsXUdn" palette="pastel" [rotated]="false" [barGroupWidth]="100">
-                            <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barPadding]="0.01">
-                                <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                 backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="MILLONES KMS RECORRIDOS UDN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="MILLONES KMS RECORRIDOS UDN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of kmsXUdnTotal">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li *ngFor="let value of KmsXUdnDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                                <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
+            <dx-tab-panel>
+                <dxi-item title="2024">
+                    <br><br>
+                    <div class="controls-pane" style="text-align: right;">
+                        <dx-button icon="export" text="Exportar Todo" type="default" [width]="175" (onClick)="export24()"></dx-button>
+                      </div>
+                    <br>
+                   
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart124 [dataSource]="kmsXOperacion24" palette="pastel" [rotated]="false" [barGroupWidth]="120">
+                                    <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                                        <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+                                         backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of kmsXUdnTotal24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <!-- [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}" -->
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li *ngFor="let value of kmsXOperacionDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
+        
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart224 [dataSource]="kmsXUdn24" palette="pastel" [rotated]="false" [barGroupWidth]="100">
+                                    <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barPadding]="0.01">
+                                        <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+                                         backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="MILLONES KMS RECORRIDOS UDN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="MILLONES KMS RECORRIDOS UDN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of kmsXUdnTotal24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li *ngFor="let value of KmsXUdnDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
+        
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart324 [dataSource]="porXOperacion24" palette="pastel" [rotated]="false" >
+                                    <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                                        <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                                         [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="% KMS POR TIPO OPERACIÓN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="% KMS POR TIPO OPERACIÓN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of porXOperacionDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+"% "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
+        
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart424 [dataSource]="porXCargadosUdn24" palette="pastel" [rotated]="false" >
+                                    <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                                        <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                                         [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="% KMS CARGADOS UDN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="% KMS CARGADOS UDN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of porXCargadosUdnDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+"% "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
+        
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart524 [dataSource]="porXFlotaOperacion24" palette="pastel" [rotated]="false">
+                                    <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                                        <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                                         [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of porXFlotaOperacionDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
+        
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-chart #chart624 [dataSource]="porXFlotaUdn24" palette="pastel" [rotated]="false">
+                                    <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                                        <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                                         [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                            <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                        </dxo-label>
+                                    </dxo-common-series-settings>
+                                    <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                                    <dxo-title text="% FLOTA ACTIVA UDN"></dxo-title>
+                                    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                                    <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA UDN"></dxo-export>
+                                </dx-chart>
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="1">
+                                <ul>
+                                    <li *ngFor="let value of porXFlotaUdnDescription24">
+                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
+                                    </li>
+                                </ul>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
+                    <br><br>
                 </dxi-item>
-            </dx-box>
-            <br><br>
 
-            <dx-box direction="col" width="100%" [height]="400">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart3 [dataSource]="porXOperacion" palette="pastel" [rotated]="false" >
-                            <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
-                                <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
-                                 [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="% KMS POR TIPO OPERACIÓN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="% KMS POR TIPO OPERACIÓN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of porXOperacionDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+"% "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
+                <dxi-item title="2023">
+                    <br><br>
+                    <div class="controls-pane" style="text-align: right;">
+                        <dx-button icon="export" text="Exportar Todo" type="default" [width]="175" (onClick)="export()"></dx-button>
+                      </div>
+                    <br>
+                   
+                    <dx-chart #chart1 [dataSource]="kmsXOperacion" palette="pastel" [rotated]="false" [barGroupWidth]="120">
+                        <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                            <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+                             backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
+        
+                    <dx-chart #chart2 [dataSource]="kmsXUdn" palette="pastel" [rotated]="false" [barGroupWidth]="100">
+                        <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barPadding]="0.01">
+                            <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+                             backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="MILLONES KMS RECORRIDOS UDN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="MILLONES KMS RECORRIDOS UDN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
+        
+                    <dx-chart #chart3 [dataSource]="porXOperacion" palette="pastel" [rotated]="false" >
+                        <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                            <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                             [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="% KMS POR TIPO OPERACIÓN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="% KMS POR TIPO OPERACIÓN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
+        
+                    <dx-chart #chart4 [dataSource]="porXCargadosUdn" palette="pastel" [rotated]="false" >
+                        <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                            <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                             [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="% KMS CARGADOS UDN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="% KMS CARGADOS UDN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
+        
+                    <dx-chart #chart5 [dataSource]="porXFlotaOperacion" palette="pastel" [rotated]="false">
+                        <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                            <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                             [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
+        
+                    <dx-chart #chart6 [dataSource]="porXFlotaUdn" palette="pastel" [rotated]="false">
+                        <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
+                        <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
+                            <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
+                             [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
+                                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                        <dxo-title text="% FLOTA ACTIVA UDN"></dxo-title>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                        <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA UDN"></dxo-export>
+                    </dx-chart>
+                    <br><br>
                 </dxi-item>
-            </dx-box>
-            <br><br>
-
-            <dx-box direction="col" width="100%" [height]="400">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart4 [dataSource]="porXCargadosUdn" palette="pastel" [rotated]="false" >
-                            <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
-                                <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
-                                 [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="% KMS CARGADOS UDN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="% KMS CARGADOS UDN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of porXCargadosUdnDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+"% "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
-                </dxi-item>
-            </dx-box>
-            <br><br>
-
-            <dx-box direction="col" width="100%" [height]="400">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart5 [dataSource]="porXFlotaOperacion" palette="pastel" [rotated]="false">
-                            <dxi-value-axis [maxValueMargin]=".44"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
-                                <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
-                                 [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA TIPO OPERACIÓN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of porXFlotaOperacionDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
-                </dxi-item>
-            </dx-box>
-            <br><br>
-
-            <dx-box direction="col" width="100%" [height]="400">
-                <dxi-item [ratio]="3" [baseSize]="0">
-                  <dx-box direction="row" width="100%" [height]="125">
-                    <dxi-item class="rect demo-dark" [ratio]="4">
-                        <dx-chart #chart6 [dataSource]="porXFlotaUdn" palette="pastel" [rotated]="false">
-                            <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
-                            <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
-                                <dxo-label [visible]="true" position="outside" [customizeText]="formatSliderTooltip"
-                                 [rotationAngle]="-90" backgroundColor="transparent" [verticalOffset]="15">
-                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
-                                </dxo-label>
-                            </dxo-common-series-settings>
-                            <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
-                            <dxo-title text="% FLOTA ACTIVA UDN"></dxo-title>
-                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
-                            <dxo-export [enabled]="true" fileName="% FLOTA ACTIVA UDN"></dxo-export>
-                        </dx-chart>
-                    </dxi-item>
-                    <dxi-item class="rect demo-dark" [ratio]="1">
-                        <ul>
-                            <li *ngFor="let value of porXFlotaUdnDescription">
-                                <strong>{{value.clasificacion}}</strong>                                
-                                <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
-                            </li>
-                        </ul>
-                    </dxi-item>
-                  </dx-box>
-                </dxi-item>
-            </dx-box>
-            <br><br>
+            </dx-tab-panel>
 
         </dxi-item>
     </dx-tab-panel>
