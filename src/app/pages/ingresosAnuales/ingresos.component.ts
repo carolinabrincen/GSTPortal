@@ -169,7 +169,7 @@ export class IngresosComponent implements OnInit {
       //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
       //                   orderIngreso[18],orderIngreso[17]);
         this.indicadores2024 = response.data;
-        console.log(this.indicadores2024)
+        //console.log(this.indicadores2024)
       });
   }
 
@@ -309,7 +309,7 @@ export class IngresosComponent implements OnInit {
   this.graficaModel2024 = [
     {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
     {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
-    {mes: "MARZO", total:0, presupuesto:0},
+    {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
     {mes: "ABRIL", total:0, presupuesto:0},
     {mes: "MAYO", total:0, presupuesto:0},
     {mes: "JUNIO", total:0, presupuesto:0},
@@ -736,7 +736,7 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presupuestoE = e.summaryCells[7][0]?.value;
         this.totalPor24.proyeccionE = e.summaryCells[9][0]?.value;
         //Febrero
-        console.log(e.summaryCells)
+        //console.log(e.summaryCells)
         this.totalPor24.totalFB = e.summaryCells[13][0].value;
         this.totalPor24.anioAntFB = e.summaryCells[14][0].value;
         this.totalPor24.presupuestoFB = e.summaryCells[16][0].value;
