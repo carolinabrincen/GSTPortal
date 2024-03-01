@@ -600,9 +600,6 @@ export class IndicadoresComponent implements OnInit {
 
   getIndicadoresChart(){
     this.indicadorService.getIndicadoresChart().subscribe(data => {
-    
-      this.periodoVariacion = data.data.periodoVariacion;
-      console.log(data.data)
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
       this.kmsXOperacion = data.data.kmsXOperacion;
       this.kmsXOperacion.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
