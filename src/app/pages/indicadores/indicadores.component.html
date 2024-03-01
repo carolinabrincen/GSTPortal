@@ -1132,9 +1132,9 @@
                         <dxi-item [ratio]="3" [baseSize]="0">
                           <dx-box direction="row" width="100%" [height]="125">
                             <dxi-item class="rect demo-dark" [ratio]="4">
-                                <dx-chart #chart224 [dataSource]="kmsXUdn24" palette="pastel" [rotated]="false" [barGroupWidth]="100">
+                                <dx-chart #chart224 [dataSource]="kmsXUdn24" palette="pastel" [rotated]="false" [barGroupWidth]="120">
                                     <dxi-value-axis [maxValueMargin]=".15"></dxi-value-axis>
-                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barPadding]="0.01">
+                                    <dxo-common-series-settings argumentField="tipoOperacion" type="bar" valueField="valor" [barWidth]="20">
                                         <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
                                          backgroundColor="transparent" [verticalOffset]="15">
                                             <dxo-font size="12" color="black" weight="bold"></dxo-font>
