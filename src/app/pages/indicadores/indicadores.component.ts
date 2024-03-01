@@ -3199,14 +3199,9 @@ onCellPreparedPM(e){
         row.values[8].value = totalOperacionKVC.orizaba;
         row.values[9].value = totalOperacionKVC.ramosArispe;
         row.values[10].value = totalOperacionKVC.total;
-  
-  
       }
-
     });
-
   }
-
 //==============================INGRESO VIAJES=================================
   onRowPreparedIV(e){
     if (e.rowType == 'group'){
@@ -3921,7 +3916,6 @@ onCellPreparedPM(e){
   });
 
   }
-
 //=============================OPERADORE UDN====================================
   onRowPreparedOUDN(e){
     
@@ -3945,8 +3939,6 @@ onCellPreparedPM(e){
       e.cellElement.style.background = "#DCDCDC";
     }
   }
-   
-
 //==============================INGRESOS 2024=========================================
 onRowPreparedI2024(event){
 
@@ -6868,7 +6860,6 @@ onCellPreparedIO2024(e){
     e.cellElement.style.background = "#DCDCDC";
   }
 }
-
 // ======================================KMS MENSUALEs==============================
   onRowPreparedKMS(e){
 
@@ -7034,14 +7025,11 @@ onCellPreparedIO2024(e){
       this.getScoreCard();
      };
 
-
   redondearD(value){
     const total = value.toFixed(2);
 
     return total;
   }
-
-
 }
 
 
