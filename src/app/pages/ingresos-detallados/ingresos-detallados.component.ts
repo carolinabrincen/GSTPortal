@@ -69,7 +69,8 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMNoviembre();
     this.getIDMDiciembre();
     this.getIDMDEnero2024();
-    this.getIDMDFebrero2024()
+    this.getIDMDFebrero2024();
+    this.getIDMDMarzo2024();
   }
 
   getIDMMarzo(){
@@ -324,7 +325,10 @@ onRowPreparedOct(e: any) {
     e.cells.forEach((c: any) => {
 
       if (c.value && c.value.toString().startsWith('-')) {
-        c.cellElement.style.color = "red";
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.color = "red";
+        }
+
       }
 
       if (c.cellElement) {
