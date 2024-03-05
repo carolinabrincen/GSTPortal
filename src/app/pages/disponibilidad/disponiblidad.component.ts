@@ -321,6 +321,18 @@ saveTipoOperacionOper(value){
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#f5f5f5";
           }
+
+          if (c.columnIndex == 24){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 25){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
         }
       });
     }
@@ -348,6 +360,65 @@ saveTipoOperacionOper(value){
         // e.cellElement.style.background = "#DCDCDC";
     }
   }
+
+  onRowPreparedResumenT(e: any) {
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if (c.columnIndex == 3){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 9){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 21){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 22){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+        }
+      });
+    }
+    if (e.rowType == 'totalFooter') {
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
+  }
+  
+  onCellPreparedResumenT(e: any) {
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        // e.cellElement.style.background = "#DCDCDC";
+    }
+  }
+
   onRowPreparedResumen(e: any) {
 
     if (e.rowType == 'totalFooter') {

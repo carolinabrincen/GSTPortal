@@ -99,7 +99,8 @@
                         <dxi-column dataField="bajaPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="total" caption="Total"></dxi-column>
-                    <dxi-column dataField="totalPor" caption="Total Por"></dxi-column>
+                    <dxi-column dataField="totalPor" caption="Total Por" format="percent"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -160,7 +161,7 @@
 
                 <h3>Tractos</h3>
                 <dx-data-grid #resmen id="gridContainer1" [dataSource]="resumenTractos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
+                (onRowPrepared)="onRowPreparedResumenT($event)" (onCellPrepared)="onCellPreparedResumenT($event)">
                 
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
@@ -194,7 +195,8 @@
                         <dxi-column dataField="corralonPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="total" caption="Total"></dxi-column>
-                    <dxi-column dataField="totalPor" caption="Total Por"></dxi-column>
+                    <dxi-column dataField="totalPor" caption="Total Por" format="percent"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="presupuesto" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
