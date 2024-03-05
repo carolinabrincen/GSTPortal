@@ -98,9 +98,8 @@
                         <dxi-column dataField="baja" caption="Baja"></dxi-column>
                         <dxi-column dataField="bajaPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
-                    <dxi-column dataField="total" caption="Total"></dxi-column>
-                    <dxi-column dataField="totalPor" caption="Total Por" format="percent"></dxi-column>
-                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" [fixed]="true" fixedPosition="right"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="15" [fixed]="true" fixedPosition="right"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -126,7 +125,6 @@
                         <dxi-group-item column="baja" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="totalPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
 
                         <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
@@ -151,7 +149,6 @@
                         <dxi-total-item column="baja" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                        <dxi-total-item column="totalPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                     </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -177,7 +174,7 @@
                         <dxi-column dataField="disponiblesPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="operadoresConUnidad" caption="Operadores con Unidad"></dxi-column>
                         <dxi-column dataField="operadoresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="variacion" caption="Variación"></dxi-column>
+                        <dxi-column dataField="variacion" caption="Var"></dxi-column>
                         <dxi-column dataField="variacionPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="No Disponibles">
@@ -189,14 +186,13 @@
                         <dxi-column dataField="siniestradoPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="robo" caption="Robo"></dxi-column>
                         <dxi-column dataField="roboPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="faltaDocumentos" caption="Fata Documentos"></dxi-column>
+                        <dxi-column dataField="faltaDocumentos" caption="Documentos"></dxi-column>
                         <dxi-column dataField="faltaDocPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="corralon" caption="Corralon"></dxi-column>
                         <dxi-column dataField="corralonPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
-                    <dxi-column dataField="total" caption="Total"></dxi-column>
-                    <dxi-column dataField="totalPor" caption="Total Por" format="percent"></dxi-column>
-                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" [fixed]="true" fixedPosition="right"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="15" [fixed]="true" fixedPosition="right"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="presupuesto" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -219,7 +215,6 @@
                         <dxi-group-item column="corralon" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="corralonPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
-                        <dxi-group-item column="totalPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
 
                         <dxi-total-item column="presupuesto" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -241,7 +236,6 @@
                         <dxi-total-item column="corralon" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="corralonPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                        <dxi-total-item column="totalPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                     </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
