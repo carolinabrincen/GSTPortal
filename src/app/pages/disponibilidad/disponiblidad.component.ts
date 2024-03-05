@@ -307,25 +307,25 @@ saveTipoOperacionOper(value){
           if (c.columnIndex == 2){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 10){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 12){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 24){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 25){
@@ -354,10 +354,40 @@ saveTipoOperacionOper(value){
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
+
     if (e.rowType == 'groupFooter'){
 
-        e.cellElement.style.fontSize = '15px';
-        // e.cellElement.style.background = "#DCDCDC";
+
+    if(e.columnIndex == 2){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 10){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 12){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 24){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 25){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
     }
   }
 
@@ -370,25 +400,25 @@ saveTipoOperacionOper(value){
           if (c.columnIndex == 3){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 9){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 21){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
           if (c.columnIndex == 22){
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
+            c.cellElement.style.background = "#cdcbcb";
           }
 
         }
@@ -414,8 +444,29 @@ saveTipoOperacionOper(value){
     }
     if (e.rowType == 'groupFooter'){
 
-        e.cellElement.style.fontSize = '15px';
-        // e.cellElement.style.background = "#DCDCDC";
+      if(e.columnIndex == 3){
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if(e.columnIndex == 9){
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if(e.columnIndex == 21){
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if(e.columnIndex == 22){
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
     }
   }
 
