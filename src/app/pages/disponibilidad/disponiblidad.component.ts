@@ -101,7 +101,8 @@ export class disponiblidadComponent implements OnInit {
     Fecha: ''
   }
 
-  resumen: any = []
+  resumenOperadores: any = []
+  resumenTractos: any = []
   resumenRemolques: any = []
   resumenDolly: any = []
   tractos: any = []
@@ -144,10 +145,11 @@ export class disponiblidadComponent implements OnInit {
     console.log(this.formFilter.Fecha)
    
       this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
-        this.resumen = response.data.resumen;
+        console.log(response.data)
+        this.resumenOperadores = response.data.resumenOperadores;
+        this.resumenTractos = response.data.resumen;
         this.resumenRemolques = response.data.resumenRemolques;
         this.resumenDolly = response.data.resumenDollys;
-        // console.log(this.resumen)
         this.tractos = response.data.tractos;
         this.operadores = response.data.operadores;
         this.remolque = response.data.remolques;
@@ -296,6 +298,56 @@ saveTipoOperacionOper(value){
     this.chart.instance.exportTo('Example', 'png');
   }
 
+  onRowPreparedResumenO(e: any) {
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if (c.columnIndex == 2){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 10){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+
+          if (c.columnIndex == 12){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#f5f5f5";
+          }
+        }
+      });
+    }
+    if (e.rowType == 'totalFooter') {
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
+  }
+  
+  onCellPreparedResumenO(e: any) {
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        // e.cellElement.style.background = "#DCDCDC";
+    }
+  }
   onRowPreparedResumen(e: any) {
 
     if (e.rowType == 'totalFooter') {
@@ -319,7 +371,7 @@ saveTipoOperacionOper(value){
     if (e.rowType == 'groupFooter'){
 
         e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
+        // e.cellElement.style.background = "#DCDCDC";
     }
   }
 
