@@ -95,6 +95,8 @@
                         <dxi-column dataField="descansosPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="incapacidad" caption="Incapacidad"></dxi-column>
                         <dxi-column dataField="incapacidadPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="ausentismo" caption="Ausentismo"></dxi-column>
+                        <dxi-column dataField="ausentismoPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="baja" caption="Baja"></dxi-column>
                         <dxi-column dataField="bajaPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
@@ -122,6 +124,8 @@
                         <dxi-group-item column="descansosPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="incapacidad" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="incapacidadPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="ausentismo" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="ausentismoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="baja" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -146,6 +150,8 @@
                         <dxi-total-item column="descansosPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="incapacidad" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="incapacidadPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item column="ausentismo" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="ausentismoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="baja" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
