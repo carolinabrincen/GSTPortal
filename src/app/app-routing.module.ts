@@ -12,7 +12,7 @@ import { DetailGridComponent } from './pages/profile/detail-grid/detail-grid.com
 import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule, DxCalendarModule,
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
-  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule} from 'devextreme-angular';
+  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule } from 'devextreme-angular';
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -38,6 +38,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { MarcroCicloCompaniasComponent } from './pages/macroCiclo/macroCiclo.component';
   import { disponiblidadComponent } from './pages/disponibilidad/disponiblidad.component';
   import { DisponibilidadOperadoresComponent } from './pages/disponilibilidadOperadores/disponibilidadOperadores.component'
+  import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component'
 
 const routes: Routes = [
   {
@@ -193,6 +194,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'multipartidas',
+    component: MultipartidasComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -230,7 +236,9 @@ const routes: Routes = [
     DxNumberBoxModule,
     DxAutocompleteModule,
     DxTreeListModule,
-    DxBoxModule
+    DxBoxModule,
+    DxTextBoxModule,
+    DxTextAreaModule,
   ],
   providers: [AuthGuardService],
   exports: [RouterModule],
@@ -262,7 +270,8 @@ const routes: Routes = [
     CarteraInterCompaniasComponent,
     MarcroCicloCompaniasComponent,
     disponiblidadComponent,
-    DisponibilidadOperadoresComponent
+    DisponibilidadOperadoresComponent,
+    MultipartidasComponent
   ]
 })
 export class AppRoutingModule { }
