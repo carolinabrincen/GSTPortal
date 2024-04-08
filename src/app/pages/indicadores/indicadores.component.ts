@@ -378,6 +378,7 @@ export class IndicadoresComponent implements OnInit {
     { id: 13, periodo: 202401 },
     { id: 14, periodo: 202402 },
     { id: 15, periodo: 202403 },
+    { id: 16, periodo: 202404 },
   ];
 
   selectedPeriodo: number = 0;
