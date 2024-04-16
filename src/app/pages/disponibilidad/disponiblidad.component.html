@@ -100,8 +100,12 @@
                         <dxi-column dataField="baja" caption="Baja"></dxi-column>
                         <dxi-column dataField="bajaPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
-                    <dxi-column dataField="total" caption="Total" [fixed]="true" fixedPosition="right"></dxi-column>
-                    <dxi-column dataField="" caption="" [width]="15" [fixed]="true" fixedPosition="right"></dxi-column>
+                    <dxi-column dataField="total" caption="Total"></dxi-column><!--[fixed]="true" fixedPosition="right"-->
+                    <dxi-column dataField="presupuesto" caption="Presupuesto"></dxi-column>
+                    <dxi-column dataField="presupuestoPor" caption="Pres vs Total" format="percent"></dxi-column>
+                    <dxi-column dataField="requerimientos" caption="Requerimientos"></dxi-column>
+                    <dxi-column dataField="requerimientosPor" caption="Req vs Total" format="percent"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                         <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -129,6 +133,10 @@
                         <dxi-group-item column="baja" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="presupuesto" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="presupuestoPor" summaryType="custom" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="requerimientos" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="requerimientosPor" summaryType="custom" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
 
                         <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="disponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
@@ -155,6 +163,10 @@
                         <dxi-total-item column="baja" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="presupuesto" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="presupuestoPor" summaryType="custom" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="requerimientos" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="requerimientosPor" summaryType="custom" displayFormat="{0}"></dxi-total-item>
                     </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>

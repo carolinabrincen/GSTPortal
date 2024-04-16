@@ -342,6 +342,12 @@ saveTipoOperacionOper(value){
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#f5f5f5";
           }
+
+          if (c.columnIndex == 26){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#cdcbcb";
+          }
         }
       });
     }
@@ -392,6 +398,12 @@ saveTipoOperacionOper(value){
     }
 
     if(e.columnIndex == 25){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 26){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
       e.cellElement.style.background = "#cdcbcb";
