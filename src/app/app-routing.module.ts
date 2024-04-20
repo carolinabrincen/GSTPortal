@@ -12,7 +12,9 @@ import { DetailGridComponent } from './pages/profile/detail-grid/detail-grid.com
 import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule, DxCalendarModule,
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
-  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule } from 'devextreme-angular';
+  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule,} from 'devextreme-angular';
+
+  import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -39,6 +41,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { disponiblidadComponent } from './pages/disponibilidad/disponiblidad.component';
   import { DisponibilidadOperadoresComponent } from './pages/disponilibilidadOperadores/disponibilidadOperadores.component'
   import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component'
+  import { presupuestoDisponibilidadComponent } from './pages/presupuestoDisponibilidad/presupuestoDisponibilidad.component'
 
 const routes: Routes = [
   {
@@ -199,6 +202,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'presupuestoDisponibilidad',
+    component: presupuestoDisponibilidadComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -239,6 +247,8 @@ const routes: Routes = [
     DxBoxModule,
     DxTextBoxModule,
     DxTextAreaModule,
+    BrowserModule,
+    BrowserTransferStateModule
   ],
   providers: [AuthGuardService],
   exports: [RouterModule],
@@ -271,7 +281,8 @@ const routes: Routes = [
     MarcroCicloCompaniasComponent,
     disponiblidadComponent,
     DisponibilidadOperadoresComponent,
-    MultipartidasComponent
+    MultipartidasComponent,
+    presupuestoDisponibilidadComponent
   ]
 })
 export class AppRoutingModule { }

@@ -61,11 +61,11 @@ export const navigation = [
         icon: 'columnchooser',
         path: '/disponiblidad-Unidades'
       },
-      // {
-      //   text: 'Disponibilidad Operadores',
-      //   icon: 'columnchooser',
-      //   path: '/disponibilidad-Operadores'
-      // },
+      {
+        text: 'Presupuesto Disponiblidad',
+        icon: 'columnchooser',
+        path: '/presupuestoDisponibilidad'
+      },
     ],
   },
   {

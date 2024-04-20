@@ -42,6 +42,10 @@ export class DisponibilidadAnualService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_OBTENER_VARIABLES), body, this.httpOptions);
   }
 
+  getDipPresupuesto(value){
+    return this.get<any>((this.API_URL + API_URLS.GET_DISPONIBILIDAD_PRESUPUESTO+value), this.httpOptions);
+  }
+
   postDisponiblidad(idArea: number, fecha: string) {
     let body = {
       idArea: idArea,
@@ -74,6 +78,37 @@ export class DisponibilidadAnualService extends AbstractManagerService {
     console.log("operacion")
     console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_TIPO_OPERACION_OPERADOR), body, this.httpOptions);
+  }
+
+  GuardarPresupuesto(idArea: number, area: string, clasificacion: string, tipo: string, cantidad: number) {
+    let body = {
+      idArea: idArea,
+      area: area,
+      clasificacion: clasificacion,
+      tipo: tipo,
+      cantidad: cantidad
+    };
+    console.log(JSON.stringify(body))
+    return this.post<any>((this.API_URL + API_URLS.POST_NUEVO_PRESUPUESTO), body, this.httpOptions);
+  }
+
+  EditarPresupuesto(id: number, clasificacion: string, cantidad: number) {
+    let body = {
+      id: id,
+      clasificacion: clasificacion,
+      cantidad: cantidad
+    };
+    console.log(JSON.stringify(body))
+    return this.post<any>((this.API_URL + API_URLS.POST_EDITAR_PRESUPUESTO), body, this.httpOptions);
+  }
+
+  BorrarPresupuesto(id: number, clasificacion: string) {
+    let body = {
+      id: id,
+      clasificacion: clasificacion,
+    };
+    console.log(JSON.stringify(body))
+    return this.post<any>((this.API_URL + API_URLS.POST_ELIMINAR_PRESUPUESTO), body, this.httpOptions);
   }
 
  

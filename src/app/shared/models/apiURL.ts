@@ -79,6 +79,9 @@ export enum API_URLS{
     POST_DISPONIBILIDAD_ANUAL = 'api/Disponibilidad/Disponibilidad',
     POST_STATUS_MANUAL = 'api/Disponibilidad/PostCambiarStatus',
     POST_TIPO_OPERACION_OPERADOR = 'api/Disponibilidad/PostCambiarOperacion',
+    POST_NUEVO_PRESUPUESTO = 'api/Disponibilidad/PostNuevoPresupuesto',
+    POST_EDITAR_PRESUPUESTO = 'api/Disponibilidad/PostModPresupuesto',
+    POST_ELIMINAR_PRESUPUESTO = 'api/Disponibilidad/PostEliminarPresupuesto',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
@@ -94,4 +97,5 @@ export enum API_URLS{
     GET_CARTERA_CLIENTES = 'api/CarteraClientes/Clientes',
     GET_INDICADORES_CHART = 'api/Kilometros/Indicadores',
     GET_INDICADORES_CHART24 = 'api/Kilometros/Indicadores2024',
+    GET_DISPONIBILIDAD_PRESUPUESTO = 'api/Disponibilidad/GetCatPresupuesto/'
 }
