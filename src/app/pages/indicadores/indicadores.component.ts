@@ -22,9 +22,23 @@ import {
 
   import { CustomTArrayL } from '../../shared/models/indicadores/customTArrayL.model';
   import { 
+    TotalIngresosTotal,
+    TotalOperacionIngresosTotal,
     TotalIngresos, 
     TotalKilometros, 
     TotalOperacionIK,
+    AgrupamietoIngresoTotalE,
+    AgrupamietoIngresoTotalF,
+    AgrupamietoIngresoTotalM,
+    AgrupamietoIngresoTotalA,
+    AgrupamietoIngresoTotalMY,
+    AgrupamietoIngresoTotalJN,
+    AgrupamietoIngresoTotalJL,
+    AgrupamietoIngresoTotalAG,
+    AgrupamietoIngresoTotalS,
+    AgrupamietoIngresoTotalOC,
+    AgrupamietoIngresoTotalNV,
+    AgrupamietoIngresoTotalDC,
     AgrupamietoIngresoE,
     AgrupamietoIngresoF,
     AgrupamietoIngresoM,
@@ -49,6 +63,18 @@ import {
     AgrupamietoKilometrosOC,
     AgrupamietoKilometrosNV,
     AgrupamietoKilometrosDC,
+    TotalAgrupamientoIngresosTotalE,
+    TotalAgrupamientoIngresosTotalF,
+    TotalAgrupamientoIngresosTotalM,
+    TotalAgrupamientoIngresosTotalA,
+    TotalAgrupamientoIngresosTotalMY,
+    TotalAgrupamientoIngresosTotalJN,
+    TotalAgrupamientoIngresosTotalJL,
+    TotalAgrupamientoIngresosTotalAG,
+    TotalAgrupamientoIngresosTotalS,
+    TotalAgrupamientoIngresosTotalOC,
+    TotalAgrupamientoIngresosTotalNV,
+    TotalAgrupamientoIngresosTotalDC,
     TotalAgrupamientoIKE,
     TotalAgrupamientoIKF,
     TotalAgrupamientoIKM,
@@ -116,12 +142,27 @@ const getOrderDay = function (rowData: any): number {
 };
 
 //=====================TOTALES INGRESOS/KILOMETROS============================================
+const totalIngresosTL24 = new TotalIngresosTotal
+const totalOperacionITL24 = new TotalOperacionIngresosTotal;
 const totalIngresos = new TotalIngresos;
 const totalIngresos24 = new TotalIngresos;
 const totalKilomentros = new TotalKilometros;
 const totalKilomentros24 = new TotalKilometros;
 const totalOperacionIK = new TotalOperacionIK;
 const totalOperacionIK24 = new TotalOperacionIK;
+
+const agrupamientoITLE24 = new AgrupamietoIngresoTotalE;
+const agrupamientoITLF24 = new AgrupamietoIngresoTotalF;
+const agrupamientoITLM24 = new AgrupamietoIngresoTotalM;
+const agrupamientoITLA24 = new AgrupamietoIngresoTotalA;
+const agrupamientoITLMY24 = new AgrupamietoIngresoTotalMY;
+const agrupamientoITLJN24 = new AgrupamietoIngresoTotalJN;
+const agrupamientoITLJL24 = new AgrupamietoIngresoTotalJL;
+const agrupamientoITLAG24 = new AgrupamietoIngresoTotalAG;
+const agrupamientoITLS24 = new AgrupamietoIngresoTotalS;
+const agrupamientoITLOC24 = new AgrupamietoIngresoTotalOC;
+const agrupamientoITLNV24 = new AgrupamietoIngresoTotalNV;
+const agrupamientoITLDC24 = new AgrupamietoIngresoTotalDC;
 const agrupamientoIE = new AgrupamietoIngresoE;
 const agrupamientoIE24 = new AgrupamietoIngresoE;
 const agrupamientoIF = new AgrupamietoIngresoF;
@@ -170,6 +211,19 @@ const agrupamientoKNV = new AgrupamietoKilometrosNV;
 const agrupamientoKNV24 = new AgrupamietoKilometrosNV;
 const agrupamientoKDC = new AgrupamietoKilometrosDC;
 const agrupamientoKDC24 = new AgrupamietoKilometrosDC;
+
+const totalAgrupamientoITLE24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLF24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLM24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLA24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLMY24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLJN24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLJL24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLAG24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLS24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLOC24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLNV24 = new TotalAgrupamientoIngresosTotalE;
+const totalAgrupamientoITLDC24 = new TotalAgrupamientoIngresosTotalE;
 const totalAgrupamientoIKE = new TotalAgrupamientoIKE;
 const totalAgrupamientoIKE24 = new TotalAgrupamientoIKE;
 const totalAgrupamientoIKF = new TotalAgrupamientoIKF;
@@ -321,6 +375,8 @@ export class IndicadoresComponent implements OnInit {
   ingresoOperador: ScoreCard[] = [];
   ingresoOperador24: ScoreCard[] = [];
 
+  graficaIXO24: any[] = [];
+
   chartData: any[] = [];
 
   kmsXOperacion: Chart[] = [];
@@ -436,6 +492,7 @@ export class IndicadoresComponent implements OnInit {
     this.getScoreCard2024();
     this.getIndicadoresChart();
     this.getIndicadoresChart24();
+    this.getGraficaIO24();
   }
 
   ngAfterViewInit(): void {}
@@ -530,7 +587,6 @@ export class IndicadoresComponent implements OnInit {
   getScoreCard2024(){
     // this.loadingVisible = true;
     this.indicadorService.getScoreCard2024().subscribe(data => {
-      console.log(data.data)
 // ====================================INGRESOS TOTAL======================================================================================================
       this.ingresosTotal2024 = data.data.scIngTotal;
 // ====================================INGRESOS======================================================================================================
@@ -557,8 +613,7 @@ export class IndicadoresComponent implements OnInit {
 // ====================================OPERADORES UDN ===============================================================================================  
       this.operadoresUDN24 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
-      this.ingresoOperador24 = data.data.scIngrXOperador;
-     
+      this.ingresoOperador24 = data.data.scIngrXOperador;     
  
       this.precioMeta24 = data.data.scPrecioMeta;
 
@@ -733,6 +788,28 @@ export class IndicadoresComponent implements OnInit {
       this.porXFlotaUdnDescription24.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       var myFAUDN = data.data.varPorXFlotaUDN;
+    })
+  }
+
+  getGraficaIO24(){
+    this.indicadorService.getScoreCard2024().subscribe(data => {
+      this.graficaIXO24 = data.data.scIngrXOperador;
+
+      var myArray = [
+        {orden: 0, mes: '05 MAY', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '06 JUN', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '07 JUL', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '08 AGO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '09 SEP', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '10 OCT', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '11 NOV', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+      ]
+
+      this.graficaIXO24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5],myArray[6],myArray[7]);
+
+      console.log(this.graficaIXO24)
+     
     })
   }
 
@@ -3942,7 +4019,292 @@ onCellPreparedPM(e){
     }
   }
 //==============================INGRESOS 2024=========================================
-onRowPreparedITL2024(event){}
+onRowPreparedITL2024(event){
+  
+  if (event.rowType == 'group'){
+    if(event.data.key == '01 ENE'){
+      agrupamientoITLE24.cuatitlanIngr = event.summaryCells[4][0].value;
+      agrupamientoITLE24.cuatitlanPres = event.summaryCells[5][0].value;
+      agrupamientoITLE24.cuatitlanIngrAc = event.summaryCells[7][0].value;
+      agrupamientoITLE24.cuatitlanPresAc = event.summaryCells[8][0].value;
+      agrupamientoITLE24.cuatitlanIngrAnt = event.summaryCells[10][0].value;
+      agrupamientoITLE24.tultitlanIngr = event.summaryCells[12][0].value;
+      agrupamientoITLE24.tultitlanPres = event.summaryCells[13][0].value;
+      agrupamientoITLE24.tultitlanIngrAc = event.summaryCells[15][0].value;
+      agrupamientoITLE24.tultitlanPresAc = event.summaryCells[16][0].value;
+      agrupamientoITLE24.tultitlanIngrAnt = event.summaryCells[18][0].value;
+      agrupamientoITLE24.guadalajaraIngr = event.summaryCells[20][0].value;
+      agrupamientoITLE24.guadalajaraPres = event.summaryCells[21][0].value;
+      agrupamientoITLE24.guadalajaraIngrAc = event.summaryCells[23][0].value;
+      agrupamientoITLE24.guadalajaraPresAc = event.summaryCells[24][0].value;
+      agrupamientoITLE24.guadalajaraIngrAnt = event.summaryCells[26][0].value;
+      agrupamientoITLE24.hermosilloIngr = event.summaryCells[28][0].value;
+      agrupamientoITLE24.hermosilloPres = event.summaryCells[29][0].value;
+      agrupamientoITLE24.hermosilloIngrAc = event.summaryCells[31][0].value;
+      agrupamientoITLE24.hermosilloPresAc = event.summaryCells[32][0].value;
+      agrupamientoITLE24.hermosilloIngrAnt = event.summaryCells[34][0].value;
+      agrupamientoITLE24.mexicaliIngr = event.summaryCells[36][0].value;
+      agrupamientoITLE24.mexicaliPres = event.summaryCells[37][0].value;
+      agrupamientoITLE24.mexicaliIngrAc = event.summaryCells[39][0].value;
+      agrupamientoITLE24.mexicaliPresAc = event.summaryCells[40][0].value;
+      agrupamientoITLE24.mexicaliIngrAnt = event.summaryCells[42][0].value;
+      agrupamientoITLE24.orizabaIngr = event.summaryCells[44][0].value;
+      agrupamientoITLE24.orizabaPres = event.summaryCells[45][0].value;
+      agrupamientoITLE24.orizabaIngrAc = event.summaryCells[47][0].value;
+      agrupamientoITLE24.orizabaPresAc = event.summaryCells[48][0].value;
+      agrupamientoITLE24.orizabaIngrAnt = event.summaryCells[50][0].value;
+
+      totalAgrupamientoITLE24.cuatitlanPresPor = agrupamientoITLE24.cuatitlanIngr / agrupamientoITLE24.cuatitlanPres;
+      totalAgrupamientoITLE24.cuatitlanPresAcPor = agrupamientoITLE24.cuatitlanIngrAc / agrupamientoITLE24.cuatitlanPresAc;
+      totalAgrupamientoITLE24.cuatitlanIngrAntPor = agrupamientoITLE24.cuatitlanIngr / agrupamientoITLE24.cuatitlanIngrAnt;
+      totalAgrupamientoITLE24.tultitlanPresPor = agrupamientoITLE24.tultitlanIngr / agrupamientoITLE24.tultitlanPres;
+      totalAgrupamientoITLE24.tultitlanPresAcPor = agrupamientoITLE24.tultitlanIngrAc / agrupamientoITLE24.tultitlanPresAc;
+      totalAgrupamientoITLE24.tultitlanIngrAntPor = agrupamientoITLE24.tultitlanIngr / agrupamientoITLE24.tultitlanIngrAnt;
+      totalAgrupamientoITLE24.guadalajaraPresPor = agrupamientoITLE24.guadalajaraIngr / agrupamientoITLE24.guadalajaraPres;
+      totalAgrupamientoITLE24.guadalajaraPresAcPor = agrupamientoITLE24.guadalajaraIngrAc / agrupamientoITLE24.guadalajaraPresAc;
+      totalAgrupamientoITLE24.guadalajaraIngrAntPor = agrupamientoITLE24.guadalajaraIngr / agrupamientoITLE24.guadalajaraIngrAnt;
+      totalAgrupamientoITLE24.hermosilloPresPor = agrupamientoITLE24.hermosilloIngr / agrupamientoITLE24.hermosilloPres;
+      totalAgrupamientoITLE24.hermosilloPresAcPor = agrupamientoITLE24.hermosilloIngrAc / agrupamientoITLE24.hermosilloPresAc;
+      totalAgrupamientoITLE24.hermosilloIngrAntPor = agrupamientoITLE24.hermosilloIngr / agrupamientoITLE24.hermosilloIngrAnt;
+      totalAgrupamientoITLE24.mexicaliPresPor = agrupamientoITLE24.mexicaliIngr / agrupamientoITLE24.mexicaliPres;
+      totalAgrupamientoITLE24.mexicaliPresAcPor = agrupamientoITLE24.mexicaliIngrAc / agrupamientoITLE24.mexicaliPresAc;
+      totalAgrupamientoITLE24.mexicaliIngrAntPor = agrupamientoITLE24.mexicaliIngr / agrupamientoITLE24.mexicaliIngrAnt;
+      totalAgrupamientoITLE24.orizabaPresPor = agrupamientoITLE24.orizabaIngr / agrupamientoITLE24.orizabaPres;
+      totalAgrupamientoITLE24.orizabaPresAcPor = agrupamientoITLE24.orizabaIngrAc / agrupamientoITLE24.orizabaPresAc;
+      totalAgrupamientoITLE24.orizabaIngrAntPor = agrupamientoITLE24.orizabaIngr / agrupamientoITLE24.orizabaIngrAnt;
+
+      event.summaryCells[6][0].value = totalAgrupamientoITLE24.cuatitlanPresPor;
+      event.summaryCells[9][0].value = totalAgrupamientoITLE24.cuatitlanPresAcPor;
+      event.summaryCells[11][0].value = totalAgrupamientoITLE24.cuatitlanIngrAntPor;
+      event.summaryCells[14][0].value = totalAgrupamientoITLE24.tultitlanPresPor;
+      event.summaryCells[17][0].value = totalAgrupamientoITLE24.tultitlanPresAcPor;
+      event.summaryCells[19][0].value = totalAgrupamientoITLE24.tultitlanIngrAntPor;
+      event.summaryCells[22][0].value = totalAgrupamientoITLE24.guadalajaraPresPor;
+      event.summaryCells[25][0].value = totalAgrupamientoITLE24.guadalajaraPresAcPor;
+      event.summaryCells[27][0].value = totalAgrupamientoITLE24.guadalajaraIngrAntPor;
+      event.summaryCells[30][0].value = totalAgrupamientoITLE24.hermosilloPresPor;
+      event.summaryCells[33][0].value = totalAgrupamientoITLE24.hermosilloPresAcPor;
+      event.summaryCells[35][0].value = totalAgrupamientoITLE24.hermosilloIngrAntPor;
+      event.summaryCells[38][0].value = totalAgrupamientoITLE24.mexicaliPresPor;
+      event.summaryCells[41][0].value = totalAgrupamientoITLE24.mexicaliPresAcPor;
+      event.summaryCells[43][0].value = totalAgrupamientoITLE24.mexicaliIngrAntPor;
+      event.summaryCells[46][0].value = totalAgrupamientoITLE24.orizabaPresPor;
+      event.summaryCells[49][0].value = totalAgrupamientoITLE24.orizabaPresAcPor;
+      event.summaryCells[51][0].value = totalAgrupamientoITLE24.orizabaIngrAntPor;
+    }
+    if(event.data.key == '02 FEB'){
+      agrupamientoITLF24.cuatitlanIngr = event.summaryCells[4][0].value;
+      agrupamientoITLF24.cuatitlanPres = event.summaryCells[5][0].value;
+      agrupamientoITLF24.cuatitlanIngrAc = event.summaryCells[7][0].value;
+      agrupamientoITLF24.cuatitlanPresAc = event.summaryCells[8][0].value;
+      agrupamientoITLF24.cuatitlanIngrAnt = event.summaryCells[10][0].value;
+      agrupamientoITLF24.tultitlanIngr = event.summaryCells[12][0].value;
+      agrupamientoITLF24.tultitlanPres = event.summaryCells[13][0].value;
+      agrupamientoITLF24.tultitlanIngrAc = event.summaryCells[15][0].value;
+      agrupamientoITLF24.tultitlanPresAc = event.summaryCells[16][0].value;
+      agrupamientoITLF24.tultitlanIngrAnt = event.summaryCells[18][0].value;
+      agrupamientoITLF24.guadalajaraIngr = event.summaryCells[20][0].value;
+      agrupamientoITLF24.guadalajaraPres = event.summaryCells[21][0].value;
+      agrupamientoITLF24.guadalajaraIngrAc = event.summaryCells[23][0].value;
+      agrupamientoITLF24.guadalajaraPresAc = event.summaryCells[24][0].value;
+      agrupamientoITLF24.guadalajaraIngrAnt = event.summaryCells[26][0].value;
+      agrupamientoITLF24.hermosilloIngr = event.summaryCells[28][0].value;
+      agrupamientoITLF24.hermosilloPres = event.summaryCells[29][0].value;
+      agrupamientoITLF24.hermosilloIngrAc = event.summaryCells[31][0].value;
+      agrupamientoITLF24.hermosilloPresAc = event.summaryCells[32][0].value;
+      agrupamientoITLF24.hermosilloIngrAnt = event.summaryCells[34][0].value;
+      agrupamientoITLF24.mexicaliIngr = event.summaryCells[36][0].value;
+      agrupamientoITLF24.mexicaliPres = event.summaryCells[37][0].value;
+      agrupamientoITLF24.mexicaliIngrAc = event.summaryCells[39][0].value;
+      agrupamientoITLF24.mexicaliPresAc = event.summaryCells[40][0].value;
+      agrupamientoITLF24.mexicaliIngrAnt = event.summaryCells[42][0].value;
+      agrupamientoITLF24.orizabaIngr = event.summaryCells[44][0].value;
+      agrupamientoITLF24.orizabaPres = event.summaryCells[45][0].value;
+      agrupamientoITLF24.orizabaIngrAc = event.summaryCells[47][0].value;
+      agrupamientoITLF24.orizabaPresAc = event.summaryCells[48][0].value;
+      agrupamientoITLF24.orizabaIngrAnt = event.summaryCells[50][0].value;
+
+      totalAgrupamientoITLF24.cuatitlanPresPor = agrupamientoITLF24.cuatitlanIngr / agrupamientoITLF24.cuatitlanPres;
+      totalAgrupamientoITLF24.cuatitlanPresAcPor = agrupamientoITLF24.cuatitlanIngrAc / agrupamientoITLF24.cuatitlanPresAc;
+      totalAgrupamientoITLF24.cuatitlanIngrAntPor = agrupamientoITLF24.cuatitlanIngr / agrupamientoITLF24.cuatitlanIngrAnt;
+      totalAgrupamientoITLF24.tultitlanPresPor = agrupamientoITLF24.tultitlanIngr / agrupamientoITLF24.tultitlanPres;
+      totalAgrupamientoITLF24.tultitlanPresAcPor = agrupamientoITLF24.tultitlanIngrAc / agrupamientoITLF24.tultitlanPresAc;
+      totalAgrupamientoITLF24.tultitlanIngrAntPor = agrupamientoITLF24.tultitlanIngr / agrupamientoITLF24.tultitlanIngrAnt;
+      totalAgrupamientoITLF24.guadalajaraPresPor = agrupamientoITLF24.guadalajaraIngr / agrupamientoITLF24.guadalajaraPres;
+      totalAgrupamientoITLF24.guadalajaraPresAcPor = agrupamientoITLF24.guadalajaraIngrAc / agrupamientoITLF24.guadalajaraPresAc;
+      totalAgrupamientoITLF24.guadalajaraIngrAntPor = agrupamientoITLF24.guadalajaraIngr / agrupamientoITLF24.guadalajaraIngrAnt;
+      totalAgrupamientoITLF24.hermosilloPresPor = agrupamientoITLF24.hermosilloIngr / agrupamientoITLF24.hermosilloPres;
+      totalAgrupamientoITLF24.hermosilloPresAcPor = agrupamientoITLF24.hermosilloIngrAc / agrupamientoITLF24.hermosilloPresAc;
+      totalAgrupamientoITLF24.hermosilloIngrAntPor = agrupamientoITLF24.hermosilloIngr / agrupamientoITLF24.hermosilloIngrAnt;
+      totalAgrupamientoITLF24.mexicaliPresPor = agrupamientoITLF24.mexicaliIngr / agrupamientoITLF24.mexicaliPres;
+      totalAgrupamientoITLF24.mexicaliPresAcPor = agrupamientoITLF24.mexicaliIngrAc / agrupamientoITLF24.mexicaliPresAc;
+      totalAgrupamientoITLF24.mexicaliIngrAntPor = agrupamientoITLF24.mexicaliIngr / agrupamientoITLF24.mexicaliIngrAnt;
+      totalAgrupamientoITLF24.orizabaPresPor = agrupamientoITLF24.orizabaIngr / agrupamientoITLF24.orizabaPres;
+      totalAgrupamientoITLF24.orizabaPresAcPor = agrupamientoITLF24.orizabaIngrAc / agrupamientoITLF24.orizabaPresAc;
+      totalAgrupamientoITLF24.orizabaIngrAntPor = agrupamientoITLF24.orizabaIngr / agrupamientoITLF24.orizabaIngrAnt;
+    
+      event.summaryCells[6][0].value = totalAgrupamientoITLF24.cuatitlanPresPor;
+      event.summaryCells[9][0].value = totalAgrupamientoITLF24.cuatitlanPresAcPor;
+      event.summaryCells[11][0].value = totalAgrupamientoITLF24.cuatitlanIngrAntPor;
+      event.summaryCells[14][0].value = totalAgrupamientoITLF24.tultitlanPresPor;
+      event.summaryCells[17][0].value = totalAgrupamientoITLF24.tultitlanPresAcPor;
+      event.summaryCells[19][0].value = totalAgrupamientoITLF24.tultitlanIngrAntPor;
+      event.summaryCells[22][0].value = totalAgrupamientoITLF24.guadalajaraPresPor;
+      event.summaryCells[25][0].value = totalAgrupamientoITLF24.guadalajaraPresAcPor;
+      event.summaryCells[27][0].value = totalAgrupamientoITLF24.guadalajaraIngrAntPor;
+      event.summaryCells[30][0].value = totalAgrupamientoITLF24.hermosilloPresPor;
+      event.summaryCells[33][0].value = totalAgrupamientoITLF24.hermosilloPresAcPor;
+      event.summaryCells[35][0].value = totalAgrupamientoITLF24.hermosilloIngrAntPor;
+      event.summaryCells[38][0].value = totalAgrupamientoITLF24.mexicaliPresPor;
+      event.summaryCells[41][0].value = totalAgrupamientoITLF24.mexicaliPresAcPor;
+      event.summaryCells[43][0].value = totalAgrupamientoITLF24.mexicaliIngrAntPor;
+      event.summaryCells[46][0].value = totalAgrupamientoITLF24.orizabaPresPor;
+      event.summaryCells[49][0].value = totalAgrupamientoITLF24.orizabaPresAcPor;
+      event.summaryCells[51][0].value = totalAgrupamientoITLF24.orizabaIngrAntPor;
+    }
+    if(event.data.key == '03 MAR'){
+      agrupamientoITLM24.cuatitlanIngr = event.summaryCells[4][0].value;
+      agrupamientoITLM24.cuatitlanPres = event.summaryCells[5][0].value;
+      agrupamientoITLM24.cuatitlanIngrAc = event.summaryCells[7][0].value;
+      agrupamientoITLM24.cuatitlanPresAc = event.summaryCells[8][0].value;
+      agrupamientoITLM24.cuatitlanIngrAnt = event.summaryCells[10][0].value;
+      agrupamientoITLM24.tultitlanIngr = event.summaryCells[12][0].value;
+      agrupamientoITLM24.tultitlanPres = event.summaryCells[13][0].value;
+      agrupamientoITLM24.tultitlanIngrAc = event.summaryCells[15][0].value;
+      agrupamientoITLM24.tultitlanPresAc = event.summaryCells[16][0].value;
+      agrupamientoITLM24.tultitlanIngrAnt = event.summaryCells[18][0].value;
+      agrupamientoITLM24.guadalajaraIngr = event.summaryCells[20][0].value;
+      agrupamientoITLM24.guadalajaraPres = event.summaryCells[21][0].value;
+      agrupamientoITLM24.guadalajaraIngrAc = event.summaryCells[23][0].value;
+      agrupamientoITLM24.guadalajaraPresAc = event.summaryCells[24][0].value;
+      agrupamientoITLM24.guadalajaraIngrAnt = event.summaryCells[26][0].value;
+      agrupamientoITLM24.hermosilloIngr = event.summaryCells[28][0].value;
+      agrupamientoITLM24.hermosilloPres = event.summaryCells[29][0].value;
+      agrupamientoITLM24.hermosilloIngrAc = event.summaryCells[31][0].value;
+      agrupamientoITLM24.hermosilloPresAc = event.summaryCells[32][0].value;
+      agrupamientoITLM24.hermosilloIngrAnt = event.summaryCells[34][0].value;
+      agrupamientoITLM24.mexicaliIngr = event.summaryCells[36][0].value;
+      agrupamientoITLM24.mexicaliPres = event.summaryCells[37][0].value;
+      agrupamientoITLM24.mexicaliIngrAc = event.summaryCells[39][0].value;
+      agrupamientoITLM24.mexicaliPresAc = event.summaryCells[40][0].value;
+      agrupamientoITLM24.mexicaliIngrAnt = event.summaryCells[42][0].value;
+      agrupamientoITLM24.orizabaIngr = event.summaryCells[44][0].value;
+      agrupamientoITLM24.orizabaPres = event.summaryCells[45][0].value;
+      agrupamientoITLM24.orizabaIngrAc = event.summaryCells[47][0].value;
+      agrupamientoITLM24.orizabaPresAc = event.summaryCells[48][0].value;
+      agrupamientoITLM24.orizabaIngrAnt = event.summaryCells[50][0].value;
+
+      totalAgrupamientoITLM24.cuatitlanPresPor = agrupamientoITLM24.cuatitlanIngr / agrupamientoITLM24.cuatitlanPres;
+      totalAgrupamientoITLM24.cuatitlanPresAcPor = agrupamientoITLM24.cuatitlanIngrAc / agrupamientoITLM24.cuatitlanPresAc;
+      totalAgrupamientoITLM24.cuatitlanIngrAntPor = agrupamientoITLM24.cuatitlanIngr / agrupamientoITLM24.cuatitlanIngrAnt;
+      totalAgrupamientoITLM24.tultitlanPresPor = agrupamientoITLM24.tultitlanIngr / agrupamientoITLM24.tultitlanPres;
+      totalAgrupamientoITLM24.tultitlanPresAcPor = agrupamientoITLM24.tultitlanIngrAc / agrupamientoITLM24.tultitlanPresAc;
+      totalAgrupamientoITLM24.tultitlanIngrAntPor = agrupamientoITLM24.tultitlanIngr / agrupamientoITLM24.tultitlanIngrAnt;
+      totalAgrupamientoITLM24.guadalajaraPresPor = agrupamientoITLM24.guadalajaraIngr / agrupamientoITLM24.guadalajaraPres;
+      totalAgrupamientoITLM24.guadalajaraPresAcPor = agrupamientoITLM24.guadalajaraIngrAc / agrupamientoITLM24.guadalajaraPresAc;
+      totalAgrupamientoITLM24.guadalajaraIngrAntPor = agrupamientoITLM24.guadalajaraIngr / agrupamientoITLM24.guadalajaraIngrAnt;
+      totalAgrupamientoITLM24.hermosilloPresPor = agrupamientoITLM24.hermosilloIngr / agrupamientoITLM24.hermosilloPres;
+      totalAgrupamientoITLM24.hermosilloPresAcPor = agrupamientoITLM24.hermosilloIngrAc / agrupamientoITLM24.hermosilloPresAc;
+      totalAgrupamientoITLM24.hermosilloIngrAntPor = agrupamientoITLM24.hermosilloIngr / agrupamientoITLM24.hermosilloIngrAnt;
+      totalAgrupamientoITLM24.mexicaliPresPor = agrupamientoITLM24.mexicaliIngr / agrupamientoITLM24.mexicaliPres;
+      totalAgrupamientoITLM24.mexicaliPresAcPor = agrupamientoITLM24.mexicaliIngrAc / agrupamientoITLM24.mexicaliPresAc;
+      totalAgrupamientoITLM24.mexicaliIngrAntPor = agrupamientoITLM24.mexicaliIngr / agrupamientoITLM24.mexicaliIngrAnt;
+      totalAgrupamientoITLM24.orizabaPresPor = agrupamientoITLM24.orizabaIngr / agrupamientoITLM24.orizabaPres;
+      totalAgrupamientoITLM24.orizabaPresAcPor = agrupamientoITLM24.orizabaIngrAc / agrupamientoITLM24.orizabaPresAc;
+      totalAgrupamientoITLM24.orizabaIngrAntPor = agrupamientoITLM24.orizabaIngr / agrupamientoITLM24.orizabaIngrAnt;
+    
+      event.summaryCells[6][0].value = totalAgrupamientoITLM24.cuatitlanPresPor;
+      event.summaryCells[9][0].value = totalAgrupamientoITLM24.cuatitlanPresAcPor;
+      event.summaryCells[11][0].value = totalAgrupamientoITLM24.cuatitlanIngrAntPor;
+      event.summaryCells[14][0].value = totalAgrupamientoITLM24.tultitlanPresPor;
+      event.summaryCells[17][0].value = totalAgrupamientoITLM24.tultitlanPresAcPor;
+      event.summaryCells[19][0].value = totalAgrupamientoITLM24.tultitlanIngrAntPor;
+      event.summaryCells[22][0].value = totalAgrupamientoITLM24.guadalajaraPresPor;
+      event.summaryCells[25][0].value = totalAgrupamientoITLM24.guadalajaraPresAcPor;
+      event.summaryCells[27][0].value = totalAgrupamientoITLM24.guadalajaraIngrAntPor;
+      event.summaryCells[30][0].value = totalAgrupamientoITLM24.hermosilloPresPor;
+      event.summaryCells[33][0].value = totalAgrupamientoITLM24.hermosilloPresAcPor;
+      event.summaryCells[35][0].value = totalAgrupamientoITLM24.hermosilloIngrAntPor;
+      event.summaryCells[38][0].value = totalAgrupamientoITLM24.mexicaliPresPor;
+      event.summaryCells[41][0].value = totalAgrupamientoITLM24.mexicaliPresAcPor;
+      event.summaryCells[43][0].value = totalAgrupamientoITLM24.mexicaliIngrAntPor;
+      event.summaryCells[46][0].value = totalAgrupamientoITLM24.orizabaPresPor;
+      event.summaryCells[49][0].value = totalAgrupamientoITLM24.orizabaPresAcPor;
+      event.summaryCells[51][0].value = totalAgrupamientoITLM24.orizabaIngrAntPor;
+    }
+    if(event.data.key == '04 ABR'){
+      agrupamientoITLA24.cuatitlanIngr = event.summaryCells[4][0].value;
+      agrupamientoITLA24.cuatitlanPres = event.summaryCells[5][0].value;
+      agrupamientoITLA24.cuatitlanIngrAc = event.summaryCells[7][0].value;
+      agrupamientoITLA24.cuatitlanPresAc = event.summaryCells[8][0].value;
+      agrupamientoITLA24.cuatitlanIngrAnt = event.summaryCells[10][0].value;
+      agrupamientoITLA24.tultitlanIngr = event.summaryCells[12][0].value;
+      agrupamientoITLA24.tultitlanPres = event.summaryCells[13][0].value;
+      agrupamientoITLA24.tultitlanIngrAc = event.summaryCells[15][0].value;
+      agrupamientoITLA24.tultitlanPresAc = event.summaryCells[16][0].value;
+      agrupamientoITLA24.tultitlanIngrAnt = event.summaryCells[18][0].value;
+      agrupamientoITLA24.guadalajaraIngr = event.summaryCells[20][0].value;
+      agrupamientoITLA24.guadalajaraPres = event.summaryCells[21][0].value;
+      agrupamientoITLA24.guadalajaraIngrAc = event.summaryCells[23][0].value;
+      agrupamientoITLA24.guadalajaraPresAc = event.summaryCells[24][0].value;
+      agrupamientoITLA24.guadalajaraIngrAnt = event.summaryCells[26][0].value;
+      agrupamientoITLA24.hermosilloIngr = event.summaryCells[28][0].value;
+      agrupamientoITLA24.hermosilloPres = event.summaryCells[29][0].value;
+      agrupamientoITLA24.hermosilloIngrAc = event.summaryCells[31][0].value;
+      agrupamientoITLA24.hermosilloPresAc = event.summaryCells[32][0].value;
+      agrupamientoITLA24.hermosilloIngrAnt = event.summaryCells[34][0].value;
+      agrupamientoITLA24.mexicaliIngr = event.summaryCells[36][0].value;
+      agrupamientoITLA24.mexicaliPres = event.summaryCells[37][0].value;
+      agrupamientoITLA24.mexicaliIngrAc = event.summaryCells[39][0].value;
+      agrupamientoITLA24.mexicaliPresAc = event.summaryCells[40][0].value;
+      agrupamientoITLA24.mexicaliIngrAnt = event.summaryCells[42][0].value;
+      agrupamientoITLA24.orizabaIngr = event.summaryCells[44][0].value;
+      agrupamientoITLA24.orizabaPres = event.summaryCells[45][0].value;
+      agrupamientoITLA24.orizabaIngrAc = event.summaryCells[47][0].value;
+      agrupamientoITLA24.orizabaPresAc = event.summaryCells[48][0].value;
+      agrupamientoITLA24.orizabaIngrAnt = event.summaryCells[50][0].value;
+
+      totalAgrupamientoITLA24.cuatitlanPresPor = agrupamientoITLA24.cuatitlanIngr / agrupamientoITLA24.cuatitlanPres;
+      totalAgrupamientoITLA24.cuatitlanPresAcPor = agrupamientoITLA24.cuatitlanIngrAc / agrupamientoITLA24.cuatitlanPresAc;
+      totalAgrupamientoITLA24.cuatitlanIngrAntPor = agrupamientoITLA24.cuatitlanIngr / agrupamientoITLA24.cuatitlanIngrAnt;
+      totalAgrupamientoITLA24.tultitlanPresPor = agrupamientoITLA24.tultitlanIngr / agrupamientoITLA24.tultitlanPres;
+      totalAgrupamientoITLA24.tultitlanPresAcPor = agrupamientoITLA24.tultitlanIngrAc / agrupamientoITLA24.tultitlanPresAc;
+      totalAgrupamientoITLA24.tultitlanIngrAntPor = agrupamientoITLA24.tultitlanIngr / agrupamientoITLA24.tultitlanIngrAnt;
+      totalAgrupamientoITLA24.guadalajaraPresPor = agrupamientoITLA24.guadalajaraIngr / agrupamientoITLA24.guadalajaraPres;
+      totalAgrupamientoITLA24.guadalajaraPresAcPor = agrupamientoITLA24.guadalajaraIngrAc / agrupamientoITLA24.guadalajaraPresAc;
+      totalAgrupamientoITLA24.guadalajaraIngrAntPor = agrupamientoITLA24.guadalajaraIngr / agrupamientoITLA24.guadalajaraIngrAnt;
+      totalAgrupamientoITLA24.hermosilloPresPor = agrupamientoITLA24.hermosilloIngr / agrupamientoITLA24.hermosilloPres;
+      totalAgrupamientoITLA24.hermosilloPresAcPor = agrupamientoITLA24.hermosilloIngrAc / agrupamientoITLA24.hermosilloPresAc;
+      totalAgrupamientoITLA24.hermosilloIngrAntPor = agrupamientoITLA24.hermosilloIngr / agrupamientoITLA24.hermosilloIngrAnt;
+      totalAgrupamientoITLA24.mexicaliPresPor = agrupamientoITLA24.mexicaliIngr / agrupamientoITLA24.mexicaliPres;
+      totalAgrupamientoITLA24.mexicaliPresAcPor = agrupamientoITLA24.mexicaliIngrAc / agrupamientoITLA24.mexicaliPresAc;
+      totalAgrupamientoITLA24.mexicaliIngrAntPor = agrupamientoITLA24.mexicaliIngr / agrupamientoITLA24.mexicaliIngrAnt;
+      totalAgrupamientoITLA24.orizabaPresPor = agrupamientoITLA24.orizabaIngr / agrupamientoITLA24.orizabaPres;
+      totalAgrupamientoITLA24.orizabaPresAcPor = agrupamientoITLA24.orizabaIngrAc / agrupamientoITLA24.orizabaPresAc;
+      totalAgrupamientoITLA24.orizabaIngrAntPor = agrupamientoITLA24.orizabaIngr / agrupamientoITLA24.orizabaIngrAnt;
+    
+      event.summaryCells[6][0].value = totalAgrupamientoITLA24.cuatitlanPresPor;
+      event.summaryCells[9][0].value = totalAgrupamientoITLA24.cuatitlanPresAcPor;
+      event.summaryCells[11][0].value = totalAgrupamientoITLA24.cuatitlanIngrAntPor;
+      event.summaryCells[14][0].value = totalAgrupamientoITLA24.tultitlanPresPor;
+      event.summaryCells[17][0].value = totalAgrupamientoITLA24.tultitlanPresAcPor;
+      event.summaryCells[19][0].value = totalAgrupamientoITLA24.tultitlanIngrAntPor;
+      event.summaryCells[22][0].value = totalAgrupamientoITLA24.guadalajaraPresPor;
+      event.summaryCells[25][0].value = totalAgrupamientoITLA24.guadalajaraPresAcPor;
+      event.summaryCells[27][0].value = totalAgrupamientoITLA24.guadalajaraIngrAntPor;
+      event.summaryCells[30][0].value = totalAgrupamientoITLA24.hermosilloPresPor;
+      event.summaryCells[33][0].value = totalAgrupamientoITLA24.hermosilloPresAcPor;
+      event.summaryCells[35][0].value = totalAgrupamientoITLA24.hermosilloIngrAntPor;
+      event.summaryCells[38][0].value = totalAgrupamientoITLA24.mexicaliPresPor;
+      event.summaryCells[41][0].value = totalAgrupamientoITLA24.mexicaliPresAcPor;
+      event.summaryCells[43][0].value = totalAgrupamientoITLA24.mexicaliIngrAntPor;
+      event.summaryCells[46][0].value = totalAgrupamientoITLA24.orizabaPresPor;
+      event.summaryCells[49][0].value = totalAgrupamientoITLA24.orizabaPresAcPor;
+      event.summaryCells[51][0].value = totalAgrupamientoITLA24.orizabaIngrAntPor;
+    }
+  }
+}
+
 onCellPreparedITL2024(e){
   if (e.rowType == 'group'){
 
@@ -3951,14 +4313,86 @@ onCellPreparedITL2024(e){
   }
 
   if (e.rowType == 'totalFooter') {
+   
     e.totalItem.cells.forEach((c: any) => {
+
       if (c.cellElement) {
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.fontSize = "16px";
-          c.cellElement.style.background = "#ff9460";
-          c.cellElement.style.color = "black"; 
-      }   
-    });
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "16px";
+        c.cellElement.style.background = "#ff9460";
+        c.cellElement.style.color = "black"; 
+    }   
+
+    totalOperacionITL24.cuatitlanIngr = c.totalItem.summaryCells[4][0].value;
+    totalOperacionITL24.cuatitlanPres = c.totalItem.summaryCells[5][0].value;
+    totalOperacionITL24.cuatitlanIngrAc = c.totalItem.summaryCells[7][0].value;
+    totalOperacionITL24.cuatitlanPresAc = c.totalItem.summaryCells[8][0].value;
+    totalOperacionITL24.cuatitlanIngrAnt = c.totalItem.summaryCells[10][0].value;
+    totalOperacionITL24.tultitlanIngr = c.totalItem.summaryCells[12][0].value;
+    totalOperacionITL24.tultitlanPres = c.totalItem.summaryCells[13][0].value;
+    totalOperacionITL24.tultitlanIngrAc = c.totalItem.summaryCells[15][0].value;
+    totalOperacionITL24.tultitlanPresAc = c.totalItem.summaryCells[16][0].value;
+    totalOperacionITL24.tultitlanIngrAnt = c.totalItem.summaryCells[18][0].value;
+    totalOperacionITL24.guadalajaraIngr = c.totalItem.summaryCells[20][0].value;
+    totalOperacionITL24.guadalajaraPres = c.totalItem.summaryCells[21][0].value;
+    totalOperacionITL24.guadalajaraIngrAc = c.totalItem.summaryCells[23][0].value;
+    totalOperacionITL24.guadalajaraPresAc = c.totalItem.summaryCells[24][0].value;
+    totalOperacionITL24.guadalajaraIngrAnt = c.totalItem.summaryCells[26][0].value;
+    totalOperacionITL24.hermosilloIngr = c.totalItem.summaryCells[28][0].value;
+    totalOperacionITL24.hermosilloPres = c.totalItem.summaryCells[29][0].value;
+    totalOperacionITL24.hermosilloIngrAc = c.totalItem.summaryCells[31][0].value;
+    totalOperacionITL24.hermosilloPresAc = c.totalItem.summaryCells[32][0].value;
+    totalOperacionITL24.hermosilloIngrAnt = c.totalItem.summaryCells[34][0].value;
+    totalOperacionITL24.mexicaliIngr = c.totalItem.summaryCells[36][0].value;
+    totalOperacionITL24.mexicaliPres = c.totalItem.summaryCells[37][0].value;
+    totalOperacionITL24.mexicaliIngrAc = c.totalItem.summaryCells[39][0].value;
+    totalOperacionITL24.mexicaliPresAc = c.totalItem.summaryCells[40][0].value;
+    totalOperacionITL24.mexicaliIngrAnt = c.totalItem.summaryCells[42][0].value;
+    totalOperacionITL24.orizabaIngr = c.totalItem.summaryCells[44][0].value;
+    totalOperacionITL24.orizabaPres = c.totalItem.summaryCells[45][0].value;
+    totalOperacionITL24.orizabaIngrAc = c.totalItem.summaryCells[47][0].value;
+    totalOperacionITL24.orizabaPresAc = c.totalItem.summaryCells[48][0].value;
+    totalOperacionITL24.orizabaIngrAnt = c.totalItem.summaryCells[50][0].value;
+    
+    totalOperacionITL24.cuatitlanIngr === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = totalOperacionITL24.cuatitlanIngr / totalOperacionITL24.cuatitlanPres;
+    totalOperacionITL24.cuatitlanIngrAc == 0 ? c.totalItem.summaryCells[9][0].value = 0 : c.totalItem.summaryCells[9][0].value =   totalOperacionITL24.cuatitlanIngrAc / totalOperacionITL24.cuatitlanPresAc;
+    totalOperacionITL24.cuatitlanIngr == 0 ? c.totalItem.summaryCells[11][0].value = 0 : c.totalItem.summaryCells[11][0].value =   totalOperacionITL24.cuatitlanIngr / totalOperacionITL24.cuatitlanIngrAnt;
+    totalOperacionITL24.tultitlanIngr == 0 ? c.totalItem.summaryCells[14][0].value = 0 : c.totalItem.summaryCells[14][0].value =   totalOperacionITL24.tultitlanIngr / totalOperacionITL24.tultitlanPres;
+    totalOperacionITL24.tultitlanIngrAc == 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value =   totalOperacionITL24.tultitlanIngrAc / totalOperacionITL24.tultitlanPresAc;
+    totalOperacionITL24.tultitlanIngr == 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value =   totalOperacionITL24.tultitlanIngr / totalOperacionITL24.tultitlanIngrAnt;
+    totalOperacionITL24.guadalajaraIngr == 0 ? c.totalItem.summaryCells[22][0].value = 0 : c.totalItem.summaryCells[22][0].value =   totalOperacionITL24.guadalajaraIngr / totalOperacionITL24.guadalajaraPres;
+    totalOperacionITL24.guadalajaraIngrAc == 0 ? c.totalItem.summaryCells[25][0].value = 0 : c.totalItem.summaryCells[25][0].value =   totalOperacionITL24.guadalajaraIngrAc / totalOperacionITL24.guadalajaraPresAc;
+    totalOperacionITL24.guadalajaraIngr == 0 ? c.totalItem.summaryCells[27][0].value = 0 : c.totalItem.summaryCells[27][0].value =   totalOperacionITL24.guadalajaraIngr / totalOperacionITL24.guadalajaraIngrAnt;
+    totalOperacionITL24.hermosilloIngr == 0 ? c.totalItem.summaryCells[30][0].value = 0 : c.totalItem.summaryCells[30][0].value =   totalOperacionITL24.hermosilloIngr / totalOperacionITL24.hermosilloPres;
+    totalOperacionITL24.hermosilloIngrAc == 0 ? c.totalItem.summaryCells[33][0].value = 0 : c.totalItem.summaryCells[33][0].value =   totalOperacionITL24.hermosilloIngrAc / totalOperacionITL24.hermosilloPresAc;
+    totalOperacionITL24.hermosilloIngr == 0 ? c.totalItem.summaryCells[35][0].value = 0 : c.totalItem.summaryCells[35][0].value =   totalOperacionITL24.hermosilloIngr / totalOperacionITL24.hermosilloIngrAnt;
+    totalOperacionITL24.mexicaliIngr == 0 ? c.totalItem.summaryCells[38][0].value = 0 : c.totalItem.summaryCells[38][0].value =   totalOperacionITL24.mexicaliIngr / totalOperacionITL24.mexicaliPres;
+    totalOperacionITL24.mexicaliIngrAc == 0 ? c.totalItem.summaryCells[41][0].value = 0 : c.totalItem.summaryCells[41][0].value =   totalOperacionITL24.mexicaliIngrAc / totalOperacionITL24.mexicaliPresAc;
+    totalOperacionITL24.mexicaliIngr == 0 ? c.totalItem.summaryCells[43][0].value = 0 : c.totalItem.summaryCells[43][0].value =   totalOperacionITL24.mexicaliIngr / totalOperacionITL24.mexicaliIngrAnt;
+    totalOperacionITL24.orizabaIngr == 0 ? c.totalItem.summaryCells[46][0].value = 0 : c.totalItem.summaryCells[46][0].value =   totalOperacionITL24.orizabaIngr / totalOperacionITL24.orizabaPres;
+    totalOperacionITL24.orizabaIngrAc == 0 ? c.totalItem.summaryCells[49][0].value = 0 : c.totalItem.summaryCells[49][0].value =   totalOperacionITL24.orizabaIngrAc / totalOperacionITL24.orizabaPresAc;
+    totalOperacionITL24.orizabaIngr == 0 ? c.totalItem.summaryCells[51][0].value = 0 : c.totalItem.summaryCells[51][0].value =   totalOperacionITL24.orizabaIngr / totalOperacionITL24.orizabaIngrAnt;
+      
+
+    totalIngresosTL24.cuatitlanPresPor = c.totalItem.summaryCells[6][0].value;
+    totalIngresosTL24.cuatitlanPresAcPor = c.totalItem.summaryCells[9][0].value;
+    totalIngresosTL24.cuatitlanIngrAntPor = c.totalItem.summaryCells[11][0].value;
+    totalIngresosTL24.tultitlanPresPor = c.totalItem.summaryCells[14][0].value;
+    totalIngresosTL24.tultitlanPresAcPor = c.totalItem.summaryCells[17][0].value;
+    totalIngresosTL24.tultitlanIngrAntPor = c.totalItem.summaryCells[19][0].value;
+    totalIngresosTL24.guadalajaraPresPor = c.totalItem.summaryCells[22][0].value;
+    totalIngresosTL24.guadalajaraPresAcPor = c.totalItem.summaryCells[25][0].value;
+    totalIngresosTL24.guadalajaraIngrAntPor = c.totalItem.summaryCells[27][0].value;
+    totalIngresosTL24.hermosilloPresPor = c.totalItem.summaryCells[30][0].value;
+    totalIngresosTL24.hermosilloPresAcPor = c.totalItem.summaryCells[33][0].value;
+    totalIngresosTL24.hermosilloIngrAntPor = c.totalItem.summaryCells[35][0].value;
+    totalIngresosTL24.mexicaliPresPor = c.totalItem.summaryCells[38][0].value;
+    totalIngresosTL24.mexicaliPresAcPor = c.totalItem.summaryCells[41][0].value;
+    totalIngresosTL24.mexicaliIngrAntPor = c.totalItem.summaryCells[43][0].value;
+    totalIngresosTL24.orizabaPresPor = c.totalItem.summaryCells[46][0].value;
+    totalIngresosTL24.orizabaPresAcPor = c.totalItem.summaryCells[49][0].value;
+    totalIngresosTL24.orizabaIngrAntPor = c.totalItem.summaryCells[51][0].value;
+    })
   }
 }
 
@@ -6873,14 +7307,26 @@ onCellPreparedOUDN2024(e){
 }
 //==============================INGRESO OPERADOR 2024===================================
 onRowPreparedIO2024(e){
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+      if (c.cellElement) {
+        if(c.columnIndex == 3){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+        }
+    })
   
+  }
 }
 
 onCellPreparedIO2024(e){
-  if (e.rowType == 'data'){
-    e.cellElement.style.fontSize = '12px';
-    e.cellElement.style.background = "#DCDCDC";
-  }
+  // if (e.rowType == 'data'){
+  //   e.cellElement.style.fontSize = '12px';
+  //   e.cellElement.style.background = "#DCDCDC";
+  // }
 }
 // ======================================KMS MENSUALEs==============================
   onRowPreparedKMS(e){

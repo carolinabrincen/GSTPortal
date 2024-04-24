@@ -18,6 +18,51 @@
             <br>
             <dx-tab-panel>
                 <dxi-item title="2024">
+                    <!--==========================Bar and Line Chart==================-->
+                    <dx-chart id="chart" [dataSource]="graficaIXO24">
+
+                        <!-- <dxi-series argumentField="mes" valueField="ingresoXOperador" name="Ingreso por Operador" type="bar" color="#363640">
+                            <dxo-label [visible]="true"  [format]="separatorKV" position="inside">
+                                <dxo-font size="9"></dxo-font>
+                            </dxo-label>
+                        </dxi-series> -->
+    
+                        <dxi-series argumentField="mes" valueField="ingresoXOperador" name="Operadores" type="line" color="#FA593F">
+                            <dxo-label [visible]="true" [format]="separatorKV" position="outside">
+                                <dxo-font size="9"></dxo-font>
+                            </dxo-label>
+    
+                        </dxi-series>
+    
+                        <dxo-title text="Ingreso por Operador">
+                            <dxo-subtitle text=""> </dxo-subtitle>
+                        </dxo-title>
+    
+                        <dxo-export [enabled]="true"></dxo-export>
+                    </dx-chart>
+                    <!--====================================Finish chart==========-->
+                    <br><br>
+                    
+                    <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="ingresoOperador24" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedIO2024($event)" (onCellPrepared)="onCellPreparedIO2024($event)">
+
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        
+                        <dxi-column dataField="mes" caption="Mes"></dxi-column>
+                        <dxi-column dataField="operadores" caption="Operadores"></dxi-column>
+                        <dxi-column dataField="ingreso" caption="Ingreso" [format]="separatorIV"></dxi-column>
+                        <dxi-column dataField="ingresoXOperador" caption="Ingreso X Operador" [format]="separatorIV"></dxi-column>                        
+                   
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
+                        <dxo-export [enabled]="true" fileName="Ingreso por Operador" ></dxo-export>
+                        <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
+                        <dxo-sorting mode="none"></dxo-sorting>
+
+                    </dx-data-grid>
+                    <br><br>
+                    
                     <h3>Ingresos</h3>
 
                     <dx-data-grid  #INGTL id="gridContainerNew" [dataSource]="ingresosTotal2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
@@ -31,185 +76,223 @@
                     <dxi-column name="fake" [showInColumnChooser]="false" [fixed]="true" fixedPosition="left" [width]="0.01"></dxi-column>  
 
                     <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
-                    <dxi-column dataField="cuatitlan" caption="Cuautitlan">
-                        <dxi-column dataField="cuatitlanIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="cuatitlanPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="cuatitlanPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="cuatitlanIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="cuatitlanPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="cuatitlanPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="cuatitlanIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="cuatitlanIngrAntPor" caption="%" format="percent"></dxi-column>
+                    <dxi-column dataField="" caption="Cuautitlan">
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="cuatitlanIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="cuatitlanPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="cuatitlanPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="cuatitlanIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="cuatitlanPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="cuatitlanPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="cuatitlanIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="cuatitlanIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
                     </dxi-column>
                     <dxi-column dataField="tultitlan" caption="Tultitlan">
-                        <dxi-column dataField="tultitlanIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlanPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlanPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="tultitlanIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlanPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlanPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="tultitlanIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="tultitlanIngrAntPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="tultitlanIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="tultitlanPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="tultitlanPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="tultitlanIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="tultitlanPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="tultitlanPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="tultitlanIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="tultitlanIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+
                     </dxi-column>
                     <dxi-column dataField="guadalajara" caption="Guadalajara">
-                        <dxi-column dataField="guadalajaraIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajaraPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajaraPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="guadalajaraIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajaraPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajaraPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="guadalajaraIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="guadalajaraIngrAntPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="guadalajaraIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="guadalajaraPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="guadalajaraPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="guadalajaraIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="guadalajaraPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="guadalajaraPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="guadalajaraIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="guadalajaraIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
                     </dxi-column>
                     <dxi-column dataField="hermosillo" caption="Hermosillo">
-                        <dxi-column dataField="hermosilloIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosilloPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosilloPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="hermosilloIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosilloPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosilloPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="hermosilloIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="hermosilloIngrAntPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="hermosilloIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="hermosilloPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="hermosilloPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="hermosilloIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="hermosilloPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="hermosilloPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="hermosilloIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="hermosilloIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
                     </dxi-column>
                     <dxi-column dataField="mexicali" caption="Mexicali">
-                        <dxi-column dataField="mexicaliIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicaliPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicaliPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="mexicaliIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicaliPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicaliPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="mexicaliIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="mexicaliIngrAntPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="mexicaliIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="mexicaliPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="mexicaliPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="mexicaliIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="mexicaliPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="mexicaliPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="mexicaliIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="mexicaliIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
                     </dxi-column>
                     <dxi-column dataField="orizaba" caption="Orizaba">
-                        <dxi-column dataField="orizabaIngr" caption="Ingreso" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizabaPres" caption="Presupuesto" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizabaPresPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="orizabaIngrAc" caption="Ingreso Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizabaPresAc" caption="Presupouesto Ac" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizabaPresAcPor" caption="%" format="percent"></dxi-column>
-                        <dxi-column dataField="orizabaIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
-                        <dxi-column dataField="orizabaIngrAntPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="" caption="Actual">
+                            <dxi-column dataField="orizabaIngr" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="orizabaPres" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="orizabaPresPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Acumulado">
+                            <dxi-column dataField="orizabaIngrAc" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="orizabaPresAc" caption="Presupuesto" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="orizabaPresAcPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
+                        <dxi-column dataField="" caption="Año Anterior">
+                            <dxi-column dataField="orizabaIngrAnt" caption="Ingreso" [format]="separatorKV"></dxi-column>
+                            <dxi-column dataField="orizabaIngrAntPor" caption="%" format="percent"></dxi-column>
+                        </dxi-column>
                     </dxi-column>
-                    <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="total" caption="Total" [format]="separatorKV" [fixed]="true" fixedPosition="right"></dxi-column>
                     <dxi-column dataField="" caption="" [width]="30"></dxi-column>
 
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                         <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
                         <!-- SUMARY DE GRUPO -->
                         <!--CUAUTITLAN-->
-                        <dxi-group-item column="cuatitlanIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="cuatitlanPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="cuatitlanIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="cuatitlanPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="cuatitlanPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="cuatitlanIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="cuatitlanPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="cuatitlanIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="cuatitlanPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="cuatitlanPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="cuatitlanIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="cuatitlanIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="cuatitlanIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <!--TULTITLAN-->
-                        <dxi-group-item column="tultitlanIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="tultitlanPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="tultitlanIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="tultitlanPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="tultitlanPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="tultitlanIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="tultitlanPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="tultitlanIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="tultitlanPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="tultitlanPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="tultitlanIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="tultitlanIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="tultitlanIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <!--GUADALAJARA-->
-                        <dxi-group-item column="guadalajaraIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="guadalajaraPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="guadalajaraIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="guadalajaraPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="guadalajaraPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="guadalajaraIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="guadalajaraPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="guadalajaraIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="guadalajaraPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="guadalajaraPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="guadalajaraIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="guadalajaraIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="guadalajaraIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <!--HERMOSILLO-->
-                        <dxi-group-item column="hermosilloIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="hermosilloPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="hermosilloIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="hermosilloPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="hermosilloPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="hermosilloIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="hermosilloPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="hermosilloIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="hermosilloPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="hermosilloPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="hermosilloIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="hermosilloIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="hermosilloIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <!--MEXICALI-->
-                        <dxi-group-item column="mexicaliIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="mexicaliPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="mexicaliIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="mexicaliPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="mexicaliPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="mexicaliIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="mexicaliPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="mexicaliIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="mexicaliPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="mexicaliPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="mexicaliIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="mexicaliIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="mexicaliIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <!--ORIZABA-->
-                        <dxi-group-item column="orizabaIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="orizabaPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="orizabaIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="orizabaPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="orizabaPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="orizabaIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="orizabaPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="orizabaIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="orizabaPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="orizabaPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
-                        <dxi-group-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="orizabaIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
 
-                        <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+                        <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
 
                         <!--CUAUTITLAN-->
-                        <dxi-total-item column="cuatitlanIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="cuatitlanPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="cuatitlanIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="cuatitlanPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="cuatitlanPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="cuatitlanIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="cuatitlanPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="cuatitlanIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="cuatitlanPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="cuatitlanPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="cuatitlanIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="cuatitlanIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="cuatitlanIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <!--TULTITLAN-->
-                        <dxi-total-item column="tultitlanIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="tultitlanPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="tultitlanIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="tultitlanPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="tultitlanPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="tultitlanIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="tultitlanPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="tultitlanIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="tultitlanPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="tultitlanPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="tultitlanIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="tultitlanIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="tultitlanIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <!--GUADALAJARA-->
-                        <dxi-total-item column="guadalajaraIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="guadalajaraPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="guadalajaraIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="guadalajaraPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="guadalajaraPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="guadalajaraIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="guadalajaraPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="guadalajaraIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="guadalajaraPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="guadalajaraPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="guadalajaraIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="guadalajaraIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="guadalajaraIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <!--HERMOSILLO-->
-                        <dxi-total-item column="hermosilloIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="hermosilloPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="hermosilloIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="hermosilloPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="hermosilloPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="hermosilloIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="hermosilloPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="hermosilloIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="hermosilloPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="hermosilloPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="hermosilloIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="hermosilloIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="hermosilloIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <!--MEXICALI-->
-                        <dxi-total-item column="mexicaliIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="mexicaliPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="mexicaliIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="mexicaliPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="mexicaliPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="mexicaliIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="mexicaliPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="mexicaliIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="mexicaliPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="mexicaliPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="mexicaliIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="mexicaliIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="mexicaliIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <!--ORIZABA-->
-                        <dxi-total-item column="orizabaIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="orizabaPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="orizabaIngr" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="orizabaPres" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="orizabaPresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="orizabaIngrAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
-                        <dxi-total-item column="orizabaPresAc" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="orizabaIngrAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
+                        <dxi-total-item column="orizabaPresAc" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="orizabaPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
-                        <dxi-total-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"  ></dxi-total-item>
                         <dxi-total-item column="orizabaIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
 
-                        <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
+                        <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="separatorKV"></dxi-total-item>
 
                     </dxo-summary>
 
@@ -655,33 +738,7 @@
                         <dxo-sorting mode="none"></dxo-sorting>
 
                     </dx-data-grid>
-                    <br><br>
 
-                    <h3>Ingreso por Operador</h3>
-                    <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="ingresoOperador24" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedIO2024($event)" (onCellPrepared)="onCellPreparedIO2024($event)">
-
-                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <dxo-header-filter [visible]="true"></dxo-header-filter>
-                        
-                        <dxi-column dataField="mes" caption="Mes" [fixed]="true"></dxi-column>
-                        <dxi-column dataField="cuatitlan" caption="Cuautitlan" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="tultitlan" caption="Tultitlan" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="guadalajara" caption="Guadalajara" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="hermosillo" caption="Hermosillo" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="mexicali" caption="Mexicali" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="orizaba" caption="Orizaba" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="ramosArizpe" caption="Ramos Arizpe" [format]="separatorIV"></dxi-column>
-                        <dxi-column dataField="total" caption="Total" [format]="separatorIV"></dxi-column>
-                        
-                   
-                        <dxo-group-panel [visible]="false"></dxo-group-panel>
-                        <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
-                        <dxo-export [enabled]="true" fileName="Ingreso por Operador" ></dxo-export>
-                        <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
-                        <dxo-sorting mode="none"></dxo-sorting>
-
-                    </dx-data-grid>
                 </dxi-item>
                 <dxi-item title="2023">
                     <h3>Ingresos por flete (sin ajuste por provisiones)</h3>
