@@ -26,11 +26,11 @@
                                 <!--==========================Bar and Line Chart==================-->
                                     <dx-chart id="chart" [dataSource]="graficaIXO24">
 
-                                        <!-- <dxi-series argumentField="mes" valueField="ingresoXOperador" name="Ingreso por Operador" type="bar" color="#363640">
+                                        <dxi-series argumentField="mes" valueField="operadores" name="Operadores" type="bar" color="#363640">
                                             <dxo-label [visible]="true"  [format]="separatorKV" position="inside">
-                                                <dxo-font size="9"></dxo-font>
+                                                <dxo-font size="10"></dxo-font>
                                             </dxo-label>
-                                        </dxi-series> -->
+                                        </dxi-series>
                     
                                         <dxi-series argumentField="mes" valueField="ingresoXOperador" name="Ingreso X Operador" type="line" color="#FA593F">
                                             <dxo-label [visible]="true" [format]="formatPesosMX" position="outside">

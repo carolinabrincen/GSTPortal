@@ -67,7 +67,7 @@
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
 
                 <dxi-column dataField="udN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
@@ -181,7 +181,7 @@
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-export [enabled]="true" fileName="Disponiblidad-Tractos" [customizeExcelCell]="customizeTra"></dxo-export>
 
                 <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="tractoOperacion" caption="Operación" [fixed]="true"></dxi-column>

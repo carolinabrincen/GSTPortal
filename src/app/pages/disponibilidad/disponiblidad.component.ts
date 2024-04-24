@@ -1,4 +1,4 @@
-import {NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy, ChangeDetectorRef,AfterViewInit, OnInit} from '@angular/core';
+import { NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, OnInit } from '@angular/core';
 import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
@@ -7,8 +7,8 @@ import { DxDataGridComponent, } from 'devextreme-angular';
 import { CurrencyPipe } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
-import { AniosModel} from './../../shared/models/rentabilidad-contable/renta-contable.model';
-import {Service} from '../../shared/models/ingresos/ingreso.service'
+import { AniosModel } from './../../shared/models/rentabilidad-contable/renta-contable.model';
+import { Service } from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
@@ -21,15 +21,15 @@ import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
 
-const totalesPor  = new TotalPorcentajes;
-const totalesPorGr  = new TotalPorcentajes;
+const totalesPor = new TotalPorcentajes;
+const totalesPorGr = new TotalPorcentajes;
 
 const groupName = new Modelos;
 
 @Component({
   templateUrl: './disponiblidad.component.html',
   styleUrls: ['./disponiblidad.component.scss'],
-  providers: [UnidadesService,ServiceSales, CurrencyPipe, Service],
+  providers: [UnidadesService, ServiceSales, CurrencyPipe, Service],
 })
 
 export class disponiblidadComponent implements OnInit {
@@ -37,52 +37,52 @@ export class disponiblidadComponent implements OnInit {
   @ViewChild(DxChartComponent, { static: false }) chart: any;
 
 
-  @ViewChild('gridModal', {static: false}) gridModal: DxDataGridComponent;
+  @ViewChild('gridModal', { static: false }) gridModal: DxDataGridComponent;
 
- 
+
   //loading
   loadingVisible = false;
 
-  paginacion = 5; 
+  paginacion = 5;
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
-  
+
 
   openModReal: boolean = false;
   expandGroup: boolean = true;
   isVisible = false;
 
   unidadNegoios: any[] = [
-    {idUnidad: 0, ciudad: 'TODOS'},
-    {idUnidad: 1, ciudad: 'ORIZABA'},
-    {idUnidad: 2, ciudad: 'GUADALAJARA'},
-    {idUnidad: 3, ciudad: 'RAMOS ARIZPE'},
-    {idUnidad: 4, ciudad: 'MEXICALI'},
-    {idUnidad: 5, ciudad: 'HERMOSILLO'},
-    {idUnidad: 8, ciudad: 'CUAUTITLAN'},
-    {idUnidad: 9, ciudad: 'TULTITLAN'},
+    { idUnidad: 0, ciudad: 'TODOS' },
+    { idUnidad: 1, ciudad: 'ORIZABA' },
+    { idUnidad: 2, ciudad: 'GUADALAJARA' },
+    { idUnidad: 3, ciudad: 'RAMOS ARIZPE' },
+    { idUnidad: 4, ciudad: 'MEXICALI' },
+    { idUnidad: 5, ciudad: 'HERMOSILLO' },
+    { idUnidad: 8, ciudad: 'CUAUTITLAN' },
+    { idUnidad: 9, ciudad: 'TULTITLAN' },
   ];
 
   status: any[] = [
-    {id: 1, descripcion: 'Ausentismo/Suspendido', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 3, descripcion: 'Baja programada', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 4, descripcion: 'Capacitacion', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 5, descripcion: 'Descanso/Vacaciones', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 6, descripcion: 'Incapacidad', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 7, descripcion: 'Instructor', disponible: 'No Disponible', status: 'A', tipo: 'Manual'},
-    {id: 8, descripcion: 'En espera de viaje', disponible: 'Disponible', status: 'A', tipo: 'Automatico'},
-    {id: 9, descripcion: 'Operando', disponible: 'Disponible', status: 'A', tipo: 'Automatico'},
-    {id: 10, descripcion: 'Disponible (Patio)', disponible: 'Disponible', status: 'A', tipo: 'Mixto'},
-    {id: 11, descripcion: 'Taller', disponible: 'No Disponible', status: 'A', tipo: 'Automatico'},
-    {id: 12, descripcion: 'Sin Estado', disponible: 'No Disponible', status: 'A', tipo: 'Automatico'},
+    { id: 1, descripcion: 'Ausentismo/Suspendido', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 3, descripcion: 'Baja programada', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 4, descripcion: 'Capacitacion', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 5, descripcion: 'Descanso/Vacaciones', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 6, descripcion: 'Incapacidad', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 7, descripcion: 'Instructor', disponible: 'No Disponible', status: 'A', tipo: 'Manual' },
+    { id: 8, descripcion: 'En espera de viaje', disponible: 'Disponible', status: 'A', tipo: 'Automatico' },
+    { id: 9, descripcion: 'Operando', disponible: 'Disponible', status: 'A', tipo: 'Automatico' },
+    { id: 10, descripcion: 'Disponible (Patio)', disponible: 'Disponible', status: 'A', tipo: 'Mixto' },
+    { id: 11, descripcion: 'Taller', disponible: 'No Disponible', status: 'A', tipo: 'Automatico' },
+    { id: 12, descripcion: 'Sin Estado', disponible: 'No Disponible', status: 'A', tipo: 'Automatico' },
   ]
 
   operaciones: any[] = [
-    {id: 0, descripcion: 'SIN ASIGNAR'},
-    {id: 4, descripcion: 'CAJA SECA'},
-    {id: 10, descripcion: 'GONDOLA'},
-    {id: 11, descripcion: 'TOLVA GRANEL'},
-    {id: 8, descripcion: 'GRADO ALIMENT'},
-    {id: 9, descripcion: 'ENCORTINADO'},
+    { id: 0, descripcion: 'SIN ASIGNAR' },
+    { id: 4, descripcion: 'CAJA SECA' },
+    { id: 10, descripcion: 'GONDOLA' },
+    { id: 11, descripcion: 'TOLVA GRANEL' },
+    { id: 8, descripcion: 'GRADO ALIMENT' },
+    { id: 9, descripcion: 'ENCORTINADO' },
 
 
 
@@ -108,18 +108,18 @@ export class disponiblidadComponent implements OnInit {
   tractos: any = []
   operadores: any = []
   remolque: any = []
-  
+
   showFilterRow: boolean;
   currentFilter: any;
   applyFilterTypes: any;
 
   now: Date = new Date();
-  constructor( 
-    private disponibilidadService: DisponibilidadAnualService, 
-    private service: ServiceSales, 
+  constructor(
+    private disponibilidadService: DisponibilidadAnualService,
+    private service: ServiceSales,
     private currencyPipe: CurrencyPipe,
     testService: Service
-    ) {
+  ) {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
@@ -141,93 +141,93 @@ export class disponiblidadComponent implements OnInit {
     // this.getDisponiblidadAnual();
   }
 
-  getDisponiblidadAnual(){
-      this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
-        console.log(response.data)
-        this.resumenOperadores = response.data.resumenOperadores;
-        this.resumenTractos = response.data.resumen;
-        this.resumenRemolques = response.data.resumenRemolques;
-        this.resumenDolly = response.data.resumenDollys;
-        this.tractos = response.data.tractos;
-        this.operadores = response.data.operadores;
-        this.remolque = response.data.remolques;
-        this.loadingVisible = false
+  getDisponiblidadAnual() {
+    this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
+      console.log(response.data)
+      this.resumenOperadores = response.data.resumenOperadores;
+      this.resumenTractos = response.data.resumen;
+      this.resumenRemolques = response.data.resumenRemolques;
+      this.resumenDolly = response.data.resumenDollys;
+      this.tractos = response.data.tractos;
+      this.operadores = response.data.operadores;
+      this.remolque = response.data.remolques;
+      this.loadingVisible = false
 
-        this.selectedOperacion = undefined;
-        this.selectedStatus = undefined;
-      });
+      this.selectedOperacion = undefined;
+      this.selectedStatus = undefined;
+    });
   }
 
-/*======================SELECTE FUNCIONS================================================*/
-  selectUdn(value: any){
+  /*======================SELECTE FUNCIONS================================================*/
+  selectUdn(value: any) {
     this.selectedUdn = value.value;
     //console.log(this.selectedUdn)
-    if(this.selectedUdn === 0){
+    if (this.selectedUdn === 0) {
       this.printUdn = "TODOS";
     }
-    if(this.selectedUdn === 1){
+    if (this.selectedUdn === 1) {
       this.printUdn = "ORIZABA";
     }
-    if(this.selectedUdn === 2){
+    if (this.selectedUdn === 2) {
       this.printUdn = "GUADALAJARA";
     }
-    if(this.selectedUdn === 3){
+    if (this.selectedUdn === 3) {
       this.printUdn = "RAMOS ARIZPE";
     }
-    if(this.selectedUdn === 4){
+    if (this.selectedUdn === 4) {
       this.printUdn = "MEXICALI";
     }
-    if(this.selectedUdn === 5){
+    if (this.selectedUdn === 5) {
       this.printUdn = "HERMOSILLO";
     }
-    if(this.selectedUdn === 8){
+    if (this.selectedUdn === 8) {
       this.printUdn = "CUAUTITLAN";
     }
-    if(this.selectedUdn === 9){
+    if (this.selectedUdn === 9) {
       this.printUdn = "TULTITLAN";
     }
   }
-  selectFecha(value: any){
+  selectFecha(value: any) {
     //console.log(value)
   }
-  selectOperacion(value: any){
+  selectOperacion(value: any) {
     this.selectedOperacion = value.value
     console.log(this.selectedOperacion)
   }
-  selectStatus(value: any){
+  selectStatus(value: any) {
     this.selectedStatus = value.value;
     console.log(value)
   }
 
-  blurStatus(value:any){
+  blurStatus(value: any) {
     console.log(value)
     this.status.forEach(element => {
-      if(element.id === this.selectedStatus){
+      if (element.id === this.selectedStatus) {
         value.data.descripcionStManual = element.descripcion;
 
       }
     });
   }
-/*========================Guardar Status Manual=========================================*/
+  /*========================Guardar Status Manual=========================================*/
 
-  saveStatusManual(value){
+  saveStatusManual(value) {
     let myValue = value.data
     let myIdUser = sessionStorage.getItem('idUsuario')
 
     // if(myValue.inicio !== null && myValue.fin !== null){
-      // if(myValue.inicio == null){
-      //   myValue.inicio = "";
-      // }
-      // if(myValue.fin == null){
-      //   myValue.fin = "";
-      // }
+    // if(myValue.inicio == null){
+    //   myValue.inicio = "";
+    // }
+    // if(myValue.fin == null){
+    //   myValue.fin = "";
+    // }
 
-      // if(myValue.observaciones == null){
-      //   myValue.observaciones = "";
-      // }
+    // if(myValue.observaciones == null){
+    //   myValue.observaciones = "";
+    // }
     this.loadingVisible = true;
 
-    this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data =>{
+    this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data => {
       console.log(data)
       this.getDisponiblidadAnual()
 
@@ -250,14 +250,14 @@ export class disponiblidadComponent implements OnInit {
     // }
 
   }
-/*========================Guardar Tipo Operacion Operador=========================================*/
-saveTipoOperacionOper(value){
+  /*========================Guardar Tipo Operacion Operador=========================================*/
+  saveTipoOperacionOper(value) {
     let myValue = value.data
     let myIdUser = sessionStorage.getItem('idUsuario')
-   
+
     this.loadingVisible = true;
 
-    this.disponibilidadService.postTipoOperacionOpe(myValue.id_personal, this.selectedOperacion, myIdUser).subscribe(data =>{
+    this.disponibilidadService.postTipoOperacionOpe(myValue.id_personal, this.selectedOperacion, myIdUser).subscribe(data => {
       console.log(data)
       this.getDisponiblidadAnual()
 
@@ -273,15 +273,15 @@ saveTipoOperacionOper(value){
 
   buscarClick = (e: any) => {
     // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
-      this.loadingVisible = true;
+    this.loadingVisible = true;
 
-      this.getDisponiblidadAnual();
+    this.getDisponiblidadAnual();
     // }
 
   };
 
   ngAfterViewInit() {
-    
+
     // this.pivotGrid.instance.bindChart(this.chart.instance, {
     //   dataFieldsDisplayMode: 'splitPanes',
     //   alternateDataFields: false,
@@ -311,37 +311,37 @@ saveTipoOperacionOper(value){
       e.cells.forEach((c: any) => {
 
         if (c.cellElement) {
-          if (c.columnIndex == 2){
+          if (c.columnIndex == 2) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 10){
+          if (c.columnIndex == 10) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 12){
+          if (c.columnIndex == 12) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 24){
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#cdcbcb";
-          }
+          // if (c.columnIndex == 24){
+          //   c.cellElement.style.fontWeight = "bolder";
+          //   c.cellElement.style.fontSize = "15px";
+          //   c.cellElement.style.background = "#cdcbcb";
+          // }
 
-          if (c.columnIndex == 25){
+          if (c.columnIndex == 25) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#f5f5f5";
           }
 
-          if (c.columnIndex == 26){
+          if (c.columnIndex == 26) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -352,61 +352,112 @@ saveTipoOperacionOper(value){
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
+
   onCellPreparedResumenO(e: any) {
-    if (e.rowType == 'group'){
+    if (e.rowType == 'group') {
 
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
 
-    if (e.rowType == 'groupFooter'){
+    if (e.rowType == 'groupFooter') {
 
 
-    if(e.columnIndex == 2){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
+      if (e.columnIndex == 2) {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if (e.columnIndex == 10) {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if (e.columnIndex == 12) {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      // if(e.columnIndex == 24){
+      //   e.cellElement.style.fontWeight = "bolder";
+      //   e.cellElement.style.fontSize = "15px";
+      //   e.cellElement.style.background = "#cdcbcb";
+      // }
+
+      if (e.columnIndex == 25) {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+      if (e.columnIndex == 26) {
+        e.cellElement.style.fontWeight = "bolder";
+        e.cellElement.style.fontSize = "15px";
+        e.cellElement.style.background = "#cdcbcb";
+      }
+
+    }
+  }
+
+  customizeOp(e) {
+    var gridCell = e.gridCell;
+
+    if (gridCell.rowType === 'data') {
+
+      if (e.gridCell.column.dataField == "disponibles") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "instructor") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "noDisponibles") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "bajaPor") {
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "total") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+     
     }
 
-    if(e.columnIndex == 10){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
+    if (gridCell.rowType === 'groupFooter') {
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
     }
 
-    if(e.columnIndex == 12){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
-    }
-
-    if(e.columnIndex == 24){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
-    }
-
-    if(e.columnIndex == 25){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
-    }
-
-    if(e.columnIndex == 26){
-      e.cellElement.style.fontWeight = "bolder";
-      e.cellElement.style.fontSize = "15px";
-      e.cellElement.style.background = "#cdcbcb";
-    }
-
+    if (gridCell.rowType === 'totalFooter') {
+      
+      e.backgroundColor = "#ff9460";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
     }
   }
 
@@ -416,25 +467,25 @@ saveTipoOperacionOper(value){
       e.cells.forEach((c: any) => {
 
         if (c.cellElement) {
-          if (c.columnIndex == 3){
+          if (c.columnIndex == 3) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 9){
+          if (c.columnIndex == 9) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 21){
+          if (c.columnIndex == 21) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 22){
+          if (c.columnIndex == 22) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -446,46 +497,88 @@ saveTipoOperacionOper(value){
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
+
   onCellPreparedResumenT(e: any) {
-    if (e.rowType == 'group'){
+    if (e.rowType == 'group') {
 
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
-    if (e.rowType == 'groupFooter'){
+    if (e.rowType == 'groupFooter') {
 
-      if(e.columnIndex == 3){
+      if (e.columnIndex == 3) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if(e.columnIndex == 9){
+      if (e.columnIndex == 9) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if(e.columnIndex == 21){
+      if (e.columnIndex == 21) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if(e.columnIndex == 22){
+      if (e.columnIndex == 22) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
+    }
+  }
+
+  customizeTra(e) {
+    var gridCell = e.gridCell;
+
+    if (gridCell.rowType === 'data') {
+
+      if (e.gridCell.column.dataField == "disponibles") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "noDisponible") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+      if (e.gridCell.column.dataField == "total") {
+        e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
+      }
+
+     
+
+     
+    }
+
+    if (gridCell.rowType === 'groupFooter') {
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+
+    if (gridCell.rowType === 'totalFooter') {
+      
+      e.backgroundColor = "#ff9460";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
     }
   }
 
@@ -494,25 +587,25 @@ saveTipoOperacionOper(value){
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
+
   onCellPreparedResumen(e: any) {
-    if (e.rowType == 'group'){
+    if (e.rowType == 'group') {
 
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
-    if (e.rowType == 'groupFooter'){
+    if (e.rowType == 'groupFooter') {
 
-        e.cellElement.style.fontSize = '15px';
-        // e.cellElement.style.background = "#DCDCDC";
+      e.cellElement.style.fontSize = '15px';
+      // e.cellElement.style.background = "#DCDCDC";
     }
   }
 
@@ -539,20 +632,20 @@ saveTipoOperacionOper(value){
 
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
-  onCellPreparedTractos(e: any) {
-    if (e.rowType == 'groupFooter'){
 
-        e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
+  onCellPreparedTractos(e: any) {
+    if (e.rowType == 'groupFooter') {
+
+      e.cellElement.style.fontSize = '15px';
+      e.cellElement.style.background = "#DCDCDC";
     }
   }
 
@@ -579,20 +672,20 @@ saveTipoOperacionOper(value){
 
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
-  onCellPreparedOperador(e: any) {
-    if (e.rowType == 'groupFooter'){
 
-        e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
+  onCellPreparedOperador(e: any) {
+    if (e.rowType == 'groupFooter') {
+
+      e.cellElement.style.fontSize = '15px';
+      e.cellElement.style.background = "#DCDCDC";
     }
   }
 
@@ -601,25 +694,25 @@ saveTipoOperacionOper(value){
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black";
+        }
       });
     };
   }
-  
+
   onCellPreparedRemolques(e: any) {
-    if (e.rowType == 'group'){
+    if (e.rowType == 'group') {
 
       e.cellElement.style.fontSize = '12px';
       e.cellElement.style.background = "#DCDCDC";
     }
-    if (e.rowType == 'groupFooter'){
+    if (e.rowType == 'groupFooter') {
 
-        e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
+      e.cellElement.style.fontSize = '15px';
+      e.cellElement.style.background = "#DCDCDC";
     }
   }
 
@@ -635,13 +728,13 @@ saveTipoOperacionOper(value){
 
 
   onCellPreparedDetalle(e: any) {
-    if (e.rowType == 'groupFooter'){
-      
-        e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
+    if (e.rowType == 'groupFooter') {
+
+      e.cellElement.style.fontSize = '15px';
+      e.cellElement.style.background = "#DCDCDC";
     }
 
-    if(e.rowType == 'totalFooter'){
+    if (e.rowType == 'totalFooter') {
 
       e.totalItem.cells.forEach((c: any) => {
         //Enero
@@ -707,10 +800,10 @@ saveTipoOperacionOper(value){
 
         //Calculo de Porcentajes
         //Enero
-        if(c.totalItem.summaryCells[6][0] !== undefined){
-          totalE === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = totalE/anioAntE;
-          presupuestoE === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = totalE/presupuestoE;
-          proyeccionE === 0 ? c.totalItem.summaryCells[10][0].value = 0 : c.totalItem.summaryCells[10][0].value = totalE/proyeccionE;
+        if (c.totalItem.summaryCells[6][0] !== undefined) {
+          totalE === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = totalE / anioAntE;
+          presupuestoE === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = totalE / presupuestoE;
+          proyeccionE === 0 ? c.totalItem.summaryCells[10][0].value = 0 : c.totalItem.summaryCells[10][0].value = totalE / proyeccionE;
 
           totalesPor.totalE = c.totalItem.summaryCells[6][0].value;
           totalesPor.presupuestoE = c.totalItem.summaryCells[8][0].value;
@@ -718,110 +811,110 @@ saveTipoOperacionOper(value){
 
         }
         //Febrero
-        if(c.totalItem.summaryCells[13][0] !== undefined){
-          totalFB === 0 ? c.totalItem.summaryCells[15][0].value = 0 : c.totalItem.summaryCells[15][0].value = totalFB/anioAntFB;
-          presupuestoFB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = totalFB/presupuestoFB;
-          proyeccionFB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = totalFB/proyeccionFB;
+        if (c.totalItem.summaryCells[13][0] !== undefined) {
+          totalFB === 0 ? c.totalItem.summaryCells[15][0].value = 0 : c.totalItem.summaryCells[15][0].value = totalFB / anioAntFB;
+          presupuestoFB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = totalFB / presupuestoFB;
+          proyeccionFB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = totalFB / proyeccionFB;
 
           totalesPor.totalFB = c.totalItem.summaryCells[15][0].value
           totalesPor.presupuestoFB = c.totalItem.summaryCells[17][0].value
           totalesPor.proyeccionFB = c.totalItem.summaryCells[19][0].value
         }
         //Marzo
-        if(c.totalItem.summaryCells[22][0] !== undefined){
-          totalM === 0 ? c.totalItem.summaryCells[24][0].value = 0 : c.totalItem.summaryCells[24][0].value = totalM/anioAntM;
-          presupuestoM === 0 ? c.totalItem.summaryCells[26][0].value = 0 : c.totalItem.summaryCells[26][0].value = totalM/presupuestoM;
-          proyeccionM === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = totalM/proyeccionM;
+        if (c.totalItem.summaryCells[22][0] !== undefined) {
+          totalM === 0 ? c.totalItem.summaryCells[24][0].value = 0 : c.totalItem.summaryCells[24][0].value = totalM / anioAntM;
+          presupuestoM === 0 ? c.totalItem.summaryCells[26][0].value = 0 : c.totalItem.summaryCells[26][0].value = totalM / presupuestoM;
+          proyeccionM === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = totalM / proyeccionM;
 
           totalesPor.totalM = c.totalItem.summaryCells[24][0].value
           totalesPor.presupuestoM = c.totalItem.summaryCells[26][0].value
           totalesPor.proyeccionM = c.totalItem.summaryCells[28][0].value
         }
         //Abril
-        if(c.totalItem.summaryCells[31][0] !== undefined){
-          totalA === 0 ? c.totalItem.summaryCells[33][0].value = 0 : c.totalItem.summaryCells[33][0].value = totalA/anioAntA;
-          presupuestoA === 0 ? c.totalItem.summaryCells[35][0].value = 0 : c.totalItem.summaryCells[35][0].value = totalA/presupuestoA;
-          proyeccionA === 0 ? c.totalItem.summaryCells[37][0].value = 0 : c.totalItem.summaryCells[37][0].value = totalA/proyeccionA;
+        if (c.totalItem.summaryCells[31][0] !== undefined) {
+          totalA === 0 ? c.totalItem.summaryCells[33][0].value = 0 : c.totalItem.summaryCells[33][0].value = totalA / anioAntA;
+          presupuestoA === 0 ? c.totalItem.summaryCells[35][0].value = 0 : c.totalItem.summaryCells[35][0].value = totalA / presupuestoA;
+          proyeccionA === 0 ? c.totalItem.summaryCells[37][0].value = 0 : c.totalItem.summaryCells[37][0].value = totalA / proyeccionA;
 
           totalesPor.totalA = c.totalItem.summaryCells[33][0].value
           totalesPor.presupuestoA = c.totalItem.summaryCells[35][0].value
           totalesPor.proyeccionA = c.totalItem.summaryCells[37][0].value
         }
         //Mayo
-        if(c.totalItem.summaryCells[40][0] !== undefined){
-          totalMY === 0 ? c.totalItem.summaryCells[42][0].value = 0 : c.totalItem.summaryCells[42][0].value = totalMY/anioAntMY;
-          presupuestoMY === 0 ? c.totalItem.summaryCells[44][0].value = 0 : c.totalItem.summaryCells[44][0].value = totalMY/presupuestoMY;
-          proyeccionMY === 0 ? c.totalItem.summaryCells[46][0].value = 0 : c.totalItem.summaryCells[46][0].value = totalMY/proyeccionMY;
+        if (c.totalItem.summaryCells[40][0] !== undefined) {
+          totalMY === 0 ? c.totalItem.summaryCells[42][0].value = 0 : c.totalItem.summaryCells[42][0].value = totalMY / anioAntMY;
+          presupuestoMY === 0 ? c.totalItem.summaryCells[44][0].value = 0 : c.totalItem.summaryCells[44][0].value = totalMY / presupuestoMY;
+          proyeccionMY === 0 ? c.totalItem.summaryCells[46][0].value = 0 : c.totalItem.summaryCells[46][0].value = totalMY / proyeccionMY;
 
           totalesPor.totalMY = c.totalItem.summaryCells[42][0].value
           totalesPor.presupuestoMY = c.totalItem.summaryCells[44][0].value
           totalesPor.proyeccionMY = c.totalItem.summaryCells[46][0].value
         }
         //Junio
-        if(c.totalItem.summaryCells[49][0] !== undefined){
-          totalJN === 0 ? c.totalItem.summaryCells[51][0].value = 0 : c.totalItem.summaryCells[51][0].value = totalJN/anioAntJN;
-          presupuestoJN === 0 ? c.totalItem.summaryCells[53][0].value = 0 : c.totalItem.summaryCells[53][0].value = totalJN/presupuestoJN;
-          proyeccionJN === 0 ? c.totalItem.summaryCells[55][0].value = 0 : c.totalItem.summaryCells[55][0].value = totalJN/proyeccionJN;
+        if (c.totalItem.summaryCells[49][0] !== undefined) {
+          totalJN === 0 ? c.totalItem.summaryCells[51][0].value = 0 : c.totalItem.summaryCells[51][0].value = totalJN / anioAntJN;
+          presupuestoJN === 0 ? c.totalItem.summaryCells[53][0].value = 0 : c.totalItem.summaryCells[53][0].value = totalJN / presupuestoJN;
+          proyeccionJN === 0 ? c.totalItem.summaryCells[55][0].value = 0 : c.totalItem.summaryCells[55][0].value = totalJN / proyeccionJN;
 
           totalesPor.totalJN = c.totalItem.summaryCells[51][0].value
           totalesPor.presupuestoJN = c.totalItem.summaryCells[53][0].value
           totalesPor.proyeccionJN = c.totalItem.summaryCells[55][0].value
         }
         //Julio
-        if(c.totalItem.summaryCells[58][0] !== undefined){
-          totalJL === 0 ? c.totalItem.summaryCells[60][0].value = 0 : c.totalItem.summaryCells[60][0].value = totalJL/anioAntJL;
-          presupuestoJL === 0 ? c.totalItem.summaryCells[62][0].value = 0 : c.totalItem.summaryCells[62][0].value = totalJL/presupuestoJL;
-          proyeccionJL === 0 ? c.totalItem.summaryCells[64][0].value = 0 : c.totalItem.summaryCells[64][0].value = totalJL/proyeccionJL;
+        if (c.totalItem.summaryCells[58][0] !== undefined) {
+          totalJL === 0 ? c.totalItem.summaryCells[60][0].value = 0 : c.totalItem.summaryCells[60][0].value = totalJL / anioAntJL;
+          presupuestoJL === 0 ? c.totalItem.summaryCells[62][0].value = 0 : c.totalItem.summaryCells[62][0].value = totalJL / presupuestoJL;
+          proyeccionJL === 0 ? c.totalItem.summaryCells[64][0].value = 0 : c.totalItem.summaryCells[64][0].value = totalJL / proyeccionJL;
 
           totalesPor.totalJL = c.totalItem.summaryCells[60][0].value
           totalesPor.presupuestoJL = c.totalItem.summaryCells[62][0].value
           totalesPor.proyeccionJL = c.totalItem.summaryCells[64][0].value
         }
         //Agosto
-        if(c.totalItem.summaryCells[67][0] !== undefined){
-          totalAG === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG/anioAntAG;
-          presupuestoAG === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG/presupuestoAG;
-          proyeccionAG === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG/proyeccionAG;
+        if (c.totalItem.summaryCells[67][0] !== undefined) {
+          totalAG === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG / anioAntAG;
+          presupuestoAG === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG / presupuestoAG;
+          proyeccionAG === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG / proyeccionAG;
 
           totalesPor.totalAG = c.totalItem.summaryCells[69][0].value
           totalesPor.presupuestoAG = c.totalItem.summaryCells[71][0].value
           totalesPor.proyeccionAG = c.totalItem.summaryCells[73][0].value
         }
         //Septiembre
-        if(c.totalItem.summaryCells[76][0] !== undefined){
-          totalS === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS/anioAntS;
-          presupuestoS === 0 ? c.totalItem.summaryCells[80][0].value = 0 : c.totalItem.summaryCells[80][0].value = totalS/presupuestoS;
-          proyeccionS === 0 ? c.totalItem.summaryCells[82][0].value = 0 : c.totalItem.summaryCells[82][0].value = totalS/proyeccionS;
+        if (c.totalItem.summaryCells[76][0] !== undefined) {
+          totalS === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS / anioAntS;
+          presupuestoS === 0 ? c.totalItem.summaryCells[80][0].value = 0 : c.totalItem.summaryCells[80][0].value = totalS / presupuestoS;
+          proyeccionS === 0 ? c.totalItem.summaryCells[82][0].value = 0 : c.totalItem.summaryCells[82][0].value = totalS / proyeccionS;
 
           totalesPor.totalS = c.totalItem.summaryCells[78][0].value
           totalesPor.presupuestoS = c.totalItem.summaryCells[80][0].value
           totalesPor.proyeccionS = c.totalItem.summaryCells[82][0].value
         }
         //Octubre
-        if(c.totalItem.summaryCells[86][0] !== undefined){
-          totalOC === 0 ? c.totalItem.summaryCells[88][0].value = 0 : c.totalItem.summaryCells[88][0].value = totalOC/anioAntOC;
-          presupuestoOC === 0 ? c.totalItem.summaryCells[90][0].value = 0 : c.totalItem.summaryCells[90][0].value = totalOC/presupuestoOC;
-          proyeccionOC === 0 ? c.totalItem.summaryCells[92][0].value = 0 : c.totalItem.summaryCells[92][0].value = totalOC/proyeccionOC;
+        if (c.totalItem.summaryCells[86][0] !== undefined) {
+          totalOC === 0 ? c.totalItem.summaryCells[88][0].value = 0 : c.totalItem.summaryCells[88][0].value = totalOC / anioAntOC;
+          presupuestoOC === 0 ? c.totalItem.summaryCells[90][0].value = 0 : c.totalItem.summaryCells[90][0].value = totalOC / presupuestoOC;
+          proyeccionOC === 0 ? c.totalItem.summaryCells[92][0].value = 0 : c.totalItem.summaryCells[92][0].value = totalOC / proyeccionOC;
 
           totalesPor.totalOC = c.totalItem.summaryCells[88][0].value
           totalesPor.presupuestoOC = c.totalItem.summaryCells[90][0].value
           totalesPor.proyeccionOC = c.totalItem.summaryCells[92][0].value
         }
         //Noviembre
-        if(c.totalItem.summaryCells[95][0] !== undefined){
-          totalNV === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV/anioAntNV;
-          presupuestoNV === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV/presupuestoNV;
-          proyeccionNV === 0 ? c.totalItem.summaryCells[101][0].value = 0 : c.totalItem.summaryCells[101][0].value = totalNV/proyeccionNV;
+        if (c.totalItem.summaryCells[95][0] !== undefined) {
+          totalNV === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV / anioAntNV;
+          presupuestoNV === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV / presupuestoNV;
+          proyeccionNV === 0 ? c.totalItem.summaryCells[101][0].value = 0 : c.totalItem.summaryCells[101][0].value = totalNV / proyeccionNV;
 
           totalesPor.totalNV = c.totalItem.summaryCells[97][0].value
           totalesPor.presupuestoNV = c.totalItem.summaryCells[99][0].value
           totalesPor.proyeccionNV = c.totalItem.summaryCells[101][0].value
         }
         //Diciembre
-        if(c.totalItem.summaryCells[104][0] !== undefined){
-          totalDC === 0 ? c.totalItem.summaryCells[106][0].value = 0 : c.totalItem.summaryCells[106][0].value = totalDC/anioAntDC;
-          presupuestoDC === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalDC/presupuestoDC;
-          proyeccionDC === 0 ? c.totalItem.summaryCells[110][0].value = 0 : c.totalItem.summaryCells[110][0].value = totalDC/presupuestoDC;
+        if (c.totalItem.summaryCells[104][0] !== undefined) {
+          totalDC === 0 ? c.totalItem.summaryCells[106][0].value = 0 : c.totalItem.summaryCells[106][0].value = totalDC / anioAntDC;
+          presupuestoDC === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalDC / presupuestoDC;
+          proyeccionDC === 0 ? c.totalItem.summaryCells[110][0].value = 0 : c.totalItem.summaryCells[110][0].value = totalDC / presupuestoDC;
 
           totalesPor.totalDC = c.totalItem.summaryCells[106][0].value
           totalesPor.presupuestoDC = c.totalItem.summaryCells[108][0].value
@@ -829,16 +922,16 @@ saveTipoOperacionOper(value){
         }
 
       })
-      
+
     }
   }
 
 
   //==================Formato a la data de la grafica==================================
-  formatSliderTooltip (value) {
-    
-    return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
-}
+  formatSliderTooltip(value) {
+
+    return Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(value);
+  }
 
   onShown() {
     // setTimeout(() => {
@@ -850,39 +943,39 @@ saveTipoOperacionOper(value){
   }
 
 
-  customizeK(e) {  
+  customizeK(e) {
 
     var gridCell = e.gridCell;
     if (gridCell.rowType === 'group') {
-      
+
       e.backgroundColor = "#DCDCDC";
       e.fontWeight = "bolder"
-      e.font = {bold: true}
+      e.font = { bold: true }
 
     }
 
     if (gridCell.rowType === 'totalFooter') {
-        
+
       e.backgroundColor = "#ff9460";
       e.fontWeight = "bolder"
-      e.font = {bold: true}
+      e.font = { bold: true }
 
     }
 
 
   }
 
-  customizeExportData(cols, rows){  
+  customizeExportData(cols, rows) {
     //console.log(cols)
-    rows.forEach((row: any) =>{  
-      
+    rows.forEach((row: any) => {
+
       //console.log(row)
-      if(row.rowType == "groupFooter"){
-        
+      if (row.rowType == "groupFooter") {
+
 
       }
 
-      if(row.rowType == "totalFooter"){
+      if (row.rowType == "totalFooter") {
         //Enero
         row.values[5].value = totalesPor.totalE;
         row.values[7].value = totalesPor.presupuestoE;
@@ -931,11 +1024,11 @@ saveTipoOperacionOper(value){
         row.values[105].value = totalesPor.totalDC;
         row.values[107].value = totalesPor.presupuestoDC;
         row.values[109].value = totalesPor.proyeccionDC;
-          
+
       }
 
     });
-  } 
+  }
 
 
   formatValue(value) {
@@ -943,13 +1036,13 @@ saveTipoOperacionOper(value){
 
     var myFormat = myvalue.toString().split(".");
     myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
 
-    return "$ "+myFormat.join("");
+
+    return "$ " + myFormat.join("");
 
   }
 
-  dateBixInicio(value){
+  dateBixInicio(value) {
     console.log(value)
   }
 }
