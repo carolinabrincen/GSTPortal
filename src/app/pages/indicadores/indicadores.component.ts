@@ -7396,6 +7396,16 @@ onCellPreparedIO2024(e){
     return myFormat.join("");
   }
 
+  formatPesosMX(value){
+  
+      var myvalue = Math.trunc(value);
+  
+      var myFormat = myvalue.toString().split(".");
+      myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      
+  
+      return '$ '+myFormat.join("");
+  }
   /*================================EXPORTAR TODOS LOS KAPIS==========================*/
   export() {
     const chartInstance1 = this.chart1.instance;
