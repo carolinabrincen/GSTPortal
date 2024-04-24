@@ -301,6 +301,7 @@ export class IndicadoresComponent implements OnInit {
 
   ingresos: ScoreCard[] = [];
   ingresos24: ScoreCard[] = [];
+  ingresosTotal2024: ScoreCard[] = [];
   kilomentros: ScoreCard[] = [];
   kilomentros24: ScoreCard[] = [];
   ingresosKilometros: ScoreCard[] = [];
@@ -426,6 +427,7 @@ export class IndicadoresComponent implements OnInit {
       },
     }];
 
+    this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
   }
 
 
@@ -529,6 +531,8 @@ export class IndicadoresComponent implements OnInit {
     // this.loadingVisible = true;
     this.indicadorService.getScoreCard2024().subscribe(data => {
       console.log(data.data)
+// ====================================INGRESOS TOTAL======================================================================================================
+      this.ingresosTotal2024 = data.data.scIngTotal;
 // ====================================INGRESOS======================================================================================================
       this.ingresos24 = data.data.scIng;
       // this.ingresos24.sort((a, b) => (a.orden < b.orden ? -1 : 1))
@@ -3938,6 +3942,26 @@ onCellPreparedPM(e){
     }
   }
 //==============================INGRESOS 2024=========================================
+onRowPreparedITL2024(event){}
+onCellPreparedITL2024(e){
+  if (e.rowType == 'group'){
+
+    e.cellElement.style.fontSize = '12px';
+    e.cellElement.style.background = "#DCDCDC";
+  }
+
+  if (e.rowType == 'totalFooter') {
+    e.totalItem.cells.forEach((c: any) => {
+      if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black"; 
+      }   
+    });
+  }
+}
+
 onRowPreparedI2024(event){
 
   if (event.rowType == 'group'){
@@ -7027,6 +7051,15 @@ onCellPreparedIO2024(e){
     const total = value.toFixed(2);
 
     return total;
+  }
+
+  calcularPorcentajes(options: any) {
+    // //
+    // if (options.summaryProcess === 'calculate') {
+    //   if (options.name === 'grupMargenUtilidaPor') {
+    //     options.totalValue = .17;
+    //   }
+    // }
   }
 }
 
