@@ -91,7 +91,9 @@
                         <dxi-column dataField="orizabaIngrAnt" caption="Año Ant" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
                         <dxi-column dataField="orizabaIngrAntPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
-                    
+                    <dxi-column dataField="total" caption="Total" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="30"></dxi-column>
+
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                         <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
                         <!-- SUMARY DE GRUPO -->
@@ -150,6 +152,8 @@
                         <dxi-group-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
                         <dxi-group-item column="orizabaIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
 
+                        <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="false" [alignByColumn]="true"></dxi-group-item>
+
                         <!--CUAUTITLAN-->
                         <dxi-total-item column="cuatitlanIngr" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
                         <dxi-total-item column="cuatitlanPres" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
@@ -204,6 +208,8 @@
                         <dxi-total-item column="orizabaPresAcPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
                         <dxi-total-item column="orizabaIngrAnt" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
                         <dxi-total-item column="orizabaIngrAntPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"  ></dxi-total-item>
+
+                        <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##"  ></dxi-total-item>
 
                     </dxo-summary>
 
