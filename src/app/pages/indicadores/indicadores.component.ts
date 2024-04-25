@@ -465,6 +465,11 @@ export class IndicadoresComponent implements OnInit {
 
   oilProductionData = [];
 
+  lineStyleValue: string;
+
+  autoBreaksEnabledValue = true;
+  breaksCountValue: number;
+
   constructor(
     private indicadorService: IndicadoresService
   ) {
@@ -484,6 +489,7 @@ export class IndicadoresComponent implements OnInit {
     }];
 
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+    
   }
 
 
