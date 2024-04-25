@@ -44,7 +44,7 @@
                                             <dxo-break-style line="straight" value="1000"> </dxo-break-style>
                                         </dxi-value-axis>
                     
-                                        <dxo-title text="Ingreso por Operador">
+                                        <dxo-title text="Ingreso X Operador Total">
                                             <dxo-subtitle text=""> </dxo-subtitle>
                                         </dxo-title>
                                         <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
@@ -72,7 +72,61 @@
                           </dx-box>
                         </dxi-item>
                     </dx-box>
+                    <br><br>
+
+                    <dx-box direction="col" width="100%" [height]="400">
+                        <dxi-item [ratio]="3" [baseSize]="0">
+                          <dx-box direction="row" width="100%" [height]="125">
+                            <dxi-item class="rect demo-dark" [ratio]="4">
+                                <!--==========================Bar and Line Chart==================-->
+                                    <dx-chart id="chart" [dataSource]="graficaOP24">
+
+                                        <dxi-series argumentField="mes" valueField="operadores" name="Operadores" type="bar" color="#363640">
+                                            <dxo-label [visible]="true"  [format]="separatorKV" position="inside">
+                                                <dxo-font size="10"></dxo-font>
+                                            </dxo-label>
+                                        </dxi-series>
                     
+                                        <dxi-series argumentField="mes" valueField="ingresoXOperador" name="Ingreso X Operador" type="line" color="#FA593F">
+                                            <dxo-label [visible]="true" [format]="formatPesosMX" position="outside">
+                                                <dxo-font size="10"></dxo-font>
+                                            </dxo-label>
+                    
+                                        </dxi-series>
+
+                                        <dxi-value-axis [visible]="true" [autoBreaksEnabled]="autoBreaksEnabledValue" [maxAutoBreakCount]="4">
+                                            <!-- <dxo-break-style line="straight" value="200000"> </dxo-break-style> -->
+                                            <dxo-break-style line="straight" value="1000"> </dxo-break-style>
+                                        </dxi-value-axis>
+                    
+                                        <dxo-title text="Operador Promedio">
+                                            <dxo-subtitle text=""> </dxo-subtitle>
+                                        </dxo-title>
+                                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                                        </dxo-legend>
+                                        <dxo-export [enabled]="true"></dxo-export>
+                                    </dx-chart>
+                                <!--====================================Finish chart==========-->
+                            </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]="2">
+                                <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="ingresoOpProm24" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                                (onRowPrepared)="onRowPreparedIO2024($event)" (onCellPrepared)="onCellPreparedIO2024($event)">
+                                                
+                                    <dxi-column dataField="mes" caption="Mes"></dxi-column>
+                                    <dxi-column dataField="operadores" caption="Operadores"></dxi-column>
+                                    <dxi-column dataField="ingreso" caption="Ingreso" [format]="separatorIV"></dxi-column>
+                                    <dxi-column dataField="ingresoXOperador" caption="Ingreso X Operador" [format]="separatorIV"></dxi-column>                        
+                               
+                                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                                    <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
+                                    <dxo-export [enabled]="true" fileName="Ingreso por Operador" ></dxo-export>
+                                    <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
+            
+                                </dx-data-grid>
+                            </dxi-item>
+                          </dx-box>
+                        </dxi-item>
+                    </dx-box>
                     <br><br>
                     
                     <h3>Ingresos</h3>

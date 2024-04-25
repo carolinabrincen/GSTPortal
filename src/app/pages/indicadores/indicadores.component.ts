@@ -374,8 +374,10 @@ export class IndicadoresComponent implements OnInit {
   operadoresUDN24: ScoreCard[] = [];
   ingresoOperador: ScoreCard[] = [];
   ingresoOperador24: ScoreCard[] = [];
+  ingresoOpProm24: any[] = [];
 
   graficaIXO24: any[] = [];
+  graficaOP24: any[] = [];
 
   chartData: any[] = [];
 
@@ -619,7 +621,9 @@ export class IndicadoresComponent implements OnInit {
 // ====================================OPERADORES UDN ===============================================================================================  
       this.operadoresUDN24 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
-      this.ingresoOperador24 = data.data.scIngrXOperador;     
+      this.ingresoOperador24 = data.data.scIngrXOperador;    
+      
+      this.ingresoOpProm24 = data.data.scIngrXOperadorProm;
  
       this.precioMeta24 = data.data.scPrecioMeta;
 
@@ -800,6 +804,7 @@ export class IndicadoresComponent implements OnInit {
   getGraficaIO24(){
     this.indicadorService.getScoreCard2024().subscribe(data => {
       this.graficaIXO24 = data.data.scIngrXOperador;
+      this.graficaOP24 = data.data.scIngrXOperadorProm;
 
       var myArray = [
         {orden: 0, mes: '05 MAY', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -814,7 +819,7 @@ export class IndicadoresComponent implements OnInit {
 
       this.graficaIXO24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5],myArray[6],myArray[7]);
 
-      console.log(this.graficaIXO24)
+      this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5],myArray[6],myArray[7]);
      
     })
   }
