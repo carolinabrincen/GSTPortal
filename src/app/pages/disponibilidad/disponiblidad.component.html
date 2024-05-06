@@ -81,6 +81,8 @@
                         <dxi-column dataField="enEsperaPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="patio" caption="Patio"></dxi-column>
                         <dxi-column dataField="patioPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="auxilio" caption="Auxilio"></dxi-column>
+                        <dxi-column dataField="auxilioPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="instructor" caption="Instructor"></dxi-column>
                     <dxi-column dataField="instructorPor" caption="%" format="percent"></dxi-column>
@@ -116,6 +118,8 @@
                         <dxi-group-item column="enEsperaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="patio" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="patioPor"  summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="auxilio" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="auxilioPor"  summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="instructor" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="instructorPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -146,6 +150,8 @@
                         <dxi-total-item column="enEsperaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="patio" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="patioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item column="auxilio" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="auxilioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="instructor" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="instructorPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -194,6 +200,8 @@
                         <dxi-column dataField="operadoresPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="variacion" caption="Var"></dxi-column>
                         <dxi-column dataField="variacionPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="auxilio" caption="Auxilio"></dxi-column>
+                        <dxi-column dataField="auxilioPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="No Disponibles">
                         <dxi-column dataField="noDisponible" caption="No Disponibles"></dxi-column>
@@ -220,6 +228,8 @@
                         <dxi-group-item column="operadoresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="variacion" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="variacionPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="auxilio" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="auxilioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="noDisponible" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="noDisponiblesPor"  summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="taller" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -241,6 +251,8 @@
                         <dxi-total-item column="operadoresPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="variacion" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="variacionPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item column="auxilio" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="auxilioPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="noDisponible" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="noDisponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="taller" summaryType="sum" displayFormat="{0}"></dxi-total-item>

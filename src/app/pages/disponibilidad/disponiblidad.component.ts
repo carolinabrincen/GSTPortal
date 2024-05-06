@@ -317,13 +317,13 @@ export class disponiblidadComponent implements OnInit {
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 10) {
+          if (c.columnIndex == 12) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 12) {
+          if (c.columnIndex == 14) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -335,13 +335,13 @@ export class disponiblidadComponent implements OnInit {
           //   c.cellElement.style.background = "#cdcbcb";
           // }
 
-          if (c.columnIndex == 25) {
+          if (c.columnIndex == 27) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#f5f5f5";
           }
 
-          if (c.columnIndex == 26) {
+          if (c.columnIndex == 28) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -377,13 +377,13 @@ export class disponiblidadComponent implements OnInit {
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 10) {
+      if (e.columnIndex == 12) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 12) {
+      if (e.columnIndex == 14) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
@@ -395,13 +395,13 @@ export class disponiblidadComponent implements OnInit {
       //   e.cellElement.style.background = "#cdcbcb";
       // }
 
-      if (e.columnIndex == 25) {
+      if (e.columnIndex == 27) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 26) {
+      if (e.columnIndex == 28) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
@@ -473,19 +473,19 @@ export class disponiblidadComponent implements OnInit {
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 9) {
+          if (c.columnIndex == 11) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 21) {
+          if (c.columnIndex == 23) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          if (c.columnIndex == 22) {
+          if (c.columnIndex == 24) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -520,19 +520,19 @@ export class disponiblidadComponent implements OnInit {
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 9) {
+      if (e.columnIndex == 11) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 21) {
+      if (e.columnIndex == 23) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
 
-      if (e.columnIndex == 22) {
+      if (e.columnIndex == 24) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
