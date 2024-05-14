@@ -335,13 +335,13 @@ export class disponiblidadComponent implements OnInit {
           //   c.cellElement.style.background = "#cdcbcb";
           // }
 
-          if (c.columnIndex == 27) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "15px";
-            c.cellElement.style.background = "#f5f5f5";
-          }
+          // if (c.columnIndex == 29) {
+          //   c.cellElement.style.fontWeight = "bolder";
+          //   c.cellElement.style.fontSize = "15px";
+          //   c.cellElement.style.background = "#f5f5f5";
+          // }
 
-          if (c.columnIndex == 28) {
+          if (c.columnIndex == 30) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -395,13 +395,13 @@ export class disponiblidadComponent implements OnInit {
       //   e.cellElement.style.background = "#cdcbcb";
       // }
 
-      if (e.columnIndex == 27) {
-        e.cellElement.style.fontWeight = "bolder";
-        e.cellElement.style.fontSize = "15px";
-        e.cellElement.style.background = "#cdcbcb";
-      }
+      // if (e.columnIndex == 29) {
+      //   e.cellElement.style.fontWeight = "bolder";
+      //   e.cellElement.style.fontSize = "15px";
+      //   e.cellElement.style.background = "#cdcbcb";
+      // }
 
-      if (e.columnIndex == 28) {
+      if (e.columnIndex == 30) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
