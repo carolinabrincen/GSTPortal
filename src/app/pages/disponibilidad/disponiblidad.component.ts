@@ -341,7 +341,7 @@ export class disponiblidadComponent implements OnInit {
           //   c.cellElement.style.background = "#f5f5f5";
           // }
 
-          if (c.columnIndex == 30) {
+          if (c.columnIndex == 32) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "15px";
             c.cellElement.style.background = "#cdcbcb";
@@ -401,7 +401,7 @@ export class disponiblidadComponent implements OnInit {
       //   e.cellElement.style.background = "#cdcbcb";
       // }
 
-      if (e.columnIndex == 30) {
+      if (e.columnIndex == 32) {
         e.cellElement.style.fontWeight = "bolder";
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";

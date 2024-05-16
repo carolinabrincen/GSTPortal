@@ -103,6 +103,8 @@
                         <dxi-column dataField="bajaPor" caption="%" format="percent"></dxi-column>
                         <dxi-column dataField="corralon" caption="Corralon"></dxi-column>
                         <dxi-column dataField="corralonPor" caption="%" format="percent"></dxi-column>
+                        <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                        <dxi-column dataField="siniestradoPor" caption="%" format="percent"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="total" caption="Total"></dxi-column><!--[fixed]="true" fixedPosition="right"-->
                     <dxi-column dataField="presupuesto" caption="Presupuesto"></dxi-column>
@@ -138,6 +140,8 @@
                         <dxi-group-item column="ausentismoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="baja" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="siniestrado" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        <dxi-group-item column="siniestradoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="corralon" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                         <dxi-group-item column="corralonPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -172,6 +176,8 @@
                         <dxi-total-item column="ausentismoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="baja" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="bajaPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                        <dxi-total-item column="siniestrado" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                        <dxi-total-item column="siniestradoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="corralon" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         <dxi-total-item column="corralonPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                         <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
