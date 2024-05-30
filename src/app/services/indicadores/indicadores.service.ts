@@ -46,6 +46,32 @@ export class IndicadoresService extends AbstractManagerService {
   getIndicadoresChart24(){
     return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART24), this.httpOptions);
   }
+  
+  getUnidadesNegocio(){
+    return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
+  }
+
+  getTractos(anioSel: number, mesSel: number, udnSel: number[]){
+    let body ={
+      anio: anioSel,
+      mes: mesSel,
+      unidadesNegocio: udnSel
+    };
+
+    return this.post<any>((this.API_URL + API_URLS.POST_TRACTOS), body,this.httpOptions);
+  }
+
+  getSueldoOperador(anio: number, mes: number, idTracto: string, unidadesNegocio:number[]){
+    let body = {
+      anio:anio,
+      mes: mes,
+      idTracto:idTracto,
+      unidadesNegocio:unidadesNegocio.length == 7 ? [] : unidadesNegocio
+    };
+    console.log(body);
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR), body, this.httpOptions);
+  }
+
 
   
 

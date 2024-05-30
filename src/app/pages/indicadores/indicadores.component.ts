@@ -352,6 +352,7 @@ export class IndicadoresComponent implements OnInit {
   @ViewChild("chart1Test", { static: false }) chart1Test: DxChartComponent;
   @ViewChild("canvas", { static: false }) canvas;
 
+  @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
 
   ingresos: ScoreCard[] = [];
   ingresos24: ScoreCard[] = [];
@@ -449,6 +450,36 @@ export class IndicadoresComponent implements OnInit {
 
   collapseGroup: boolean;
 
+  graficaSueldoOp: any[] = [];
+
+  arrUnidadesNegocio: any[] = [];
+  arrTractos: string[] = [];
+
+  mesSeleccionado: number = 0;
+  anioSeleccionado: number = 0;
+  udnSeleccionado: number[] = [];
+  tractoSeleccionado: string = '';
+
+  arrMeses: any[] = [
+    { idMes: 1, nombre: 'ENERO' },
+    { idMes: 2, nombre: 'FEBRERO' },
+    { idMes: 3, nombre: 'MARZO' },
+    { idMes: 4, nombre: 'ABRIL' },
+    { idMes: 5, nombre: 'MAYO' },
+    { idMes: 6, nombre: 'JUNIO' },
+    { idMes: 7, nombre: 'JULIO' },
+    { idMes: 8, nombre: 'AGOSTO' },
+    { idMes: 9, nombre: 'SEPTIEMBRE' },
+    { idMes: 10, nombre: 'OCTUBRE' },
+    { idMes: 11, nombre: 'NOVIEMBRE' },
+    { idMes: 12, nombre: 'DICIEMBRE' }
+  ];
+  arrAnos: any[] = [
+    { idAnio: 2024, anio: "2024" },
+    { idAnio: 2023, anio: "2023" },
+    { idAnio: 2022, anio: "2022" },
+    { idAnio: 2021, anio: "2021" },
+  ];
 
 //=============================Customize Export Excel===============================================
   customTotalKE= new CustomTotalKE;
@@ -502,6 +533,9 @@ export class IndicadoresComponent implements OnInit {
     this.getIndicadoresChart();
     this.getIndicadoresChart24();
     this.getGraficaIO24();
+    this.getSueldoBase();
+    this.getUnidadesNegocio();
+    this.getTractos();
   }
 
   ngAfterViewInit(): void {}
@@ -530,6 +564,24 @@ export class IndicadoresComponent implements OnInit {
   totalKV: number;
   tultitlanKV: number;
 
+  getUnidadesNegocio() {
+    this.indicadorService.getUnidadesNegocio().subscribe(res => {
+      this.arrUnidadesNegocio = res.data;
+
+    });
+
+  }
+
+  getTractos() {
+    if (this.anioSeleccionado && this.mesSeleccionado && this.udnSeleccionado) {
+      this.arrTractos = [];
+      this.selectTracto.value = '';
+      this.indicadorService.getTractos(this.anioSeleccionado, this.mesSeleccionado, this.udnSeleccionado).subscribe(res => {
+        this.arrTractos = res.data.tractos;
+
+      });
+    }
+  }
 
   getScoreCard(){
     this.loadingVisible = true;
@@ -694,14 +746,14 @@ export class IndicadoresComponent implements OnInit {
 
   getIndicadoresChart24(){
     this.indicadorService.getIndicadoresChart24().subscribe(data => {
-    
+      // console.log(data.data)
       this.periodoVariacion = data.data.periodoVariacion;
-      console.log(data.data)
+      
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
       var myKMSO = data.data.varKmsXOperacion;
-
       this.kmsXOperacion24 = data.data.kmsXOperacion;
       this.kmsXOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
+      // console.log(this.kmsXOperacion24)
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
       this.kmsXOperacionDescription24 = dataKMSO;
@@ -825,6 +877,25 @@ export class IndicadoresComponent implements OnInit {
     })
   }
 
+  getSueldoBase(){
+    var anio = 2024;
+    var mes = 4;
+    var idTracto = "string"
+    var unidadesNegocio = [0]
+    this.indicadorService.getSueldoOperador(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
+      console.log(data.data)
+      var myData = data.data;
+      this.graficaSueldoOp = data.data;
+
+      // for(let i =0; i<myData.length; i++){
+
+      //   const total = myData[i].sueldoDiario;
+
+      //   myData[i].sueldoDiario = '$ '+total;
+      // }
+    })
+  }
+
   toPercenage(num) {
     return `${Math.round(num * 100)}%`;
   }
@@ -844,6 +915,31 @@ export class IndicadoresComponent implements OnInit {
     console.log(this.selectedPeriodo)
   }
 
+  seleccionarMes(e: any) {
+    this.mesSeleccionado = e.value;
+
+    this.getTractos();
+
+  }
+  seleccionarAnio(e: any) {
+    this.anioSeleccionado = e.value;
+
+    this.getTractos();
+
+  }
+  seleccionarUDN(e: any) {
+    this.udnSeleccionado = [];
+    this.udnSeleccionado = e.value;
+
+
+    this.getTractos();
+  }
+  seleccionarTracto(e: any) {
+    this.tractoSeleccionado = e.value;
+
+  }
+
+
   buscarClick = (e: any) => {
 
     if (this.selectedPeriodo) {
@@ -854,6 +950,11 @@ export class IndicadoresComponent implements OnInit {
     }
 
   };
+
+  borrarClick = (e: any) =>{
+    this.selectTracto.value = '';
+  }
+
 //==============================INGRESOS=========================================
   onRowPreparedI(event){
 
@@ -7409,6 +7510,29 @@ onCellPreparedIO2024(e){
 
   }
 
+
+  onRowPreparedSO(e){
+
+  }
+
+  onCellPreparedSO(e){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
 //===================================FORMATOS PARA LA DATA DE GRIDS=================
   newText: string = "";
   test(e){
@@ -7589,6 +7713,22 @@ onCellPreparedIO2024(e){
     //   }
     // }
   }
+
+  // customizeLabel = (point) =>{
+  //   console.log(point)
+  //   return `$${parseFloat(point.valueText).toFixed(2)}`;
+  // }
+
+  customizeLabel = (pointInfo) => {
+    const value = parseFloat(pointInfo.valueText);
+    const formattedValue = new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN',
+        minimumFractionDigits: 2
+    }).format(value);
+    return formattedValue;
+};
+
 }
 
 
