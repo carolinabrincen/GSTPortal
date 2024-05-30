@@ -504,6 +504,21 @@ export class IndicadoresComponent implements OnInit {
   autoBreaksEnabledValue = true;
   breaksCountValue: number;
 
+  soEne: number = 0;
+  soFeb: number = 0;
+  soMar: number = 0;
+  soAbr: number = 0;
+
+  sdEne: number = 0;
+  sdFeb: number = 0;
+  sdMar: number = 0;
+  sdAbr: number = 0;
+
+  totalOperaSO: number = 0;
+  totalSueldoDSO: number = 0;
+
+  autogrouping = false;
+
   constructor(
     private indicadorService: IndicadoresService
   ) {
@@ -7512,7 +7527,37 @@ onCellPreparedIO2024(e){
 
 
   onRowPreparedSO(e){
+    
+    if(e.rowType == 'groupFooter'){
+      if(e.data.key ==  "01: ENE"){
+        this.soEne = e.summaryCells[3][0].value;
+        this.sdEne = e.summaryCells[5][0].value;
+      }
 
+      if(e.data.key ==  "02: FEB"){
+        this.soFeb = e.summaryCells[3][0].value;
+        this.sdFeb = e.summaryCells[5][0].value;
+      }
+
+      if(e.data.key ==  "03: MAR"){
+        this.soMar = e.summaryCells[3][0].value;
+        this.sdMar = e.summaryCells[5][0].value;
+      }
+
+      if(e.data.key ==  "04: ABR"){
+        this.soAbr = e.summaryCells[3][0].value;
+        this.sdAbr = e.summaryCells[5][0].value;
+      }
+
+      var myOperation = this.soEne + this.soFeb + this.soMar + this.soAbr;
+      this.totalOperaSO = myOperation / 4;
+
+      var myOpSD = this.sdEne + this.sdFeb + this.sdMar + this.sdAbr;
+      this.totalSueldoDSO  = myOpSD / 4;
+  
+    }
+    
+      this.autogrouping = true;
   }
 
   onCellPreparedSO(e){
@@ -7522,8 +7567,14 @@ onCellPreparedIO2024(e){
       e.cellElement.style.background = "#DCDCDC";
     }
 
+    
+
     if (e.rowType == 'totalFooter') {
       e.totalItem.cells.forEach((c: any) => {
+
+        c.totalItem.summaryCells[3][0].value = this.totalOperaSO
+        c.totalItem.summaryCells[5][0].value = this.totalSueldoDSO
+        
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "16px";
