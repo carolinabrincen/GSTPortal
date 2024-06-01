@@ -510,12 +510,14 @@ export class IndicadoresComponent implements OnInit {
   soMar: number = 0;
   soAbr: number = 0;
   soMay: number = 0;
+  soJun: number = 0;
 
   sdEne: number = 0;
   sdFeb: number = 0;
   sdMar: number = 0;
   sdAbr: number = 0;
   sdMay: number = 0;
+  sdJun: number = 0;
 
   totalOperaSO: number = 0;
   totalSueldoDSO: number = 0;
@@ -7618,6 +7620,11 @@ onCellPreparedIO2024(e){
         this.soMay = e.summaryCells[3][0].value;
         this.sdMay = e.summaryCells[5][0].value;
       }
+
+      // if(e.data.key ==  "06: JUN"){
+      //   this.soJun = e.summaryCells[3][0].value;
+      //   this.sdJun = e.summaryCells[5][0].value;
+      // }
 
 
       var myOperation = this.soEne + this.soFeb + this.soMar + this.soAbr + this.soMay;
