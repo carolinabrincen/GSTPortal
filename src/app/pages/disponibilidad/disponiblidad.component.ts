@@ -272,13 +272,20 @@ export class disponiblidadComponent implements OnInit {
   }
 
   buscarClick = (e: any) => {
-    // if (this.selectedPeriodo !==  0 && this.selectedBoxCartera !== undefined) {
-    this.loadingVisible = true;
-
-    this.getDisponiblidadAnual();
-    // }
-
-  };
+    if (this.selectedUdn !== undefined && this.formFilter.Fecha !== "") {
+      this.loadingVisible = true;
+      
+      this.getDisponiblidadAnual();
+      }else{
+        notify({
+          message: "Debe seleccionar la Fecha",
+          position: {
+            my: 'top center',
+            at: 'top center',
+          },
+        }, 'warning', 4000);
+      }
+    };
 
   ngAfterViewInit() {
 
