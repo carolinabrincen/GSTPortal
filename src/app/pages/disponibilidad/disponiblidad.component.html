@@ -299,6 +299,7 @@
 
                 <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="tractoOperacion" caption="Operación" [fixed]="true"></dxi-column>
+                <dxi-column dataField="presupuesto" caption="Presupuesto"></dxi-column>
                 <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
                 <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
                 <dxi-column dataField="disponibilidad" caption="Disponibles"></dxi-column>
@@ -314,6 +315,7 @@
                 
                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
 
+                    <dxi-group-item column="presupuesto" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item column="totalUds" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item column="disponibilidad" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
@@ -327,6 +329,7 @@
                     <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
 
+                    <dxi-total-item column="presupuesto" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item showInColumn="porTotalUds" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                     <dxi-total-item column="disponibilidad" summaryType="sum" displayFormat="{0}"></dxi-total-item>
