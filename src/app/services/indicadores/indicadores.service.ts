@@ -72,6 +72,13 @@ export class IndicadoresService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR), body, this.httpOptions);
   }
 
+  getSueldoOpAc(){
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR_ACUMULADO), "", this.httpOptions);
+  }
+
+  postSueldoDetalle(periodo: number){
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_DETALLE + periodo), "",  this.httpOptions);
+  }
 
   
 

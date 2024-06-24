@@ -443,7 +443,18 @@ export class IndicadoresComponent implements OnInit {
     { id: 18, periodo: 202406 },
   ];
 
+  periodoAC: any[] = [
+    { id: 13, periodo: 202401 },
+    { id: 14, periodo: 202402 },
+    { id: 15, periodo: 202403 },
+    { id: 16, periodo: 202404 },
+    { id: 17, periodo: 202405 },
+    { id: 18, periodo: 202406 },
+  ];
+
   selectedPeriodo: number = 0;
+  selectedPerAC: number = 0;
+
   loadingVisible = false;
 
   graficaModel: GraficaIngresoO[] = [];
@@ -452,6 +463,7 @@ export class IndicadoresComponent implements OnInit {
   collapseGroup: boolean;
 
   graficaSueldoOp: any[] = [];
+  graficaSueldoOpAc: any[] = [];
 
   arrUnidadesNegocio: any[] = [];
   arrTractos: string[] = [];
@@ -460,6 +472,8 @@ export class IndicadoresComponent implements OnInit {
   anioSeleccionado: number = 0;
   udnSeleccionado: number[] = [];
   tractoSeleccionado: string = '';
+
+  sueldoDetalle: any[] = [];
 
   arrMeses: any[] = [
     { idMes: 1, nombre: 'ENERO' },
@@ -524,6 +538,25 @@ export class IndicadoresComponent implements OnInit {
 
   autogrouping = false;
 
+  soEneAC: number = 0;
+  soFebAC: number = 0;
+  soMarAC: number = 0;
+  soAbrAC: number = 0;
+  soMayAC: number = 0;
+  soJunAC: number = 0;
+
+  sdEneAC: number = 0;
+  sdFebAC: number = 0;
+  sdMarAC: number = 0;
+  sdAbrAC: number = 0;
+  sdMayAC: number = 0;
+  sdJunAC: number = 0;
+
+  totalOperaSOAC: number = 0;
+  totalSueldoDSOAC: number = 0;
+
+  autogroupingAC = false;
+
   constructor(
     private indicadorService: IndicadoresService
   ) {
@@ -554,6 +587,7 @@ export class IndicadoresComponent implements OnInit {
     this.getIndicadoresChart24();
     this.getGraficaIO24();
     this.getSueldoBase();
+    this.getSueldoOpAc();
     this.getUnidadesNegocio();
     this.getTractos();
   }
@@ -907,6 +941,26 @@ export class IndicadoresComponent implements OnInit {
     })
   }
 
+  getSueldoOpAc(){
+    this.indicadorService.getSueldoOpAc().subscribe(data => {
+      this.graficaSueldoOpAc = data.data;
+      //console.log(this.graficaSueldoOpAc)
+    })
+  }
+
+  getSueldoDetalle(){
+    const request = new Promise((resolve, reject) => {
+      this.indicadorService.postSueldoDetalle(this.selectedPerAC).subscribe(data =>{
+        this.sueldoDetalle = data.data;
+        console.log(this.sueldoDetalle)
+        this.loadingVisible = false;
+      })
+    })
+  return request;
+    
+  }
+
+//=====================================Function Selected ======================================
   toPercenage(num) {
     return `${Math.round(num * 100)}%`;
   }
@@ -949,6 +1003,10 @@ export class IndicadoresComponent implements OnInit {
     this.tractoSeleccionado = e.value;
 
   }
+  selectPeriodoAC(e: any) {
+    this.selectedPerAC = e.value
+    console.log(this.selectedPerAC)
+  }
 
 
   buscarClick = (e: any) => {
@@ -958,6 +1016,33 @@ export class IndicadoresComponent implements OnInit {
       this.getkmsMensuales().then(() => {
         this.loadingVisible = false;
       });
+    }else{
+      notify({
+        message: 'Por favor seleccione el periodo',
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+
+  };
+
+  buscarAC = (e: any) => {
+
+    if (this.selectedPerAC) {
+      this.loadingVisible = true;
+      this.getSueldoDetalle().then(() => {
+        this.loadingVisible = false;
+      });
+    }else{
+      notify({
+        message: 'Por favor seleccione el periodo',
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
     }
 
   };
@@ -7652,6 +7737,103 @@ onCellPreparedIO2024(e){
 
         c.totalItem.summaryCells[3][0].value = this.totalOperaSO
         c.totalItem.summaryCells[5][0].value = this.totalSueldoDSO
+        
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+  onRowPreparedSOAC(e){
+    
+    if(e.rowType == 'groupFooter'){
+      if(e.data.key ==  "01: ENE"){
+        this.soEne = e.summaryCells[3][0].value;
+        this.sdEne = e.summaryCells[5][0].value;
+      }
+
+      if(e.data.key ==  "02: FEB"){
+        this.soFeb = e.summaryCells[3][0].value;
+        this.sdFeb = e.summaryCells[5][0].value;
+      }
+
+      if(e.data.key ==  "03: MAR"){
+        this.soMar = e.summaryCells[3][0].value;
+        this.sdMar = e.summaryCells[5][0].value;
+      }
+
+      if(e.data.key ==  "04: ABR"){
+        this.soAbr = e.summaryCells[3][0].value;
+        this.sdAbr = e.summaryCells[5][0].value;
+      }
+
+      // if(e.data.key ==  "05: MAY"){
+      //   this.soMay = e.summaryCells[3][0].value;
+      //   this.sdMay = e.summaryCells[5][0].value;
+      // }
+
+      // if(e.data.key ==  "06: JUN"){
+      //   this.soJun = e.summaryCells[3][0].value;
+      //   this.sdJun = e.summaryCells[5][0].value;
+      // }
+
+
+      var myOperation = this.soEneAC + this.soFebAC + this.soMarAC + this.soAbrAC //+ this.soMay;
+      this.totalOperaSOAC = myOperation / 4;
+
+      var myOpSD = this.sdEneAC + this.sdFebAC + this.sdMarAC + this.sdAbrAC// + this.sdMay;
+      this.totalSueldoDSOAC  = myOpSD / 4;
+  
+    }
+    
+      this.autogroupingAC = true;
+  }
+
+  onCellPreparedSOAC(e){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+
+        c.totalItem.summaryCells[3][0].value = this.totalOperaSOAC
+        c.totalItem.summaryCells[5][0].value = this.totalSueldoDSOAC
+        
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+
+  onRowPreparedSD(e){
+
+  }
+
+  onCellPreparedSD(e){
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
         
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";

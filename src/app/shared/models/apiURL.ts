@@ -85,6 +85,8 @@ export enum API_URLS{
     POST_EDITAR_PRESUPUESTO = 'api/Disponibilidad/PostModPresupuesto',
     POST_ELIMINAR_PRESUPUESTO = 'api/Disponibilidad/PostEliminarPresupuesto',
     POST_SUELDO_OPERADOR = 'api/Rentabilidad/SueldoOperador',
+    POST_SUELDO_OPERADOR_ACUMULADO = 'api/Rentabilidad/SueldoAcumulado',
+    POST_SUELDO_DETALLE = 'api/Rentabilidad/SueldoDetalle/',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',

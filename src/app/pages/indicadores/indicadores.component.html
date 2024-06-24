@@ -1248,110 +1248,6 @@
         </dxi-item>
 
         <dxi-item title="Sueldo Operador">
-            <!-- <dx-responsive-box>
-               
-                <dxi-col [ratio]="1"></dxi-col>
-                <dxi-col [ratio]="2"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
-                <dxi-col [ratio]=".30"></dxi-col>
-                <dxi-col [ratio]=".80"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
-                <dxi-col [ratio]=".30"></dxi-col>
-                <dxi-col [ratio]=".60"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
-                <dxi-col [ratio]=".40"></dxi-col>
-                <dxi-col [ratio]="2"></dxi-col>
-                <dxi-col [ratio]=".25"></dxi-col>
-                <dxi-col [ratio]="1"></dxi-col>
-                
-        
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
-        
-
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="0" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Unidad de Negocio:</div>
-                </dxi-item>
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="1" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-tag-box [items]="arrUnidadesNegocio" [showSelectionControls]="true" [maxDisplayedTags]="4" [dataSource]="arrUnidadesNegocio" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
-                    </dx-tag-box>
-                </dxi-item>
-        
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Mes:</div>
-                </dxi-item>
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="idMes" (onValueChanged)="seleccionarMes($event)">
-                    </dx-select-box>
-                </dxi-item>
-
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Año:</div>
-                </dxi-item>
-        
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="arrAnos" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
-                    </dx-select-box>
-                </dxi-item>
-        
-
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-                    <div>Tracto:</div>
-                </dxi-item>
-        
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
-                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <div style="display: flex;">
-                      <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
-                      [items]="arrTractos"
-                      (onValueChanged)="seleccionarTracto($event)">
-                          ></dx-select-box>
-                          <div title="Borrar tracto">
-                            <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" >
-                            </dx-button>
-                          </div>
-                    </div>
-                </dxi-item>
-        
-                <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="12"></dxi-location>
-                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
-                    <div>
-                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
-                        </dx-button>
-                    </div>
-                </dxi-item>
-
-            </dx-responsive-box> -->
             <br>
 
             <dx-chart #chart [dataSource]="graficaSueldoOp" palette="pastel" [rotated]="false" [barGroupWidth]="120">
@@ -1397,6 +1293,151 @@
                 <dxo-grouping [autoExpandAll]="autogrouping"></dxo-grouping>
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-export [enabled]="true" fileName="Sueld Operador" ></dxo-export>
+            </dx-data-grid>
+            
+        </dxi-item>
+
+        <dxi-item title="Sueldo Operador Acumulado">
+            
+            <br>
+
+            <dx-chart #chart [dataSource]="graficaSueldoOpAc" palette="pastel" [rotated]="false" [barGroupWidth]="120">
+                <dxi-value-axis [maxValueMargin]=".15">
+            </dxi-value-axis>
+                <dxo-common-series-settings argumentField="operacion" type="bar" valueField="sueldoDiario" [barWidth]="20">
+                    <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+                     backgroundColor="transparent" [verticalOffset]="15" [customizeText]="customizeLabel">
+                        <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                    </dxo-label>
+                </dxo-common-series-settings>
+                <dxo-series-template nameField="mes" [customizeSeries]="customizeSeries"></dxo-series-template>
+                <dxo-title text=""></dxo-title>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true" fileName=""></dxo-export>
+            </dx-chart>
+            <br><br>
+
+            <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="graficaSueldoOpAc" [height]="400"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedSOAC($event)" (onCellPrepared)="onCellPreparedSOAC($event)">
+                
+                <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                <dxi-column dataField="sueldoMensual" caption="Sueldo Mensual" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                <dxi-column dataField="operadores" caption="Operadores"></dxi-column>
+                <dxi-column dataField="diasHabiles" caption="Días Habiles"></dxi-column>
+                <dxi-column dataField="sueldoDiario" caption="Sueldo Diario" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+     
+                <dxi-column dataField="" caption="" [width]="50"></dxi-column>                        
+                
+                <dxo-summary>
+                    <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
+                    <!-- SUMARY DE GRUPO -->
+                    <dxi-group-item column="sueldoMensual" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="operadores" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="sueldoDiario" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    
+                    <dxi-total-item column="sueldoMensual" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item column="operadores" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                    <dxi-total-item column="sueldoDiario" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                </dxo-summary>
+
+                <dxo-grouping [autoExpandAll]="autogroupingAC"></dxo-grouping>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-export [enabled]="true" fileName="Sueld Operador Acumulado" ></dxo-export>
+            </dx-data-grid>
+
+            <br><br>
+
+            <dx-responsive-box>
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+
+                <dxi-col [ratio]="1"></dxi-col>
+                
+        
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Periodo:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="periodoAC" displayExpr="periodo" valueExpr="periodo" (onValueChanged)="selectPeriodoAC($event)">
+                    </dx-select-box>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarAC($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+
+            <br><br>
+            <dx-data-grid  #SD id="gridContainerSD" [dataSource]="sueldoDetalle" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedSD($event)" (onCellPrepared)="onCellPreparedSD($event)">
+            
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxi-column dataField="descia" caption="Compañia" [groupIndex]="0"></dxi-column>
+                <dxi-column dataField="udN" caption="UdN" [groupIndex]="1"></dxi-column>
+                <dxi-column dataField="despue" caption="Puesto" [groupIndex]="2"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [groupIndex]="3"></dxi-column>
+
+                <dxi-column dataField="cvetra" caption="CveTra" [fixed]="true"></dxi-column>
+                <dxi-column dataField="nombre" caption="Nombre" [fixed]="true"></dxi-column>
+                <dxi-column dataField="configuracion" caption="Configuración"></dxi-column>
+                <dxi-column dataField="p0001" caption="SUELDO [P0001]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>
+                <dxi-column dataField="p0002" caption="SUELDO POR VIAJES [P0002]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0007" caption="VACACIONES [P0007]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0008" caption="PRIMA VACACIONAL [P0008]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0011" caption="INCENTIVOS POR KILOMETROS [P0011]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0019" caption="BONO [P0019]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0036" caption="SUELDO POR VIAJES APOYO [P0036]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0039" caption="REEMBOLSO P [P0039]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0041" caption="CAPACITACION POR CONTRATACION [P0041]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0042" caption="INCENTIVO X RECOMENDAC. OPERAD [P0042]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0045" caption="DEVOLUCION INFONAVIT [P0045]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0061" caption="DEV DESC ANT VIAJES NO LIQUIDA [P0061]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0062" caption="BONO PERMANENCIA 3M [P0062]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0063" caption="BONO PERMANENCIA 6M [P0063]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0065" caption="BONO CERO ACCIDENTES [P0065]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0066" caption="BONO RENDIMIENTO DIESEL [P0066]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0068" caption="BONO CLIENTE SABIC [P0068]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0069" caption="ANTICIPO DE NOMINA(VIAJES) [P0069]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0075" caption="BONO DE LEALTAD [P0075]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0076" caption="BONO CERO AUSENTISMO [P0076]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="p0077" caption="BONO POR OBJETIVOS [P0077]" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+                <dxi-column dataField="total" caption="TOTAL" [fixed]="true" fixedPosition="right" format="$ #,###,###.##;-$ #,##0.##"></dxi-column>      
+     
+                <dxi-column dataField="" caption="" [width]="50"></dxi-column>                        
+                
+                <dxo-summary>
+                    <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
+                    <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" valueFormat="$ #,###,###.##;-$ #,##0.##" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    
+                    <dxi-total-item column="total" summaryType="sum" valueFormat="$ #,##0.##;-$ #,##0.##" displayFormat="{0}"></dxi-total-item>
+                </dxo-summary>
+
+                <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-export [enabled]="true" fileName="Sueld Detalle" ></dxo-export>
             </dx-data-grid>
             
         </dxi-item>
