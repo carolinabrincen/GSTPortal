@@ -7751,42 +7751,44 @@ onCellPreparedIO2024(e){
   onRowPreparedSOAC(e){
     
     if(e.rowType == 'groupFooter'){
-      if(e.data.key ==  "01: ENE"){
-        this.soEne = e.summaryCells[3][0].value;
-        this.sdEne = e.summaryCells[5][0].value;
+      console.log(e.data)
+      if(e.data.key ==  "01 ENE"){
+        this.soEneAC = e.summaryCells[3][0].value;
+        this.sdEneAC = e.summaryCells[5][0].value;
       }
 
-      if(e.data.key ==  "02: FEB"){
-        this.soFeb = e.summaryCells[3][0].value;
-        this.sdFeb = e.summaryCells[5][0].value;
+      if(e.data.key ==  "02 FEB"){
+        this.soFebAC = e.summaryCells[3][0].value;
+        this.sdFebAC = e.summaryCells[5][0].value;
       }
 
-      if(e.data.key ==  "03: MAR"){
-        this.soMar = e.summaryCells[3][0].value;
-        this.sdMar = e.summaryCells[5][0].value;
+      if(e.data.key ==  "03 MAR"){
+        this.soMarAC = e.summaryCells[3][0].value;
+        this.sdMarAC = e.summaryCells[5][0].value;
       }
 
-      if(e.data.key ==  "04: ABR"){
-        this.soAbr = e.summaryCells[3][0].value;
-        this.sdAbr = e.summaryCells[5][0].value;
+      if(e.data.key ==  "04 ABR"){
+        this.soAbrAC = e.summaryCells[3][0].value;
+        this.sdAbrAC = e.summaryCells[5][0].value;
       }
 
-      // if(e.data.key ==  "05: MAY"){
-      //   this.soMay = e.summaryCells[3][0].value;
-      //   this.sdMay = e.summaryCells[5][0].value;
+      // if(e.data.key ==  "05 MAY"){
+      //   this.soMayAC = e.summaryCells[3][0].value;
+      //   this.sdMayAC = e.summaryCells[5][0].value;
       // }
 
-      // if(e.data.key ==  "06: JUN"){
-      //   this.soJun = e.summaryCells[3][0].value;
-      //   this.sdJun = e.summaryCells[5][0].value;
+      // if(e.data.key ==  "06 JUN"){
+      //   this.soJunAC = e.summaryCells[3][0].value;
+      //   this.sdJunAC = e.summaryCells[5][0].value;
       // }
 
 
-      var myOperation = this.soEneAC + this.soFebAC + this.soMarAC + this.soAbrAC //+ this.soMay;
-      this.totalOperaSOAC = myOperation / 4;
 
-      var myOpSD = this.sdEneAC + this.sdFebAC + this.sdMarAC + this.sdAbrAC// + this.sdMay;
-      this.totalSueldoDSOAC  = myOpSD / 4;
+      var myOperationAC = this.soEneAC + this.soFebAC + this.soMarAC + this.soAbrAC //+ this.soMay;
+      this.totalOperaSOAC = myOperationAC / 4;
+
+      var myOpSDAC = this.sdEneAC + this.sdFebAC + this.sdMarAC + this.sdAbrAC// + this.sdMay;
+      this.totalSueldoDSOAC  = myOpSDAC / 4;
   
     }
     
