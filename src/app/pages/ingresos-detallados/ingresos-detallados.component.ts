@@ -304,7 +304,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualJun2024().subscribe(res => {
       this.arrIngresosJun2024 = res.data.resumen;
       this.arrDetalleJUN2024 = res.data.detalle;
-
+      console.log(this.arrIngresosJun2024)
     });
   }
 
@@ -404,7 +404,7 @@ onRowPreparedOct(e: any) {
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if (c.columnIndex == 15){
+        if (c.columnIndex == 16){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
@@ -430,7 +430,7 @@ onRowPreparedOct(e: any) {
         // c.cellElement.style.background = "#cdcbcb";
       }
 
-      if(c.columnIndex == 15){
+      if(c.columnIndex == 16){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
@@ -533,8 +533,8 @@ onCellPreparedOct(e: any){
       }
     }
 
-    if(e.columnIndex == 15){
-      if (e.row.summaryCells[15][0].value.toString().startsWith('-')) {
+    if(e.columnIndex == 16){
+      if (e.row.summaryCells[16][0].value.toString().startsWith('-')) {
         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
       }
 
@@ -628,7 +628,7 @@ onCellPreparedOct(e: any){
       }
     }
 
-    if(e.columnIndex == 15){
+    if(e.columnIndex == 16){
       if (e.summaryItems[0].value.toString().startsWith('-')) {
          e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
       }

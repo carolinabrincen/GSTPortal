@@ -1153,6 +1153,7 @@
                             <dxi-column dataField="maTotal2" caption="Total Mes Anterior" [width]="150" [format]="formating"></dxi-column>
                             <dxi-column dataField="totalFlete2" caption="Total Ingreso Mes" [width]="150" alignment="right" [format]="formating"></dxi-column>
                             <dxi-column dataField="notasCredito" caption="Notas Crédito " alignment="right" [width]="120" [format]="formating"></dxi-column>
+                            <dxi-column dataField="notasCargo" caption="Notas Cargo" alignment="right" [width]="120" [format]="formating"></dxi-column>
                             <dxi-column dataField="total" caption="TOTAL" alignment="right" [width]="150" [format]="formating"></dxi-column>
                         </dxi-column>    
 
@@ -1220,6 +1221,11 @@
                             <dxi-group-item column="notasCredito" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                             </dxi-group-item>
                             <dxi-total-item column="notasCredito" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
+                            </dxi-total-item>
+
+                            <dxi-group-item column="notasCargo" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
+                            </dxi-group-item>
+                            <dxi-total-item column="notasCargo" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
 
                             <dxi-group-item column="otrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
