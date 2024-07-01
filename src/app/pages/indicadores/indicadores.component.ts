@@ -422,6 +422,7 @@ export class IndicadoresComponent implements OnInit {
   popupPosition: any;
 
   kmsMensykaes: KMSMensuales[] = [];
+  kmsMensuales: any[] = [];
   periodo: any[] = [
     { id: 202301, periodo: 202301 },
     { id: 202302, periodo: 202302 },
@@ -767,9 +768,9 @@ export class IndicadoresComponent implements OnInit {
   getkmsMensuales(){
     const request = new Promise((resolve, reject) => {
     this.indicadorService.getkmsMensuales(this.selectedPeriodo).subscribe(data => {
-      this.kmsMensykaes = data.data;
-      this.kmsMensykaes.sort((a, b) => (a.udN < b.udN ? -1 : 1));
-      console.log(this.kmsMensykaes)
+      this.kmsMensuales = data.data;
+      this.kmsMensuales.sort((a, b) => (a.udN < b.udN ? -1 : 1));
+      console.log(this.kmsMensuales)
      
       this.loadingVisible = false;
     })

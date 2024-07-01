@@ -1486,8 +1486,8 @@
             <br><br>
 
          <br>
-           
-         <dx-data-grid  #ING id="gridContainer8" [dataSource]="kmsMensykaes" [height]="700"[showBorders]="true" [columnAutoWidth]="true" 
+
+         <dx-data-grid  #ING id="gridContainer8" [dataSource]="kmsMensuales" [height]="700"[showBorders]="true" [columnAutoWidth]="true" 
                     (onRowPrepared)="onRowPreparedKMS($event)" (onCellPrepared)="onCellPreparedIKMS($event)">
         
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
@@ -1496,6 +1496,7 @@
                     <dxi-column dataField="anio" caption="Año" [fixed]="true" [width]="100"></dxi-column>
                     <dxi-column dataField="mes" caption="Mes" [fixed]="true" [width]="70"></dxi-column>
                     <dxi-column dataField="udN" caption="UdN" [fixed]="true" [width]="150"></dxi-column>
+
                     <dxi-column dataField="noViaje" caption="No. Viaje" [fixed]="true" [width]="100"></dxi-column>
                     <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                     <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column>
@@ -1580,16 +1581,16 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of kmsXUdnTotal24">
-                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <strong>{{value?.clasificacion}}</strong>                                
                                         <!-- [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}" -->
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" kms. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li *ngFor="let value of kmsXOperacionDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <strong>{{value?.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" kms. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>
@@ -1619,15 +1620,15 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of kmsXUdnTotal24">
-                                        <strong>{{value.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <strong>{{value?.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" kms. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li *ngFor="let value of KmsXUdnDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
-                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <strong>{{value?.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value?.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" kms. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>
@@ -1657,8 +1658,8 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of porXOperacionDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+" "+periodoVariacion}}</div>
+                                        <strong>{{value?.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>
@@ -1688,8 +1689,8 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of porXCargadosUdnDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.kmsDiferencia+"un  "+periodoVariacion}}</div>
+                                        <strong>{{value?.clasificacion}}</strong>                                
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+"un  "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>
@@ -1719,7 +1720,7 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of porXFlotaOperacionDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <strong>{{value?.clasificacion}}</strong>                                
                                         <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
@@ -1750,7 +1751,7 @@
                             <dxi-item class="rect demo-dark" [ratio]="1">
                                 <ul>
                                     <li *ngFor="let value of porXFlotaUdnDescription24">
-                                        <strong>{{value.clasificacion}}</strong>                                
+                                        <strong>{{value?.clasificacion}}</strong>                                
                                         <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value.udsDiferencia+" OPERADORES "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
