@@ -84,18 +84,19 @@ export class CarteraClientesComponent implements OnInit {
     // { id: 4, periodo: 202304 },
     // { id: 5, periodo: 202305 },
     // { id: 6, periodo: 202306 },
-    { id: 7, periodo: 202307 },
-    { id: 8, periodo: 202308 },
-    { id: 9, periodo: 202309 },
-    { id: 10, periodo: 202310 },
-    { id: 11, periodo: 202311 },
-    { id: 12, periodo: 202312 },
-    { id: 13, periodo: 202401 },
-    { id: 14, periodo: 202402 },
-    { id: 15, periodo: 202403  },
-    { id: 16, periodo: 202404  },
-    { id: 17, periodo: 202405  },
-    { id: 18, periodo: 202406  },
+    { id: 202307, periodo: 202307 },
+    { id: 202308, periodo: 202308 },
+    { id: 202309, periodo: 202309 },
+    { id: 202310, periodo: 202310 },
+    { id: 202311, periodo: 202311 },
+    { id: 202312, periodo: 202312 },
+    { id: 202401, periodo: 202401 },
+    { id: 202402, periodo: 202402 },
+    { id: 202403, periodo: 202403 },
+    { id: 202404, periodo: 202404 },
+    { id: 202405, periodo: 202405 },
+    { id: 202406, periodo: 202406 },
+    { id: 202407, periodo: 202407 },
   ];
 
   periodoActual: number;
@@ -286,6 +287,11 @@ export class CarteraClientesComponent implements OnInit {
       this.printPAvance = "30 DE JUNIO DEL 2024"
     }
 
+    if(this.selectedPeriodo == 202407){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2024"
+      this.printPAvance = "31 DE JULIO DEL 2024"
+    }
+
 
   }
 
@@ -367,7 +373,7 @@ export class CarteraClientesComponent implements OnInit {
       this.avance6.push(data.data.avanceCartera6);
 
       this.detalle = data.data.detalleCartera;
-      console.log(this.detalle)
+      console.log(data.data.detalleCartera)
 
       this.loadingVisible = false;
     })

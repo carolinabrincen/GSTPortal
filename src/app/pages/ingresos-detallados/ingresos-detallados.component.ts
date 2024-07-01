@@ -49,6 +49,8 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleMay2024: DetalleModel[] = [];
   arrIngresosJun2024: IngresosDModel[] = [];
   arrDetalleJUN2024: DetalleModel[] = [];
+  arrIngresosJul2024: IngresosDModel[] = [];
+  arrDetalleJul2024: DetalleModel[] = [];
 
   loadingVisible = false;
 
@@ -80,6 +82,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDAbril2024();
     this.getIDMDMayo2024();
     this.getIDMDJunio2024();
+    this.getIDMDJulio2024();
   }
 
   getIDMMarzo(){
@@ -100,7 +103,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleMarzo = res.data.detalle;
     });
   }
- 
   getIDMAbril(){
     this.ingresosService.getIngresosDetalladosMensualAbr().subscribe(res => {
 
@@ -119,7 +121,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleAbril = res.data.detalle;
     });
   }
-
   getIDMMayo(){
     this.ingresosService.getIngresosDetalladosMensualMay().subscribe(res => {
 
@@ -138,7 +139,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleMayo = res.data.detalle;
     });
   }
-
   getIDMJunio(){
     this.ingresosService.getIngresosDetalladosMensualJun().subscribe(res => {
 
@@ -157,7 +157,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.arrDetalleJunio = res.data.detalle;
     });
   }
-  
   getIDMJulio(){
     this.ingresosService.getIngresosDetalladosMensualJul().subscribe(res => {
 
@@ -178,7 +177,6 @@ export class IngresosDetalladosComponent implements OnInit {
       //this.loadingVisible = false;
     });
   }
-
   getIDMAgosto(){
     this.ingresosService.getIngresosDetalladosMensualAgo().subscribe(res => {
 
@@ -200,7 +198,6 @@ export class IngresosDetalladosComponent implements OnInit {
       //this.loadingVisible = false;
     });
   }
-
   getIDMSeptiembre(){
     this.ingresosService.getIngresosDetalladosMensualSep().subscribe(res => {
 
@@ -211,7 +208,6 @@ export class IngresosDetalladosComponent implements OnInit {
       //this.loadingVisible = false;
     });
   }
-
   getIDMOctubre(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualOct().subscribe(res => {
@@ -223,7 +219,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMNoviembre(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualNov().subscribe(res => {
@@ -235,7 +230,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDiciembre(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualDic().subscribe(res => {
@@ -247,7 +241,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDEnero2024(){
     //console.log("entre")
     this.loadingVisible = true;
@@ -270,7 +263,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDMarzo2024(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualMar2024().subscribe(res => {
@@ -281,7 +273,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDAbril2024(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualAbr2024().subscribe(res => {
@@ -291,7 +282,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDMayo2024(){
     this.ingresosService.getIngresosDetalladosMensualMay2024().subscribe(res => {
       this.arrIngresosMay2024 = res.data.resumen;
@@ -299,12 +289,17 @@ export class IngresosDetalladosComponent implements OnInit {
 
     });
   }
-
   getIDMDJunio2024(){
     this.ingresosService.getIngresosDetalladosMensualJun2024().subscribe(res => {
       this.arrIngresosJun2024 = res.data.resumen;
       this.arrDetalleJUN2024 = res.data.detalle;
-      console.log(this.arrIngresosJun2024)
+    });
+  }
+  getIDMDJulio2024(){
+    this.ingresosService.getIngresosDetalladosMensualJul2024().subscribe(res => {
+      this.arrIngresosJul2024 = res.data.resumen;
+      this.arrDetalleJul2024 = res.data.detalle;
+     console.log(this.arrIngresosJul2024)
     });
   }
 
