@@ -919,7 +919,6 @@ export class IndicadoresComponent implements OnInit {
 
       var myArray = [
 
-        {orden: 0, mes: '07 JUL', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '08 AGO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '09 SEP', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '10 OCT', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -927,9 +926,9 @@ export class IndicadoresComponent implements OnInit {
         {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
       ]
 
-      this.graficaIXO24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5]);
+      this.graficaIXO24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
 
-      this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4],myArray[5]);
+      this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
      
     })
   }
