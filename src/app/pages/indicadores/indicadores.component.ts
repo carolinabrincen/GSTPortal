@@ -940,6 +940,8 @@ export class IndicadoresComponent implements OnInit {
     var unidadesNegocio = [0]
     this.indicadorService.getSueldoOperador(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
       this.graficaSueldoOp = data.data;
+      this.graficaSueldoOp.sort((a, b) => (a.mes < b.mes ? -1 : 1))
+      console.log(this.graficaSueldoOp)
     })
   }
 
