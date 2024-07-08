@@ -300,18 +300,25 @@
                 <dxi-column dataField="tractoUdN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
                 <dxi-column dataField="tractoOperacion" caption="Operación" [fixed]="true"></dxi-column>
                 <dxi-column dataField="presupuesto" caption="Presupuesto"></dxi-column>
-                <dxi-column dataField="totalUds" caption="Total Uds Asigandas"></dxi-column>
-                <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
-                <dxi-column dataField="disponibilidad" caption="Disponibles"></dxi-column>
-                <dxi-column dataField="porDisponibilidad" caption="%" format="percent"></dxi-column>
-                <dxi-column dataField="variacion" caption="Variación"></dxi-column>
-                <dxi-column dataField="porVariacion" caption="%" format="percent"></dxi-column>
-                <dxi-column dataField="taller" caption="Taller"></dxi-column>
-                <dxi-column dataField="PorTaller" caption="%" format="percent"></dxi-column>
-                <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
-                <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
-                <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
-                <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
+                <dxi-column caption="Disponibles">
+                    <dxi-column dataField="totalUds" caption="Disponibles"></dxi-column>
+                    <dxi-column dataField="porTotalUds" caption="%" format="percent"></dxi-column>
+                    <dxi-column dataField="disponibilidad" caption="Operadores con Unidad"></dxi-column>
+                    <dxi-column dataField="porDisponibilidad" caption="%" format="percent"></dxi-column>
+                    <dxi-column dataField="variacion" caption="Variación"></dxi-column>
+                    <dxi-column dataField="porVariacion" caption="%" format="percent"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="No Disponibles">
+                    <dxi-column dataField="taller" caption="Taller"></dxi-column>
+                    <dxi-column dataField="PorTaller" caption="%" format="percent"></dxi-column>
+                    <dxi-column dataField="siniestrado" caption="Siniestrado"></dxi-column>
+                    <dxi-column dataField="porSiniestrado" caption="%" format="percent"></dxi-column>
+                    <dxi-column dataField="noDisponibles" caption="No Disponible"></dxi-column>
+                    <dxi-column dataField="porNoDisponibles" caption="%" format="percent"></dxi-column>
+                </dxi-column>
+                <dxi-column dataField="total" caption="Total" [fixed]="true" fixedPosition="right"></dxi-column>
+                <dxi-column dataField="" caption="" [width]="15" [fixed]="true" fixedPosition="right"></dxi-column>
+
                 
                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
 
@@ -328,6 +335,7 @@
                     <dxi-group-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item column="noDisponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                     <dxi-group-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                    <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
 
                     <dxi-total-item column="presupuesto" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item column="totalUds" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -342,6 +350,8 @@
                     <dxi-total-item showInColumn="porSiniestrado" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
                     <dxi-total-item column="noDisponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                     <dxi-total-item showInColumn="porNoDisponibles" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+                    <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+
                 </dxo-summary>
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>

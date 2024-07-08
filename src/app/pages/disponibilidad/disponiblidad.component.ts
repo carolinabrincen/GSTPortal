@@ -590,7 +590,25 @@ export class disponiblidadComponent implements OnInit {
   }
 
   onRowPreparedResumen(e: any) {
+    if (e.rowType == 'data') {
 
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if (c.columnIndex == 3) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#cdcbcb";
+          }
+
+          if (c.columnIndex == 15) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "15px";
+            c.cellElement.style.background = "#cdcbcb";
+          }
+        }
+      })
+    }
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -611,6 +629,17 @@ export class disponiblidadComponent implements OnInit {
     }
     if (e.rowType == 'groupFooter') {
 
+        if (e.columnIndex == 3) {
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "15px";
+          e.cellElement.style.background = "#cdcbcb";
+        }
+
+        if (e.columnIndex == 15) {
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "15px";
+          e.cellElement.style.background = "#cdcbcb";
+        }
       e.cellElement.style.fontSize = '15px';
       // e.cellElement.style.background = "#DCDCDC";
     }
