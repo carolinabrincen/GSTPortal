@@ -941,14 +941,14 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getSueldoOperador(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
       this.graficaSueldoOp = data.data;
       this.graficaSueldoOp.sort((a, b) => (a.mes < b.mes ? -1 : 1))
-      console.log(this.graficaSueldoOp)
+      //console.log(this.graficaSueldoOp)
     })
   }
 
   getSueldoOpAc(){
     this.indicadorService.getSueldoOpAc().subscribe(data => {
       this.graficaSueldoOpAc = data.data;
-      //console.log(this.graficaSueldoOpAc)
+      console.log(this.graficaSueldoOpAc)
     })
   }
 
