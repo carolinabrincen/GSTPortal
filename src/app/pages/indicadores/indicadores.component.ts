@@ -916,6 +916,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getScoreCard2024().subscribe(data => {
       this.graficaIXO24 = data.data.scIngrXOperador;
       this.graficaOP24 = data.data.scIngrXOperadorProm;
+      console.log(this.graficaOP24)
 
       var myArray = [
 
@@ -948,7 +949,7 @@ export class IndicadoresComponent implements OnInit {
   getSueldoOpAc(){
     this.indicadorService.getSueldoOpAc().subscribe(data => {
       this.graficaSueldoOpAc = data.data;
-      console.log(this.graficaSueldoOpAc)
+      //console.log(this.graficaSueldoOpAc)
     })
   }
 
@@ -7735,10 +7736,24 @@ onRowPreparedIO2024(e){
 }
 
 onCellPreparedIO2024(e){
-  // if (e.rowType == 'data'){
-  //   e.cellElement.style.fontSize = '12px';
-  //   e.cellElement.style.background = "#DCDCDC";
-  // }
+  if (e.rowType == 'group'){
+
+    e.cellElement.style.fontSize = '12px';
+    e.cellElement.style.background = "#DCDCDC";
+  }
+
+  if (e.rowType == 'totalFooter') {
+   
+    e.totalItem.cells.forEach((c: any) => {
+
+      if (c.cellElement) {
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "16px";
+        c.cellElement.style.background = "#ff9460";
+        c.cellElement.style.color = "black"; 
+    }  
+    })
+  }
 }
 // ======================================KMS MENSUALEs==============================
   onRowPreparedKMS(e){
@@ -7827,7 +7842,7 @@ onCellPreparedIO2024(e){
   onRowPreparedSOAC(e){
     
     if(e.rowType == 'groupFooter'){
-      console.log(e.data)
+      //console.log(e.data)
       if(e.data.key ==  "01 ENE"){
         this.soEneAC = e.summaryCells[3][0].value;
         this.sdEneAC = e.summaryCells[5][0].value;
