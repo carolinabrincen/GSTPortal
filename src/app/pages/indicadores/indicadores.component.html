@@ -93,6 +93,7 @@
                         <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="ingresoOpProm24" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                         (onRowPrepared)="onRowPreparedIO2024($event)" (onCellPrepared)="onCellPreparedIO2024($event)">                     
                             <dxi-column dataField="mes" caption="Mes" [groupIndex]="0"></dxi-column>
+                            <dxi-column dataField="operacion" caption="Operación"></dxi-column>
                             <dxi-column dataField="operadores" caption="Operadores"></dxi-column>
                             <dxi-column dataField="ingreso" caption="Ingreso" [format]="separatorIV"></dxi-column>
                             <dxi-column dataField="ingresoXOperador" caption="Ingreso X Operador" [format]="separatorIV"></dxi-column>                        

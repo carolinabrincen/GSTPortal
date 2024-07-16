@@ -7724,7 +7724,7 @@ onRowPreparedIO2024(e){
 
     e.cells.forEach((c: any) => {
       if (c.cellElement) {
-        if(c.columnIndex == 3){
+        if(c.columnIndex == 4){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
@@ -7736,11 +7736,12 @@ onRowPreparedIO2024(e){
 }
 
 onCellPreparedIO2024(e){
-  if (e.rowType == 'group'){
+  if (e.rowType == 'groupFooter'){
 
     e.cellElement.style.fontSize = '12px';
     e.cellElement.style.background = "#DCDCDC";
   }
+  
 
   if (e.rowType == 'totalFooter') {
    
