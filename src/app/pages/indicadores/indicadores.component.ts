@@ -914,10 +914,8 @@ export class IndicadoresComponent implements OnInit {
 
   getGraficaIO24(){
     this.indicadorService.getScoreCard2024().subscribe(data => {
-      this.graficaIXO24 = data.data.scIngrXOperador;
-      this.graficaOP24 = data.data.scIngrXOperadorProm;
-      console.log(this.graficaOP24)
-
+      this.graficaIXO24 = data.data.scIngrXOperador;      
+ 
       var myArray = [
 
         {orden: 0, mes: '08 AGO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -929,8 +927,13 @@ export class IndicadoresComponent implements OnInit {
 
       this.graficaIXO24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
 
-      this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
-     
+      // this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
+      
+      const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
+
+      this.graficaOP24 = result;
+      console.log(this.graficaOP24)
+
     })
   }
 
