@@ -9,6 +9,7 @@
             (onRowPrepared)="onRowPrepared($event)" (onContentReady)="onContentReady($event)" (onCellPrepared)="onCellPrepared($event)"
             >
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Precotizaciones"></dxo-export>
                 <!-- FOLIO -->
                 <dxi-column dataField="folio" caption="Folio" alignment="center" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold" fixed="true"></dxi-column>
                 <!-- STATUS -->
@@ -152,7 +153,7 @@
             <!--#region :::: GRID COTIZACIONES APROBADAS::::  -->
             <dx-data-grid #rentGer id="gridContainer" [dataSource]="arrCotizaciones" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true">
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-
+                <dxo-export [enabled]="true" fileName="Aprobadas"></dxo-export>
                 <!-- FOLIO -->
                 <dxi-column dataField="folio" caption="Folio" alignment="center" headerCellTemplate="headerTemplate" cellTemplate="cellTemplateBold" fixed="true"></dxi-column>
                 <!-- STATUS -->
