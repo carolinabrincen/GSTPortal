@@ -107,11 +107,11 @@ export const navigation = [
     path: '/macroCiclo',
     icon: 'columnproperties'
   },
-  {
-    text: 'Multipartidas',
-    path: '/multipartidas',
-    icon: 'columnproperties'
-  },
+  // {
+  //   text: 'Multipartidas',
+  //   path: '/multipartidas',
+  //   icon: 'columnproperties'
+  // },
   // {
   //   text: 'Costos',//Mensuales
   //   icon: 'columnchooser',
