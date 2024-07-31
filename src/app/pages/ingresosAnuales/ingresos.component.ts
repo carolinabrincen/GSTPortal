@@ -315,7 +315,7 @@ export class IngresosComponent implements OnInit {
     {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
     {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
     {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
-    {mes: "AGOSTO", total:0, presupuesto:0},
+    {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
     {mes: "SEPTIEMBRE", total:0, presupuesto:0},
     {mes: "OCTUBRE", total:0, presupuesto:0},
     {mes: "NOVIEMBRE", total:0, presupuesto:0},
@@ -768,10 +768,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presupuestoJL = e.summaryCells[61][0].value;
         this.totalPor24.proyeccionJL = e.summaryCells[63][0].value;
         // //Agosto
-        // this.totalPor.totalAG = e.summaryCells[67][0].value;
-        // this.totalPor.anioAntAG = e.summaryCells[68][0].value;
-        // this.totalPor.presupuestoAG = e.summaryCells[70][0].value;
-        // this.totalPor.proyeccionAG = e.summaryCells[72][0].value;
+        this.totalPor.totalAG = e.summaryCells[67][0].value;
+        this.totalPor.anioAntAG = e.summaryCells[68][0].value;
+        this.totalPor.presupuestoAG = e.summaryCells[70][0].value;
+        this.totalPor.proyeccionAG = e.summaryCells[72][0].value;
         // //Septiembre
         // this.totalPor.totalS = e.summaryCells[76][0].value;
         // this.totalPor.anioAntS = e.summaryCells[77][0].value;
@@ -889,9 +889,11 @@ export class IngresosComponent implements OnInit {
           e.summaryCells[64][0].value = this.totalPor24.ProyTotalJL;
         }
         // //Agosto
-        // e.summaryCells[69][0].value = this.totalPor.aniATotalAG;
-        // e.summaryCells[71][0].value = this.totalPor.presTotalAG;
-        // e.summaryCells[73][0].value = this.totalPor.ProyTotalAG;
+        if(e.summaryCells[69][0].value !== undefined){
+          e.summaryCells[69][0].value = this.totalPor.aniATotalAG;
+          e.summaryCells[71][0].value = this.totalPor.presTotalAG;
+          e.summaryCells[73][0].value = this.totalPor.ProyTotalAG;
+        }
         // //Septiembre
         // e.summaryCells[78][0].value = this.totalPor.aniATotalS;
         // e.summaryCells[80][0].value = this.totalPor.presTotalS;
@@ -966,15 +968,15 @@ export class IngresosComponent implements OnInit {
         let presupuestoJN24 = c.totalItem.summaryCells[52][0].value;
         let proyeccionJN24 = c.totalItem.summaryCells[54][0].value;
         // //Juio
-        // let totalJL = c.totalItem.summaryCells[58][0].value;
-        // let anioAntJL = c.totalItem.summaryCells[59][0].value;
-        // let presupuestoJL = c.totalItem.summaryCells[61][0].value;
-        // let proyeccionJL = c.totalItem.summaryCells[63][0].value;
+        let totalJL24 = c.totalItem.summaryCells[58][0].value;
+        let anioAntJL24 = c.totalItem.summaryCells[59][0].value;
+        let presupuestoJL24 = c.totalItem.summaryCells[61][0].value;
+        let proyeccionJL24 = c.totalItem.summaryCells[63][0].value;
         // //Agosto
-        // let totalAG = c.totalItem.summaryCells[67][0].value;
-        // let anioAntAG = c.totalItem.summaryCells[68][0].value;
-        // let presupuestoAG = c.totalItem.summaryCells[70][0].value;
-        // let proyeccionAG = c.totalItem.summaryCells[72][0].value;
+        let totalAG24 = c.totalItem.summaryCells[67][0].value;
+        let anioAntAG24 = c.totalItem.summaryCells[68][0].value;
+        let presupuestoAG24 = c.totalItem.summaryCells[70][0].value;
+        let proyeccionAG24 = c.totalItem.summaryCells[72][0].value;
         // //Septiembre
         // let totalS = c.totalItem.summaryCells[76][0].value;
         // let anioAntS = c.totalItem.summaryCells[77][0].value;
@@ -1059,25 +1061,25 @@ export class IngresosComponent implements OnInit {
           totalesPor24.proyeccionJN = c.totalItem.summaryCells[55][0].value
         }
         // //Julio
-        // if(c.totalItem.summaryCells[58][0] !== undefined){
-        //   totalJL === 0 ? c.totalItem.summaryCells[60][0].value = 0 : c.totalItem.summaryCells[60][0].value = totalJL/anioAntJL;
-        //   presupuestoJL === 0 ? c.totalItem.summaryCells[62][0].value = 0 : c.totalItem.summaryCells[62][0].value = totalJL/presupuestoJL;
-        //   proyeccionJL === 0 ? c.totalItem.summaryCells[64][0].value = 0 : c.totalItem.summaryCells[64][0].value = totalJL/proyeccionJL;
+        if(c.totalItem.summaryCells[60][0] !== undefined){
+          totalJL24 === 0 ? c.totalItem.summaryCells[60][0].value = 0 : c.totalItem.summaryCells[60][0].value = totalJL24/anioAntJL24;
+          presupuestoJL24 === 0 ? c.totalItem.summaryCells[62][0].value = 0 : c.totalItem.summaryCells[62][0].value = totalJL24/presupuestoJL24;
+          proyeccionJL24 === 0 ? c.totalItem.summaryCells[64][0].value = 0 : c.totalItem.summaryCells[64][0].value = totalJL24/proyeccionJL24;
 
-        //   totalesPor.totalJL = c.totalItem.summaryCells[60][0].value
-        //   totalesPor.presupuestoJL = c.totalItem.summaryCells[62][0].value
-        //   totalesPor.proyeccionJL = c.totalItem.summaryCells[64][0].value
-        // }
+          totalesPor24.totalJL = c.totalItem.summaryCells[60][0].value
+          totalesPor24.presupuestoJL = c.totalItem.summaryCells[62][0].value
+          totalesPor24.proyeccionJL = c.totalItem.summaryCells[64][0].value
+        }
         // //Agosto
-        // if(c.totalItem.summaryCells[67][0] !== undefined){
-        //   totalAG === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG/anioAntAG;
-        //   presupuestoAG === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG/presupuestoAG;
-        //   proyeccionAG === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG/proyeccionAG;
+        if(c.totalItem.summaryCells[69][0] !== undefined){
+          totalAG24 === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG24/anioAntAG24;
+          presupuestoAG24 === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG24/presupuestoAG24;
+          proyeccionAG24 === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG24/proyeccionAG24;
 
-        //   totalesPor.totalAG = c.totalItem.summaryCells[69][0].value
-        //   totalesPor.presupuestoAG = c.totalItem.summaryCells[71][0].value
-        //   totalesPor.proyeccionAG = c.totalItem.summaryCells[73][0].value
-        // }
+          totalesPor24.totalAG = c.totalItem.summaryCells[69][0].value
+          totalesPor24.presupuestoAG = c.totalItem.summaryCells[71][0].value
+          totalesPor24.proyeccionAG = c.totalItem.summaryCells[73][0].value
+        }
         // //Septiembre
         // if(c.totalItem.summaryCells[76][0] !== undefined){
         //   totalS === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS/anioAntS;

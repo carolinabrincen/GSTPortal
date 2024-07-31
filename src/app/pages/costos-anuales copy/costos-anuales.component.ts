@@ -98,6 +98,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202405, anio: "202405" },
     { idAnio: 202406, anio: "202406" },
     { idAnio: 202407, anio: "202407" },
+    { idAnio: 202408, anio: "202408" },
   ];
 
   anio: AniosModel[] = [
@@ -120,6 +121,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202405, anio: "202405" },
     { idAnio: 202406, anio: "202406" },
     { idAnio: 202407, anio: "202407" },
+    { idAnio: 202408, anio: "202408" },
   ]
 
   companias: Compania[] =[]
