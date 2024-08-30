@@ -99,6 +99,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202406, anio: "202406" },
     { idAnio: 202407, anio: "202407" },
     { idAnio: 202408, anio: "202408" },
+    { idAnio: 202409, anio: "202409" },
   ];
 
   anio: AniosModel[] = [
@@ -122,6 +123,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202406, anio: "202406" },
     { idAnio: 202407, anio: "202407" },
     { idAnio: 202408, anio: "202408" },
+    { idAnio: 202409, anio: "202409" },
   ]
 
   companias: Compania[] =[]
@@ -2620,7 +2622,7 @@ totalesOGOACD
       e.cellElement.style.color = "black";
       }
 
-      console.log(e.data)
+
 
       if(e.data.concepto == "1.- Volumen transportado" ||
         e.data.concepto == "2.- Viajes realizados" ||

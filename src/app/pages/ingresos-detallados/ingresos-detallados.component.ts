@@ -53,6 +53,8 @@ export class IngresosDetalladosComponent implements OnInit {
   arrDetalleJul2024: DetalleModel[] = [];
   arrIngresosAgo2024: IngresosDModel[] = [];
   arrDetalleAgo2024: DetalleModel[] = [];
+  arrIngresosSep2024: IngresosDModel[] = [];
+  arrDetalleSep2024: DetalleModel[] = [];
 
   loadingVisible = false;
 
@@ -86,6 +88,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDJunio2024();
     this.getIDMDJulio2024();
     this.getIDMDAgosto2024();
+    this.getIDMDSeptiembre2024();
   }
 /*=======================LLamadas GET 2023==========================*/
   getIDMMarzo(){
@@ -311,7 +314,14 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualAgo2024().subscribe(res => {
       this.arrIngresosAgo2024 = res.data.resumen;
       this.arrDetalleAgo2024 = res.data.detalle;
-     console.log(this.arrIngresosAgo2024)
+    // console.log(this.arrIngresosAgo2024)
+    });
+  }
+  getIDMDSeptiembre2024(){
+    this.ingresosService.getIngresosDetalladosMensualSep2024().subscribe(res => {
+      this.arrIngresosSep2024 = res.data.resumen;
+      this.arrDetalleSep2024 = res.data.detalle;
+     console.log(this.arrIngresosSep2024)
     });
   }
 
@@ -863,6 +873,7 @@ Actualizar(e: any){
   this.getIDMDMayo2024();
   this.getIDMDJunio2024();
   this.getIDMDAgosto2024();
+  this.getIDMDSeptiembre2024();
 }
 
 formating(value){

@@ -316,7 +316,7 @@ export class IngresosComponent implements OnInit {
     {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
     {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
     {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
-    {mes: "SEPTIEMBRE", total:0, presupuesto:0},
+    {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
     {mes: "OCTUBRE", total:0, presupuesto:0},
     {mes: "NOVIEMBRE", total:0, presupuesto:0},
     {mes: "DICIEMBRE", total:0, presupuesto:0},
@@ -768,15 +768,15 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presupuestoJL = e.summaryCells[61][0].value;
         this.totalPor24.proyeccionJL = e.summaryCells[63][0].value;
         // //Agosto
-        this.totalPor.totalAG = e.summaryCells[67][0].value;
-        this.totalPor.anioAntAG = e.summaryCells[68][0].value;
-        this.totalPor.presupuestoAG = e.summaryCells[70][0].value;
-        this.totalPor.proyeccionAG = e.summaryCells[72][0].value;
+        this.totalPor24.totalAG = e.summaryCells[67][0].value;
+        this.totalPor24.anioAntAG = e.summaryCells[68][0].value;
+        this.totalPor24.presupuestoAG = e.summaryCells[70][0].value;
+        this.totalPor24.proyeccionAG = e.summaryCells[72][0].value;
         // //Septiembre
-        // this.totalPor.totalS = e.summaryCells[76][0].value;
-        // this.totalPor.anioAntS = e.summaryCells[77][0].value;
-        // this.totalPor.presupuestoS = e.summaryCells[79][0].value;
-        // this.totalPor.proyeccionS = e.summaryCells[81][0].value;
+        this.totalPor24.totalS = e.summaryCells[76][0].value;
+        this.totalPor24.anioAntS = e.summaryCells[77][0].value;
+        this.totalPor24.presupuestoS = e.summaryCells[79][0].value;
+        this.totalPor24.proyeccionS = e.summaryCells[81][0].value;
         // //Octubre
         // this.totalPor.totalOC = e.summaryCells[86][0].value;
         // this.totalPor.anioAntOC = e.summaryCells[87][0].value;
@@ -823,13 +823,13 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presTotalJL = this.totalPor24.totalJL / this.totalPor24.presupuestoJL;
         this.totalPor24.ProyTotalJL = this.totalPor24.proyeccionJL / this.totalPor24.presupuestoJL;
         // //Agosto
-        // this.totalPor.aniATotalAG = this.totalPor.totalAG / this.totalPor.anioAntAG;
-        // this.totalPor.presTotalAG = this.totalPor.totalAG / this.totalPor.presupuestoAG;
-        // this.totalPor.ProyTotalAG = this.totalPor.proyeccionAG / this.totalPor.presupuestoAG;
+        this.totalPor24.aniATotalAG = this.totalPor24.totalAG / this.totalPor24.anioAntAG;
+        this.totalPor24.presTotalAG = this.totalPor24.totalAG / this.totalPor24.presupuestoAG;
+        this.totalPor24.ProyTotalAG = this.totalPor24.proyeccionAG / this.totalPor24.presupuestoAG;
         // //Septiembre
-        // this.totalPor.aniATotalS = this.totalPor.totalS / this.totalPor.anioAntS;
-        // this.totalPor.presTotalS = this.totalPor.totalS / this.totalPor.presupuestoS;
-        // this.totalPor.ProyTotalS = this.totalPor.proyeccionS / this.totalPor.presupuestoS;
+        this.totalPor24.aniATotalS = this.totalPor24.totalS / this.totalPor24.anioAntS;
+        this.totalPor24.presTotalS = this.totalPor24.totalS / this.totalPor24.presupuestoS;
+        this.totalPor24.ProyTotalS = this.totalPor24.proyeccionS / this.totalPor24.presupuestoS;
         // //Octubre
         // this.totalPor.aniATotalOC = this.totalPor.totalOC / this.totalPor.anioAntOC;
         // this.totalPor.presTotalOC = this.totalPor.totalOC / this.totalPor.presupuestoOC;
@@ -890,14 +890,16 @@ export class IngresosComponent implements OnInit {
         }
         // //Agosto
         if(e.summaryCells[69][0].value !== undefined){
-          e.summaryCells[69][0].value = this.totalPor.aniATotalAG;
-          e.summaryCells[71][0].value = this.totalPor.presTotalAG;
-          e.summaryCells[73][0].value = this.totalPor.ProyTotalAG;
+          e.summaryCells[69][0].value = this.totalPor24.aniATotalAG;
+          e.summaryCells[71][0].value = this.totalPor24.presTotalAG;
+          e.summaryCells[73][0].value = this.totalPor24.ProyTotalAG;
         }
         // //Septiembre
-        // e.summaryCells[78][0].value = this.totalPor.aniATotalS;
-        // e.summaryCells[80][0].value = this.totalPor.presTotalS;
-        // e.summaryCells[82][0].value = this.totalPor.ProyTotalS;
+        if(e.summaryCells[78][0].value){
+          e.summaryCells[78][0].value = this.totalPor24.aniATotalS;
+          e.summaryCells[80][0].value = this.totalPor24.presTotalS;
+          e.summaryCells[82][0].value = this.totalPor24.ProyTotalS;
+        }
         // //Octubre
         // e.summaryCells[88][0].value = this.totalPor.aniATotalOC;
         // e.summaryCells[90][0].value = this.totalPor.presTotalOC;
@@ -978,10 +980,10 @@ export class IngresosComponent implements OnInit {
         let presupuestoAG24 = c.totalItem.summaryCells[70][0].value;
         let proyeccionAG24 = c.totalItem.summaryCells[72][0].value;
         // //Septiembre
-        // let totalS = c.totalItem.summaryCells[76][0].value;
-        // let anioAntS = c.totalItem.summaryCells[77][0].value;
-        // let presupuestoS = c.totalItem.summaryCells[79][0].value;
-        // let proyeccionS = c.totalItem.summaryCells[81][0].value;
+        let totalS24 = c.totalItem.summaryCells[76][0].value;
+        let anioAntS24 = c.totalItem.summaryCells[77][0].value;
+        let presupuestoS24 = c.totalItem.summaryCells[79][0].value;
+        let proyeccionS24 = c.totalItem.summaryCells[81][0].value;
         // //Octubre
         // let totalOC = c.totalItem.summaryCells[86][0].value;
         // let anioAntOC = c.totalItem.summaryCells[87][0].value;
@@ -1081,15 +1083,15 @@ export class IngresosComponent implements OnInit {
           totalesPor24.proyeccionAG = c.totalItem.summaryCells[73][0].value
         }
         // //Septiembre
-        // if(c.totalItem.summaryCells[76][0] !== undefined){
-        //   totalS === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS/anioAntS;
-        //   presupuestoS === 0 ? c.totalItem.summaryCells[80][0].value = 0 : c.totalItem.summaryCells[80][0].value = totalS/presupuestoS;
-        //   proyeccionS === 0 ? c.totalItem.summaryCells[82][0].value = 0 : c.totalItem.summaryCells[82][0].value = totalS/proyeccionS;
+        if(c.totalItem.summaryCells[78][0] !== undefined){
+          totalS24 === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS24/anioAntS24;
+          presupuestoS24 === 0 ? c.totalItem.summaryCells[80][0].value = 0 : c.totalItem.summaryCells[80][0].value = totalS24/presupuestoS24;
+          proyeccionS24 === 0 ? c.totalItem.summaryCells[82][0].value = 0 : c.totalItem.summaryCells[82][0].value = totalS24/proyeccionS24;
 
-        //   totalesPor.totalS = c.totalItem.summaryCells[78][0].value
-        //   totalesPor.presupuestoS = c.totalItem.summaryCells[80][0].value
-        //   totalesPor.proyeccionS = c.totalItem.summaryCells[82][0].value
-        // }
+          totalesPor24.totalS = c.totalItem.summaryCells[78][0].value
+          totalesPor24.presupuestoS = c.totalItem.summaryCells[80][0].value
+          totalesPor24.proyeccionS = c.totalItem.summaryCells[82][0].value
+        }
         // //Octubre
         // if(c.totalItem.summaryCells[86][0] !== undefined){
         //   totalOC === 0 ? c.totalItem.summaryCells[88][0].value = 0 : c.totalItem.summaryCells[88][0].value = totalOC/anioAntOC;

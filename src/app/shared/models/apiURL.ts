@@ -22,6 +22,7 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_junio2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202406/06',
     GET_INGRESOS_ANUALES_DETALLADO_julio2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202407/07',
     GET_INGRESOS_ANUALES_DETALLADO_agosto2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202408/08',
+    GET_INGRESOS_ANUALES_DETALLADO_septiembre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202409/09',
     
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
