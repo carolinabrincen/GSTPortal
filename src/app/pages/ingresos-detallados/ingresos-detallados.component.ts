@@ -853,6 +853,527 @@ customizeOct(e) {
   }
 }
 
+onRowPreparedSep(e: any) {
+    
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+      if (c.value && c.value.toString().startsWith('-')) {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.color = "red";
+        }
+
+      }
+
+      if (c.cellElement) {
+        if(c.columnIndex == 2){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
+        if(c.columnIndex == 3){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
+        if(c.columnIndex == 4){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
+        if(c.columnIndex == 5){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
+        if(c.columnIndex == 6){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
+        if(c.columnIndex == 8){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+        if(c.columnIndex == 13){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+        if (c.columnIndex == 18){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+
+      }
+    });
+  }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+      if(c.columnIndex == 8){
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "15px";
+        // c.cellElement.style.background = "#cdcbcb";
+      }
+
+      if(c.columnIndex == 13){
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "15px";
+        // c.cellElement.style.background = "#cdcbcb";
+      }
+
+      if(c.columnIndex == 18){
+        c.cellElement.style.fontWeight = "bolder";
+        c.cellElement.style.fontSize = "15px";
+        // c.cellElement.style.background = "#cdcbcb";
+      }
+
+
+    });
+  }
+
+}
+
+onCellPreparedSep(e: any){
+
+  if (e.rowType === 'groupFooter'){
+
+    e.cellElement.style.background = "#cdcbcb";
+
+    if(e.columnIndex == 2){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[2][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+        }
+    }
+
+    if(e.columnIndex == 3){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 4){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[4][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 5){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[5][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 6){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[6][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 8){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+      e.cellElement.style.color = "#ff0000";
+
+      if (e.row.summaryCells[8][0].value.toString().startsWith('-')) {
+      e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 9){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 10){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 11){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 13){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }
+
+    if(e.columnIndex == 14){
+      if (e.row.summaryCells[14][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 16){
+      if (e.row.summaryCells[16][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 18){
+      if (e.row.summaryCells[18][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+    
+  }
+
+  if (e.rowType == 'totalFooter') {
+    if(e.columnIndex == 2){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+     }
+    }
+
+    if(e.columnIndex == 3){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    } 
+
+    if(e.columnIndex == 4){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 5){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 6){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 8){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+     }
+     
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 9){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 10){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 11){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 13){
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+    }
+
+    if(e.columnIndex == 14){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 16){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+    if(e.columnIndex == 18){
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
+    }
+
+
+    e.totalItem.cells.forEach((c: any) => {
+      if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black"; 
+      }   
+    });
+  }
+}
+
+customizeSep(e) {  
+  var gridCell = e.gridCell;
+  if (gridCell.rowType === 'data') {
+
+    if(e.gridCell.column.dataField !== 'tipoOperacion'){
+      var x = Math.round(e.value)
+
+      var myvalue = Math.trunc(x);
+      var myFormat = myvalue.toString().split(".");
+      myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      e.value = '$ '+myFormat;
+    }
+
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "refacturado"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvisionOtrosIngresos"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "totalFlete"){
+      e.backgroundColor = "#DCDCDC";
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#DCDCDC";
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+  }
+
+  if (gridCell.rowType === 'groupFooter') {
+    
+    e.backgroundColor = "#DCDCDC";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvisionOtrosIngresos"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      e.backgroundColor = "#DCDCDC";
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "total"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+    if(e.gridCell.column.dataField == "facturadoProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvision"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "cancelacionProvisionOtrosIngresos"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maSolicitudCancelacion"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maCancelacionOtros"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal"){
+      // e.backgroundColor = "#DCDCDC";
+
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "maTotal2"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "notasCredito"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+
+    if(e.gridCell.column.dataField == "total"){
+      if(e.gridCell.value.toString().startsWith('-')){
+        e.font.color = '#ff0000'
+      }
+    }
+  }
+}
+
+
 
 Actualizar(e: any){
   this.loadingVisible = true;
