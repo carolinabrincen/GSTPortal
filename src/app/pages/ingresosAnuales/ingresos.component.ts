@@ -169,7 +169,7 @@ export class IngresosComponent implements OnInit {
       //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
       //                   orderIngreso[18],orderIngreso[17]);
         this.indicadores2024 = response.data;
-        console.log(this.indicadores2024)
+        //console.log(this.indicadores2024)
         //console.log(this.indicadores2024)
       });
   }
@@ -305,7 +305,7 @@ export class IngresosComponent implements OnInit {
   onRowPrepared2024(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
+      console.log(e.summaryCells)
   /*====================================PERIODO 2024==================================================*/
   this.graficaModel2024 = [
     {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
@@ -316,7 +316,7 @@ export class IngresosComponent implements OnInit {
     {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
     {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
     {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
-    {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
+    {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
     {mes: "OCTUBRE", total:0, presupuesto:0},
     {mes: "NOVIEMBRE", total:0, presupuesto:0},
     {mes: "DICIEMBRE", total:0, presupuesto:0},
