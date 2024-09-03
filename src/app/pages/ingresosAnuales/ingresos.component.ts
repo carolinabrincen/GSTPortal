@@ -305,7 +305,7 @@ export class IngresosComponent implements OnInit {
   onRowPrepared2024(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      console.log(e.summaryCells)
+      //console.log(e.summaryCells)
   /*====================================PERIODO 2024==================================================*/
   this.graficaModel2024 = [
     {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
