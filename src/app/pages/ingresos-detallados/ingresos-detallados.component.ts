@@ -892,6 +892,11 @@ onRowPreparedSep(e: any) {
           c.cellElement.style.fontSize = "15px";
         }
 
+        if(c.columnIndex == 7){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+        }
+
         if(c.columnIndex == 10){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
