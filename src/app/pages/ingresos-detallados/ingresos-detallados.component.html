@@ -1820,7 +1820,7 @@
                             </dxi-column>
                             <dxi-column caption="Refacturaciones"  alignment="center" [allowSorting]="false">
                                 <dxi-column dataField="refacturado" caption="Refacturado" [width]="150" [format]="formating"></dxi-column>
-                                <dxi-column dataField="RefacturadoOtrosIngresos" caption="Otros Ingr." [width]="150" [format]="formating" alignment="right"></dxi-column>                                
+                                <dxi-column dataField="refacturadoOtrosIngresos" caption="Otros Ingr." [width]="150" [format]="formating" alignment="right"></dxi-column>                                
                                 <dxi-column dataField="maSolicitudCancelacion" caption="Cancelado" [width]="150" [format]="formating"></dxi-column>
                                 <dxi-column dataField="maCancelacionOtros" caption="Canc. Otros Ingr." [width]="150" [format]="formating"></dxi-column>
                             </dxi-column>
@@ -1880,9 +1880,9 @@
                             </dxi-group-item>
                             <dxi-total-item column="refacturado" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
-                            <dxi-group-item column="RefacturadoOtrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
+                            <dxi-group-item column="refacturadoOtrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
                             </dxi-group-item>
-                            <dxi-total-item column="RefacturadoOtrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
+                            <dxi-total-item column="refacturadoOtrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
                             <dxi-group-item column="maSolicitudCancelacion" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
                             </dxi-group-item>
