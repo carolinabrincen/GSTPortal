@@ -146,3 +146,107 @@ export const navigation = [
   //   path: '/validacion-ingreso'
   // },
 ];
+
+export const navigationID24 = [
+  {
+    text: 'Gerenciales',
+    icon: 'datafield',
+    items: [
+
+      {
+        text: 'Ingresos',
+        path: '/ingresosAnuales',
+        icon: 'money'
+      },
+      {
+        text: 'Ingresos Detalle',
+        path: '/ingresos',
+        icon: 'money'
+      },
+    ]
+  },
+  {
+    text: 'Utilidad',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Utilidad Contable',
+        icon: 'columnchooser',
+        path: '/costos-anuales-new'
+      },
+      {
+        text: 'Proyección Utilidad',
+        icon: 'columnchooser',
+        path: '/proyeccion-costos'
+      }
+    ]
+  },
+  {
+    text: 'Indicadores',
+    icon: 'columnchooser',
+    path: '/indicadores'
+  },
+  {
+    text: 'Estatus Logistico',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Disponibilidad',
+        icon: 'columnchooser',
+        path: '/disponiblidad-Unidades'
+      },
+      {
+        text: 'Presupuesto Disponiblidad',
+        icon: 'columnchooser',
+        path: '/presupuestoDisponibilidad'
+      },
+    ],
+  },
+  {
+    text: 'Cartera',
+    icon: 'datafield',
+    items: [
+      {
+        text: 'Cartera Clientes',
+        icon: 'columnchooser',
+        path: '/cartera-clientes'
+      },
+      {
+        text: 'Cartera Intercompañias',
+        icon: 'columnchooser',
+        path: '/carteraInterCompanias'
+      },
+    ]
+  },
+  {
+    text: 'Cotizador',
+    icon: 'columnchooser',
+    path: '/cotizador' 
+  },
+  {
+    text: 'Rent. Contable',
+    path: '/rentabilidadcontable',
+    icon: 'columnproperties'
+  },{
+    text: 'Rentabilidad Viajes',
+    path: '/rentabilidad-viajes',
+    icon: 'columnproperties'
+  },{
+    text: 'Rendimiento Diesel',
+    path: '/rendimiento-diesel',
+    icon: 'columnproperties'
+  },
+  {
+    text: 'Ingreso X Km.',
+    path: '/macroCiclo',
+    icon: 'columnproperties'
+  },
+  {
+    text: 'Compensación Provision',
+    path: '/compensacionProvision',
+    icon: 'columnproperties'
+  },
+
+];
+
+

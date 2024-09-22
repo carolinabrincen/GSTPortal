@@ -1,9 +1,10 @@
 import { Component, NgModule, Output, Input, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { ItemClickEvent } from 'devextreme/ui/tree_view';
 import { DxTreeViewModule, DxTreeViewComponent } from 'devextreme-angular/ui/tree-view';
-import { navigation } from '../../../app-navigation';
-
+import { navigation, navigationID24 } from '../../../app-navigation';
 import * as events from 'devextreme/events';
+
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-side-navigation-menu',
@@ -31,19 +32,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     this.menu.instance.selectItem(value);
   }
 
-  private _items!: Record <string, unknown>[];
-  get items() {
-    if (!this._items) {
-      this._items = navigation.map((item) => {
-        if(item.path && !(/^\//.test(item.path))){
-          item.path = `/${item.path}`;
-        }
-         return { ...item, expanded: !this._compactMode }
-        });
-    }
-
-    return this._items;
-  }
+  
 
   private _compactMode = false;
   @Input()
@@ -64,7 +53,44 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(private elementRef: ElementRef) { }
+  idGrupo24: any;
+
+  constructor(
+    private elementRef: ElementRef,
+    private storageService: StorageService
+  ) {
+    this.idGrupo24 = this.storageService.getSession("idValidation")
+    console.log("1 "+ this.idGrupo24)
+  }
+
+
+   private _items!: Record <string, unknown>[];
+  get items() {
+    
+    if (!this._items) {
+      if(this.idGrupo24 !== 24){
+        this._items = navigation.map((item) => {
+          if(item.path && !(/^\//.test(item.path))){
+            item.path = `/${item.path}`;
+          }
+           return { ...item, expanded: !this._compactMode }
+        }); 
+        // console.log("Normal")
+      }else if(this.idGrupo24 === 24){
+        this._items = navigationID24.map((item) => {
+          if(item.path && !(/^\//.test(item.path))){
+            item.path = `/${item.path}`;
+          }
+           return { ...item, expanded: !this._compactMode }
+        }); 
+        // console.log("ID24")
+      }
+             
+    }
+
+    return this._items;
+    
+  }
 
   onItemClick(event: ItemClickEvent) {
     this.selectedItemChanged.emit(event);

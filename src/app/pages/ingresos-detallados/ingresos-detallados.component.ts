@@ -892,19 +892,19 @@ onRowPreparedSep(e: any) {
           c.cellElement.style.fontSize = "15px";
         }
 
-        if(c.columnIndex == 8){
+        if(c.columnIndex == 10){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if(c.columnIndex == 13){
+        if(c.columnIndex == 15){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if (c.columnIndex == 18){
+        if (c.columnIndex == 20){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
@@ -918,19 +918,19 @@ onRowPreparedSep(e: any) {
   if (e.rowType == 'totalFooter') {
     e.cells.forEach((c: any) => {
 
-      if(c.columnIndex == 8){
+      if(c.columnIndex == 10){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
       }
 
-      if(c.columnIndex == 13){
+      if(c.columnIndex == 15){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
       }
 
-      if(c.columnIndex == 18){
+      if(c.columnIndex == 20){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";

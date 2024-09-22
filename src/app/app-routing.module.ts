@@ -42,6 +42,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { DisponibilidadOperadoresComponent } from './pages/disponilibilidadOperadores/disponibilidadOperadores.component'
   import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component'
   import { presupuestoDisponibilidadComponent } from './pages/presupuestoDisponibilidad/presupuestoDisponibilidad.component'
+  import { CompensacionProvisionComponent } from './pages/compensacionProvision/compensacionProvision.component'
 
 const routes: Routes = [
   {
@@ -207,6 +208,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'compensacionProvision',
+    component: CompensacionProvisionComponent,
+    canActivate: [ AuthGuardService ],
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -282,7 +288,8 @@ const routes: Routes = [
     disponiblidadComponent,
     DisponibilidadOperadoresComponent,
     MultipartidasComponent,
-    presupuestoDisponibilidadComponent
+    presupuestoDisponibilidadComponent,
+    CompensacionProvisionComponent
   ]
 })
 export class AppRoutingModule { }

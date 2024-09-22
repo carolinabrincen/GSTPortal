@@ -900,6 +900,7 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
       this.porXFlotaOperacion24 = data.data.porXFlotaOperacion;
       this.porXFlotaOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
+      console.log(this.porXFlotaOperacion24)
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
