@@ -1815,8 +1815,6 @@
                             <dxi-column caption="Provisión"  alignment="center" [allowSorting]="false">
                                 <dxi-column dataField="facturadoProvision" caption="Prov. Facturada" [width]="150" [format]="formating"></dxi-column>
                                 <dxi-column dataField="facturadoProvisionOtrosIngresos" caption="Facturado Otros Ingr." [width]="150" [format]="formating" alignment="right"></dxi-column>
-                                <dxi-column dataField="cancelacionProvision" caption="Prov. Cancelada" [width]="150" [format]="formating"></dxi-column>
-                                <dxi-column dataField="cancelacionProvisionOtrosIngresos" caption="Cancelado Otros Ingr." [width]="150" [format]="formating"></dxi-column>
                             </dxi-column>
                             <dxi-column caption="Refacturaciones"  alignment="center" [allowSorting]="false">
                                 <dxi-column dataField="refacturado" caption="Refacturado" [width]="150" [format]="formating"></dxi-column>
@@ -1866,14 +1864,6 @@
                             <dxi-group-item column="facturadoProvisionOtrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
                             </dxi-group-item>
                             <dxi-total-item column="facturadoProvisionOtrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
-                            </dxi-total-item>
-                            <dxi-group-item column="cancelacionProvision" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="cancelacionProvision" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
-                            </dxi-total-item>
-                            <dxi-group-item column="cancelacionProvisionOtrosIngresos" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="cancelacionProvisionOtrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
 
                             <dxi-group-item column="refacturado" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">

@@ -897,19 +897,19 @@ onRowPreparedSep(e: any) {
           c.cellElement.style.fontSize = "15px";
         }
 
-        if(c.columnIndex == 10){
+        if(c.columnIndex == 8){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if(c.columnIndex == 15){
+        if(c.columnIndex == 13){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if (c.columnIndex == 20){
+        if (c.columnIndex == 18){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
@@ -923,19 +923,19 @@ onRowPreparedSep(e: any) {
   if (e.rowType == 'totalFooter') {
     e.cells.forEach((c: any) => {
 
-      if(c.columnIndex == 10){
+      if(c.columnIndex == 8){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
       }
 
-      if(c.columnIndex == 15){
+      if(c.columnIndex == 13){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
       }
 
-      if(c.columnIndex == 20){
+      if(c.columnIndex == 18){
         c.cellElement.style.fontWeight = "bolder";
         c.cellElement.style.fontSize = "15px";
         // c.cellElement.style.background = "#cdcbcb";
@@ -959,12 +959,16 @@ onCellPreparedSep(e: any){
 
       if (e.row.summaryCells[2][0].value.toString().startsWith('-')) {
         e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
-        }
+      }
     }
 
     if(e.columnIndex == 3){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
+
+      if (e.row.summaryCells[3][0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+      }
     }
 
     if(e.columnIndex == 4){
@@ -1063,6 +1067,10 @@ onCellPreparedSep(e: any){
     if(e.columnIndex == 3){
       e.cellElement.style.fontWeight = "bolder";
       e.cellElement.style.fontSize = "15px";
+    
+      if (e.summaryItems[0].value.toString().startsWith('-')) {
+        e.cellElement.querySelector(".dx-datagrid-summary-item").style.color = '#ff0000';
+     }
     } 
 
     if(e.columnIndex == 4){
