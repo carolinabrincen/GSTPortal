@@ -108,5 +108,6 @@ export enum API_URLS{
     GET_INDICADORES_CHART = 'api/Kilometros/Indicadores',
     GET_INDICADORES_CHART24 = 'api/Kilometros/Indicadores2024',
     GET_DISPONIBILIDAD_PRESUPUESTO = 'api/Disponibilidad/GetCatPresupuesto/',
-
+    GET_DISPONIBILIDAD_OPERADOR = 'api/Disponibilidad/ObtenerOperador/',
+    GET_DISPONIBILIDAD_TRACTO = 'api/Disponibilidad/ObtenerTracto/',
 }

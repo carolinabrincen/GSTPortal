@@ -46,6 +46,14 @@ export class DisponibilidadAnualService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_DISPONIBILIDAD_PRESUPUESTO+value), this.httpOptions);
   }
 
+  getOperador(value){
+    return this.get<any>((this.API_URL + API_URLS.GET_DISPONIBILIDAD_OPERADOR+value), this.httpOptions);
+  }
+
+  getUTracto(value){
+    return this.get<any>((this.API_URL + API_URLS.GET_DISPONIBILIDAD_TRACTO+value), this.httpOptions);
+  }
+
   postDisponiblidad(idArea: number, fecha: string) {
     let body = {
       idArea: idArea,

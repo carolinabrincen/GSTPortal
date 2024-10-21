@@ -464,6 +464,13 @@
                             <dxi-column dataField="ordenMttoCierre" caption="Cierre"></dxi-column>
                             <dxi-column dataField="ordenMttoDias" caption="Dias Abierta"></dxi-column>
                         </dxi-column>
+                        <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="openModalVerT" [width]="100"></dxi-column>
+
+                        <!--=============================Open modal Unidad============================-->
+                        <div *dxTemplate="let data of 'openModalVerT'">
+                            <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openModalUnidad(data)"></dx-button>
+                        </div>
+
 
                         <dxo-summary>
                             <dxi-group-item column="tracto" summaryType="count"> </dxi-group-item>
@@ -536,6 +543,7 @@
                         <dxi-column dataField="tipo" caption="Tipo" [fixed]="false" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="disponible" caption="Diponible" [fixed]="false" [allowEditing]="false"></dxi-column>
                     </dxi-column>
+                    <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="openModalVer" [width]="100"></dxi-column>
                     <!-- <div *dxTemplate="let cellInfo of 'dateBoxInicioCell'">
                         <dx-date-box type="date" [value]="now" displayFormat="dd/MM/yyyy" [inputAttr]="{ 'aria-label': 'Custom Format' }" (onChange)="dateBixInicio($event)"> </dx-date-box>
                     </div> -->
@@ -554,6 +562,10 @@
                     <!--=============================Button save Operacion============================-->
                     <div *dxTemplate="let data of 'tipoOperaOpeardCellTemplate'">
                         <dx-button icon="save" stylingMode="outlined" type="success" (onClick)="saveTipoOperacionOper(data)"></dx-button>
+                    </div>
+                    <!--=============================Open modal Operador============================-->
+                    <div *dxTemplate="let data of 'openModalVer'">
+                        <dx-button icon="paste" stylingMode="outlined" type="danger" (onClick)="openModal(data)"></dx-button>
                     </div>
 
                     <dxo-summary>
@@ -601,6 +613,212 @@
     </div>
 
 
+    <!--==================================MODLA OPERADOR===================================================================-->
+    <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModalOperador">
+        <div *dxTemplate="let data of 'content'">
+            <dx-scroll-view width="100%" height="100%">
+                <br><br>
+                <dx-form id="form" [(formData)]="formCierre" validationGroup="customerData" [colCount]="2" [readOnly]="bolFormSoloLectura">
+                            
+                      <dxi-item [colSpan]="1">
+                        <div class="dx-field">
+                          <div class="dx-field-label">Id Operador</div>
+                          <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="operadorDetalle.id"></dx-text-box>
+                        </div>
+                      </dxi-item>
+                      <dxi-item [colSpan]="1">
+                        <div class="dx-field">
+                          <div class="dx-field-label">Nombre</div>
+                          <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="operadorDetalle.operador"></dx-text-box>
+                        </div>
+                      </dxi-item>
+
+                      <dxi-item [colSpan]="1">
+                        <div class="dx-field">
+                          <div class="dx-field-label">UdN</div>
+                          <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="operadorDetalle.udN"></dx-text-box>
+                        </div>
+                      </dxi-item>
+                      <dxi-item [colSpan]="1">
+                        <div class="dx-field">
+                          <div class="dx-field-label">Operación</div>
+                          <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="operadorDetalle.tipoOperacion"></dx-text-box>
+                        </div>
+                      </dxi-item>
+                        
+                      <br>
+                </dx-form>
+                  
+                <br><br>
+                  <dx-tab-panel>
+                    <dxi-item title="Resumen">
+                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="operadorDetalle.estadosOperadores" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+                        (onRowPrepared)="onCellPreparedRTracto($event)" (onCellPrepared)="onCellPreparedRTracto($event)">
+                        
+                          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                          <dxo-paging [pageSize]="100"></dxo-paging>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                          <dxo-export [enabled]="true" fileName="Detalle Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+        
+                          <dxi-column dataField="año" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                          <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+      
+                          <dxi-column dataField="estado" caption="Estado"></dxi-column>
+                          <dxi-column dataField="dias" caption="Dias"></dxi-column>
+                          <dxi-column dataField="porcentaje" caption="%" format="percent"></dxi-column>
+                          <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                         
+                          <dxo-summary>
+                            <dxi-group-item column="dias" summaryType="count"> </dxi-group-item>
+
+                            <dxi-group-item column="dias" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                          </dxo-summary>
+        
+                          <dxo-group-panel [visible]="false"></dxo-group-panel>
+                          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        </dx-data-grid>
+                    </dxi-item>
+                    <dxi-item title="Detalle">
+                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="operadorDetalle.detalleOperador" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+                        (onRowPrepared)="onCellPreparedRTracto($event)" (onCellPrepared)="onCellPreparedRTracto($event)">
+                        
+                          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                          <dxo-paging [pageSize]="100"></dxo-paging>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                          <dxo-export [enabled]="true" fileName="Detalle Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+        
+                          <dxi-column dataField="año" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                          <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+      
+                          <dxi-column dataField="estado" caption="Estado"></dxi-column>
+                          <dxi-column dataField="dia" caption="Dias"></dxi-column>
+                          <dxi-column dataField="descripcion" caption="Estado"></dxi-column>
+                          <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                          <dxi-column dataField="operadorUdN" caption="UdN"></dxi-column>
+                          <dxi-column dataField="viajeNoviaje" caption="Viaje"></dxi-column>
+                          <dxi-column dataField="viajeTipo" caption="Tipo"></dxi-column>
+                          <dxi-column dataField="observaciones" caption="Observaciones"></dxi-column>
+                          <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+        
+        
+                          <dxo-group-panel [visible]="false"></dxo-group-panel>
+                          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        </dx-data-grid>
+                    </dxi-item>
+                  </dx-tab-panel>
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+
+    <!--==================================MODLA TRACTO===================================================================-->
+    <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="openModalUnidades">
+        <div *dxTemplate="let data of 'content'">
+            <dx-scroll-view width="100%" height="100%">
+
+                <dx-form id="form" [(formData)]="formUnidad" validationGroup="customerData" [colCount]="3" [readOnly]="bolFormSoloLectura">
+                            
+                    <dxi-item [colSpan]="1">
+                      <div class="dx-field">
+                        <div class="dx-field-label">Tracto</div>
+                        <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="unidadDetalle.tracto"></dx-text-box>
+                      </div>
+                    </dxi-item>
+                    <dxi-item [colSpan]="1">
+                      <div class="dx-field">
+                        <div class="dx-field-label">Remolque 1</div>
+                        <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="unidadDetalle.remolque1"></dx-text-box>
+                      </div>
+                    </dxi-item>
+                    <dxi-item [colSpan]="1">
+                        <div class="dx-field">
+                          <div class="dx-field-label">Remolque 2</div>
+                          <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="unidadDetalle.remolque2"></dx-text-box>
+                        </div>
+                      </dxi-item>
+
+                    <dxi-item [colSpan]="1">
+                      <div class="dx-field">
+                        <div class="dx-field-label">UdN</div>
+                        <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="unidadDetalle.udN"></dx-text-box>
+                      </div>
+                    </dxi-item>
+                    <dxi-item [colSpan]="1">
+                      <div class="dx-field">
+                        <div class="dx-field-label">Operación</div>
+                        <dx-text-box class="dx-field-value-txt"[inputAttr]="{ 'aria-label': 'BASE' }" [value]="unidadDetalle.tipoOperacion"></dx-text-box>
+                      </div>
+                    </dxi-item>
+                      
+                    <br>
+              </dx-form>
+
+                  <dx-tab-panel>
+                    <dxi-item title="Resumen">
+                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="unidadDetalle.estadosTracto" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+                        (onRowPrepared)="onCellPreparedRTracto($event)" (onCellPrepared)="onCellPreparedRTracto($event)">
+                        
+                          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                          <dxo-paging [pageSize]="100"></dxo-paging>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                          <dxo-export [enabled]="true" fileName="Detalle Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+        
+                          <dxi-column dataField="año" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                          <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+      
+                          <dxi-column dataField="estado" caption="Estado"></dxi-column>
+                          <dxi-column dataField="dias" caption="Dias"></dxi-column>
+                          <dxi-column dataField="porcentaje" caption="%" format="percent"></dxi-column>
+                          <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+        
+                          <dxo-summary>
+                            <dxi-group-item column="dias" summaryType="count"> </dxi-group-item>
+
+                            <dxi-group-item column="dias" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                        </dxo-summary>
+
+                          <dxo-group-panel [visible]="false"></dxo-group-panel>
+                          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        </dx-data-grid>
+                    </dxi-item>
+                    <dxi-item title="Detalle">
+                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="unidadDetalle.detalleTracto" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+                        (onRowPrepared)="onRowPreparedRTracto($event)" (onCellPrepared)="onCellPreparedRTracto($event)">
+                        
+                          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                          <dxo-paging [pageSize]="100"></dxo-paging>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                          <dxo-export [enabled]="true" fileName="Detalle Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+        
+                          <dxi-column dataField="año" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+                          <dxi-column dataField="mes" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+      
+                          <dxi-column dataField="estado" caption="Estado"></dxi-column>
+                          <dxi-column dataField="dias" caption="Dias"></dxi-column>
+                          <dxi-column dataField="tractoEstado" caption="Estado"></dxi-column>
+                          <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                          <dxi-column dataField="tractoUdN" caption="UdN"></dxi-column>
+                          <dxi-column dataField="viajeNoViaje" caption="Viaje"></dxi-column>
+                          <dxi-column dataField="ordenMttoObservaciones" caption="Observaciones"></dxi-column>
+                          <dxi-column dataField="ordenMttoEstado" caption="Estado Orden"></dxi-column>
+                          <dxi-column dataField="idRemolque1" caption="Remolque 1"></dxi-column>
+                          <dxi-column dataField="idRemolque2" caption="Remolque 2"></dxi-column>
+                          <dxi-column dataField="dolly" caption="Dolly"></dxi-column>
+                          <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+        
+        
+                          <dxo-group-panel [visible]="false"></dxo-group-panel>
+                          <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        </dx-data-grid>
+                    </dxi-item>
+                  </dx-tab-panel>
+
+
+
+
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+    
     <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
     </dx-load-panel>

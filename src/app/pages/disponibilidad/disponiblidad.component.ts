@@ -47,7 +47,9 @@ export class disponiblidadComponent implements OnInit {
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
 
-  openModReal: boolean = false;
+  openModalOperador: boolean = false;
+  openModalUnidades: boolean = false;
+
   expandGroup: boolean = true;
   isVisible = false;
 
@@ -101,19 +103,39 @@ export class disponiblidadComponent implements OnInit {
     Fecha: ''
   }
 
-  resumenOperadores: any = []
-  resumenTractos: any = []
-  resumenRemolques: any = []
-  resumenDolly: any = []
-  tractos: any = []
-  operadores: any = []
-  remolque: any = []
+  resumenOperadores: any = [];
+  resumenTractos: any = [];
+  resumenRemolques: any = [];
+  resumenDolly: any = [];
+  tractos: any = [];
+  operadores: any = [];
+  remolque: any = [];
+
+  operadorDetalle: any = [];
+  unidadDetalle: any =  [];
 
   showFilterRow: boolean;
   currentFilter: any;
   applyFilterTypes: any;
 
   now: Date = new Date();
+
+  formCierre: any = {
+    id: "",
+    operador: "",
+    udN: "",
+    tipoOperacion: "",
+  }
+
+  formUnidad: any = {
+    tracto: "",
+    remolque1: "",
+    remolque2: "",
+    udN: "",
+    tipoOperacion: "",
+  }
+  bolFormSoloLectura = false;
+
   constructor(
     private disponibilidadService: DisponibilidadAnualService,
     private service: ServiceSales,
@@ -962,6 +984,21 @@ export class disponiblidadComponent implements OnInit {
     }
   }
 
+  onRowPreparedRTracto(e: any) {
+  }
+
+  onCellPreparedRTracto(e: any) {
+    if (e.rowType == 'group') {
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'groupFooter') {
+
+    }
+  }
+
 
   //==================Formato a la data de la grafica==================================
   formatSliderTooltip(value) {
@@ -976,6 +1013,26 @@ export class disponiblidadComponent implements OnInit {
   }
 
   onHidden() {
+  }
+
+  openModal(value){
+    let idOperador = value.data.id_personal; 
+    this.disponibilidadService.getOperador(idOperador).subscribe(data =>{
+      this.operadorDetalle = data.data;
+      // console.log(this.operadorDetalle)
+
+      this.openModalOperador = true;
+    })
+  }
+
+  openModalUnidad(value){
+    let idUnidad = value.data.tracto; 
+    this.disponibilidadService.getUTracto(idUnidad).subscribe(data =>{
+      this.unidadDetalle = data.data;
+      console.log(this.unidadDetalle)
+
+      this.openModalUnidades = true;
+    })
   }
 
 
