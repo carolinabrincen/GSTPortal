@@ -318,7 +318,7 @@ export class IngresosComponent implements OnInit {
     {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
     {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
     {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
-    {mes: "NOVIEMBRE", total:0, presupuesto:0},
+    {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
     {mes: "DICIEMBRE", total:0, presupuesto:0},
   ]
   //        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
@@ -783,10 +783,10 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presupuestoOC = e.summaryCells[89][0].value;
         this.totalPor24.proyeccionOC = e.summaryCells[91][0].value;
         // //Noviembre
-        // this.totalPor.totalNV = e.summaryCells[95][0].value;
-        // this.totalPor.anioAntNV = e.summaryCells[96][0].value;
-        // this.totalPor.presupuestoNV = e.summaryCells[98][0].value;
-        // this.totalPor.proyeccionNV = e.summaryCells[100][0].value;
+        this.totalPor24.totalNV = e.summaryCells[95][0].value;
+        this.totalPor24.anioAntNV = e.summaryCells[96][0].value;
+        this.totalPor24.presupuestoNV = e.summaryCells[98][0].value;
+        this.totalPor24.proyeccionNV = e.summaryCells[100][0].value;
         // //Diciembre
         // this.totalPor.totalDC = e.summaryCells[104][0].value;
         // this.totalPor.anioAntDC = e.summaryCells[105][0].value;
@@ -835,9 +835,9 @@ export class IngresosComponent implements OnInit {
         this.totalPor24.presTotalOC = this.totalPor24.totalOC / this.totalPor24.presupuestoOC;
         this.totalPor24.ProyTotalOC = this.totalPor24.proyeccionOC / this.totalPor24.presupuestoOC;
         // //Noviembre
-        // this.totalPor.aniATotalNV = this.totalPor.totalNV / this.totalPor.anioAntNV;
-        // this.totalPor.presTotalNV = this.totalPor.totalNV / this.totalPor.presupuestoNV;
-        // this.totalPor.ProyTotalNV = this.totalPor.proyeccionNV / this.totalPor.presupuestoNV;
+        this.totalPor24.aniATotalNV = this.totalPor24.totalNV / this.totalPor24.anioAntNV;
+        this.totalPor24.presTotalNV = this.totalPor24.totalNV / this.totalPor24.presupuestoNV;
+        this.totalPor24.ProyTotalNV = this.totalPor24.proyeccionNV / this.totalPor24.presupuestoNV;
         // //Diciembre
         // this.totalPor.aniATotalDC = this.totalPor.totalDC / this.totalPor.anioAntDC;
         // this.totalPor.presTotalDC = this.totalPor.totalDC / this.totalPor.presupuestoDC;
@@ -907,9 +907,9 @@ export class IngresosComponent implements OnInit {
           e.summaryCells[92][0].value = this.totalPor24.ProyTotalOC;
         }
         // //Noviembre
-        // e.summaryCells[97][0].value = this.totalPor.aniATotalNV;
-        // e.summaryCells[99][0].value = this.totalPor.presTotalNV;
-        // e.summaryCells[101][0].value = this.totalPor.ProyTotalNV;
+        e.summaryCells[97][0].value = this.totalPor24.aniATotalNV;
+        e.summaryCells[99][0].value = this.totalPor24.presTotalNV;
+        e.summaryCells[101][0].value = this.totalPor24.ProyTotalNV;
         // //Diciembre
         // e.summaryCells[106][0].value = this.totalPor.aniATotalDC;
         // e.summaryCells[108][0].value = this.totalPor.presTotalDC;
@@ -992,10 +992,10 @@ export class IngresosComponent implements OnInit {
         let presupuestoOC24 = c.totalItem.summaryCells[89][0].value;
         let proyeccionOC24 = c.totalItem.summaryCells[91][0].value;
         // //Noviembre
-        // let totalNV = c.totalItem.summaryCells[95][0].value;
-        // let anioAntNV = c.totalItem.summaryCells[96][0].value;
-        // let presupuestoNV = c.totalItem.summaryCells[98][0].value;
-        // let proyeccionNV = c.totalItem.summaryCells[100][0].value;
+        let totalNV24 = c.totalItem.summaryCells[95][0].value;
+        let anioAntNV24 = c.totalItem.summaryCells[96][0].value;
+        let presupuestoNV24 = c.totalItem.summaryCells[98][0].value;
+        let proyeccionNV24 = c.totalItem.summaryCells[100][0].value;
         // //Diciembre
         // let totalDC = c.totalItem.summaryCells[104][0].value;
         // let anioAntDC = c.totalItem.summaryCells[105][0].value;
@@ -1105,15 +1105,15 @@ export class IngresosComponent implements OnInit {
           totalesPor24.proyeccionOC = c.totalItem.summaryCells[92][0].value
         }
         // //Noviembre
-        // if(c.totalItem.summaryCells[95][0] !== undefined){
-        //   totalNV === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV/anioAntNV;
-        //   presupuestoNV === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV/presupuestoNV;
-        //   proyeccionNV === 0 ? c.totalItem.summaryCells[101][0].value = 0 : c.totalItem.summaryCells[101][0].value = totalNV/proyeccionNV;
+        if(c.totalItem.summaryCells[97][0] !== undefined){
+          totalNV24 === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV24/anioAntNV24;
+          presupuestoNV24 === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV24/presupuestoNV24;
+          proyeccionNV24 === 0 ? c.totalItem.summaryCells[101][0].value = 0 : c.totalItem.summaryCells[101][0].value = totalNV24/proyeccionNV24;
 
-        //   totalesPor.totalNV = c.totalItem.summaryCells[97][0].value
-        //   totalesPor.presupuestoNV = c.totalItem.summaryCells[99][0].value
-        //   totalesPor.proyeccionNV = c.totalItem.summaryCells[101][0].value
-        // }
+          totalesPor24.totalNV = c.totalItem.summaryCells[97][0].value
+          totalesPor24.presupuestoNV = c.totalItem.summaryCells[99][0].value
+          totalesPor24.proyeccionNV = c.totalItem.summaryCells[101][0].value
+        }
         // //Diciembre
         // if(c.totalItem.summaryCells[104][0] !== undefined){
         //   totalDC === 0 ? c.totalItem.summaryCells[106][0].value = 0 : c.totalItem.summaryCells[106][0].value = totalDC/anioAntDC;

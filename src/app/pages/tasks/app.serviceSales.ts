@@ -44,8 +44,6 @@ export class Indicador {
     tolvaAcero: number| undefined;
   }
 
-
-
 @Injectable()
 export class ServiceSales extends AbstractManagerService{
 
@@ -196,6 +194,12 @@ export class ServiceSales extends AbstractManagerService{
   getIngresosDetalladosMensualOct2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_octubre2024),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosMensualNov2024( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_noviembre2024),this.httpOptions);    
     
   }
   
