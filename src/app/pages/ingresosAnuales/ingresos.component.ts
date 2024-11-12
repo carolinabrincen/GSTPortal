@@ -169,8 +169,8 @@ export class IngresosComponent implements OnInit {
       //                   orderIngreso[15],orderIngreso[16],orderIngreso[14],
       //                   orderIngreso[18],orderIngreso[17]);
         this.indicadores2024 = response.data;
-        //console.log(this.indicadores2024)
-        //console.log(this.indicadores2024)
+        console.log(this.indicadores2024)
+
       });
   }
 
@@ -792,7 +792,7 @@ export class IngresosComponent implements OnInit {
         // this.totalPor.anioAntDC = e.summaryCells[105][0].value;
         // this.totalPor.presupuestoDC = e.summaryCells[107][0].value;
         // this.totalPor.proyeccionDC = e.summaryCells[109][0].value;
-        //console.log(e.summaryCells)
+        // console.log(e.summaryCells)
 
         //ENERO2024
         this.totalPor24.aniATotalE = this.totalPor24.totalE / this.totalPor24.anioAntE;
@@ -909,7 +909,7 @@ export class IngresosComponent implements OnInit {
         // //Noviembre
         e.summaryCells[97][0].value = this.totalPor24.aniATotalNV;
         e.summaryCells[99][0].value = this.totalPor24.presTotalNV;
-        e.summaryCells[101][0].value = this.totalPor24.ProyTotalNV;
+        e.summaryCells[103][0].value = this.totalPor24.ProyTotalNV;
         // //Diciembre
         // e.summaryCells[106][0].value = this.totalPor.aniATotalDC;
         // e.summaryCells[108][0].value = this.totalPor.presTotalDC;
@@ -1108,11 +1108,11 @@ export class IngresosComponent implements OnInit {
         if(c.totalItem.summaryCells[97][0] !== undefined){
           totalNV24 === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV24/anioAntNV24;
           presupuestoNV24 === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV24/presupuestoNV24;
-          proyeccionNV24 === 0 ? c.totalItem.summaryCells[101][0].value = 0 : c.totalItem.summaryCells[101][0].value = totalNV24/proyeccionNV24;
+          proyeccionNV24 === 0 ? c.totalItem.summaryCells[103][0].value = 0 : c.totalItem.summaryCells[103][0].value = totalNV24/proyeccionNV24;
 
           totalesPor24.totalNV = c.totalItem.summaryCells[97][0].value
           totalesPor24.presupuestoNV = c.totalItem.summaryCells[99][0].value
-          totalesPor24.proyeccionNV = c.totalItem.summaryCells[101][0].value
+          totalesPor24.proyeccionNV = c.totalItem.summaryCells[103][0].value
         }
         // //Diciembre
         // if(c.totalItem.summaryCells[104][0] !== undefined){

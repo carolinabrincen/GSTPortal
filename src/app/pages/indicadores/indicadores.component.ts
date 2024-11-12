@@ -740,7 +740,8 @@ export class IndicadoresComponent implements OnInit {
 // ====================================OPERADORES UDN ===============================================================================================  
       this.operadoresUDN24 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
-      this.ingresoOperador24 = data.data.scIngrXOperador;    
+      this.ingresoOperador24 = data.data.scIngrXOperador;   
+      console.log(this.ingresoOperador24) 
       
       this.ingresoOpProm24 = data.data.scIngrXOperadorProm;
  
@@ -925,7 +926,7 @@ export class IndicadoresComponent implements OnInit {
   getGraficaIO24(){
     this.indicadorService.getScoreCard2024().subscribe(data => {
       this.graficaIXO24 = data.data.scIngrXOperador;      
- 
+      console.log(this.graficaIXO24)
       var myArray = [
         {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
       ]

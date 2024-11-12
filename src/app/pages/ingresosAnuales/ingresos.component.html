@@ -1049,6 +1049,8 @@
                         <dxi-column dataField="novPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="novPorP" caption="vs Total" [fixed]="false" format="percent" [width]="70"></dxi-column>
                         <dxi-column dataField="novProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
+                        <dxi-column dataField="novProyeccionDed" caption="Proy. Dedicado" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
+                        <dxi-column dataField="novProyeccionTotal" caption="Proy. Total" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="novPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <!--<dxi-column caption="Diciembre">
@@ -1147,6 +1149,8 @@
                         <dxi-group-item column="novAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="novPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="novProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="novProyeccionDed" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item column="novProyeccionTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <!-- DICIEMBRE -->
                         <!-- <dxi-group-item column="dicFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="dicOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
@@ -1283,6 +1287,8 @@
                         <dxi-total-item column="novAnt" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="novPres" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="novProyeccion" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="novProyeccionDed" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
+                        <dxi-total-item column="novProyeccionTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <!-- Diciembre -->
                         <!-- <dxi-total-item column="dicFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
                         <dxi-total-item column="dicOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue"></dxi-total-item>
