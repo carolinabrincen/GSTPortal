@@ -929,11 +929,11 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getScoreCard2024().subscribe(data => {
       this.graficaIXO24 = data.data.scIngrXOperador;      
       console.log(this.graficaIXO24)
-      var myArray = [
-        {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
-      ]
+      // var myArray = [
+      //   {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+      // ]
 
-      this.graficaIXO24.push(myArray[0]);
+      // this.graficaIXO24.push(myArray[0]);
 
       // this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
       
