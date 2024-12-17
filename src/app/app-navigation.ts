@@ -62,6 +62,11 @@ export const navigation = [
         path: '/disponiblidad-Unidades'
       },
       {
+        text: 'Disponibilidad Mensual',
+        icon: 'columnchooser',
+        path: '/disponibilidad-Mensual'
+      },
+      {
         text: 'Presupuesto Disponiblidad',
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
@@ -194,6 +199,11 @@ export const navigationID24 = [
         text: 'Disponibilidad',
         icon: 'columnchooser',
         path: '/disponiblidad-Unidades'
+      },
+      {
+        text: 'Disponibilidad Mensual',
+        icon: 'columnchooser',
+        path: '/disponibilidad-Mensual'
       },
       {
         text: 'Presupuesto Disponiblidad',

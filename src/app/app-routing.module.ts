@@ -43,6 +43,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component'
   import { presupuestoDisponibilidadComponent } from './pages/presupuestoDisponibilidad/presupuestoDisponibilidad.component'
   import { CompensacionProvisionComponent } from './pages/compensacionProvision/compensacionProvision.component'
+  import { disponibilidadMensualComponent } from './pages/disponibilidadMensual/disponiblidadMensual.component'
 
 const routes: Routes = [
   {
@@ -198,6 +199,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'disponibilidad-Mensual',
+    component: disponibilidadMensualComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: 'multipartidas',
     component: MultipartidasComponent,
     canActivate: [ AuthGuardService ]
@@ -289,7 +295,8 @@ const routes: Routes = [
     DisponibilidadOperadoresComponent,
     MultipartidasComponent,
     presupuestoDisponibilidadComponent,
-    CompensacionProvisionComponent
+    CompensacionProvisionComponent,
+    disponibilidadMensualComponent
   ]
 })
 export class AppRoutingModule { }

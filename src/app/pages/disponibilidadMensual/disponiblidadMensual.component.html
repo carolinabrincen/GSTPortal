@@ -1,0 +1,107 @@
+<h2 class="content-block">Disponibilidad Mensual</h2>
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+    <br><br>
+
+        <dx-form id="form" [formData]="formFilter">
+
+            <dxi-item itemType="group" cssClass="form-group" [colCount]="3">
+                 
+                <dxi-item itemType="group">
+                    <dxi-item dataField="Mes">  
+                        <dx-select-box [dataSource]="meses" valueExpr="id" displayExpr="mes" (onValueChanged)="selectUdn($event)"></dx-select-box>  
+                    </dxi-item>  
+                </dxi-item>
+                <dxi-item itemType="group">
+                    <dxi-item dataField="Año">
+                        <dx-select-box [dataSource]="anio" valueExpr="id" displayExpr="anio" (onValueChanged)="selectAnio($event)"></dx-select-box>
+                    </dxi-item>    
+                </dxi-item>
+
+                <dxi-item itemType="group" class="styleButton">
+                    <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                    </dx-button>
+                </dxi-item>
+                
+            </dxi-item>
+        </dx-form>
+            <br>
+    <div>
+        <br>
+        <dx-data-grid #DM id="gridContainer1" [dataSource]="disponibilidadMensual" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+        (onRowPrepared)="onRowPreparedDM($event)" (onCellPrepared)="onCellPreparedDM($event)">
+        
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-export [enabled]="true" fileName="Disponiblidad-Mensual" [customizeExcelCell]="customizeOp"></dxo-export>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+
+            <dxi-column dataField="udN" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="operacion" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+
+            <dxi-column dataField="idPersonal" caption="ID"></dxi-column>
+            <dxi-column dataField="operador" caption="Operación"></dxi-column>
+            <dxi-column dataField="total" caption="Total"></dxi-column>
+            <dxi-column dataField="disponibles" caption="Disponibles"></dxi-column>
+            <dxi-column dataField="noDisponibles" caption="No Disponibles"></dxi-column>
+            <dxi-column dataField="porDisponibilidad" caption="%" format="percent"></dxi-column>
+            <dxi-column dataField="dia1" caption="1"></dxi-column>
+            <dxi-column dataField="dia2" caption="2"></dxi-column>
+            <dxi-column dataField="dia3" caption="3"></dxi-column>
+            <dxi-column dataField="dia4" caption="4"></dxi-column>
+            <dxi-column dataField="dia5" caption="5"></dxi-column>
+            <dxi-column dataField="dia6" caption="6"></dxi-column>
+            <dxi-column dataField="dia7" caption="7"></dxi-column>
+            <dxi-column dataField="dia8" caption="8"></dxi-column>
+            <dxi-column dataField="dia9" caption="9"></dxi-column>
+            <dxi-column dataField="dia10" caption="10"></dxi-column>
+            <dxi-column dataField="dia11" caption="11"></dxi-column>
+            <dxi-column dataField="dia12" caption="12"></dxi-column>
+            <dxi-column dataField="dia13" caption="13"></dxi-column>
+            <dxi-column dataField="dia14" caption="14"></dxi-column>
+            <dxi-column dataField="dia15" caption="15"></dxi-column>
+            <dxi-column dataField="dia16" caption="16"></dxi-column>
+            <dxi-column dataField="dia17" caption="17"></dxi-column>
+            <dxi-column dataField="dia18" caption="18"></dxi-column>
+            <dxi-column dataField="dia19" caption="19"></dxi-column>
+            <dxi-column dataField="dia20" caption="20"></dxi-column>
+            <dxi-column dataField="dia21" caption="21"></dxi-column>
+            <dxi-column dataField="dia22" caption="22"></dxi-column>
+            <dxi-column dataField="dia23" caption="23"></dxi-column>
+            <dxi-column dataField="dia24" caption="24"></dxi-column>
+            <dxi-column dataField="dia25" caption="25"></dxi-column>
+            <dxi-column dataField="dia26" caption="26"></dxi-column>
+            <dxi-column dataField="dia27" caption="27"></dxi-column>
+            <dxi-column dataField="dia28" caption="28"></dxi-column>
+            <dxi-column dataField="dia29" caption="29"></dxi-column>
+            <dxi-column dataField="dia30" caption="30"></dxi-column>
+            <dxi-column dataField="dia31" caption="31"></dxi-column>
+
+            
+
+            <!-- <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                <dxi-group-item column="disponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+
+                <dxi-total-item column="disponibles" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                <dxi-total-item column="disponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+
+            </dxo-summary> -->
+
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        </dx-data-grid>
+    </div>
+
+    
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+
+    <dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">
+        <dxo-position my="top" at="right" of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>
