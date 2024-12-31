@@ -31,6 +31,10 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_SCORE_CARD_2024), this.httpOptions);
   }
 
+  getScoreCard2025(){
+    return this.get<any>((this.API_URL + API_URLS.GET_SCORE_CARD_2025), this.httpOptions);
+  }
+
   getIgresoOperador(periodo: number){
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESO_OPERADOR+ periodo), this.httpOptions);
   }
@@ -45,6 +49,10 @@ export class IndicadoresService extends AbstractManagerService {
 
   getIndicadoresChart24(){
     return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART24), this.httpOptions);
+  }
+
+  getIndicadoresChart25(){
+    return this.get<any>((this.API_URL + API_URLS.GET_INDICADORES_CHART25), this.httpOptions);
   }
   
   getUnidadesNegocio(){
@@ -72,12 +80,30 @@ export class IndicadoresService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR), body, this.httpOptions);
   }
 
+  getSueldoOperador25(anio: number, mes: number, idTracto: string, unidadesNegocio:number[]){
+    let body = {
+      anio:anio,
+      mes: mes,
+      idTracto:idTracto,
+      unidadesNegocio:unidadesNegocio.length == 7 ? [] : unidadesNegocio
+    };
+    console.log(body);
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR25), body, this.httpOptions);
+  }
+
   getSueldoOpAc(){
     return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR_ACUMULADO), "", this.httpOptions);
+  }
+  getSueldoOpAc25(){
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_OPERADOR_ACUMULADO25), "", this.httpOptions);
   }
 
   postSueldoDetalle(periodo: number){
     return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_DETALLE + periodo), "",  this.httpOptions);
+  }
+
+  postSueldoDetalle25(periodo: number){
+    return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_DETALLE25 + periodo), "",  this.httpOptions);
   }
 
   

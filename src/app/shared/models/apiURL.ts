@@ -2,6 +2,7 @@ export enum API_URLS{
     LOGEO = 'api/Login',
     GET_INGRESOS_ANUALES = 'api/Ingresos/IngresosAnuales',
     GET_INGRESOS_ANUALES_2024 = 'api/Ingresos/IngresosAnuales2024',
+    GET_INGRESOS_ANUALES_2025 = 'api/Ingresos/IngresosAnuales2025',
     GET_INGRESOS_ANUALES_DETALLADO_enero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202301/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202302/02',
     GET_INGRESOS_ANUALES_DETALLADO_marzo = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202303/03',
@@ -27,6 +28,7 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_noviembre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2024/202411/11',
     GET_INGRESOS_ANUALES_DETALLADO_diciembre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2024/202412/12',
     
+    GET_INGRESOS_ANUALES_DETALLADO_enero2025 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2025/202501/01',
     
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
@@ -93,8 +95,11 @@ export enum API_URLS{
     POST_ELIMINAR_PRESUPUESTO = 'api/Disponibilidad/PostEliminarPresupuesto',
     POST_DISPONIBILIDAD_MENSUAL = 'api/Disponibilidad/PostDisponibilidadMensual',
     POST_SUELDO_OPERADOR = 'api/Rentabilidad/SueldoOperador',
+    POST_SUELDO_OPERADOR25 = 'api/Rentabilidad/SueldoOperador25',
     POST_SUELDO_OPERADOR_ACUMULADO = 'api/Rentabilidad/SueldoAcumulado',
+    POST_SUELDO_OPERADOR_ACUMULADO25 = 'api/Rentabilidad/SueldoAcumulado25',
     POST_SUELDO_DETALLE = 'api/Rentabilidad/SueldoDetalle/',
+    POST_SUELDO_DETALLE25 = 'api/Rentabilidad/SueldoDetalle/',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
@@ -103,6 +108,7 @@ export enum API_URLS{
     GET_COSTOS_CLASES = 'api/Costos/GetClases',
     GET_SCORE_CARD = 'api/Kilometros/ScoreCard',
     GET_SCORE_CARD_2024 = 'api/Kilometros/ScoreCard2024',
+    GET_SCORE_CARD_2025 = 'api/Kilometros/ScoreCard2025',
     GET_INGRESO_OPERADOR = 'api/Kilometros/ViajeOperador/',
     GET_CARTERA_DETALLE = 'api/CarteraClientes/CarteraClientes',
     GET_KMS_MENSUALES = 'api/Kilometros/KmsMensuales/',
@@ -110,6 +116,7 @@ export enum API_URLS{
     GET_CARTERA_CLIENTES = 'api/CarteraClientes/Clientes',
     GET_INDICADORES_CHART = 'api/Kilometros/Indicadores',
     GET_INDICADORES_CHART24 = 'api/Kilometros/Indicadores2024',
+    GET_INDICADORES_CHART25 = 'api/Kilometros/Indicadores2025',
     GET_DISPONIBILIDAD_PRESUPUESTO = 'api/Disponibilidad/GetCatPresupuesto/',
     GET_DISPONIBILIDAD_OPERADOR = 'api/Disponibilidad/ObtenerOperador/',
     GET_DISPONIBILIDAD_TRACTO = 'api/Disponibilidad/ObtenerTracto/',

@@ -68,15 +68,13 @@ export class ServiceSales extends AbstractManagerService{
   // getSales() {
   //   return sales;
   // }
-
+  
+/*============================================================================
+==================================Periodo 2023================================
+==============================================================================*/
   getIndicadores(Anio: number, UnidadNegocio: number) {
-    
+      
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
-    
-  }
-  getIndicadores2024(Anio: number, UnidadNegocio: number) {
-    
-    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_2024 + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
     
   }
 
@@ -86,7 +84,6 @@ export class ServiceSales extends AbstractManagerService{
     
     
   }
-
   getIngresosDetalladosMensualFeb( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_febrero),this.httpOptions);    
@@ -143,6 +140,15 @@ export class ServiceSales extends AbstractManagerService{
     
   }
   
+/*============================================================================
+==================================Periodo 2024================================
+==============================================================================*/
+  getIndicadores2024(Anio: number, UnidadNegocio: number) {
+      
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_2024 + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
+    
+  }
+
   getIngresosDetalladosMensualEne2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_enero2024),this.httpOptions);    
@@ -178,38 +184,103 @@ export class ServiceSales extends AbstractManagerService{
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio2024),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualAgo2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_agosto2024),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualSep2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_septiembre2024),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualOct2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_octubre2024),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualNov2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_noviembre2024),this.httpOptions);    
     
   }
-
   getIngresosDetalladosMensualDic2024( ) {
     
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_diciembre2024),this.httpOptions);    
     
   }
   
-  
+/*============================================================================
+==================================Periodo 2025================================
+==============================================================================*/
+  getIndicadores2025(Anio: number, UnidadNegocio: number) {
+      
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_2025 + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosMensualEne2025( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_enero2025),this.httpOptions);    
+    
+  }
+  // getIngresosDetalladosMensualFeb2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_febrero2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualMar2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_marzo2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualAbr2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_abril2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualMay2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_mayo2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualJun2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_junio2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualJul202( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualAgo2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_agosto2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualSep2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_septiembre2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualOct2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_octubre2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualNov2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_noviembre2025),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualDic2025( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_diciembre2025),this.httpOptions);    
+    
+  // }
+
+
   getIndicadoresGrafica(Anio: number, UnidadNegocio: number) {
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_CHART + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    
   }

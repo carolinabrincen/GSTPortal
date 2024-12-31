@@ -102,6 +102,7 @@ export class CarteraClientesComponent implements OnInit {
     { id: 202410, periodo: 202410 },
     { id: 202411, periodo: 202411 },
     { id: 202412, periodo: 202412 },
+    { id: 202501, periodo: 202501 },
   ];
 
   periodoActual: number;
@@ -120,9 +121,17 @@ export class CarteraClientesComponent implements OnInit {
   selectedPeriodo: number = 0;
 
   modPeriodo: boolean;
+  modPassword: boolean;
 
   buttonOptions: any = {
     text: 'Guardar',
+    type: 'success',
+    useSubmitBehavior: true,
+
+  };
+
+  buttonActualizacion: any = {
+    text: 'Actualizar',
     type: 'success',
     useSubmitBehavior: true,
 
@@ -137,6 +146,12 @@ export class CarteraClientesComponent implements OnInit {
     contrasenia: "",
 
   }
+
+  formActualizacion: any = {
+    contrasenia: "",
+
+  }
+
   buttonOptionsCancelar: any
   bolFormSoloLectura = false;
   
@@ -319,6 +334,11 @@ export class CarteraClientesComponent implements OnInit {
     if(this.selectedPeriodo == 202412){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2024"
       this.printPAvance = "31 DE DICIEMBRE DEL 2024"
+    }
+
+    if(this.selectedPeriodo == 202501){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2025"
+      this.printPAvance = "31 DE ENERO DEL 2025"
     }
 
 
@@ -515,52 +535,109 @@ export class CarteraClientesComponent implements OnInit {
    
   }
 
-  Actualizar(){
-    this.avance1 = [];
-    this.avance2 = [];
-    this.avance3 = [];
-    this.avance4 = [];
-    this.avance5 = [];
-    this.avance6 = [];
-    var myTipo = 1
+  ActualizarCartera(e) {
+    e.preventDefault();
+
     this.loadingVisible = true;
-    this.myTotal = [];
-    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
+
+    // this.carteraClientesService.postCierreCartera(this.username, this.formCierre.Contraseña).subscribe(data =>{
+    //   //console.log(data)
+
+    //   if (data.responseCode === 200) {
+
+    //     if(data.data == "¡Cierre exitoso!"){
+    //       notify({
+    //         message: data.data,
+    //         position: {
+    //           my: 'center center',
+    //           at: 'center center',
+    //         },
+    //       }, 'success', 3000);
+  
+
+    //       // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //       // this.router.onSameUrlNavigation = 'reload';
+    //       // this.router.navigate(['./cartera-clientes'])
+
+    //       this.modPeriodo = false;
+    //       this.bolFormSoloLectura = false;
+    //       this.loadingVisible = false;
+          
+    //     }else if(data.data == "¡Usuario inválido o contraseña incorrecta!"){
+    //       notify({
+    //         message: data.data,
+    //         position: {
+    //           my: 'center center',
+    //           at: 'center center',
+    //         },
+    //       }, 'warning', 3000);
+
+    //       this.loadingVisible = false;
+    //     }
+        
+        
+    //   } else {
+    //     notify({
+    //       message: "No se puedo completar el cierre",
+    //       position: {
+    //         my: 'center center',
+    //         at: 'center center',
+    //       },
+    //     }, 'error', 3000);
+
+    //     this.loadingVisible = false;
+    //   }
+    // })
+   
+  }
+
+  Actualizar(){
+    this.modPassword = true;
+    // this.avance1 = [];
+    // this.avance2 = [];
+    // this.avance3 = [];
+    // this.avance4 = [];
+    // this.avance5 = [];
+    // this.avance6 = [];
+    // var myTipo = 1
+    // this.loadingVisible = true;
+    // this.myTotal = [];
+    // this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
 
-      if(data.data != undefined || data.data != null){
+    //   if(data.data != undefined || data.data != null){
 
-        var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
-        var sinCarta = new Intl.NumberFormat().format(data.data.facturasSinCarta);
-        var total = new Intl.NumberFormat().format(data.data.facturasTotal);
+    //     var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
+    //     var sinCarta = new Intl.NumberFormat().format(data.data.facturasSinCarta);
+    //     var total = new Intl.NumberFormat().format(data.data.facturasTotal);
 
-        data.data.facturasConCarta = conCarta;
-        data.data.facturasSinCarta = sinCarta;
-        data.data.facturasTotal = total;
+    //     data.data.facturasConCarta = conCarta;
+    //     data.data.facturasSinCarta = sinCarta;
+    //     data.data.facturasTotal = total;
         
-      }
+    //   }
 
-     //console.log(data.data)
+    //  //console.log(data.data)
 
-      this.carteraClientes = data.data.carteraMensual;
-      this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
-      this.sinCartera = data.data.sinCartaTerceros;
-      this.carteraMI = data.data.carteraMensualIntercompanias;
-      this.carteraInterSinC = data.data.sinCartaIntercompanias;
+    //   this.carteraClientes = data.data.carteraMensual;
+    //   this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+    //   this.sinCartera = data.data.sinCartaTerceros;
+    //   this.carteraMI = data.data.carteraMensualIntercompanias;
+    //   this.carteraInterSinC = data.data.sinCartaIntercompanias;
 
-      this.carteraInfo = data.data
+    //   this.carteraInfo = data.data
 
-      this.avance1.push(data.data.avanceCartera1);
-      this.avance2.push(data.data.avanceCartera2);
-      this.avance3.push(data.data.avanceCartera3);
-      this.avance4.push(data.data.avanceCartera4);
-      this.avance5.push(data.data.avanceCartera5);
-      this.avance6.push(data.data.avanceCartera6);
+    //   this.avance1.push(data.data.avanceCartera1);
+    //   this.avance2.push(data.data.avanceCartera2);
+    //   this.avance3.push(data.data.avanceCartera3);
+    //   this.avance4.push(data.data.avanceCartera4);
+    //   this.avance5.push(data.data.avanceCartera5);
+    //   this.avance6.push(data.data.avanceCartera6);
 
-      this.detalle = data.data.detalleCartera;
+    //   this.detalle = data.data.detalleCartera;
 
-      this.loadingVisible = false;
-    })
+    //   this.loadingVisible = false;
+    // })
   }
 
   callCostosAnuales() {

@@ -46,8 +46,11 @@ export class IngresosComponent implements OnInit {
   treeDataSource: any;
 
   dataSource: any;
+  
   indicadores: IngresosModel[] = [];
   indicadores2024: IngresosModel[] = [];
+  indicadores2025: IngresosModel[] = [];
+
   indicadoresGrafica: any;
   kms: any;
   kmsGrafica: any;
@@ -94,18 +97,23 @@ export class IngresosComponent implements OnInit {
 
   openModReal2023: boolean = false;
   openModReal2024: boolean = false;
+  openModReal2025: boolean = false;
+
   positionOf: string = '#myDiv';
   expandGroup: boolean = true;
   isVisible = false;
 
   totalPor = new TotalPorcentajes;
   totalFoPo = new TotalPorcentajes;
-
   totalPor24 = new TotalPorcentajes;
   totalFoPo24 = new TotalPorcentajes;
 
+  totalPor25 = new TotalPorcentajes;
+  totalFoPo25 = new TotalPorcentajes;
+
   graficaModel2023: ModeloGrafica[] = [];
   graficaModel2024: ModeloGrafica[] = [];
+  graficaModel2025: ModeloGrafica[] = [];
 
   constructor( 
     private unidadesService: UnidadesService, 
@@ -128,8 +136,7 @@ export class IngresosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getIngresosAnuales();
-    this.getIngresosAnuales2024();
+    this.getIngresosAnuales2025();
   }
 
   getIngresosAnuales(){
@@ -152,7 +159,6 @@ export class IngresosComponent implements OnInit {
         //console.log(this.indicadores)
       });
   }
-
   getIngresosAnuales2024(){
     this.loadingVisible = true;
     var myanio = 2024;
@@ -161,13 +167,24 @@ export class IngresosComponent implements OnInit {
     
          const orderIngreso: IngresosModel[] = response.data;
         this.indicadores2024 = response.data;
-        console.log(this.indicadores2024)
 
       });
   }
 
-    getIngresosAnualesChart (Anio: number, UnidadNegocio: number)
-   {
+  getIngresosAnuales2025(){
+    this.loadingVisible = true;
+    var myanio = 2025;
+    var myUdN = 0;
+      this.service.getIndicadores2025(myanio, myUdN).subscribe((response) => {
+    
+         const orderIngreso: IngresosModel[] = response.data;
+        this.indicadores2025 = response.data;
+        console.log(this.indicadores2025)
+
+      });
+  }
+
+  getIngresosAnualesChart (Anio: number, UnidadNegocio: number){
     this.service.getIndicadoresGrafica(Anio, UnidadNegocio).subscribe((response) => {
        
       this.indicadoresGrafica = response.data;
@@ -175,17 +192,24 @@ export class IngresosComponent implements OnInit {
       
       
     });
-    }
+  }
 
-    seleccionarAnio(e: any) {
-      this.anioSeleccionado = e.value;
-    }
+  seleccionarAnio(e: any) {
+    this.anioSeleccionado = e.value;
+  }
 
+  getData2023 = (e: any) =>{
+    this.getIngresosAnuales();
+  }
 
-    clickClientesRutas = (e: any) => {
-      this.getIngresosAnuales();
-      this.dataGrid?.instance.refresh();
-     };
+  getData2024 = (e: any) =>{
+    this.getIngresosAnuales2024();
+  }
+
+  Actualizar = (e: any) => {
+    this.getIngresosAnuales2025();
+    this.dataGrid?.instance.refresh();
+  };
 
   saveGridInstance (e:any) {
     this.dataGridInstance = e.component;
@@ -236,9 +260,6 @@ export class IngresosComponent implements OnInit {
     
   
   }
-
-
-
   onTreeBoxOptionChanged(e:any) {
     if (e.name === 'value') {
       this.isTreeBoxOpened = false;
@@ -246,6 +267,7 @@ export class IngresosComponent implements OnInit {
     }
   }
 
+  /*========================2023===========================================*/
   onRowPrepared(e: any) {
 
     if (e.rowType == 'totalFooter') {
@@ -289,54 +311,6 @@ export class IngresosComponent implements OnInit {
     }
   }
   onContentReady(e: any) {
-
-    this.loadingVisible = false;
-
-  }
-
-  onRowPrepared2024(e: any) {
-
-    if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
-  /*====================================PERIODO 2024==================================================*/
-  this.graficaModel2024 = [
-    {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
-    {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
-    {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
-    {mes: "ABRIL", total: e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
-    {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
-    {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
-    {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
-    {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
-    {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
-    {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
-    {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
-    {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
-  ]
-  //        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
-  //console.log(e.summaryCells)
-
-       //console.log(e.summaryCells)
-
-
-      e.cells.forEach((c: any) => {
-        if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
-      });
-    };
-  }
-  onCellPrepared2024(e: any) {
-    if (e.rowType == 'groupFooter'){
-
-        e.cellElement.style.fontSize = '15px';
-        e.cellElement.style.background = "#DCDCDC";
-    }
-  }
-  onContentReady2024(e: any) {
 
     this.loadingVisible = false;
 
@@ -720,6 +694,66 @@ export class IngresosComponent implements OnInit {
       
     }
   }
+
+  verDetallesClick2023(event) {
+
+    if(event.cellElement.innerText == "Enero" || event.cellElement.innerText == "Febrero" || event.cellElement.innerText == "Marzo"
+    || event.cellElement.innerText == "Abril" || event.cellElement.innerText == "Mayo" || event.cellElement.innerText == "Junio"
+    || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
+    || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
+
+        this.openModReal2023 = true;
+    }
+  }
+  /*========================2024===========================================*/
+  onRowPrepared2024(e: any) {
+
+    if (e.rowType == 'totalFooter') {
+      //console.log(e.summaryCells)
+  /*====================================PERIODO 2024==================================================*/
+  this.graficaModel2024 = [
+    {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
+    {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
+    {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+    {mes: "ABRIL", total: e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
+    {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
+    {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
+    {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
+    {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
+    {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
+    {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
+    {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
+    {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
+  ]
+  //        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+  //console.log(e.summaryCells)
+
+       //console.log(e.summaryCells)
+
+
+      e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    };
+  }
+  onCellPrepared2024(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+    }
+  }
+  onContentReady2024(e: any) {
+
+    this.loadingVisible = false;
+
+  }
+
   onRowPreparedDetalle2024(e: any){
     if (e.rowType == 'groupFooter'){
       if(e.groupIndex == 0){
@@ -1125,20 +1159,6 @@ export class IngresosComponent implements OnInit {
     }
   }
 
-
-
-
-  verDetallesClick2023(event) {
-
-    if(event.cellElement.innerText == "Enero" || event.cellElement.innerText == "Febrero" || event.cellElement.innerText == "Marzo"
-    || event.cellElement.innerText == "Abril" || event.cellElement.innerText == "Mayo" || event.cellElement.innerText == "Junio"
-    || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
-    || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
-
-        this.openModReal2023 = true;
-    }
-  }
-
   verDetallesClick2024(event) {
 
     if(event.cellElement.innerText == "Enero" || event.cellElement.innerText == "Febrero" || event.cellElement.innerText == "Marzo"
@@ -1149,32 +1169,483 @@ export class IngresosComponent implements OnInit {
         this.openModReal2024 = true;
     }
   }
-  calcularPorcentajes(options: any) {
-    // //
-    // if (options.summaryProcess === 'calculate') {
-    //   if (options.name === 'grupMargenUtilidaPor') {
-    //     options.totalValue = .17;
-    //   }
-    // }
-  }
+  /*========================2025===========================================*/
+  onRowPrepared2025(e: any) {
 
+    if (e.rowType == 'totalFooter') {
+      //console.log(e.summaryCells)
+    /*====================================PERIODO 2024==================================================*/
+    this.graficaModel2025 = [
+      // {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
+      // {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
+      // {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+      // {mes: "ABRIL", total: e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
+      // {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
+      // {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
+      // {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
+      // {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
+      // {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
+      // {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
+      // {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
+      // {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
+    ]
+    //        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+    //console.log(e.summaryCells)
+  
+         //console.log(e.summaryCells)
+  
+  
+        e.cells.forEach((c: any) => {
+          if (c.cellElement) {
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.fontSize = "16px";
+              c.cellElement.style.background = "#ff9460";
+              c.cellElement.style.color = "black"; 
+          }   
+        });
+      };
+  }
+  onCellPrepared2025(e: any) {
+    if (e.rowType == 'groupFooter'){
+
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+    }
+  }
+  onContentReady2025(e: any) {
+
+    this.loadingVisible = false;
+
+  }
+  
+  onRowPreparedDetalle2025(e: any){
+      if (e.rowType == 'groupFooter'){
+        if(e.groupIndex == 0){
+          //ENERO 2024
+          // this.totalPor25.totalE = e.summaryCells[4][0]?.value;
+          // this.totalPor25.anioAntE = e.summaryCells[5][0]?.value;
+          // this.totalPor25.presupuestoE = e.summaryCells[7][0]?.value;
+          // this.totalPor25.proyeccionE = e.summaryCells[9][0]?.value;
+          //Febrero
+          // this.totalPor25.totalFB = e.summaryCells[13][0].value;
+          // this.totalPor25.anioAntFB = e.summaryCells[14][0].value;
+          // this.totalPor25.presupuestoFB = e.summaryCells[16][0].value;
+          // this.totalPor25.proyeccionFB = e.summaryCells[18][0].value;
+          // //Marzo
+          // this.totalPor25.totalM = e.summaryCells[22][0].value;
+          // this.totalPor25.anioAntM = e.summaryCells[23][0].value;
+          // this.totalPor25.presupuestoM = e.summaryCells[25][0].value;
+          // this.totalPor25.proyeccionM = e.summaryCells[27][0].value;
+          // //Abril
+          // this.totalPor25.totalA = e.summaryCells[31][0].value;
+          // this.totalPor25.anioAntA = e.summaryCells[32][0].value;
+          // this.totalPor25.presupuestoA = e.summaryCells[34][0].value;
+          // this.totalPor25.proyeccionA = e.summaryCells[36][0].value;
+          // //Mayo
+          // this.totalPor25.totalMY = e.summaryCells[40][0].value;
+          // this.totalPor25.anioAntMY = e.summaryCells[41][0].value;
+          // this.totalPor25.presupuestoMY = e.summaryCells[43][0].value;
+          // this.totalPor25.proyeccionMY = e.summaryCells[45][0].value;
+          // //Junio
+          // this.totalPor25.totalJN = e.summaryCells[49][0].value;
+          // this.totalPor25.anioAntJN = e.summaryCells[50][0].value;
+          // this.totalPor25.presupuestoJN = e.summaryCells[52][0].value;
+          // this.totalPor25.proyeccionJN = e.summaryCells[54][0].value;
+          // //Juio
+          // this.totalPor25.totalJL = e.summaryCells[58][0].value;
+          // this.totalPor25.anioAntJL = e.summaryCells[59][0].value;
+          // this.totalPor25.presupuestoJL = e.summaryCells[61][0].value;
+          // this.totalPor25.proyeccionJL = e.summaryCells[63][0].value;
+          // //Agosto
+          // this.totalPor25.totalAG = e.summaryCells[67][0].value;
+          // this.totalPor25.anioAntAG = e.summaryCells[68][0].value;
+          // this.totalPor25.presupuestoAG = e.summaryCells[70][0].value;
+          // this.totalPor25.proyeccionAG = e.summaryCells[72][0].value;
+          // //Septiembre
+          // this.totalPor25.totalS = e.summaryCells[76][0].value;
+          // this.totalPor25.anioAntS = e.summaryCells[77][0].value;
+          // this.totalPor25.presupuestoS = e.summaryCells[79][0].value;
+          // this.totalPor25.proyeccionS = e.summaryCells[81][0].value;
+          // //Octubre
+          // this.totalPor25.totalOC = e.summaryCells[86][0].value;
+          // this.totalPor25.anioAntOC = e.summaryCells[87][0].value;
+          // this.totalPor25.presupuestoOC = e.summaryCells[89][0].value;
+          // this.totalPor25.proyeccionOC = e.summaryCells[91][0].value;
+          // //Noviembre
+          // this.totalPor25.totalNV = e.summaryCells[95][0].value;
+          // this.totalPor25.anioAntNV = e.summaryCells[96][0].value;
+          // this.totalPor25.presupuestoNV = e.summaryCells[98][0].value;
+          // this.totalPor25.proyeccionNV = e.summaryCells[100][0].value;
+          // //Diciembre
+          // this.totalPor25.totalDC = e.summaryCells[106][0].value;
+          // this.totalPor25.anioAntDC = e.summaryCells[107][0].value;
+          // this.totalPor25.presupuestoDC = e.summaryCells[109][0].value;
+          // this.totalPor25.proyeccionDC = e.summaryCells[111][0].value;
+          // console.log(e.summaryCells)
+  
+          // //ENERO
+          // this.totalPor25.aniATotalE = this.totalPor25.totalE / this.totalPor25.anioAntE;
+          // this.totalPor25.presTotalE = this.totalPor25.totalE / this.totalPor25.presupuestoE;
+          // this.totalPor25.ProyTotalE = this.totalPor25.proyeccionE / this.totalPor25.presupuestoE;
+          // // //Febrero
+          // this.totalPor25.aniATotalFB = this.totalPor25.totalFB / this.totalPor25.anioAntFB;
+          // this.totalPor25.presTotalFB = this.totalPor25.totalFB / this.totalPor25.presupuestoFB;
+          // this.totalPor25.ProyTotalFB = this.totalPor25.proyeccionFB / this.totalPor25.presupuestoFB;
+          // // //Marzo
+          // this.totalPor25.aniATotalM = this.totalPor25.totalM / this.totalPor25.anioAntM;
+          // this.totalPor25.presTotalM = this.totalPor25.totalM / this.totalPor25.presupuestoM;
+          // this.totalPor25.ProyTotalM = this.totalPor25.proyeccionM / this.totalPor25.presupuestoM;
+          // // //Abril
+          // this.totalPor25.aniATotalA = this.totalPor25.totalA / this.totalPor25.anioAntA;
+          // this.totalPor25.presTotalA = this.totalPor25.totalA / this.totalPor25.presupuestoA;
+          // this.totalPor25.ProyTotalA = this.totalPor25.proyeccionA / this.totalPor25.presupuestoA;
+          // // //Mayo
+          // this.totalPor25.aniATotalMY = this.totalPor25.totalMY / this.totalPor25.anioAntMY;
+          // this.totalPor25.presTotalMY = this.totalPor25.totalMY / this.totalPor25.presupuestoMY;
+          // this.totalPor25.ProyTotalMY = this.totalPor25.proyeccionMY / this.totalPor25.presupuestoMY;
+          // // //Junio
+          // this.totalPor25.aniATotalJN = this.totalPor25.totalJN / this.totalPor25.anioAntJN;
+          // this.totalPor25.presTotalJN = this.totalPor25.totalJN / this.totalPor25.presupuestoJN;
+          // this.totalPor25.ProyTotalJN = this.totalPor25.proyeccionJN / this.totalPor25.presupuestoJN;
+          // // //Julio
+          // this.totalPor25.aniATotalJL = this.totalPor25.totalJL / this.totalPor25.anioAntJL;
+          // this.totalPor25.presTotalJL = this.totalPor25.totalJL / this.totalPor25.presupuestoJL;
+          // this.totalPor25.ProyTotalJL = this.totalPor25.proyeccionJL / this.totalPor25.presupuestoJL;
+          // // //Agosto
+          // this.totalPor25.aniATotalAG = this.totalPor25.totalAG / this.totalPor25.anioAntAG;
+          // this.totalPor25.presTotalAG = this.totalPor25.totalAG / this.totalPor25.presupuestoAG;
+          // this.totalPor25.ProyTotalAG = this.totalPor25.proyeccionAG / this.totalPor25.presupuestoAG;
+          // // //Septiembre
+          // this.totalPor25.aniATotalS = this.totalPor25.totalS / this.totalPor25.anioAntS;
+          // this.totalPor25.presTotalS = this.totalPor25.totalS / this.totalPor25.presupuestoS;
+          // this.totalPor25.ProyTotalS = this.totalPor25.proyeccionS / this.totalPor25.presupuestoS;
+          // // //Octubre
+          // this.totalPor25.aniATotalOC = this.totalPor25.totalOC / this.totalPor25.anioAntOC;
+          // this.totalPor25.presTotalOC = this.totalPor25.totalOC / this.totalPor25.presupuestoOC;
+          // this.totalPor25.ProyTotalOC = this.totalPor25.proyeccionOC / this.totalPor25.presupuestoOC;
+          // // //Noviembre
+          // this.totalPor25.aniATotalNV = this.totalPor25.totalNV / this.totalPor25.anioAntNV;
+          // this.totalPor25.presTotalNV = this.totalPor25.totalNV / this.totalPor25.presupuestoNV;
+          // this.totalPor25.ProyTotalNV = this.totalPor25.proyeccionNV / this.totalPor25.presupuestoNV;
+          // // //Diciembre
+          // this.totalPor25.aniATotalDC = this.totalPor25.totalDC / this.totalPor25.anioAntDC;
+          // this.totalPor25.presTotalDC = this.totalPor25.totalDC / this.totalPor25.presupuestoDC;
+          // this.totalPor25.ProyTotalDC = this.totalPor25.proyeccionDC / this.totalPor25.presupuestoDC;
+       
+  
+          // //ENERO
+          // if(e.summaryCells[10][0].value !== undefined){
+          //   e.summaryCells[6][0].value = this.totalPor25.aniATotalE;
+          //   e.summaryCells[8][0].value = this.totalPor25.presTotalE;
+          //   e.summaryCells[10][0].value = this.totalPor25.ProyTotalE;
+    
+          // }
+          // totalesPorGr.totalE = e.summaryCells[6][0]?.value;
+          // //Febrero
+          // if(e.summaryCells[15][0].value !== undefined){
+          //   e.summaryCells[15][0].value = this.totalPor25.aniATotalFB;
+          //   e.summaryCells[17][0].value = this.totalPor25.presTotalFB;
+          //   e.summaryCells[19][0].value = this.totalPor25.ProyTotalFB;
+          // }
+          // // //Marzo
+          // if(e.summaryCells[24][0].value !== undefined){
+          //   e.summaryCells[24][0].value = this.totalPor25.aniATotalM;
+          //   e.summaryCells[26][0].value = this.totalPor25.presTotalM;
+          //   e.summaryCells[28][0].value = this.totalPor25.ProyTotalM;
+          // }
+          // // //Abril
+          // if(e.summaryCells[33][0].value !== undefined){
+          //   e.summaryCells[33][0].value = this.totalPor25.aniATotalA;
+          //   e.summaryCells[35][0].value = this.totalPor25.presTotalA;
+          //   e.summaryCells[37][0].value = this.totalPor25.ProyTotalA;
+          // }
+          // // //Mayo
+          // if(e.summaryCells[42][0].value !== undefined){
+          //   e.summaryCells[42][0].value = this.totalPor25.aniATotalMY;
+          //   e.summaryCells[44][0].value = this.totalPor25.presTotalMY;
+          //   e.summaryCells[46][0].value = this.totalPor25.ProyTotalMY;
+          // }
+          // // //Junio
+          // if(e.summaryCells[51][0].value !== undefined){
+          //   e.summaryCells[51][0].value = this.totalPor25.aniATotalJN;
+          //   e.summaryCells[53][0].value = this.totalPor25.presTotalJN;
+          //   e.summaryCells[55][0].value = this.totalPor25.ProyTotalJN;
+          // }
+          // // //Julio
+          // if(e.summaryCells[60][0].value !== undefined){
+          //   e.summaryCells[60][0].value = this.totalPor25.aniATotalJL;
+          //   e.summaryCells[62][0].value = this.totalPor25.presTotalJL;
+          //   e.summaryCells[64][0].value = this.totalPor25.ProyTotalJL;
+          // }
+          // // //Agosto
+          // if(e.summaryCells[69][0].value !== undefined){
+          //   e.summaryCells[69][0].value = this.totalPor25.aniATotalAG;
+          //   e.summaryCells[71][0].value = this.totalPor25.presTotalAG;
+          //   e.summaryCells[73][0].value = this.totalPor25.ProyTotalAG;
+          // }
+          // // //Septiembre
+          // if(e.summaryCells[78][0].value !== undefined){
+          //   e.summaryCells[78][0].value = this.totalPor25.aniATotalS;
+          //   e.summaryCells[80][0].value = this.totalPor25.presTotalS;
+          //   e.summaryCells[82][0].value = this.totalPor25.ProyTotalS;
+          // }
+          // // //Octubre
+          // if(e.summaryCells[88][0].value !== undefined){
+          //   e.summaryCells[88][0].value = this.totalPor25.aniATotalOC;
+          //   e.summaryCells[90][0].value = this.totalPor25.presTotalOC;
+          //   e.summaryCells[92][0].value = this.totalPor25.ProyTotalOC;
+          // }
+          // // //Noviembre
+          // if(e.summaryCells[97][0].value !== undefined){
+          //   e.summaryCells[97][0].value = this.totalPor25.aniATotalNV;
+          //   e.summaryCells[99][0].value = this.totalPor25.presTotalNV;
+          //   e.summaryCells[103][0].value = this.totalPor25.ProyTotalNV;
+          
+          // }
+          //   // //Diciembre
+          // if(e.summaryCells[108][0].value !== undefined){  
+          //   e.summaryCells[108][0].value = this.totalPor25.aniATotalDC;
+          //   e.summaryCells[110][0].value = this.totalPor25.presTotalDC;
+          //   e.summaryCells[114][0].value = this.totalPor25.ProyTotalDC;
+          // }
+        }
+      }
+  
+      if (e.rowType == 'totalFooter') {
+        e.cells.forEach((c: any) => {
+          
+          if (c.cellElement) {
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.fontSize = "16px";
+              c.cellElement.style.background = "#ff9460";
+              c.cellElement.style.color = "black"; 
+          }
+        });
+      };
+  }
+  onCellPreparedDetalle2025(e: any) {
+    if (e.rowType == 'groupFooter'){
+      
+        e.cellElement.style.fontSize = '15px';
+        e.cellElement.style.background = "#DCDCDC";
+    }
+  
+      if(e.rowType == 'totalFooter'){
+  
+        e.totalItem.cells.forEach((c: any) => {
+          // //ENERO 2024
+          // let total25E = c.totalItem.summaryCells[4][0]?.value;
+          // let anioAnt25E = c.totalItem.summaryCells[5][0]?.value;
+          // let presupuesto25E = c.totalItem.summaryCells[7][0]?.value;
+          // let proyeccion25E = c.totalItem.summaryCells[9][0]?.value;
+          // // //Febrero
+          // let total25FB = c.totalItem.summaryCells[13][0].value;
+          // let anioAnt25FB = c.totalItem.summaryCells[14][0].value;
+          // let presupuesto25FB = c.totalItem.summaryCells[16][0].value;
+          // let proyeccion25FB = c.totalItem.summaryCells[18][0].value;
+          // // //Marzo
+          // let total25M = c.totalItem.summaryCells[22][0].value;
+          // let anioAnt25M = c.totalItem.summaryCells[23][0].value;
+          // let presupuesto25M = c.totalItem.summaryCells[25][0].value;
+          // let proyeccion25M = c.totalItem.summaryCells[27][0].value;
+          // // //Abril
+          // let total25A = c.totalItem.summaryCells[31][0].value;
+          // let anioAnt25A = c.totalItem.summaryCells[32][0].value;
+          // let presupuesto25A = c.totalItem.summaryCells[34][0].value;
+          // let proyeccion25A = c.totalItem.summaryCells[36][0].value;
+          // // //Mayo
+          // // console.log(c.totalItem.summaryCells)
+          // let totalMY25 = c.totalItem.summaryCells[40][0].value;
+          // let anioAntMY25 = c.totalItem.summaryCells[41][0].value;
+          // let presupuestoMY25 = c.totalItem.summaryCells[43][0].value;
+          // let proyeccionMY25 = c.totalItem.summaryCells[45][0].value;
+          // // //Junio
+          // let totalJN25 = c.totalItem.summaryCells[49][0].value;
+          // let anioAntJN25 = c.totalItem.summaryCells[50][0].value;
+          // let presupuestoJN25 = c.totalItem.summaryCells[52][0].value;
+          // let proyeccionJN25 = c.totalItem.summaryCells[54][0].value;
+          // // //Juio
+          // let totalJL25 = c.totalItem.summaryCells[58][0].value;
+          // let anioAntJL25 = c.totalItem.summaryCells[59][0].value;
+          // let presupuestoJL25 = c.totalItem.summaryCells[61][0].value;
+          // let proyeccionJL25 = c.totalItem.summaryCells[63][0].value;
+          // // //Agosto
+          // let totalAG25 = c.totalItem.summaryCells[67][0].value;
+          // let anioAntAG25 = c.totalItem.summaryCells[68][0].value;
+          // let presupuestoAG25 = c.totalItem.summaryCells[70][0].value;
+          // let proyeccionAG25 = c.totalItem.summaryCells[72][0].value;
+          // // //Septiembre
+          // let totalS25 = c.totalItem.summaryCells[76][0].value;
+          // let anioAntS25 = c.totalItem.summaryCells[77][0].value;
+          // let presupuestoS25 = c.totalItem.summaryCells[79][0].value;
+          // let proyeccionS25 = c.totalItem.summaryCells[81][0].value;
+          // // //Octubre
+          // let totalOC25 = c.totalItem.summaryCells[86][0].value;
+          // let anioAntOC25 = c.totalItem.summaryCells[87][0].value;
+          // let presupuestoOC25 = c.totalItem.summaryCells[89][0].value;
+          // let proyeccionOC25 = c.totalItem.summaryCells[91][0].value;
+          // // //Noviembre
+          // let totalNV25 = c.totalItem.summaryCells[95][0].value;
+          // let anioAntNV25 = c.totalItem.summaryCells[96][0].value;
+          // let presupuestoNV25 = c.totalItem.summaryCells[98][0].value;
+          // let proyeccionNV25 = c.totalItem.summaryCells[100][0].value;
+          // // //Diciembre
+          // let totalDC25 = c.totalItem.summaryCells[106][0].value;
+          // let anioAntDC25 = c.totalItem.summaryCells[107][0].value;
+          // let presupuestoDC25 = c.totalItem.summaryCells[109][0].value;
+          // let proyeccionDC25 = c.totalItem.summaryCells[111][0].value;
+          // console.log(c.totalItem.summaryCells)
+  
+          //Calculo de Porcentajes
+          //ENERO
+          // if(c.totalItem.summaryCells[6][0] !== undefined){
+          //   total25E === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = total25E/anioAnt25E;
+          //   presupuesto25E === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = total25E/presupuesto25E;
+          //   proyeccion25E === 0 ? c.totalItem.summaryCells[10][0].value = 0 : c.totalItem.summaryCells[10][0].value = total25E/presupuesto25E;
+  
+          //   totalesPor25.totalE = c.totalItem.summaryCells[6][0].value
+          //   totalesPor25.presupuestoE = c.totalItem.summaryCells[8][0].value
+          //   totalesPor25.proyeccionE = c.totalItem.summaryCells[10][0].value
+          // }
+          // // //Febrero
+          // if(c.totalItem.summaryCells[15][0] !== undefined){
+          //   total25FB === 0 ? c.totalItem.summaryCells[15][0].value = 0 : c.totalItem.summaryCells[15][0].value = total25FB/anioAnt25FB;
+          //   presupuesto25FB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = total25FB/presupuesto25FB;
+          //   proyeccion25FB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = total25FB/proyeccion25FB;
+  
+          //   totalesPor25.totalFB = c.totalItem.summaryCells[15][0].value
+          //   totalesPor25.presupuestoFB = c.totalItem.summaryCells[17][0].value
+          //   totalesPor25.proyeccionFB = c.totalItem.summaryCells[19][0].value
+          // }
+          // // //Marzo
+          // if(c.totalItem.summaryCells[25][0] !== undefined){
+          //   total25M === 0 ? c.totalItem.summaryCells[25][0].value = 0 : c.totalItem.summaryCells[25][0].value = total25M/anioAnt25M;
+          //   presupuesto25M === 0 ? c.totalItem.summaryCells[26][0].value = 0 : c.totalItem.summaryCells[26][0].value = total25M/presupuesto25M;
+          //   proyeccion25M === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = total25M/proyeccion25M;
+  
+          //   totalesPor25.totalM = c.totalItem.summaryCells[25][0].value
+          //   totalesPor25.presupuestoM = c.totalItem.summaryCells[26][0].value
+          //   totalesPor25.proyeccionM = c.totalItem.summaryCells[28][0].value
+          // }
+          // // //Abril
+          // if(c.totalItem.summaryCells[33][0] !== undefined){
+          //   total25A === 0 ? c.totalItem.summaryCells[33][0].value = 0 : c.totalItem.summaryCells[33][0].value = total25A/anioAnt25A;
+          //   presupuesto25A === 0 ? c.totalItem.summaryCells[35][0].value = 0 : c.totalItem.summaryCells[35][0].value = total25A/presupuesto25A;
+          //   proyeccion25A === 0 ? c.totalItem.summaryCells[37][0].value = 0 : c.totalItem.summaryCells[37][0].value = total25A/proyeccion25A;
+  
+          //   totalesPor25.totalA = c.totalItem.summaryCells[33][0].value
+          //   totalesPor25.presupuestoA = c.totalItem.summaryCells[35][0].value
+          //   totalesPor25.proyeccionA = c.totalItem.summaryCells[37][0].value
+          // }
+          // // //Mayo
+          // if(c.totalItem.summaryCells[42][0] !== undefined){
+          //   totalMY25 === 0 ? c.totalItem.summaryCells[42][0].value = 0 : c.totalItem.summaryCells[42][0].value = totalMY25/anioAntMY25;
+          //   presupuestoMY25 === 0 ? c.totalItem.summaryCells[44][0].value = 0 : c.totalItem.summaryCells[44][0].value = totalMY25/presupuestoMY25;
+          //   proyeccionMY25 === 0 ? c.totalItem.summaryCells[46][0].value = 0 : c.totalItem.summaryCells[46][0].value = totalMY25/proyeccionMY25;
+  
+          //   totalesPor25.totalMY = c.totalItem.summaryCells[42][0].value
+          //   totalesPor25.presupuestoMY = c.totalItem.summaryCells[44][0].value
+          //   totalesPor25.proyeccionMY = c.totalItem.summaryCells[46][0].value
+          // }
+          // //Junio
+          // if(c.totalItem.summaryCells[51][0] !== undefined){
+          //   totalJN25 === 0 ? c.totalItem.summaryCells[51][0].value = 0 : c.totalItem.summaryCells[51][0].value = totalJN25/anioAntJN25;
+          //   presupuestoJN25 === 0 ? c.totalItem.summaryCells[53][0].value = 0 : c.totalItem.summaryCells[53][0].value = totalJN25/presupuestoJN25;
+          //   proyeccionJN25 === 0 ? c.totalItem.summaryCells[55][0].value = 0 : c.totalItem.summaryCells[55][0].value = totalJN25/proyeccionJN25;
+  
+          //   totalesPor25.totalJN = c.totalItem.summaryCells[51][0].value
+          //   totalesPor25.presupuestoJN = c.totalItem.summaryCells[53][0].value
+          //   totalesPor25.proyeccionJN = c.totalItem.summaryCells[55][0].value
+          // }
+          // // //Julio
+          // if(c.totalItem.summaryCells[60][0] !== undefined){
+          //   totalJL25 === 0 ? c.totalItem.summaryCells[60][0].value = 0 : c.totalItem.summaryCells[60][0].value = totalJL25/anioAntJL25;
+          //   presupuestoJL25 === 0 ? c.totalItem.summaryCells[62][0].value = 0 : c.totalItem.summaryCells[62][0].value = totalJL25/presupuestoJL25;
+          //   proyeccionJL25 === 0 ? c.totalItem.summaryCells[64][0].value = 0 : c.totalItem.summaryCells[64][0].value = totalJL25/proyeccionJL25;
+  
+          //   totalesPor25.totalJL = c.totalItem.summaryCells[60][0].value
+          //   totalesPor25.presupuestoJL = c.totalItem.summaryCells[62][0].value
+          //   totalesPor25.proyeccionJL = c.totalItem.summaryCells[64][0].value
+          // }
+          // // //Agosto
+          // if(c.totalItem.summaryCells[69][0] !== undefined){
+          //   totalAG25 === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG25/anioAntAG25;
+          //   presupuestoAG25 === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG25/presupuestoAG25;
+          //   proyeccionAG25 === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG25/proyeccionAG25;
+  
+          //   totalesPor25.totalAG = c.totalItem.summaryCells[69][0].value
+          //   totalesPor25.presupuestoAG = c.totalItem.summaryCells[71][0].value
+          //   totalesPor25.proyeccionAG = c.totalItem.summaryCells[73][0].value
+          // }
+          // // //Septiembre
+          // if(c.totalItem.summaryCells[78][0] !== undefined){
+          //   totalS25 === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS25/anioAntS25;
+          //   presupuestoS25 === 0 ? c.totalItem.summaryCells[80][0].value = 0 : c.totalItem.summaryCells[80][0].value = totalS25/presupuestoS25;
+          //   proyeccionS25 === 0 ? c.totalItem.summaryCells[82][0].value = 0 : c.totalItem.summaryCells[82][0].value = totalS25/proyeccionS25;
+  
+          //   totalesPor25.totalS = c.totalItem.summaryCells[78][0].value
+          //   totalesPor25.presupuestoS = c.totalItem.summaryCells[80][0].value
+          //   totalesPor25.proyeccionS = c.totalItem.summaryCells[82][0].value
+          // }
+          // // //Octubre
+          // if(c.totalItem.summaryCells[88][0] !== undefined){
+          //   totalOC25 === 0 ? c.totalItem.summaryCells[88][0].value = 0 : c.totalItem.summaryCells[88][0].value = totalOC25/anioAntOC25;
+          //   presupuestoOC25 === 0 ? c.totalItem.summaryCells[90][0].value = 0 : c.totalItem.summaryCells[90][0].value = totalOC25/presupuestoOC25;
+          //   proyeccionOC25 === 0 ? c.totalItem.summaryCells[92][0].value = 0 : c.totalItem.summaryCells[92][0].value = totalOC25/proyeccionOC25;
+  
+          //   totalesPor25.totalOC = c.totalItem.summaryCells[88][0].value
+          //   totalesPor25.presupuestoOC = c.totalItem.summaryCells[90][0].value
+          //   totalesPor25.proyeccionOC = c.totalItem.summaryCells[92][0].value
+          // }
+          // // //Noviembre
+          // if(c.totalItem.summaryCells[97][0] !== undefined){
+          //   totalNV25 === 0 ? c.totalItem.summaryCells[97][0].value = 0 : c.totalItem.summaryCells[97][0].value = totalNV25/anioAntNV25;
+          //   presupuestoNV25 === 0 ? c.totalItem.summaryCells[99][0].value = 0 : c.totalItem.summaryCells[99][0].value = totalNV25/presupuestoNV25;
+          //   proyeccionNV25 === 0 ? c.totalItem.summaryCells[103][0].value = 0 : c.totalItem.summaryCells[103][0].value = totalNV25/proyeccionNV25;
+  
+          //   totalesPor25.totalNV = c.totalItem.summaryCells[97][0].value
+          //   totalesPor25.presupuestoNV = c.totalItem.summaryCells[99][0].value
+          //   totalesPor25.proyeccionNV = c.totalItem.summaryCells[103][0].value
+          // }
+          // //Diciembre
+          // if(c.totalItem.summaryCells[108][0] !== undefined){
+          //   totalDC25 === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalDC25/anioAntDC25;
+          //   presupuestoDC25 === 0 ? c.totalItem.summaryCells[110][0].value = 0 : c.totalItem.summaryCells[110][0].value = totalDC25/presupuestoDC25;
+          //   proyeccionDC25 === 0 ? c.totalItem.summaryCells[114][0].value = 0 : c.totalItem.summaryCells[114][0].value = totalDC25/presupuestoDC25;
+  
+          //   totalesPor25.totalDC = c.totalItem.summaryCells[108][0].value
+          //   totalesPor25.presupuestoDC = c.totalItem.summaryCells[110][0].value
+          //   totalesPor25.proyeccionDC = c.totalItem.summaryCells[114][0].value
+          // }
+  
+        })
+        
+      }
+  }
+  
+  verDetallesClick2025(event) {
+
+    if(event.cellElement.innerText == "Enero" || event.cellElement.innerText == "Febrero" || event.cellElement.innerText == "Marzo"
+    || event.cellElement.innerText == "Abril" || event.cellElement.innerText == "Mayo" || event.cellElement.innerText == "Junio"
+    || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
+    || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
+
+        this.openModReal2025 = true;
+    }
+  }
 
   //==================Formato a la data de la grafica==================================
   formatSliderTooltip (value) {
     
     return Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(value);
-}
-
+  }
   onShown() {
     // setTimeout(() => {
     //   this.loadingVisible = false;
     // }, 3000);
   }
-
   onHidden() {
   }
-
-
   customizeK(e) {  
 
     var gridCell = e.gridCell;
@@ -1196,7 +1667,6 @@ export class IngresosComponent implements OnInit {
 
 
   }
-
   customizeExportData(cols, rows){  
     //console.log(cols)
     rows.forEach((row: any) =>{  
@@ -1261,7 +1731,14 @@ export class IngresosComponent implements OnInit {
 
     });
   } 
-
+  calcularPorcentajes(options: any) {
+    // //
+    // if (options.summaryProcess === 'calculate') {
+    //   if (options.name === 'grupMargenUtilidaPor') {
+    //     options.totalValue = .17;
+    //   }
+    // }
+  }
   /**================TEST==================================*/
   exportGrids(e) {
     const context = this;
@@ -1323,7 +1800,6 @@ export class IngresosComponent implements OnInit {
       });
     });
   }
-
   formatValue(value) {
     var myvalue = Math.trunc(value);
 

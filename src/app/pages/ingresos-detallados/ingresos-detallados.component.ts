@@ -62,6 +62,32 @@ export class IngresosDetalladosComponent implements OnInit {
   arrIngresosDic2024: IngresosDModel[] = [];
   arrDetalleDic2024: DetalleModel[] = [];
 
+  /*===================Detalles anuales 2025===========================*/
+  arrIngresosEne2025: IngresosDModel[] = [];
+  arrDetalleEne2025: DetalleModel[] = [];
+  arrIngresosFeb2025: IngresosDModel[] = [];
+  arrDetalleFeb2025: DetalleModel[] = [];
+  arrIngresosMar2025: IngresosDModel[] = [];
+  arrDetalleMar2025: DetalleModel[] = [];
+  arrIngresosAbr2025: IngresosDModel[] = [];
+  arrDetalleAbr2025: DetalleModel[] = [];
+  arrIngresosMay2025: IngresosDModel[] = [];
+  arrDetalleMay2025: DetalleModel[] = [];
+  arrIngresosJun2025: IngresosDModel[] = [];
+  arrDetalleJUN2025: DetalleModel[] = [];
+  arrIngresosJul2025: IngresosDModel[] = [];
+  arrDetalleJul2025: DetalleModel[] = [];
+  arrIngresosAgo2025: IngresosDModel[] = [];
+  arrDetalleAgo2025: DetalleModel[] = [];
+  arrIngresosSep2025: IngresosDModel[] = [];
+  arrDetalleSep2025: DetalleModel[] = [];
+  arrIngresosOct2025: IngresosDModel[] = [];
+  arrDetalleOct2025: DetalleModel[] = [];
+  arrIngresosNov2025: IngresosDModel[] = [];
+  arrDetalleNov2025: DetalleModel[] = [];
+  arrIngresosDic2025: IngresosDModel[] = [];
+  arrDetalleDic2025: DetalleModel[] = [];
+
   loadingVisible = false;
 
   constructor(private ingresosService: ServiceSales) 
@@ -76,29 +102,9 @@ export class IngresosDetalladosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getIDMMarzo();
-    this.getIDMAbril();
-    this.getIDMMayo();
-    this.getIDMJunio();
-    this.getIDMJulio();
-    this.getIDMAgosto();
-    this.getIDMSeptiembre();
-    this.getIDMOctubre();
-    this.getIDMNoviembre();
-    this.getIDMDiciembre();
-    this.getIDMDEnero2024();
-    this.getIDMDFebrero2024();
-    this.getIDMDMarzo2024();
-    this.getIDMDAbril2024();
-    this.getIDMDMayo2024();
-    this.getIDMDJunio2024();
-    this.getIDMDJulio2024();
-    this.getIDMDAgosto2024();
-    this.getIDMDSeptiembre2024();
-    this.getIDMDOctubre2024();
-    this.getIDMDNoviembre2024();
-    this.getIDMDDiciembre2024();
+    this.getIDMDEnero2025();
   }
+
 /*=======================LLamadas GET 2023==========================*/
   getIDMMarzo(){
     this.ingresosService.getIngresosDetalladosMensualMar().subscribe(res => {
@@ -347,14 +353,58 @@ export class IngresosDetalladosComponent implements OnInit {
     //  console.log(this.arrIngresosNov2024)
     });
   }
-
   getIDMDDiciembre2024(){
     this.ingresosService.getIngresosDetalladosMensualDic2024().subscribe(res => {
       this.arrIngresosDic2024 = res.data.resumen;
       this.arrDetalleDic2024 = res.data.detalle;
-     console.log(this.arrIngresosDic2024)
+     //console.log(this.arrIngresosDic2024)
     });
   }
+
+  /*=======================LLamadas GET 2025==========================*/
+  getIDMDEnero2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualEne2025().subscribe(res => {
+      this.arrIngresosEne2025 = res.data.resumen;
+      this.arrDetalleEne2025 = res.data.detalle;
+
+      this.loadingVisible = false;
+    });
+  }
+
+  Actualizar(e: any){
+    this.loadingVisible = true;
+    this.getIDMDEnero2025();
+  }
+
+  getData2024(e: any){
+    this.getIDMDEnero2024();
+    this.getIDMDFebrero2024();
+    this.getIDMDMarzo2024();
+    this.getIDMDAbril2024();
+    this.getIDMDMayo2024();
+    this.getIDMDJunio2024();
+    this.getIDMDJulio2024();
+    this.getIDMDAgosto2024();
+    this.getIDMDSeptiembre2024();
+    this.getIDMDOctubre2024();
+    this.getIDMDNoviembre2024();
+    this.getIDMDDiciembre2024();
+  }
+
+  getData2023(e: any){
+    this.getIDMMarzo();
+    this.getIDMAbril();
+    this.getIDMMayo();
+    this.getIDMJunio();
+    this.getIDMJulio();
+    this.getIDMAgosto();
+    this.getIDMSeptiembre();
+    this.getIDMOctubre();
+    this.getIDMNoviembre();
+    this.getIDMDiciembre();
+  }
+
 
 
   onRowPrepared(e: any) {
@@ -396,10 +446,10 @@ export class IngresosDetalladosComponent implements OnInit {
           }
 
           
-        });
+      });
 
+    }
   }
-}
 
 onRowPreparedOct(e: any) {
     
@@ -1415,33 +1465,6 @@ customizeSep(e) {
       }
     }
   }
-}
-
-
-
-Actualizar(e: any){
-  this.loadingVisible = true;
-  this.getIDMMarzo();
-  this.getIDMAbril();
-  this.getIDMMayo();
-  this.getIDMJunio();
-  this.getIDMJulio();
-  this.getIDMAgosto();
-  this.getIDMSeptiembre();
-  this.getIDMOctubre();
-  this.getIDMNoviembre();
-  this.getIDMDiciembre();
-  this.getIDMDEnero2024();
-  this.getIDMDFebrero2024();
-  this.getIDMDMarzo2024();
-  this.getIDMDAbril2024();
-  this.getIDMDMayo2024();
-  this.getIDMDJunio2024();
-  this.getIDMDAgosto2024();
-  this.getIDMDSeptiembre2024();
-  this.getIDMDOctubre2024();
-  this.getIDMDNoviembre2024();
-  this.getIDMDDiciembre2024();
 }
 
 formating(value){

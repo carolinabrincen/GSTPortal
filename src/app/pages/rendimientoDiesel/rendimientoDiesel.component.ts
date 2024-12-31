@@ -48,6 +48,7 @@ export class RendimientoDieselComponent implements OnInit {
     { idMes: 12, nombre: 'DICIEMBRE' }
   ];
   arrAnos: AniosModel[] = [
+    { idAnio: 2025, anio: "2025" },
     { idAnio: 2024, anio: "2024" },
     { idAnio: 2023, anio: "2023" },
     { idAnio: 2022, anio: "2022" },

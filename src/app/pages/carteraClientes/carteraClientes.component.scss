@@ -51,6 +51,15 @@
   margin-bottom: 20px;
 }
 
+::ng-deep .title-required-password{
+  font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+  font-weight: bold;
+  font-size: 28px;
+  text-align: center;
+
+
+}
+
 
 ::ng-deep #exportContainer {
   text-align: right;
@@ -60,4 +69,3 @@
   text-align: center;
   font-weight: bold;
 }
-  

@@ -70,6 +70,7 @@ export class disponibilidadMensualComponent implements OnInit {
 
   anio: any[] = [
     { id: 2024, anio:  2024},
+    { id: 2025, anio:  2025},
   ];
 
   status: any[] = [

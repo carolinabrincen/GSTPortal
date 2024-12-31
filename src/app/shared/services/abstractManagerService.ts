@@ -21,8 +21,10 @@ export abstract class AbstractManagerService{
       //  this.toastService = 'toast';
       
       // this.API_URL = 'https://localhost:44361/';
-        this.API_URL = 'http://10.8.0.236/PortalGSTPruebas/';
-        // this.API_URL = 'http://10.8.0.236/PortalGST/';
+      // this.API_URL = 'http://10.8.0.236/';
+      this.API_URL = 'http://10.8.0.236:8088/';
+      // this.API_URL = 'http://10.8.0.236:8088/PortalGSTPruebas/';
+      // this.API_URL = 'http://10.8.0.236:8088/PortalGST/';
        this.http = http;
     }
 
