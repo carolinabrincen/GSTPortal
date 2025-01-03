@@ -1176,18 +1176,18 @@ export class IngresosComponent implements OnInit {
       //console.log(e.summaryCells)
     /*====================================PERIODO 2024==================================================*/
     this.graficaModel2025 = [
-      // {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
-      // {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
-      // {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
-      // {mes: "ABRIL", total: e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
-      // {mes: "MAYO", total: e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
-      // {mes: "JUNIO", total: e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
-      // {mes: "JULIO", total: e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
-      // {mes: "AGOSTO", total: e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
-      // {mes: "SEPTIEMBRE", total: e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
-      // {mes: "OCTUBRE", total: e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
-      // {mes: "NOVIEMBRE", total: e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
-      // {mes: "DICIEMBRE", total: e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
+      {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
+      {mes: "FEBRERO", total: undefined, presupuesto: undefined},//e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
+      {mes: "MARZO", total:undefined, presupuesto: undefined},//e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
+      {mes: "ABRIL", total:undefined, presupuesto: undefined},//e.summaryCells[8][0]?.value, presupuesto: e.summaryCells[9][0]?.value},
+      {mes: "MAYO", total:undefined, presupuesto: undefined},//e.summaryCells[10][0]?.value, presupuesto: e.summaryCells[11][0]?.value},
+      {mes: "JUNIO", total:undefined, presupuesto: undefined},//e.summaryCells[12][0]?.value, presupuesto: e.summaryCells[13][0]?.value},
+      {mes: "JULIO", total:undefined, presupuesto: undefined},//e.summaryCells[14][0]?.value, presupuesto: e.summaryCells[15][0]?.value},
+      {mes: "AGOSTO", total:undefined, presupuesto: undefined},//e.summaryCells[16][0]?.value, presupuesto: e.summaryCells[17][0]?.value},
+      {mes: "SEPTIEMBRE", total:undefined, presupuesto: undefined},//e.summaryCells[18][0]?.value, presupuesto: e.summaryCells[19][0]?.value},
+      {mes: "OCTUBRE", total:undefined, presupuesto: undefined},//e.summaryCells[20][0]?.value, presupuesto: e.summaryCells[21][0]?.value},
+      {mes: "NOVIEMBRE", total:undefined, presupuesto: undefined},//e.summaryCells[22][0]?.value, presupuesto: e.summaryCells[23][0]?.value},
+      {mes: "DICIEMBRE", total:undefined, presupuesto: undefined},//e.summaryCells[24][0]?.value, presupuesto: e.summaryCells[25][0]?.value},
     ]
     //        {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
     //console.log(e.summaryCells)
