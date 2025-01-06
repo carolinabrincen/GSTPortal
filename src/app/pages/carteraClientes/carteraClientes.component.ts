@@ -424,7 +424,7 @@ export class CarteraClientesComponent implements OnInit {
       this.avance6.push(data.data.avanceCartera6);
 
       this.detalle = data.data.detalleCartera;
-      console.log(data.data.detalleCartera)
+      //console.log(data.data.detalleCartera)
 
       this.loadingVisible = false;
     })
@@ -463,10 +463,10 @@ export class CarteraClientesComponent implements OnInit {
     var totalAgrup4 = this.cliente4.length
 
     if(this.selectedBoxCartera !== 0){
-      console.log("Size = 6")
+      //console.log("Size = 6")
       var totalFin = totalgrid2 + 6 + totalAgrup4;
     }else{
-      console.log("Size = 10")
+      //console.log("Size = 10")
       var totalFin = totalgrid2 + 10 + totalAgrup4;
     }
 
@@ -600,14 +600,14 @@ export class CarteraClientesComponent implements OnInit {
   
     let myUserLogued = this.storageService.getSession("username")
     
-    var myTipo = 0;
+    var myTipo = 1;
 
     if(myUserLogued == "MARCOS" || myUserLogued == "alejandra.vazquezc"){
 
       this.loadingVisible = true;
 
       this.carteraClientesService.postActualizacionCartera(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data =>{
-            console.log(data)
+            //console.log(data)
 
             if (data.responseCode === 200) {
 
