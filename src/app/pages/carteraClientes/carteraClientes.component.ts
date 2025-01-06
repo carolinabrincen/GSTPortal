@@ -354,7 +354,7 @@ export class CarteraClientesComponent implements OnInit {
     this.cliente4 = [];
     this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
       
-      console.log(data.data)
+      //console.log(data.data)
       if(data.data != undefined || data.data != null){
 
         var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
@@ -598,15 +598,13 @@ export class CarteraClientesComponent implements OnInit {
   
     let myUserLogued = this.storageService.getSession("username")
     
-    var periodo = 0;
-    var compania = 0;
-    var tipo = 0;
+    var myTipo = 0;
 
     if(myUserLogued == "MARCOS" || myUserLogued == "alejandra.vazquezc"){
 
       this.loadingVisible = true;
 
-      this.carteraClientesService.postActualizacionCartera(periodo, compania, tipo, myUserLogued).subscribe(data =>{
+      this.carteraClientesService.postActualizacionCartera(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data =>{
             console.log(data)
 
             if (data.responseCode === 200) {
@@ -626,7 +624,7 @@ export class CarteraClientesComponent implements OnInit {
                   this.avance4 = [];
                   this.avance5 = [];
                   this.avance6 = [];
-                  var myTipo = 1
+                  var myTipo = 0
                   this.loadingVisible = true;
                   this.myTotal = [];
                   this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
