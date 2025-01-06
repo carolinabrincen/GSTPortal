@@ -347,12 +347,14 @@ export class CarteraClientesComponent implements OnInit {
   clientes3 = [];
   cliente4 = [];
   postCarteraCliente(){
+    let myUserLogued = this.storageService.getSession("username")
+
     var myTipo = 0;
     this.loadingVisible = true;
     this.myTotal = [];
     this.clientes3 = [];
     this.cliente4 = [];
-    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
+    this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data => {
       
       //console.log(data.data)
       if(data.data != undefined || data.data != null){
@@ -627,7 +629,7 @@ export class CarteraClientesComponent implements OnInit {
                   var myTipo = 0
                   this.loadingVisible = true;
                   this.myTotal = [];
-                  this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
+                  this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data => {
                     
 
                     if(data.data != undefined || data.data != null){

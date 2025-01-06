@@ -31,11 +31,12 @@ export class CarteraClientesService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_PERIODO_ACTUAL), this.httpOptions);
   }
   
-  postCarteraCliente(periodo: number, compania: number, tipo: number){
+  postCarteraCliente(periodo: number, compania: number, tipo: number, usuario){
     let body = {
       periodo: periodo,
       compania: compania,
-      tipo: tipo
+      tipo: tipo,
+      usuario: usuario
     }
     console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_CARTERA_CLIENTE), body, this.httpOptions);
