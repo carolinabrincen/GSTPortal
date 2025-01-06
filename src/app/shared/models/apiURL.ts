@@ -80,6 +80,7 @@ export enum API_URLS{
     POST_CARTERA_CLIENTE = 'api/CarteraClientes/ResumenCarteraClientes',
     POST_RENTABILIDAD_VIAJES = 'api/Rentabilidad/RCViajes',
     POST_CIERRE_CARTERA = 'api/CarteraClientes/CierreCartera',
+    POST_ACTUALIZACION_CARTERA = 'api/CarteraClientes/ResumenCarteraClientes',
     POST_CARTERA_TERCEROS = 'api/CarteraClientes/CarteraTerceros',
     POST_ASIGNAR_CLIENTE = 'api/CarteraClientes/AsignarCliente',
     POST_MACROCICLO = 'api/Rentabilidad/MacroCiclo',

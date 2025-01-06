@@ -592,7 +592,97 @@ export class CarteraClientesComponent implements OnInit {
   }
 
   Actualizar(){
-    this.modPassword = true;
+    //Testeando para contraseña Primera opcion
+      //this.modPassword = true; 
+    //===================Testeando por usuario segunda opcion============================
+  
+    let myUserLogued = this.storageService.getSession("username")
+    
+    var periodo = 0;
+    var compania = 0;
+    var tipo = 0;
+
+    if(myUserLogued == "MARCOS" || myUserLogued == "alejandra.vazquezc"){
+
+      this.loadingVisible = true;
+
+      this.carteraClientesService.postActualizacionCartera(periodo, compania, tipo, myUserLogued).subscribe(data =>{
+            console.log(data)
+
+            if (data.responseCode === 200) {
+
+
+                notify({
+                  message: "Actualizacion Exitosa",
+                  position: {
+                    my: 'center center',
+                    at: 'center center',
+                  },
+                }, 'success', 3000);
+        
+                  this.avance1 = [];
+                  this.avance2 = [];
+                  this.avance3 = [];
+                  this.avance4 = [];
+                  this.avance5 = [];
+                  this.avance6 = [];
+                  var myTipo = 1
+                  this.loadingVisible = true;
+                  this.myTotal = [];
+                  this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo).subscribe(data => {
+                    
+
+                    if(data.data != undefined || data.data != null){
+
+                      var conCarta = new Intl.NumberFormat().format(data.data.facturasConCarta);
+                      var sinCarta = new Intl.NumberFormat().format(data.data.facturasSinCarta);
+                      var total = new Intl.NumberFormat().format(data.data.facturasTotal);
+
+                      data.data.facturasConCarta = conCarta;
+                      data.data.facturasSinCarta = sinCarta;
+                      data.data.facturasTotal = total;
+                      
+                    }
+
+                  //console.log(data.data)
+
+                    this.carteraClientes = data.data.carteraMensual;
+                    this.carteraClientes.sort((a, b) => (a.cliente < b.cliente ? -1 : 1));
+                    this.sinCartera = data.data.sinCartaTerceros;
+                    this.carteraMI = data.data.carteraMensualIntercompanias;
+                    this.carteraInterSinC = data.data.sinCartaIntercompanias;
+
+                    this.carteraInfo = data.data
+
+                    this.avance1.push(data.data.avanceCartera1);
+                    this.avance2.push(data.data.avanceCartera2);
+                    this.avance3.push(data.data.avanceCartera3);
+                    this.avance4.push(data.data.avanceCartera4);
+                    this.avance5.push(data.data.avanceCartera5);
+                    this.avance6.push(data.data.avanceCartera6);
+
+                    this.detalle = data.data.detalleCartera;
+
+                this.loadingVisible = false;
+                
+              });
+              
+          }
+      })
+    }else{
+
+      notify({
+        message: "No esta autorizado para actualizar",
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'error', 3000);
+
+      this.loadingVisible = false;
+    
+    }
+
     // this.avance1 = [];
     // this.avance2 = [];
     // this.avance3 = [];
