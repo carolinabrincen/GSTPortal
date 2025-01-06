@@ -878,33 +878,43 @@ export class IndicadoresComponent implements OnInit {
 // ====================================INGRESOS TOTAL======================================================================================================
       this.ingresosTotal2024 = data.data.scIngTotal;
 // ====================================INGRESOS======================================================================================================
-      this.ingresos24 = data.data.scIng;
+      const myingresos24 = data.data.scIng.filter((word) => word.mes !== "");      
+      this.ingresos24 = myingresos24//data.data.scIng;
+      //console.log(this.ingresos24)
       // this.ingresos24.sort((a, b) => (a.orden < b.orden ? -1 : 1))
 // ====================================KILOMETROS====================================================================================================
-      this.kilomentros24 = data.data.scKms;      
+      const mykilomentros24 = data.data.scKms.filter((word) => word.mes !== "");      
+      this.kilomentros24 = mykilomentros24//data.data.scKms;      
       //this.kilomentros24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================VIAJES========================================================================================================
-      this.viajes24 = data.data.scViajes;
+      const myviajes24 = data.data.scViajes.filter((word) => word.mes !== "");      
+      this.viajes24 = myviajes24//data.data.scViajes;
       //this.viajes24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================VIAJES CARGADOS===============================================================================================
-      this.viajesCargados24 = data.data.scViajesC;      
+      const myviajesCargados24 = data.data.scViajesC.filter((word) => word.mes !== "");      
+      this.viajesCargados24 = myviajesCargados24//data.data.scViajesC;      
       //this.viajesCargados24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================INGRESO / KILOMETROS==========================================================================================
-      this.ingresosKilometros24 = data.data.scIngXKm;
+      const myingresosKilometros24 = data.data.scIngXKm.filter((word) => word.mes !== "");      
+      this.ingresosKilometros24 = myingresosKilometros24//data.data.scIngXKm;
       //this.ingresosKilometros24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================KILOMETROS / VIAJES===========================================================================================
-      this.kilometroViajes24 = data.data.scKmsViaje;      
+      const mykilometroViajes24 = data.data.scKmsViaje.filter((word) => word.mes !== "");            
+      this.kilometroViajes24 = mykilometroViajes24//data.data.scKmsViaje;      
       //this.kilometroViajes24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================INGRESO / VIAJES==============================================================================================
-      this.ingresoViajes24 = data.data.scIngrViaje
+      const myingresoViajes24 = data.data.scIngrViaje.filter((word) => word.mes !== "");            
+      this.ingresoViajes24 = myingresoViajes24//data.data.scIngrViaje
       //this.ingresoViajes24.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 // ====================================OPERADORES UDN ===============================================================================================  
       this.operadoresUDN24 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
-      this.ingresoOperador24 = data.data.scIngrXOperador;   
+      const myIO2024 = data.data.scIngrXOperador.filter((word) => word.mes !== "(0)");
+      this.ingresoOperador24 = myIO2024//data.data.scIngrXOperador;   
       //console.log(this.ingresoOperador24) 
       
-      this.ingresoOpProm24 = data.data.scIngrXOperadorProm;
+      const myIOP2024 = data.data.scIngrXOperadorProm.filter((word) => word.mes !== "(0)");
+      this.ingresoOpProm24 = myIOP2024//data.data.scIngrXOperadorProm;
  
       this.precioMeta24 = data.data.scPrecioMeta;
 
@@ -1131,7 +1141,7 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
       this.porXFlotaOperacion24 = data.data.porXFlotaOperacion;
       this.porXFlotaOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      console.log(this.porXFlotaOperacion24)
+      //onsole.log(this.porXFlotaOperacion24)
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
@@ -1262,8 +1272,10 @@ export class IndicadoresComponent implements OnInit {
 
   getGraficaIO24(){
     this.indicadorService.getScoreCard2024().subscribe(data => {
-      this.graficaIXO24 = data.data.scIngrXOperador;      
-      console.log(this.graficaIXO24)
+
+      const myData = data.data.scIngrXOperador.filter((word) => word.mes != "(0)");
+      this.graficaIXO24 = myData//data.data.scIngrXOperador;      
+      //console.log(this.graficaIXO24)
       // var myArray = [
       //   {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
       // ]
@@ -1272,7 +1284,7 @@ export class IndicadoresComponent implements OnInit {
 
       // this.graficaOP24.push(myArray[0],myArray[1],myArray[2],myArray[3],myArray[4]);
       
-      const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
+      const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION" && word.mes != "(0)");
 
       this.graficaOP24 = result;
       //console.log(this.graficaOP24)
