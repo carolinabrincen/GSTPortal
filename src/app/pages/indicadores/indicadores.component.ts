@@ -1275,7 +1275,7 @@ export class IndicadoresComponent implements OnInit {
 
       const myData = data.data.scIngrXOperador.filter((word) => word.mes != "(0)");
       this.graficaIXO24 = myData//data.data.scIngrXOperador;      
-      //console.log(this.graficaIXO24)
+      console.log(this.graficaIXO24)
       // var myArray = [
       //   {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
       // ]

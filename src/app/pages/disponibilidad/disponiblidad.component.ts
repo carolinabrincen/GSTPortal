@@ -165,8 +165,9 @@ export class disponiblidadComponent implements OnInit {
 
   getDisponiblidadAnual() {
     this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
-      console.log(response.data)
+      
       this.resumenOperadores = response.data.resumenOperadores;
+      console.log(this.resumenOperadores)
       this.resumenTractos = response.data.resumen;
       this.resumenRemolques = response.data.resumenRemolques;
       this.resumenDolly = response.data.resumenDollys;

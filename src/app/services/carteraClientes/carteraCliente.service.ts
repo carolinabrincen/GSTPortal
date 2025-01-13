@@ -59,7 +59,7 @@ export class CarteraClientesService extends AbstractManagerService {
       tipo: tipo,
       usuario: usuario,
     }
-
+    console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_ACTUALIZACION_CARTERA), body, this.httpOptions);
   }
 

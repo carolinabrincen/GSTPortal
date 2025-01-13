@@ -600,37 +600,27 @@ export class CarteraClientesComponent implements OnInit {
   
     let myUserLogued = this.storageService.getSession("username")
     
-    var myTipo = 1;
+
 
     if(myUserLogued == "MARCOS" || myUserLogued == "alejandra.vazquezc"){
 
+      this.avance1 = [];
+      this.avance2 = [];
+      this.avance3 = [];
+      this.avance4 = [];
+      this.avance5 = [];
+      this.avance6 = [];
+      this.myTotal = [];
+      
+      var myTipo = 1;
+
       this.loadingVisible = true;
+
 
       this.carteraClientesService.postActualizacionCartera(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data =>{
             //console.log(data)
 
             if (data.responseCode === 200) {
-
-
-                notify({
-                  message: "Actualizacion Exitosa",
-                  position: {
-                    my: 'center center',
-                    at: 'center center',
-                  },
-                }, 'success', 3000);
-        
-                  this.avance1 = [];
-                  this.avance2 = [];
-                  this.avance3 = [];
-                  this.avance4 = [];
-                  this.avance5 = [];
-                  this.avance6 = [];
-                  var myTipo = 0
-                  this.loadingVisible = true;
-                  this.myTotal = [];
-                  this.carteraClientesService.postCarteraCliente(this.selectedPeriodo, this.selectedBoxCartera, myTipo, myUserLogued).subscribe(data => {
-                    
 
                     if(data.data != undefined || data.data != null){
 
@@ -663,10 +653,16 @@ export class CarteraClientesComponent implements OnInit {
 
                     this.detalle = data.data.detalleCartera;
 
+                    notify({
+                      message: "Actualizacion Exitosa",
+                      position: {
+                        my: 'center center',
+                        at: 'center center',
+                      },
+                    }, 'success', 3000);
+
                 this.loadingVisible = false;
-                
-              });
-              
+        
           }
       })
     }else{
