@@ -62,6 +62,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
     { id: 202411, periodo: 202411 },
     { id: 202412, periodo: 202412 },
     { id: 202501, periodo: 202501 },
+    { id: 202502, periodo: 202502 },
   ];
 
   areaInter: any[] = [
@@ -201,33 +202,8 @@ export class CarteraInterCompaniasComponent implements OnInit {
 
   }
 
-  printPeriodo = ""
   seleccionarPeriodo(e: any) {
     this.selectedPeriodo = e.value
-
-    if(this.selectedPeriodo == 202307){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2023"
-    }
-    if(this.selectedPeriodo  == 202308){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2023"
-    }
-    if(this.selectedPeriodo == 202309){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2023"
-    }
-    if(this.selectedPeriodo == 202310){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2023"
-    }
-    if(this.selectedPeriodo == 202311){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2023"
-    }
-    if(this.selectedPeriodo == 202312){
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
-    }
-    if(this.selectedPeriodo == 202401){
-
-      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
-    }
-
   }
 
   selectedClientes(e: any){

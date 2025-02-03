@@ -103,6 +103,7 @@ export class IngresosDetalladosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIDMDEnero2025();
+    this.getIDMDFebrero2025();
   }
 
 /*=======================LLamadas GET 2023==========================*/
@@ -372,9 +373,20 @@ export class IngresosDetalladosComponent implements OnInit {
     });
   }
 
+  getIDMDFebrero2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualFeb2025().subscribe(res => {
+      this.arrIngresosFeb2025 = res.data.resumen;
+      this.arrDetalleFeb2025 = res.data.detalle;
+
+      this.loadingVisible = false;
+    });
+  }
+
   Actualizar(e: any){
     this.loadingVisible = true;
     this.getIDMDEnero2025();
+    this.getIDMDFebrero2025();
   }
 
   getData2024(e: any){
