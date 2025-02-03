@@ -1298,10 +1298,10 @@ export class IndicadoresComponent implements OnInit {
 
   getGraficaIO25(){
     this.indicadorService.getScoreCard2025().subscribe(data => {
-      this.graficaIXO25 = data.data.scIngrXOperador;      
+      this.graficaIXO25 = data.data.scIngrXOperador;            
       
       var myArray25 = [
-        {orden: 0, mes: '03 MARZO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {ingreso: 0, ingresoXOperador: 0, mes: '03 MARZO', operadores: 0, orden: 0},
         {orden: 0, mes: '04 ABRIL', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '05 MAYO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '06 JUNIO', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -1310,11 +1310,11 @@ export class IndicadoresComponent implements OnInit {
         {orden: 0, mes: '09 SEPTIEMBRE', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '10 OCTUBRE', operadores: 0, ingreso: 0, ingresoXOperador: 0},
         {orden: 0, mes: '11 NOVIEMBRE', operadores: 0, ingreso: 0, ingresoXOperador: 0},
-        {orden: 0, mes: '12 DICIEMBRE', operadores: 0, ingreso: 0, ingresoXOperador: 0},
+        {orden: 0, mes: '12 DICIEMBRE', operadores: 0, ingreso: 0, ingresoXOperador: 0}
       ]
 
       // this.graficaIXO25.push(myArray25[0]);
-      // console.log(this.graficaIXO25)
+      //  console.log(this.graficaIXO25)
       // this.graficaOP25.push(myArray25[0],myArray25[1],myArray25[2],myArray25[3],myArray25[4],myArray25[5],myArray25[6],myArray25[7],myArray25[8],myArray25[9]);
       
       const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
