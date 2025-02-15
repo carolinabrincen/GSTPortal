@@ -1997,6 +1997,146 @@
 
         </dxi-item>
 
+        <dxi-item title="Ingreso por Cliente">
+            <br><br>
+        
+            <dx-responsive-box>
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+
+                <dxi-col [ratio]="1"></dxi-col>
+                
+        
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Periodo:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="periodoIpC" displayExpr="periodo" valueExpr="periodo" (onValueChanged)="selectPeriodoIpC($event)">
+                    </dx-select-box>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarIpC($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+
+            <br><br>
+            <dx-chart id="chart" palette="vintage" [dataSource]="graficaIpC" title="Ingreso X Cliente">
+                <dxi-series valueField="ingreso" name="Ingreso" type="bar" color="#00B4D8">
+                    <dxo-label [visible]="true"  [format]="formatPesosMX" position="inside">
+                        <dxo-font size="12" color="#000000"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+                <dxi-series axis="porcentaje" type="spline" valueField="porcentaje" name="Porcentaje" color="#FA593F">
+                    <dxo-label [visible]="true"  [format]="formatPercetn" position="inside">
+                        <dxo-font size="12" color="#000000"></dxo-font>
+                    </dxo-label>
+                </dxi-series>
+                <dxo-common-series-settings argumentField="cliente" type="fullstackedbar"></dxo-common-series-settings>
+                <dxi-value-axis>
+                  <dxo-grid [visible]="true"></dxo-grid>
+                </dxi-value-axis>
+                <dxi-value-axis name="portcentaje" position="right">
+                  <dxo-grid [visible]="true"></dxo-grid>
+                  <dxo-title text=""></dxo-title>
+                </dxi-value-axis>
+                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-export [enabled]="true"></dxo-export>
+                <dxo-tooltip [enabled]="true" [shared]="true" [customizeTooltip]="customizeTooltip">
+                  <dxo-format type="largeNumber" [precision]="1"></dxo-format>
+                </dxo-tooltip>
+          </dx-chart>
+
+          <br><br>
+
+            <dx-data-grid  #IOUDN id="gridContainer8" [dataSource]="graficaIpC" [height]="350"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedIO2025($event)" (onCellPrepared)="onCellPreparedIO2025($event)">
+
+                <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
+                <dxi-column dataField="ingreso" caption="Ingreso" [format]="formatPesosMX"></dxi-column>
+                <dxi-column dataField="porcentaje" caption="%" [format]="formatPercetn"></dxi-column>
+                <dxi-column dataField="" caption="" width></dxi-column>                        
+          
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="expandGroupKV"></dxo-grouping>
+                <dxo-export [enabled]="true" fileName="Ingreso por Operador" ></dxo-export>
+                <dxo-paging [pageSize]="paginacionKV"></dxo-paging>
+
+                <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
+                    <dxi-total-item column="ingreso" summaryType="sum" displayFormat="{0}" [valueFormat]="formatPesosMX"  ></dxi-total-item>
+                    <dxi-total-item column="porcentaje" summaryType="sum" displayFormat="{0}" [valueFormat]="formatPercetn"  ></dxi-total-item>
+                </dxo-summary>
+            </dx-data-grid>
+            <br><br>
+
+            <h3>Viajes</h3>
+
+            <dx-data-grid  #INGTL id="gridContainerNew" [dataSource]="IpCViajes" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+            (onCellPrepared)="onCellPreparedIpCV($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+
+            <dxi-column dataField="clienteAgrupador" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="cliente" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+
+            <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
+            <dxi-column dataField="operador" caption="Operador"></dxi-column>
+            <dxi-column dataField="tracto" caption="Tracto"></dxi-column>
+            <dxi-column dataField="rem1" caption="Rem 1"></dxi-column>
+            <dxi-column dataField="rem2" caption="Rem 2"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+            <dxi-column dataField="origen" caption="Origen"></dxi-column>
+            <dxi-column dataField="edoOrigen" caption="Edo. Origen"></dxi-column>
+            <dxi-column dataField="municipioOrigen" caption="Mpio. Origen"></dxi-column>
+            <dxi-column dataField="destino" caption="Destino"></dxi-column>
+            <dxi-column dataField="edoDestino" caption="Edo. Destino"></dxi-column>
+            <dxi-column dataField="municipioDestino" caption="Mpio. Destino"></dxi-column>
+            <dxi-column dataField="kms" caption="KMS"></dxi-column>
+            <dxi-column dataField="despachoViaje" caption="Despacho Viaje"></dxi-column>
+            <dxi-column dataField="flete" caption="Flete" [format]="formatPesosMX"></dxi-column>
+
+     
+            <dxi-column dataField="" caption="" [width]="30"></dxi-column>
+
+            <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
+                <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
+
+                <dxi-group-item column="flete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatPesosMX" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+
+                <dxi-total-item column="flete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatPesosMX"  ></dxi-total-item>
+            </dxo-summary>
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+            <dxo-export [enabled]="true" fileName="Ingreso" [customizeExcelCell]="customizeI"></dxo-export>
+            <dxo-paging [pageSize]="60"></dxo-paging>
+            <dxo-sorting mode="none"></dxo-sorting>
+
+            </dx-data-grid>
+            
+        </dxi-item>
+
         <dxi-item title="Sueldo Operador">
             <br>
             <dx-tab-panel>

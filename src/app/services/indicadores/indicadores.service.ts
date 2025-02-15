@@ -59,6 +59,10 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
   }
 
+  getIngresosXCliente(periodo: number){
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_X_CLIENTE+ periodo), this.httpOptions);
+  }
+
   getTractos(anioSel: number, mesSel: number, udnSel: number[]){
     let body ={
       anio: anioSel,
@@ -105,7 +109,4 @@ export class IndicadoresService extends AbstractManagerService {
   postSueldoDetalle25(periodo: number){
     return this.post<any>((this.API_URL + API_URLS.POST_SUELDO_DETALLE25 + periodo), "",  this.httpOptions);
   }
-
-  
-
 }

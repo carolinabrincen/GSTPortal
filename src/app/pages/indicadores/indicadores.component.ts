@@ -625,9 +625,26 @@ export class IndicadoresComponent implements OnInit {
     { id: 202512, periodo: 202512 },
   ];
 
+  periodoIpC: any[] = [
+    { id: 202401, periodo: 202401 },
+    { id: 202402, periodo: 202402 },
+    { id: 202403, periodo: 202403 },
+    { id: 202404, periodo: 202404 },
+    { id: 202405, periodo: 202405 },
+    { id: 202406, periodo: 202406 },
+    { id: 202407, periodo: 202407 },
+    { id: 202408, periodo: 202408 },
+    { id: 202409, periodo: 202409 },
+    { id: 202410, periodo: 202410 },
+    { id: 202411, periodo: 202411 },
+    { id: 202412, periodo: 202412 },
+    { id: 202501, periodo: 202501 },
+    { id: 202502, periodo: 202502 },
+  ];
   selectedPeriodo: number = 0;
   selectedPerAC: number = 0;
   selectedPerAC25: number = 0;
+  selectedIpC: number = 0;
 
   loadingVisible = false;
 
@@ -652,6 +669,9 @@ export class IndicadoresComponent implements OnInit {
   sueldoDetalle: any[] = [];
 
   sueldoDetalle25: any[] = [];
+
+  graficaIpC: any[] = [];
+  IpCViajes: any[] = [];
 
   arrMeses: any[] = [
     { idMes: 1, nombre: 'ENERO' },
@@ -756,6 +776,20 @@ export class IndicadoresComponent implements OnInit {
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     
   }
+
+  customizeTooltip = ({ points, argumentText }) => ({
+    html: `<div><div class='tooltip-header'>${
+      argumentText}</div>`
+                + '<div class=\'tooltip-body\'><div class=\'series-name\'>'
+                + `<span class='top-series-name'>${points[0].seriesName}</span>`
+                + ': </div><div class=\'value-text\'>'
+                + `<span class='top-series-value'>${points[0].valueText}</span>`
+                + '</div><div class=\'series-name\'>'
+                + `<span class='bottom-series-name'>${points[1].seriesName}</span>`
+                + ': </div><div class=\'value-text\'>'
+                + `<span class='bottom-series-value'>${points[1].valueText}</span>`
+                + '% </div></div></div>',
+  });
 
 
   ngOnInit(): void {
@@ -1391,6 +1425,31 @@ export class IndicadoresComponent implements OnInit {
     
   }
 
+
+  getIngresoXCliente(){
+    const request = new Promise((resolve, reject) => {
+      this.indicadorService.getIngresosXCliente(this.selectedIpC).subscribe(data =>{
+        this.IpCViajes = data.data.viajes;
+        this.graficaIpC = data.data.graficaIngrXCliente;;
+        console.log(this.graficaIpC)
+        //const ixc = data.data.graficaIngrXCliente;
+
+        // for(let i =0; i<ixc.length; i++){
+        //   const myValue = `${parseFloat(ixc[i].porcentaje).toFixed(2)}%`;
+        //   ixc[i].porcentaje = myValue;
+        // }
+
+        
+
+        // this.graficaIpC.sort((a, b) => (a.ingreso > b.ingreso ? -1 : 1))
+
+        this.loadingVisible = false;
+      })
+    })
+  return request;
+    
+  }
+
 //=====================================Function Selected ======================================
   toPercenage(num) {
     return `${Math.round(num * 100)}%`;
@@ -1444,7 +1503,11 @@ export class IndicadoresComponent implements OnInit {
     console.log(this.selectedPerAC25)
   }
 
-
+  selectPeriodoIpC(e: any) {
+    this.selectedIpC = e.value
+    console.log(this.selectedIpC)
+  }
+  
   buscarClick = (e: any) => {
 
     if (this.selectedPeriodo) {
@@ -1488,6 +1551,25 @@ export class IndicadoresComponent implements OnInit {
     if (this.selectedPerAC25) {
       this.loadingVisible = true;
       this.getSueldoDetalle25().then(() => {
+        this.loadingVisible = false;
+      });
+    }else{
+      notify({
+        message: 'Por favor seleccione el periodo',
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+
+  };
+
+  buscarIpC = (e: any) => {
+
+    if (this.selectedIpC) {
+      this.loadingVisible = true;
+      this.getIngresoXCliente().then(() => {
         this.loadingVisible = false;
       });
     }else{
@@ -12614,6 +12696,28 @@ onCellPreparedIO2025(e){
       });
     }
   }
+
+  onCellPreparedIpCV(e){
+    if (e.rowType == 'group'){
+  
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+  
+    if (e.rowType == 'totalFooter') {
+    
+      e.totalItem.cells.forEach((c: any) => {
+  
+        if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "16px";
+          c.cellElement.style.background = "#ff9460";
+          c.cellElement.style.color = "black"; 
+      }   
+
+      })
+    }
+  }
 //===================================FORMATOS PARA LA DATA DE GRIDS=================
   newText: string = "";
   test(e){
@@ -12773,8 +12877,16 @@ onCellPreparedIO2025(e){
    formatSliderTooltip (value) {
     
     return ((value.valueText) * 100).toFixed(2).toString() + '%';
-}
+    
+  }
 
+  formatPercetn(value){
+    const total = value.toFixed(2);
+
+    return total+" %";
+    //return`${parseFloat(value.porcentaje).toFixed(2)}%`;
+    //   ixc[i].porcentaje = myValue;
+  }
 
 
   redondearD(value){

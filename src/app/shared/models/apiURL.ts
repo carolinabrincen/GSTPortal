@@ -122,4 +122,5 @@ export enum API_URLS{
     GET_DISPONIBILIDAD_PRESUPUESTO = 'api/Disponibilidad/GetCatPresupuesto/',
     GET_DISPONIBILIDAD_OPERADOR = 'api/Disponibilidad/ObtenerOperador/',
     GET_DISPONIBILIDAD_TRACTO = 'api/Disponibilidad/ObtenerTracto/',
+    GET_INGRESOS_X_CLIENTE = 'api/Kilometros/IngresoXCliente/',
 }
