@@ -626,6 +626,18 @@ export class IndicadoresComponent implements OnInit {
   ];
 
   periodoIpC: any[] = [
+    { id: 202301, periodo: 202301 },
+    { id: 202302, periodo: 202302 },
+    { id: 202303, periodo: 202303 },
+    { id: 202304, periodo: 202304 },
+    { id: 202305, periodo: 202305 },
+    { id: 202306, periodo: 202306 },
+    { id: 202307, periodo: 202307 },
+    { id: 202308, periodo: 202308 },
+    { id: 202309, periodo: 202309 },
+    { id: 202310, periodo: 202310 },
+    { id: 202311, periodo: 202311 },
+    { id: 202312, periodo: 202312 },
     { id: 202401, periodo: 202401 },
     { id: 202402, periodo: 202402 },
     { id: 202403, periodo: 202403 },
