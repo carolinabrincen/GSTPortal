@@ -13,6 +13,7 @@ import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { DisponibilidadAnualService } from '../../services/disponibilidadAnual/disponibilidadAnual.service';
+import { TotalesXDisponibilidad, TotalOperacion, TotalesXTracos, TotalOpeT, TotalesXRemolques, TotalOpeR  } from '../../shared/models/disponiblidad/totalesXDisponibilidad';
 
 import notify from 'devextreme/ui/notify';
 
@@ -25,6 +26,21 @@ const totalesPor = new TotalPorcentajes;
 const totalesPorGr = new TotalPorcentajes;
 
 const groupName = new Modelos;
+
+const totalXDisponibilidad = new TotalesXDisponibilidad;
+const totalXD = new TotalesXDisponibilidad;
+const totalOperacion = new TotalOperacion;
+const totalOD = new TotalOperacion;
+
+const totalXTractos = new TotalesXTracos;
+const totalXT = new TotalesXTracos;
+const totalOpeT  = new TotalOpeT;
+const totalOT  = new TotalOpeT;
+
+const totalXRemolques = new TotalesXRemolques;
+const totalXR = new TotalesXRemolques;
+const totalOpeR  = new TotalOpeR;
+const totalOR  = new TotalOpeR;
 
 @Component({
   templateUrl: './disponiblidad.component.html',
@@ -359,17 +375,6 @@ export class disponiblidadComponent implements OnInit {
             c.cellElement.style.background = "#cdcbcb";
           }
 
-          // if (c.columnIndex == 24){
-          //   c.cellElement.style.fontWeight = "bolder";
-          //   c.cellElement.style.fontSize = "15px";
-          //   c.cellElement.style.background = "#cdcbcb";
-          // }
-
-          // if (c.columnIndex == 29) {
-          //   c.cellElement.style.fontWeight = "bolder";
-          //   c.cellElement.style.fontSize = "15px";
-          //   c.cellElement.style.background = "#f5f5f5";
-          // }
 
           if (c.columnIndex == 32) {
             c.cellElement.style.fontWeight = "bolder";
@@ -378,6 +383,62 @@ export class disponiblidadComponent implements OnInit {
           }
         }
       });
+    }
+    if (e.rowType == 'groupFooter'){
+
+      //console.log(e.summaryCells)
+      totalXDisponibilidad.disponiblePor = e.summaryCells[2][0]?.value;
+      totalXDisponibilidad.operandoPor = e.summaryCells[4][0]?.value;
+      totalXDisponibilidad.enEsperaPor = e.summaryCells[6][0]?.value;
+      totalXDisponibilidad.patioPor = e.summaryCells[8][0]?.value;
+      totalXDisponibilidad.auxilioPor = e.summaryCells[10][0]?.value;
+      totalXDisponibilidad.isntrictorPor = e.summaryCells[12][0]?.value;
+      totalXDisponibilidad.noDisponiblePor = e.summaryCells[14][0]?.value;
+      totalXDisponibilidad.tallerPor = e.summaryCells[16][0]?.value;
+      totalXDisponibilidad.capacitacionPor = e.summaryCells[18][0]?.value;
+      totalXDisponibilidad.descansosPor = e.summaryCells[20][0]?.value;
+      totalXDisponibilidad.incapcidadPor = e.summaryCells[22][0]?.value;
+      totalXDisponibilidad.ausentismoPor = e.summaryCells[24][0]?.value;
+      totalXDisponibilidad.bajaPor = e.summaryCells[26][0]?.value;
+      totalXDisponibilidad.corralonPor = e.summaryCells[28][0]?.value;
+      totalXDisponibilidad.siniestradoPor = e.summaryCells[30][0]?.value;
+      totalXDisponibilidad.total = e.summaryCells[32][0]?.value;
+      // console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
+
+      totalOperacion.totalDisponiblePor = totalXDisponibilidad.disponiblePor / totalXDisponibilidad.total;
+      totalOperacion.totalOperandoPor = totalXDisponibilidad.operandoPor / totalXDisponibilidad.total;
+      totalOperacion.totalEnEsperaPor = totalXDisponibilidad.enEsperaPor / totalXDisponibilidad.total;
+      totalOperacion.totalPatioPor = totalXDisponibilidad.patioPor / totalXDisponibilidad.total;
+      totalOperacion.totalAuxilioPor = totalXDisponibilidad.auxilioPor / totalXDisponibilidad.total;
+      totalOperacion.totalIsntrictorPor = totalXDisponibilidad.isntrictorPor / totalXDisponibilidad.total;
+      totalOperacion.totalNoDisponiblePor = totalXDisponibilidad.noDisponiblePor / totalXDisponibilidad.total;
+      totalOperacion.totalTallerPor = totalXDisponibilidad.tallerPor / totalXDisponibilidad.total;
+      totalOperacion.totalCapacitacionPor = totalXDisponibilidad.capacitacionPor / totalXDisponibilidad.total;
+      totalOperacion.totalDescansosPor = totalXDisponibilidad.descansosPor / totalXDisponibilidad.total;
+      totalOperacion.totalIncapcidadPor = totalXDisponibilidad.incapcidadPor / totalXDisponibilidad.total;
+      totalOperacion.totalAusentismoPor = totalXDisponibilidad.ausentismoPor / totalXDisponibilidad.total;
+      totalOperacion.totalBajaPor = totalXDisponibilidad.bajaPor / totalXDisponibilidad.total;
+      totalOperacion.totalCorralonPor = totalXDisponibilidad.corralonPor / totalXDisponibilidad.total;
+      totalOperacion.totalSiniestradoPor = totalXDisponibilidad.siniestradoPor / totalXDisponibilidad.total;
+      // console.log("2 ==> "+totalOperacion.totalDisponiblePor)
+
+
+      e.summaryCells[3][0].value = totalOperacion.totalDisponiblePor; 
+      e.summaryCells[5][0].value = totalOperacion.totalOperandoPor;
+      e.summaryCells[7][0].value = totalOperacion.totalEnEsperaPor;
+      e.summaryCells[9][0].value = totalOperacion.totalPatioPor;
+      e.summaryCells[11][0].value = totalOperacion.totalAuxilioPor;
+      e.summaryCells[13][0].value = totalOperacion.totalIsntrictorPor;
+      e.summaryCells[15][0].value = totalOperacion.totalNoDisponiblePor;
+      e.summaryCells[17][0].value = totalOperacion.totalTallerPor;
+      e.summaryCells[19][0].value = totalOperacion.totalCapacitacionPor;
+      e.summaryCells[21][0].value = totalOperacion.totalDescansosPor;
+      e.summaryCells[23][0].value = totalOperacion.totalIncapcidadPor;
+      e.summaryCells[25][0].value = totalOperacion.totalAusentismoPor;
+      e.summaryCells[27][0].value = totalOperacion.totalBajaPor;
+      e.summaryCells[29][0].value = totalOperacion.totalCorralonPor;
+      e.summaryCells[31][0].value = totalOperacion.totalSiniestradoPor;
+      // console.log("4 ==> "+e.summaryCells[3][0].value) 
     }
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
@@ -438,6 +499,62 @@ export class disponiblidadComponent implements OnInit {
       }
 
     }
+
+    if (e.rowType == 'totalFooter') {
+   
+      e.totalItem.cells.forEach((c: any) => {
+        // console.log(c.totalItem.summaryCells)
+        totalXD.disponiblePor = c.totalItem.summaryCells[2][0].value;
+        totalXD.operandoPor = c.totalItem.summaryCells[4][0].value;
+        totalXD.enEsperaPor = c.totalItem.summaryCells[6][0].value;
+        totalXD.patioPor = c.totalItem.summaryCells[8][0].value;
+        totalXD.auxilioPor = c.totalItem.summaryCells[10][0].value;
+        totalXD.isntrictorPor = c.totalItem.summaryCells[12][0].value;
+        totalXD.noDisponiblePor = c.totalItem.summaryCells[14][0].value;
+        totalXD.tallerPor = c.totalItem.summaryCells[16][0].value;
+        totalXD.capacitacionPor = c.totalItem.summaryCells[18][0].value;
+        totalXD.descansosPor = c.totalItem.summaryCells[20][0].value;
+        totalXD.incapcidadPor = c.totalItem.summaryCells[22][0].value;
+        totalXD.ausentismoPor = c.totalItem.summaryCells[24][0].value;
+        totalXD.bajaPor = c.totalItem.summaryCells[26][0].value;
+        totalXD.corralonPor = c.totalItem.summaryCells[28][0].value;
+        totalXD.siniestradoPor = c.totalItem.summaryCells[30][0].value;
+        totalXD.total = c.totalItem.summaryCells[32][0].value;
+
+        totalOD.totalDisponiblePor = totalXD.disponiblePor / totalXD.total;
+        totalOD.totalOperandoPor = totalXD.operandoPor / totalXD.total;
+        totalOD.totalEnEsperaPor = totalXD.enEsperaPor / totalXD.total;
+        totalOD.totalPatioPor = totalXD.patioPor / totalXD.total;
+        totalOD.totalAuxilioPor = totalXD.auxilioPor / totalXD.total;
+        totalOD.totalIsntrictorPor = totalXD.isntrictorPor / totalXD.total;
+        totalOD.totalNoDisponiblePor = totalXD.noDisponiblePor / totalXD.total;
+        totalOD.totalTallerPor = totalXD.tallerPor / totalXD.total;
+        totalOD.totalCapacitacionPor = totalXD.capacitacionPor / totalXD.total;
+        totalOD.totalDescansosPor = totalXD.descansosPor / totalXD.total;
+        totalOD.totalIncapcidadPor = totalXD.incapcidadPor / totalXD.total;
+        totalOD.totalAusentismoPor = totalXD.ausentismoPor / totalXD.total;
+        totalOD.totalBajaPor = totalXD.bajaPor / totalXD.total;
+        totalOD.totalCorralonPor = totalXD.corralonPor / totalXD.total;
+        totalOD.totalSiniestradoPor = totalXD.siniestradoPor / totalXD.total;
+
+        c.totalItem.summaryCells[3][0].value = totalOD.totalDisponiblePor;  
+        c.totalItem.summaryCells[5][0].value = totalOD.totalOperandoPor;  
+        c.totalItem.summaryCells[7][0].value = totalOD.totalEnEsperaPor;  
+        c.totalItem.summaryCells[9][0].value = totalOD.totalPatioPor;  
+        c.totalItem.summaryCells[11][0].value = totalOD.totalAuxilioPor;  
+        c.totalItem.summaryCells[13][0].value = totalOD.totalIsntrictorPor;  
+        c.totalItem.summaryCells[15][0].value = totalOD.totalNoDisponiblePor;  
+        c.totalItem.summaryCells[17][0].value = totalOD.totalTallerPor;  
+        c.totalItem.summaryCells[19][0].value = totalOD.totalCapacitacionPor;  
+        c.totalItem.summaryCells[21][0].value = totalOD.totalDescansosPor;  
+        c.totalItem.summaryCells[23][0].value = totalOD.totalIncapcidadPor;  
+        c.totalItem.summaryCells[25][0].value = totalOD.totalAusentismoPor;  
+        c.totalItem.summaryCells[27][0].value = totalOD.totalBajaPor;  
+        c.totalItem.summaryCells[29][0].value = totalOD.totalCorralonPor  
+        c.totalItem.summaryCells[31][0].value = totalOD.totalSiniestradoPor    
+      });
+    }
+
   }
 
   customizeOp(e) {
@@ -524,6 +641,51 @@ export class disponiblidadComponent implements OnInit {
         }
       });
     }
+
+    if (e.rowType == 'groupFooter'){
+
+      // console.log(e.summaryCells)
+      totalXTractos.disponible = e.summaryCells[3][0]?.value;
+      totalXTractos.operadores = e.summaryCells[5][0]?.value;
+      totalXTractos.variacion = e.summaryCells[7][0]?.value;
+      totalXTractos.auxilio = e.summaryCells[9][0]?.value;
+      totalXTractos.noDisponible = e.summaryCells[11][0]?.value;
+      totalXTractos.taller = e.summaryCells[13][0]?.value;
+      totalXTractos.siniestrado = e.summaryCells[15][0]?.value;
+      totalXTractos.robo = e.summaryCells[17][0]?.value;
+      totalXTractos.faltaDocumento = e.summaryCells[19][0]?.value;
+      totalXTractos.corralon = e.summaryCells[21][0]?.value;
+      totalXTractos.total = e.summaryCells[23][0]?.value;
+      // console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
+
+      totalOpeT.totalDisponible = totalXTractos.disponible / totalXTractos.total;
+      totalOpeT.totalOperadores = totalXTractos.operadores / totalXTractos.total;
+      totalOpeT.totalVariacion = totalXTractos.variacion / totalXTractos.total;
+      totalOpeT.totalAuxilio = totalXTractos.auxilio / totalXTractos.total;
+      totalOpeT.totalNoDisponible = totalXTractos.noDisponible / totalXTractos.total;
+      totalOpeT.totalTaller = totalXTractos.taller / totalXTractos.total;
+      totalOpeT.totalSiniestrado = totalXTractos.siniestrado / totalXTractos.total;
+      totalOpeT.totalRobo = totalXTractos.robo / totalXTractos.total;
+      totalOpeT.totalFaltaDocumento = totalXTractos.faltaDocumento / totalXTractos.total;
+      totalOpeT.totalCorralon = totalXTractos.corralon / totalXTractos.total;
+      
+   
+      // console.log("2 ==> "+totalOperacion.totalDisponiblePor)
+
+
+      e.summaryCells[4][0].value = totalOpeT.totalDisponible; 
+      e.summaryCells[6][0].value = totalOpeT.totalOperadores;
+      e.summaryCells[8][0].value = totalOpeT.totalVariacion;
+      e.summaryCells[10][0].value = totalOpeT.totalAuxilio;
+      e.summaryCells[12][0].value = totalOpeT.totalNoDisponible;
+      e.summaryCells[14][0].value = totalOpeT.totalTaller;
+      e.summaryCells[16][0].value = totalOpeT.totalSiniestrado;
+      e.summaryCells[18][0].value = totalOpeT.totalRobo;
+      e.summaryCells[20][0].value = totalOpeT.totalFaltaDocumento;
+      e.summaryCells[22][0].value = totalOpeT.totalCorralon;
+      // console.log("4 ==> "+e.summaryCells[3][0].value) 
+    }
+
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -567,6 +729,46 @@ export class disponiblidadComponent implements OnInit {
         e.cellElement.style.fontSize = "15px";
         e.cellElement.style.background = "#cdcbcb";
       }
+    }
+
+    if (e.rowType == 'totalFooter') {
+   
+      e.totalItem.cells.forEach((c: any) => {
+        // console.log(c.totalItem.summaryCells)
+        totalXT.disponible = c.totalItem.summaryCells[3][0].value;
+        totalXT.operadores = c.totalItem.summaryCells[5][0].value;
+        totalXT.variacion = c.totalItem.summaryCells[7][0].value;
+        totalXT.auxilio = c.totalItem.summaryCells[9][0].value;
+        totalXT.noDisponible = c.totalItem.summaryCells[11][0].value;
+        totalXT.taller = c.totalItem.summaryCells[13][0].value;
+        totalXT.siniestrado = c.totalItem.summaryCells[15][0].value;
+        totalXT.robo = c.totalItem.summaryCells[17][0].value;
+        totalXT.faltaDocumento = c.totalItem.summaryCells[19][0].value;
+        totalXT.corralon = c.totalItem.summaryCells[21][0].value;
+        totalXT.total = c.totalItem.summaryCells[23][0].value;
+
+        totalOT.totalDisponible = totalXT.disponible / totalXT.total;
+        totalOT.totalOperadores = totalXT.operadores / totalXT.total;
+        totalOT.totalVariacion = totalXT.variacion / totalXT.total;
+        totalOT.totalAuxilio = totalXT.auxilio / totalXT.total;
+        totalOT.totalNoDisponible = totalXT.noDisponible / totalXT.total;
+        totalOT.totalTaller = totalXT.taller / totalXT.total;
+        totalOT.totalSiniestrado = totalXT.siniestrado / totalXT.total;
+        totalOT.totalRobo = totalXT.robo / totalXT.total;
+        totalOT.totalFaltaDocumento = totalXT.faltaDocumento / totalXT.total;
+        totalOT.totalCorralon = totalXT.corralon / totalXT.total;
+
+        c.totalItem.summaryCells[4][0].value = totalOT.totalDisponible;  
+        c.totalItem.summaryCells[6][0].value = totalOT.totalOperadores;  
+        c.totalItem.summaryCells[8][0].value = totalOT.totalVariacion;  
+        c.totalItem.summaryCells[10][0].value = totalOT.totalAuxilio;  
+        c.totalItem.summaryCells[12][0].value = totalOT.totalNoDisponible;  
+        c.totalItem.summaryCells[14][0].value = totalOT.totalTaller;  
+        c.totalItem.summaryCells[16][0].value = totalOT.totalSiniestrado;  
+        c.totalItem.summaryCells[18][0].value = totalOT.totalRobo;  
+        c.totalItem.summaryCells[20][0].value = totalOT.totalFaltaDocumento;  
+        c.totalItem.summaryCells[22][0].value = totalOT.totalCorralon;  
+      });
     }
   }
 
@@ -612,7 +814,7 @@ export class disponiblidadComponent implements OnInit {
     }
   }
 
-  onRowPreparedResumen(e: any) {
+  onRowPreparedResumenR(e: any) {
     if (e.rowType == 'data') {
 
       e.cells.forEach((c: any) => {
@@ -632,6 +834,39 @@ export class disponiblidadComponent implements OnInit {
         }
       })
     }
+
+    if (e.rowType == 'groupFooter'){
+
+      totalXRemolques.totalUds = e.summaryCells[3][0]?.value;
+      totalXRemolques.disponibilidad = e.summaryCells[5][0]?.value;
+      totalXRemolques.variacion = e.summaryCells[7][0]?.value;
+      totalXRemolques.taller = e.summaryCells[9][0]?.value;
+      totalXRemolques.siniestrado = e.summaryCells[11][0]?.value;
+      totalXRemolques.noDisponibles = e.summaryCells[13][0]?.value;
+      totalXRemolques.total = e.summaryCells[15][0]?.value;
+      
+      // console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
+
+      totalOpeR.totalTotalUds = totalXRemolques.totalUds / totalXRemolques.total;
+      totalOpeR.totalDisponibilidad = totalXRemolques.disponibilidad / totalXRemolques.total;
+      totalOpeR.totalVariacion = totalXRemolques.variacion / totalXRemolques.total;
+      totalOpeR.totalTaller = totalXRemolques.taller / totalXRemolques.total;
+      totalOpeR.totalSiniestrado = totalXRemolques.siniestrado / totalXRemolques.total;
+      totalOpeR.totalNoDisponibles = totalXRemolques.noDisponibles / totalXRemolques.total;
+      
+   
+      // console.log("2 ==> "+totalOperacion.totalDisponiblePor)
+
+
+      e.summaryCells[4][0].value = totalOpeR.totalTotalUds; 
+      e.summaryCells[6][0].value = totalOpeR.totalDisponibilidad;
+      e.summaryCells[8][0].value = totalOpeR.totalVariacion;
+      e.summaryCells[10][0].value = totalOpeR.totalTaller;
+      e.summaryCells[12][0].value = totalOpeR.totalSiniestrado;
+      e.summaryCells[14][0].value = totalOpeR.totalNoDisponibles;
+      // console.log("4 ==> "+e.summaryCells[3][0].value) 
+    }
+
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -644,7 +879,7 @@ export class disponiblidadComponent implements OnInit {
     };
   }
 
-  onCellPreparedResumen(e: any) {
+  onCellPreparedResumenR(e: any) {
     if (e.rowType == 'group') {
 
       e.cellElement.style.fontSize = '12px';
@@ -666,6 +901,42 @@ export class disponiblidadComponent implements OnInit {
       e.cellElement.style.fontSize = '15px';
       // e.cellElement.style.background = "#DCDCDC";
     }
+
+    if (e.rowType == 'totalFooter') {
+   
+      e.totalItem.cells.forEach((c: any) => {
+        // console.log(c.totalItem.summaryCells)
+        totalXR.totalUds = c.totalItem.summaryCells[3][0].value;
+        totalXR.disponibilidad = c.totalItem.summaryCells[5][0].value;
+        totalXR.variacion = c.totalItem.summaryCells[7][0].value;
+        totalXR.taller = c.totalItem.summaryCells[9][0].value;
+        totalXR.siniestrado = c.totalItem.summaryCells[11][0].value;
+        totalXR.noDisponibles = c.totalItem.summaryCells[13][0].value;
+        totalXR.total = c.totalItem.summaryCells[15][0].value;
+
+        totalOR.totalTotalUds = totalXR.totalUds / totalXR.total;
+        totalOR.totalDisponibilidad = totalXR.disponibilidad / totalXR.total;
+        totalOR.totalVariacion = totalXR.variacion / totalXR.total;
+        totalOR.totalTaller = totalXR.taller / totalXR.total;
+        totalOR.totalSiniestrado = totalXR.siniestrado / totalXR.total;
+        totalOR.totalNoDisponibles = totalXR.noDisponibles / totalXR.total;
+
+        c.totalItem.summaryCells[4][0].value = totalOR.totalTotalUds;  
+        c.totalItem.summaryCells[6][0].value = totalOR.totalDisponibilidad;  
+        c.totalItem.summaryCells[8][0].value = totalOR.totalVariacion;  
+        c.totalItem.summaryCells[10][0].value = totalOpeR.totalTaller;  
+        c.totalItem.summaryCells[12][0].value = totalOpeR.totalSiniestrado;  
+        c.totalItem.summaryCells[14][0].value = totalOpeR.totalNoDisponibles;  
+      });
+    }
+  }
+
+  onRowPreparedResumenD(e: any) {
+
+  }
+
+  onCellPreparedResumenD(e: any) {
+
   }
 
   onRowPreparedTractos(e: any) {

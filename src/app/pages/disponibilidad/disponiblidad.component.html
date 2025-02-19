@@ -290,7 +290,7 @@
                 <br>
                 <h3>Remolques</h3>
                 <dx-data-grid #resumenR id="gridContainer1" [dataSource]="resumenRemolques" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
+                (onRowPrepared)="onRowPreparedResumenR($event)" (onCellPrepared)="onCellPreparedResumenR($event)">
                 
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
@@ -362,7 +362,7 @@
                 <br>
                 <h3>Dolly</h3>
                 <dx-data-grid #resumenD id="gridContainer1" [dataSource]="resumenDolly" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                (onRowPrepared)="onRowPreparedResumen($event)" (onCellPrepared)="onCellPreparedResumen($event)">
+                (onRowPrepared)="onRowPreparedResumenD($event)" (onCellPrepared)="onCellPreparedResumenD($event)">
                 
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
