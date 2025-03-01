@@ -59,8 +59,8 @@
                         <dxi-column dataField="febreroPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Marzo">
-                        <!-- <dxi-column dataField="marzoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
-                        <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column> -->
+                        <dxi-column dataField="marzoTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="marzoPres" caption="Presupuesto" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Abril">
                         <!-- <dxi-column dataField="abrilTotal" caption="Ingreso" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -1651,7 +1651,7 @@
                         <dxi-column dataField="febPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Marzo">
-                        <!-- <dxi-column dataField="marzoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
+                        <dxi-column dataField="marzoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marzoAnt" caption="Año Ant." [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -1661,7 +1661,7 @@
                         <dxi-column dataField="marProyeccion" caption="Proyección" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="marProyeccionDed" caption="Proy. Dedicado" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="marProyeccionTotal" caption="Proy. Total" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
-                        <dxi-column dataField="marPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column> -->
+                        <dxi-column dataField="marPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column>
                     </dxi-column>
                     <dxi-column caption="Abril">
                         <!-- <dxi-column dataField="abrilFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -1791,7 +1791,7 @@
                     <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
                         <!-- SUMARY DE GRUPO -->
-                        <!-- ENERO 2024 -->
+                        <!-- ENERO 2025 -->
                         <dxi-group-item column="eneroFlete" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="eneroOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item column="eneroTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
@@ -1905,17 +1905,17 @@
                         <dxi-group-item column="dicProyeccionTotal" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true"></dxi-group-item>
                         <!-- PORCENTAJES GRUPO -->
                         <!--ENERO 2024-->
-                        <dxi-group-item showInColumn="eneroPor" name="grupEnero24Por" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="eneroPorP" name="grupAEnero24PorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="enePorProy" name="grupAEnero24PorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPor" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="eneroPorP" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="enePorProy" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--FEBRERO-->
-                        <dxi-group-item showInColumn="febreroPor" name="grupFebreroPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="febreroPorP" name="grupFebreroPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="febPorProy" name="grupFebreroPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="febreroPor"  summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="febreroPorP"  summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="febPorProy"  summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--MARZO-->
-                        <dxi-group-item showInColumn="marzoPor" name="grupMarzoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="marzoPorP" name="grupMarzoPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
-                        <dxi-group-item showInColumn="marPorProy" name="grupMarzoPorProy" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="marzoPor" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="marzoPorP" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
+                        <dxi-group-item showInColumn="marPorProy" summaryType="sum" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <!--ABRIL-->
                         <dxi-group-item showInColumn="abrilPor" name="grupAbrilPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>
                         <dxi-group-item showInColumn="abrilPorP" name="grupAbriloPorP" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true"></dxi-group-item>

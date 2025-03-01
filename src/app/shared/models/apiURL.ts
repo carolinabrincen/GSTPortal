@@ -3,6 +3,7 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES = 'api/Ingresos/IngresosAnuales',
     GET_INGRESOS_ANUALES_2024 = 'api/Ingresos/IngresosAnuales2024',
     GET_INGRESOS_ANUALES_2025 = 'api/Ingresos/IngresosAnuales2025',
+    /*==================================2023===============================================================*/
     GET_INGRESOS_ANUALES_DETALLADO_enero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202301/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202302/02',
     GET_INGRESOS_ANUALES_DETALLADO_marzo = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202303/03',
@@ -15,6 +16,7 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_octubre = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202310/10',
     GET_INGRESOS_ANUALES_DETALLADO_noviembre = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202311/11',
     GET_INGRESOS_ANUALES_DETALLADO_diciembre = 'api/Ingresos/IngresosAnualesDetalladoMensual/2023/202312/12',
+    /*==================================2024===============================================================*/
     GET_INGRESOS_ANUALES_DETALLADO_enero2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202401/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202402/02',
     GET_INGRESOS_ANUALES_DETALLADO_marzo2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual/2024/202403/03',
@@ -27,9 +29,10 @@ export enum API_URLS{
     GET_INGRESOS_ANUALES_DETALLADO_octubre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2024/202410/10',
     GET_INGRESOS_ANUALES_DETALLADO_noviembre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2024/202411/11',
     GET_INGRESOS_ANUALES_DETALLADO_diciembre2024 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2024/202412/12',
-    
+        /*==================================2025===============================================================*/
     GET_INGRESOS_ANUALES_DETALLADO_enero2025 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2025/202501/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero2025 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2025/202502/02',
+    GET_INGRESOS_ANUALES_DETALLADO_marzo2025 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2025/202503/03',
     
     GET_INGRESOS_ANUALES_CHART = 'api/Ingresos/IngresosAnualesChart',
 
