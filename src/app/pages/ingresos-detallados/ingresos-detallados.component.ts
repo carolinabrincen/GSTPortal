@@ -389,7 +389,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualMar2025().subscribe(res => {
       this.arrIngresosMar2025 = res.data.resumen;
       this.arrDetalleMar2025 = res.data.detalle;
-
+      //console.log(this.arrIngresosMar2025)
       this.loadingVisible = false;
     });
   }
