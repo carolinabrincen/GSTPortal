@@ -79,7 +79,9 @@
             <dxi-column dataField="dia31" caption="31"></dxi-column>
 
             
-
+            <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
+            </dxo-summary>
             <!-- <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                 <dxi-group-item column="disponibles" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
                 <dxi-group-item column="disponiblesPor" summaryType="custom" displayFormat="{0}" valueFormat="percent" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>

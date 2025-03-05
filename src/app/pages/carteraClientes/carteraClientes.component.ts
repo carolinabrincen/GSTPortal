@@ -462,9 +462,12 @@ export class CarteraClientesComponent implements OnInit {
 
     var totalAgrup3 = this.clientes3.length
 
-    var totalFin = totalgrid2 + 5 + totalAgrup3;
+    var totalFin = totalgrid2 +  totalAgrup3;
 
-    return totalFin;
+    return totalFin +++5
+
+
+    // return totalFin;
   }
   calcularGridIntSinCart(value): number{
 
@@ -473,17 +476,27 @@ export class CarteraClientesComponent implements OnInit {
     var totalgrid2 = totalGrid1 + value;
 
     var totalAgrup4 = this.cliente4.length
+    
+    var totalFin = totalgrid2  + totalAgrup4;
 
-    if(this.selectedBoxCartera !== 0){
-      //console.log("Size = 6")
-      var totalFin = totalgrid2 + 6 + totalAgrup4;
+
+    if(this.selectedBoxCartera == 0){
+      var size = 7
+    }else if(this.selectedBoxCartera == 3){
+      var size = 9
+    }else if(this.selectedBoxCartera == 4){
+      var size = 7
     }else{
-      //console.log("Size = 10")
-      var totalFin = totalgrid2 + 10 + totalAgrup4;
+      var size = 5
     }
 
+    return totalFin +++size
 
-    return totalFin;
+
+    
+
+
+    // return totalFin;
   }
 
   username: string
