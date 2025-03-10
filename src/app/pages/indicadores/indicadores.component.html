@@ -2724,8 +2724,8 @@
                                 <ul>
                                     <li *ngFor="let value of kmsXOperacionDescription25">
                                         <strong>{{value?.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" "+periodoVariacion}}</div>
-                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" uds. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>
@@ -2762,8 +2762,8 @@
                                 <ul>
                                     <li *ngFor="let value of KmsXUdnDescription25">
                                         <strong>{{value?.clasificacion}}</strong>                                
-                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" "+periodoVariacion}}</div>
-                                        <div [ngStyle]="{'color': (value?.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value?.kmsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.kmsDiferencia+" kms. "+periodoVariacion}}</div>
+                                        <div [ngStyle]="{'color': (value?.udsDiferencia.toString().startsWith('-')) ? 'red' : ''}">{{value?.udsDiferencia+" uds. "+periodoVariacion}}</div>
                                     </li>
                                 </ul>
                             </dxi-item>

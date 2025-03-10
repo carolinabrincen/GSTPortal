@@ -436,7 +436,7 @@ export class CarteraClientesComponent implements OnInit {
       this.avance6.push(data.data.avanceCartera6);
 
       this.detalle = data.data.detalleCartera;
-      //console.log(data.data.detalleCartera)
+      console.log(data.data.detalleCartera)
 
       this.loadingVisible = false;
     })
@@ -470,15 +470,13 @@ export class CarteraClientesComponent implements OnInit {
     // return totalFin;
   }
   calcularGridIntSinCart(value): number{
-
     var totalGrid1 = this.calcularGrid2(this.numRowsMI);
-    
+
     var totalgrid2 = totalGrid1 + value;
 
     var totalAgrup4 = this.cliente4.length
-    
-    var totalFin = totalgrid2  + totalAgrup4;
 
+    var totalFin = totalgrid2  + totalAgrup4;
 
     if(this.selectedBoxCartera == 0){
       var size = 7

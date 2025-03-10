@@ -1246,6 +1246,7 @@ export class IndicadoresComponent implements OnInit {
       var myTotal = []
       myTotal.push(data.data.varKmsXOperacion[0])
       this.kmsXUdnTotal25 = myTotal;
+      // console.log(this.kmsXUdnTotal25)
 
       for(let i =0; i<myKMSRUDN.length; i++){
         var myvalue = Math.trunc(myKMSRUDN[i].kmsDiferencia);
