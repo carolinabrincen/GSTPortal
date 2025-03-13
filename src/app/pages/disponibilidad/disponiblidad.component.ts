@@ -130,6 +130,8 @@ export class disponiblidadComponent implements OnInit {
   operadorDetalle: any = [];
   unidadDetalle: any =  [];
 
+  promedioMensual: any = 0;
+
   showFilterRow: boolean;
   currentFilter: any;
   applyFilterTypes: any;
@@ -182,8 +184,9 @@ export class disponiblidadComponent implements OnInit {
   getDisponiblidadAnual() {
     this.disponibilidadService.postDisponiblidad(this.selectedUdn, this.formFilter.Fecha).subscribe((response) => {
       
+      this.promedioMensual = response.data.promedioMensual
+
       this.resumenOperadores = response.data.resumenOperadores;
-      console.log(this.resumenOperadores)
       this.resumenTractos = response.data.resumen;
       this.resumenRemolques = response.data.resumenRemolques;
       this.resumenDolly = response.data.resumenDollys;

@@ -61,6 +61,7 @@
             <dxi-item title="Disponibilidad">
                 <br>
                 <h3>Operadores</h3>
+                <h4>Disponibilidad mensual <b>{{promedioMensual}}</b> operadores</h4>
                 <dx-data-grid #resmen id="gridContainer1" [dataSource]="resumenOperadores" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
                 
