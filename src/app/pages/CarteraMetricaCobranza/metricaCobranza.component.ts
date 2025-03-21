@@ -31,6 +31,13 @@ export class MetricaCobranzaComponent implements OnInit {
   graficaPCC: any[] = [];
   pendienteCartaCobro: any[] = [];
 
+  graficaCCC: any[] = [];
+  conCartaCobro: any[] = [];
+
+  graficaIngreso: any[] = [];
+
+  colorBar: string = ""
+  
   constructor(
     private metricaCobranzaService: MetricaCobranzaService,
     private storageService: StorageService,
@@ -38,6 +45,8 @@ export class MetricaCobranzaComponent implements OnInit {
     private route: ActivatedRoute,
     ) {
       this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+
+      
     }
 
 
@@ -56,7 +65,6 @@ export class MetricaCobranzaComponent implements OnInit {
     this.metricaCobranzaService.getMetricaCobranza().subscribe(data =>{
 
       const orderdata: MetricaCobranzaModel[] = data.data.metricaCartera;
-      console.log(data.data.pendientesTimbrar)
       let metricaC = [];
       metricaC.push(orderdata[0],orderdata[1],orderdata[11],orderdata[2],orderdata[3],orderdata[4],
                        orderdata[5],orderdata[6],orderdata[7],orderdata[8],orderdata[9],orderdata[10],
@@ -72,12 +80,25 @@ export class MetricaCobranzaComponent implements OnInit {
       this.graficaPCC = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
       this.pendienteCartaCobro = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
 
+      this.graficaCCC = data.data.conCartaCobro.filter((word) => word.clasificacion !== "");
+      this.conCartaCobro = data.data.conCartaCobro
+
+      this.graficaIngreso = data.data.total;
+      console.log(this.graficaIngreso)
+        
 
       this.loadingVisible = false;
     })
   }
 
   Actuaizar(e){
+    this.metricaCombranza = [];
+    this.graficaMC = [];
+    this.graficaPT = [];
+    this.pendienteTimbrar = [];
+    this.graficaPCC = [];
+    this.pendienteCartaCobro = [];
+
     this.getMetricaCobranza();
   }
 
@@ -307,9 +328,73 @@ export class MetricaCobranzaComponent implements OnInit {
     // }
   }
 
-  
 
-  
+  onRowPreparedCCC(e){
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+      else {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+    }
+
+  }
+
+  onCellPreparedCCC(e){
+    if (e.rowType == 'data') {
+      e.cellElement.style.size = "5px";
+      if (e.data.tipo == "Total Pendiente Timbrar" ||
+        e.data.tipo == "Total" ||
+        e.data.tipo == "Total Cartera")
+        {
+          e.cellElement.style.fontWeight = "bolder";
+          e.cellElement.style.fontSize = "14px";
+          
+        
+        e.cellElement.style.background = "#ff9460";
+        e.cellElement.style.color = "black";
+        }
+    }
+
+    if (e.rowType == 'group'){
+
+      e.cellElement.style.fontSize = '12px';
+      e.cellElement.style.background = "#DCDCDC";
+    }
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "14px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+  customizeExportCCC(e) {  
+    var gridCell = e.gridCell;
+    if (gridCell.rowType === 'data') {
+     
+
+      if(gridCell.data.tipo == 'Total Pendiente Timbrar' ||
+        gridCell.data.tipo == 'Total Cartera' ||
+        gridCell.data.tipo == 'Total Cartera'){
+
+          e.backgroundColor = "#FD9460";
+          e.font = {bold: true}
+      }
+
+    }
+  }
+
   customizeLabel = (pointInfo) => {
     const value = parseFloat(pointInfo.valueText);
     const formattedValue = new Intl.NumberFormat('es-MX', {
@@ -319,6 +404,10 @@ export class MetricaCobranzaComponent implements OnInit {
     }).format(value);
     return formattedValue;
   };
+
+  customizeLabelDonut(point) {
+    return `${point.argumentText}   :    $ ${point.valueText}`;
+  }
 
   customizeSeries(valueFromNameField: number) {
     return valueFromNameField === 2009
@@ -335,6 +424,7 @@ export class MetricaCobranzaComponent implements OnInit {
 
     return '$ '+myFormat.join("");
 }
+
 
 }
 

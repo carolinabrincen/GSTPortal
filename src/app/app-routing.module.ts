@@ -12,7 +12,8 @@ import { DetailGridComponent } from './pages/profile/detail-grid/detail-grid.com
 import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDropDownBoxModule, DxTreeViewModule, DxCalendarModule,
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
-  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule,} from 'devextreme-angular';
+  DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule,
+  DxPieChartModule} from 'devextreme-angular';
 
   import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
@@ -266,7 +267,8 @@ const routes: Routes = [
     DxTextBoxModule,
     DxTextAreaModule,
     BrowserModule,
-    BrowserTransferStateModule
+    BrowserTransferStateModule,
+    DxPieChartModule
   ],
   providers: [AuthGuardService],
   exports: [RouterModule],
