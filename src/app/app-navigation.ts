@@ -87,6 +87,11 @@ export const navigation = [
         icon: 'columnchooser',
         path: '/carteraInterCompanias'
       },
+      {
+        text: 'Métrica Cobranza',
+        icon: 'columnchooser',
+        path: '/metricaCobranza'
+      },
     ]
   },
   {
@@ -225,6 +230,11 @@ export const navigationID24 = [
         text: 'Cartera Intercompañias',
         icon: 'columnchooser',
         path: '/carteraInterCompanias'
+      },
+      {
+        text: 'Métrica Cobranza',
+        icon: 'columnchooser',
+        path: '/metricaCobranza'
       },
     ]
   },

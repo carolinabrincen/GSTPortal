@@ -39,11 +39,12 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CarteraInterCompaniasComponent } from './pages/CarteraInterCompanias/carteraInterCompanias.component';
   import { MarcroCicloCompaniasComponent } from './pages/macroCiclo/macroCiclo.component';
   import { disponiblidadComponent } from './pages/disponibilidad/disponiblidad.component';
-  import { DisponibilidadOperadoresComponent } from './pages/disponilibilidadOperadores/disponibilidadOperadores.component'
-  import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component'
-  import { presupuestoDisponibilidadComponent } from './pages/presupuestoDisponibilidad/presupuestoDisponibilidad.component'
-  import { CompensacionProvisionComponent } from './pages/compensacionProvision/compensacionProvision.component'
-  import { disponibilidadMensualComponent } from './pages/disponibilidadMensual/disponiblidadMensual.component'
+  import { DisponibilidadOperadoresComponent } from './pages/disponilibilidadOperadores/disponibilidadOperadores.component';
+  import { MultipartidasComponent } from './pages/multipartidas/multipartidas.component';
+  import { presupuestoDisponibilidadComponent } from './pages/presupuestoDisponibilidad/presupuestoDisponibilidad.component';
+  import { CompensacionProvisionComponent } from './pages/compensacionProvision/compensacionProvision.component';
+  import { disponibilidadMensualComponent } from './pages/disponibilidadMensual/disponiblidadMensual.component';
+  import { MetricaCobranzaComponent } from './pages/CarteraMetricaCobranza/metricaCobranza.component';
 
 const routes: Routes = [
   {
@@ -219,6 +220,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ],
   },
   {
+    path: 'metricaCobranza',
+    component: MetricaCobranzaComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -296,7 +302,8 @@ const routes: Routes = [
     MultipartidasComponent,
     presupuestoDisponibilidadComponent,
     CompensacionProvisionComponent,
-    disponibilidadMensualComponent
+    disponibilidadMensualComponent,
+    MetricaCobranzaComponent
   ]
 })
 export class AppRoutingModule { }
