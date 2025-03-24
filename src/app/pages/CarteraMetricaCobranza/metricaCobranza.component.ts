@@ -64,6 +64,7 @@ export class MetricaCobranzaComponent implements OnInit {
 
     this.metricaCobranzaService.getMetricaCobranza().subscribe(data =>{
 
+      if(data !== null){
       const orderdata: MetricaCobranzaModel[] = data.data.metricaCartera;
       let metricaC = [];
       metricaC.push(orderdata[0],orderdata[1],orderdata[11],orderdata[2],orderdata[3],orderdata[4],
@@ -84,10 +85,10 @@ export class MetricaCobranzaComponent implements OnInit {
       this.conCartaCobro = data.data.conCartaCobro
 
       this.graficaIngreso = data.data.total;
-      console.log(this.graficaIngreso)
         
 
       this.loadingVisible = false;
+      }
     })
   }
 
@@ -98,6 +99,9 @@ export class MetricaCobranzaComponent implements OnInit {
     this.pendienteTimbrar = [];
     this.graficaPCC = [];
     this.pendienteCartaCobro = [];
+    this.graficaCCC = [];
+    this.conCartaCobro = [];
+    this.graficaIngreso = [];
 
     this.getMetricaCobranza();
   }
