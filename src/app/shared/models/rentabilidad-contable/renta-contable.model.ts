@@ -4,8 +4,14 @@ export interface UnidadesNegocioModel{
   ciudad: string
 }
 export interface MesesModel{
-  idMes: number,
+  idMes: any,
   nombre: string,
+}
+
+export interface MesesBVModel{
+  idMes: any,
+  nombre: string,
+  periodo: string
 }
 
 export interface OpcionesModel{

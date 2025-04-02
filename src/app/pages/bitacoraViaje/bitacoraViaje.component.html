@@ -1,0 +1,178 @@
+<h2 class="content-block">Bitácora Viaje</h2>
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+    <br><br>
+
+    <br><br>
+    <dx-responsive-box>
+        <!-- COLS -->
+        <!--UDN-->
+        <dxi-col [ratio]=".30"></dxi-col>
+        <dxi-col [ratio]="2"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--Mes-->
+        <dxi-col [ratio]=".30"></dxi-col>
+        <dxi-col [ratio]=".80"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--Año-->
+        <dxi-col [ratio]=".30"></dxi-col>
+        <dxi-col [ratio]=".60"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--Tracto-->
+        <dxi-col [ratio]=".40"></dxi-col>
+        <dxi-col [ratio]="2"></dxi-col>
+        <!--vacia-->
+        <dxi-col [ratio]=".25"></dxi-col>
+        <!--Buscar-->
+        <dxi-col [ratio]="1"></dxi-col>
+        
+
+        <!-- ROWS -->
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+
+        <!-- CONTROLES DEL FORM -->
+        <!--#region :::: ROW 1 DEL FORM ::::  -->
+        <!--ROW 1 Unidad de Negocio -->
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>UdN:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
+            </dx-select-box>
+        </dxi-item>
+        <!-- MES -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
+            <div>Mes:</div>
+        </dxi-item>
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="periodo" (onValueChanged)="seleccionarMes($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!-- AÑO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Año:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <dx-select-box [items]="anios" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
+            </dx-select-box>
+        </dxi-item>
+
+        <!-- TRACTO -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
+            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+            <div>Tracto:</div>
+        </dxi-item>
+
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
+            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+            <div style="display: flex;">
+              <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
+              [items]="arrTractos"
+              (onValueChanged)="seleccionarTracto($event)">
+                  ></dx-select-box>
+                  <div title="Borrar tracto">
+                    <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" >
+                    </dx-button>
+                  </div>
+            </div>
+        </dxi-item>
+
+        <!-- BUSCAR -->
+        <dxi-item>
+            <dxi-location screen="md lg" [row]="2" [col]="12"></dxi-location>
+            <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+            <div>
+                <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <!--#endregion :::: FIN ROW 1 ::::  -->
+    </dx-responsive-box>
+    <br><br>
+            <br>
+    <div>
+     
+        <dx-data-grid #resmen id="gridContainer1" [dataSource]="bitacoraViaje" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+        (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+        
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+            
+            <dxi-column dataField="tracto" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="noViaje" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
+
+            <dxi-column caption="Viajes">
+                <dxi-column dataField="despacho" caption="Despacho"></dxi-column>
+                <dxi-column dataField="udN" caption="UdN"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
+                <dxi-column dataField="remitente" caption="Remitente"></dxi-column>
+                <dxi-column dataField="destinatario" caption="Destinatario"></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="duracionTotal" caption="Duracion Total"></dxi-column>
+            <dxi-column dataField="tipoViaje" caption="Tipo Viaje"></dxi-column>
+            <dxi-column dataField="status" caption="Status"></dxi-column>
+            <dxi-column dataField="idUsuario" caption="Id Usuario"></dxi-column>
+            <dxi-column dataField="inicio" caption="Inicio"></dxi-column>
+            <dxi-column dataField="fin" caption="Fin"></dxi-column>
+            <dxi-column dataField="duracion" caption="Duración"></dxi-column>
+            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+            
+            <!-- <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                <dxi-group-item column="" summaryType="sum" displayFormat="{0}" [showInGroupFooter]="true" [alignByColumn]="false"></dxi-group-item>
+                <dxi-total-item column="" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+            </dxo-summary> -->
+            
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        </dx-data-grid>
+               
+            
+    </div>
+    
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+
+    <dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">
+        <dxo-position my="top" at="right" of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>

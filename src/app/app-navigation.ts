@@ -215,6 +215,11 @@ export const navigationID24 = [
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
       },
+      {
+        text: 'Bitácora Viaje',
+        icon: 'columnchooser',
+        path: '/bitacoraViaje'
+      },
     ],
   },
   {
