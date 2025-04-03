@@ -166,6 +166,8 @@ export class BitacoraViajeComponent implements OnInit {
 
   bitacoraViaje: any[] = [];
 
+  showHeaderFilter = true;
+
   constructor(
     private disponibilidadService: DisponibilidadAnualService,
     private service: ServiceSales,
@@ -284,6 +286,9 @@ export class BitacoraViajeComponent implements OnInit {
 
   seleccionarTracto(e: any) {
     this.tractoSeleccionado = e.value;
+    if(this.tractoSeleccionado == ""){
+      this.tractoSeleccionado = "TODOS"
+    }
     
 
   }

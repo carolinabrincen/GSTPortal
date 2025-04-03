@@ -135,17 +135,21 @@
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
             
+            <dxo-filter-row
+            [visible]="showFilterRow"
+            [applyFilter]="currentFilter"
+          ></dxo-filter-row>
+          <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter>
+            
             <dxi-column dataField="tracto" caption="" [fixed]="true" [groupIndex]="0"></dxi-column>
             <dxi-column dataField="noViaje" caption="" [fixed]="true" [groupIndex]="1"></dxi-column>
 
-            <dxi-column caption="Viajes">
-                <dxi-column dataField="despacho" caption="Despacho"></dxi-column>
-                <dxi-column dataField="udN" caption="UdN"></dxi-column>
-                <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
-                <dxi-column dataField="remitente" caption="Remitente"></dxi-column>
-                <dxi-column dataField="destinatario" caption="Destinatario"></dxi-column>
-            </dxi-column>
-            <dxi-column dataField="duracionTotal" caption="Duracion Total"></dxi-column>
+            <dxi-column dataField="despacho" caption="Despacho"></dxi-column>
+            <dxi-column dataField="udN" caption="UdN"></dxi-column>
+            <dxi-column dataField="cliente" caption="Cliente"></dxi-column>
+            <dxi-column dataField="remitente" caption="Remitente"></dxi-column>
+            <dxi-column dataField="destinatario" caption="Destinatario"></dxi-column>
+            <!-- <dxi-column dataField="duracionTotal" caption="Duracion Total"></dxi-column> -->
             <dxi-column dataField="tipoViaje" caption="Tipo Viaje"></dxi-column>
             <dxi-column dataField="status" caption="Status"></dxi-column>
             <dxi-column dataField="idUsuario" caption="Id Usuario"></dxi-column>

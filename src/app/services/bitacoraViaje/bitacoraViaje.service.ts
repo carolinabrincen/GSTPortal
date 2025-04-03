@@ -48,7 +48,7 @@ export class BitacoraViajeService extends AbstractManagerService {
       unidadesNegocio: udnSel
     };
     console.log(body)
-    return this.post<any>((this.API_URL + API_URLS.POST_TRACTOS), body,this.httpOptions);
+    return this.post<any>((this.API_URL + API_URLS.POST_TRACTOS_BV), body,this.httpOptions);
   }
 
 
