@@ -74,6 +74,11 @@ export const navigation = [
     ],
   },
   {
+    text: 'Bitácora Viaje',
+    icon: 'columnchooser',
+    path: '/bitacoraViaje'
+  },
+  {
     text: 'Cartera',
     icon: 'datafield',
     items: [
@@ -215,12 +220,12 @@ export const navigationID24 = [
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
       },
-      {
-        text: 'Bitácora Viaje',
-        icon: 'columnchooser',
-        path: '/bitacoraViaje'
-      },
     ],
+  },
+  {
+    text: 'Bitácora Viaje',
+    icon: 'columnchooser',
+    path: '/bitacoraViaje'
   },
   {
     text: 'Cartera',
