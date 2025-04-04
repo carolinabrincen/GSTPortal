@@ -47,6 +47,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { disponibilidadMensualComponent } from './pages/disponibilidadMensual/disponiblidadMensual.component';
   import { MetricaCobranzaComponent } from './pages/CarteraMetricaCobranza/metricaCobranza.component';
   import { BitacoraViajeComponent } from './pages/bitacoraViaje/bitacoraViaje.component';
+
 const routes: Routes = [
   {
     path: 'tasks',

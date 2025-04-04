@@ -1,16 +1,26 @@
 <!-- Card principal  -->
 <div class="content-block dx-card responsive-paddings padding-10">
-    <h2 class="content-block">Métrica de Cobranza</h2>
+    <h2 class="content-block">Cartera Cuentas por Cobrar</h2>
 <!--====================================Grafica de Dona Ingreso========================================================-->
-    <dx-pie-chart id="pie" type="doughnut" title="" palette="Soft Pastel" [dataSource]="graficaIngreso">
+    <dx-pie-chart id="pie" type="doughnut" title="" palette="material" [dataSource]="graficaIngreso"
+    [animation]="false" resolveLabelOverlapping="shift" centerTemplate="centerTemplate" [innerRadius]="0.65" [customizePoint]="perosnalizeStyle">
         <dxo-export [enabled]="true"></dxo-export>
         <dxo-legend horizontalAlignament="center" verticalAlignment="bottom"></dxo-legend>
         <dxi-series argumentField="region" valueField="val">
             <dxo-small-values-grouping mode="topN" [topCount]="3" ></dxo-small-values-grouping>
             <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabelDonut">
+                <!-- <dxo-font size="12" color="black" weight="bold"></dxo-font> -->
                 <dxo-connector [visible]="true" [width]="1"></dxo-connector>
             </dxo-label>
         </dxi-series>
+
+        <svg *dxTemplate="let pieChart of 'centerTemplate'">
+            <circle cx="100" cy="100" [attr.r]="pieChart.getInnerRadius() - 6" fill="#eee" ></circle>
+            <text text-anchor="middle" style="font-size: 18px" x="100" y="100" fill="#494949" >
+              <!-- display: inline -->
+              <tspan x="100" dy="20px" style="font-weight: 600">{{ calculateTotal(pieChart) }}</tspan>
+            </text>
+          </svg>
     </dx-pie-chart>
   
 
@@ -24,23 +34,43 @@
         </div>
     </div>
     <br><br>
+
 <!--====================================Grafica y Grid Metrica Cobranza========================================================-->    
             <dx-box direction="col" width="100%" [height]="530">
                     <dxi-item [ratio]="3" [baseSize]="0">
                     <dx-box direction="row" width="100%" [height]="125">
                         <dxi-item class="rect demo-dark" [ratio]="4">
                             <!--==========================Bar and Line Chart==================-->
-                            <dx-chart #chart [dataSource]="graficaMC" palette="pastel" [rotated]="false" [barGroupWidth]="300">
+                            <dx-chart #chart [dataSource]="graficaMC" palette="material" [rotated]="false" [barGroupWidth]="300">
                                 <dxo-size [height]="570"></dxo-size>
                                 
                                 <!-- <dxi-value-axis [maxValueMargin]=".15">
                             </dxi-value-axis> -->
                                 <dxo-common-series-settings argumentField="tipo" type="bar" valueField="monto">
                                     <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                    backgroundColor="transparent" [verticalOffset]="15" [customizeText]="customizeLabel">
+                                    backgroundColor="transparent" [verticalOffset]="15" [format]="formatPesosMX">
                                         <dxo-font size="12" color="black" weight="bold"></dxo-font>
                                     </dxo-label>
                                 </dxo-common-series-settings>
+
+                                <dxo-argument-axis> <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                                    <dxo-label
+                                        displayMode="standard"
+                                        [staggeringSpacing]="10">
+                                        <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                    </dxo-label>
+                                    
+                                </dxo-argument-axis>
+
+                                <dxi-value-axis>
+                                    <dxo-label
+                                        displayMode="standard"
+                                        [staggeringSpacing]="10">
+                                        <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                    </dxo-label>
+                                    
+                                </dxi-value-axis>
+
                                 <dxo-series-template nameField="clasificacion" [customizeSeries]="customizeSeries"></dxo-series-template>
                                 <dxo-title text=""></dxo-title>
                                 <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
@@ -75,16 +105,34 @@
                 <dx-box direction="row" width="100%" [height]="125">
                     <dxi-item class="rect demo-dark" [ratio]="4">
                         <!--==========================Bar and Line Chart==================-->
-                        <dx-chart #chart [dataSource]="graficaPT" palette="pastel" [rotated]="false" [barGroupWidth]="300" >
+                        <dx-chart #chart [dataSource]="graficaPT" palette="material" [rotated]="false" [barGroupWidth]="300" >
                             <dxo-size [height]="430"></dxo-size>
-                            <!-- <dxi-value-axis [maxValueMargin]=".15">
-                        </dxi-value-axis> -->
+
                             <dxo-common-series-settings argumentField="tipo" type="bar" valueField="monto">
                                 <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                backgroundColor="transparent" [verticalOffset]="15" [customizeText]="customizeLabel">
+                                backgroundColor="transparent" [verticalOffset]="15" [format]="formatPesosMX">
                                     <dxo-font size="12" color="black" weight="bold"></dxo-font>
                                 </dxo-label>
                             </dxo-common-series-settings>
+
+                            <dxo-argument-axis> <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxo-argument-axis>
+
+                            <dxi-value-axis>
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxi-value-axis>
+
                             <dxo-series-template nameField="clasificacion" [customizeSeries]="customizeSeries"></dxo-series-template>
                             <dxo-title text="Pendientes de Timbrar"></dxo-title>
                             <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
@@ -129,16 +177,35 @@
                 <dx-box direction="row" width="100%" [height]="125">
                     <dxi-item class="rect demo-dark" [ratio]="4">
                         <!--==========================Bar and Line Chart==================-->
-                        <dx-chart #chart [dataSource]="graficaPCC" palette="pastel" [rotated]="false" [barGroupWidth]="300" >
+                        <dx-chart #chart [dataSource]="graficaPCC" palette="material" [rotated]="false" [barGroupWidth]="300" >
                             <dxo-size [height]="430"></dxo-size>
                             <!-- <dxi-value-axis [maxValueMargin]=".15">
                         </dxi-value-axis> -->
                             <dxo-common-series-settings argumentField="tipo" type="bar" valueField="monto">
                                 <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                backgroundColor="transparent" [verticalOffset]="15" [customizeText]="customizeLabel">
+                                backgroundColor="transparent" [verticalOffset]="15" [format]="formatPesosMX">
                                     <dxo-font size="12" color="black" weight="bold"></dxo-font>
                                 </dxo-label>
                             </dxo-common-series-settings>
+
+                            <dxo-argument-axis> <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxo-argument-axis>
+
+                            <dxi-value-axis>
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxi-value-axis>
+
                             <dxo-series-template nameField="clasificacion" [customizeSeries]="customizeSeries"></dxo-series-template>
                             <dxo-title text="Pendientes Carta Cobro"></dxo-title>
                             <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
@@ -183,16 +250,35 @@
                 <dx-box direction="row" width="100%" [height]="125">
                     <dxi-item class="rect demo-dark" [ratio]="4">
                         <!--==========================Bar and Line Chart==================-->
-                        <dx-chart #chart [dataSource]="graficaCCC" palette="pastel" [rotated]="false" [barGroupWidth]="300" >
+                        <dx-chart #chart [dataSource]="graficaCCC" palette="material" [rotated]="false" [barGroupWidth]="300" >
                             <dxo-size [height]="430"></dxo-size>
                             <!-- <dxi-value-axis [maxValueMargin]=".15">
                         </dxi-value-axis> -->
                             <dxo-common-series-settings argumentField="tipo" type="bar" valueField="monto" [barWidth]="20">
                                 <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-                                backgroundColor="transparent" [verticalOffset]="15" [customizeText]="customizeLabel">
+                                backgroundColor="transparent" [verticalOffset]="15" [format]="formatPesosMX">
                                     <dxo-font size="12" color="black" weight="bold"></dxo-font>
                                 </dxo-label>
                             </dxo-common-series-settings>
+
+                            <dxo-argument-axis> <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxo-argument-axis>
+
+                            <dxi-value-axis>
+                                <dxo-label
+                                    displayMode="standard"
+                                    [staggeringSpacing]="10">
+                                    <dxo-font size="12" color="black" weight="bold"></dxo-font>
+                                </dxo-label>
+                                
+                            </dxi-value-axis>
+
                             <dxo-series-template nameField="clasificacion" [customizeSeries]="customizeSeries"></dxo-series-template>
                             <dxo-title text="Con Carta Cobro"></dxo-title>
                             <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>

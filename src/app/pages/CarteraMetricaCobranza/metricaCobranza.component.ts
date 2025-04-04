@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, LOCALE_ID } from '@angular/core';
 import { DxSelectBoxComponent, DxFormComponent} from 'devextreme-angular';
 import { MetricaCobranzaService } from 'src/app/services/metricaCobranza/metricaCobranza.service';
 
@@ -7,9 +7,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MetricaCobranzaModel } from 'src/app/shared/models/metricaCobranza/metricaCobranza.model';
 
+import { DecimalPipe } from '@angular/common';
+
 @Component({
   templateUrl: './metricaCobranza.component.html',
   styleUrls: ['./metricaCobranza.component.scss'],
+  providers: [
+    { provide: LOCALE_ID, useValue: "es-MX" }, //replace "en-US" with your locale
+    //otherProviders...
+  ]
 })
 export class MetricaCobranzaComponent implements OnInit {
 
@@ -37,6 +43,8 @@ export class MetricaCobranzaComponent implements OnInit {
   graficaIngreso: any[] = [];
 
   colorBar: string = ""
+
+  pipe = new DecimalPipe('es-MX');
   
   constructor(
     private metricaCobranzaService: MetricaCobranzaService,
@@ -75,7 +83,13 @@ export class MetricaCobranzaComponent implements OnInit {
 
       this.graficaMC = data.data.metricaCartera.filter((word) => word.clasificacion !== "");
 
-      this.graficaPT = data.data.pendientesTimbrar.filter((word) => word.clasificacion !== "");
+      const orderGPT: any[] = data.data.pendientesTimbrar;
+      let gpt = [];
+
+      gpt.push(orderGPT[4],orderGPT[5],orderGPT[6],orderGPT[7],orderGPT[0],orderGPT[1],orderGPT[2],orderGPT[3])
+      this.graficaPT = gpt.filter((word) => word.clasificacion !== "");
+
+      console.log(this.graficaPT)
       this.pendienteTimbrar = data.data.pendientesTimbrar.filter((word) => word.clasificacion !== "");
 
       this.graficaPCC = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
@@ -418,16 +432,49 @@ export class MetricaCobranzaComponent implements OnInit {
       ? { type: 'line', label: { visible: true }, color: '#ff3f7a' } : {};
   }
 
-  formatPesosMX(value){
+
+
+formatPesosMX(value){
   
-    var myvalue = Math.trunc(value);
+  var myvalue = Math.trunc(value);
 
-    var myFormat = myvalue.toString().split(".");
-    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
+  var myFormat = myvalue.toString().split(".");
+  myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
 
-    return '$ '+myFormat.join("");
+  return '$ '+myFormat.join("");
 }
+
+
+calculateTotal(pieChart) {
+  const totalValue = pieChart.getAllSeries()[0].getVisiblePoints().reduce((s, p) => s + p.originalValue, 0);
+
+  var myvalue = Math.trunc(totalValue);
+
+  var myFormat = myvalue.toString().split(".");
+  myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+
+  return '$ '+myFormat.join("");
+
+}
+
+perosnalizeStyle(value){
+  console.log(value)
+
+  if(value.index == 0){
+    value.color = "red"
+  }else if(value.index == 1){
+    value.color = "blue"
+  }else if(value.index == 2){
+    value.color = "green"
+  }
+}
+
+style(event){
+  console.log(event)
+}
+
 
 
 }

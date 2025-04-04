@@ -216,7 +216,7 @@ export class BitacoraViajeComponent implements OnInit {
   }
 
   getTractos() {
-    if (this.anioSeleccionado && this.mesSeleccionado && this.udnSeleccionado) {
+    if (this.anioSeleccionado && this.mesSeleccionado) {
       this.arrTractos = [];
       this.selectTracto.value = '';
       this.bitacoraService.getTractos(this.anioSeleccionado, this.mesSeleccionado, this.udnPush).subscribe(res => {
@@ -228,15 +228,16 @@ export class BitacoraViajeComponent implements OnInit {
   getBitacoraViaje(){
     var myPeriodo = this.anioSeleccionado+''+this.periodo;
     var formatPerido = parseInt(myPeriodo) 
-    console.log(formatPerido)
-    const request = new Promise((resolve, reject) => {
+    
+    if(this.tractoSeleccionado == ""){
+      this.tractoSeleccionado = "TODOS"
+    }
+
       this.bitacoraService.getBitacoraViaje(formatPerido, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
         this.bitacoraViaje = res.data
         console.log(this.bitacoraViaje)  
         this.loadingVisible = false;
       });
-    });
-    return request;
   }
 
   /*======================SELECTE FUNCIONS================================================*/
@@ -280,92 +281,26 @@ export class BitacoraViajeComponent implements OnInit {
     this.udnPush.push(e.value);
     console.log(this.udnPush)
 
-    this.getTractos();
+      this.getTractos();
+ 
   }
 
 
   seleccionarTracto(e: any) {
     this.tractoSeleccionado = e.value;
-    if(this.tractoSeleccionado == ""){
-      this.tractoSeleccionado = "TODOS"
-    }
-    
-
   }
 
 
   borrarClick = (e: any) =>{
     this.selectTracto.value = '';
   }
-  /*========================Guardar Status Manual=========================================*/
-
-  saveStatusManual(value) {
-    let myValue = value.data
-    let myIdUser = sessionStorage.getItem('idUsuario')
-
-    // if(myValue.inicio !== null && myValue.fin !== null){
-    // if(myValue.inicio == null){
-    //   myValue.inicio = "";
-    // }
-    // if(myValue.fin == null){
-    //   myValue.fin = "";
-    // }
-
-    // if(myValue.observaciones == null){
-    //   myValue.observaciones = "";
-    // }
-    this.loadingVisible = true;
-
-    this.disponibilidadService.postStatusManual(myValue.id_personal, this.selectedStatus, myIdUser, myValue.inicio, myValue.fin, myValue.observaciones).subscribe(data => {
-      console.log(data)
-      this.getDisponiblidadAnual()
-
-      notify({
-        message: data.data,
-        position: {
-          my: 'center center',
-          at: 'center center',
-        },
-      }, 'success', 4000);
-    })
-    // }else{
-    //   notify({
-    //     message: 'Falta datos por seleccionar o confirmar',
-    //     position: {
-    //       my: 'center center',
-    //       at: 'center center',
-    //     },
-    //   }, 'warning', 3000);
-    // }
-
-  }
-  /*========================Guardar Tipo Operacion Operador=========================================*/
-  saveTipoOperacionOper(value) {
-    let myValue = value.data
-    let myIdUser = sessionStorage.getItem('idUsuario')
-
-    this.loadingVisible = true;
-
-    this.disponibilidadService.postTipoOperacionOpe(myValue.id_personal, this.selectedOperacion, myIdUser).subscribe(data => {
-      console.log(data)
-      this.getDisponiblidadAnual()
-
-      notify({
-        message: data.data,
-        position: {
-          my: 'center center',
-          at: 'center center',
-        },
-      }, 'success', 4000);
-    })
-  }
+ 
 
   buscarClick = (e: any) => {
-    if (this.udnSeleccionado && this.mesSeleccionado && this.anioSeleccionado) {
+    if (this.mesSeleccionado && this.anioSeleccionado) {
       this.loadingVisible = true;
-      this.getBitacoraViaje().then(() => {
-        this.loadingVisible = false;
-      });
+      
+      this.getBitacoraViaje()
     }
 
   };
