@@ -3,6 +3,47 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
+        <dxi-item title="Macro Ciclo Caja Seca">
+            <dx-data-grid  #ING id="gridContainer1" [dataSource]="macroCCS" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedMCCS($event)" (onCellPrepared)="onCellPreparedMCCS($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row> -->
+
+            <dxi-column dataField="ciclo" caption="Ciclo"></dxi-column>
+            <dxi-column dataField="tracto" caption="Tracto"></dxi-column>
+            <dxi-column dataField="area" caption="Area"></dxi-column>
+            <dxi-column dataField="municipioOrigen" caption="Municipio Origen"></dxi-column>
+            <dxi-column dataField="municipioDestino" caption="Municipio Destino"></dxi-column>
+            <dxi-column dataField="origen" caption="Origen"></dxi-column>
+            <dxi-column dataField="destino" caption="Destino"></dxi-column>
+            <dxi-column dataField="kms" caption="KMS"></dxi-column>
+            <dxi-column dataField="tipoViaje" caption="Tipo Viaje"></dxi-column>
+            <dxi-column dataField="flete" caption="Flete"></dxi-column>
+            <dxi-column dataField="dedicado" caption="Dedicado"></dxi-column>
+            <dxi-column dataField="convenio" caption="Convenio"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operacion"></dxi-column>
+            <dxi-column dataField="numeroViaje" caption="Numero Viaje"></dxi-column>
+            <dxi-column dataField="fecha" caption="Fecha" format="dd/mm/yyyy"></dxi-column> 
+            <dxi-column dataField="" caption="" [width]="30"></dxi-column>
+
+            <!-- <dxo-summary>
+                <dxi-group-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="true"></dxi-group-item>
+
+                <dxi-total-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle"></dxi-total-item>
+                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum"  displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+            </dxo-summary> -->
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+            <dxo-export [enabled]="true" fileName="Macrocilo Caja Seca"></dxo-export>
+            <dxo-paging [pageSize]="60"></dxo-paging>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+
+            </dx-data-grid>
+        </dxi-item>
         <dxi-item title="INGRESO X KM MACROCICLO">
             <br><br>
             <dx-responsive-box>

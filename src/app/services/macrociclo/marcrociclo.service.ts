@@ -32,6 +32,10 @@ export class MarcroCicloService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
   }
 
+  getMacroCicloCajaSeca(){
+    return this.get<any>((this.API_URL + API_URLS.GET_MACRO_CICLO_CAJA_SECA), this.httpOptions);
+  }
+
   postMacrociclo(idArea: number, operacion: string, estados: any[]){
     let body = {
       idArea: idArea,

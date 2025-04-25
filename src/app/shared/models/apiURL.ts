@@ -130,4 +130,5 @@ export enum API_URLS{
     GET_DISPONIBILIDAD_TRACTO = 'api/Disponibilidad/ObtenerTracto/',
     GET_INGRESOS_X_CLIENTE = 'api/Kilometros/IngresoXCliente/',
     GET_METRICA_COBRNZA = 'api/CarteraClientes/MetricaCobranza',
+    GET_MACRO_CICLO_CAJA_SECA = 'api/Rentabilidad/GetMacroCicloCajaSeca'
 }

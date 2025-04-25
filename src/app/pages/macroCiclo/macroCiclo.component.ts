@@ -158,6 +158,8 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   clientes: any[] = [];
   rutas: any[] = [];
   viajes: any[] = [];
+
+  macroCCS: any[] = []
   
   selectedRutaOrigen: string = "";
   selectedRutaDestino: string = "";
@@ -188,6 +190,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   ngOnInit(): void {
     // this.getCarteraDetalle();
     //this.getUnidadesNegocio();
+    this.getMCCS();
   }
 
   ngAfterViewInit(): void {}
@@ -200,6 +203,15 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   //   });
 
   // }
+
+  getMCCS(){
+    this.loadingVisible = true;
+    this.macrocicloService.getMacroCicloCajaSeca().subscribe(data => {
+      this.macroCCS = data.data;
+      console.log(this.macroCCS)
+      this.loadingVisible = false;
+    })
+  }
   //=================SELECTS========================
   selectOperacion(e: any) {
     this.selectedOperacion = e.value;
@@ -405,6 +417,31 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     //     }   
     //   });
     // }
+  }
+
+
+  onRowPreparedMCCS(e){
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedMCCS(e){
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
   }
 
   openDetalle(value){
