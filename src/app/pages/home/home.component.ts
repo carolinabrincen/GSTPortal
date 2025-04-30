@@ -57,10 +57,13 @@ export class HomeComponent {
 
     if (today >= 8 && today <= 9) {
         if (today !== 8 || minutes >= 30){
-          
+          this.homeService.actualizarMacrociclo().subscribe(data =>{
+              console.log(data)
+              console.log("ACTUALIZACON EN EL RANGO DE HORARIO")
         
-          console.log("ACTUALIZACON EN EL RANGO DE HORARIO")
+        })
         
+
       }else {
         console.log("ACTALIZACION FUERA DE RANGO DE HORARIO")
       }
