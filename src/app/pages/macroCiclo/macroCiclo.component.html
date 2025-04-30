@@ -3,47 +3,6 @@
 <div class="content-block dx-card responsive-paddings padding-10">
 
     <dx-tab-panel>
-        <dxi-item title="Macro Ciclo Caja Seca">
-            <dx-data-grid  #ING id="gridContainer1" [dataSource]="macroCCS" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
-            (onRowPrepared)="onRowPreparedMCCS($event)" (onCellPrepared)="onCellPreparedMCCS($event)">
-
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-            <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row> -->
-
-            <dxi-column dataField="ciclo" caption="Ciclo"></dxi-column>
-            <dxi-column dataField="tracto" caption="Tracto"></dxi-column>
-            <dxi-column dataField="area" caption="Area"></dxi-column>
-            <dxi-column dataField="municipioOrigen" caption="Municipio Origen"></dxi-column>
-            <dxi-column dataField="municipioDestino" caption="Municipio Destino"></dxi-column>
-            <dxi-column dataField="origen" caption="Origen"></dxi-column>
-            <dxi-column dataField="destino" caption="Destino"></dxi-column>
-            <dxi-column dataField="kms" caption="KMS"></dxi-column>
-            <dxi-column dataField="tipoViaje" caption="Tipo Viaje"></dxi-column>
-            <dxi-column dataField="flete" caption="Flete"></dxi-column>
-            <dxi-column dataField="dedicado" caption="Dedicado"></dxi-column>
-            <dxi-column dataField="convenio" caption="Convenio"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operacion"></dxi-column>
-            <dxi-column dataField="numeroViaje" caption="Numero Viaje"></dxi-column>
-            <dxi-column dataField="fecha" caption="Fecha" format="dd/mm/yyyy"></dxi-column> 
-            <dxi-column dataField="" caption="" [width]="30"></dxi-column>
-
-            <!-- <dxo-summary>
-                <dxi-group-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle" [showInGroupFooter]="true"></dxi-group-item>
-                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="true"></dxi-group-item>
-
-                <dxi-total-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle"></dxi-total-item>
-                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum"  displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
-            </dxo-summary> -->
-
-            <dxo-group-panel [visible]="false"></dxo-group-panel>
-            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-            <dxo-export [enabled]="true" fileName="Macrocilo Caja Seca"></dxo-export>
-            <dxo-paging [pageSize]="60"></dxo-paging>
-            <dxo-sorting mode="multiple"></dxo-sorting>
-
-            </dx-data-grid>
-        </dxi-item>
         <dxi-item title="INGRESO X KM MACROCICLO">
             <br><br>
             <dx-responsive-box>
@@ -475,7 +434,138 @@
                 </dxo-pager>
                 <dxo-sorting mode="multiple"></dxo-sorting>
             </dx-data-grid>
-        </dxi-item>    
+        </dxi-item>
+        
+        <dxi-item title="Macro Ciclo Caja Seca">
+            <br><br>
+            <div>
+                <div class="dx-field">
+                    <div class="dx-field-value d-block mr-0 ml-auto" style="width: 20%;">
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="240" (onClick)="getMCCS()">
+                        </dx-button>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            
+            <dx-data-grid  #ING id="gridContainer1" [dataSource]="macroCCS" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedMCCS($event)" (onCellPrepared)="onCellPreparedMCCS($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row> -->
+
+            <dxi-column dataField="ciclo" caption="Ciclo"></dxi-column>
+            <dxi-column dataField="tracto" caption="Tracto"></dxi-column>
+            <dxi-column dataField="area" caption="Area"></dxi-column>
+            <dxi-column dataField="municipioOrigen" caption="Municipio Origen"></dxi-column>
+            <dxi-column dataField="municipioDestino" caption="Municipio Destino"></dxi-column>
+            <dxi-column dataField="origen" caption="Origen"></dxi-column>
+            <dxi-column dataField="destino" caption="Destino"></dxi-column>
+            <dxi-column dataField="kms" caption="KMS"></dxi-column>
+            <dxi-column dataField="tipoViaje" caption="Tipo Viaje"></dxi-column>
+            <dxi-column dataField="flete" caption="Flete"></dxi-column>
+            <dxi-column dataField="dedicado" caption="Dedicado"></dxi-column>
+            <dxi-column dataField="convenio" caption="Convenio"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operacion"></dxi-column>
+            <dxi-column dataField="numeroViaje" caption="Numero Viaje"></dxi-column>
+            <dxi-column dataField="fecha" caption="Fecha" format="dd/mm/yyyy"></dxi-column> 
+            <dxi-column dataField="" caption="" [width]="30"></dxi-column>
+
+            <!-- <dxo-summary>
+                <dxi-group-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="true"></dxi-group-item>
+
+                <dxi-total-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle"></dxi-total-item>
+                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum"  displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+            </dxo-summary> -->
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+            <dxo-export [enabled]="true" fileName="Macrocilo Caja Seca"></dxo-export>
+            <dxo-paging [pageSize]="60"></dxo-paging>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+
+            </dx-data-grid>
+
+            <br><br>
+
+            <dx-data-grid  #ING id="gridContainer1" [dataSource]="viajesQuincenales" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedVQ($event)" (onCellPrepared)="onCellPreparedVQ($event)">
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row> -->
+
+            <dxi-column dataField="origen" caption="Origen" [fixed]="true"></dxi-column>
+            <dxi-column dataField="destino" caption="Destino" [fixed]="true"></dxi-column>
+
+            <dxi-column dataField="ene24Q1" caption="Enero 2024Q1"></dxi-column>
+            <dxi-column dataField="ene24Q2" caption="Enero 2024Q2"></dxi-column>
+            <dxi-column dataField="ene25Q1" caption="Enero 2025Q1"></dxi-column>
+            <dxi-column dataField="ene25Q2" caption="Enero 2025Q2"></dxi-column>
+            <dxi-column dataField="feb24Q1" caption="Febrero 2024Q1"></dxi-column>
+            <dxi-column dataField="feb24Q2" caption="Febrero 2024Q2"></dxi-column>
+            <dxi-column dataField="feb25Q1" caption="Febrero 2025Q1"></dxi-column>
+            <dxi-column dataField="feb25Q2" caption="Febrero 2025Q2"></dxi-column>
+            <dxi-column dataField="mar24Q1" caption="Marzo 2024Q1"></dxi-column>
+            <dxi-column dataField="mar24Q2" caption="Marzo 2024Q2"></dxi-column>
+            <dxi-column dataField="mar25Q1" caption="Marzo 2025Q1"></dxi-column>
+            <dxi-column dataField="mar25Q2" caption="Marzo 2025Q2"></dxi-column> 
+            <dxi-column dataField="abr24Q1" caption="Abril 2024Q1"></dxi-column>
+            <dxi-column dataField="abr24Q2" caption="Abril 2024Q2"></dxi-column>
+            <dxi-column dataField="abr25Q1" caption="Abril 2025Q1"></dxi-column>
+            <dxi-column dataField="abr25Q2" caption="Abril 2025Q2"></dxi-column> 
+            <dxi-column dataField="may24Q1" caption="Mayo 2024Q1"></dxi-column>
+            <dxi-column dataField="may24Q2" caption="Mayo 2024Q2"></dxi-column>
+            <dxi-column dataField="may25Q1" caption="Mayo 2025Q1"></dxi-column>
+            <dxi-column dataField="may25Q2" caption="Mayo 2025Q2"></dxi-column> 
+            <dxi-column dataField="jun24Q1" caption="Junio 2024Q1"></dxi-column>
+            <dxi-column dataField="jun24Q2" caption="Junio 2024Q2"></dxi-column>
+            <dxi-column dataField="jun25Q1" caption="Junio 2025Q1"></dxi-column>
+            <dxi-column dataField="jun25Q2" caption="Junio 2025Q2"></dxi-column> 
+            <dxi-column dataField="jul24Q1" caption="Julio 2024Q1"></dxi-column>
+            <dxi-column dataField="jul24Q2" caption="Julio 2024Q2"></dxi-column>
+            <dxi-column dataField="jul25Q1" caption="Julio 2025Q1"></dxi-column>
+            <dxi-column dataField="jul25Q2" caption="Julio 2025Q2"></dxi-column> 
+            <dxi-column dataField="ago24Q1" caption="Agosto 2024Q1"></dxi-column>
+            <dxi-column dataField="ago24Q2" caption="Agosto 2024Q2"></dxi-column>
+            <dxi-column dataField="ago25Q1" caption="Agosto 2025Q1"></dxi-column>
+            <dxi-column dataField="ago25Q2" caption="Agosto 2025Q2"></dxi-column> 
+            <dxi-column dataField="sep24Q1" caption="Septiembre 2024Q1"></dxi-column>
+            <dxi-column dataField="sep24Q2" caption="Septiembre 2024Q2"></dxi-column>
+            <dxi-column dataField="sep25Q1" caption="Septiembre 2025Q1"></dxi-column>
+            <dxi-column dataField="sep25Q2" caption="Septiembre 2025Q2"></dxi-column> 
+            <dxi-column dataField="oct24Q1" caption="Octubre 2024Q1"></dxi-column>
+            <dxi-column dataField="oct24Q2" caption="Octubre 2024Q2"></dxi-column>
+            <dxi-column dataField="oct25Q1" caption="Octubre 2025Q1"></dxi-column>
+            <dxi-column dataField="oct25Q2" caption="Octubre 2025Q2"></dxi-column> 
+            <dxi-column dataField="nov24Q1" caption="Noviembre 2024Q1"></dxi-column>
+            <dxi-column dataField="nov24Q2" caption="Noviembre 2024Q2"></dxi-column>
+            <dxi-column dataField="nov25Q1" caption="Noviembre 2025Q1"></dxi-column>
+            <dxi-column dataField="nov25Q2" caption="Noviembre 2025Q2"></dxi-column> 
+            <dxi-column dataField="dic24Q1" caption="Diciembre 2024Q1"></dxi-column>
+            <dxi-column dataField="dic24Q2" caption="Diciembre 2024Q2"></dxi-column>
+            <dxi-column dataField="dic25Q1" caption="Diciembre 2025Q1"></dxi-column>
+            <dxi-column dataField="dic25Q2" caption="Diciembre 2025Q2"></dxi-column> 
+            <dxi-column dataField="total" caption="Total" [fixed]="true" fixedPosition="right" [width]="100" alignment="left"></dxi-column> 
+
+            <!-- <dxo-summary>
+                <dxi-group-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle" [showInGroupFooter]="true"></dxi-group-item>
+                <dxi-group-item column="totaL_INTEGRADO" summaryType="sum" displayFormat="{0}" [valueFormat]="separator" [showInGroupFooter]="true"></dxi-group-item>
+
+                <dxi-total-item column="saldO_SIN_CCOBRO" [customizeText]="customizeDateDetalle"></dxi-total-item>
+                <dxi-total-item column="totaL_INTEGRADO" summaryType="sum"  displayFormat="{0}" [valueFormat]="separator"></dxi-total-item>
+            </dxo-summary> -->
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+            <dxo-export [enabled]="true" fileName="Viajes Quincenas"></dxo-export>
+            <dxo-paging [pageSize]="60"></dxo-paging>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+
+            </dx-data-grid>
+        </dxi-item>
     </dx-tab-panel>
 
 <!--==========================MODAL REAL=========================================================-->

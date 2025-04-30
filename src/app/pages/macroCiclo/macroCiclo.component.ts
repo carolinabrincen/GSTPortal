@@ -160,6 +160,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   viajes: any[] = [];
 
   macroCCS: any[] = []
+  viajesQuincenales: any[] = []
   
   selectedRutaOrigen: string = "";
   selectedRutaDestino: string = "";
@@ -190,7 +191,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   ngOnInit(): void {
     // this.getCarteraDetalle();
     //this.getUnidadesNegocio();
-    this.getMCCS();
+    
   }
 
   ngAfterViewInit(): void {}
@@ -207,8 +208,9 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   getMCCS(){
     this.loadingVisible = true;
     this.macrocicloService.getMacroCicloCajaSeca().subscribe(data => {
-      this.macroCCS = data.data;
-      console.log(this.macroCCS)
+      this.macroCCS = data.data.viajesCajaSecaMCDTO;
+      this.viajesQuincenales = data.data.viajesQuincenales;
+      // console.log(this.viajesQuincenales)
       this.loadingVisible = false;
     })
   }
@@ -432,6 +434,31 @@ export class MarcroCicloCompaniasComponent implements OnInit {
   }
 
   onCellPreparedMCCS(e){
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+
+  onRowPreparedVQ(e){
+    if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedVQ(e){
     if (e.rowType == 'totalFooter') {
       e.totalItem.cells.forEach((c: any) => {
         if (c.cellElement) {
