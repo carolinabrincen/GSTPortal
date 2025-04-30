@@ -109,6 +109,7 @@ export enum API_URLS{
     POST_SUELDO_DETALLE = 'api/Rentabilidad/SueldoDetalle/',
     POST_SUELDO_DETALLE25 = 'api/Rentabilidad/SueldoDetalle/',
     POST_BITACORA_VIAJE = 'api/Disponibilidad/PostBitacoraViaje',
+    POST_ACTUALIZAR_MACROCICLO = 'api/Rentabilidad/ActualizaMacroCiclo',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
