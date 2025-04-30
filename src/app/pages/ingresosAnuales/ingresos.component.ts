@@ -1224,7 +1224,7 @@ export class IngresosComponent implements OnInit {
   onRowPreparedDetalle2025(e: any){
       if (e.rowType == 'groupFooter'){
         if(e.groupIndex == 0){
-          // console.log(e.summaryCells)
+          //  console.log(e.summaryCells)
           //ENERO 2024
           this.totalPor25.totalE = e.summaryCells[4][0]?.value;
           this.totalPor25.anioAntE = e.summaryCells[5][0]?.value;
@@ -1246,10 +1246,10 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presupuestoA = e.summaryCells[40][0].value;
           this.totalPor25.proyeccionA = e.summaryCells[42][0].value;
           // //Mayo
-          // this.totalPor25.totalMY = e.summaryCells[40][0].value;
-          // this.totalPor25.anioAntMY = e.summaryCells[41][0].value;
-          // this.totalPor25.presupuestoMY = e.summaryCells[43][0].value;
-          // this.totalPor25.proyeccionMY = e.summaryCells[45][0].value;
+          this.totalPor25.totalMY = e.summaryCells[48][0].value;
+          this.totalPor25.anioAntMY = e.summaryCells[49][0].value;
+          this.totalPor25.presupuestoMY = e.summaryCells[51][0].value;
+          this.totalPor25.proyeccionMY = e.summaryCells[53][0].value;
           // //Junio
           // this.totalPor25.totalJN = e.summaryCells[49][0].value;
           // this.totalPor25.anioAntJN = e.summaryCells[50][0].value;
@@ -1304,9 +1304,9 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presTotalA = this.totalPor25.totalA / this.totalPor25.presupuestoA;
           this.totalPor25.ProyTotalA = this.totalPor25.proyeccionA / this.totalPor25.presupuestoA;
           // // //Mayo
-          // this.totalPor25.aniATotalMY = this.totalPor25.totalMY / this.totalPor25.anioAntMY;
-          // this.totalPor25.presTotalMY = this.totalPor25.totalMY / this.totalPor25.presupuestoMY;
-          // this.totalPor25.ProyTotalMY = this.totalPor25.proyeccionMY / this.totalPor25.presupuestoMY;
+          this.totalPor25.aniATotalMY = this.totalPor25.totalMY / this.totalPor25.anioAntMY;
+          this.totalPor25.presTotalMY = this.totalPor25.totalMY / this.totalPor25.presupuestoMY;
+          this.totalPor25.ProyTotalMY = this.totalPor25.proyeccionMY / this.totalPor25.presupuestoMY;
           // // //Junio
           // this.totalPor25.aniATotalJN = this.totalPor25.totalJN / this.totalPor25.anioAntJN;
           // this.totalPor25.presTotalJN = this.totalPor25.totalJN / this.totalPor25.presupuestoJN;
@@ -1363,11 +1363,11 @@ export class IngresosComponent implements OnInit {
             e.summaryCells[45][0].value = this.totalPor25.ProyTotalA;
           }
           // // //Mayo
-          // if(e.summaryCells[42][0].value !== undefined){
-          //   e.summaryCells[42][0].value = this.totalPor25.aniATotalMY;
-          //   e.summaryCells[44][0].value = this.totalPor25.presTotalMY;
-          //   e.summaryCells[46][0].value = this.totalPor25.ProyTotalMY;
-          // }
+          if(e.summaryCells[50][0].value !== undefined){
+            e.summaryCells[50][0].value = this.totalPor25.aniATotalMY;
+            e.summaryCells[52][0].value = this.totalPor25.presTotalMY;
+            e.summaryCells[56][0].value = this.totalPor25.ProyTotalMY;
+          }
           // // //Junio
           // if(e.summaryCells[51][0].value !== undefined){
           //   e.summaryCells[51][0].value = this.totalPor25.aniATotalJN;
@@ -1436,7 +1436,7 @@ export class IngresosComponent implements OnInit {
       if(e.rowType == 'totalFooter'){
   
         e.totalItem.cells.forEach((c: any) => {
-           console.log(c.totalItem.summaryCells)
+          //  console.log(c.totalItem.summaryCells)
           // //ENERO 2024
           let total25E = c.totalItem.summaryCells[4][0]?.value;
           let anioAnt25E = c.totalItem.summaryCells[5][0]?.value;
@@ -1459,10 +1459,10 @@ export class IngresosComponent implements OnInit {
           let proyeccion25A = c.totalItem.summaryCells[42][0].value;
           // // //Mayo
           // // console.log(c.totalItem.summaryCells)
-          // let totalMY25 = c.totalItem.summaryCells[40][0].value;
-          // let anioAntMY25 = c.totalItem.summaryCells[41][0].value;
-          // let presupuestoMY25 = c.totalItem.summaryCells[43][0].value;
-          // let proyeccionMY25 = c.totalItem.summaryCells[45][0].value;
+          let totalMY25 = c.totalItem.summaryCells[48][0].value;
+          let anioAntMY25 = c.totalItem.summaryCells[49][0].value;
+          let presupuestoMY25 = c.totalItem.summaryCells[51][0].value;
+          let proyeccionMY25 = c.totalItem.summaryCells[53][0].value;
           // // //Junio
           // let totalJN25 = c.totalItem.summaryCells[49][0].value;
           // let anioAntJN25 = c.totalItem.summaryCells[50][0].value;
@@ -1542,15 +1542,15 @@ export class IngresosComponent implements OnInit {
             totalesPor25.proyeccionA = c.totalItem.summaryCells[45][0].value
           }
           // // //Mayo
-          // if(c.totalItem.summaryCells[42][0] !== undefined){
-          //   totalMY25 === 0 ? c.totalItem.summaryCells[42][0].value = 0 : c.totalItem.summaryCells[42][0].value = totalMY25/anioAntMY25;
-          //   presupuestoMY25 === 0 ? c.totalItem.summaryCells[44][0].value = 0 : c.totalItem.summaryCells[44][0].value = totalMY25/presupuestoMY25;
-          //   proyeccionMY25 === 0 ? c.totalItem.summaryCells[46][0].value = 0 : c.totalItem.summaryCells[46][0].value = totalMY25/proyeccionMY25;
+          if(c.totalItem.summaryCells[50][0] !== undefined){
+            totalMY25 === 0 ? c.totalItem.summaryCells[50][0].value = 0 : c.totalItem.summaryCells[50][0].value = totalMY25/anioAntMY25;
+            presupuestoMY25 === 0 ? c.totalItem.summaryCells[52][0].value = 0 : c.totalItem.summaryCells[52][0].value = totalMY25/presupuestoMY25;
+            proyeccionMY25 === 0 ? c.totalItem.summaryCells[56][0].value = 0 : c.totalItem.summaryCells[56][0].value = totalMY25/proyeccionMY25;
   
-          //   totalesPor25.totalMY = c.totalItem.summaryCells[42][0].value
-          //   totalesPor25.presupuestoMY = c.totalItem.summaryCells[44][0].value
-          //   totalesPor25.proyeccionMY = c.totalItem.summaryCells[46][0].value
-          // }
+            totalesPor25.totalMY = c.totalItem.summaryCells[50][0].value
+            totalesPor25.presupuestoMY = c.totalItem.summaryCells[52][0].value
+            totalesPor25.proyeccionMY = c.totalItem.summaryCells[56][0].value
+          }
           // //Junio
           // if(c.totalItem.summaryCells[51][0] !== undefined){
           //   totalJN25 === 0 ? c.totalItem.summaryCells[51][0].value = 0 : c.totalItem.summaryCells[51][0].value = totalJN25/anioAntJN25;

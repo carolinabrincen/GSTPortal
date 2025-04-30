@@ -106,6 +106,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDFebrero2025();
     this.getIDMDMarzo2025();
     this.getIDMDAbril2025();
+    this.getIDMDMayo2025();
   }
 
 /*=======================LLamadas GET 2023==========================*/
@@ -366,41 +367,51 @@ export class IngresosDetalladosComponent implements OnInit {
 
   /*=======================LLamadas GET 2025==========================*/
   getIDMDEnero2025(){
-    this.loadingVisible = true;
+    //this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualEne2025().subscribe(res => {
       this.arrIngresosEne2025 = res.data.resumen;
       this.arrDetalleEne2025 = res.data.detalle;
 
-      this.loadingVisible = false;
+      //this.loadingVisible = false;
     });
   }
 
   getIDMDFebrero2025(){
-    this.loadingVisible = true;
+  //  this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualFeb2025().subscribe(res => {
       this.arrIngresosFeb2025 = res.data.resumen;
       this.arrDetalleFeb2025 = res.data.detalle;
 
-      this.loadingVisible = false;
+    //  this.loadingVisible = false;
     });
   }
 
   getIDMDMarzo2025(){
-    this.loadingVisible = true;
+   // this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualMar2025().subscribe(res => {
       this.arrIngresosMar2025 = res.data.resumen;
       this.arrDetalleMar2025 = res.data.detalle;
       //console.log(this.arrIngresosMar2025)
-      this.loadingVisible = false;
+     // this.loadingVisible = false;
     });
   }
 
   getIDMDAbril2025(){
-    this.loadingVisible = true;
+    //this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualAbr2025().subscribe(res => {
       this.arrIngresosAbr2025 = res.data.resumen;
       this.arrDetalleAbr2025 = res.data.detalle;
       //console.log(this.arrIngresosMar2025)
+      //this.loadingVisible = false;
+    });
+  }
+
+  getIDMDMayo2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualMay2025().subscribe(res => {
+      this.arrIngresosMay2025 = res.data.resumen;
+      this.arrDetalleMay2025 = res.data.detalle;
+      console.log(this.arrIngresosMar2025)
       this.loadingVisible = false;
     });
   }
@@ -411,6 +422,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDFebrero2025();
     this.getIDMDMarzo2025();
     this.getIDMDAbril2025();
+    this.getIDMDMayo2025();
   }
 
   getData2024(e: any){
