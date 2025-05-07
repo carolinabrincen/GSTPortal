@@ -815,7 +815,7 @@ export class IndicadoresComponent implements OnInit {
     this.getGraficaIO25();
     this.getIndicadoresChart25();
     // this.getSueldoBase25();
-    // this.getSueldoOpAc25();
+    this.getSueldoOpAc25();
     this.getUnidadesNegocio();
     this.getTractos();
   }
@@ -1309,7 +1309,7 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
       this.porXFlotaOperacion25 = data.data.porXFlotaOperacion;
       this.porXFlotaOperacion25.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      console.log(this.porXFlotaOperacion25)
+      //console.log(this.porXFlotaOperacion25)
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
@@ -1408,15 +1408,16 @@ export class IndicadoresComponent implements OnInit {
     this.loadingVisible = true;
     this.indicadorService.getSueldoOpAc().subscribe(data => {
       this.graficaSueldoOpAc = data.data;
-      //console.log(this.graficaSueldoOpAc)
       this.loadingVisible = false;
     })
   }
 
   getSueldoOpAc25(){
+    this.loadingVisible = true;
     this.indicadorService.getSueldoOpAc25().subscribe(data => {
       this.graficaSueldoOpAc2025 = data.data;
-      //console.log(this.graficaSueldoOpAc2025)
+      console.log(data)
+      this.loadingVisible = false;
     })
   }
 
@@ -1617,7 +1618,7 @@ export class IndicadoresComponent implements OnInit {
   }
 
   ActualizarSOA25 = (e: any)=>{
-    // this.getSueldoOpAc25();
+     this.getSueldoOpAc25();
   }
 
   getDataSOA2024 = (e: any) =>{
