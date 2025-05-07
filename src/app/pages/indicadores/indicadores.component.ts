@@ -1436,8 +1436,8 @@ export class IndicadoresComponent implements OnInit {
   getSueldoDetalle25(){
     const request = new Promise((resolve, reject) => {
       this.indicadorService.postSueldoDetalle25(this.selectedPerAC25).subscribe(data =>{
-        this.sueldoDetalle = data.data;
-        //console.log(this.sueldoDetalle)
+        this.sueldoDetalle25 = data.data;
+        console.log(this.sueldoDetalle25)
         this.loadingVisible = false;
       })
     })
