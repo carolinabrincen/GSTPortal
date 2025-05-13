@@ -63,6 +63,11 @@ export class IndicadoresService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_X_CLIENTE+ periodo), this.httpOptions);
   }
 
+
+  getIngresosXClienteAnual(anio: number){
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_X_CLIENTE_ANUAL+ anio), this.httpOptions);
+  }
+
   getTractos(anioSel: number, mesSel: number, udnSel: number[]){
     let body ={
       anio: anioSel,

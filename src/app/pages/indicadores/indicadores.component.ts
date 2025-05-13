@@ -659,10 +659,16 @@ export class IndicadoresComponent implements OnInit {
     { id: 202504, periodo: 202504 },
     { id: 202505, periodo: 202505 },
   ];
+
+  anio: any[] = [
+    { id: 2024, anio: 2024 },
+    { id: 2025, anio: 2025 },
+  ];
   selectedPeriodo: number = 0;
   selectedPerAC: number = 0;
   selectedPerAC25: number = 0;
   selectedIpC: number = 0;
+  selectedIpCAnual: number = 0;
 
   loadingVisible = false;
 
@@ -689,7 +695,9 @@ export class IndicadoresComponent implements OnInit {
   sueldoDetalle25: any[] = [];
 
   graficaIpC: any[] = [];
+  graficaIpCAnual: any[] = [];
   IpCViajes: any[] = [];
+  IpCViajesAnual: any[] = [];
 
   arrMeses: any[] = [
     { idMes: 1, nombre: 'ENERO' },
@@ -1451,7 +1459,7 @@ export class IndicadoresComponent implements OnInit {
       this.indicadorService.getIngresosXCliente(this.selectedIpC).subscribe(data =>{
         this.IpCViajes = data.data.viajes;
         this.graficaIpC = data.data.graficaIngrXCliente;;
-        console.log(this.graficaIpC)
+        //console.log(this.graficaIpC)
         //const ixc = data.data.graficaIngrXCliente;
 
         // for(let i =0; i<ixc.length; i++){
@@ -1462,6 +1470,20 @@ export class IndicadoresComponent implements OnInit {
         
 
         // this.graficaIpC.sort((a, b) => (a.ingreso > b.ingreso ? -1 : 1))
+
+        this.loadingVisible = false;
+      })
+    })
+  return request;
+    
+  }
+
+  getIngresoXClienteAnual(){
+    const request = new Promise((resolve, reject) => {
+      this.indicadorService.getIngresosXClienteAnual(this.selectedIpCAnual).subscribe(data =>{
+        this.IpCViajesAnual = data.data.viajes;
+        this.graficaIpCAnual = data.data.graficaIngrXCliente;;
+        //console.log(this.graficaIpCAnual)
 
         this.loadingVisible = false;
       })
@@ -1526,6 +1548,11 @@ export class IndicadoresComponent implements OnInit {
   selectPeriodoIpC(e: any) {
     this.selectedIpC = e.value
     console.log(this.selectedIpC)
+  }
+
+  selectPeriodoIpCAnual(e: any) {
+    this.selectedIpCAnual = e.value
+    console.log(this.selectedIpCAnual)
   }
   
   buscarClick = (e: any) => {
@@ -1595,6 +1622,25 @@ export class IndicadoresComponent implements OnInit {
     }else{
       notify({
         message: 'Por favor seleccione el periodo',
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+
+  };
+
+  buscarIpCAnual = (e: any) => {
+
+    if (this.selectedIpCAnual) {
+      this.loadingVisible = true;
+      this.getIngresoXClienteAnual().then(() => {
+        this.loadingVisible = false;
+      });
+    }else{
+      notify({
+        message: 'Por favor seleccione el año',
         position: {
           my: 'center center',
           at: 'center center',
