@@ -29,7 +29,9 @@ export class MetricaCobranzaComponent implements OnInit {
   isVisible = false;
   
   graficaMC: any[] = [];
+  graficaMCIntercompania: any[] = [];
   metricaCombranza: any[] = [];
+  metricaCombranzaIntercompania: any[] = [];
 
   graficaPT: any[] = [];
   pendienteTimbrar: any[] = [];
@@ -41,6 +43,7 @@ export class MetricaCobranzaComponent implements OnInit {
   conCartaCobro: any[] = [];
 
   graficaIngreso: any[] = [];
+  graficaIngresoIntercompania: any[] = [];
 
   colorBar: string = ""
 
@@ -81,15 +84,24 @@ export class MetricaCobranzaComponent implements OnInit {
 
       this.metricaCombranza = metricaC;
 
+      const orderdataIntercompania: MetricaCobranzaModel[] = data.data.metricaCarteraGastosIntercompanias;
+      let metricaCIntercompania = [];
+      metricaCIntercompania.push(orderdataIntercompania[0],orderdataIntercompania[1],orderdataIntercompania[11],orderdataIntercompania[2],
+                                 orderdataIntercompania[3],orderdataIntercompania[4],orderdataIntercompania[5],orderdataIntercompania[6],
+                                 orderdataIntercompania[7],orderdataIntercompania[8],orderdataIntercompania[9],orderdataIntercompania[10],
+                                 orderdataIntercompania[12]);                 
+
+      this.metricaCombranzaIntercompania = metricaCIntercompania
+
       this.graficaMC = data.data.metricaCartera.filter((word) => word.clasificacion !== "");
+      this.graficaMCIntercompania = data.data.metricaCarteraGastosIntercompanias.filter((word) => word.clasificacion !== "");
 
       const orderGPT: any[] = data.data.pendientesTimbrar;
       let gpt = [];
-
       gpt.push(orderGPT[4],orderGPT[5],orderGPT[6],orderGPT[7],orderGPT[0],orderGPT[1],orderGPT[2],orderGPT[3])
+
       this.graficaPT = gpt.filter((word) => word.clasificacion !== "");
 
-      console.log(this.graficaPT)
       this.pendienteTimbrar = data.data.pendientesTimbrar.filter((word) => word.clasificacion !== "");
 
       this.graficaPCC = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
@@ -99,6 +111,16 @@ export class MetricaCobranzaComponent implements OnInit {
       this.conCartaCobro = data.data.conCartaCobro
 
       this.graficaIngreso = data.data.total;
+      this.graficaIngresoIntercompania = data.data.totalGastosIntercompanias;
+
+      var myGII = data.data.totalGastosIntercompanias;
+
+      for(let i =0; i<myGII.length; i++){
+        myGII[i].region = "GASTOS INTERCOMPAÑIA"
+
+      }
+      
+      
         
 
       this.loadingVisible = false;
