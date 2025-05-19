@@ -86,10 +86,8 @@ export class MetricaCobranzaComponent implements OnInit {
 
       const orderdataIntercompania: MetricaCobranzaModel[] = data.data.metricaCarteraGastosIntercompanias;
       let metricaCIntercompania = [];
-      metricaCIntercompania.push(orderdataIntercompania[0],orderdataIntercompania[1],orderdataIntercompania[11],orderdataIntercompania[2],
-                                 orderdataIntercompania[3],orderdataIntercompania[4],orderdataIntercompania[5],orderdataIntercompania[6],
-                                 orderdataIntercompania[7],orderdataIntercompania[8],orderdataIntercompania[9],orderdataIntercompania[10],
-                                 orderdataIntercompania[12]);                 
+      metricaCIntercompania.push(orderdataIntercompania[0],orderdataIntercompania[1],orderdataIntercompania[2],orderdataIntercompania[3],
+                                 orderdataIntercompania[4],orderdataIntercompania[6],);                 
 
       this.metricaCombranzaIntercompania = metricaCIntercompania
 
@@ -99,10 +97,17 @@ export class MetricaCobranzaComponent implements OnInit {
       const orderGPT: any[] = data.data.pendientesTimbrar;
       let gpt = [];
       gpt.push(orderGPT[4],orderGPT[5],orderGPT[6],orderGPT[7],orderGPT[0],orderGPT[1],orderGPT[2],orderGPT[3])
+      
+      let filterGPT = []
+      
+      filterGPT = gpt.filter((word) => word.clasificacion !== "Con Evidencia")
 
-      this.graficaPT = gpt.filter((word) => word.clasificacion !== "");
+      this.graficaPT = filterGPT.filter((word) => word.clasificacion !== "");
 
-      this.pendienteTimbrar = data.data.pendientesTimbrar.filter((word) => word.clasificacion !== "");
+      let filterPT = []
+      filterPT =  data.data.pendientesTimbrar.filter((word) => word.clasificacion !== "Con Evidencia");
+
+      this.pendienteTimbrar = filterPT.filter((word) => word.clasificacion !== "");
 
       this.graficaPCC = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
       this.pendienteCartaCobro = data.data.pendientesCartaCobro.filter((word) => word.clasificacion !== "");
@@ -482,7 +487,7 @@ calculateTotal(pieChart) {
 }
 
 perosnalizeStyle(value){
-  console.log(value)
+  //console.log(value)
 
   if(value.index == 0){
     value.color = "red"
@@ -494,7 +499,7 @@ perosnalizeStyle(value){
 }
 
 style(event){
-  console.log(event)
+  //console.log(event)
 }
 
 

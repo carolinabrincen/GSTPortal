@@ -7,11 +7,11 @@
         <dxi-item [ratio]="3" [baseSize]="0">
             <dx-box direction="row" width="100%" [height]="200">
                 <dxi-item class="rect demo-dark" [ratio]="4">
-                    <dx-pie-chart id="pie" type="doughnut" title="" palette="material" [dataSource]="graficaIngreso"
+                    <dx-pie-chart id="pie" type="doughnut" title="Cartera de Clientes" palette="material" [dataSource]="graficaIngreso"
                     [animation]="false" resolveLabelOverlapping="shift" centerTemplate="centerTemplate" [innerRadius]="0.65" [customizePoint]="perosnalizeStyle">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-legend horizontalAlignament="center" verticalAlignment="bottom"></dxo-legend>
-                        <dxo-size [height]="500"></dxo-size>
+                        <dxo-size [height]="600"></dxo-size>
 
                         <dxi-series argumentField="region" valueField="val">
                             <dxo-small-values-grouping mode="topN" [topCount]="3" ></dxo-small-values-grouping>
@@ -30,16 +30,16 @@
                           </svg>
                     </dx-pie-chart>
                 </dxi-item>
-                <dxi-item class="rect demo-dark" [ratio]="4">
-                    <dx-pie-chart id="pie" type="doughnut" title="" palette="Soft Pastel" [dataSource]="graficaIngresoIntercompania"
+                <dxi-item class="rect demo-dark" [ratio]="3">
+                    <dx-pie-chart id="pie" type="doughnut" title="Gastos Intercompañías" palette="Soft Pastel" [dataSource]="graficaIngresoIntercompania"
                     [animation]="false" resolveLabelOverlapping="shift" centerTemplate="centerTemplate" [innerRadius]="0.65" [customizePoint]="perosnalizeStyle">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-legend [visible]="false" horizontalAlignament="center" verticalAlignment="bottom"></dxo-legend>
-                        <dxo-size [height]="350"></dxo-size>
+                        <dxo-size [height]="250"></dxo-size>
                         
                         <dxi-series argumentField="region" valueField="val">
                             <dxo-small-values-grouping mode="topN" [topCount]="3" ></dxo-small-values-grouping>
-                            <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabelDonut" alignment="right">
+                            <dxo-label [visible]="false" format="fixedPoint" [customizeText]="customizeLabelDonut" alignment="right">
                                 <dxo-connector [visible]="true" [width]="1"></dxo-connector>
                             </dxo-label>
                         </dxi-series>
@@ -141,7 +141,7 @@
             <dx-box direction="row" width="100%" [height]="125">
                 <dxi-item class="rect demo-dark" [ratio]="4">
                     <!--==========================Bar and Line Chart==================-->
-                    <dx-chart #chart [dataSource]="graficaPT" palette="material" [rotated]="false" [barGroupWidth]="300" >
+                    <dx-chart #chart [dataSource]="graficaPT" palette="material" [rotated]="false" [barGroupWidth]="100" >
                         <dxo-size [height]="430"></dxo-size>
 
                         <dxo-common-series-settings argumentField="tipo" type="bar" valueField="monto">
@@ -360,7 +360,7 @@
                 <dx-box direction="row" width="100%" [height]="125">
                     <dxi-item class="rect demo-dark" [ratio]="4">
                         <!--==========================Bar and Line Chart==================-->
-                        <dx-chart #chart [dataSource]="graficaMCIntercompania" palette="material" [rotated]="false" [barGroupWidth]="300">
+                        <dx-chart #chart [dataSource]="graficaMCIntercompania" palette="Soft Pastel" [rotated]="false" [barGroupWidth]="100">
                             <dxo-size [height]="570"></dxo-size>
                             
                             <!-- <dxi-value-axis [maxValueMargin]=".15">
