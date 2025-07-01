@@ -67,6 +67,7 @@ export class CarteraInterCompaniasComponent implements OnInit {
     { id: 202504, periodo: 202504 },
     { id: 202505, periodo: 202505 },
     { id: 202506, periodo: 202506 },
+    { id: 202507, periodo: 202507 },
   ];
 
   areaInter: any[] = [

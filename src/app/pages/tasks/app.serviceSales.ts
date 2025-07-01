@@ -249,11 +249,11 @@ export class ServiceSales extends AbstractManagerService{
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_junio2025),this.httpOptions);    
     
   }
-  // getIngresosDetalladosMensualJul202( ) {
+  getIngresosDetalladosMensualJul2025( ) {
     
-  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio2025),this.httpOptions);    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio2025),this.httpOptions);    
     
-  // }
+  }
   // getIngresosDetalladosMensualAgo2025( ) {
     
   //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_agosto2025),this.httpOptions);    

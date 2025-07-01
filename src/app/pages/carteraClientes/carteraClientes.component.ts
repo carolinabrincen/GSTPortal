@@ -108,6 +108,7 @@ export class CarteraClientesComponent implements OnInit {
     { id: 202504, periodo: 202504 },
     { id: 202505, periodo: 202505 },
     { id: 202506, periodo: 202506 },
+    { id: 202507, periodo: 202507 },
   ];
 
   periodoActual: number;
@@ -368,6 +369,11 @@ export class CarteraClientesComponent implements OnInit {
     if(this.selectedPeriodo == 202506){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JUNIO 2025"
       this.printPAvance = "30 DE JUNIO DEL 2025"
+    }
+
+    if(this.selectedPeriodo == 202507){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2025"
+      this.printPAvance = "31 DE JULIO DEL 2025"
     }
 
 

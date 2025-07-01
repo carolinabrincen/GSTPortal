@@ -62,7 +62,7 @@ export class CotizadorService extends AbstractManagerService {
   }
 
   postEditarCotizacion(cotizacion: CotizacionModel) {
-    console.log(cotizacion);
+    console.log(JSON.stringify(cotizacion));
     return this.post<any>((this.API_URL + API_URLS.POST_COTIZADOR_EDITAR_COTIZACION), cotizacion, this.httpOptions);
   }
 

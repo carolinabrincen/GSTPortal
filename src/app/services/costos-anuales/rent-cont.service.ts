@@ -40,7 +40,7 @@ export class CostosAnualesService extends AbstractManagerService {
     //let body = {
       var myId = id.length == 7 ? []: id
     //}
-    console.log(myId)
+    //console.log(myId)
     return this.post<any>((this.API_URL + API_URLS.POST_COSTOS_UDN), myId, this.httpOptions);
   }
 
@@ -49,7 +49,7 @@ export class CostosAnualesService extends AbstractManagerService {
       periodo: periodo,
       clasificacion: clasificacion
     }
-    console.log(body)
+    //console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_CA_TPS), body, this.httpOptions);
   }
 
@@ -60,7 +60,7 @@ export class CostosAnualesService extends AbstractManagerService {
       udn: udn,
       renglon: renglon
     }
-    console.log(body)
+    //console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_TPS), body, this.httpOptions);
   }
 
@@ -69,7 +69,7 @@ export class CostosAnualesService extends AbstractManagerService {
       periodo: periodo,
       clasificacion: clasificacion
     }
-    console.log(body)
+    //console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_CA_COSTOS), body, this.httpOptions);
   }
 
@@ -91,7 +91,7 @@ export class CostosAnualesService extends AbstractManagerService {
       mes: mes,
       clasificacion: clasificacion
     }
-    console.log(body)
+    //console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_RESULT_COSTO_ANUAL), body, this.httpOptions);
   }
 
@@ -104,7 +104,7 @@ export class CostosAnualesService extends AbstractManagerService {
       periodo: periodo,
       idCuenta: idCuenta
     }
-    console.log(body)
+    //console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_DETALLE_CUENTA), body, this.httpOptions);
   }
 

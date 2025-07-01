@@ -109,6 +109,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202504, anio: "202504" },
     { idAnio: 202505, anio: "202505" },
     { idAnio: 202506, anio: "202506" },
+    { idAnio: 202507, anio: "202507" },
   ];
 
   anio: AniosModel[] = [
@@ -141,6 +142,7 @@ export class CostosAnualesNewComponent implements OnInit {
     { idAnio: 202504, anio: "202504" },
     { idAnio: 202505, anio: "202505" },
     { idAnio: 202506, anio: "202506" },
+    { idAnio: 202507, anio: "202507" },
   ]
 
   companias: Compania[] =[]
@@ -335,10 +337,12 @@ export class CostosAnualesNewComponent implements OnInit {
   }
 
   getCAAuxiliar(){
+    this.loadingVisible = true; 
     const request = new Promise((resolve, reject) => {
       this.costosAnuService.postCAAuxiliar(this.anioSeleccionado, this.selectedCompaniaNew, this.udnSeleccionado).subscribe(data => {
         this.CAAuxiliar = data.data;
-
+        console.log(this.CAAuxiliar)
+        this.loadingVisible = false;
       })
 
     });
@@ -422,7 +426,7 @@ export class CostosAnualesNewComponent implements OnInit {
   
   buscarClick = (e: any) => {
     if (this.selectedClasficacion !==  undefined) {
-      this.loadingVisible = true;
+      // this.loadingVisible = true;
       this.modeSearch = 'true'
 
       this.totalesProvisiones = new Provisiones
@@ -437,7 +441,7 @@ export class CostosAnualesNewComponent implements OnInit {
         // console.log('entre : '+this.totales.totalER)
 
       this.callCostosAnuales().then(() => {
-        this.loadingVisible = false;
+        // this.loadingVisible = false;
 
       });
 
@@ -453,7 +457,7 @@ export class CostosAnualesNewComponent implements OnInit {
 
   onContentReady(e: any) {
 
-    this.loadingVisible = false;
+    // this.loadingVisible = false;
 
   }
 

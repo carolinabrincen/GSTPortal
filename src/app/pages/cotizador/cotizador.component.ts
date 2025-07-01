@@ -44,7 +44,7 @@ export class CotizadorComponent implements OnInit {
   arrClasificaciones: string[] = [];
  
 
-  itemCotizacion: CotizacionModel = {
+  itemCotizacion: any = {
     idCotizacion: undefined,
     folio: 0,
     sencillo:true,
@@ -299,7 +299,7 @@ export class CotizadorComponent implements OnInit {
   }
 
   getRentabilidad(operacion: string) {
-    console.log(this.itemCotizacion.id_area+"   "+operacion)
+    // console.log(this.itemCotizacion.id_area+"   "+operacion)
 
     this.cotizadorService.getRentabilidad(this.itemCotizacion.id_area, operacion).subscribe(res => {
       
@@ -458,6 +458,7 @@ precioTotalValueChanged(e: any) {
   }
 
   guardarCotizacionClick(e: any) {
+    console.log(e)
     e.preventDefault();
     switch (this.tipoRegistro) {
       case 'nuevo':
@@ -497,11 +498,11 @@ precioTotalValueChanged(e: any) {
         this.itemCotizacion.sencillo = this.itemCotizacion.tipoViaje === "Solo de ida" ? true : false;
         this.itemCotizacion.regresa_vacio = this.itemCotizacion.regreso === "Vacio" ? true : false;
         this.itemCotizacion.clienta_paga = this.itemCotizacion.clientePagaCasetas === "Si" ? true : false;
-        console.log(JSON.stringify(this.itemCotizacion))
+        
         this.cotizadorService.postEditarCotizacion(this.itemCotizacion).subscribe(res => {
           if (res.responseCode === 200) {
             this.itemCotizacion = res.data;
-            console.log(this.itemCotizacion)
+            // console.log(this.itemCotizacion)
             this.getPreCotizaciones();
             this.tipoOperacion_ValueChanged = this.tipoOperacion_ValueChanged.bind(this);
             console.log("SE EDITO CORRECTAMENTE")
@@ -545,7 +546,7 @@ precioTotalValueChanged(e: any) {
     this.cotizadorService.getCotizacion(e.row.data.idCotizacion).subscribe(res => {
       this.itemCotizacion = res.data;
       this.tituloModal = "Editando Cotizacion Folio: " + this.itemCotizacion.folio;
-      console.log( this.itemCotizacion)
+      // console.log( this.itemCotizacion)
     });
   }
 
