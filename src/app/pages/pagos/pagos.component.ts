@@ -4,7 +4,7 @@ import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
 
 import { DxDataGridComponent, } from 'devextreme-angular';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NumberFormatStyle } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
 import { AniosModel } from './../../shared/models/rentabilidad-contable/renta-contable.model';
@@ -51,8 +51,9 @@ export class PagosComponent implements OnInit {
   pagos: any[] = []
   pagosXDia: any[] = [];  
   pagosXMes: any[] = [];
-  graficaPXMesResumen: any[] = [];
   pagosDetalleP: any[] = [];
+  graficaPXMesResumen: any[] = [];
+  graficaPXClasificado: any[] = [];
 
 
   constructor(
@@ -63,7 +64,7 @@ export class PagosComponent implements OnInit {
   ) {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
-    // this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
+    this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.formFilter
   }
 
@@ -78,9 +79,10 @@ export class PagosComponent implements OnInit {
       this.pagos = response.data;
       this.pagosXDia = response.data.pagoXDia;      
       this.pagosXMes = response.data.pagoXMes
-      this.graficaPXMesResumen = response.data.pagoXMesResumen;
       this.pagosDetalleP = response.data.detallePagos;
-      
+
+      this.graficaPXMesResumen = response.data.pagoXMesResumen;
+      this.graficaPXClasificado = response.data.pagoXMesClasificado
       // console.log(response.data)
 
       this.loadingVisible = false;
@@ -102,6 +104,16 @@ export class PagosComponent implements OnInit {
         }, 'warning', 4000);
       }
     };
+
+
+    calcularPorcentajes(options: any) {
+      //
+      if (options.summaryProcess === 'calculate') {
+        if (options.name === 'grupMargenUtilidaPor') {
+          options.totalValue = .17;
+        }
+      }
+    }
 
   ngAfterViewInit() {
 
@@ -186,8 +198,44 @@ export class PagosComponent implements OnInit {
   }
 
   onCellPreparedPXM(e: any){
+
+    var pagadoMes = 0;
+    var pagadoVencido = 0;
+    var pagadoCorriente = 0;
+
+    var operacionVencido = 0;
+    var operacionCorriente = 0;
+
+    var totalVencido = 0;
+    var totalCorriente = 0;
+
     if (e.rowType == 'totalFooter') {
+
       e.totalItem.cells.forEach((c: any) => {
+
+       // console.log(e.totalItem.summaryCells)
+
+        if(c.totalItem.summaryCells[1][0]?.value != undefined){
+          pagadoMes = c.totalItem.summaryCells[1][0].value;
+          pagadoVencido = c.totalItem.summaryCells[2][0].value;
+          pagadoCorriente = c.totalItem.summaryCells[4][0].value;
+
+
+          operacionVencido = pagadoVencido / pagadoMes;
+          operacionCorriente = pagadoCorriente / pagadoMes;
+
+          totalVencido = operacionVencido * 100;
+          totalCorriente = operacionCorriente * 100;
+        }
+
+        if(c.totalItem.summaryCells[5][0]?.value != undefined){
+          c.totalItem.summaryCells[3][0].value = totalVencido;
+          console.log("Vencido ==> "+c.totalItem.summaryCells[3][0].value)
+          c.totalItem.summaryCells[5][0].value = totalCorriente;
+          console.log("Corriente ==> "+c.totalItem.summaryCells[5][0].value)
+        }
+
+
         if (c.cellElement) {
             c.cellElement.style.fontWeight = "bolder";
             c.cellElement.style.fontSize = "16px";
@@ -198,33 +246,35 @@ export class PagosComponent implements OnInit {
     }
   }
 
-
-
+  //==================Formato a la data de la grafica==================================
   customizeTooltip(args: any) {
     const valueText = (args.seriesName.indexOf('Total') != -1)
-      ? new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(args.originalValue)
+      ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(args.originalValue)
       : args.originalValue;
 
+      var myvalue = Math.trunc(valueText);
+
+    var myFormat = myvalue.toString().split(".");
+    myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
     return {
-      html: `${args.seriesName}<div class='currency'>${valueText}</div>`,
+      html: `${args.seriesName}<div class='currency'>$ ${myFormat}</div>`,
     };
   }
 
-
-
-  //==================Formato a la data de la grafica==================================
   formatSliderTooltip(value) {
 
     return Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(value);
   }
 
+  onHidden() {}
 
-  onHidden() {
+  calculatePercent(value){
+    var mypercent = Math.trunc(value);
+    mypercent / 100;
+    
+    return mypercent +"%";
   }
-
-
-
-
 
   formatValue(value) {
     var myvalue = Math.trunc(value);
@@ -236,8 +286,5 @@ export class PagosComponent implements OnInit {
     return "$ " + myFormat.join("");
 
   }
-
-
-
  
 }
