@@ -230,9 +230,7 @@ export class PagosComponent implements OnInit {
 
         if(c.totalItem.summaryCells[5][0]?.value != undefined){
           c.totalItem.summaryCells[3][0].value = totalVencido;
-          console.log("Vencido ==> "+c.totalItem.summaryCells[3][0].value)
           c.totalItem.summaryCells[5][0].value = totalCorriente;
-          console.log("Corriente ==> "+c.totalItem.summaryCells[5][0].value)
         }
 
 

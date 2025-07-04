@@ -89,6 +89,7 @@
             <dxi-column dataField="pagado" caption="Pagado" [format]="formatValue"></dxi-column>
             <dxi-column dataField="vencido" caption="Vencido" [format]="formatValue"></dxi-column>
             <dxi-column dataField="corriente" caption="Corriente" [format]="formatValue"></dxi-column>
+            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
 
           <dxo-summary>
             <dxi-total-item column="pagado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
@@ -127,6 +128,7 @@
                 <dxi-column dataField="masDe90" caption="MasDe90" [format]="formatValue"></dxi-column>
                 <dxi-column dataField="total" caption="Total" [format]="formatValue"></dxi-column>
             </dxi-column>
+            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
            
 
           <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
