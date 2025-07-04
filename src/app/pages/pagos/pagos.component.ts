@@ -22,26 +22,6 @@ import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
 
-const totalesPor = new TotalPorcentajes;
-const totalesPorGr = new TotalPorcentajes;
-
-const groupName = new Modelos;
-
-const totalXDisponibilidad = new TotalesXDisponibilidad;
-const totalXD = new TotalesXDisponibilidad;
-const totalOperacion = new TotalOperacion;
-const totalOD = new TotalOperacion;
-
-const totalXTractos = new TotalesXTracos;
-const totalXT = new TotalesXTracos;
-const totalOpeT  = new TotalOpeT;
-const totalOT  = new TotalOpeT;
-
-const totalXRemolques = new TotalesXRemolques;
-const totalXR = new TotalesXRemolques;
-const totalOpeR  = new TotalOpeR;
-const totalOR  = new TotalOpeR;
-
 @Component({
   templateUrl: './pagos.component.html',
   styleUrls: ['./pagos.component.scss'],
@@ -62,6 +42,8 @@ export class PagosComponent implements OnInit {
 
   paginacion = 5;
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
+
+  chart_visualRange = [1, 30];
 
   formFilter: any = {
     Fecha: ''
@@ -99,7 +81,7 @@ export class PagosComponent implements OnInit {
       this.graficaPXMesResumen = response.data.pagoXMesResumen;
       this.pagosDetalleP = response.data.detallePagos;
       
-      //console.log(response.data)
+      // console.log(response.data)
 
       this.loadingVisible = false;
     })
@@ -254,6 +236,8 @@ export class PagosComponent implements OnInit {
     return "$ " + myFormat.join("");
 
   }
+
+
 
  
 }

@@ -29,15 +29,22 @@
                 backgroundColor="transparent" [verticalOffset]="15" [format]="formatValue">
                     <dxo-font size="12" color="black" weight="bold"></dxo-font>
                 </dxo-label>
+            
             </dxi-series>
+
+            <dxo-argument-axis
+            [visualRange]="chart_visualRange" [tickInterval]="1">
+             </dxo-argument-axis>
 
             <dxo-title text="Pagos">
                 <!-- <dxo-subtitle text="(Anual)"> </dxo-subtitle> -->
             </dxo-title>
 
+
             <dxo-export [enabled]="true"></dxo-export>
         </dx-chart>
-        <!--====================================Finish chart==========-->
+        <!--====================================Finish chart==========-->          
+
         <br><br><br>
 
         <!--==============================================PAGOS POR DIA=================================================================================-->
@@ -86,6 +93,7 @@
                 <dxi-column dataField="corriente" caption="Corriente" [format]="formatValue"></dxi-column>
                 <dxi-column dataField="de1a30" caption="Día1a30" [format]="formatValue"></dxi-column>
                 <dxi-column dataField="dea31a60" caption="Día31a60" [format]="formatValue"></dxi-column>
+                <dxi-column dataField="dea61a60" caption="Día61a90" [format]="formatValue"></dxi-column>
                 <dxi-column dataField="masDe90" caption="MasDe90" [format]="formatValue"></dxi-column>
                 <dxi-column dataField="total" caption="Total" [format]="formatValue"></dxi-column>
             </dxi-column>
@@ -99,6 +107,7 @@
             <dxi-total-item column="corriente" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="de1a30" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="dea31a60" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="dea61a60" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="masDe90" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
           </dxo-summary>
