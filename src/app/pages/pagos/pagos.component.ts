@@ -43,7 +43,7 @@ export class PagosComponent implements OnInit {
   paginacion = 5;
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
-  chart_visualRange = [1, 30];
+  chart_visualRange = [1, 31];
 
   formFilter: any = {
     Fecha: ''
