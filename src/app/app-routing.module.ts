@@ -47,6 +47,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { disponibilidadMensualComponent } from './pages/disponibilidadMensual/disponiblidadMensual.component';
   import { MetricaCobranzaComponent } from './pages/CarteraMetricaCobranza/metricaCobranza.component';
   import { BitacoraViajeComponent } from './pages/bitacoraViaje/bitacoraViaje.component';
+  import { PagosComponent } from './pages/pagos/pagos.component';
 
 const routes: Routes = [
   {
@@ -232,6 +233,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'pagos',
+    component: PagosComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -312,7 +318,8 @@ const routes: Routes = [
     CompensacionProvisionComponent,
     disponibilidadMensualComponent,
     MetricaCobranzaComponent,
-    BitacoraViajeComponent
+    BitacoraViajeComponent,
+    PagosComponent
    
   ]
 })

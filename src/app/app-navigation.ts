@@ -97,6 +97,11 @@ export const navigation = [
         icon: 'columnchooser',
         path: '/metricaCobranza'
       },
+      {
+        text: 'Pagos',
+        icon: 'columnchooser',
+        path: '/pagos'
+      },
     ]
   },
   {
@@ -245,6 +250,11 @@ export const navigationID24 = [
         text: 'Métrica Cobranza',
         icon: 'columnchooser',
         path: '/metricaCobranza'
+      },
+      {
+        text: 'Pagos',
+        icon: 'columnchooser',
+        path: '/pagos'
       },
     ]
   },
