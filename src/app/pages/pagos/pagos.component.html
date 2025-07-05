@@ -22,7 +22,7 @@
     <div>
         <br><br>
         <!--==========================Bar and Line Chart PAGOS X MES==================-->
-        <dx-chart id="chart" [dataSource]="graficaPXMesResumen">
+        <!-- <dx-chart id="chart" [dataSource]="graficaPXMesResumen">
 
             <dxi-series argumentField="dia" valueField="pagado" name="Pagos" type="bar" palette="Soft Pastel">
                 <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
@@ -35,20 +35,27 @@
             <dxo-argument-axis [visualRange]="chart_visualRange" [tickInterval]="1"></dxo-argument-axis>
 
             <dxo-title text="Pagos">
-                <!-- <dxo-subtitle text="(Anual)"> </dxo-subtitle> -->
             </dxo-title>
 
 
             <dxo-export [enabled]="true"></dxo-export>
-        </dx-chart>
+        </dx-chart> -->
         <!--====================================Finish chart==========-->          
 
-        <br><br><br>
+        <!-- <br><br><br> -->
 
         <!--==========================Bar and Line Chart PAGOS X CLASIFICADO==================-->
-        <dx-chart id="chart" title="Pago por Mes" [dataSource]="graficaPXClasificado">
+        <dx-chart id="chart" title="Pagos por Mes" [dataSource]="graficaPXClasificado">
             <dxi-series valueField="vencido" name="Vencido" color="#ed7d2a"></dxi-series>
             <dxi-series valueField="corriente" name="Corriente" color="#6db467"></dxi-series>
+
+            <dxi-series valueField="total" name="Total" type="line" color="#2b8ac0">
+              <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
+              backgroundColor="transparent" [verticalOffset]="15" [format]="formatValue">
+                  <dxo-font size="12" color="black" weight="bold"></dxo-font>
+              </dxo-label>
+
+            </dxi-series>
 
             <dxi-value-axis position="right">
               <dxo-title text=""></dxo-title>

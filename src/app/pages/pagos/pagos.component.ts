@@ -53,7 +53,9 @@ export class PagosComponent implements OnInit {
   pagosXMes: any[] = [];
   pagosDetalleP: any[] = [];
   graficaPXMesResumen: any[] = [];
-  graficaPXClasificado: any[] = [];
+  graficaPXClasificado: any[] = [
+    {total: 0}
+  ];
 
 
   constructor(
@@ -82,8 +84,27 @@ export class PagosComponent implements OnInit {
       this.pagosDetalleP = response.data.detallePagos;
 
       this.graficaPXMesResumen = response.data.pagoXMesResumen;
-      this.graficaPXClasificado = response.data.pagoXMesClasificado
+      //this.graficaPXClasificado = response.data.pagoXMesClasificado
       // console.log(response.data)
+
+      var mytotal
+      var myGrafica = [
+        {total: 0, vencido: 0, corriente: 0, dia: 0}
+      ]
+      
+      myGrafica = response.data.pagoXMesClasificado
+
+      for(let i =0; i<myGrafica.length; i++){ 
+       mytotal  = myGrafica[i].vencido + myGrafica[i].corriente;
+       myGrafica[i].total = mytotal;
+      //console.log(myGrafica[i])
+
+      }
+
+      this.graficaPXClasificado = myGrafica;
+
+     
+
 
       this.loadingVisible = false;
     })
@@ -93,6 +114,14 @@ export class PagosComponent implements OnInit {
 
   buscarClick = (e: any) => {
     if (this.formFilter.Fecha !== "") {
+
+      this.pagos = [];
+      this.pagosXDia = [];
+      this.pagosXMes = [];
+      this.pagosDetalleP = [];
+      this.graficaPXMesResumen = [];
+      this.graficaPXClasificado = [];
+
       this.getPagos();
       }else{
         notify({
@@ -284,5 +313,6 @@ export class PagosComponent implements OnInit {
     return "$ " + myFormat.join("");
 
   }
+  
  
 }
