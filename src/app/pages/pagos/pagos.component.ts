@@ -13,14 +13,15 @@ import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { PagosService } from 'src/app/services/pagos/pagos.service';
-import { TotalesXDisponibilidad, TotalOperacion, TotalesXTracos, TotalOpeT, TotalesXRemolques, TotalOpeR  } from '../../shared/models/disponiblidad/totalesXDisponibilidad';
-
+import { TotalesDia } from 'src/app/shared/models/pagos/totalesDia.model';
 import notify from 'devextreme/ui/notify';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
+
+const totalesDia =new TotalesDia; 
 
 @Component({
   templateUrl: './pagos.component.html',
@@ -42,7 +43,7 @@ export class PagosComponent implements OnInit {
 
   paginacion = 5;
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
-
+  autogroupingAC = false;
   chart_visualRange = [1, 31];
 
   formFilter: any = {
@@ -228,39 +229,32 @@ export class PagosComponent implements OnInit {
 
   onCellPreparedPXM(e: any){
 
-    var pagadoMes = 0;
-    var pagadoVencido = 0;
-    var pagadoCorriente = 0;
-
-    var operacionVencido = 0;
-    var operacionCorriente = 0;
-
-    var totalVencido = 0;
-    var totalCorriente = 0;
-
     if (e.rowType == 'totalFooter') {
 
       e.totalItem.cells.forEach((c: any) => {
 
-       // console.log(e.totalItem.summaryCells)
+        //console.log(e.totalItem.summaryCells)
 
         if(c.totalItem.summaryCells[1][0]?.value != undefined){
-          pagadoMes = c.totalItem.summaryCells[1][0].value;
-          pagadoVencido = c.totalItem.summaryCells[2][0].value;
-          pagadoCorriente = c.totalItem.summaryCells[4][0].value;
+        
+          totalesDia.pagadoMes = c.totalItem.summaryCells[1][0].value;
+          totalesDia.pagadoVencido = c.totalItem.summaryCells[2][0].value;
+          totalesDia.pagadoCorriente = c.totalItem.summaryCells[4][0].value;
 
 
-          operacionVencido = pagadoVencido / pagadoMes;
-          operacionCorriente = pagadoCorriente / pagadoMes;
+          //totalesDia.operacionVencido = totalesDia.pagadoVencido / totalesDia.pagadoMes;
+          //totalesDia.operacionCorriente = totalesDia.pagadoCorriente / totalesDia.pagadoMes;
 
-          totalVencido = operacionVencido * 100;
-          totalCorriente = operacionCorriente * 100;
+          totalesDia.totalVencido = totalesDia.pagadoVencido / totalesDia.pagadoMes;//totalesDia.operacionVencido * 100;
+          totalesDia.totalCorriente = totalesDia.pagadoCorriente / totalesDia.pagadoMes;//totalesDia.operacionCorriente * 100;
         }
 
-        if(c.totalItem.summaryCells[5][0]?.value != undefined){
-          c.totalItem.summaryCells[3][0].value = totalVencido;
-          c.totalItem.summaryCells[5][0].value = totalCorriente;
-        }
+        // if(c.totalItem.summaryCells[5][0]?.value != undefined){
+          c.totalItem.summaryCells[3][0].value = totalesDia.totalVencido;
+          c.totalItem.summaryCells[5][0].value = totalesDia.totalCorriente;
+
+         
+        // }
 
 
         if (c.cellElement) {

@@ -49,7 +49,7 @@
             <dxi-series valueField="vencido" name="Vencido" color="#ed7d2a"></dxi-series>
             <dxi-series valueField="corriente" name="Corriente" color="#6db467"></dxi-series>
 
-            <dxi-series valueField="total" name="Total" type="line" color="#2b8ac0">
+            <dxi-series valueField="total" name="Total" type="line" color="#65686a" [width]=".5">
               <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
               backgroundColor="transparent" [verticalOffset]="15" [format]="formatValue">
                   <dxo-font size="12" color="black" weight="bold"></dxo-font>
@@ -109,11 +109,11 @@
 
         <!--==============================================PAGOS POR DIA=================================================================================-->
         <h3>Pagos Por Mes</h3>
-        <dx-data-grid  #gridCartera id="gridContainer2" [dataSource]="pagosXMes" [height]="700"[showBorders]="true" [columnAutoWidth]="true"
+        <dx-data-grid  #gridCartera id="gridContainer2" [dataSource]="pagosXMes" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
         (onRowPrepared)="onRowPreparedPXM($event)" (onCellPrepared)="onCellPreparedPXM($event)">
 
-          <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-          <dxo-paging [pageSize]="100"></dxo-paging>
+          <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
+          <dxo-paging [pageSize]="10" ></dxo-paging>
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
           <dxo-export [enabled]="true" fileName="PAGOS POR MES"></dxo-export>
             
@@ -141,9 +141,13 @@
           <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
             <dxi-total-item column="pagado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="pagadoVencido" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
-            <dxi-total-item column="porVencido" summaryType="sum" displayFormat="{0}" [valueFormat]="calculatePercent"></dxi-total-item>
+
+            <dxi-total-item showInColumn="porVencido" name="vencidoPor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+
             <dxi-total-item column="pagadoCorriente" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
-            <dxi-total-item column="porCorriente" summaryType="sum" displayFormat="{0}" [valueFormat]="calculatePercent"></dxi-total-item>
+
+            <dxi-total-item showInColumn="porCorriente" name="corrientePor" summaryType="custom" displayFormat="{0}" valueFormat="percent"></dxi-total-item>
+
             <dxi-total-item column="sinCarta" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="corriente" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="de1a30" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
@@ -154,6 +158,7 @@
           </dxo-summary>
 
         </dx-data-grid>
+
         <br><br>
     </div>
 
