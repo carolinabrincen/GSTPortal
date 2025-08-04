@@ -1613,10 +1613,10 @@
                     </div>
                     <br><br> -->
                     <!-- [customizeExportData]="customizeExportData" -->
-                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="indicadores2025" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="indicadores2025" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDetalle2025($event)" (onCellPrepared)="onCellPreparedDetalle2025($event)" [customizeExportData]="customizeExportData">
-                    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-                    <dxo-paging [pageSize]="100"></dxo-paging>
+                    <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
+                    <dxo-paging [pageSize]="12"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Ingreso" [customizeExcelCell]="customizeK"></dxo-export>
@@ -1715,7 +1715,7 @@
                         <dxi-column dataField="julProyeccionTotal" caption="Proy. Total" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="julPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column> 
                     </dxi-column>
-                    <!--<dxi-column caption="Agosto">
+                    <dxi-column caption="Agosto">
                          <dxi-column dataField="agostoFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="agostoOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="agostoTotal" caption="Total" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
@@ -1727,7 +1727,7 @@
                         <dxi-column dataField="agoProyeccionDed" caption="Proy. Dedicado" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="agoProyeccionTotal" caption="Proy. Total" [fixed]="false" [format]="formatValue" [width]="140"></dxi-column>
                         <dxi-column dataField="agoPorProy" caption="vs Pres" [fixed]="false" format="percent" [width]="70"></dxi-column> 
-                    </dxi-column>-->
+                    </dxi-column>
                     <!--<dxi-column caption="Septiembre">
                          <dxi-column dataField="sepFlete" caption="Flete" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>
                         <dxi-column dataField="sepOtros" caption="Otros" [fixed]="false" [format]="formatValue" [width]="130"></dxi-column>

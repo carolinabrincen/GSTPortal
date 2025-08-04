@@ -1261,10 +1261,10 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presupuestoJL = e.summaryCells[73][0].value;
           this.totalPor25.proyeccionJL = e.summaryCells[75][0].value;
           // //Agosto
-          // this.totalPor25.totalAG = e.summaryCells[67][0].value;
-          // this.totalPor25.anioAntAG = e.summaryCells[68][0].value;
-          // this.totalPor25.presupuestoAG = e.summaryCells[70][0].value;
-          // this.totalPor25.proyeccionAG = e.summaryCells[72][0].value;
+          this.totalPor25.totalAG = e.summaryCells[81][0].value;
+          this.totalPor25.anioAntAG = e.summaryCells[82][0].value;
+          this.totalPor25.presupuestoAG = e.summaryCells[84][0].value;
+          this.totalPor25.proyeccionAG = e.summaryCells[86][0].value;
           // //Septiembre
           // this.totalPor25.totalS = e.summaryCells[76][0].value;
           // this.totalPor25.anioAntS = e.summaryCells[77][0].value;
@@ -1316,9 +1316,9 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presTotalJL = this.totalPor25.totalJL / this.totalPor25.presupuestoJL;
           this.totalPor25.ProyTotalJL = this.totalPor25.proyeccionJL / this.totalPor25.presupuestoJL;
           // // //Agosto
-          // this.totalPor25.aniATotalAG = this.totalPor25.totalAG / this.totalPor25.anioAntAG;
-          // this.totalPor25.presTotalAG = this.totalPor25.totalAG / this.totalPor25.presupuestoAG;
-          // this.totalPor25.ProyTotalAG = this.totalPor25.proyeccionAG / this.totalPor25.presupuestoAG;
+          this.totalPor25.aniATotalAG = this.totalPor25.totalAG / this.totalPor25.anioAntAG;
+          this.totalPor25.presTotalAG = this.totalPor25.totalAG / this.totalPor25.presupuestoAG;
+          this.totalPor25.ProyTotalAG = this.totalPor25.proyeccionAG / this.totalPor25.presupuestoAG;
           // // //Septiembre
           // this.totalPor25.aniATotalS = this.totalPor25.totalS / this.totalPor25.anioAntS;
           // this.totalPor25.presTotalS = this.totalPor25.totalS / this.totalPor25.presupuestoS;
@@ -1381,11 +1381,11 @@ export class IngresosComponent implements OnInit {
             e.summaryCells[78][0].value = this.totalPor25.ProyTotalJL;
           }
           // // //Agosto
-          // if(e.summaryCells[69][0].value !== undefined){
-          //   e.summaryCells[69][0].value = this.totalPor25.aniATotalAG;
-          //   e.summaryCells[71][0].value = this.totalPor25.presTotalAG;
-          //   e.summaryCells[73][0].value = this.totalPor25.ProyTotalAG;
-          // }
+          if(e.summaryCells[83][0].value !== undefined){
+            e.summaryCells[83][0].value = this.totalPor25.aniATotalAG;
+            e.summaryCells[85][0].value = this.totalPor25.presTotalAG;
+            e.summaryCells[89][0].value = this.totalPor25.ProyTotalAG;
+          }
           // // //Septiembre
           // if(e.summaryCells[78][0].value !== undefined){
           //   e.summaryCells[78][0].value = this.totalPor25.aniATotalS;
@@ -1474,10 +1474,10 @@ export class IngresosComponent implements OnInit {
           let presupuestoJL25 = c.totalItem.summaryCells[73][0].value;
           let proyeccionJL25 = c.totalItem.summaryCells[75][0].value;
           // // //Agosto
-          // let totalAG25 = c.totalItem.summaryCells[67][0].value;
-          // let anioAntAG25 = c.totalItem.summaryCells[68][0].value;
-          // let presupuestoAG25 = c.totalItem.summaryCells[70][0].value;
-          // let proyeccionAG25 = c.totalItem.summaryCells[72][0].value;
+          let totalAG25 = c.totalItem.summaryCells[81][0].value;
+          let anioAntAG25 = c.totalItem.summaryCells[82][0].value;
+          let presupuestoAG25 = c.totalItem.summaryCells[84][0].value;
+          let proyeccionAG25 = c.totalItem.summaryCells[86][0].value;
           // // //Septiembre
           // let totalS25 = c.totalItem.summaryCells[76][0].value;
           // let anioAntS25 = c.totalItem.summaryCells[77][0].value;
@@ -1572,15 +1572,15 @@ export class IngresosComponent implements OnInit {
             totalesPor25.proyeccionJL = c.totalItem.summaryCells[78][0].value
           }
           // // //Agosto
-          // if(c.totalItem.summaryCells[69][0] !== undefined){
-          //   totalAG25 === 0 ? c.totalItem.summaryCells[69][0].value = 0 : c.totalItem.summaryCells[69][0].value = totalAG25/anioAntAG25;
-          //   presupuestoAG25 === 0 ? c.totalItem.summaryCells[71][0].value = 0 : c.totalItem.summaryCells[71][0].value = totalAG25/presupuestoAG25;
-          //   proyeccionAG25 === 0 ? c.totalItem.summaryCells[73][0].value = 0 : c.totalItem.summaryCells[73][0].value = totalAG25/proyeccionAG25;
+          if(c.totalItem.summaryCells[83][0] !== undefined){
+            totalAG25 === 0 ? c.totalItem.summaryCells[83][0].value = 0 : c.totalItem.summaryCells[83][0].value = totalAG25/anioAntAG25;
+            presupuestoAG25 === 0 ? c.totalItem.summaryCells[85][0].value = 0 : c.totalItem.summaryCells[85][0].value = totalAG25/presupuestoAG25;
+            proyeccionAG25 === 0 ? c.totalItem.summaryCells[89][0].value = 0 : c.totalItem.summaryCells[89][0].value = totalAG25/proyeccionAG25;
   
-          //   totalesPor25.totalAG = c.totalItem.summaryCells[69][0].value
-          //   totalesPor25.presupuestoAG = c.totalItem.summaryCells[71][0].value
-          //   totalesPor25.proyeccionAG = c.totalItem.summaryCells[73][0].value
-          // }
+            totalesPor25.totalAG = c.totalItem.summaryCells[83][0].value
+            totalesPor25.presupuestoAG = c.totalItem.summaryCells[85][0].value
+            totalesPor25.proyeccionAG = c.totalItem.summaryCells[89][0].value
+          }
           // // //Septiembre
           // if(c.totalItem.summaryCells[78][0] !== undefined){
           //   totalS25 === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalS25/anioAntS25;

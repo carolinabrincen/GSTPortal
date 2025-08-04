@@ -79,10 +79,10 @@ export class PagosComponent implements OnInit {
     this.loadingVisible = true;
     this.pagosService.getPagos(this.formFilter.Fecha.toISOString()).subscribe((response) => {
     
-      this.pagos = response.data;
-      this.pagosXDia = response.data.pagoXDia;      
-      this.pagosXMes = response.data.pagoXMes
-      this.pagosDetalleP = response.data.detallePagos;
+      this.pagos = response?.data;
+      this.pagosXDia = response?.data?.pagoXDia;      
+      this.pagosXMes = response?.data?.pagoXMes
+      this.pagosDetalleP = response?.data?.detallePagos;
 
       this.graficaPXMesResumen = response.data.pagoXMesResumen;
       //this.graficaPXClasificado = response.data.pagoXMesClasificado

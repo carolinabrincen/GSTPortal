@@ -62,7 +62,7 @@ export class ProyeccionCostosComponent implements OnInit {
   ];
 
   arrAnos: AniosModel[] = [
-    { idAnio: 202507, anio: "202507" },
+    { idAnio: 202508, anio: "202508" },
   ];
 
   companias: Compania[] =[]
@@ -145,7 +145,7 @@ export class ProyeccionCostosComponent implements OnInit {
 
   //=================GETS===========================
   getProyeccionCostos(){
-    this.anioSeleccionado = 202507
+    this.anioSeleccionado = 202508;
     const request = new Promise((resolve, reject) => {
       this.proyeccCosService.postProyeccionCostos(this.anioSeleccionado, this.udnSeleccionado).subscribe(data => {
         

@@ -109,6 +109,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDMayo2025();
     this.getIDMDJunio2025();
     this.getIDMDJulio2025();
+    this.getIDMDAgosto2025();
   }
 
 /*=======================LLamadas GET 2023==========================*/
@@ -438,6 +439,16 @@ export class IngresosDetalladosComponent implements OnInit {
     });
   }
 
+  getIDMDAgosto2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualAgo2025().subscribe(res => {
+      this.arrIngresosAgo2025 = res.data.resumen;
+      this.arrDetalleAgo2025 = res.data.detalle;
+      // console.log(this.arrDetalleAgo2025)
+      this.loadingVisible = false;
+    });
+  }
+
   Actualizar(e: any){
     this.loadingVisible = true;
     this.getIDMDEnero2025();
@@ -447,6 +458,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDMayo2025();
     this.getIDMDJunio2025();
     this.getIDMDJulio2025();
+    this.getIDMDAgosto2025();
   }
 
   getData2024(e: any){
