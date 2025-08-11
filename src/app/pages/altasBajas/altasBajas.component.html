@@ -64,8 +64,9 @@
                 <h3>Altas / Bajas</h3>
 
                 <dx-box direction="col" width="100%" [height]="400">
-                       <dxi-item [ratio]="3" [baseSize]="0">
+                       <dxi-item [ratio]="5" [baseSize]="0">
                          <dx-box direction="row" width="100%" [height]="125">
+                            
                            <dxi-item class="rect demo-dark" [ratio]="4">
                 
                             <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualAltas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
@@ -76,12 +77,14 @@
                                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                                 <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
 
-                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                                <dxi-column dataField="total" caption="Total"></dxi-column>
-                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                <dxi-column caption="Altas">
+                                    <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                    <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                    <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                    <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                    <dxi-column dataField="total" caption="Total"></dxi-column>
+                                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                </dxi-column>
 
                                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                                     <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -95,6 +98,7 @@
                             </dx-data-grid>
 
                             </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
                              <dxi-item class="rect demo-dark" [ratio]="4">
                 
                             <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualBajas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
@@ -105,13 +109,14 @@
                                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                                 <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
 
-                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                                <dxi-column dataField="total" caption="Total"></dxi-column>
-                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-
+                                <dxi-column caption="Bajas">
+                                    <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                    <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                    <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                    <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                    <dxi-column dataField="total" caption="Total"></dxi-column>
+                                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                </dxi-column>
                                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                                     <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                                     <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
@@ -124,6 +129,7 @@
                             </dx-data-grid>
 
                             </dxi-item>
+                            <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
                              <dxi-item class="rect demo-dark" [ratio]="4">
                 
                             <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualSaldos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
@@ -134,12 +140,14 @@
                                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                                 <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
 
-                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                                <dxi-column dataField="total" caption="Total"></dxi-column>
-                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                <dxi-column caption="Saldos">
+                                    <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                    <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                    <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                    <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                    <dxi-column dataField="total" caption="Total"></dxi-column>
+                                    <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                </dxi-column>
 
                                 <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                                     <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
