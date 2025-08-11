@@ -76,6 +76,8 @@ export class AltasBajasComponent implements OnInit {
   mensualAltas: any[] = [];
   mensualBajas: any[] = [];
   mensualSaldos: any[] = [];
+  detalleAltas: any[] = [];
+  detalleBajas: any[] = [];
 
   mes1: string = "";
   mes2: string = "";
@@ -169,6 +171,9 @@ export class AltasBajasComponent implements OnInit {
       this.mensualBajas.sort((a, b) => (a.orden < b.orden ? -1 : 1));
       this.mensualSaldos = response.data.mensualSaldos;
       this.mensualSaldos.sort((a, b) => (a.orden < b.orden ? -1 : 1));
+
+      this.detalleAltas = response.data.detalleAltas;
+      this.detalleBajas = response.data.detalleBajas;
 
       console.log(response.data)
       this.loadingVisible = false;

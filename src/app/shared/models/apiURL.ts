@@ -137,5 +137,5 @@ export enum API_URLS{
     GET_METRICA_COBRNZA = 'api/CarteraClientes/MetricaCobranza',
     GET_MACRO_CICLO_CAJA_SECA = 'api/Rentabilidad/GetMacroCicloCajaSeca',
     GET_PAGOS = 'api/Pagos/GetPagosMes/',
-    GET_ALTAS_BAJAS = 'api/Disponibilidad/GetAltasBajas/'
+    GET_ALTAS_BAJAS = 'api/Disponibilidad/GetAltasBajas/',
 }
