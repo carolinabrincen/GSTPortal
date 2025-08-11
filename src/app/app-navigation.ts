@@ -62,6 +62,11 @@ export const navigation = [
         path: '/disponiblidad-Unidades'
       },
       {
+        text: 'Altas / Bajas',
+        icon: 'columnchooser',
+        path: '/altasBajas'
+      },
+      {
         text: 'Disponibilidad Mensual',
         icon: 'columnchooser',
         path: '/disponibilidad-Mensual'
@@ -214,6 +219,11 @@ export const navigationID24 = [
         text: 'Disponibilidad',
         icon: 'columnchooser',
         path: '/disponiblidad-Unidades'
+      },
+      {
+        text: 'Altas / Bajas',
+        icon: 'columnchooser',
+        path: '/altasBajas'
       },
       {
         text: 'Disponibilidad Mensual',

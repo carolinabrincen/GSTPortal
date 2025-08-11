@@ -48,6 +48,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { MetricaCobranzaComponent } from './pages/CarteraMetricaCobranza/metricaCobranza.component';
   import { BitacoraViajeComponent } from './pages/bitacoraViaje/bitacoraViaje.component';
   import { PagosComponent } from './pages/pagos/pagos.component';
+  import { AltasBajasComponent } from './pages/altasBajas/altasBajas.component';
 
 const routes: Routes = [
   {
@@ -238,6 +239,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'altasBajas',
+    component: AltasBajasComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -319,7 +325,8 @@ const routes: Routes = [
     disponibilidadMensualComponent,
     MetricaCobranzaComponent,
     BitacoraViajeComponent,
-    PagosComponent
+    PagosComponent,
+    AltasBajasComponent
    
   ]
 })

@@ -1,0 +1,172 @@
+<h2 class="content-block">Alas / Bajas</h2>
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+    <br><br>
+
+        <dx-form id="form" [formData]="formFilter">
+
+            <dxi-item itemType="group" cssClass="form-group" [colCount]="3">
+                 
+                <dxi-item itemType="group">
+                    <dxi-item  dataField="Fecha" editorType="dxDateBox" [editorOptions]="{ width: '100%', displayFormat:'dd/MM/yyyy' }" (onClick)="onClick($event)"></dxi-item>
+                </dxi-item>
+
+                <dxi-item itemType="group" class="styleButton">
+                    <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                    </dx-button>
+                </dxi-item>
+                
+            </dxi-item>
+        </dx-form>
+            <br>
+    <div>
+
+        <br><br>
+         <dx-box direction="col" width="100%" [height]="550">
+                       <dxi-item [ratio]="3" [baseSize]="0">
+                         <dx-box direction="row" width="100%" [height]="125">
+                           <dxi-item class="rect demo-dark" [ratio]="2"></dxi-item>
+                             <dxi-item class="rect demo-dark" [ratio]="4">
+                                <dx-data-grid #resmen id="gridContainer1" [dataSource]="anual" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                                    (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">
+                                    
+                                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                                        <dxo-paging [pageSize]="100"></dxo-paging>
+                                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                                        <dxo-export [enabled]="true" fileName="Anual" [customizeExcelCell]="customizeOp"></dxo-export>
+
+                                        <dxi-column dataField="mes" caption="Mes"></dxi-column>
+                                        <dxi-column dataField="inicio" caption="Inicio"></dxi-column>
+                                        <dxi-column dataField="altas" caption="Altas"></dxi-column>
+                                        <dxi-column dataField="bajas" caption="Bajas"></dxi-column>
+                                        <dxi-column dataField="fin" caption="Final"></dxi-column>
+                                        <dxi-column dataField="rotacion" caption="% Rotación" [format]="calculatePercent"></dxi-column>
+                                        <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                                        
+                                        <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                                            <dxi-total-item column="inicio" summaryType="avg" displayFormat="{0}" [valueFormat]="formatRedondear"></dxi-total-item>
+                                            <dxi-total-item column="altas" summaryType="avg" displayFormat="{0}" [valueFormat]="formatRedondear"></dxi-total-item>
+                                            <dxi-total-item column="bajas" summaryType="avg" displayFormat="{0}" [valueFormat]="formatRedondear"></dxi-total-item>
+                                            <dxi-total-item column="fin" summaryType="avg" displayFormat="{0}" [valueFormat]="formatRedondear"></dxi-total-item>
+                                            <dxi-total-item column="rotacion" summaryType="avg" displayFormat="{0}" [valueFormat]="calculatePercent"></dxi-total-item>
+                                            
+                                        </dxo-summary>
+                                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                                    </dx-data-grid>
+                            </dxi-item>
+                             <dxi-item class="rect demo-dark" [ratio]="2"></dxi-item>
+                        </dx-box>
+                        </dxi-item>
+        </dx-box>
+        <br><br>
+
+
+                <h3>Altas / Bajas</h3>
+
+                <dx-box direction="col" width="100%" [height]="400">
+                       <dxi-item [ratio]="3" [baseSize]="0">
+                         <dx-box direction="row" width="100%" [height]="125">
+                           <dxi-item class="rect demo-dark" [ratio]="4">
+                
+                            <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualAltas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                            (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+                            
+                                <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                                <dxo-paging [pageSize]="100"></dxo-paging>
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                                <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+
+                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                <dxi-column dataField="total" caption="Total"></dxi-column>
+                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+
+                                <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                                    <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                </dxo-summary>
+
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            </dx-data-grid>
+
+                            </dxi-item>
+                             <dxi-item class="rect demo-dark" [ratio]="4">
+                
+                            <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualBajas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                            (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+                            
+                                <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                                <dxo-paging [pageSize]="100"></dxo-paging>
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                                <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+
+                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                <dxi-column dataField="total" caption="Total"></dxi-column>
+                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+
+                                <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                                    <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                </dxo-summary>
+
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            </dx-data-grid>
+
+                            </dxi-item>
+                             <dxi-item class="rect demo-dark" [ratio]="4">
+                
+                            <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualSaldos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                            (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+                            
+                                <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                                <dxo-paging [pageSize]="100"></dxo-paging>
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                                <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
+
+                                <dxi-column dataField="udn" caption="UdN"></dxi-column>
+                                <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
+                                <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
+                                <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                                <dxi-column dataField="total" caption="Total"></dxi-column>
+                                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+
+                                <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                                    <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                    <dxi-total-item column="" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                                </dxo-summary>
+
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            </dx-data-grid>
+
+                            </dxi-item>
+                        </dx-box>
+                    </dxi-item>
+                </dx-box>
+                <br>
+    </div>
+    
+    <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>
+
+
+    <dx-toast [(visible)]="isVisible" type="info" message="Seleccione Año y Mes">
+        <dxo-position my="top" at="right" of="#container">
+        </dxo-position>
+    </dx-toast>
+</div>
