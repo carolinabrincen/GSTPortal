@@ -92,6 +92,7 @@ export class AltasBajasComponent implements OnInit {
   resumenBajas: any[] = [];
   resumenFin: any[] = [];
   resumenMes: any[] = []
+  platillaPA: any[] = [];
 
   mes1: string = "";
   mes2: string = "";
@@ -106,6 +107,9 @@ export class AltasBajasComponent implements OnInit {
   conversion: any;
   leads: any;
 
+chart_visualRange = [1, 12];
+
+
 
   constructor(
     private altasBajasService: AltasBjasService,
@@ -117,6 +121,8 @@ export class AltasBajasComponent implements OnInit {
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.formFilter   
+
+    
   }
 
   title="Inicio"
@@ -185,7 +191,14 @@ export class AltasBajasComponent implements OnInit {
 
     this.altasBajasService.getAltasBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
       
-      this.anual = response.data.anual;
+      var myAnual = response.data.anual;
+      for(let i =0; i<myAnual.length; i++){ 
+        var myBajas = myAnual[i].bajas;
+        var operacionB = myBajas * -1;
+        myAnual[i].bajas = operacionB;
+      }
+
+      this.anual = myAnual;
       this.anual.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 
       this.mensualAltas = response.data.mensualAltas;
@@ -207,14 +220,14 @@ export class AltasBajasComponent implements OnInit {
       var resumenF = response.data.resumenMes.filter((word) => word.tipo == "Fin"); 
       this.resumenFin = resumenF;
 
-      this.resumenMes = response.data.resumenMes;
+      this.resumenMes = response.data.resumenMes;//no se usar por el momento 
 
-      // const myingresos24 = data.data.scIng.filter((word) => word.mes !== "");      
-      // this.ingresos24 = myingresos24//data.data.scIng;
+      this.platillaPA = response.data.plantillaPromedioAnual;
+      this.platillaPA.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
 
       console.log(response.data)
+
       this.loadingVisible = false;
-      // this.formFilter.Fecha = undefined
     });
   }
 
@@ -284,15 +297,20 @@ export class AltasBajasComponent implements OnInit {
     // });
   }
 
-  customizeTooltip(args: any) {
-    const valueText = (args.seriesName.indexOf('Total') != -1)
-      ? new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(args.originalValue)
-      : args.originalValue;
+  // customizeTooltip(args: any) {
+  //   const valueText = (args.seriesName.indexOf('Total') != -1)
+  //     ? new Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(args.originalValue)
+  //     : args.originalValue;
 
-    return {
-      html: `${args.seriesName}<div class='currency'>${valueText}</div>`,
-    };
-  }
+  //   return {
+  //     html: `${args.seriesName}<div class='currency'>${valueText}</div>`,
+  //   };
+  // }
+   customizeTooltip = ({ valueText }: { valueText: number }) => ({
+    text: Math.abs(valueText),
+  });
+
+  // customizeLabel: DxChartTypes.ValueAxisLabel['customizeText'] = ({ value }) => `${Math.abs(value as number)}%`;
 
   print() {
     this.chart.instance.print();
