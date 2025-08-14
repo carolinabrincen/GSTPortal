@@ -13,7 +13,11 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   DxPopupModule, DxTabPanelModule, DxChartModule, DxPivotGridModule, DxResponsiveBoxModule, DxDateBoxModule, DxTagBoxModule,
   DxValidatorModule, DxLoadPanelModule, DxToastModule, DxTemplateModule, DxSpeedDialActionModule, DxRadioGroupModule, DxTabsModule, DxScrollViewModule,
   DxCheckBoxModule, DxPivotGridFieldChooserModule, DxNumberBoxModule, DxAutocompleteModule, DxTreeListModule, DxBoxModule, DxTextBoxModule, DxTextAreaModule,
-  DxPieChartModule} from 'devextreme-angular';
+  DxPieChartModule, DxDropDownButtonModule} from 'devextreme-angular';
+  
+  import { ApplyPipeModule } from './pipes/apply.pipe';
+  import { DxFunnelModule } from 'devextreme-angular/ui/funnel';
+// import { OpportunitiesTickerModule } from 'src/app/components/utils/opportunities-ticker/opportunities-ticker.component';
 
   import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
@@ -49,6 +53,11 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { BitacoraViajeComponent } from './pages/bitacoraViaje/bitacoraViaje.component';
   import { PagosComponent } from './pages/pagos/pagos.component';
   import { AltasBajasComponent } from './pages/altasBajas/altasBajas.component';
+
+  import { TickerCardComponent } from './components/library/ticker-card/ticker-card.component';
+  import { CardAnalyticsComponent } from './components/library/card-analytics/card-analytics.component';
+  import { CardMenuComponent } from './components/library/card-menu/card-menu.component';
+
 
 const routes: Routes = [
   {
@@ -242,6 +251,21 @@ const routes: Routes = [
     path: 'altasBajas',
     component: AltasBajasComponent,
     canActivate: [ AuthGuardService ]
+  }, 
+  {
+    path: 'ticketCard',
+    component: TickerCardComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'cardAnalitics',
+    component: CardAnalyticsComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'cardMenu',
+    component: CardMenuComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: '**',
@@ -286,10 +310,16 @@ const routes: Routes = [
     DxTextAreaModule,
     BrowserModule,
     BrowserTransferStateModule,
-    DxPieChartModule
+    DxPieChartModule,
+    ApplyPipeModule,
+    DxFunnelModule,
+    DxDropDownButtonModule
   ],
   providers: [AuthGuardService],
-  exports: [RouterModule],
+  exports: [
+    RouterModule,
+    // TickerCardComponent
+  ],
   declarations: [
     HomeComponent, 
     ProfileComponent, 
@@ -326,7 +356,10 @@ const routes: Routes = [
     MetricaCobranzaComponent,
     BitacoraViajeComponent,
     PagosComponent,
-    AltasBajasComponent
+    AltasBajasComponent,
+    TickerCardComponent,
+    CardAnalyticsComponent,
+    CardMenuComponent
    
   ]
 })

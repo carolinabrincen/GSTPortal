@@ -1,3 +1,5 @@
+@use "../variables.scss" as *;
+
 :host {
   @import "../themes/generated/variables.base.scss";
   background-color: darken($base-bg, 5.00);

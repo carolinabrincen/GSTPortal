@@ -19,7 +19,24 @@
         </dx-form>
             <br>
     <div>
+        <br><br><br>
+        <dx-scroll-view class="view-wrapper-scroll">
+        <div class="view-wrapper">
+    
 
+
+    <div class="cards grey" >
+        <ticker-card *ngFor="let resI of resumenInicio" class="inicio" [titleText]="resI.tipo" [total]="resI.cantidad" [percentage]="resI.porcentaje" icon="alignright"></ticker-card>
+        <ticker-card *ngFor="let resA of resumenAltas" class="altas" [titleText]="resA.tipo" [total]="resA.cantidad" [percentage]="resA.porcentaje" icon="arrowup"></ticker-card>
+        <ticker-card *ngFor="let resB of resumenBajas" class="bajas" [titleText]="resB.tipo" [total]="resB.cantidad" [percentage]="resB.porcentaje" icon="arrowdown"></ticker-card>
+        <ticker-card *ngFor="let resF of resumenFin" class="fin" [titleText]="resF.tipo" [total]="resF.cantidad" [percentage]="resF.porcentaje" icon="alignleft"></ticker-card>
+        <!-- <ticker-card titleText="Alta" total="6" [percentage]="-14.7" icon="dataarea"></ticker-card>
+        <ticker-card titleText="Bajas" total="4" [percentage]="-2.3" icon="datausage" tone="warning"></ticker-card>
+        <ticker-card titleText="Final" total="142" [percentage]="8.5" tone="info" icon="datapie"></ticker-card> -->
+    </div>
+
+  </div>
+</dx-scroll-view>
         <br><br>
          <dx-box direction="col" width="100%" [height]="550">
                        <dxi-item [ratio]="3" [baseSize]="0">

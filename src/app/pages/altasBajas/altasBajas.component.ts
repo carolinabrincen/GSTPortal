@@ -17,13 +17,21 @@ import { TotalesXDisponibilidad, TotalOperacion, TotalesXTracos, TotalOpeT, Tota
 import { AltasBajas } from 'src/app/shared/models/altasBajas/balanza.model';
 import notify from 'devextreme/ui/notify';
 
+import {
+  Sales, SalesByState, SalesByStateAndCity, SalesOrOpportunitiesByCategory,
+} from 'src/app/types/analytics';
+
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
+import { Observable, forkJoin } from 'rxjs';
 
 const totalesPor = new TotalPorcentajes;
 const printMes = new AltasBajas;
+
+type DashboardData = SalesOrOpportunitiesByCategory | Sales | SalesByState | SalesByStateAndCity | null;
+type DataLoader = (startDate: string, endDate: string) => Observable<Object>;
 
 @Component({
   templateUrl: './altasBajas.component.html',
@@ -37,6 +45,7 @@ export class AltasBajasComponent implements OnInit {
 
 
   @ViewChild('gridModal', { static: false }) gridModal: DxDataGridComponent;
+
 
 
   //loading
@@ -78,10 +87,24 @@ export class AltasBajasComponent implements OnInit {
   mensualSaldos: any[] = [];
   detalleAltas: any[] = [];
   detalleBajas: any[] = [];
+  resumenInicio: any[] = [];
+  resumenAltas: any[] = [];
+  resumenBajas: any[] = [];
+  resumenFin: any[] = [];
+  resumenMes: any[] = []
 
   mes1: string = "";
   mes2: string = "";
   mes3: string = "";
+
+
+
+  opportunities: SalesOrOpportunitiesByCategory = null;
+  sales: Sales = null;
+  salesByState: SalesByState = null;
+  salesByCategory: SalesByStateAndCity = null;
+  conversion: any;
+  leads: any;
 
 
   constructor(
@@ -93,10 +116,10 @@ export class AltasBajasComponent implements OnInit {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
-    this.formFilter
-
-   
+    this.formFilter   
   }
+
+  title="Inicio"
 
   ngOnInit(): void {
     // this.getDisponiblidadAnual();
@@ -174,6 +197,20 @@ export class AltasBajasComponent implements OnInit {
 
       this.detalleAltas = response.data.detalleAltas;
       this.detalleBajas = response.data.detalleBajas;
+
+      var resumenI = response.data.resumenMes.filter((word) => word.tipo == "Inicio");
+      this.resumenInicio = resumenI;
+      var resumenA = response.data.resumenMes.filter((word) => word.tipo == "Altas");
+      this.resumenAltas = resumenA;
+      var resumenB = response.data.resumenMes.filter((word) => word.tipo == "Bajas");
+      this.resumenBajas = resumenB;
+      var resumenF = response.data.resumenMes.filter((word) => word.tipo == "Fin"); 
+      this.resumenFin = resumenF;
+
+      this.resumenMes = response.data.resumenMes;
+
+      // const myingresos24 = data.data.scIng.filter((word) => word.mes !== "");      
+      // this.ingresos24 = myingresos24//data.data.scIng;
 
       console.log(response.data)
       this.loadingVisible = false;
