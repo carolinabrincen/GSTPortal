@@ -1,4 +1,4 @@
-<h2 class="content-block">Rotación de operadores mensual</h2>
+<h2 class="content-block"> Rotación mensual de operadores</h2>
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
     <br><br>
 
@@ -153,6 +153,7 @@
                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
                          <dxo-margin [left]="50"></dxo-margin>
                        </dxo-legend>
+                       <dxo-export [enabled]="true"></dxo-export>
                    </dx-chart>
                 </dxi-item>
 
@@ -217,7 +218,16 @@
                             <dxo-title text=""></dxo-title>
                             </dxi-value-axis>
                             
-                            <dxo-argument-axis [visualRange]="chart_visualRange" [tickInterval]="1"></dxo-argument-axis>
+                            <dxo-argument-axis [visualRange]="chart_visualRange" [tickInterval]="1">
+                                
+                            </dxo-argument-axis>
+
+                            <dxi-value-axis startValue="0" endValue="200"></dxi-value-axis>
+                            
+
+                            <dxi-value-axis 
+                                [visualRange]="{ startValue: 0, endValue: 200 }">
+                            </dxi-value-axis>
 
                             <dxo-common-series-settings argumentField="mes" type="stackedBar">
                             </dxo-common-series-settings>
@@ -241,7 +251,7 @@
                     <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
                     <dxi-item class="rect demo-dark" [ratio]="4">
 
-                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="platillaPA" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                        <dx-data-grid #resmen id="gridContainer1" [dataSource]="platillaPA" [height]="590" [showBorders]="true" [columnAutoWidth]="true"
                         (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">
                             
                             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
