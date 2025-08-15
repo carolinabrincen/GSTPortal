@@ -1,8 +1,8 @@
-<h2 class="content-block">Altas / Bajas</h2>
+<h2 class="content-block">Rotación de operadores mensual</h2>
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
     <br><br>
 
-    <dx-form id="form" [formData]="formFilter">
+    <!-- <dx-form id="form" [formData]="formFilter">
 
             <dxi-item itemType="group" cssClass="form-group" [colCount]="3">
                  
@@ -16,7 +16,61 @@
                 </dxi-item>
                 
             </dxi-item>
-        </dx-form>
+        </dx-form> -->
+
+         <br><br>
+            <dx-responsive-box>
+                <!-- COLS -->
+                <!--Año-->
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]=".50"></dxi-col>
+                <!--vacia-->
+                <dxi-col [ratio]=".15"></dxi-col>
+                <!--Compañia-->
+                <dxi-col [ratio]=".30"></dxi-col>
+                <dxi-col [ratio]="1.20"></dxi-col>
+        
+        
+                <!-- ROWS -->
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+                <!-- CONTROLES DEL FORM -->
+                <!--#region :::: ROW 1 DEL FORM ::::  -->
+                <!-- AÑO -->
+             
+                <!-- MES -->
+        
+                <!--Compañia -->
+              
+                <!--ROW 1 Unidad de Negocio -->
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Periodo:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="periodo" displayExpr="idPeriodo" valueExpr="periodo" (onValueChanged)="selectPeriodo($event)">
+                    </dx-select-box>
+                </dxi-item>
+             
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+            </dx-responsive-box>
+            <br>
             <br>
     <div>
 
@@ -24,13 +78,59 @@
         <dx-scroll-view class="view-wrapper-scroll">
             <div class="view-wrapper">
     
-                <div class="cards grey" >
+                <!-- <div class="cards grey" >
                     <ticker-card *ngFor="let resI of resumenInicio" class="inicio" [titleText]="resI.tipo" [total]="resI.cantidad" [percentage]="resI.porcentaje" icon="alignright"></ticker-card>
                     <ticker-card *ngFor="let resA of resumenAltas" class="altas" [titleText]="resA.tipo" [total]="resA.cantidad" [percentage]="resA.porcentaje" icon="arrowup"></ticker-card>
                     <ticker-card *ngFor="let resB of resumenBajas" class="bajas" [titleText]="resB.tipo" [total]="resB.cantidad" [percentage]="resB.porcentaje" icon="arrowdown"></ticker-card>
                     <ticker-card *ngFor="let resF of resumenFin" class="fin" [titleText]="resF.tipo" [total]="resF.cantidad" [percentage]="resF.porcentaje" icon="alignleft"></ticker-card>
-                </div>
+                </div> -->
 
+                <div class="cards grey" >
+                    <div class="ticker" *ngFor="let resumenM of resumenMes">
+                        
+                        <div *ngIf="resumenM.tipo == 'Inicio'" class="icon-wrapper" style="background-color: rgb(189, 215, 238);">
+                            <i [class]="'dx-icon dx-icon-alignright'"></i>
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Altas'" class="icon-wrapper" style="background-color: rgb(198, 224, 180);">
+                            <i [class]="'dx-icon dx-icon-arrowup'"></i>
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Bajas'" class="icon-wrapper" style="background-color: rgb(248, 203, 173);">
+                            <i [class]="'dx-icon dx-icon-arrowdown'"></i>
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Fin'" class="icon-wrapper" style="background-color: rgb(217, 217, 217);">
+                            <i [class]="'dx-icon dx-icon-alignleft'"></i>
+                        </div>
+
+                        <div class="middle">
+                            <div class="title"> {{ resumenM.tipo }} </div>
+                            <div class="total"> {{resumenM.cantidad }} </div>
+                        </div>
+
+                        <div>
+                        <div *ngIf="resumenM.porcentaje == 0 " class="percentage" style="background-color: rgb(99, 171, 212);" >
+                            <div [class]="'dx-icon-'+ (resumenM.porcentaje > 0 ? 'spinup' : 'spindown')"></div>
+                            <i class="value"></i>
+                            <span >{{ abs(resumenM.porcentaje) }}%</span>
+                        </div>
+                            <div *ngIf="resumenM.porcentaje < 0 " class="percentage" style="background-color: rgb(194, 122, 122);" >
+                            <div [class]="'dx-icon-'+ (resumenM.porcentaje > 0 ? 'spinup' : 'spindown')"></div>
+                            <i class="value"></i>
+                            <span >{{ abs(resumenM.porcentaje) }}%</span>
+                        </div>
+                            <div *ngIf="resumenM.porcentaje > 0 " class="percentage" style="background-color: rgb(142, 212, 142);" >
+                            <div [class]="'dx-icon-'+ (resumenM.porcentaje > 0 ? 'spinup' : 'spindown')"></div>
+                            <i class="value"></i>
+                            <span >{{ abs(resumenM.porcentaje) }}%</span>
+                        </div>
+                        <br>
+                        <div>
+                            <dx-button *ngIf="resumenM.tipo == 'Altas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalA($event)"></dx-button>
+                            <dx-button *ngIf="resumenM.tipo == 'Bajas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalB($event)"></dx-button>
+                        </div>
+                        </div>  
+                       
+                    </div>
+                </div>
             </div>
         </dx-scroll-view>
         <br><br>
@@ -41,7 +141,7 @@
 
                 <dxi-item class="rect demo-dark" [ratio]="5">
                    <!--==========================Bar and Line Chart==================-->
-                   <dx-chart id="chart" [dataSource]="anual" [rotated]="false" [barGroupWidth]="18" title="Altas vs Bajas">
+                   <dx-chart id="chart" [dataSource]="anualGrafica" [rotated]="false" [barGroupWidth]="18" title="Altas vs Bajas">
                        <dxo-size [height]="600"></dxo-size>
                        <dxo-common-series-settings argumentField="mes" type="stackedbar"></dxo-common-series-settings>
                        <dxi-series valueField="altas" name="Altas" color="#00B4D8"> </dxi-series>
@@ -285,52 +385,64 @@
         </dx-box>
         <br><br>
 
-        <h3>Detalle de Altas</h3>
-        <dx-data-grid #resmen id="gridContainer1" [dataSource]="detalleAltas" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
-        (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">    
+         <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle de Altas" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="modalDA">
+            <div *dxTemplate="let data of 'content'">
+                <dx-scroll-view width="100%" height="100%">
+
+                <dx-data-grid #resmen id="gridContainer1" [dataSource]="detalleAltas" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">    
+                
+                <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                <dxo-paging [pageSize]="100"></dxo-paging>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Detalle de Altas" [customizeExcelCell]="customizeOp"></dxo-export>
+                
+                <dxi-column dataField="udN" caption="UdN"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                <dxi-column dataField="cvetra" caption="Número"></dxi-column>
+                <dxi-column dataField="nomnbre" caption="Nombre"></dxi-column>
+                <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <!-- <dxi-column dataField="fecha" caption="Fecha" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
+                <dxi-column dataField="fechaPortal" caption="Fecha Captura" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="" caption="" [width]="15"></dxi-column>
             
-            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-            <dxo-paging [pageSize]="100"></dxo-paging>
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-export [enabled]="true" fileName="Detalle de Altas" [customizeExcelCell]="customizeOp"></dxo-export>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                </dx-data-grid>
+
+            </dx-scroll-view>
+            </div>
+        </dx-popup>
             
-            <dxi-column dataField="udN" caption="UdN"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operación"></dxi-column>
-            <dxi-column dataField="cvetra" caption="Número"></dxi-column>
-            <dxi-column dataField="nomnbre" caption="Nombre"></dxi-column>
-            <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="fecha" caption="Fecha" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="fechaPortal" caption="Fecha Portal" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-        
-            <dxo-group-panel [visible]="false"></dxo-group-panel>
-            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-            </dx-data-grid>
-            <br><br>
-            
-          <h3>Detalle de Bajas</h3>
-        <dx-data-grid #resmen id="gridContainer1" [dataSource]="detalleBajas" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
-        (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">    
-            
-            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-            <dxo-paging [pageSize]="100"></dxo-paging>
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-export [enabled]="true" fileName="Detalle de Altas" [customizeExcelCell]="customizeOp"></dxo-export>
-            
-            <dxi-column dataField="udN" caption="UdN"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operación"></dxi-column>
-            <dxi-column dataField="cvetra" caption="Número"></dxi-column>
-            <dxi-column dataField="nomnbre" caption="Nombre"></dxi-column>
-            <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="baja" caption="Baja" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="fecha" caption="Fecha" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="fechaPortal" caption="Fecha Portal" dataType="date" format="dd/MM/yyyy"></dxi-column>
-            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-            
-        
-            <dxo-group-panel [visible]="false"></dxo-group-panel>
-            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-        </dx-data-grid>
+        <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle de Bajas" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="modalDB">
+            <div *dxTemplate="let data of 'content'">
+                <dx-scroll-view width="100%" height="100%">
+
+                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="detalleBajas" [height]="400" [showBorders]="true" [columnAutoWidth]="true"
+                    (onRowPrepared)="onRowPreparedAnual($event)" (onCellPrepared)="onCellPreparedAnual($event)">    
+                        
+                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                        <dxo-paging [pageSize]="100"></dxo-paging>
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                        <dxo-export [enabled]="true" fileName="Detalle de Altas" [customizeExcelCell]="customizeOp"></dxo-export>
+                        
+                        <dxi-column dataField="udN" caption="UdN"></dxi-column>
+                        <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+                        <dxi-column dataField="cvetra" caption="Número"></dxi-column>
+                        <dxi-column dataField="nomnbre" caption="Nombre"></dxi-column>
+                        <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                        <dxi-column dataField="baja" caption="Baja" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                        <!-- <dxi-column dataField="fecha" caption="Fecha" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
+                        <dxi-column dataField="fechaPortal" caption="Fecha Captura" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                        <dxi-column dataField="" caption="" [width]="15"></dxi-column>
+                        
+                    
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                    </dx-data-grid>
+                </dx-scroll-view>
+            </div>
+        </dx-popup>
 
 
     </div>

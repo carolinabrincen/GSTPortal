@@ -1,8 +1,8 @@
 export class AltasBajas {
 
     udn: string;
-    mes1: number;
-    mes2: number;
-    mes3 : number;
-    total: number;
+    mes1: string;
+    mes2: string;
+    mes3 : string;
+    total: string;
 }

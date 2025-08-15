@@ -62,7 +62,7 @@ export const navigation = [
         path: '/disponiblidad-Unidades'
       },
       {
-        text: 'Altas / Bajas',
+        text: 'Rotación',
         icon: 'columnchooser',
         path: '/altasBajas'
       },
@@ -221,7 +221,7 @@ export const navigationID24 = [
         path: '/disponiblidad-Unidades'
       },
       {
-        text: 'Altas / Bajas',
+        text: 'Rotación',
         icon: 'columnchooser',
         path: '/altasBajas'
       },

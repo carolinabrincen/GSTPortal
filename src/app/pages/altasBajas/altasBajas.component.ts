@@ -65,13 +65,7 @@ export class AltasBajasComponent implements OnInit {
   grid2: any[] = [];
   grid3: any[] = [];
  
-
- 
-
   selectedUdn: number = 0;
-  selectedPeriodo: number = 0;
-
-
 
   printUdn: string = "";
 
@@ -82,6 +76,7 @@ export class AltasBajasComponent implements OnInit {
   bolFormSoloLectura = false;
 
   anual: any[] = [];
+  anualGrafica: any[] = [];
   mensualAltas: any[] = [];
   mensualBajas: any[] = [];
   mensualSaldos: any[] = [];
@@ -107,10 +102,29 @@ export class AltasBajasComponent implements OnInit {
   conversion: any;
   leads: any;
 
-chart_visualRange = [1, 12];
+  modalDA = false;
+  modalDB = false;
 
+  chart_visualRange = [1, 12];
 
+  periodo: any[] = [
+      { idPeriodo: 202408, periodo: "2024-08-01" },
+      { idPeriodo: 202409, periodo: "2024-09-01" },
+      { idPeriodo: 202410, periodo: "2024-10-01" },
+      { idPeriodo: 202411, periodo: "2024-11-01" },
+      { idPeriodo: 202412, periodo: "2024-12-01" },
+      { idPeriodo: 202501, periodo: "2025-01-01" },
+      { idPeriodo: 202502, periodo: "2025-02-01" },
+      { idPeriodo: 202503, periodo: "2025-03-01" },
+      { idPeriodo: 202504, periodo: "2025-04-01" },
+      { idPeriodo: 202505, periodo: "2025-05-01" },
+      { idPeriodo: 202506, periodo: "2025-06-01" },
+      { idPeriodo: 202507, periodo: "2025-07-01" },
+      { idPeriodo: 202508, periodo: "2025-08-01" },
+    ];
 
+  selectedPeriodo: number = 0;
+  
   constructor(
     private altasBajasService: AltasBjasService,
     private service: ServiceSales,
@@ -133,73 +147,70 @@ chart_visualRange = [1, 12];
 
   getAltasBajas() {
 
-     var Navidad = new Date(this.formFilter.Fecha);
+     var getPeriodo = this.selectedPeriodo;
     
-     printMes.mes1 = Navidad.getMonth() + 1;
-
-    console.log(printMes.mes1)
-
-    if(printMes.mes1 == 1){
+    printMes.mes1 = new Date(getPeriodo).toLocaleString('es-MX',{month:'numeric'});
+    //Solo obtiene un mes antirior 
+    if(printMes.mes1 == "12"){
       this.mes1 = "Noviembre"
       this.mes2 = "Diciembre"
       this.mes3 = "Enero"
-    }else if(printMes.mes1 == 2){
+    }else if(printMes.mes1 == "1"){
       this.mes1 = "Diciembre"
       this.mes2 = "Enero"
       this.mes3 = "Febrero"
-    }else if(printMes.mes1 == 3){
+    }else if(printMes.mes1 == "2"){
       this.mes1 = "Enero"
       this.mes2 = "Febrero"
       this.mes3 = "Marzo"
-    }else if(printMes.mes1 == 4){
+    }else if(printMes.mes1 == "3"){
       this.mes1 = "Febrero"
       this.mes2 = "Marzo"
       this.mes3 = "Abril"
-    }else if(printMes.mes1 == 5){
+    }else if(printMes.mes1 == "4"){
       this.mes1 = "Marzo"
       this.mes2 = "Abril"
       this.mes3 = "Mayo"
-    }else if(printMes.mes1 == 6){
+    }else if(printMes.mes1 == "5"){
       this.mes1 = "Abril"
       this.mes2 = "Mayo"
       this.mes3 = "Junio"
-    }else if(printMes.mes1 == 7){
+    }else if(printMes.mes1 == "6"){
       this.mes1 = "Mayo"
       this.mes2 = "Junio"
       this.mes3 = "Julio"
-    }else if(printMes.mes1 == 8){
+    }else if(printMes.mes1 == "7"){
       this.mes1 = "Junio"
       this.mes2 = "Julio"
       this.mes3 = "Agosto"
-    }else if(printMes.mes1 == 9){
+    }else if(printMes.mes1 == "8"){
       this.mes1 = "Julio"
       this.mes2 = "Agosto"
       this.mes3 = "Septiembre"
-    }else if(printMes.mes1 == 10){
+    }else if(printMes.mes1 == "9"){
       this.mes1 = "Agosto"
       this.mes2 = "Septiembre"
       this.mes3 = "Octubre"
-    }else if(printMes.mes1 == 11){
+    }else if(printMes.mes1 == "10"){
       this.mes1 = "Septiembre"
       this.mes2 = "Octubre"
       this.mes3 = "Noviembre"
-    }else if(printMes.mes1 == 12){
+    }else if(printMes.mes1 == "11"){
       this.mes1 = "Octubre"
       this.mes2 = "Noviembre"
       this.mes3 = "Diciembre"
     }
 
-    this.altasBajasService.getAltasBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-      
+    this.altasBajasService.getAltasBajas(this.selectedPeriodo).subscribe((response) => {
+
       var myAnual = response.data.anual;
       for(let i =0; i<myAnual.length; i++){ 
         var myBajas = myAnual[i].bajas;
         var operacionB = myBajas * -1;
         myAnual[i].bajas = operacionB;
       }
-
-      this.anual = myAnual;
-      this.anual.sort((a, b) => (a.orden < b.orden ? -1 : 1));
+      this.anualGrafica = myAnual;
+      this.anualGrafica.sort((a, b) => (a.orden < b.orden ? -1 : 1));
 
       this.mensualAltas = response.data.mensualAltas;
       this.mensualAltas.sort((a, b) => (a.orden < b.orden ? -1 : 1));
@@ -228,6 +239,15 @@ chart_visualRange = [1, 12];
       console.log(response.data)
 
       this.loadingVisible = false;
+    });
+  }
+
+  getABAnual() {
+
+    this.altasBajasService.getAltasBajas(this.selectedPeriodo).subscribe((response) => {
+
+      this.anual = response.data.anual;
+      this.anual.sort((a, b) => (a.orden < b.orden ? -1 : 1));
     });
   }
 
@@ -264,15 +284,21 @@ chart_visualRange = [1, 12];
    
   }
  
+  selectPeriodo(e: any) {
+    this.selectedPeriodo = e.value;
+    // console.log(this.selectedPeriodo)
+  }
+
   onClick(value: any){
     console.log(value)
   }
 
   buscarClick = (e: any) => {
-    if (this.formFilter.Fecha !== "") {
+    if (this.selectedPeriodo !== undefined) {
       this.loadingVisible = true;
       
       this.getAltasBajas();
+      this.getABAnual();
       }else{
         notify({
           message: "Debe seleccionar la Fecha",
@@ -283,6 +309,14 @@ chart_visualRange = [1, 12];
         }, 'warning', 4000);
       }
     };
+
+  openModalA = (e: any) =>{
+    this.modalDA = true;
+  }
+
+  openModalB = (e: any) =>{
+    this.modalDB = true;
+  }
 
 
 
@@ -443,6 +477,14 @@ chart_visualRange = [1, 12];
   onHidden() {
   }
 
+
+   getTotal(data: Array<{value?: number, total?: number}> ): number {
+    return (data || []).reduce((total, item) => total + (item.value || item.total), 0);
+  }
+
+  abs(value: number): number {
+    return Math.abs(value);
+  }
 
 
   customizeK(e) {
