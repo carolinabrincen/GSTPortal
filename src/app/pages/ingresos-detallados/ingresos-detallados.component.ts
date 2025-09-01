@@ -449,6 +449,16 @@ export class IngresosDetalladosComponent implements OnInit {
     });
   }
 
+   getIDMDSeptiembre2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualSep2025().subscribe(res => {
+      this.arrIngresosSep2025 = res.data.resumen;
+      this.arrDetalleSep2025 = res.data.detalle;
+      console.log(this.arrDetalleAgo2025)
+      this.loadingVisible = false;
+    });
+  }
+
   Actualizar(e: any){
     this.loadingVisible = true;
     this.getIDMDEnero2025();
@@ -459,6 +469,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDJunio2025();
     this.getIDMDJulio2025();
     this.getIDMDAgosto2025();
+    this.getIDMDSeptiembre2025();
   }
 
   getData2024(e: any){

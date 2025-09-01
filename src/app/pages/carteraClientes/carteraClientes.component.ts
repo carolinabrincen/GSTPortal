@@ -508,7 +508,7 @@ export class CarteraClientesComponent implements OnInit {
     var totalFin = totalgrid2  + totalAgrup4;
 
     if(this.selectedBoxCartera == 0){
-      var size = 7
+      var size = 13  
     }else if(this.selectedBoxCartera == 3){
       var size = 9
     }else if(this.selectedBoxCartera == 4){
