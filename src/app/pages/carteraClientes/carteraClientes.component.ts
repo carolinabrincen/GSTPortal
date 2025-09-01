@@ -379,7 +379,7 @@ export class CarteraClientesComponent implements OnInit {
      
     if(this.selectedPeriodo == 202508){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2025"
-      this.printPAvance = "30 DE AGOSTO DEL 2025"
+      this.printPAvance = "31 DE AGOSTO DEL 2025"
     }
 
 
