@@ -110,6 +110,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDJunio2025();
     this.getIDMDJulio2025();
     this.getIDMDAgosto2025();
+    this.getIDMDSeptiembre2025();
   }
 
 /*=======================LLamadas GET 2023==========================*/
@@ -454,7 +455,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualSep2025().subscribe(res => {
       this.arrIngresosSep2025 = res.data.resumen;
       this.arrDetalleSep2025 = res.data.detalle;
-      console.log(this.arrDetalleAgo2025)
+      //console.log(this.arrIngresosSep2025)
       this.loadingVisible = false;
     });
   }

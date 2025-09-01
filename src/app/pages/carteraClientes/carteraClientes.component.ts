@@ -110,6 +110,7 @@ export class CarteraClientesComponent implements OnInit {
     { id: 202506, periodo: 202506 },
     { id: 202507, periodo: 202507 },
     { id: 202508, periodo: 202508 },
+    { id: 202509, periodo: 202509 },
   ];
 
   periodoActual: number;
@@ -382,6 +383,11 @@ export class CarteraClientesComponent implements OnInit {
       this.printPAvance = "31 DE AGOSTO DEL 2025"
     }
 
+    if(this.selectedPeriodo == 202509){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2025"
+      this.printPAvance = "30 DE SEPTIEMBRE DEL 2025"
+    }
+
 
   }
 
@@ -506,9 +512,16 @@ export class CarteraClientesComponent implements OnInit {
     var totalAgrup4 = this.cliente4.length
 
     var totalFin = totalgrid2  + totalAgrup4;
-
+    console.log(totalFin)
     if(this.selectedBoxCartera == 0){
-      var size = 13  
+        if(totalFin >=380){
+          var size = 16
+        }else if(totalFin >= 389){
+          var size = 13
+        }else{
+          var size = 7
+        }
+        
     }else if(this.selectedBoxCartera == 3){
       var size = 9
     }else if(this.selectedBoxCartera == 4){
