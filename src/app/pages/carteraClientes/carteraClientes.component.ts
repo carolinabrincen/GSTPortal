@@ -235,6 +235,7 @@ export class CarteraClientesComponent implements OnInit {
   printValue = "";
   selectBoxCartera(e: any) {
     this.selectedBoxCartera = e.value;
+    console.log(this.selectedBoxCartera)
     if(e.value == 0){
       this.printValue = this.boxCartera[0].cartera
     }
@@ -520,6 +521,8 @@ export class CarteraClientesComponent implements OnInit {
           var size = 7
         }
         
+    }else if(this.selectedBoxCartera == 1){
+      var size = 8
     }else if(this.selectedBoxCartera == 3){
       var size = 9
     }else if(this.selectedBoxCartera == 4){
