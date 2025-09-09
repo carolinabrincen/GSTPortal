@@ -113,6 +113,7 @@ export enum API_URLS{
     POST_SUELDO_DETALLE25 = 'api/Rentabilidad/SueldoDetalle/',
     POST_BITACORA_VIAJE = 'api/Disponibilidad/PostBitacoraViaje',
     POST_ACTUALIZAR_MACROCICLO = 'api/Rentabilidad/ActualizaMacroCiclo',
+    POST_OPERADOR = 'api/Disponibilidad/GetOperadoresNOM',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
@@ -139,4 +140,5 @@ export enum API_URLS{
     GET_MACRO_CICLO_CAJA_SECA = 'api/Rentabilidad/GetMacroCicloCajaSeca',
     GET_PAGOS = 'api/Pagos/GetPagosMes/',
     GET_ALTAS_BAJAS = 'api/Disponibilidad/GetAltasBajas/',
+    GET_ANTICIPOS ='api/Pagos/GetAnticipos/',
 }

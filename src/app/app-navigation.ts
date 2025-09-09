@@ -110,6 +110,11 @@ export const navigation = [
     ]
   },
   {
+    text: 'Anticipos',
+    icon: 'columnchooser',
+    path: '/anticipos' 
+  },
+  {
     text: 'Cotizador',
     icon: 'columnchooser',
     path: '/cotizador' 
@@ -267,6 +272,11 @@ export const navigationID24 = [
         path: '/pagos'
       },
     ]
+  },
+  {
+    text: 'Anticipos',
+    icon: 'columnchooser',
+    path: '/anticipos' 
   },
   {
     text: 'Cotizador',
