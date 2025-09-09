@@ -99,7 +99,7 @@
 
             <br><br>
               <div id="exportContainer">
-                <dx-button text="EXPORTAR AVANCE" icon="xlsxfile" (onClick)="exportGridsAva($event)"></dx-button>
+                <dx-button text="EXPORTAR" icon="xlsxfile" (onClick)="exportGridsAva($event)"></dx-button>
               </div>
 
               <br><br>
@@ -112,7 +112,7 @@
                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                   <!-- <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" [customizeExcelCell]="customizeCAER"></dxo-export> -->
                     
-                  <dxi-column [textContent]="customizeBancos" caption="Clasificación">Bancos</dxi-column>
+                  <dxi-column dataField="clasificacionB" caption="Clasificación"></dxi-column>
                  
                   <dxi-column caption="Anticipo" alignment="center">
                     <dxi-column dataField="antBanPagado" caption="Depositado/Asignado" [width]="200" [format]="formatMoneda"></dxi-column>
@@ -149,9 +149,10 @@
                 </dx-data-grid>
                 <dx-data-grid  #Ant2 id="gridContainer2" [dataSource]="anticipos" [showBorders]="true" [wordWrapEnabled]="true" [showColumnHeaders]="false"
                 (onRowPrepared)="onRowPreparedCaj($event)" (onCellPrepared)="onCellPreparedCaj($event)">
-                  <dxi-column [dataField]="classCajas"></dxi-column>
                   
-                  <dxi-column caption="" [customizeText]="customizeCajas">
+                  <dxi-column dataField="clasificacionC"></dxi-column>
+
+                  <dxi-column caption="">
                     <dxi-column dataField="antCajaPagado" [width]="200" [format]="formatMoneda"></dxi-column>
                     <dxi-column dataField="antCajaContabilizado" [format]="formatMoneda"></dxi-column>
                     <dxi-column caption="Ver" cellTemplate="verAnticipoC"></dxi-column>
@@ -193,22 +194,22 @@
                   <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                   <dxo-paging [pageSize]="100"></dxo-paging>
                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                  <dxo-export [enabled]="true" fileName="CARTERA CLIENTES" [customizeExcelCell]="customizeCAER"></dxo-export>
+                  <dxo-export [enabled]="true" fileName="Rembolso" [customizeExcelCell]="customizeCAER"></dxo-export>
                     
                   <dxi-column caption="Rembolsos" alignment="center">
-                    <dxi-column dataField="liqRembolso" caption="Liquidación desde LIS"></dxi-column>
+                    <dxi-column dataField="liqReembolso" caption="Liquidación desde LIS" [format]="formatMoneda"></dxi-column>
                     <dxi-column caption="Liquidación desde NOM" alignment="center">
-                      <dxi-column dataField="reemCargos" caption="Cargos"></dxi-column>
-                      <dxi-column dataField="reemAbonos" caption="Abonos"></dxi-column>
+                      <dxi-column dataField="reemCargos" caption="Cargos" [format]="formatMoneda"></dxi-column>
+                      <dxi-column dataField="reemAbonos" caption="Abonos" [format]="formatMoneda"></dxi-column>
                     </dxi-column>
-                    <dxi-column dataField="" caption="Diferencia"></dxi-column>
+                    <dxi-column dataField="diferencia" caption="Diferencia" [format]="formatMoneda"></dxi-column>
                   </dxi-column>
               
 
-                  <dxo-summary>
+                  <!-- <dxo-summary>
                     <dxi-total-item column="porLiquidar" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
                     <dxi-total-item column="totalAnticipos" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
-                  </dxo-summary>
+                  </dxo-summary> -->
 
                 </dx-data-grid>
 

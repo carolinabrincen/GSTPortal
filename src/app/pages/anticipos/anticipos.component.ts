@@ -18,7 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import deMessages from "devextreme/localization/messages/es.json";
 import { locale, loadMessages } from "devextreme/localization";
-import { Anticipos } from 'src/app/shared/models/anticipos/anticipos';
+import { Anticipos, AllAnticipos } from 'src/app/shared/models/anticipos/anticipos';
 
 const totales = new Totales;
 const total = new Total;
@@ -95,7 +95,26 @@ export class AnticiposComponent implements OnInit {
   getAnticipos(){  
     this.loadingVisible = true;
     this.anticiposService.getAnticipos(this.selectedOperador).subscribe(data => {
-      this.anticipos.push(data?.data?.anticipos);
+
+      var myAnti = [];
+      myAnti.push(data?.data?.anticipos);
+       for(let i =0; i<myAnti.length; i++){
+
+        var myCalculo = myAnti[i].liqReembolso - myAnti[i].reemCargos;
+        var myDiferencia = myCalculo + myAnti[i].reemAbonos;
+
+        var myAnticipos = new AllAnticipos;
+        myAnticipos = myAnti[i];
+
+        myAnticipos.diferencia = myDiferencia;
+        myAnticipos.clasificacionB = "Bancos",
+        myAnticipos.clasificacionC = "Caja"
+        this.anticipos.push(myAnticipos);
+        console.log(this.anticipos)
+      }
+
+      // this.anticipos.push(data?.data?.anticipos);
+
       this.rembolsos.push(data?.data?.anticipos);
 
       this.detalleAB = data?.data?.detalleAnticiposBancos;
@@ -109,7 +128,6 @@ export class AnticiposComponent implements OnInit {
        totalAnticipos.suma_PorLiquidar = data.data.anticipos.suma_PorLiquidar;
        totalAnticipos.suma_AntSinLquidar = data.data.anticipos.suma_AntSinLquidar;
 
-      console.log(this.anticipos)
 
 
 
