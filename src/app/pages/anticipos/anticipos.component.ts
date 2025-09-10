@@ -221,10 +221,28 @@ export class AnticiposComponent implements OnInit {
   onRowPreparedB(e: any){
 
     if (e.rowType == 'data') {
-      e.cells.forEach((c: any) => {
+       e.cells.forEach((c: any) => {
 
-        if (c.cellElement) {}
-      });
+      if (c.cellElement) {
+        if(c.columnIndex == 1){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+
+        if(c.columnIndex == 2){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+
+        if(c.columnIndex == 9){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+      }
+    });
     }
 
     if (e.rowType == 'group') {}
@@ -246,11 +264,29 @@ export class AnticiposComponent implements OnInit {
   }
 
   onRowPreparedCaj(e: any){
-     if (e.rowType == 'data') {
-      e.cells.forEach((c: any) => {
+      if (e.rowType == 'data') {
+       e.cells.forEach((c: any) => {
 
-        if (c.cellElement) {}
-      });
+      if (c.cellElement) {
+        if(c.columnIndex == 1){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+
+        if(c.columnIndex == 2){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+
+        if(c.columnIndex == 9){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "red";
+          }
+        }
+      }
+    });
     }
 
     
@@ -315,10 +351,10 @@ export class AnticiposComponent implements OnInit {
     carteraAvance.getRow(10).getCell(2).value = 'Alta: '+formattedDate;
     carteraAvance.getRow(10).getCell(2).font = { bold: true, size: 16};
 
-    const dateString2 = this.printOperador.baja;
-    const formattedDate2 = dateString2.slice(0, 10);
+    const datebaja = this.printOperador.baja;
+    const formattedBaja = datebaja.slice(0, 10);
 
-    carteraAvance.getRow(10).getCell(4).value = 'Baja: '+formattedDate2;
+    carteraAvance.getRow(10).getCell(4).value = 'Baja: '+formattedBaja;
     carteraAvance.getRow(10).getCell(4).font = { bold: true, size: 16};
 
     function setAlterRowsBackAvance(gridCell, excelCell){
