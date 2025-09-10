@@ -46,6 +46,19 @@ export class AnticiposComponent implements OnInit {
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
 
+  searchModeOption = 'contains';
+  searchExprOption = 'nombre';
+   searchExprOptionItems = [{
+    name: "'nombre'",
+    value: 'nombre',
+  }, {
+    name: "['nombre', 'Category']",
+    value: ['nombre', 'Category'],
+  }];
+   searchTimeoutOption = 200;
+   minSearchLengthOption = 0;
+   showDataBeforeSearchOption = false;
+
   loadingVisible = false;
 
   isVisible = false;
@@ -87,6 +100,7 @@ export class AnticiposComponent implements OnInit {
     this.loadingVisible = true;
     this.anticiposService.getOperador(value).subscribe(data => {
      this.operador = data.data;
+     this.operador.sort((a, b) => (a.nombre < b.nombre ? -1 : 1))
      //console.log(this.operador)
      this.loadingVisible = false;
     })

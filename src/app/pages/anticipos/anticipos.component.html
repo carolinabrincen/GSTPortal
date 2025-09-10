@@ -25,8 +25,11 @@
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
                     <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-                    <dx-select-box [items]="operador" displayExpr="nombre" valueExpr="cvetra" (onValueChanged)="seleccionarPeriodo($event)">
-                    </dx-select-box>
+
+
+                     <dx-select-box
+                      [dataSource]="operador" displayExpr="nombre" valueExpr="cvetra" [searchMode]="searchModeOption" [searchExpr]="searchExprOption" [searchTimeout]="searchTimeoutOption"
+                      [minSearchLength]="minSearchLengthOption" [searchEnabled]="true" [showDataBeforeSearch]="showDataBeforeSearchOption" (onValueChanged)="seleccionarPeriodo($event)"></dx-select-box>
                 </dxi-item>
 
                 <dxi-item>
@@ -50,12 +53,8 @@
             </dx-responsive-box>
 
             <br>
-
-            <div class="dx-field">
-                <h5>Operador: <b>{{ printOperador?.nombre }}</b></h5>
-            </div>
-            
-              <dx-responsive-box>
+    
+              <!-- <dx-responsive-box>
                 <dxi-col [ratio]="1"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
 
@@ -64,40 +63,62 @@
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
-                <dxi-row [ratio]="1"></dxi-row>
+
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="0" [rowspan]="1"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0"></dxi-location>
                     <div><h5>Clave Trabajador: <b>{{ printOperador?.cvetra }}</b></h5></div>
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="0" [col]="1" [rowspan]="1"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0"></dxi-location>
                     <div><h5>Status: <b>{{ printOperador?.status }}</b></h5></div>
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="1" [col]="0"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="1" [col]="0" [rowspan]="1"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0"></dxi-location>
                     <div><h5>Nombre: <b>{{ printOperador?.nombre }}</b></h5></div>
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="0"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="2" [col]="0" [rowspan]="1"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0"></dxi-location>
                     <div><h5>Alta: <b>{{  printOperador?.alta |date:'dd/MM/yyyy'}}</b></h5></div>
                 </dxi-item>
 
                 <dxi-item>
-                    <dxi-location screen="md lg" [row]="2" [col]="1"></dxi-location>
-                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <dxi-location screen="md lg" [row]="2" [col]="1" [rowspan]="1"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0"></dxi-location>
                     <div><h5>Baja: <b>{{ printOperador?.baja |date:'dd/MM/yyyy'}}</b></h5></div>
                 </dxi-item>
-            </dx-responsive-box>
+            </dx-responsive-box> -->
 
-            <br><br>
+            <div >
+              <h5><p>
+                Clave Trabajador:
+                <span><b>{{ printOperador?.cvetra }}</b></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Status:
+                <span><b>{{ printOperador?.status }}</b></span>
+              </p></h5>
+              <h5><p>
+                Nombre:
+                <span><b>{{ printOperador?.nombre }}</b></span>
+              </p></h5>
+              <h5><p>
+                Alta:
+                <span><b>{{ printOperador?.alta |date:'dd/MM/yyyy' }}</b></span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Baja:
+                <span><b>{{ printOperador?.baja |date:'dd/MM/yyyy' }}</b></span>
+              </p></h5>
+            </div>
+
+            <br>
               <div id="exportContainer">
                 <dx-button text="EXPORTAR" icon="xlsxfile" (onClick)="exportGridsAva($event)"></dx-button>
               </div>
