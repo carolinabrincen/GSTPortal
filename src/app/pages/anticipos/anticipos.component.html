@@ -258,7 +258,7 @@
                     <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                     <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                     <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                    <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                     <dxi-column dataField="chequeReposición" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                     <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
 
@@ -295,7 +295,7 @@
                     <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                     <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                     <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                    <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                     <dxi-column dataField="chequeReposición" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                     <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
 
@@ -336,7 +336,7 @@
                       <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                       <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                       <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="chequeReposicion" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                       <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
                     </dxi-column>
@@ -345,8 +345,8 @@
                       <dxi-column dataField="fechaLiquidacion" caption="Fecha Liquidacion" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                       <dxi-column dataField="idConcepto" caption="Id Concepto" [fixed]="true"></dxi-column>
                       <dxi-column dataField="concepto" caption="Concepto" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="importe" caption="Importe" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="importe" caption="Importe" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="polizaLiq" caption="Poliza Liq." [fixed]="true"></dxi-column>
                       <dxi-column dataField="fechaContabilizado" caption="Fecha Contabilizado" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                     </dxi-column>
@@ -385,7 +385,7 @@
                       <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                       <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                       <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="chequeReposicion" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                       <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
                     </dxi-column>
@@ -394,8 +394,8 @@
                       <dxi-column dataField="fechaLiquidacion" caption="Fecha Liquidacion" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                       <dxi-column dataField="idConcepto" caption="Id Concepto" [fixed]="true"></dxi-column>
                       <dxi-column dataField="concepto" caption="Concepto" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="importe" caption="Importe" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="importe" caption="Importe" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="polizaLiq" caption="Poliza Liq." [fixed]="true"></dxi-column>
                       <dxi-column dataField="fechaContabilizado" caption="Fecha Contabilizado" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                     </dxi-column>
@@ -437,7 +437,7 @@
                       <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                       <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                       <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="chequeReposicion" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                       <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
                     </dxi-column>
@@ -446,8 +446,8 @@
                       <dxi-column dataField="fechaLiquidacion" caption="Fecha Liquidacion" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                       <dxi-column dataField="idConcepto" caption="Id Concepto" [fixed]="true"></dxi-column>
                       <dxi-column dataField="concepto" caption="Concepto" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="importe" caption="Importe" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="importe" caption="Importe" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="polizaLiq" caption="Poliza Liq." [fixed]="true"></dxi-column>
                       <dxi-column dataField="fechaContabilizado" caption="Fecha Contabilizado" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                     </dxi-column>
@@ -489,7 +489,7 @@
                       <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
                       <dxi-column dataField="observaciones" caption="Observaciones" [fixed]="true"></dxi-column>
                       <dxi-column dataField="noAnticipo" caption="No. Anticipo" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="montoAnticipo" caption="Monto Anticipo" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="chequeReposicion" caption="Cheque Reposición" [fixed]="true"></dxi-column>
                       <dxi-column dataField="poliza" caption="Poliza" [fixed]="true"></dxi-column>
                     </dxi-column>
@@ -498,8 +498,8 @@
                       <dxi-column dataField="fechaLiquidacion" caption="Fecha Liquidacion" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                       <dxi-column dataField="idConcepto" caption="Id Concepto" [fixed]="true"></dxi-column>
                       <dxi-column dataField="concepto" caption="Concepto" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="importe" caption="Importe" [fixed]="true"></dxi-column>
-                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true"></dxi-column>
+                      <dxi-column dataField="importe" caption="Importe" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                      <dxi-column dataField="totalLiquidacion" caption="Total Liquidación" [fixed]="true" [format]="formatMoneda"></dxi-column>
                       <dxi-column dataField="polizaLiq" caption="Poliza Liq." [fixed]="true"></dxi-column>
                       <dxi-column dataField="fechaContabilizado" caption="Fecha Contabilizado" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
                     </dxi-column>
