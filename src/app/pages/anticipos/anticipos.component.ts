@@ -124,14 +124,15 @@ export class AnticiposComponent implements OnInit {
         myAnticipos.clasificacionB = "Bancos",
         myAnticipos.clasificacionC = "Caja"
         this.anticipos.push(myAnticipos);
-        console.log(this.anticipos)
+        //console.log(this.anticipos)
       }
 
       // this.anticipos.push(data?.data?.anticipos);
 
       this.rembolsos.push(data?.data?.anticipos);
 
-      this.detalleAB = data?.data?.detalleAnticiposBancos;
+      console.log(data.data)
+      this.detalleAB = data?.data?.detalleAnticiposBanco;
       this.detalleAC = data?.data?.detalleAnticiposCaja;
       this.detalleLB = data?.data?.detalleLiquidacionBanco;
       this.detalleLC = data?.data?.detalleLiquidacionCaja;
@@ -359,9 +360,25 @@ export class AnticiposComponent implements OnInit {
 
     function setAlterRowsBackAvance(gridCell, excelCell){
       //console.log(gridCell)
-      // if (gridCell.rowType === 'data') {
+      if (gridCell.rowType === 'data') {
+        if(excelCell.address !== 'B16' && excelCell.address !== 'E16'&& excelCell.address !== 'H16' && excelCell.address !== 'J16'){
+          
+          // var x = Math.round(excelCell.value)
+          // var myvalue = Math.trunc(x);
+      
+          var myFormat = excelCell?.value.toString().split(".");
+          myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-      // }
+          excelCell.value = '$ '+myFormat;
+        }
+
+        if(gridCell.column.dataField === 'antBanPagado' || gridCell.column.dataField === 'antBanContabilizado' || gridCell.column.dataField === 'total_renglon1'){
+          //console.log(excelCell)
+          // excelCell.fill = {
+          //     type: 'pattern', pattern: 'solid', fgColor: { argb: 'b5e6b5' }, bgColor: { argb: 'b5e6b5' },
+          //   };
+        }
+      }
 
       if (gridCell.rowType === 'header') {
 
@@ -376,15 +393,19 @@ export class AnticiposComponent implements OnInit {
       //console.log(gridCell)
        if (gridCell.rowType === 'data') {
 
+         if(excelCell.address !== 'B17' && excelCell.address !== 'E17'&& excelCell.address !== 'H17' && excelCell.address !== 'J17'){
+          
+          // var x = Math.round(excelCell.value)
+          // var myvalue = Math.trunc(x);
+      
+          var myFormat = excelCell?.value.toString().split(".");
+          myFormat[0] = myFormat[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-        if(gridCell.column.dataField === 'antCajaPagado' || gridCell.column.dataField === 'antCajaContabilizado'|| gridCell.column.dataField === 'antCajaLiq'||gridCell.column.dataField === 'antCajaLiqCont'
-          ||gridCell.column.dataField === 'cajLiqSinContabilizar'||gridCell.column.dataField === 'total_renglon2'||gridCell.column.dataField === 'antCajaTotal'
-        ){
-          var currency = excelCell._value.model.value.toString().split(".");
-          currency[0] = currency[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          excelCell.value = '$ '+myFormat;
+        }
 
-          excelCell._value.model.value = '$ '+currency;
-          //console.log(excelCell)
+        if(gridCell.column.dataField === 'antCajaPagado' || gridCell.column.dataField === 'antCajaContabilizado' || gridCell.column.dataField === 'total_renglon2'){
+
         }
         
 
