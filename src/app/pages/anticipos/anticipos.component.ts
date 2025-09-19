@@ -42,6 +42,7 @@ export class AnticiposComponent implements OnInit {
   detalleLC: any[] = [];
   detalleLSCB: any[] = [];
   detalleLSCC: any[] = [];
+  detalleReembolso: any[] = [];
 
 
   readonly allowedPageSizes = [5, 10, 20, 50, 100, 'all'];
@@ -68,6 +69,7 @@ export class AnticiposComponent implements OnInit {
   classBancos = "Bancos";
   classCajas = "Cajas";
 
+  modRembolso: boolean = false;
   modDetalleAB: boolean = false;
   modDetalleAC: boolean = false;
   modDetalleLB: boolean = false;
@@ -109,13 +111,15 @@ export class AnticiposComponent implements OnInit {
   getAnticipos(){  
     this.loadingVisible = true;
     this.anticiposService.getAnticipos(this.selectedOperador).subscribe(data => {
-
+      if(data !== null){
       var myAnti = [];
       myAnti.push(data?.data?.anticipos);
-       for(let i =0; i<myAnti.length; i++){
 
-        var myCalculo = myAnti[i].liqReembolso - myAnti[i].reemCargos;
-        var myDiferencia = myCalculo + myAnti[i].reemAbonos;
+
+      for(let i =0; i<myAnti.length; i++){
+
+        var myCalculo = myAnti[i]?.liqReembolso - myAnti[i]?.reemAbonos;
+        var myDiferencia = myCalculo + myAnti[i]?.reemCargos;
 
         var myAnticipos = new AllAnticipos;
         myAnticipos = myAnti[i];
@@ -124,6 +128,7 @@ export class AnticiposComponent implements OnInit {
         myAnticipos.clasificacionB = "Bancos",
         myAnticipos.clasificacionC = "Caja"
         this.anticipos.push(myAnticipos);
+        
         //console.log(this.anticipos)
       }
 
@@ -139,6 +144,8 @@ export class AnticiposComponent implements OnInit {
       this.detalleLSCB = data?.data?.detalleLiquidadoSinContabilizarBanco;
       this.detalleLSCC = data?.data?.detalleLiquidadoSinContabilizarCaja;
 
+      this.detalleReembolso = data?.data?.detalleReembolso;
+      
        totalAnticipos.suma_Total = data.data.anticipos.suma_Total;
        totalAnticipos.suma_PorLiquidar = data.data.anticipos.suma_PorLiquidar;
        totalAnticipos.suma_AntSinLquidar = data.data.anticipos.suma_AntSinLquidar;
@@ -147,6 +154,7 @@ export class AnticiposComponent implements OnInit {
 
 
       this.loadingVisible = false;
+    }
     })
   }
 
@@ -190,6 +198,10 @@ export class AnticiposComponent implements OnInit {
   }
   verLSCC(value){
     this.modDetalleLSCC = true;
+  }
+
+  verRembolso(value){
+    this.modRembolso = true
   }
  
 

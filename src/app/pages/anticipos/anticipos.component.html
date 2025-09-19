@@ -159,7 +159,7 @@
                   </dxi-column>
 
                   <dxi-column caption="Liquidación" alignment="center">
-                    <dxi-column dataField="antBanLiq" caption="LiquidadoB" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="antBanLiq" caption="Liquidado" [format]="formatMoneda"></dxi-column>
                     <dxi-column dataField="antBanLiqCont" caption="Contabilizado" [format]="formatMoneda"></dxi-column>
                     <dxi-column caption="Ver" cellTemplate="verLiquidacionB"></dxi-column>
                   </dxi-column>
@@ -241,7 +241,12 @@
                       <dxi-column dataField="reemAbonos" caption="Abonos" [format]="formatMoneda"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="diferencia" caption="Diferencia" [format]="formatMoneda"></dxi-column>
+                    <dxi-column caption="Ver" cellTemplate="verRembolso"></dxi-column>
                   </dxi-column>
+
+                  <div *dxTemplate="let data of 'verRembolso'">
+                    <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="verRembolso(data)"></dx-button>
+                  </div>
               
 
                   <!-- <dxo-summary>
@@ -250,6 +255,46 @@
                   </dxo-summary> -->
 
                 </dx-data-grid>
+   <!--==========================MODAL REMBOLSO=========================================================-->
+        <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle Reembolso" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="modRembolso">
+            <div *dxTemplate="let data of 'content'">
+                <dx-scroll-view width="100%" height="100%">
+                    <br>
+
+                <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleReembolso" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
+                 (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
+                    <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
+                    <dxo-paging [pageSize]="0"></dxo-paging>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+
+                    <dxo-export [enabled]="true" fileName="Detalle Liquidado Sin Contablizar Banco"></dxo-export>
+                    
+                    
+                    <dxi-column dataField="cvetra" caption="Cvetra" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="idUdn" caption="Id Udn" [fixed]="true"></dxi-column>                    
+                    <dxi-column dataField="udn" caption="Udn" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="poliza" caption="Póliza" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="fecha" caption="Fecha" [fixed]="true" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                    <dxi-column dataField="referencia" caption="Referencia" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="concepto" caption="Concepto" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="cargo" caption="Cargo" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="abono" caption="Abono" [fixed]="true" [format]="formatMoneda"></dxi-column>
+                    <dxi-column dataField="" caption="" [width]="50" [fixed]="true"></dxi-column>
+
+                    <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
+                    <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
+                      <dxi-total-item column="cargo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
+                      <dxi-total-item column="abono" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+                </dx-scroll-view>
+            </div>
+        </dx-popup>
+    <!--==========================FIN MODAL==========================================-->
+    
+
+
+
 
 
 
@@ -262,7 +307,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleAB" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Anticipos Banco" ></dxo-export>
@@ -299,7 +344,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleAC" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Anticipos Caja"></dxo-export>
@@ -338,7 +383,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleLB" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Liquidación Banco"></dxo-export>
@@ -369,7 +414,7 @@
                     </dxi-column>
                     <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-                      
+                      <dxi-total-item column="importe" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
                     </dxo-summary>
 
                 </dx-data-grid>
@@ -387,7 +432,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleLC" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Liquidación Caja"></dxo-export>
@@ -421,7 +466,7 @@
 
                     <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-                      
+                        <dxi-total-item column="importe" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
                     </dxo-summary>
 
                 </dx-data-grid>
@@ -439,7 +484,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleLSCB" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Liquidado Sin Contablizar Banco"></dxo-export>
@@ -473,7 +518,7 @@
 
                     <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-                      
+                      <dxi-total-item column="importe" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
                     </dxo-summary>
 
                 </dx-data-grid>
@@ -491,7 +536,7 @@
                 <dx-data-grid #gridDetalleI id="gridContainer2" [dataSource]="detalleLSCC" [height]="500" [showBorders]="true" [columnAutoWidth]="true"
                  (onRowPrepared)="onRowPreparedDAB($event)" (onCellPrepared)="onCellPreparedDAB($event)" >
                     <!-- <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling> -->
-                    <dxo-paging [pageSize]="12"></dxo-paging>
+                    <dxo-paging [pageSize]="0"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
 
                     <dxo-export [enabled]="true" fileName="Detalle Liquidado Sin Contablizar Banco"></dxo-export>
@@ -525,7 +570,7 @@
 
                     <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
                     <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-                      
+                      <dxi-total-item column="importe" summaryType="sum" displayFormat="{0}" [valueFormat]="formatMoneda" ></dxi-total-item>
                     </dxo-summary>
 
                 </dx-data-grid>
