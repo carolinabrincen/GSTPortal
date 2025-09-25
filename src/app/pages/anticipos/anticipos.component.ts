@@ -111,6 +111,7 @@ export class AnticiposComponent implements OnInit {
   getAnticipos(){  
     this.loadingVisible = true;
     this.anticiposService.getAnticipos(this.selectedOperador).subscribe(data => {
+      console.log(data.data)
       if(data !== null){
       var myAnti = [];
       myAnti.push(data?.data?.anticipos);
@@ -136,7 +137,6 @@ export class AnticiposComponent implements OnInit {
 
       this.rembolsos.push(data?.data?.anticipos);
 
-      console.log(data.data)
       this.detalleAB = data?.data?.detalleAnticiposBanco;
       this.detalleAC = data?.data?.detalleAnticiposCaja;
       this.detalleLB = data?.data?.detalleLiquidacionBanco;

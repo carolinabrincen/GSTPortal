@@ -518,7 +518,7 @@ export class CarteraClientesComponent implements OnInit {
         if(totalFin <=389){
           var size = 16
         }else{
-          var size = 7
+          var size = 30
         }
         
     }else if(this.selectedBoxCartera == 1){
