@@ -121,6 +121,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
     {id: 202507, periodo: 202507 },
     {id: 202508, periodo: 202508 },
     {id: 202509, periodo: 202509 },
+    {id: 202510, periodo: 202510 },
   ]
 
   periodoActual: number;

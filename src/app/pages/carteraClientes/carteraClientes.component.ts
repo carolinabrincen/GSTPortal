@@ -111,6 +111,7 @@ export class CarteraClientesComponent implements OnInit {
     { id: 202507, periodo: 202507 },
     { id: 202508, periodo: 202508 },
     { id: 202509, periodo: 202509 },
+    { id: 202510, periodo: 202510 },
   ];
 
   periodoActual: number;
@@ -286,7 +287,6 @@ export class CarteraClientesComponent implements OnInit {
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2023"
       this.printPAvance = "31 DE DICIEMBRE DEL 2023"
     }
-
     if(this.selectedPeriodo == 202401){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2024"
       this.printPAvance = "31 DE ENERO DEL 2024"
@@ -295,27 +295,22 @@ export class CarteraClientesComponent implements OnInit {
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO FEBRERO 2024"
       this.printPAvance = "29 DE FEBRERO DEL 2024"
     }
-
     if(this.selectedPeriodo == 202403){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO MARZO 2024"
       this.printPAvance = "31 DE MARZO DEL 2024"
     }
-
     if(this.selectedPeriodo == 202404){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ABRIL 2024"
       this.printPAvance = "30 DE ABRIL DEL 2024"
     }
-
     if(this.selectedPeriodo == 202405){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO MAYO 2024"
       this.printPAvance = "31 DE MAYO DEL 2024"
     }
-
     if(this.selectedPeriodo == 202406){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JUNIO 2024"
       this.printPAvance = "30 DE JUNIO DEL 2024"
     }
-
     if(this.selectedPeriodo == 202407){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2024"
       this.printPAvance = "31 DE JULIO DEL 2024"
@@ -324,47 +319,38 @@ export class CarteraClientesComponent implements OnInit {
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2024"
       this.printPAvance = "31 DE AGOSTO DEL 2024"
     }
-
     if(this.selectedPeriodo == 202409){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2024"
       this.printPAvance = "30 DE SEPTIEMBRE DEL 2024"
     }
-
     if(this.selectedPeriodo == 202410){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2024"
       this.printPAvance = "31 DE OCTUBRE DEL 2024"
     }
-
     if(this.selectedPeriodo == 202411){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO NOVIEMBRE 2024"
       this.printPAvance = "30 DE NOVIEMBRE DEL 2024"
     }
-
     if(this.selectedPeriodo == 202412){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO DICIEMBRE 2024"
       this.printPAvance = "31 DE DICIEMBRE DEL 2024"
     }
-
     if(this.selectedPeriodo == 202501){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ENERO 2025"
       this.printPAvance = "31 DE ENERO DEL 2025"
     }
-
     if(this.selectedPeriodo == 202502){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO FEBRERO 2025"
       this.printPAvance = "28 DE FEBRERO DEL 2025"
     }
-
     if(this.selectedPeriodo == 202503){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO MARZO 2025"
       this.printPAvance = "31 DE MARZO DEL 2025"
     }
-    
     if(this.selectedPeriodo == 202504){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO ABRIL 2025"
       this.printPAvance = "30 DE ABRIL DEL 2025"
     }
-
     if(this.selectedPeriodo == 202505){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO MAYO 2025"
       this.printPAvance = "31 DE MAYO DEL 2025"
@@ -373,20 +359,21 @@ export class CarteraClientesComponent implements OnInit {
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JUNIO 2025"
       this.printPAvance = "30 DE JUNIO DEL 2025"
     }
-
     if(this.selectedPeriodo == 202507){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO JULIO 2025"
       this.printPAvance = "31 DE JULIO DEL 2025"
     }
-     
     if(this.selectedPeriodo == 202508){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO AGOSTO 2025"
       this.printPAvance = "31 DE AGOSTO DEL 2025"
     }
-
     if(this.selectedPeriodo == 202509){
       this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO SEPTIEMBRE 2025"
       this.printPAvance = "30 DE SEPTIEMBRE DEL 2025"
+    }
+    if(this.selectedPeriodo == 202510){
+      this.printPeriodo = "SALDOS DE CARTERA DEL PERIODO OCTUBRE 2025"
+      this.printPAvance = "31 DE OCTUBRE DEL 2025"
     }
 
 
