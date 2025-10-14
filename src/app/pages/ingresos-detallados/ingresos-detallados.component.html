@@ -2450,12 +2450,12 @@
 
             </dx-tab-panel>
         </dxi-item>
-        <dxi-item title="2024">
+        <dxi-item title="2023">
             <br><br>
             <div>
                 <div class="dx-field">
                     <div class="dx-field-value d-block mr-0 ml-auto" style="width: 20%;">
-                        <dx-button stylingMode="contained" text="Consultar" icon="search" type="normal" [width]="240" (onClick)="getData2024($event)">
+                        <dx-button stylingMode="contained" text="Consultar" icon="search" type="normal" [width]="240" (onClick)="getData2023($event)">
                         </dx-button>
                     </div>
                 </div>
@@ -2463,8 +2463,7 @@
             <br><br>
             <dx-tab-panel>
 
-                <dxi-item title="ENERO">
-                    <!--#region :::: GRID PRINCIPAL::::  -->
+                <!-- <dxi-item title="ENERO">
                     <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosEne2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
@@ -2499,18 +2498,6 @@
 
                         <dxi-column dataField="facturasDirectas" caption="Facturas directas" alignment="right" [width]="150" [format]="formating"></dxi-column>
 
-                        <!-- <dxi-column caption="RESUMEN" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
-                            
-                            <dxi-column dataField="totalMes" caption="Total Mes" alignment="right" headerCellTemplate="headerTemplate">
-                                <dxo-format type="currency" [precision]="2"> </dxo-format>
-                            </dxi-column>
-
-                            <dxi-column dataField="diferencias2022" caption="Diferencias2022" alignment="right" headerCellTemplate="headerTemplate">
-                                <dxo-format type="currency" [precision]="2"> </dxo-format>
-                            </dxi-column>
-                        </dxi-column> -->
-                        <!-- febProvision -->
-
 
                         <dxo-summary>
                             <dxi-group-item column="cancelacionProvision" summaryType="sum" displayFormat="{0}" [valueFormat]="formating"  [showInGroupFooter]="true">
@@ -2567,15 +2554,7 @@
                             </dxi-group-item>
                             <dxi-total-item column="otrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
-                            <!-- <dxi-group-item column="totalMes" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="totalMes" summaryType="sum"  displayFormat="{0}">
-                            </dxi-total-item> -->
-                            <!-- <dxi-group-item column="diferencias2022" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="diferencias2022" summaryType="sum"  displayFormat="{0}">
-                            </dxi-total-item> -->
-
+                       
 
 
                             <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
@@ -2603,7 +2582,7 @@
                             </div>
                         </div>
 
-                        <!-- TEMPLATE: CELDA EN NEGRITA -->
+
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
                         </div>
@@ -2612,38 +2591,29 @@
                         <dxo-sorting mode="none"></dxo-sorting>
 
                     </dx-data-grid>
-                    <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
+
 
                     <br>
                     <h3>Detalle</h3>
-                    <!--#region :::: GRID PRINCIPAL::::  -->
+
                     <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleEne2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <!-- unidadNegocio -->
                         <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
-                        <!-- clasificacion -->
                         <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
-                        <!-- tipoOperacion -->
                         <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
                         <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
-                        <!-- enero -->
                         <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="status" caption="St."></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
 
                         <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
-                        <!-- febMACancelacion -->
                         <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
-                        <!-- febMAAumento -->
                         <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
@@ -2669,7 +2639,6 @@
                             </div>
                         </div>
 
-                        <!-- TEMPLATE: CELDA EN NEGRITA -->
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold">{{ cell.text }}</div>
                         </div>
@@ -2681,10 +2650,8 @@
 
                     </dx-data-grid>
 
-                    <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
-                </dxi-item>
-                <dxi-item title="FEBRERO">
-                    <!--#region :::: GRID PRINCIPAL::::  -->
+                </dxi-item> -->
+                <!-- <dxi-item title="FEBRERO">
                     <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosFeb2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
@@ -2719,17 +2686,7 @@
 
                         <dxi-column dataField="facturasDirectas" caption="Facturas directas" alignment="right" [width]="150" [format]="formating"></dxi-column>
 
-                        <!-- <dxi-column caption="RESUMEN" cellTemplate="headerTemplate" alignment="center" [allowSorting]="false">
-                            
-                            <dxi-column dataField="totalMes" caption="Total Mes" alignment="right" headerCellTemplate="headerTemplate">
-                                <dxo-format type="currency" [precision]="2"> </dxo-format>
-                            </dxi-column>
-
-                            <dxi-column dataField="diferencias2022" caption="Diferencias2022" alignment="right" headerCellTemplate="headerTemplate">
-                                <dxo-format type="currency" [precision]="2"> </dxo-format>
-                            </dxi-column>
-                        </dxi-column> -->
-                        <!-- febProvision -->
+                       
 
 
                         <dxo-summary>
@@ -2787,15 +2744,7 @@
                             </dxi-group-item>
                             <dxi-total-item column="otrosIngresos" summaryType="sum"  displayFormat="{0}" [valueFormat]="formating">
                             </dxi-total-item>
-                            <!-- <dxi-group-item column="totalMes" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="totalMes" summaryType="sum"  displayFormat="{0}">
-                            </dxi-total-item> -->
-                            <!-- <dxi-group-item column="diferencias2022" summaryType="sum" displayFormat="{0}"  [showInGroupFooter]="true">
-                            </dxi-group-item>
-                            <dxi-total-item column="diferencias2022" summaryType="sum"  displayFormat="{0}">
-                            </dxi-total-item> -->
-
+                           
 
 
                             <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formating" [showInGroupFooter]="true">
@@ -2823,7 +2772,6 @@
                             </div>
                         </div>
 
-                        <!-- TEMPLATE: CELDA EN NEGRITA -->
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bolder; font-size:medium;">{{ cell.text }}</div>
                         </div>
@@ -2832,38 +2780,27 @@
                         <dxo-sorting mode="none"></dxo-sorting>
 
                     </dx-data-grid>
-                    <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
 
                     <br>
                     <h3>Detalle</h3>
-                    <!--#region :::: GRID PRINCIPAL::::  -->
                     <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleFeb2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <!-- unidadNegocio -->
                         <dxi-column dataField="area" [groupIndex]="0"></dxi-column>
-                        <!-- clasificacion -->
                         <dxi-column dataField="clasificacion" [groupIndex]="0"></dxi-column>
-                        <!-- tipoOperacion -->
                         <dxi-column dataField="noViaje" caption="No. Viaje"></dxi-column>
                         <dxi-column dataField="fechaDespacho" caption="Despachado"></dxi-column>
-                        <!-- enero -->
                         <dxi-column dataField="numGuia" caption="Num. Guía"></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="tipoOperacion" caption="Tipo Operación"></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="status" caption="St."></dxi-column>
-                        <!-- febMASolicitudCancelacion -->
                         <dxi-column dataField="prestamo" caption="Préstamo"></dxi-column>
 
                         <dxi-column dataField="flete" caption="Flete" headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
-                        <!-- febMACancelacion -->
                         <dxi-column dataField="fleteAnt" caption="Flete Ant." headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
-                        <!-- febMAAumento -->
                         <dxi-column dataField="diferencia" caption="Diferencia" headerCellTemplate="headerTemplate">
                             <dxo-format type="currency" [precision]="2"> </dxo-format>
                         </dxi-column>
@@ -2889,7 +2826,6 @@
                             </div>
                         </div>
 
-                        <!-- TEMPLATE: CELDA EN NEGRITA -->
                         <div *dxTemplate="let cell of 'cellTemplateBold'">
                             <div style="font-weight: bold">{{ cell.text }}</div>
                         </div>
@@ -2901,11 +2837,10 @@
 
                     </dx-data-grid>
 
-                    <!--#endregion :::: FIN GRID PRINCIPAL ::::  -->
-                </dxi-item>
+                </dxi-item> -->
                 <dxi-item title="MARZO">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosMar2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosMarzo" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -3057,7 +2992,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleMar2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleMarzo" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -3125,7 +3060,7 @@
                 </dxi-item>
                 <dxi-item title="ABRIL">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosAbr2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosAbril" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -3277,7 +3212,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleAbr2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleAbril" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -3345,7 +3280,7 @@
                 </dxi-item>
                 <dxi-item title="MAYO">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosMay2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosMayo" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -3497,7 +3432,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleMay2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleMayo" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -3565,7 +3500,7 @@
                 </dxi-item>
                 <dxi-item title="JUNIO">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosJun2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosJunio" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -3723,7 +3658,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleJUN2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleJunio" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -3791,7 +3726,7 @@
                 </dxi-item>
                 <dxi-item title="JULIO">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosJul2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosJulio" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -3949,7 +3884,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleJul2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleJulio" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -4017,7 +3952,7 @@
                 </dxi-item>
                 <dxi-item title="AGOSTO">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosAgo2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosAgosto" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedOct($event)" (onCellPrepared)="onCellPreparedOct($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeOct"></dxo-export>
@@ -4175,7 +4110,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleAgo2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleAgosto" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -4243,7 +4178,7 @@
                 </dxi-item>
                 <dxi-item title="SEPTIEMBRE">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosSep2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosSeptiembre" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedSep($event)" (onCellPrepared)="onCellPreparedSep($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeSep" fileName="Ingresos Detallados"></dxo-export>
@@ -4417,7 +4352,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleSep2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleSeptiembre" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -4485,7 +4420,7 @@
                 </dxi-item>
                 <dxi-item title="OCTUBRE">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosOct2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosOctubre" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedSep($event)" (onCellPrepared)="onCellPreparedSep($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeSep" fileName="Ingresos Detallados"></dxo-export>
@@ -4659,7 +4594,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleOct2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleOctubre" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -4727,7 +4662,7 @@
                 </dxi-item>
                 <dxi-item title="NOVIEMBRE">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosNov2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosNoviembre" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedSep($event)" (onCellPrepared)="onCellPreparedSep($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeSep" fileName="Ingresos Detallados"></dxo-export>
@@ -4901,7 +4836,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleNov2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleNoviembre" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->
@@ -4969,7 +4904,7 @@
                 </dxi-item>
                 <dxi-item title="DICIEMBRE">
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosDic2024" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
+                    <dx-data-grid  #ING id="gridContainer10" [dataSource]="arrIngresosDiciembre" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedSep($event)" (onCellPrepared)="onCellPreparedSep($event)">
                     
                         <dxo-export [enabled]="true" [customizeExcelCell]="customizeSep" fileName="Ingresos Detallados"></dxo-export>
@@ -5143,7 +5078,7 @@
                     <br>
                     <h3>Detalle</h3>
                     <!--#region :::: GRID PRINCIPAL::::  -->
-                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleDic2024" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid #AbrDetalle id="gridContainer4" [dataSource]="arrDetalleDiciembre" [height]="500" [showBorders]="true" [columnAutoWidth]="true">
                         <dxo-export [enabled]="true"></dxo-export>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <!-- unidadNegocio -->

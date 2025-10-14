@@ -6,6 +6,8 @@ import * as events from 'devextreme/events';
 
 import { StorageService } from '../../services/storage.service';
 
+//const menuTest = [];
+
 @Component({
   selector: 'app-side-navigation-menu',
   templateUrl: './side-navigation-menu.component.html',
@@ -55,6 +57,8 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   idGrupo24: any;
 
+ 
+
   constructor(
     private elementRef: ElementRef,
     private storageService: StorageService
@@ -66,6 +70,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
    private _items!: Record <string, unknown>[];
   get items() {
+
     
     if (!this._items) {
       if(this.idGrupo24 !== 24){
