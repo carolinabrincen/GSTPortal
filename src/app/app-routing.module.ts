@@ -54,6 +54,8 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { PagosComponent } from './pages/pagos/pagos.component';
   import { AltasBajasComponent } from './pages/altasBajas/altasBajas.component';
   import { AnticiposComponent } from './pages/anticipos/anticipos.component';
+  import { LiquidacionComponent } from './pages/liquidacion/liquidacion.component';
+  import { PermisosComponent } from './pages/permisos/permisos.component';
 
   import { TickerCardComponent } from './components/library/ticker-card/ticker-card.component';
   import { CardAnalyticsComponent } from './components/library/card-analytics/card-analytics.component';
@@ -274,6 +276,16 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'liquidacion',
+    component: LiquidacionComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
+    path: 'permisos',
+    component: PermisosComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -366,7 +378,9 @@ const routes: Routes = [
     TickerCardComponent,
     CardAnalyticsComponent,
     CardMenuComponent,
-    AnticiposComponent
+    AnticiposComponent,
+    LiquidacionComponent,
+    PermisosComponent
    
   ]
 })

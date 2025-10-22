@@ -5,9 +5,12 @@ import { navigation, navigationID24 } from '../../../app-navigation';
 import * as events from 'devextreme/events';
 
 import { StorageService } from '../../services/storage.service';
+import { Claves } from '../../models/menu/menu.model';
+import notify from 'devextreme/ui/notify';
 
 //const menuTest = [];
 
+const clave = new Claves
 @Component({
   selector: 'app-side-navigation-menu',
   templateUrl: './side-navigation-menu.component.html',
@@ -56,7 +59,8 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   }
 
   idGrupo24: any;
-
+  permisosUser: any[] = [];
+  clave: string = "";
  
 
   constructor(
@@ -65,31 +69,45 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   ) {
     this.idGrupo24 = this.storageService.getSession("idValidation")
     console.log("1 "+ this.idGrupo24)
-  }
 
+    this.permisosUser = this.storageService.getSession('permisos')
+  }
 
    private _items!: Record <string, unknown>[];
   get items() {
 
+    //console.log(this.permisosUser)
+    //  for(let i =0; i<this.permisosUser.length; i++){ 
+      
+    //   clave.clave = this.permisosUser[i].clave;
+      
+    // }
     
     if (!this._items) {
-      if(this.idGrupo24 !== 24){
+      //if(this.idGrupo24 !== 24){
+    //   const intersection = this.permisosUser.filter((obj) =>
+    //     navigation.some((item) => item.path === obj.clave),
+    // ) ;
+
+    // console.log(intersection)
+
         this._items = navigation.map((item) => {
+
           if(item.path && !(/^\//.test(item.path))){
             item.path = `/${item.path}`;
           }
            return { ...item, expanded: !this._compactMode }
         }); 
         // console.log("Normal")
-      }else if(this.idGrupo24 === 24){
-        this._items = navigationID24.map((item) => {
-          if(item.path && !(/^\//.test(item.path))){
-            item.path = `/${item.path}`;
-          }
-           return { ...item, expanded: !this._compactMode }
-        }); 
-        // console.log("ID24")
-      }
+      // }else if(this.idGrupo24 === 24){
+      //   this._items = navigationID24.map((item) => {
+      //     if(item.path && !(/^\//.test(item.path))){
+      //       item.path = `/${item.path}`;
+      //     }
+      //      return { ...item, expanded: !this._compactMode }
+      //   }); 
+      //   // console.log("ID24")
+      // }
              
     }
 
@@ -98,8 +116,29 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   }
 
   onItemClick(event: ItemClickEvent) {
-    this.selectedItemChanged.emit(event);
-    console.log(event);
+    let permiso = true;
+    console.log("Evento click del menu:  ",event);
+
+    this.permisosUser.forEach((c: any) => {
+      if(c.clave == event.itemData.path && c.activo == false){
+        
+        permiso = c.activo;
+
+        notify({
+          message: "No tiene permisos de acceso a esta opción, verifique",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 4000);
+      }
+      
+    })
+
+      if(permiso){
+      this.selectedItemChanged.emit(event);
+  }
+   
   }
 
   ngAfterViewInit() {

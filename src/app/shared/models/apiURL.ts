@@ -115,6 +115,8 @@ export enum API_URLS{
     POST_BITACORA_VIAJE = 'api/Disponibilidad/PostBitacoraViaje',
     POST_ACTUALIZAR_MACROCICLO = 'api/Rentabilidad/ActualizaMacroCiclo',
     POST_OPERADOR = 'api/Disponibilidad/GetOperadoresNOM',
+    POST_OBSERVACIONES = 'api/Pagos/GuardarObservacionesOperador',
+    POST_GUARDAR_PERMISOS = 'api/General/PostGuardarOpcion',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',
@@ -142,4 +144,9 @@ export enum API_URLS{
     GET_PAGOS = 'api/Pagos/GetPagosMes/',
     GET_ALTAS_BAJAS = 'api/Disponibilidad/GetAltasBajas/',
     GET_ANTICIPOS ='api/Pagos/GetAnticipos/',
+    GET_LIQUIDACION_MENSUALES = 'api/Pagos/GetLiquidacionesMensuales/',
+    GET_OBSERVACIONES = 'api/Pagos/GetObservacionesOperador/',
+    GET_USUARIOS_ACTIVOS = 'api/General/GetUsuariosActivos',
+    GET_USUARIOS_PERMISOS = 'api/General/GetUsuarioPermiso/',
+
 }

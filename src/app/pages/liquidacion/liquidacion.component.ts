@@ -3,7 +3,7 @@ import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
 
-import { DxDataGridComponent, } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent} from 'devextreme-angular';
 import { CurrencyPipe, NumberFormatStyle } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
 import { ServiceSales } from '../tasks/app.serviceSales';
@@ -12,26 +12,28 @@ import { Service } from '../../shared/models/ingresos/ingreso.service'
 import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.model'
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
-import { PagosService } from 'src/app/services/pagos/pagos.service';
-import { TotalesDia } from 'src/app/shared/models/pagos/totalesDia.model';
+import { LiquidacionService } from 'src/app/services/liquidacion/liquidacion';
+import { Liquidacion} from 'src/app/shared/models/liquidacion/liquidacion.model'
 import notify from 'devextreme/ui/notify';
+import { StorageService } from '../../shared/services/storage.service';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
 
-const totalesDia =new TotalesDia; 
+const getcvetra =new Liquidacion; 
 
 @Component({
-  templateUrl: './pagos.component.html',
-  styleUrls: ['./pagos.component.scss'],
+  templateUrl: './liquidacion.component.html',
+  styleUrls: ['./liquidacion.component.scss'],
   providers: [UnidadesService, ServiceSales, CurrencyPipe, Service],
 })
 
-export class PagosComponent implements OnInit {
+export class LiquidacionComponent implements OnInit {
 
   @ViewChild(DxChartComponent, { static: false }) chart: any;
+  @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
 
 
   @ViewChild('gridModal', { static: false }) gridModal: DxDataGridComponent;
@@ -58,52 +60,73 @@ export class PagosComponent implements OnInit {
     {total: 0}
   ];
 
+  liquidacion: any[] = [];
+  observaciones: any[] = [];
+  cvetra: number = 0;
+  verCvetra: number = 0;
+  
+  modObservaciones: boolean = false;
+  modVerObs: boolean = false;
+  bolFormSoloLectura = false;
+  buttonOptionsCancelar: any
+
+  formObs: any = {
+    cvetra: 0,
+    idUsuario: "",
+    observaciones: "",
+  }
+
+   buttonOptions: any = {
+    text: 'Guardar',
+    type: 'success',
+    useSubmitBehavior: true,
+
+  };
+
+  username: string
+
 
   constructor(
-    private pagosService: PagosService,
+    private liquidacionService: LiquidacionService,
     private service: ServiceSales,
     private currencyPipe: CurrencyPipe,
-    testService: Service
+    testService: Service,
+    private storageService: StorageService,
   ) {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.formFilter
+
+    const that = this;
+    this.buttonOptionsCancelar= {
+          text: 'Cancelar',
+          type: 'danger',
+          onClick(e: any) {
+            that.modObservaciones = false;
+          },
+        };
   }
 
   ngOnInit(): void {
     // this.getDisponiblidadAnual();
+    this.getUserName();
   }
 
-  getPagos() {
-    console.log(this.formFilter.Fecha.toISOString())
-    this.loadingVisible = true;
-    this.pagosService.getPagos(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+  getLiquidacion() {
+
+    var printMes= "" ;
+    var printAnio = "";
+    var filtro = ""
+    printAnio = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{year: 'numeric' });
+    printMes = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{month:'numeric' });
     
-      this.pagos = response?.data;
-      this.pagosXDia = response?.data?.pagoXDia;      
-      this.pagosXMes = response?.data?.pagoXMes
-      this.pagosDetalleP = response?.data?.detallePagos;
-
-      this.graficaPXMesResumen = response.data.pagoXMesResumen;
-      //this.graficaPXClasificado = response.data.pagoXMesClasificado
-      // console.log(response.data)
-
-      var mytotal
-      var myGrafica = [
-        {total: 0, vencido: 0, corriente: 0, dia: 0}
-      ]
-      
-      myGrafica = response.data.pagoXMesClasificado
-
-      for(let i =0; i<myGrafica.length; i++){ 
-       mytotal  = myGrafica[i].vencido + myGrafica[i].corriente;
-       myGrafica[i].total = mytotal;
-      //console.log(myGrafica[i])
-
-      }
-
-      this.graficaPXClasificado = myGrafica;
+    
+    this.loadingVisible = true;
+    this.liquidacionService.getLiquidacion(printAnio, printMes).subscribe((response) => {
+      this.liquidacion = response.data;
+      console.log(this.liquidacion)
+      //this.graficaPXClasificado = myGrafica;
 
      
 
@@ -114,17 +137,31 @@ export class PagosComponent implements OnInit {
 
   /*======================SELECTE FUNCIONS================================================*/
 
+  agregarObs(value){
+    //console.log(value.data) 
+    this.formObs.observaciones = "";
+    this.cvetra = 0;
+
+    this.cvetra = value.data.idPersonal;
+    console.log(this.cvetra)
+    this.modObservaciones = true;
+  }
+
+  VerObs(value){
+    this.observaciones = []
+    this.verCvetra = 0
+
+    this.verCvetra = value.data.idPersonal;
+    this.modVerObs = true;
+
+    if(getcvetra.cvetra !== undefined){
+      this.getObservaciones()
+    }
+  }
   buscarClick = (e: any) => {
     if (this.formFilter.Fecha !== "") {
 
-      this.pagos = [];
-      this.pagosXDia = [];
-      this.pagosXMes = [];
-      this.pagosDetalleP = [];
-      this.graficaPXMesResumen = [];
-      this.graficaPXClasificado = [];
-
-      this.getPagos();
+      this.getLiquidacion();
       }else{
         notify({
           message: "Debe seleccionar la Fecha",
@@ -136,7 +173,6 @@ export class PagosComponent implements OnInit {
       }
     };
 
-
     calcularPorcentajes(options: any) {
       //
       if (options.summaryProcess === 'calculate') {
@@ -146,6 +182,50 @@ export class PagosComponent implements OnInit {
       }
     }
 
+
+  getUserName(){
+    this.username = this.storageService.getSession("username");
+
+    //console.log(this.username)
+  }
+
+     guardarObservacion(e) {
+      e.preventDefault();
+
+        this.loadingVisible = true;
+        console.log(this.formObs)
+        this.liquidacionService.postObservaciones(this.cvetra, this.username, this.formObs.observaciones).subscribe(data =>{
+          console.log(data)
+        
+          if (data.responseCode === 200) {
+
+            notify({
+          message: "La observación se guardo con exito",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'success', 4000);
+
+              this.modObservaciones = false;
+              this.bolFormSoloLectura = false;
+              this.loadingVisible = false;
+          }
+
+       
+        })
+  }
+
+
+  getObservaciones(){
+    this.loadingVisible = true;
+    //console.log(this.cvetra)
+    this.liquidacionService.getObservaciones(this.verCvetra).subscribe(data =>{
+      this.observaciones = data.data;
+      //console.log(this.observaciones)
+      this.loadingVisible = false;
+    })
+  }
   ngAfterViewInit() {
 
     // this.pivotGrid.instance.bindChart(this.chart.instance, {
@@ -158,7 +238,29 @@ export class PagosComponent implements OnInit {
     //   this.loadingVisible = false;
     // }, 3000);
   }
+onRowPreparedObs(e: any){
+ if (e.rowType == 'group') {
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
 
+}
+onCellPreparedObs(e: any){
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
 /**=========================PAGOS POR DIA=========================================== */
   onRowPreparedPXD(e: any){
     // if (e.rowType == 'data') {
@@ -226,46 +328,6 @@ export class PagosComponent implements OnInit {
      
     }
 
-  }
-
-  onCellPreparedPXM(e: any){
-
-    if (e.rowType == 'totalFooter') {
-
-      e.totalItem.cells.forEach((c: any) => {
-
-        //console.log(e.totalItem.summaryCells)
-
-        if(c.totalItem.summaryCells[1][0]?.value != undefined){
-        
-          totalesDia.pagadoMes = c.totalItem.summaryCells[1][0].value;
-          totalesDia.pagadoVencido = c.totalItem.summaryCells[2][0].value;
-          totalesDia.pagadoCorriente = c.totalItem.summaryCells[4][0].value;
-
-
-          //totalesDia.operacionVencido = totalesDia.pagadoVencido / totalesDia.pagadoMes;
-          //totalesDia.operacionCorriente = totalesDia.pagadoCorriente / totalesDia.pagadoMes;
-
-          totalesDia.totalVencido = totalesDia.pagadoVencido / totalesDia.pagadoMes;//totalesDia.operacionVencido * 100;
-          totalesDia.totalCorriente = totalesDia.pagadoCorriente / totalesDia.pagadoMes;//totalesDia.operacionCorriente * 100;
-        }
-
-        // if(c.totalItem.summaryCells[5][0]?.value != undefined){
-          c.totalItem.summaryCells[3][0].value = totalesDia.totalVencido;
-          c.totalItem.summaryCells[5][0].value = totalesDia.totalCorriente;
-
-         
-        // }
-
-
-        if (c.cellElement) {
-            c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.fontSize = "16px";
-            c.cellElement.style.background = "#ff9460";
-            c.cellElement.style.color = "black"; 
-        }   
-      });
-    }
   }
 
   //==================Formato a la data de la grafica==================================

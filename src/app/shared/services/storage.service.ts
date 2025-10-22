@@ -6,7 +6,7 @@ export class  StorageService {
     //   return   'http://50.21.186.87:8080' 
       
     // }
-
+    
     setSession(key: string, obj: any) {
       sessionStorage.setItem(key, JSON.stringify(obj))
     }

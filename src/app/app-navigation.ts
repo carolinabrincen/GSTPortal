@@ -72,6 +72,11 @@ export const navigation = [
         path: '/disponibilidad-Mensual'
       },
       {
+        text: 'Liquidación Mensual',
+        icon: 'columnchooser',
+        path: '/liquidacion'
+      },
+      {
         text: 'Presupuesto Disponiblidad',
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
@@ -135,6 +140,11 @@ export const navigation = [
   {
     text: 'Ingreso X Km.',
     path: '/macroCiclo',
+    icon: 'columnproperties'
+  },
+  {
+    text: 'Permisos',
+    path: '/permisos',
     icon: 'columnproperties'
   },
   // {
@@ -236,6 +246,11 @@ export const navigationID24 = [
         path: '/disponibilidad-Mensual'
       },
       {
+        text: 'Liquidación Mensual',
+        icon: 'columnchooser',
+        path: '/liquidacion'
+      },
+      {
         text: 'Presupuesto Disponiblidad',
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
@@ -304,6 +319,11 @@ export const navigationID24 = [
   {
     text: 'Compensación Provision',
     path: '/compensacionProvision',
+    icon: 'columnproperties'
+  },
+  {
+    text: 'Permisos',
+    path: '/permisos',
     icon: 'columnproperties'
   },
 
