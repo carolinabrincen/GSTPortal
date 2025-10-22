@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent, DxFormComponent} from 'devextreme-angular';
+import { DxSelectBoxComponent, DxFormComponent, DxDataGridComponent} from 'devextreme-angular';
 import { Cartera } from '../../shared/models/carteraClientes/cartera';
 import { PermisosService } from 'src/app/services/permisos/permisos.service';
 import { CarteraInterCompanias } from '../..//shared/models/carteraIntercompanias/carteraIntercompanias.model';
@@ -11,6 +11,8 @@ import themes from 'devextreme/ui/themes';
 import notify from 'devextreme/ui/notify';
 import { ActivatedRoute, Router } from '@angular/router';
 import SelectBox from "devextreme/ui/select_box";
+import { DxiDataGridColumn } from 'devextreme-angular/ui/nested/base/data-grid-column-dxi';
+import { DxoGridComponent } from 'devextreme-angular/ui/nested';
 
 @Component({
   templateUrl: './permisos.component.html',
@@ -20,6 +22,7 @@ export class PermisosComponent implements OnInit {
 
   @ViewChild('selectTracto') selectTracto!: DxSelectBoxComponent;
   @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent;
+  @ViewChild("gridPermisos", { static: false }) gridPermisos: DxDataGridComponent;
   
   col: string = '50';
 
@@ -104,7 +107,9 @@ export class PermisosComponent implements OnInit {
 
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+
+  }
 
   //=================GETS===========================
 
@@ -238,6 +243,9 @@ export class PermisosComponent implements OnInit {
   }
 
 
+  getPermisosActivos(e){
+
+  }
   ActuaizarDetalle(){
     // this.getCarteraDetalle();
     this.loadingVisible = true;
@@ -426,9 +434,11 @@ export class PermisosComponent implements OnInit {
   }
 
 
-
+initiallySelectedKeys = [1, 3];
   onSelectionChanged(event){
-    console.log(event.row.key.id)
+
+    console.log(event)
+    // this.permisosUser = event.selectedRowKeys;
     var myAsignacion = new Permisos;
     // var idUsuario = this.storageService.getSession("username")
 
@@ -510,6 +520,25 @@ export class PermisosComponent implements OnInit {
     //   console.log(value.value)
     // }
   }
+
+  
+  onGridReady(e: any) {
+    let indicePermiso = []
+    var myPermisos = this.permisosUsuario
+    for(let i =0; i<myPermisos.length; i++){ 
+      if(myPermisos[i].activo == true){
+        indicePermiso.push([i]);
+      }
+    }
+  console.log('📦 dxGrid completamente renderizado', indicePermiso);
+
+
+  // Aquí puedes ejecutar lógica dependiente del DOM del grid.
+ const keys = this.permisosUsuario.filter(item => item.activo == true).map(item => item.activo);
+//   this.gridPermisos.instance.selectRows(keys, false);
+
+this.gridPermisos.instance.selectRowsByIndexes(indicePermiso);
+}
 }
 
 

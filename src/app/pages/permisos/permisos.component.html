@@ -77,19 +77,20 @@
             
 
             <br>
-            <dx-data-grid  #ING id="gridContainer1" [dataSource]="permisosUsuario" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
-            (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)" (onCellClick)="onSelectionChanged($event)" [selectionFilter]="['activo', '=', 'true']">
+            <dx-data-grid  #gridPermisos [dataSource]="permisosUsuario" [height]="600"[showBorders]="true" [columnAutoWidth]="true"
+            (onRowPrepared)="onRowPreparedD($event)" (onCellPrepared)="onCellPreparedD($event)" (onCellClick)="onSelectionChanged($event)"
+             [selectionFilter]="['activo', '=', 'true']" [selectedRowKeys]="initiallySelectedKeys" (onContentReady)="onGridReady($event)">
 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             
-            <dxo-selection dataField="activo" [showCheckBoxesMode]="checkBoxesMode" mode="multiple" [deferred]="true" dataType="Boolean"></dxo-selection>
+            <dxo-selection [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
 
             <dxi-column dataField="aplicativo" caption="Aplicativo"></dxi-column>
             <dxi-column dataField="clave" caption="Clave"></dxi-column>
             <dxi-column dataField="pantalla" caption="Pantalla"></dxi-column>
             <dxi-column dataField="opcion" caption="Opcion"></dxi-column>
-            <dxi-column dataField="activo" caption="Activo"></dxi-column>
+            <!-- <dxi-column dataField="activo" caption="Activo"></dxi-column> -->
 
             
             <!-- <dxo-summary>
