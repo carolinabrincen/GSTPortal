@@ -50,7 +50,7 @@ export class PermisosComponent implements OnInit {
   modPeriodo: boolean;
 
   clientes: CarteraInterCompanias[] = []
-  selectUsuario: number;
+  selectUsuario: number = 0;
 
   selectedIdAreaInter: number;
   selectedAreaInter: string;
@@ -116,7 +116,7 @@ export class PermisosComponent implements OnInit {
   getUsuarios(){
     this.permisosService.getUsuariosActiivos().subscribe(data =>{
       this.usuarios = data.data;
-      console.log(this.usuarios)
+      // console.log(this.usuarios)
     })
   }
 
@@ -134,20 +134,9 @@ export class PermisosComponent implements OnInit {
  
 
   //=================SELECTS========================
-  printValue = "";
-  selectBoxCartera(e: any) {
-    this.selectedBoxCartera = e.value;
-   
-
-  }
-
-  seleccionarPeriodo(e: any) {
-    this.selectedPeriodo = e.value
-  }
-
   selectedClientes(e: any){
-    this.selectUsuario = e.value
-    console.log(this.selectUsuario)
+    this.selectUsuario = e.value;
+    console.log(this.selectUsuario);
   }
 
   selectAreaInter(e: any){
@@ -167,10 +156,13 @@ export class PermisosComponent implements OnInit {
 
 
   getPermisos(){
+    console.log(this.selectUsuario)
     this.permisosService.getPermisos(this.selectUsuario).subscribe(data => {
       
       this.permisosUsuario = data.data;
-      console.log(this.permisosUsuario)
+      // console.log(this.permisosUsuario)
+
+
 
 
       this.loadingVisible = false;
@@ -181,11 +173,11 @@ export class PermisosComponent implements OnInit {
 
       if(this.selectUsuario !== undefined){
         var myIdUser = Number(this.selectUsuario)
-        console.log(this.permisosUser)
+        // console.log(this.permisosUser)
         this.loadingVisible = true;
         this.permisosService.postGuardarPermisos(myIdUser, this.permisosUser).subscribe(data =>{
 
-          console.log(data)
+          // console.log(data)
 
           if (data.responseCode === 200) {
             notify({
@@ -198,28 +190,28 @@ export class PermisosComponent implements OnInit {
 
             this.getPermisos();
 
-            let element = document.getElementById("select");
-            let instance = SelectBox.getInstance(element) as SelectBox;
+            // let element = document.getElementById("select");
+            // let instance = SelectBox.getInstance(element) as SelectBox;
 
-              // get value
-              let currentValue = instance.option("value");
-              // change value
-              instance.option("value", "");
+            //   // get value
+            //   let currentValue = instance.option("value");
+            //   // change value
+            //   instance.option("value", "");
 
-              let areaInter = document.getElementById("areaInter");
-              let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
+            //   let areaInter = document.getElementById("areaInter");
+            //   let instanceArea = SelectBox.getInstance(areaInter) as SelectBox;
           
-              let current = instanceArea.option("value");
-              instanceArea.option("value", "");
+             // let current = instanceArea.option("value");
+             // instanceArea.option("value", "");
 
 
-              this.selectUsuario = undefined
+              // this.selectUsuario = undefined
               this.permisosUser = [];
 
               this.loadingVisible = false;
           }else{
             notify({
-              message: "No se puedo asignar el cliente, intente mas tarde",
+              message: "No se puede dar permisos",
               position: {
                 my: 'center center',
                 at: 'center center',
@@ -266,7 +258,7 @@ export class PermisosComponent implements OnInit {
 
   
   buscarClick = (e: any) => {
-    if (this.selectUsuario !==  0) {
+    if (this.selectUsuario !== undefined) {
       this.loadingVisible = true;
       this.modeSearch = 'true'
 
@@ -429,7 +421,7 @@ export class PermisosComponent implements OnInit {
   }
 
   Cancelar(e){
-    console.log(e)
+    // console.log(e)
     this.modPeriodo = false;
   }
 
@@ -437,7 +429,7 @@ export class PermisosComponent implements OnInit {
 initiallySelectedKeys = [1, 3];
   onSelectionChanged(event){
 
-    console.log(event)
+    //console.log(event)
     // this.permisosUser = event.selectedRowKeys;
     var myAsignacion = new Permisos;
     // var idUsuario = this.storageService.getSession("username")
@@ -446,29 +438,30 @@ initiallySelectedKeys = [1, 3];
         // myAsignacion.idOpciones = event.row.key.id
 
         this.permisosUser.push(event.row.key.id)
-        console.log(this.permisosUser)
+        // console.log(this.permisosUser)
       }
 
       if(event.row?.isSelected == false){
-        // //console.log("FALSE ==>")
+        //console.log("FALSE ==>")
   
-        // // Definir variable que tendrá la posición del elemento a borrar
-        // let borrar = -1;
-        // // Recorrer arreglo por elemento y posición
-        // this.clientesAsignados.forEach((item, index) => {
-        //   if(item.documento == event.row.data.documento) {
-        //       // Si el elemento coincide, actualizar variable
-        //       borrar = index;
-        //       // No hay posibilidad de usar break para cancelar
-        //       // En todo caso, si son muchos elementos, conviene mejor usar un ciclo for
-        //   }
-        // });
+        // Definir variable que tendrá la posición del elemento a borrar
+        let borrar = -1;
+        // Recorrer arreglo por elemento y posición
+        this.permisosUser.forEach((item, index) => {
+          if(item == event.key.id) {
+
+              // Si el elemento coincide, actualizar variable
+              borrar = index;
+              // No hay posibilidad de usar break para cancelar
+              // En todo caso, si son muchos elementos, conviene mejor usar un ciclo for
+          }
+        });
         
-        // // Borrar el elemento si existe en el arreglo
-        // if(borrar >= 0) {
-        //   this.clientesAsignados.splice(borrar, 1);
-        // }
-        // console.log(this.clientesAsignados);
+        // Borrar el elemento si existe en el arreglo
+        if(borrar >= 0) {
+          this.permisosUser.splice(borrar, 1);
+        }
+        // console.log(this.permisosUser);
   
       }
     
@@ -524,13 +517,17 @@ initiallySelectedKeys = [1, 3];
   
   onGridReady(e: any) {
     let indicePermiso = []
+    this.permisosUser = [ ]
     var myPermisos = this.permisosUsuario
     for(let i =0; i<myPermisos.length; i++){ 
       if(myPermisos[i].activo == true){
         indicePermiso.push([i]);
+
+        this.permisosUser.push(myPermisos[i].id)
+        // console.log(this.permisosUser)
       }
     }
-  console.log('📦 dxGrid completamente renderizado', indicePermiso);
+  // console.log('📦 dxGrid completamente renderizado', indicePermiso);
 
 
   // Aquí puedes ejecutar lógica dependiente del DOM del grid.
