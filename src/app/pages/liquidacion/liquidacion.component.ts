@@ -61,6 +61,7 @@ export class LiquidacionComponent implements OnInit {
   ];
 
   liquidacion: any[] = [];
+  titulosMes: any;
   observaciones: any[] = [];
   cvetra: number = 0;
   verCvetra: number = 0;
@@ -115,17 +116,18 @@ export class LiquidacionComponent implements OnInit {
 
   getLiquidacion() {
 
-    var printMes= "" ;
-    var printAnio = "";
-    var filtro = ""
-    printAnio = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{year: 'numeric' });
-    printMes = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{month:'numeric' });
+    // var printMes= "" ;
+    // var printAnio = "";
+    // var filtro = ""
+    // printAnio = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{year: 'numeric' });
+    // printMes = new Date(this.formFilter.Fecha.toISOString()).toLocaleString('es-MX',{month:'numeric' });
     
     
     this.loadingVisible = true;
-    this.liquidacionService.getLiquidacion(printAnio, printMes).subscribe((response) => {
-      this.liquidacion = response.data;
-      console.log(this.liquidacion)
+    this.liquidacionService.getLiquidacion(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+      this.titulosMes = response.data;
+      this.liquidacion = response.data.spLiquidacionesMensuales;
+      console.log(this.titulosMes)
       //this.graficaPXClasificado = myGrafica;
 
      
@@ -263,22 +265,80 @@ onCellPreparedObs(e: any){
   }
 /**=========================PAGOS POR DIA=========================================== */
   onRowPreparedPXD(e: any){
-    // if (e.rowType == 'data') {
-    //   e.cells.forEach((c: any) => {
+   if (e.rowType == 'data') {
 
-    //     if (c.cellElement) {
-    //       if (c.value && c.value.toString().startsWith('-')) {
-    //         c.cellElement.style.color = "red";
-    //         c.cellElement.style.fontWeight = "bolder";
-    //       }
-    //     }
+    e.cells.forEach((c: any) => {
 
-        
+      if (c.value && c.value.toString().startsWith('-')) {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.color = "red";
+        }
 
-    //   });
-    // }
+      }
+
+      if (c.cellElement) {
+        if(c.columnIndex == 11){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+        if(c.columnIndex == 17){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+        if(c.columnIndex == 20){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+        if(c.columnIndex == 21){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+      }
+    });
+  }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+
+      // if(c.columnIndex == 11){
+      //   c.cellElement.style.fontWeight = "bolder";
+      //   c.cellElement.style.fontSize = "15px";
+      //   c.cellElement.style.background = "#cdcbcb";
+      // }
+
+      // if(c.columnIndex == 17){
+      //   c.cellElement.style.fontWeight = "bolder";
+      //   c.cellElement.style.fontSize = "15px";
+      //   c.cellElement.style.background = "#cdcbcb";
+      // }
+
+      // if(c.columnIndex == 20){
+      //     c.cellElement.style.fontWeight = "bolder";
+      //     c.cellElement.style.fontSize = "15px";
+      //     c.cellElement.style.background = "#cdcbcb";
+      //  }
+
+      // if(c.columnIndex == 21){
+      //     c.cellElement.style.fontWeight = "bolder";
+      //     c.cellElement.style.fontSize = "15px";
+      //     c.cellElement.style.background = "#cdcbcb";
+      // }
+
+    });
+  }
 
     if (e.rowType == 'group') {
+
+      console.log(e)
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = '#dcdcdc';
         e.rowElement.style.color = "black";
@@ -290,6 +350,15 @@ onCellPreparedObs(e: any){
   }
 
   onCellPreparedPXD(e: any){
+  if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
     if (e.rowType == 'totalFooter') {
       e.totalItem.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -301,6 +370,74 @@ onCellPreparedObs(e: any){
       });
     }
   }
+
+  customizeOct(e) {  
+  var gridCell = e.gridCell;
+  if (gridCell.rowType === 'data') {
+
+
+    if(e.gridCell.column.dataField == "promedioMensual"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+        if(e.gridCell.column.dataField == "liquidado"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+        if(e.gridCell.column.dataField == "noLiquidado"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+        if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+  }
+
+  if (gridCell.rowType === 'groupFooter') {
+    
+    e.backgroundColor = "#cdcbcb";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+
+    // if(e.gridCell.column.dataField == "promedioMensual"){
+    //    e.backgroundColor = "#cdcbcb";
+    //     e.fontWeight = "bolder"
+    //     e.font = {bold: true}
+    // }
+
+    //     if(e.gridCell.column.dataField == "liquidado"){
+    //    e.backgroundColor = "#cdcbcb";
+    //     e.fontWeight = "bolder"
+    //     e.font = {bold: true}
+    // }
+
+    //     if(e.gridCell.column.dataField == "noLiquidado"){
+    //    e.backgroundColor = "#cdcbcb";
+    //     e.fontWeight = "bolder"
+    //     e.font = {bold: true}
+    // }
+
+    //     if(e.gridCell.column.dataField == "total"){
+    //    e.backgroundColor = "#cdcbcb";
+    //     e.fontWeight = "bolder"
+    //     e.font = {bold: true}
+    // }
+
+   
+  }
+}
 
   /**=========================PAGOS POR MES=========================================== */
   onRowPreparedPXM(e: any){

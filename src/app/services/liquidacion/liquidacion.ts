@@ -31,8 +31,8 @@ export class LiquidacionService extends AbstractManagerService {
   }
 
  
-  getLiquidacion(anio: any, mes: any){
-    return this.get<any>((this.API_URL + API_URLS.GET_LIQUIDACION_MENSUALES+anio+'/'+mes), this.httpOptions);
+  getLiquidacion(fecha: any){
+    return this.get<any>((this.API_URL + API_URLS.GET_LIQUIDACION_MENSUALES+fecha), this.httpOptions);
   }
 
   getObservaciones(cvetra: number){

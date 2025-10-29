@@ -67,16 +67,25 @@
           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
           <dxo-paging [pageSize]="100"></dxo-paging>
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-          <dxo-export [enabled]="true" fileName="Liquidación"></dxo-export>
+          <dxo-export [enabled]="true" fileName="Liquidación" [customizeExcelCell]="customizeOct"></dxo-export>
             
             <dxi-column dataField="udn" caption="UdN" [groupIndex]="0"></dxi-column>
 
             <dxi-column dataField="periodo" caption="Periodo" [fixed]="true"></dxi-column>
             <dxi-column dataField="idPersonal" caption="Cvetra" [fixed]="true"></dxi-column>
             <dxi-column dataField="nombre" caption="Nombre" [fixed]="true"></dxi-column>
-            <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
-            <dxi-column dataField="status" caption="Status" [fixed]="true"></dxi-column>
-            
+            <dxi-column dataField="operacion" caption="Operación"></dxi-column>
+            <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
+            <dxi-column dataField="baja" caption="Baja" dataType="date" format="dd/MM/yyyy"></dxi-column>
+            <dxi-column dataField="status" caption="Status"></dxi-column>
+
+            <dxi-column caption="MESES ANTERIORES" alignment="center">
+            <dxi-column dataField="mes1" [caption]="titulosMes?.mes1" [format]="formatValue"></dxi-column>
+            <dxi-column dataField="mes2" [caption]="titulosMes?.mes2" [format]="formatValue"></dxi-column>
+            <dxi-column dataField="mes3" [caption]="titulosMes?.mes3" [format]="formatValue"></dxi-column>
+            <dxi-column dataField="promedioMensual" caption="Promedio" [format]="formatValue"></dxi-column>
+            </dxi-column>
+
             <dxi-column caption="LIQUIDADO" alignment="center">
               <dxi-column dataField="semana1" caption="Semana 1" [format]="formatValue"></dxi-column>
               <dxi-column dataField="semana2" caption="Semana 2" [format]="formatValue"></dxi-column>
@@ -112,6 +121,11 @@
             </div>
 
           <dxo-summary>
+            <dxi-group-item column="mes1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="promedioMensual" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+
             <dxi-group-item column="semana1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="semana2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="semana3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
@@ -120,6 +134,12 @@
             <dxi-group-item column="liquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="noLiquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+
+
+            <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="promedioMensual" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
 
             <dxi-total-item column="semana1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="semana2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
