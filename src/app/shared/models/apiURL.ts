@@ -148,5 +148,6 @@ export enum API_URLS{
     GET_OBSERVACIONES = 'api/Pagos/GetObservacionesOperador/',
     GET_USUARIOS_ACTIVOS = 'api/General/GetUsuariosActivos',
     GET_USUARIOS_PERMISOS = 'api/General/GetUsuarioPermiso/',
+    GET_DETALLES_OPERADOR = 'api/Pagos/GetDetallesOperador/',
 
 }

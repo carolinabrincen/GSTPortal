@@ -63,9 +63,14 @@ export class LiquidacionComponent implements OnInit {
   liquidacion: any[] = [];
   titulosMes: any;
   observaciones: any[] = [];
+  viajesPenLiq: any[] = [];
+  LiqPag: any[] = [];
+
   cvetra: number = 0;
+  cvetra2: number = 0;
   verCvetra: number = 0;
-  
+
+  modTotal: boolean = false;
   modObservaciones: boolean = false;
   modVerObs: boolean = false;
   bolFormSoloLectura = false;
@@ -139,6 +144,23 @@ export class LiquidacionComponent implements OnInit {
 
   /*======================SELECTE FUNCIONS================================================*/
 
+  verTotal(value){
+    this.viajesPenLiq = [];
+    this.LiqPag = [];
+    this.cvetra2 = 0;
+
+    this.cvetra2 = value.data.idPersonal;
+     
+    if(getcvetra.cvetra !== undefined){
+      this.getDetalleOperador()
+    }
+    
+    
+    this.modTotal = true;
+
+
+  }
+
   agregarObs(value){
     //console.log(value.data) 
     this.formObs.observaciones = "";
@@ -160,6 +182,7 @@ export class LiquidacionComponent implements OnInit {
       this.getObservaciones()
     }
   }
+  
   buscarClick = (e: any) => {
     if (this.formFilter.Fecha !== "") {
 
@@ -191,7 +214,7 @@ export class LiquidacionComponent implements OnInit {
     //console.log(this.username)
   }
 
-     guardarObservacion(e) {
+  guardarObservacion(e) {
       e.preventDefault();
 
         this.loadingVisible = true;
@@ -218,7 +241,6 @@ export class LiquidacionComponent implements OnInit {
         })
   }
 
-
   getObservaciones(){
     this.loadingVisible = true;
     //console.log(this.cvetra)
@@ -228,6 +250,19 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = false;
     })
   }
+
+  getDetalleOperador(){
+    this.loadingVisible = true;
+
+    this.liquidacionService.getDetalleOperador(this.formFilter.Fecha.toISOString(),this.cvetra2).subscribe(data =>{
+      this.viajesPenLiq = data.data.liquidacionesPendientes;
+      this.LiqPag = data.data.liquidacionSemanal;
+      console.log(data.data)
+      this.loadingVisible = false;
+    })
+  }
+
+
   ngAfterViewInit() {
 
     // this.pivotGrid.instance.bindChart(this.chart.instance, {
@@ -240,8 +275,8 @@ export class LiquidacionComponent implements OnInit {
     //   this.loadingVisible = false;
     // }, 3000);
   }
-onRowPreparedObs(e: any){
- if (e.rowType == 'group') {
+  onRowPreparedObs(e: any){
+   if (e.rowType == 'group') {
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = '#dcdcdc';
         e.rowElement.style.color = "black";
@@ -250,8 +285,8 @@ onRowPreparedObs(e: any){
      
     }
 
-}
-onCellPreparedObs(e: any){
+  }
+  onCellPreparedObs(e: any){
     if (e.rowType == 'totalFooter') {
       e.totalItem.cells.forEach((c: any) => {
         if (c.cellElement) {
@@ -263,7 +298,8 @@ onCellPreparedObs(e: any){
       });
     }
   }
-/**=========================PAGOS POR DIA=========================================== */
+
+
   onRowPreparedPXD(e: any){
    if (e.rowType == 'data') {
 
@@ -283,19 +319,7 @@ onCellPreparedObs(e: any){
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if(c.columnIndex == 17){
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.background = "#cdcbcb";
-        }
-
-        if(c.columnIndex == 20){
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.background = "#cdcbcb";
-        }
-
-        if(c.columnIndex == 21){
+        if(c.columnIndex == 14){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
@@ -338,7 +362,7 @@ onCellPreparedObs(e: any){
 
     if (e.rowType == 'group') {
 
-      console.log(e)
+     //console.log(e)
       if (e.groupIndex == 0) {
         e.rowElement.style.backgroundColor = '#dcdcdc';
         e.rowElement.style.color = "black";
@@ -381,17 +405,8 @@ onCellPreparedObs(e: any){
       e.fontWeight = "bolder"
       e.font = {bold: true}
     }
-        if(e.gridCell.column.dataField == "liquidado"){
-      e.backgroundColor = "#cdcbcb";
-      e.fontWeight = "bolder"
-      e.font = {bold: true}
-    }
-        if(e.gridCell.column.dataField == "noLiquidado"){
-      e.backgroundColor = "#cdcbcb";
-      e.fontWeight = "bolder"
-      e.font = {bold: true}
-    }
-        if(e.gridCell.column.dataField == "total"){
+    
+    if(e.gridCell.column.dataField == "total"){
       e.backgroundColor = "#cdcbcb";
       e.fontWeight = "bolder"
       e.font = {bold: true}
@@ -437,7 +452,184 @@ onCellPreparedObs(e: any){
 
    
   }
-}
+  }
+
+  onRowPreparedVPL(e: any){
+ if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+      if (c.value && c.value.toString().startsWith('-')) {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.color = "red";
+        }
+
+      }
+
+      if (c.cellElement) {
+        if(c.columnIndex == 12){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+      }
+    });
+  }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+    });
+  }
+
+    if (e.rowType == 'group') {
+
+     //console.log(e)
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedVPL(e: any){
+ if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+  customizeVPL(e) {  
+  var gridCell = e.gridCell;
+  if (gridCell.rowType === 'data') {
+    
+    if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+  }
+
+  if (gridCell.rowType === 'groupFooter') {
+    
+    e.backgroundColor = "#cdcbcb";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}   
+  }
+  }
+
+  onRowPreparedLP(e: any){
+ if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+      if (c.value && c.value.toString().startsWith('-')) {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.color = "red";
+        }
+
+      }
+
+      if (c.cellElement) {
+        if(c.columnIndex == 3){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.fontSize = "15px";
+          c.cellElement.style.background = "#cdcbcb";
+        }
+
+      }
+    });
+  }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+    });
+  }
+
+    if (e.rowType == 'group') {
+
+     //console.log(e)
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+  onCellPreparedLP(e: any){
+ if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
+
+    customizeLP(e) {  
+  var gridCell = e.gridCell;
+  if (gridCell.rowType === 'data') {
+    
+    if(e.gridCell.column.dataField == "total"){
+      e.backgroundColor = "#cdcbcb";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+    }
+  }
+
+  if (gridCell.rowType === 'groupFooter') {
+    
+    e.backgroundColor = "#cdcbcb";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}
+  }
+
+  if (gridCell.rowType === 'totalFooter') {
+      
+    e.backgroundColor = "#ff9460";
+    e.fontWeight = "bolder"
+    e.font = {bold: true}   
+  }
+  }
 
   /**=========================PAGOS POR MES=========================================== */
   onRowPreparedPXM(e: any){
