@@ -479,7 +479,11 @@ export class LiquidacionComponent implements OnInit {
 
   if (e.rowType == 'totalFooter') {
     e.cells.forEach((c: any) => {
-
+      // console.log(e)
+      // if(e.summaryCell[8].length == 0){
+      //   console.log("Entre!!!!!")
+      //   e.summaryCell[8]
+      // }
     });
   }
 
@@ -513,12 +517,31 @@ export class LiquidacionComponent implements OnInit {
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
         }   
+
+
+        // console.log(c.totalItem.summaryCells)
+        if(c.totalItem.summaryCells[8].length == 0){
+          console.log("Entre !!")
+          c.totalItem.summaryCells[8]= [{value: 0}];
+        }
+
+        if(c.totalItem.summaryCells[10].length == 0){
+          console.log("Entre !!")
+          c.totalItem.summaryCells[10]= [{value: 0}];
+        }
+
+        if(c.totalItem.summaryCells[11].length == 0){
+          console.log("Entre !!")
+          c.totalItem.summaryCells[11]= [{value: 0}];
+        }
+
       });
     }
   }
 
   customizeVPL(e) {  
   var gridCell = e.gridCell;
+
   if (gridCell.rowType === 'data') {
     
     if(e.gridCell.column.dataField == "total"){
@@ -537,9 +560,19 @@ export class LiquidacionComponent implements OnInit {
 
   if (gridCell.rowType === 'totalFooter') {
       
-    e.backgroundColor = "#ff9460";
-    e.fontWeight = "bolder"
-    e.font = {bold: true}   
+      if(e.gridCell.column.dataField == "pagoXTonelada"){
+          e.value = 0; 
+      }
+      if(e.gridCell.column.dataField == "maniobraAutocarga"){
+          e.value = 0; 
+      }
+      if(e.gridCell.column.dataField == "maniobraFull"){
+          e.value = 0; 
+      }
+      
+      e.backgroundColor = "#ff9460";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}   
   }
   }
 
