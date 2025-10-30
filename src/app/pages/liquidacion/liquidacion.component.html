@@ -168,6 +168,30 @@
             <dx-scroll-view width="100%" height="100%">
                 
               <dx-tab-panel>
+                <dxi-item title="LIQUIDACIONES PAGADAS">
+                  <dx-data-grid #LiquidacionesP id="LiquidacionesP" [dataSource]="LiqPag" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
+                  (onRowPrepared)="onRowPreparedLP($event)" (onCellPrepared)="onCellPreparedLP($event)">
+                      <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+                      <dxo-paging [pageSize]="100"></dxo-paging>
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                      <dxo-export [enabled]="true" fileName="LIQUIDACIONES PAGADAS" [customizeExcelCell]="customizeLP"></dxo-export>
+                      
+                      <dxi-column dataField="semana" caption="Semana" [groupIndex]="0"></dxi-column>
+                      <!-- <dxi-column dataField="semana" caption="Semana"></dxi-column> -->
+                      <dxi-column dataField="fecha" caption="Fecha" alignment="center" dataType="date" format="dd/MM/yyyy"></dxi-column> 
+                      <dxi-column dataField="total" caption="Total" alignment="center" [format]="formatValue"></dxi-column>
+                      <!-- <dxi-column dataField="" caption="" [width]="30"></dxi-column> -->
+                    
+                      <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
+                      <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
+                        <!-- <dxi-group-item column="semana" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item> -->
+                        <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+                        <!-- <dxi-total-item column="semana" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item> -->
+                        <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+                      </dxo-summary>
+                  </dx-data-grid>
+                </dxi-item>
+                
                 <dxi-item title="VIAJES PENDIENTES">
                   <dx-data-grid #viajesPDL id="viajesPDL" [dataSource]="viajesPenLiq" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
                   (onRowPrepared)="onRowPreparedVPL($event)" (onCellPrepared)="onCellPreparedVPL($event)">
@@ -207,29 +231,7 @@
                   </dx-data-grid>
                 </dxi-item>
 
-                <dxi-item title="LIQUIDACIONES PAGADAS">
-                  <dx-data-grid #LiquidacionesP id="LiquidacionesP" [dataSource]="LiqPag" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
-                  (onRowPrepared)="onRowPreparedLP($event)" (onCellPrepared)="onCellPreparedLP($event)">
-                      <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-                      <dxo-paging [pageSize]="100"></dxo-paging>
-                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                      <dxo-export [enabled]="true" fileName="LIQUIDACIONES PAGADAS" [customizeExcelCell]="customizeLP"></dxo-export>
-                      
-                      <dxi-column dataField="semana" caption="" [groupIndex]="0"></dxi-column>
-                      <!-- <dxi-column dataField="semana" caption="Semana"></dxi-column> -->
-                      <dxi-column dataField="fecha" caption="Fecha" alignment="center" dataType="date" format="dd/MM/yyyy"></dxi-column> 
-                      <dxi-column dataField="total" caption="Total" alignment="center" [format]="formatValue"></dxi-column>
-                      <!-- <dxi-column dataField="" caption="" [width]="30"></dxi-column> -->
-                    
-                      <!--*ngIf="groupValue !== '0.- INDICADORES' "  -->
-                      <dxo-summary [calculateCustomSummary]="calcularPorcentajes">
-                        <dxi-group-item column="semana" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
-                        <!-- <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item> -->
-                        <dxi-total-item column="semana" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
-                        <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
-                      </dxo-summary>
-                  </dx-data-grid>
-                </dxi-item>
+
                 
               </dx-tab-panel>
 
