@@ -313,13 +313,13 @@ export class LiquidacionComponent implements OnInit {
       }
 
       if (c.cellElement) {
-        if(c.columnIndex == 11){
+        if(c.columnIndex == 12){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
         }
 
-        if(c.columnIndex == 14){
+        if(c.columnIndex == 15){
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.fontSize = "15px";
           c.cellElement.style.background = "#cdcbcb";
