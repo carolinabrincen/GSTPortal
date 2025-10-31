@@ -601,6 +601,8 @@ export class IndicadoresComponent implements OnInit {
     { id: 202508, periodo: 202508 },
     { id: 202509, periodo: 202509 },
     { id: 202510, periodo: 202510 },
+    { id: 202511, periodo: 202511 },
+
   ];
 
   periodoAC: any[] = [
@@ -668,6 +670,8 @@ export class IndicadoresComponent implements OnInit {
     { id: 202508, periodo: 202508 },
     { id: 202509, periodo: 202509 },
     { id: 202510, periodo: 202510 },
+    { id: 202511, periodo: 202511 },
+
   ];
 
   anio: any[] = [
@@ -9435,76 +9439,76 @@ onRowPreparedITL2025(event){
       event.summaryCells[49][0].value = totalAgrupamientoITLOC25.orizabaPresAcPor;
       event.summaryCells[51][0].value = totalAgrupamientoITLOC25.orizabaIngrAntPor;
     }
-    // if(event.data.key == '11 NOV'){
-    //   agrupamientoITLNV25.cuatitlanIngr = event.summaryCells[4][0].value;
-    //   agrupamientoITLNV25.cuatitlanPres = event.summaryCells[5][0].value;
-    //   agrupamientoITLNV25.cuatitlanIngrAc = event.summaryCells[7][0].value;
-    //   agrupamientoITLNV25.cuatitlanPresAc = event.summaryCells[8][0].value;
-    //   agrupamientoITLNV25.cuatitlanIngrAnt = event.summaryCells[10][0].value;
-    //   agrupamientoITLNV25.tultitlanIngr = event.summaryCells[12][0].value;
-    //   agrupamientoITLNV25.tultitlanPres = event.summaryCells[13][0].value;
-    //   agrupamientoITLNV25.tultitlanIngrAc = event.summaryCells[15][0].value;
-    //   agrupamientoITLNV25.tultitlanPresAc = event.summaryCells[16][0].value;
-    //   agrupamientoITLNV25.tultitlanIngrAnt = event.summaryCells[18][0].value;
-    //   agrupamientoITLNV25.guadalajaraIngr = event.summaryCells[20][0].value;
-    //   agrupamientoITLNV25.guadalajaraPres = event.summaryCells[21][0].value;
-    //   agrupamientoITLNV25.guadalajaraIngrAc = event.summaryCells[23][0].value;
-    //   agrupamientoITLNV25.guadalajaraPresAc = event.summaryCells[24][0].value;
-    //   agrupamientoITLNV25.guadalajaraIngrAnt = event.summaryCells[26][0].value;
-    //   agrupamientoITLNV25.hermosilloIngr = event.summaryCells[28][0].value;
-    //   agrupamientoITLNV25.hermosilloPres = event.summaryCells[29][0].value;
-    //   agrupamientoITLNV25.hermosilloIngrAc = event.summaryCells[31][0].value;
-    //   agrupamientoITLNV25.hermosilloPresAc = event.summaryCells[32][0].value;
-    //   agrupamientoITLNV25.hermosilloIngrAnt = event.summaryCells[34][0].value;
-    //   agrupamientoITLNV25.mexicaliIngr = event.summaryCells[36][0].value;
-    //   agrupamientoITLNV25.mexicaliPres = event.summaryCells[37][0].value;
-    //   agrupamientoITLNV25.mexicaliIngrAc = event.summaryCells[39][0].value;
-    //   agrupamientoITLNV25.mexicaliPresAc = event.summaryCells[40][0].value;
-    //   agrupamientoITLNV25.mexicaliIngrAnt = event.summaryCells[42][0].value;
-    //   agrupamientoITLNV25.orizabaIngr = event.summaryCells[44][0].value;
-    //   agrupamientoITLNV25.orizabaPres = event.summaryCells[45][0].value;
-    //   agrupamientoITLNV25.orizabaIngrAc = event.summaryCells[47][0].value;
-    //   agrupamientoITLNV25.orizabaPresAc = event.summaryCells[48][0].value;
-    //   agrupamientoITLNV25.orizabaIngrAnt = event.summaryCells[50][0].value;
+    if(event.data.key == '11 NOV'){
+      agrupamientoITLNV25.cuatitlanIngr = event.summaryCells[4][0].value;
+      agrupamientoITLNV25.cuatitlanPres = event.summaryCells[5][0].value;
+      agrupamientoITLNV25.cuatitlanIngrAc = event.summaryCells[7][0].value;
+      agrupamientoITLNV25.cuatitlanPresAc = event.summaryCells[8][0].value;
+      agrupamientoITLNV25.cuatitlanIngrAnt = event.summaryCells[10][0].value;
+      agrupamientoITLNV25.tultitlanIngr = event.summaryCells[12][0].value;
+      agrupamientoITLNV25.tultitlanPres = event.summaryCells[13][0].value;
+      agrupamientoITLNV25.tultitlanIngrAc = event.summaryCells[15][0].value;
+      agrupamientoITLNV25.tultitlanPresAc = event.summaryCells[16][0].value;
+      agrupamientoITLNV25.tultitlanIngrAnt = event.summaryCells[18][0].value;
+      agrupamientoITLNV25.guadalajaraIngr = event.summaryCells[20][0].value;
+      agrupamientoITLNV25.guadalajaraPres = event.summaryCells[21][0].value;
+      agrupamientoITLNV25.guadalajaraIngrAc = event.summaryCells[23][0].value;
+      agrupamientoITLNV25.guadalajaraPresAc = event.summaryCells[24][0].value;
+      agrupamientoITLNV25.guadalajaraIngrAnt = event.summaryCells[26][0].value;
+      agrupamientoITLNV25.hermosilloIngr = event.summaryCells[28][0].value;
+      agrupamientoITLNV25.hermosilloPres = event.summaryCells[29][0].value;
+      agrupamientoITLNV25.hermosilloIngrAc = event.summaryCells[31][0].value;
+      agrupamientoITLNV25.hermosilloPresAc = event.summaryCells[32][0].value;
+      agrupamientoITLNV25.hermosilloIngrAnt = event.summaryCells[34][0].value;
+      agrupamientoITLNV25.mexicaliIngr = event.summaryCells[36][0].value;
+      agrupamientoITLNV25.mexicaliPres = event.summaryCells[37][0].value;
+      agrupamientoITLNV25.mexicaliIngrAc = event.summaryCells[39][0].value;
+      agrupamientoITLNV25.mexicaliPresAc = event.summaryCells[40][0].value;
+      agrupamientoITLNV25.mexicaliIngrAnt = event.summaryCells[42][0].value;
+      agrupamientoITLNV25.orizabaIngr = event.summaryCells[44][0].value;
+      agrupamientoITLNV25.orizabaPres = event.summaryCells[45][0].value;
+      agrupamientoITLNV25.orizabaIngrAc = event.summaryCells[47][0].value;
+      agrupamientoITLNV25.orizabaPresAc = event.summaryCells[48][0].value;
+      agrupamientoITLNV25.orizabaIngrAnt = event.summaryCells[50][0].value;
 
-    //   totalAgrupamientoITLNV25.cuatitlanPresPor = agrupamientoITLNV25.cuatitlanIngr / agrupamientoITLNV25.cuatitlanPres;
-    //   totalAgrupamientoITLNV25.cuatitlanPresAcPor = agrupamientoITLNV25.cuatitlanIngrAc / agrupamientoITLNV25.cuatitlanPresAc;
-    //   totalAgrupamientoITLNV25.cuatitlanIngrAntPor = agrupamientoITLNV25.cuatitlanIngr / agrupamientoITLNV25.cuatitlanIngrAnt;
-    //   totalAgrupamientoITLNV25.tultitlanPresPor = agrupamientoITLNV25.tultitlanIngr / agrupamientoITLNV25.tultitlanPres;
-    //   totalAgrupamientoITLNV25.tultitlanPresAcPor = agrupamientoITLNV25.tultitlanIngrAc / agrupamientoITLNV25.tultitlanPresAc;
-    //   totalAgrupamientoITLNV25.tultitlanIngrAntPor = agrupamientoITLNV25.tultitlanIngr / agrupamientoITLNV25.tultitlanIngrAnt;
-    //   totalAgrupamientoITLNV25.guadalajaraPresPor = agrupamientoITLNV25.guadalajaraIngr / agrupamientoITLNV25.guadalajaraPres;
-    //   totalAgrupamientoITLNV25.guadalajaraPresAcPor = agrupamientoITLNV25.guadalajaraIngrAc / agrupamientoITLNV25.guadalajaraPresAc;
-    //   totalAgrupamientoITLNV25.guadalajaraIngrAntPor = agrupamientoITLNV25.guadalajaraIngr / agrupamientoITLNV25.guadalajaraIngrAnt;
-    //   totalAgrupamientoITLNV25.hermosilloPresPor = agrupamientoITLNV25.hermosilloIngr / agrupamientoITLNV25.hermosilloPres;
-    //   totalAgrupamientoITLNV25.hermosilloPresAcPor = agrupamientoITLNV25.hermosilloIngrAc / agrupamientoITLNV25.hermosilloPresAc;
-    //   totalAgrupamientoITLNV25.hermosilloIngrAntPor = agrupamientoITLNV25.hermosilloIngr / agrupamientoITLNV25.hermosilloIngrAnt;
-    //   totalAgrupamientoITLNV25.mexicaliPresPor = agrupamientoITLNV25.mexicaliIngr / agrupamientoITLNV25.mexicaliPres;
-    //   totalAgrupamientoITLNV25.mexicaliPresAcPor = agrupamientoITLNV25.mexicaliIngrAc / agrupamientoITLNV25.mexicaliPresAc;
-    //   totalAgrupamientoITLNV25.mexicaliIngrAntPor = agrupamientoITLNV25.mexicaliIngr / agrupamientoITLNV25.mexicaliIngrAnt;
-    //   totalAgrupamientoITLNV25.orizabaPresPor = agrupamientoITLNV25.orizabaIngr / agrupamientoITLNV25.orizabaPres;
-    //   totalAgrupamientoITLNV25.orizabaPresAcPor = agrupamientoITLNV25.orizabaIngrAc / agrupamientoITLNV25.orizabaPresAc;
-    //   totalAgrupamientoITLNV25.orizabaIngrAntPor = agrupamientoITLNV25.orizabaIngr / agrupamientoITLNV25.orizabaIngrAnt;
+      totalAgrupamientoITLNV25.cuatitlanPresPor = agrupamientoITLNV25.cuatitlanIngr / agrupamientoITLNV25.cuatitlanPres;
+      totalAgrupamientoITLNV25.cuatitlanPresAcPor = agrupamientoITLNV25.cuatitlanIngrAc / agrupamientoITLNV25.cuatitlanPresAc;
+      totalAgrupamientoITLNV25.cuatitlanIngrAntPor = agrupamientoITLNV25.cuatitlanIngr / agrupamientoITLNV25.cuatitlanIngrAnt;
+      totalAgrupamientoITLNV25.tultitlanPresPor = agrupamientoITLNV25.tultitlanIngr / agrupamientoITLNV25.tultitlanPres;
+      totalAgrupamientoITLNV25.tultitlanPresAcPor = agrupamientoITLNV25.tultitlanIngrAc / agrupamientoITLNV25.tultitlanPresAc;
+      totalAgrupamientoITLNV25.tultitlanIngrAntPor = agrupamientoITLNV25.tultitlanIngr / agrupamientoITLNV25.tultitlanIngrAnt;
+      totalAgrupamientoITLNV25.guadalajaraPresPor = agrupamientoITLNV25.guadalajaraIngr / agrupamientoITLNV25.guadalajaraPres;
+      totalAgrupamientoITLNV25.guadalajaraPresAcPor = agrupamientoITLNV25.guadalajaraIngrAc / agrupamientoITLNV25.guadalajaraPresAc;
+      totalAgrupamientoITLNV25.guadalajaraIngrAntPor = agrupamientoITLNV25.guadalajaraIngr / agrupamientoITLNV25.guadalajaraIngrAnt;
+      totalAgrupamientoITLNV25.hermosilloPresPor = agrupamientoITLNV25.hermosilloIngr / agrupamientoITLNV25.hermosilloPres;
+      totalAgrupamientoITLNV25.hermosilloPresAcPor = agrupamientoITLNV25.hermosilloIngrAc / agrupamientoITLNV25.hermosilloPresAc;
+      totalAgrupamientoITLNV25.hermosilloIngrAntPor = agrupamientoITLNV25.hermosilloIngr / agrupamientoITLNV25.hermosilloIngrAnt;
+      totalAgrupamientoITLNV25.mexicaliPresPor = agrupamientoITLNV25.mexicaliIngr / agrupamientoITLNV25.mexicaliPres;
+      totalAgrupamientoITLNV25.mexicaliPresAcPor = agrupamientoITLNV25.mexicaliIngrAc / agrupamientoITLNV25.mexicaliPresAc;
+      totalAgrupamientoITLNV25.mexicaliIngrAntPor = agrupamientoITLNV25.mexicaliIngr / agrupamientoITLNV25.mexicaliIngrAnt;
+      totalAgrupamientoITLNV25.orizabaPresPor = agrupamientoITLNV25.orizabaIngr / agrupamientoITLNV25.orizabaPres;
+      totalAgrupamientoITLNV25.orizabaPresAcPor = agrupamientoITLNV25.orizabaIngrAc / agrupamientoITLNV25.orizabaPresAc;
+      totalAgrupamientoITLNV25.orizabaIngrAntPor = agrupamientoITLNV25.orizabaIngr / agrupamientoITLNV25.orizabaIngrAnt;
     
-    //   event.summaryCells[6][0].value = totalAgrupamientoITLNV25.cuatitlanPresPor;
-    //   event.summaryCells[9][0].value = totalAgrupamientoITLNV25.cuatitlanPresAcPor;
-    //   event.summaryCells[11][0].value = totalAgrupamientoITLNV25.cuatitlanIngrAntPor;
-    //   event.summaryCells[14][0].value = totalAgrupamientoITLNV25.tultitlanPresPor;
-    //   event.summaryCells[17][0].value = totalAgrupamientoITLNV25.tultitlanPresAcPor;
-    //   event.summaryCells[19][0].value = totalAgrupamientoITLNV25.tultitlanIngrAntPor;
-    //   event.summaryCells[22][0].value = totalAgrupamientoITLNV25.guadalajaraPresPor;
-    //   event.summaryCells[25][0].value = totalAgrupamientoITLNV25.guadalajaraPresAcPor;
-    //   event.summaryCells[27][0].value = totalAgrupamientoITLNV25.guadalajaraIngrAntPor;
-    //   event.summaryCells[30][0].value = totalAgrupamientoITLNV25.hermosilloPresPor;
-    //   event.summaryCells[33][0].value = totalAgrupamientoITLNV25.hermosilloPresAcPor;
-    //   event.summaryCells[35][0].value = totalAgrupamientoITLNV25.hermosilloIngrAntPor;
-    //   event.summaryCells[38][0].value = totalAgrupamientoITLNV25.mexicaliPresPor;
-    //   event.summaryCells[41][0].value = totalAgrupamientoITLNV25.mexicaliPresAcPor;
-    //   event.summaryCells[43][0].value = totalAgrupamientoITLNV25.mexicaliIngrAntPor;
-    //   event.summaryCells[46][0].value = totalAgrupamientoITLNV25.orizabaPresPor;
-    //   event.summaryCells[49][0].value = totalAgrupamientoITLNV25.orizabaPresAcPor;
-    //   event.summaryCells[51][0].value = totalAgrupamientoITLNV25.orizabaIngrAntPor;
-    // }
+      event.summaryCells[6][0].value = totalAgrupamientoITLNV25.cuatitlanPresPor;
+      event.summaryCells[9][0].value = totalAgrupamientoITLNV25.cuatitlanPresAcPor;
+      event.summaryCells[11][0].value = totalAgrupamientoITLNV25.cuatitlanIngrAntPor;
+      event.summaryCells[14][0].value = totalAgrupamientoITLNV25.tultitlanPresPor;
+      event.summaryCells[17][0].value = totalAgrupamientoITLNV25.tultitlanPresAcPor;
+      event.summaryCells[19][0].value = totalAgrupamientoITLNV25.tultitlanIngrAntPor;
+      event.summaryCells[22][0].value = totalAgrupamientoITLNV25.guadalajaraPresPor;
+      event.summaryCells[25][0].value = totalAgrupamientoITLNV25.guadalajaraPresAcPor;
+      event.summaryCells[27][0].value = totalAgrupamientoITLNV25.guadalajaraIngrAntPor;
+      event.summaryCells[30][0].value = totalAgrupamientoITLNV25.hermosilloPresPor;
+      event.summaryCells[33][0].value = totalAgrupamientoITLNV25.hermosilloPresAcPor;
+      event.summaryCells[35][0].value = totalAgrupamientoITLNV25.hermosilloIngrAntPor;
+      event.summaryCells[38][0].value = totalAgrupamientoITLNV25.mexicaliPresPor;
+      event.summaryCells[41][0].value = totalAgrupamientoITLNV25.mexicaliPresAcPor;
+      event.summaryCells[43][0].value = totalAgrupamientoITLNV25.mexicaliIngrAntPor;
+      event.summaryCells[46][0].value = totalAgrupamientoITLNV25.orizabaPresPor;
+      event.summaryCells[49][0].value = totalAgrupamientoITLNV25.orizabaPresAcPor;
+      event.summaryCells[51][0].value = totalAgrupamientoITLNV25.orizabaIngrAntPor;
+    }
 
     // if(event.data.key == '12 DIC'){
     //   agrupamientoITLDC25.cuatitlanIngr = event.summaryCells[4][0].value;
@@ -9791,16 +9795,16 @@ onRowPreparedI2025(event){
       // agrupamientoIOC25.ramosArispe = event.summaryCells[10][0].value;
       agrupamientoIOC25.total = event.summaryCells[10][0].value;
     }
-    // if (event.data.key == '11 NOV'){
-    //   agrupamientoINV25.cuautitlan = event.summaryCells[4][0].value;
-    //   agrupamientoINV25.tultitlan = event.summaryCells[5][0].value;
-    //   agrupamientoINV25.guadalajara = event.summaryCells[6][0].value;
-    //   agrupamientoINV25.hermosillo = event.summaryCells[7][0].value;
-    //   agrupamientoINV25.mexicali = event.summaryCells[8][0].value;
-    //   agrupamientoINV25.orizaba = event.summaryCells[9][0].value;
-    //   // agrupamientoINV25.ramosArispe = event.summaryCells[10][0].value;
-    //   agrupamientoINV25.total = event.summaryCells[10][0].value;
-    // }
+    if (event.data.key == '11 NOV'){
+      agrupamientoINV25.cuautitlan = event.summaryCells[4][0].value;
+      agrupamientoINV25.tultitlan = event.summaryCells[5][0].value;
+      agrupamientoINV25.guadalajara = event.summaryCells[6][0].value;
+      agrupamientoINV25.hermosillo = event.summaryCells[7][0].value;
+      agrupamientoINV25.mexicali = event.summaryCells[8][0].value;
+      agrupamientoINV25.orizaba = event.summaryCells[9][0].value;
+      // agrupamientoINV25.ramosArispe = event.summaryCells[10][0].value;
+      agrupamientoINV25.total = event.summaryCells[10][0].value;
+    }
     // if (event.data.key == '12 DIC'){
     //   agrupamientoIDC25.cuautitlan = event.summaryCells[4][0].value;
     //   agrupamientoIDC25.tultitlan = event.summaryCells[5][0].value;
@@ -10073,25 +10077,25 @@ onRowPreparedK2025(e){
       // totalAgrupamientoIKOC25.ramosArispe = agrupamientoIOC25.ramosArispe / agrupamientoKOC25.ramosArispe;
       totalAgrupamientoIKOC25.total = agrupamientoIOC25.total / agrupamientoKOC25.total;
     }
-    // if (e.data.key == '11 NOV'){
-    //   agrupamientoKNV25.cuautitlan = e.summaryCells[4][0].value;
-    //   agrupamientoKNV25.tultitlan = e.summaryCells[5][0].value;
-    //   agrupamientoKNV25.guadalajara = e.summaryCells[6][0].value;
-    //   agrupamientoKNV25.hermosillo = e.summaryCells[7][0].value;
-    //   agrupamientoKNV25.mexicali = e.summaryCells[8][0].value;
-    //   agrupamientoKNV25.orizaba = e.summaryCells[9][0].value;
-    //   // agrupamientoKNV25.ramosArispe = e.summaryCells[10][0].value;
-    //   agrupamientoKNV25.total = e.summaryCells[10][0].value;
+    if (e.data.key == '11 NOV'){
+      agrupamientoKNV25.cuautitlan = e.summaryCells[4][0].value;
+      agrupamientoKNV25.tultitlan = e.summaryCells[5][0].value;
+      agrupamientoKNV25.guadalajara = e.summaryCells[6][0].value;
+      agrupamientoKNV25.hermosillo = e.summaryCells[7][0].value;
+      agrupamientoKNV25.mexicali = e.summaryCells[8][0].value;
+      agrupamientoKNV25.orizaba = e.summaryCells[9][0].value;
+      // agrupamientoKNV25.ramosArispe = e.summaryCells[10][0].value;
+      agrupamientoKNV25.total = e.summaryCells[10][0].value;
 
-    //   totalAgrupamientoIKNV25.cuautitlan = agrupamientoINV25.cuautitlan / agrupamientoKNV25.cuautitlan;
-    //   totalAgrupamientoIKNV25.tultitlan = agrupamientoINV25.tultitlan / agrupamientoKNV25.tultitlan;
-    //   totalAgrupamientoIKNV25.guadalajara = agrupamientoINV25.guadalajara / agrupamientoKNV25.guadalajara;
-    //   totalAgrupamientoIKNV25.hermosillo = agrupamientoINV25.hermosillo / agrupamientoKNV25.hermosillo;
-    //   totalAgrupamientoIKNV25.mexicali = agrupamientoINV25.mexicali / agrupamientoKNV25.mexicali;
-    //   totalAgrupamientoIKNV25.orizaba = agrupamientoINV25.orizaba / agrupamientoKNV25.orizaba;
-    //   // totalAgrupamientoIKNV25.ramosArispe = agrupamientoINV25.ramosArispe / agrupamientoKNV25.ramosArispe;
-    //   totalAgrupamientoIKNV25.total = agrupamientoINV25.total / agrupamientoKNV25.total;
-    // }
+      totalAgrupamientoIKNV25.cuautitlan = agrupamientoINV25.cuautitlan / agrupamientoKNV25.cuautitlan;
+      totalAgrupamientoIKNV25.tultitlan = agrupamientoINV25.tultitlan / agrupamientoKNV25.tultitlan;
+      totalAgrupamientoIKNV25.guadalajara = agrupamientoINV25.guadalajara / agrupamientoKNV25.guadalajara;
+      totalAgrupamientoIKNV25.hermosillo = agrupamientoINV25.hermosillo / agrupamientoKNV25.hermosillo;
+      totalAgrupamientoIKNV25.mexicali = agrupamientoINV25.mexicali / agrupamientoKNV25.mexicali;
+      totalAgrupamientoIKNV25.orizaba = agrupamientoINV25.orizaba / agrupamientoKNV25.orizaba;
+      // totalAgrupamientoIKNV25.ramosArispe = agrupamientoINV25.ramosArispe / agrupamientoKNV25.ramosArispe;
+      totalAgrupamientoIKNV25.total = agrupamientoINV25.total / agrupamientoKNV25.total;
+    }
     // if (e.data.key == '12 DIC'){
     //   agrupamientoKDC25.cuautitlan = e.summaryCells[4][0].value;
     //   agrupamientoKDC25.tultitlan = e.summaryCells[5][0].value;
@@ -10499,34 +10503,34 @@ onRowPreparedVC2025(event){
       // totalKVCOC25.ramosArispe = agrupamientoKOC25.ramosArispe / viajesCargadosOC25.ramosArispe;
       totalKVCOC25.total = agrupamientoKOC25.total / viajesCargadosOC25.total;
     }
-    // if (event.data.key == '11 NOV'){
-    //   viajesCargadosNV25.cuautitlan = event.summaryCells[4][0].value;
-    //   viajesCargadosNV25.tultitlan = event.summaryCells[5][0].value;
-    //   viajesCargadosNV25.guadalajara = event.summaryCells[6][0].value;
-    //   viajesCargadosNV25.hermosillo = event.summaryCells[7][0].value;
-    //   viajesCargadosNV25.mexicali = event.summaryCells[8][0].value;
-    //   viajesCargadosNV25.orizaba = event.summaryCells[9][0].value;
-    //   // viajesCargadosNV25.ramosArispe = event.summaryCells[10][0].value;
-    //   viajesCargadosNV25.total = event.summaryCells[10][0].value;
+    if (event.data.key == '11 NOV'){
+      viajesCargadosNV25.cuautitlan = event.summaryCells[4][0].value;
+      viajesCargadosNV25.tultitlan = event.summaryCells[5][0].value;
+      viajesCargadosNV25.guadalajara = event.summaryCells[6][0].value;
+      viajesCargadosNV25.hermosillo = event.summaryCells[7][0].value;
+      viajesCargadosNV25.mexicali = event.summaryCells[8][0].value;
+      viajesCargadosNV25.orizaba = event.summaryCells[9][0].value;
+      // viajesCargadosNV25.ramosArispe = event.summaryCells[10][0].value;
+      viajesCargadosNV25.total = event.summaryCells[10][0].value;
 
-    //   totalIVCNV25.cuautitlan = agrupamientoINV25.cuautitlan / viajesCargadosNV25.cuautitlan;
-    //   totalIVCNV25.tultitlan = agrupamientoINV25.tultitlan / viajesCargadosNV25.tultitlan;
-    //   totalIVCNV25.guadalajara = agrupamientoINV25.guadalajara / viajesCargadosNV25.guadalajara;
-    //   totalIVCNV25.hermosillo = agrupamientoINV25.hermosillo / viajesCargadosNV25.hermosillo;
-    //   totalIVCNV25.mexicali = agrupamientoINV25.mexicali / viajesCargadosNV25.mexicali;
-    //   totalIVCNV25.orizaba = agrupamientoINV25.orizaba / viajesCargadosNV25.orizaba;
-    //   // totalIVCNV25.ramosArispe = agrupamientoINV25.ramosArispe / viajesCargadosNV25.ramosArispe;
-    //   totalIVCNV25.total = agrupamientoINV25.total / viajesCargadosNV25.total;
+      totalIVCNV25.cuautitlan = agrupamientoINV25.cuautitlan / viajesCargadosNV25.cuautitlan;
+      totalIVCNV25.tultitlan = agrupamientoINV25.tultitlan / viajesCargadosNV25.tultitlan;
+      totalIVCNV25.guadalajara = agrupamientoINV25.guadalajara / viajesCargadosNV25.guadalajara;
+      totalIVCNV25.hermosillo = agrupamientoINV25.hermosillo / viajesCargadosNV25.hermosillo;
+      totalIVCNV25.mexicali = agrupamientoINV25.mexicali / viajesCargadosNV25.mexicali;
+      totalIVCNV25.orizaba = agrupamientoINV25.orizaba / viajesCargadosNV25.orizaba;
+      // totalIVCNV25.ramosArispe = agrupamientoINV25.ramosArispe / viajesCargadosNV25.ramosArispe;
+      totalIVCNV25.total = agrupamientoINV25.total / viajesCargadosNV25.total;
 
-    //   totalKVCNV25.cuautitlan = agrupamientoKNV25.cuautitlan / viajesCargadosNV25.cuautitlan;
-    //   totalKVCNV25.tultitlan = agrupamientoKNV25.tultitlan / viajesCargadosNV25.tultitlan;
-    //   totalKVCNV25.guadalajara = agrupamientoKNV25.guadalajara / viajesCargadosNV25.guadalajara;
-    //   totalKVCNV25.hermosillo = agrupamientoKNV25.hermosillo / viajesCargadosNV25.hermosillo;
-    //   totalKVCNV25.mexicali = agrupamientoKNV25.mexicali / viajesCargadosNV25.mexicali;
-    //   totalKVCNV25.orizaba = agrupamientoKNV25.orizaba / viajesCargadosNV25.orizaba;
-    //   // totalKVCNV25.ramosArispe = agrupamientoKNV25.ramosArispe / viajesCargadosNV25.ramosArispe;
-    //   totalKVCNV25.total = agrupamientoKNV25.total / viajesCargadosNV25.total;
-    // }
+      totalKVCNV25.cuautitlan = agrupamientoKNV25.cuautitlan / viajesCargadosNV25.cuautitlan;
+      totalKVCNV25.tultitlan = agrupamientoKNV25.tultitlan / viajesCargadosNV25.tultitlan;
+      totalKVCNV25.guadalajara = agrupamientoKNV25.guadalajara / viajesCargadosNV25.guadalajara;
+      totalKVCNV25.hermosillo = agrupamientoKNV25.hermosillo / viajesCargadosNV25.hermosillo;
+      totalKVCNV25.mexicali = agrupamientoKNV25.mexicali / viajesCargadosNV25.mexicali;
+      totalKVCNV25.orizaba = agrupamientoKNV25.orizaba / viajesCargadosNV25.orizaba;
+      // totalKVCNV25.ramosArispe = agrupamientoKNV25.ramosArispe / viajesCargadosNV25.ramosArispe;
+      totalKVCNV25.total = agrupamientoKNV25.total / viajesCargadosNV25.total;
+    }
     // if (event.data.key == '12 DIC'){
     //   viajesCargadosDC25.cuautitlan = event.summaryCells[4][0].value;
     //   viajesCargadosDC25.tultitlan = event.summaryCells[5][0].value;
@@ -10979,64 +10983,64 @@ onRowPreparedIK2025(e){
       }
 
     }
-    // if (e.data.key == '11 NOV') {
-    //   if(e.summaryCells[4][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.cuautitlan)){
-    //       e.summaryCells[4][0].value = 0;
-    //     }else{
-    //       e.summaryCells[4][0].value = totalAgrupamientoIKNV25.cuautitlan;
-    //     }
-    //   }
-    //   if(e.summaryCells[5][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.tultitlan)){
-    //       e.summaryCells[5][0].value = 0;
-    //     }else{
-    //       e.summaryCells[5][0].value = totalAgrupamientoIKNV25.tultitlan;
-    //     }
-    //   }
-    //   if(e.summaryCells[6][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.guadalajara)){
-    //       e.summaryCells[6][0].value = 0;
-    //     }else{
-    //       e.summaryCells[6][0].value = totalAgrupamientoIKNV25.guadalajara;
-    //     }
-    //   }
-    //   if(e.summaryCells[7][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.hermosillo)){
-    //       e.summaryCells[7][0].value = 0;
-    //     }else{
-    //       e.summaryCells[7][0].value = totalAgrupamientoIKNV25.hermosillo;
-    //     }
-    //   }
-    //   if(e.summaryCells[8][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.mexicali)){
-    //       e.summaryCells[8][0].value = 0;
-    //     }else{
-    //       e.summaryCells[8][0].value = totalAgrupamientoIKNV25.mexicali;
-    //     }
-    //   }
-    //   if(e.summaryCells[9][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.orizaba)){
-    //       e.summaryCells[9][0].value = 0;
-    //     }else{
-    //       e.summaryCells[9][0].value = totalAgrupamientoIKNV25.orizaba;
-    //     }
-    //   }
-    //   // if(e.summaryCells[10][0].length !== 0){
-    //   //   if(Number.isNaN(totalAgrupamientoIKNV25.ramosArispe)){
-    //   //     e.summaryCells[10][0].value = 0;
-    //   //   }else{
-    //   //     e.summaryCells[10][0].value = totalAgrupamientoIKNV25.ramosArispe;
-    //   //   }
-    //   // }
-    //   if(e.summaryCells[10][0].length !== 0){
-    //     if(Number.isNaN(totalAgrupamientoIKNV25.total)){
-    //       e.summaryCells[10][0].value = 0;
-    //     }else{
-    //       e.summaryCells[10][0].value = totalAgrupamientoIKNV25.total;
-    //     }
-    //   }
-    // }
+    if (e.data.key == '11 NOV') {
+      if(e.summaryCells[4][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.cuautitlan)){
+          e.summaryCells[4][0].value = 0;
+        }else{
+          e.summaryCells[4][0].value = totalAgrupamientoIKNV25.cuautitlan;
+        }
+      }
+      if(e.summaryCells[5][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.tultitlan)){
+          e.summaryCells[5][0].value = 0;
+        }else{
+          e.summaryCells[5][0].value = totalAgrupamientoIKNV25.tultitlan;
+        }
+      }
+      if(e.summaryCells[6][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.guadalajara)){
+          e.summaryCells[6][0].value = 0;
+        }else{
+          e.summaryCells[6][0].value = totalAgrupamientoIKNV25.guadalajara;
+        }
+      }
+      if(e.summaryCells[7][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.hermosillo)){
+          e.summaryCells[7][0].value = 0;
+        }else{
+          e.summaryCells[7][0].value = totalAgrupamientoIKNV25.hermosillo;
+        }
+      }
+      if(e.summaryCells[8][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.mexicali)){
+          e.summaryCells[8][0].value = 0;
+        }else{
+          e.summaryCells[8][0].value = totalAgrupamientoIKNV25.mexicali;
+        }
+      }
+      if(e.summaryCells[9][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.orizaba)){
+          e.summaryCells[9][0].value = 0;
+        }else{
+          e.summaryCells[9][0].value = totalAgrupamientoIKNV25.orizaba;
+        }
+      }
+      // if(e.summaryCells[10][0].length !== 0){
+      //   if(Number.isNaN(totalAgrupamientoIKNV25.ramosArispe)){
+      //     e.summaryCells[10][0].value = 0;
+      //   }else{
+      //     e.summaryCells[10][0].value = totalAgrupamientoIKNV25.ramosArispe;
+      //   }
+      // }
+      if(e.summaryCells[10][0].length !== 0){
+        if(Number.isNaN(totalAgrupamientoIKNV25.total)){
+          e.summaryCells[10][0].value = 0;
+        }else{
+          e.summaryCells[10][0].value = totalAgrupamientoIKNV25.total;
+        }
+      }
+    }
     // if (e.data.key == '12 DIC') {
     //   if(e.summaryCells[4][0].length !== 0){
     //     if(Number.isNaN(totalAgrupamientoIKDC25.cuautitlan)){
@@ -11485,65 +11489,65 @@ onRowPreparedKV2025(e){
       }
 
     }
-    // if (e.data.key == '11 NOV') {
-    //   if(e.summaryCells[4][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.cuautitlan)){
-    //       e.summaryCells[4][0].value = 0;
-    //     }else{
-    //       e.summaryCells[4][0].value = totalKVCNV25.cuautitlan;
-    //     }
-    //   }
-    //   if(e.summaryCells[5][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.tultitlan)){
-    //       e.summaryCells[5][0].value = 0;
-    //     }else{
-    //       e.summaryCells[5][0].value = totalKVCNV25.tultitlan;
-    //     }
-    //   }
-    //   if(e.summaryCells[6][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.guadalajara)){
-    //       e.summaryCells[6][0].value = 0;
-    //     }else{
-    //       e.summaryCells[6][0].value = totalKVCNV25.guadalajara;
-    //     }
-    //   }
-    //   if(e.summaryCells[7][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.hermosillo)){
-    //       e.summaryCells[7][0].value = 0;
-    //     }else{
-    //       e.summaryCells[7][0].value = totalKVCNV25.hermosillo;
-    //     }
-    //   }
-    //   if(e.summaryCells[8][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.mexicali)){
-    //       e.summaryCells[8][0].value = 0;
-    //     }else{
-    //       e.summaryCells[8][0].value = totalKVCNV25.mexicali;
-    //     }
-    //   }
-    //   if(e.summaryCells[9][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.orizaba)){
-    //       e.summaryCells[9][0].value = 0;
-    //     }else{
-    //       e.summaryCells[9][0].value = totalKVCNV25.orizaba;
-    //     }
-    //   }
-    //   // if(e.summaryCells[10][0].length !== 0){
-    //   //   if(Number.isNaN(totalKVCNV25.ramosArispe)){
-    //   //     e.summaryCells[10][0].value = 0;
-    //   //   }else{
-    //   //     e.summaryCells[10][0].value = totalKVCNV25.ramosArispe;
-    //   //   }
-    //   // }
-    //   if(e.summaryCells[10][0].length !== 0){
-    //     if(Number.isNaN(totalKVCNV25.total)){
-    //       e.summaryCells[10][0].value = 0;
-    //     }else{
-    //       e.summaryCells[10][0].value = totalKVCNV25.total;
-    //     }
-    //   }
+    if (e.data.key == '11 NOV') {
+      if(e.summaryCells[4][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.cuautitlan)){
+          e.summaryCells[4][0].value = 0;
+        }else{
+          e.summaryCells[4][0].value = totalKVCNV25.cuautitlan;
+        }
+      }
+      if(e.summaryCells[5][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.tultitlan)){
+          e.summaryCells[5][0].value = 0;
+        }else{
+          e.summaryCells[5][0].value = totalKVCNV25.tultitlan;
+        }
+      }
+      if(e.summaryCells[6][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.guadalajara)){
+          e.summaryCells[6][0].value = 0;
+        }else{
+          e.summaryCells[6][0].value = totalKVCNV25.guadalajara;
+        }
+      }
+      if(e.summaryCells[7][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.hermosillo)){
+          e.summaryCells[7][0].value = 0;
+        }else{
+          e.summaryCells[7][0].value = totalKVCNV25.hermosillo;
+        }
+      }
+      if(e.summaryCells[8][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.mexicali)){
+          e.summaryCells[8][0].value = 0;
+        }else{
+          e.summaryCells[8][0].value = totalKVCNV25.mexicali;
+        }
+      }
+      if(e.summaryCells[9][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.orizaba)){
+          e.summaryCells[9][0].value = 0;
+        }else{
+          e.summaryCells[9][0].value = totalKVCNV25.orizaba;
+        }
+      }
+      // if(e.summaryCells[10][0].length !== 0){
+      //   if(Number.isNaN(totalKVCNV25.ramosArispe)){
+      //     e.summaryCells[10][0].value = 0;
+      //   }else{
+      //     e.summaryCells[10][0].value = totalKVCNV25.ramosArispe;
+      //   }
+      // }
+      if(e.summaryCells[10][0].length !== 0){
+        if(Number.isNaN(totalKVCNV25.total)){
+          e.summaryCells[10][0].value = 0;
+        }else{
+          e.summaryCells[10][0].value = totalKVCNV25.total;
+        }
+      }
 
-    // }
+    }
     // if (e.data.key == '12 DIC') {
     //   if(e.summaryCells[4][0].length !== 0){
     //     if(Number.isNaN(totalKVCDC25.cuautitlan)){
@@ -11807,19 +11811,19 @@ customizeExportDataKV2025(cols, rows){
 
       }
 
-      // if(row.key[0] == '11 NOV'){
+      if(row.key[0] == '11 NOV'){
 
-      //   rowValues[3][0].value = totalKVCNV25.cuautitlan;
-      //   rowValues[4][0].value = totalKVCNV25.tultitlan;
-      //   rowValues[5][0].value = totalKVCNV25.guadalajara;
-      //   rowValues[6][0].value = totalKVCNV25.hermosillo;
-      //   rowValues[7][0].value = totalKVCNV25.mexicali;
-      //   rowValues[8][0].value = totalKVCNV25.orizaba;
-      //   // rowValues[9][0].value = totalKVCNV25.ramosArispe;
-      //   rowValues[9][0].value = totalKVCNV25.total;
+        rowValues[3][0].value = totalKVCNV25.cuautitlan;
+        rowValues[4][0].value = totalKVCNV25.tultitlan;
+        rowValues[5][0].value = totalKVCNV25.guadalajara;
+        rowValues[6][0].value = totalKVCNV25.hermosillo;
+        rowValues[7][0].value = totalKVCNV25.mexicali;
+        rowValues[8][0].value = totalKVCNV25.orizaba;
+        // rowValues[9][0].value = totalKVCNV25.ramosArispe;
+        rowValues[9][0].value = totalKVCNV25.total;
 
-      // }
-      // if(row.key[0] == '12 NOV'){
+      }
+      // if(row.key[0] == '12 DIC'){
 
       //   rowValues[3][0].value = totalKVCDC25.cuautitlan;
       //   rowValues[4][0].value = totalKVCDC25.tultitlan;
@@ -12186,64 +12190,64 @@ onRowPreparedIV2025(e){
         }
       }
     }
-  //   if (e.data.key == '11 NOV') {
-  //     if(e.summaryCells[4][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.cuautitlan)){
-  //         e.summaryCells[4][0].value = 0;
-  //       }else{
-  //         e.summaryCells[4][0].value = totalIVCNV25.cuautitlan;
-  //       }
-  //     }
-  //     if(e.summaryCells[5][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.tultitlan)){
-  //         e.summaryCells[5][0].value = 0;
-  //       }else{
-  //         e.summaryCells[5][0].value = totalIVCNV25.tultitlan;
-  //       }
-  //     }
-  //     if(e.summaryCells[6][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.guadalajara)){
-  //         e.summaryCells[6][0].value = 0;
-  //       }else{
-  //         e.summaryCells[6][0].value = totalIVCNV25.guadalajara;
-  //       }
-  //     }
-  //     if(e.summaryCells[7][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.hermosillo)){
-  //         e.summaryCells[7][0].value = 0;
-  //       } else{
-  //         e.summaryCells[7][0].value = totalIVCNV25.hermosillo;
-  //       }
-  //     }
-  //     if(e.summaryCells[8][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.mexicali)){
-  //         e.summaryCells[8][0].value = 0;
-  //       }else{
-  //         e.summaryCells[8][0].value = totalIVCNV25.mexicali;
-  //       }
-  //     }
-  //     if(e.summaryCells[9][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.orizaba)){
-  //         e.summaryCells[9][0].value = 0;
-  //       }else{
-  //         e.summaryCells[9][0].value = totalIVCNV25.orizaba;
-  //       }
-  //     }
-  //     // if(e.summaryCells[10][0].length !== 0){
-  //     //   if(Number.isNaN(totalIVCNV25.ramosArispe)){
-  //     //     e.summaryCells[10][0].value = 0;
-  //     //   }else{
-  //     //     e.summaryCells[10][0].value = totalIVCNV25.ramosArispe;
-  //     //   }
-  //     // }
-  //     if(e.summaryCells[10][0].length !== 0){
-  //       if(Number.isNaN(totalIVCNV25.total)){
-  //         e.summaryCells[10][0].value = 0;
-  //       }else{
-  //         e.summaryCells[10][0].value = totalIVCNV25.total;
-  //       }
-  //     }
-  //   }
+    if (e.data.key == '11 NOV') {
+      if(e.summaryCells[4][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.cuautitlan)){
+          e.summaryCells[4][0].value = 0;
+        }else{
+          e.summaryCells[4][0].value = totalIVCNV25.cuautitlan;
+        }
+      }
+      if(e.summaryCells[5][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.tultitlan)){
+          e.summaryCells[5][0].value = 0;
+        }else{
+          e.summaryCells[5][0].value = totalIVCNV25.tultitlan;
+        }
+      }
+      if(e.summaryCells[6][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.guadalajara)){
+          e.summaryCells[6][0].value = 0;
+        }else{
+          e.summaryCells[6][0].value = totalIVCNV25.guadalajara;
+        }
+      }
+      if(e.summaryCells[7][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.hermosillo)){
+          e.summaryCells[7][0].value = 0;
+        } else{
+          e.summaryCells[7][0].value = totalIVCNV25.hermosillo;
+        }
+      }
+      if(e.summaryCells[8][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.mexicali)){
+          e.summaryCells[8][0].value = 0;
+        }else{
+          e.summaryCells[8][0].value = totalIVCNV25.mexicali;
+        }
+      }
+      if(e.summaryCells[9][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.orizaba)){
+          e.summaryCells[9][0].value = 0;
+        }else{
+          e.summaryCells[9][0].value = totalIVCNV25.orizaba;
+        }
+      }
+      // if(e.summaryCells[10][0].length !== 0){
+      //   if(Number.isNaN(totalIVCNV25.ramosArispe)){
+      //     e.summaryCells[10][0].value = 0;
+      //   }else{
+      //     e.summaryCells[10][0].value = totalIVCNV25.ramosArispe;
+      //   }
+      // }
+      if(e.summaryCells[10][0].length !== 0){
+        if(Number.isNaN(totalIVCNV25.total)){
+          e.summaryCells[10][0].value = 0;
+        }else{
+          e.summaryCells[10][0].value = totalIVCNV25.total;
+        }
+      }
+    }
   //   if (e.data.key == '12 DIC') {
   //     if(e.summaryCells[4][0].length !== 0){
   //       if(Number.isNaN(totalIVCDC25.cuautitlan)){
@@ -12503,17 +12507,17 @@ customizeExportDataIV2025(cols, rows){
       // rowValues[9][0].value = totalIVCOC25.ramosArispe;
       rowValues[9][0].value = totalIVCOC25.total;
     }
-    // if(row.key[0] == '11 NOV'){
+    if(row.key[0] == '11 NOV'){
 
-    //   rowValues[3][0].value = totalIVCNV25.cuautitlan;
-    //   rowValues[4][0].value = totalIVCNV25.tultitlan;
-    //   rowValues[5][0].value = totalIVCNV25.guadalajara;
-    //   rowValues[6][0].value = totalIVCNV25.hermosillo;
-    //   rowValues[7][0].value = totalIVCNV25.mexicali;
-    //   rowValues[8][0].value = totalIVCNV25.orizaba;
-    //   // rowValues[9][0].value = totalIVCNV25.ramosArispe;
-    //   rowValues[9][0].value = totalIVCNV25.total;
-    // }
+      rowValues[3][0].value = totalIVCNV25.cuautitlan;
+      rowValues[4][0].value = totalIVCNV25.tultitlan;
+      rowValues[5][0].value = totalIVCNV25.guadalajara;
+      rowValues[6][0].value = totalIVCNV25.hermosillo;
+      rowValues[7][0].value = totalIVCNV25.mexicali;
+      rowValues[8][0].value = totalIVCNV25.orizaba;
+      // rowValues[9][0].value = totalIVCNV25.ramosArispe;
+      rowValues[9][0].value = totalIVCNV25.total;
+    }
 
     // if(row.key[0] == '12 DIC'){
 

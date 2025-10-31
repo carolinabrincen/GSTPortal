@@ -79,6 +79,7 @@
             <dxi-column dataField="operacion" caption="Operación"></dxi-column>
             <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
             <dxi-column dataField="baja" caption="Baja" dataType="date" format="dd/MM/yyyy"></dxi-column>
+            <dxi-column dataField="laborado" caption="Laborado"></dxi-column>
 
             <dxi-column caption="MESES ANTERIORES" alignment="center">
             <dxi-column dataField="mes1" [caption]="titulosMes?.mes1" [format]="formatValue"></dxi-column>
@@ -179,6 +180,7 @@
                       <dxi-column dataField="semana" caption="Semana" [groupIndex]="0"></dxi-column>
                       <!-- <dxi-column dataField="semana" caption="Semana"></dxi-column> -->
                       <dxi-column dataField="fecha" caption="Fecha" alignment="center" dataType="date" format="dd/MM/yyyy"></dxi-column> 
+                      <dxi-column dataField="concepto" caption="Concepto" alignment="center" [format]="formatValue"></dxi-column>
                       <dxi-column dataField="total" caption="Total" alignment="center" [format]="formatValue"></dxi-column>
                       <!-- <dxi-column dataField="" caption="" [width]="30"></dxi-column> -->
                     
@@ -191,7 +193,7 @@
                       </dxo-summary>
                   </dx-data-grid>
                 </dxi-item>
-                
+                  
                 <dxi-item title="VIAJES PENDIENTES">
                   <dx-data-grid #viajesPDL id="viajesPDL" [dataSource]="viajesPenLiq" [height]="450" [showBorders]="true" [columnAutoWidth]="true"
                   (onRowPrepared)="onRowPreparedVPL($event)" (onCellPrepared)="onCellPreparedVPL($event)">
