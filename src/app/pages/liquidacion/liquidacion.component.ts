@@ -2,7 +2,7 @@ import { NgModule, Component, ViewChild, enableProdMode, ChangeDetectionStrategy
 import { UnidadesService } from 'src/app/services/unidades/unidades.services';
 import DataGrid from "devextreme/ui/data_grid";
 import { IngresosModel } from 'src/app/shared/models/ingresos/ingresos.models';
-
+import { CommonModule, formatDate } from '@angular/common';
 import { DxDataGridComponent, DxFormComponent} from 'devextreme-angular';
 import { CurrencyPipe, NumberFormatStyle } from '@angular/common';
 import { DxChartComponent, } from 'devextreme-angular';
@@ -16,6 +16,9 @@ import { LiquidacionService } from 'src/app/services/liquidacion/liquidacion';
 import { Liquidacion} from 'src/app/shared/models/liquidacion/liquidacion.model'
 import notify from 'devextreme/ui/notify';
 import { StorageService } from '../../shared/services/storage.service';
+
+import { analyticsPanelItems } from 'src/app/types/resource';
+// import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
@@ -65,6 +68,9 @@ export class LiquidacionComponent implements OnInit {
   observaciones: any[] = [];
   viajesPenLiq: any[] = [];
   LiqPag: any[] = [];
+  bajasMA: any[] = [];
+  salesByCategory: any[] = [];
+  salesByDateAndCategory: any[] = null;
 
   cvetra: number = 0;
   cvetra2: number = 0;
@@ -91,7 +97,12 @@ export class LiquidacionComponent implements OnInit {
 
   username: string
 
-
+  visualRange = [1, 12]
+  customRange = analyticsPanelItems[5].value.split('/').map((d) => new Date(d));
+  isLoading: boolean = false;
+  periodoMA = ['Mensual', 'Anual'];
+  groupByPeriods = ['Mensual', 'Anual'];
+  
   constructor(
     private liquidacionService: LiquidacionService,
     private service: ServiceSales,
@@ -114,8 +125,27 @@ export class LiquidacionComponent implements OnInit {
         };
   }
 
+   loadData = (groupBy: string) => {
+    // const [startDate, endDate] = analyticsPanelItems[4].value.split('/');
+    // const tasks = [
+    //   ['sales', this.service.getSales(startDate, endDate)],
+    //   ['salesByDateAndCategory', this.service.getSalesByOrderDate(groupBy)],
+    // ].map(([dataName, loader]: [string, Observable<Sale[]>]) => {
+    //     const task = loader.pipe(share());
+    //     task.subscribe((data) => this[dataName] = data);
+    //     return task;
+    //   }
+    // );
+
+    // forkJoin(tasks).subscribe(() => {
+    //   this.isLoading = false;
+    // });
+  };
+
   ngOnInit(): void {
     // this.getDisponiblidadAnual();
+    // this.loadData(this.groupByPeriods[1].toLowerCase());
+//     this.visualRange = this.customRange;
     this.getUserName();
   }
 
@@ -138,6 +168,16 @@ export class LiquidacionComponent implements OnInit {
      
 
 
+      this.loadingVisible = false;
+    })
+  }
+
+  getBajas() {
+    this.bajasMA = [];
+    this.loadingVisible = true;
+    this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+      this.bajasMA = response.data.bajasMensuales;
+     // this. periodoMA = ['Mensual', 'Anual'];
       this.loadingVisible = false;
     })
   }
@@ -187,6 +227,7 @@ export class LiquidacionComponent implements OnInit {
     if (this.formFilter.Fecha !== "") {
 
       this.getLiquidacion();
+      this.getBajas();
       }else{
         notify({
           message: "Debe seleccionar la Fecha",
@@ -263,6 +304,48 @@ export class LiquidacionComponent implements OnInit {
   }
 
 
+
+    onRangeChanged = ({value: dates}) => {
+    const [startDate, endDate] = dates.map((date) => formatDate(date, 'yyyy-MM-dd', 'en'));
+
+    //this.isLoading = true;
+
+    // this.service.getSalesByCategory(startDate, endDate)
+    //   .subscribe((result) => {
+    //     this.salesByCategory = result;
+    //     this.isLoading = false;
+    //   });
+  };
+
+    selectionChange({item: period}: any) {
+   // this.isLoading = true;
+
+    // this.service.getSalesByOrderDate(period.toLowerCase())
+    //   .subscribe((result) => {
+    //     this.salesByDateAndCategory = result;
+    //     this.isLoading = false;
+    //   })
+  }
+
+  selectionMotivosB({item: period}: any) {
+    if(period == "Anual"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales;
+        console.log("GET ANUAL")
+        this.loadingVisible = false;
+      })
+    }else if(period == "Mensual"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales;
+        console.log("GET MENSUAL")
+        this.loadingVisible = false;
+      })
+    }
+  }
   ngAfterViewInit() {
 
     // this.pivotGrid.instance.bindChart(this.chart.instance, {

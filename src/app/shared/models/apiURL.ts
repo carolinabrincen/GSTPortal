@@ -150,5 +150,6 @@ export enum API_URLS{
     GET_USUARIOS_ACTIVOS = 'api/General/GetUsuariosActivos',
     GET_USUARIOS_PERMISOS = 'api/General/GetUsuarioPermiso/',
     GET_DETALLES_OPERADOR = 'api/Pagos/GetDetallesOperador/',
+    GET_MOTIVOS_BAJAS = 'api/Pagos/GetMotivosBajas/',
 
 }

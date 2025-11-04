@@ -21,6 +21,9 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
 
   import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
+import { DxoValueAxisModule } from 'devextreme-angular/ui/nested';
+import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
+
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
   import { IngresosComponent } from './pages/ingresosAnuales/ingresos.component';
@@ -61,6 +64,11 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { CardAnalyticsComponent } from './components/library/card-analytics/card-analytics.component';
   import { CardMenuComponent } from './components/library/card-menu/card-menu.component';
 
+  import { ToolbarAnalyticsComponent } from './components/utils/toolbar-analytics/toolbar-analytics.component';
+  import { SalesByRangeCardComponent } from './components/utils/sales-by-range-card/sales-by-range-card.component';
+  import { CardAnalytics2Component } from './components/library/card-analytics2/card-analytics2.component';
+  import { SalesRangeCardComponent } from './components/utils/sales-range-card/sales-range-card.component';
+  import { SalesPerformanceCardComponent } from './components/utils/sales-performance-card/sales-performance-card.component';
 
 const routes: Routes = [
   {
@@ -103,7 +111,6 @@ const routes: Routes = [
     component: ChangePasswordFormComponent,
     canActivate: [ AuthGuardService ]
   },
-
   {
     path: 'rentabilidadcontable',
     component: RentContComponent,
@@ -123,14 +130,12 @@ const routes: Routes = [
     path: 'ingresosAnuales',
     component: IngresosComponent,
     canActivate: [ AuthGuardService ]
-  }
-  ,
+  },
   {
     path: 'kilometros',
     component: KilometrosComponent,
     canActivate: [ AuthGuardService ]
   },
-  
   {
     path: 'costos',
     component: CostosComponent,
@@ -286,6 +291,32 @@ const routes: Routes = [
     canActivate: [ AuthGuardService  ]
   },
   {
+    path: 'toolbar',
+    component: ToolbarAnalyticsComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
+    path: 'salesCard',
+    component: SalesByRangeCardComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
+    path: 'cardAnalytic2',
+    component: CardAnalytics2Component,
+    canActivate: [ AuthGuardService  ]
+  },
+   {
+    path: 'salesRange',
+    component: SalesRangeCardComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
+    path: 'salesPerformace',
+    component: SalesPerformanceCardComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -331,7 +362,9 @@ const routes: Routes = [
     DxPieChartModule,
     ApplyPipeModule,
     DxFunnelModule,
-    DxDropDownButtonModule
+    DxDropDownButtonModule,
+    DxoValueAxisModule,
+    DxRangeSelectorModule
   ],
   providers: [AuthGuardService],
   exports: [
@@ -380,7 +413,12 @@ const routes: Routes = [
     CardMenuComponent,
     AnticiposComponent,
     LiquidacionComponent,
-    PermisosComponent
+    PermisosComponent,
+    ToolbarAnalyticsComponent,
+    SalesByRangeCardComponent,
+    CardAnalytics2Component,
+    SalesRangeCardComponent,
+    SalesPerformanceCardComponent
    
   ]
 })

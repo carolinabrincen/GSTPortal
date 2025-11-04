@@ -22,41 +22,19 @@
     <div>
         <br><br>
 
-        <!--==========================Bar and Line Chart PAGOS X CLASIFICADO==================-->
-        <!-- <dx-chart id="chart" title="Pagos por Mes" [dataSource]="graficaPXClasificado">
-            <dxi-series valueField="vencido" name="Vencido" color="#ed7d2a"></dxi-series>
-            <dxi-series valueField="corriente" name="Corriente" color="#6db467"></dxi-series>
+        <!--==========================Grafica==================-->
+        <dx-scroll-view class="view-wrapper-scroll">
+          <div class="view-wrapper">
+            <!-- <toolbar-analytics titleText="Sales Analysis"> </toolbar-analytics> -->
 
-            <dxi-series valueField="total" name="Total" type="line" color="#65686a" [width]=".5">
-              <dxo-label [visible]="true" position="outside" [rotationAngle]="-90"
-              backgroundColor="transparent" [verticalOffset]="15" [format]="formatValue">
-                  <dxo-font size="12" color="black" weight="bold"></dxo-font>
-              </dxo-label>
-
-            </dxi-series>
-
-            <dxi-value-axis position="right">
-              <dxo-title text=""></dxo-title>
-            </dxi-value-axis>
-            
-            <dxo-argument-axis [visualRange]="chart_visualRange" [tickInterval]="1"></dxo-argument-axis>
-
-            <dxo-common-series-settings argumentField="dia" type="stackedBar">
-            </dxo-common-series-settings>
-            <dxo-legend
-              verticalAlignment="bottom"
-              horizontalAlignment="center"
-              itemTextPosition="top"
-            >
-            </dxo-legend>
-            <dxo-export [enabled]="true"></dxo-export>
-            <dxo-tooltip
-              [enabled]="true"
-              location="edge"
-              [customizeTooltip]="customizeTooltip"
-            >
-            </dxo-tooltip>
-          </dx-chart> -->
+            <div class="cards wide">
+              <!-- <sales-range-card [data]="bajasMensual" [(visualRange)]="visualRange" (salesRangeChanged)="onRangeChanged($event)"></sales-range-card> -->
+              <sales-by-range-card [groupByPeriods]="periodoMA" [data]="bajasMA" (performancePeriodChanged)="selectionMotivosB($event)"></sales-by-range-card>
+              <!-- <sales-performance-card [groupByPeriods]="groupByPeriods" [salesByDateAndCategory]="bajasMensual" [visualRange]="visualRange" (performancePeriodChanged)="selectionChange($event)"></sales-performance-card> -->
+            </div>
+          </div>
+        </dx-scroll-view>
+        <dx-load-panel container=".view-wrapper" [position]="{ of: '.content' }" [visible]="isLoading" [showPane]="true"></dx-load-panel>
           <!--====================================Finish chart==========-->     
           <br><br><br>
 

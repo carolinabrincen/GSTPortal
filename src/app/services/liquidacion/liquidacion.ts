@@ -43,6 +43,11 @@ export class LiquidacionService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_DETALLES_OPERADOR+fecha+'/'+cvetra), this.httpOptions);
   }
 
+  getBajas(fecha: any){
+    console.log(fecha)
+    return this.get<any>((this.API_URL + API_URLS.GET_MOTIVOS_BAJAS+fecha), this.httpOptions);
+  }
+
   postObservaciones(cvetra: number, idusuario: string, observaciones: string){
     let body = {
       cvetra: cvetra,
