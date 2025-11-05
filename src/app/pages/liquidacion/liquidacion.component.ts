@@ -18,6 +18,7 @@ import notify from 'devextreme/ui/notify';
 import { StorageService } from '../../shared/services/storage.service';
 
 import { analyticsPanelItems } from 'src/app/types/resource';
+import { Options as DataSourceConfig } from 'devextreme/ui/pivot_grid/data_source';
 // import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 
 import { Workbook } from 'exceljs';
@@ -64,6 +65,7 @@ export class LiquidacionComponent implements OnInit {
   ];
 
   liquidacion: any[] = [];
+  graficaUO: any[] = [];
   titulosMes: any;
   observaciones: any[] = [];
   viajesPenLiq: any[] = [];
@@ -101,6 +103,7 @@ export class LiquidacionComponent implements OnInit {
   customRange = analyticsPanelItems[5].value.split('/').map((d) => new Date(d));
   isLoading: boolean = false;
   periodoMA = ['Mensual', 'Anual'];
+  periodoUO = ['Udn', 'Operación'];
   groupByPeriods = ['Mensual', 'Anual'];
   
   constructor(
@@ -162,27 +165,23 @@ export class LiquidacionComponent implements OnInit {
     this.liquidacionService.getLiquidacion(this.formFilter.Fecha.toISOString()).subscribe((response) => {
       this.titulosMes = response.data;
       this.liquidacion = response.data.spLiquidacionesMensuales;
-      console.log(this.titulosMes)
+      this.graficaUO = response.data.graficaUDN;
+      console.log(response.data)
       //this.graficaPXClasificado = myGrafica;
-
-     
-
-
       this.loadingVisible = false;
     })
   }
 
   getBajas() {
     this.bajasMA = [];
-    this.loadingVisible = true;
+    //this.loadingVisible = true;
     this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
       this.bajasMA = response.data.bajasMensuales;
-      console.log(this.bajasMA)
+      //console.log(this.bajasMA)
      // this. periodoMA = ['Mensual', 'Anual'];
-      this.loadingVisible = false;
+      //this.loadingVisible = false;
     })
   }
-
   /*======================SELECTE FUNCIONS================================================*/
 
   verTotal(value){
@@ -347,6 +346,31 @@ export class LiquidacionComponent implements OnInit {
       })
     }
   }
+
+  selectionGraficaUO({item: period}: any) {
+    if(period == "Udn"){
+      this.graficaUO = [];
+
+      this.loadingVisible = true;
+      this.liquidacionService.getLiquidacion(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.graficaUO = response.data.graficaUDN;
+        console.log(response.data)
+        this.loadingVisible = false;
+      });
+
+    }else if(period == "Operación"){
+      this.graficaUO = [];
+
+      this.loadingVisible = true;
+      this.liquidacionService.getLiquidacion(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.graficaUO = response.data.graficaOperacion;
+        console.log(response.data)
+        this.loadingVisible = false;
+      });
+
+    }
+  }
+
   ngAfterViewInit() {
 
     // this.pivotGrid.instance.bindChart(this.chart.instance, {
@@ -748,6 +772,102 @@ export class LiquidacionComponent implements OnInit {
   }
   }
 
+
+
+    onRowPreparedG(e: any){
+  //  if (e.rowType == 'data') {
+
+  //   e.cells.forEach((c: any) => {
+
+  //     if (c.value && c.value.toString().startsWith('-')) {
+  //       if(c.cellElement?.style !== undefined){
+  //         c.cellElement.style.color = "red";
+  //       }
+
+  //     }
+
+  //     if (c.cellElement) {
+  //       if(c.columnIndex == 12){
+  //         c.cellElement.style.fontWeight = "bolder";
+  //         c.cellElement.style.fontSize = "15px";
+  //         c.cellElement.style.background = "#cdcbcb";
+  //       }
+
+  //       if(c.columnIndex == 15){
+  //         c.cellElement.style.fontWeight = "bolder";
+  //         c.cellElement.style.fontSize = "15px";
+  //         c.cellElement.style.background = "#cdcbcb";
+  //       }
+
+  //     }
+  //   });
+  // }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+
+
+      // if(c.columnIndex == 11){
+      //   c.cellElement.style.fontWeight = "bolder";
+      //   c.cellElement.style.fontSize = "15px";
+      //   c.cellElement.style.background = "#cdcbcb";
+      // }
+
+      // if(c.columnIndex == 17){
+      //   c.cellElement.style.fontWeight = "bolder";
+      //   c.cellElement.style.fontSize = "15px";
+      //   c.cellElement.style.background = "#cdcbcb";
+      // }
+
+      // if(c.columnIndex == 20){
+      //     c.cellElement.style.fontWeight = "bolder";
+      //     c.cellElement.style.fontSize = "15px";
+      //     c.cellElement.style.background = "#cdcbcb";
+      //  }
+
+      // if(c.columnIndex == 21){
+      //     c.cellElement.style.fontWeight = "bolder";
+      //     c.cellElement.style.fontSize = "15px";
+      //     c.cellElement.style.background = "#cdcbcb";
+      // }
+
+    });
+  }
+
+    if (e.rowType == 'group') {
+
+     //console.log(e)
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+
+  }
+
+  onCellPreparedG(e: any){
+  if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+      });
+    }
+  }
   /**=========================PAGOS POR MES=========================================== */
   onRowPreparedPXM(e: any){
     // if (e.rowType == 'data') {

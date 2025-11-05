@@ -22,22 +22,47 @@
     <div>
         <br><br>
 
-        <!--==========================Grafica==================-->
-        <dx-scroll-view class="view-wrapper-scroll">
-          <div class="view-wrapper">
-            <!-- <toolbar-analytics titleText="Sales Analysis"> </toolbar-analytics> -->
+        <dx-tab-panel>
+          <dxi-item title="ACTUAL">
+            <br><br>
+          
+            <!--==========================Grafica==================-->
+            <dx-scroll-view class="view-wrapper-scroll">
+              <div class="view-wrapper">
+                <!-- <toolbar-analytics titleText="Sales Analysis"> </toolbar-analytics> -->
 
-            <div class="cards wide">
-              <!-- <sales-range-card [data]="bajasMensual" [(visualRange)]="visualRange" (salesRangeChanged)="onRangeChanged($event)"></sales-range-card> -->
-              <sales-by-range-card [groupByPeriods]="periodoMA" [data]="bajasMA" (performancePeriodChanged)="selectionMotivosB($event)"></sales-by-range-card>
-              <!-- <sales-performance-card [groupByPeriods]="groupByPeriods" [salesByDateAndCategory]="bajasMensual" [visualRange]="visualRange" (performancePeriodChanged)="selectionChange($event)"></sales-performance-card> -->
-            </div>
-          </div>
-        </dx-scroll-view>
-        <dx-load-panel container=".view-wrapper" [position]="{ of: '.content' }" [visible]="isLoading" [showPane]="true"></dx-load-panel>
-          <!--====================================Finish chart==========-->     
-          <br><br><br>
+                <div class="cards wide">
+                  <!-- <sales-range-card [data]="bajasMensual" [(visualRange)]="visualRange" (salesRangeChanged)="onRangeChanged($event)"></sales-range-card> -->
+                  <sales-range-grafica [groupByPeriods]="periodoUO" [data]="graficaUO" (performancePeriodChanged)="selectionGraficaUO($event)"></sales-range-grafica>
+                  <!-- <sales-performance-card [groupByPeriods]="groupByPeriods" [salesByDateAndCategory]="bajasMensual" [visualRange]="visualRange" (performancePeriodChanged)="selectionChange($event)"></sales-performance-card> -->
+                </div>
+              </div>
+            </dx-scroll-view>
+            <dx-load-panel container=".view-wrapper" [position]="{ of: '.content' }" [visible]="isLoading" [showPane]="true"></dx-load-panel>
+              <!--====================================Finish chart==========-->   
 
+          </dxi-item>
+          <dxi-item title="BAJAS">
+            <!--==========================Grafica==================-->
+            <dx-scroll-view class="view-wrapper-scroll">
+              <div class="view-wrapper">
+                <!-- <toolbar-analytics titleText="Sales Analysis"> </toolbar-analytics> -->
+
+                <div class="cards wide">
+                  <!-- <sales-range-card [data]="bajasMensual" [(visualRange)]="visualRange" (salesRangeChanged)="onRangeChanged($event)"></sales-range-card> -->
+                  <sales-by-range-card [groupByPeriods]="periodoMA" [data]="bajasMA" (performancePeriodChanged)="selectionMotivosB($event)"></sales-by-range-card>
+                  <!-- <sales-performance-card [groupByPeriods]="groupByPeriods" [salesByDateAndCategory]="bajasMensual" [visualRange]="visualRange" (performancePeriodChanged)="selectionChange($event)"></sales-performance-card> -->
+                </div>
+              </div>
+            </dx-scroll-view>
+            <dx-load-panel container=".view-wrapper" [position]="{ of: '.content' }" [visible]="isLoading" [showPane]="true"></dx-load-panel>
+              <!--====================================Finish chart==========-->     
+              <br><br><br>
+          </dxi-item>
+        </dx-tab-panel>
+
+
+        <br><br><br>
         <!--==============================================PAGOS POR DIA=================================================================================-->
         <dx-data-grid  #gridCartera id="gridContainer2" [dataSource]="liquidacion" [height]="500"[showBorders]="true" [columnAutoWidth]="true"
         (onRowPrepared)="onRowPreparedPXD($event)" (onCellPrepared)="onCellPreparedPXD($event)">
