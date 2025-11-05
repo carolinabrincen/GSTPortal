@@ -27,19 +27,15 @@
     <dxo-legend [visible]="false"></dxo-legend>
 
     <dxo-common-series-settings
-      argumentField="motivo"
-      valueField="bajas"
-      type="bar"
-      [ignoreEmptyPoints]="true"
-    >
+      argumentField="motivo" valueField="bajas" type="bar" [ignoreEmptyPoints]="true">
     </dxo-common-series-settings>
 
     <dxo-series-template nameField="motivo"> </dxo-series-template>
     <dxo-size [height]="270"></dxo-size>
-    <dxo-value-axis>
+    <!-- <dxo-value-axis>
       <dxo-label>
         <dxo-format type="largeNumber"></dxo-format>
       </dxo-label>
-    </dxo-value-axis>
+    </dxo-value-axis> -->
   </dx-chart>
 </card-analytics>

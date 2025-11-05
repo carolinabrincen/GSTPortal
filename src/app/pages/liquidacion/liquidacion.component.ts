@@ -177,6 +177,7 @@ export class LiquidacionComponent implements OnInit {
     this.loadingVisible = true;
     this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
       this.bajasMA = response.data.bajasMensuales;
+      console.log(this.bajasMA)
      // this. periodoMA = ['Mensual', 'Anual'];
       this.loadingVisible = false;
     })
@@ -333,7 +334,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales;
-        console.log("GET ANUAL")
+        console.log("GET ANUAL", this.bajasMA)
         this.loadingVisible = false;
       })
     }else if(period == "Mensual"){
@@ -341,7 +342,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales;
-        console.log("GET MENSUAL")
+        console.log("GET MENSUAL", this.bajasMA)
         this.loadingVisible = false;
       })
     }
