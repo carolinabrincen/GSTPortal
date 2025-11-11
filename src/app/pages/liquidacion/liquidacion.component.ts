@@ -103,7 +103,7 @@ export class LiquidacionComponent implements OnInit {
   customRange = analyticsPanelItems[5].value.split('/').map((d) => new Date(d));
   isLoading: boolean = false;
   periodoMA = ['Mensual', 'Anual'];
-  periodoUdn = ['TODOS', 'ORIZABA', 'GUADALAJARA', 'RAMOS ARIZPE', 'MEXICALI', 'HERMOSILLO', 'CUATITLAN', 'TULTITLAN'];
+  periodoUdn = ['TODOS', 'CUATITLAN', 'GUADALAJARA', 'HERMOSILLO', 'MEXICALI', 'ORIZABA', 'RAMOS ARIZPE', 'TULTITLAN'];
   periodoUO = ['Udn', 'Operación'];
   groupByPeriods = ['Mensual', 'Anual'];
   
