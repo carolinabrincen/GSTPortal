@@ -6,9 +6,9 @@
     <dx-drop-down-button *ngIf="item == 'Mensual'" stylingMode="text" text="UDN" [useSelectMode]="true" [items]="groupByUdn" (onSelectionChanged)="selectUdnMensual($event)" [width]="130"></dx-drop-down-button>  
     <dx-drop-down-button *ngIf="item == 'Anual'"stylingMode="text" text="UDN" [useSelectMode]="true" [items]="groupByUdn" (onSelectionChanged)="selectUdnAnual($event)" [width]="130"></dx-drop-down-button>  
   </div>
-  <dx-pie-chart class="sales-pie" [dataSource]="data" type="doughnut" [diameter]="0.8" [innerRadius]="0.6" >
+  <dx-pie-chart class="sales-pie" [dataSource]="data" type="doughnut" [diameter]="0.8" [innerRadius]="0.6">
     <dxi-series argumentField="motivo" valueField="porcentaje">
-      <dxo-label backgroundColor="none" [radialOffset]="-20" [visible]="true" [customizeText]="customizeSaleText">
+      <dxo-label backgroundColor="none" [radialOffset]="-20" [visible]="true" format="percent">
         <dxo-font color="#757575" [size]="15"></dxo-font>
       </dxo-label>
     </dxi-series>

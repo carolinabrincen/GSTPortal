@@ -19,9 +19,20 @@ export class SalesByRangeCardComponent {
 
   item: string = "Seleccione";
 
-  customizeSaleText(arg: { percentText: string }) {
-    return arg.percentText;
+  customizeSaleText(value) {
+    const total = value.toFixed(2);
+
+    return total+" %";
+    //return arg.percentText;
   }
+
+  perosnalizeStyle(value){
+  //console.log(value)
+
+   const total = value.toFixed(2);
+
+    return total+" %";
+}
 
   selectBA(event) {
     this.performancePeriodChanged.emit(event);
