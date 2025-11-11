@@ -103,6 +103,7 @@ export class LiquidacionComponent implements OnInit {
   customRange = analyticsPanelItems[5].value.split('/').map((d) => new Date(d));
   isLoading: boolean = false;
   periodoMA = ['Mensual', 'Anual'];
+  periodoUdn = ['TODOS', 'ORIZABA', 'GUADALAJARA', 'RAMOS ARIZPE', 'MEXICALI', 'HERMOSILLO', 'CUATITLAN', 'TULTITLAN'];
   periodoUO = ['Udn', 'Operación'];
   groupByPeriods = ['Mensual', 'Anual'];
   
@@ -342,6 +343,142 @@ export class LiquidacionComponent implements OnInit {
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales;
         console.log("GET MENSUAL", this.bajasMA)
+        this.loadingVisible = false;
+      })
+    }
+  }
+
+    selectionUdnMen({item: period}: any) {
+    if(period == "TODOS"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales;
+        console.log("MEN ==> TODOS")
+        this.loadingVisible = false;
+      })
+    }else if(period == "ORIZABA"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "ORIZABA");;
+        console.log("MEN ==> ORIZABA", this.bajasMA)
+        this.loadingVisible = false;
+    })
+    }else if(period == "GUADALAJARA"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "GUADALAJARA");;
+        console.log("MEN ==> GUADALAJARA")
+        this.loadingVisible = false;
+      })
+    }else if(period == "RAMOS ARIZPE"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "RAMOS ARIZPE");;
+        console.log("MEN ==> RAMOS ARIZPE")
+        this.loadingVisible = false;
+      })
+    }else if(period == "MEXICALI"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "MEXICALI");;
+        console.log("MEN ==> MEXICALI")
+        this.loadingVisible = false;
+      })
+    }else if(period == "HERMOSILLO"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "HERMOSILLO");;
+        console.log("MEN ==> HERMOSILLO")
+        this.loadingVisible = false;
+      })
+    }else if(period == "CUATITLAN"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "CUATITLAN");;
+        console.log("MEN ==> CUATITLAN")
+        this.loadingVisible = false;
+      })
+    }else if(period == "TULTITLAN"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "TULTITLAN");;
+        console.log("MEN ==> TULTITLAN")
+        this.loadingVisible = false;
+      })
+    }
+  }
+  
+  selectionUdnAnu({item: period}: any) {
+    if(period == "TODOS"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales;
+        console.log("ANU ==> TODOS")
+        this.loadingVisible = false;
+      })
+    }else if(period == "ORIZABA"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "ORIZABA");;
+        console.log("ANU ==> ORIZABA", this.bajasMA)
+        this.loadingVisible = false;
+    })
+    }else if(period == "GUADALAJARA"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "GUADALAJARA");;
+        console.log("ANU ==> GUADALAJARA")
+        this.loadingVisible = false;
+      })
+    }else if(period == "RAMOS ARIZPE"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "RAMOS ARIZPE");;
+        console.log("ANU ==> RAMOS ARIZPE")
+        this.loadingVisible = false;
+      })
+    }else if(period == "MEXICALI"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "MEXICALI");;
+        console.log("ANU ==> MEXICALI")
+        this.loadingVisible = false;
+      })
+    }else if(period == "HERMOSILLO"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "HERMOSILLO");;
+        console.log("ANU ==> HERMOSILLO")
+        this.loadingVisible = false;
+      })
+    }else if(period == "CUATITLAN"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "CUATITLAN");;
+        console.log("ANU ==> CUATITLAN")
+        this.loadingVisible = false;
+      })
+    }else if(period == "TULTITLAN"){
+      this.bajasMA = [];
+      this.loadingVisible = true;
+      this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "TULTITLAN");;
+        console.log("ANU ==> TULTITLAN")
         this.loadingVisible = false;
       })
     }

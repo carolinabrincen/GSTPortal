@@ -10,8 +10,14 @@ export class SalesByRangeCardComponent {
   @Input() data: SalesOrOpportunitiesByCategory;
 
   @Input() groupByPeriods: string[];
+  @Input() groupByUdn: string[];
 
   @Output() performancePeriodChanged = new EventEmitter();
+  @Output() performanceUdnMenChanged = new EventEmitter();
+  @Output() performanceUdnAnuChanged = new EventEmitter();
+
+
+  item: string = "Seleccione";
 
   customizeSaleText(arg: { percentText: string }) {
     return arg.percentText;
@@ -20,6 +26,17 @@ export class SalesByRangeCardComponent {
 
   selectBA(event) {
     this.performancePeriodChanged.emit(event);
+    console.log(event)
+    this.item = event.item;
+  }
+
+  selectUdnMensual(event) {
+    this.performanceUdnMenChanged.emit(event);
+        console.log(event)  
+  }
+  selectUdnAnual(event) {
+    this.performanceUdnAnuChanged.emit(event);
+        console.log(event)  
   }
 }
 
