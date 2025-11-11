@@ -23,7 +23,6 @@ export class SalesByRangeCardComponent {
     return arg.percentText;
   }
 
-
   selectBA(event) {
     this.performancePeriodChanged.emit(event);
     console.log(event)

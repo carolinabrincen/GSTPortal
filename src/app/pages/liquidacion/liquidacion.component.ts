@@ -71,6 +71,8 @@ export class LiquidacionComponent implements OnInit {
   viajesPenLiq: any[] = [];
   LiqPag: any[] = [];
   bajasMA: any[] = [];
+  bajasMem: any[] = [];
+  bajasAnu: any[] = [];
   salesByCategory: any[] = [];
   salesByDateAndCategory: any[] = null;
 
@@ -177,6 +179,11 @@ export class LiquidacionComponent implements OnInit {
     this.bajasMA = [];
     //this.loadingVisible = true;
     this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
+
+      this.bajasMem = response.data.bajasMensuales;
+      this.bajasAnu = response.data.bajasAnuales;
+      console.log(response.data)
+
       var myBaja = response.data.bajasMensuales;
       var myTotalesBP = [];
       
@@ -965,6 +972,15 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "ORIZABA");;
         //console.log("MEN ==> ORIZABA", this.bajasMA)
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
     })
     }else if(period == "GUADALAJARA"){
       this.bajasMA = [];
@@ -973,14 +989,33 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "GUADALAJARA");;
         //console.log("MEN ==> GUADALAJARA")
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "RAMOS ARIZPE"){
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "RAMOS ARIZPE");;
-        //console.log("MEN ==> RAMOS ARIZPE")
+        console.log(this.bajasMA)
         this.loadingVisible = false;
+
+        if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "MEXICALI"){
       this.bajasMA = [];
@@ -989,6 +1024,15 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "MEXICALI");;
         //console.log("MEN ==> MEXICALI")
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "HERMOSILLO"){
       this.bajasMA = [];
@@ -997,6 +1041,15 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "HERMOSILLO");;
         //console.log("MEN ==> HERMOSILLO")
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "CUAUTITLAN"){
       this.bajasMA = [];
@@ -1005,6 +1058,15 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "CUAUTITLAN");;
         //console.log("MEN ==> CUAUTITLAN")
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "TULTITLAN"){
       this.bajasMA = [];
@@ -1013,6 +1075,15 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "TULTITLAN");;
         //console.log("MEN ==> TULTITLAN")
         this.loadingVisible = false;
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }
   }
@@ -1253,6 +1324,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "ORIZABA");;
         //console.log("ANU ==> ORIZABA", this.bajasMA)
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
     })
     }else if(period == "GUADALAJARA"){
       this.bajasMA = [];
@@ -1261,6 +1342,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "GUADALAJARA");;
         //console.log("ANU ==> GUADALAJARA")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "RAMOS ARIZPE"){
       this.bajasMA = [];
@@ -1269,6 +1360,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "RAMOS ARIZPE");;
         //console.log("ANU ==> RAMOS ARIZPE")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "MEXICALI"){
       this.bajasMA = [];
@@ -1277,6 +1378,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "MEXICALI");;
         //console.log("ANU ==> MEXICALI")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "HERMOSILLO"){
       this.bajasMA = [];
@@ -1285,6 +1396,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "HERMOSILLO");;
         //console.log("ANU ==> HERMOSILLO")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "CUAUTITLAN"){
       this.bajasMA = [];
@@ -1293,6 +1414,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "CUAUTITLAN");;
         //console.log("ANU ==> CUAUTITLAN")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }else if(period == "TULTITLAN"){
       this.bajasMA = [];
@@ -1301,6 +1432,16 @@ export class LiquidacionComponent implements OnInit {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "TULTITLAN");;
         //console.log("ANU ==> TULTITLAN")
         this.loadingVisible = false;
+
+         if(this.bajasMA.length == 0){
+          notify({
+          message: "No hay datos",
+          position: {
+            my: 'center',
+            at: 'center',
+          },
+        }, 'error', 3000);
+        }
       })
     }
   }
@@ -1361,6 +1502,145 @@ export class LiquidacionComponent implements OnInit {
             c.cellElement.style.background = "#ff9460";
             c.cellElement.style.color = "black"; 
         }   
+      });
+    }
+  }
+
+
+   onRowPreparedMen(e: any){
+//  if (e.rowType == 'data') {
+
+//     e.cells.forEach((c: any) => {
+
+//       if (c.value && c.value.toString().startsWith('-')) {
+//         if(c.cellElement?.style !== undefined){
+//           c.cellElement.style.color = "red";
+//         }
+
+//       }
+
+//       if (c.cellElement) {
+//         if(c.columnIndex == 12){
+//           c.cellElement.style.fontWeight = "bolder";
+//           c.cellElement.style.fontSize = "15px";
+//           c.cellElement.style.background = "#cdcbcb";
+//         }
+
+//       }
+//     });
+//   }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+      // console.log(e)
+      // if(e.summaryCell[8].length == 0){
+      //   console.log("Entre!!!!!")
+      //   e.summaryCell[8]
+      // }
+    });
+  }
+
+    if (e.rowType == 'group') {
+
+     //console.log(e)
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedMen(e: any){
+ if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+        
+
+      });
+    }
+  }
+
+  onRowPreparedAnu(e: any){
+//  if (e.rowType == 'data') {
+
+//     e.cells.forEach((c: any) => {
+
+//       if (c.value && c.value.toString().startsWith('-')) {
+//         if(c.cellElement?.style !== undefined){
+//           c.cellElement.style.color = "red";
+//         }
+
+//       }
+
+//       if (c.cellElement) {
+//         if(c.columnIndex == 12){
+//           c.cellElement.style.fontWeight = "bolder";
+//           c.cellElement.style.fontSize = "15px";
+//           c.cellElement.style.background = "#cdcbcb";
+//         }
+
+//       }
+//     });
+//   }
+
+  if (e.rowType == 'totalFooter') {
+    e.cells.forEach((c: any) => {
+      // console.log(e)
+      // if(e.summaryCell[8].length == 0){
+      //   console.log("Entre!!!!!")
+      //   e.summaryCell[8]
+      // }
+    });
+  }
+
+    if (e.rowType == 'group') {
+
+     //console.log(e)
+      if (e.groupIndex == 0) {
+        e.rowElement.style.backgroundColor = '#dcdcdc';
+        e.rowElement.style.color = "black";
+        e.rowElement.style.fontWeight = "bolder";
+      }
+     
+    }
+  }
+
+  onCellPreparedAnu(e: any){
+ if (e.rowType === 'groupFooter'){
+
+
+      e.cellElement.style.fontWeight = "bolder";
+      e.cellElement.style.fontSize = "15px";
+      e.cellElement.style.background = "#cdcbcb";
+    }    
+
+
+    if (e.rowType == 'totalFooter') {
+      e.totalItem.cells.forEach((c: any) => {
+        if (c.cellElement) {
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.fontSize = "16px";
+            c.cellElement.style.background = "#ff9460";
+            c.cellElement.style.color = "black"; 
+        }   
+        
+
       });
     }
   }
