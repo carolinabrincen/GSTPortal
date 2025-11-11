@@ -13,7 +13,7 @@ import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { LiquidacionService } from 'src/app/services/liquidacion/liquidacion';
-import { Liquidacion} from 'src/app/shared/models/liquidacion/liquidacion.model'
+import { Liquidacion, totalesBajas} from 'src/app/shared/models/liquidacion/liquidacion.model'
 import notify from 'devextreme/ui/notify';
 import { StorageService } from '../../shared/services/storage.service';
 
@@ -103,7 +103,7 @@ export class LiquidacionComponent implements OnInit {
   customRange = analyticsPanelItems[5].value.split('/').map((d) => new Date(d));
   isLoading: boolean = false;
   periodoMA = ['Mensual', 'Anual'];
-  periodoUdn = ['TODOS', 'CUATITLAN', 'GUADALAJARA', 'HERMOSILLO', 'MEXICALI', 'ORIZABA', 'RAMOS ARIZPE', 'TULTITLAN'];
+  periodoUdn = ['TODOS', 'CUAUTITLAN', 'GUADALAJARA', 'HERMOSILLO', 'MEXICALI', 'ORIZABA', 'RAMOS ARIZPE', 'TULTITLAN'];
   periodoUO = ['Udn', 'Operación'];
   groupByPeriods = ['Mensual', 'Anual'];
   
@@ -167,7 +167,7 @@ export class LiquidacionComponent implements OnInit {
       this.titulosMes = response.data;
       this.liquidacion = response.data.spLiquidacionesMensuales;
       this.graficaUO = response.data.graficaUDN;
-      console.log(response.data)
+      //console.log(response.data)
       //this.graficaPXClasificado = myGrafica;
       this.loadingVisible = false;
     })
@@ -177,10 +177,135 @@ export class LiquidacionComponent implements OnInit {
     this.bajasMA = [];
     //this.loadingVisible = true;
     this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-      this.bajasMA = response.data.bajasMensuales;
+      var myBaja = response.data.bajasMensuales;
+      var myTotalesBP = [];
+      
+       myBaja.forEach((row: any) =>{ 
+
+        if(row.motivo == "AUSENTISMO"){
+          
+          var mytotalBA = 0;
+          mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPA = 0;
+          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBA;
+          myTotalesBajasA.motivo = "AUSENTISMO";
+          myTotalesBajasA.porcentaje = mytotalPA;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "DEFUNCION"){
+          
+          var mytotalBD = 0;
+          mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPD = 0;
+          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBD;
+          myTotalesBajasA.motivo = "DEFUNCION";
+          myTotalesBajasA.porcentaje = mytotalPD;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "OTROS"){
+          
+          var mytotalBO = 0;
+          mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPO = 0;
+          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBO;
+          myTotalesBajasA.motivo = "OTROS";
+          myTotalesBajasA.porcentaje = mytotalPO;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "RESICION DE CONTRATO"){
+          
+          var mytotalBR = 0;
+          mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPR = 0;
+          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBR;
+          myTotalesBajasA.motivo = "RESICION DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPR;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "SEPARACION VOLUNTARIA"){
+          
+          var mytotalBS = 0;
+          mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPS = 0;
+          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBS;
+          myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
+          myTotalesBajasA.porcentaje = mytotalPS;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+       })
+
+      var result = myTotalesBP.reduce((unique, o) => {
+          if(!unique.some(obj => obj.motivo === o.motivo)) {
+            unique.push(o);
+          }
+          return unique;
+      },[]);
+      this.bajasMA = result;
       //console.log(this.bajasMA)
-     // this. periodoMA = ['Mensual', 'Anual'];
-      //this.loadingVisible = false;
     })
   }
   /*======================SELECTE FUNCIONS================================================*/
@@ -330,31 +455,507 @@ export class LiquidacionComponent implements OnInit {
 
   selectionMotivosB({item: period}: any) {
     if(period == "Anual"){
+      console.log("ANUAL")
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasAnuales;
-        console.log("GET ANUAL", this.bajasMA)
+          var myBaja = response.data.bajasAnuales;
+      var myTotalesBP = [];
+      
+       myBaja.forEach((row: any) =>{ 
+
+        if(row.motivo == "AUSENTISMO"){
+          
+          var mytotalBA = 0;
+          mytotalBA = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPA = 0;
+          mytotalPA = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBA;
+          myTotalesBajasA.motivo = "AUSENTISMO";
+          myTotalesBajasA.porcentaje = mytotalPA;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "DEFUNCION"){
+          
+          var mytotalBD = 0;
+          mytotalBD = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPD = 0;
+          mytotalPD = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBD;
+          myTotalesBajasA.motivo = "DEFUNCION";
+          myTotalesBajasA.porcentaje = mytotalPD;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "OTROS"){
+          
+          var mytotalBO = 0;
+          mytotalBO = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPO = 0;
+          mytotalPO = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBO;
+          myTotalesBajasA.motivo = "OTROS";
+          myTotalesBajasA.porcentaje = mytotalPO;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "RESICION DE CONTRATO"){
+          
+          var mytotalBR = 0;
+          mytotalBR = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPR = 0;
+          mytotalPR = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBR;
+          myTotalesBajasA.motivo = "RESICION DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPR;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "SEPARACION VOLUNTARIA"){
+          
+          var mytotalBS = 0;
+          mytotalBS = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPS = 0;
+          mytotalPS = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBS;
+          myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
+          myTotalesBajasA.porcentaje = mytotalPS;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          
+          var mytotalBAE = 0;
+          mytotalBAE = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPAE = 0;
+          mytotalPAE = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBAE;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = mytotalPAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          
+          var mytotalJ = 0;
+          mytotalJ = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPJ = 0;
+          mytotalPJ = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalJ;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = mytotalPJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){  
+          
+          var mytotalP = 0;
+          mytotalP = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPP = 0;
+          mytotalPP = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalP;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = mytotalPP;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){  
+          
+          var mytotalT = 0;
+          mytotalT = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPT = 0;
+          mytotalPT = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalT;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPT;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+       })
+
+      var result = myTotalesBP.reduce((unique, o) => {
+          if(!unique.some(obj => obj.motivo === o.motivo)) {
+            unique.push(o);
+          }
+          return unique;
+      },[]);
+      this.bajasMA = result;
+      //console.log(this.bajasMA)
         this.loadingVisible = false;
       })
     }else if(period == "Mensual"){
+      console.log("MENSUAL")
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasMensuales;
-        console.log("GET MENSUAL", this.bajasMA)
+          var myBaja = response.data.bajasMensuales;
+      var myTotalesBP = [];
+      
+       myBaja.forEach((row: any) =>{ 
+
+        if(row.motivo == "AUSENTISMO"){
+          
+          var mytotalBA = 0;
+          mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPA = 0;
+          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBA;
+          myTotalesBajasA.motivo = "AUSENTISMO";
+          myTotalesBajasA.porcentaje = mytotalPA;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "DEFUNCION"){
+          
+          var mytotalBD = 0;
+          mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPD = 0;
+          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBD;
+          myTotalesBajasA.motivo = "DEFUNCION";
+          myTotalesBajasA.porcentaje = mytotalPD;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "OTROS"){
+          
+          var mytotalBO = 0;
+          mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPO = 0;
+          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBO;
+          myTotalesBajasA.motivo = "OTROS";
+          myTotalesBajasA.porcentaje = mytotalPO;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "RESICION DE CONTRATO"){
+          
+          var mytotalBR = 0;
+          mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPR = 0;
+          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBR;
+          myTotalesBajasA.motivo = "RESICION DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPR;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "SEPARACION VOLUNTARIA"){
+          
+          var mytotalBS = 0;
+          mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPS = 0;
+          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBS;
+          myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
+          myTotalesBajasA.porcentaje = mytotalPS;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+       })
+
+      var result = myTotalesBP.reduce((unique, o) => {
+          if(!unique.some(obj => obj.motivo === o.motivo)) {
+            unique.push(o);
+          }
+          return unique;
+      },[]);
+      this.bajasMA = result;
+      //console.log(this.bajasMA)
         this.loadingVisible = false;
       })
     }
   }
 
-    selectionUdnMen({item: period}: any) {
+  selectionUdnMen({item: period}: any) {
+    console.log("MENSUAL")
     if(period == "TODOS"){
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasMensuales;
-        console.log("MEN ==> TODOS")
+          var myBaja = response.data.bajasMensuales;
+      var myTotalesBP = [];
+      
+       myBaja.forEach((row: any) =>{ 
+
+        if(row.motivo == "AUSENTISMO"){
+          
+          var mytotalBA = 0;
+          mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPA = 0;
+          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBA;
+          myTotalesBajasA.motivo = "AUSENTISMO";
+          myTotalesBajasA.porcentaje = mytotalPA;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "DEFUNCION"){
+          
+          var mytotalBD = 0;
+          mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPD = 0;
+          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBD;
+          myTotalesBajasA.motivo = "DEFUNCION";
+          myTotalesBajasA.porcentaje = mytotalPD;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "OTROS"){
+          
+          var mytotalBO = 0;
+          mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPO = 0;
+          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBO;
+          myTotalesBajasA.motivo = "OTROS";
+          myTotalesBajasA.porcentaje = mytotalPO;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "RESICION DE CONTRATO"){
+          
+          var mytotalBR = 0;
+          mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPR = 0;
+          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBR;
+          myTotalesBajasA.motivo = "RESICION DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPR;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "SEPARACION VOLUNTARIA"){
+          
+          var mytotalBS = 0;
+          mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPS = 0;
+          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBS;
+          myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
+          myTotalesBajasA.porcentaje = mytotalPS;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+       })
+
+      var result = myTotalesBP.reduce((unique, o) => {
+          if(!unique.some(obj => obj.motivo === o.motivo)) {
+            unique.push(o);
+          }
+          return unique;
+      },[]);
+      this.bajasMA = result;
+      //console.log(this.bajasMA)
         this.loadingVisible = false;
       })
     }else if(period == "ORIZABA"){
@@ -362,7 +963,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "ORIZABA");;
-        console.log("MEN ==> ORIZABA", this.bajasMA)
+        //console.log("MEN ==> ORIZABA", this.bajasMA)
         this.loadingVisible = false;
     })
     }else if(period == "GUADALAJARA"){
@@ -370,7 +971,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "GUADALAJARA");;
-        console.log("MEN ==> GUADALAJARA")
+        //console.log("MEN ==> GUADALAJARA")
         this.loadingVisible = false;
       })
     }else if(period == "RAMOS ARIZPE"){
@@ -378,7 +979,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "RAMOS ARIZPE");;
-        console.log("MEN ==> RAMOS ARIZPE")
+        //console.log("MEN ==> RAMOS ARIZPE")
         this.loadingVisible = false;
       })
     }else if(period == "MEXICALI"){
@@ -386,7 +987,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "MEXICALI");;
-        console.log("MEN ==> MEXICALI")
+        //console.log("MEN ==> MEXICALI")
         this.loadingVisible = false;
       })
     }else if(period == "HERMOSILLO"){
@@ -394,15 +995,15 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "HERMOSILLO");;
-        console.log("MEN ==> HERMOSILLO")
+        //console.log("MEN ==> HERMOSILLO")
         this.loadingVisible = false;
       })
-    }else if(period == "CUATITLAN"){
+    }else if(period == "CUAUTITLAN"){
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "CUATITLAN");;
-        console.log("MEN ==> CUATITLAN")
+        this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "CUAUTITLAN");;
+        //console.log("MEN ==> CUAUTITLAN")
         this.loadingVisible = false;
       })
     }else if(period == "TULTITLAN"){
@@ -410,19 +1011,239 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasMensuales.filter((word) => word.udn == "TULTITLAN");;
-        console.log("MEN ==> TULTITLAN")
+        //console.log("MEN ==> TULTITLAN")
         this.loadingVisible = false;
       })
     }
   }
   
   selectionUdnAnu({item: period}: any) {
+      console.log("ANUAL")
     if(period == "TODOS"){
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasAnuales;
-        console.log("ANU ==> TODOS")
+         var myBaja = response.data.bajasAnuales;
+      var myTotalesBP = [];
+      
+        myBaja.forEach((row: any) =>{ 
+
+        if(row.motivo == "AUSENTISMO"){
+          
+          var mytotalBA = 0;
+          mytotalBA = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPA = 0;
+          mytotalPA = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBA;
+          myTotalesBajasA.motivo = "AUSENTISMO";
+          myTotalesBajasA.porcentaje = mytotalPA;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "DEFUNCION"){
+          
+          var mytotalBD = 0;
+          mytotalBD = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPD = 0;
+          mytotalPD = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBD;
+          myTotalesBajasA.motivo = "DEFUNCION";
+          myTotalesBajasA.porcentaje = mytotalPD;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "OTROS"){
+          
+          var mytotalBO = 0;
+          mytotalBO = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPO = 0;
+          mytotalPO = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "OTROS") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBO;
+          myTotalesBajasA.motivo = "OTROS";
+          myTotalesBajasA.porcentaje = mytotalPO;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "RESICION DE CONTRATO"){
+          
+          var mytotalBR = 0;
+          mytotalBR = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPR = 0;
+          mytotalPR = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBR;
+          myTotalesBajasA.motivo = "RESICION DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPR;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "SEPARACION VOLUNTARIA"){
+          
+          var mytotalBS = 0;
+          mytotalBS = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPS = 0;
+          mytotalPS = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBS;
+          myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
+          myTotalesBajasA.porcentaje = mytotalPS;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          
+          var mytotalBAE = 0;
+          mytotalBAE = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPAE = 0;
+          mytotalPAE = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalBAE;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = mytotalPAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          
+          var mytotalJ = 0;
+          mytotalJ = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPJ = 0;
+          mytotalPJ = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalJ;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = mytotalPJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){  
+          
+          var mytotalP = 0;
+          mytotalP = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPP = 0;
+          mytotalPP = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalP;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = mytotalPP;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){  
+          
+          var mytotalT = 0;
+          mytotalT = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          var mytotalPT = 0;
+          mytotalPT = response.data.bajasAnuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.porcentaje;
+            return acc;
+          }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalT;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = mytotalPT;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+       })
+
+      var result = myTotalesBP.reduce((unique, o) => {
+          if(!unique.some(obj => obj.motivo === o.motivo)) {
+            unique.push(o);
+          }
+          return unique;
+      },[]);
+      this.bajasMA = result;
+      console.log(response.data.bajasAnuales)
         this.loadingVisible = false;
       })
     }else if(period == "ORIZABA"){
@@ -430,7 +1251,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "ORIZABA");;
-        console.log("ANU ==> ORIZABA", this.bajasMA)
+        //console.log("ANU ==> ORIZABA", this.bajasMA)
         this.loadingVisible = false;
     })
     }else if(period == "GUADALAJARA"){
@@ -438,7 +1259,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "GUADALAJARA");;
-        console.log("ANU ==> GUADALAJARA")
+        //console.log("ANU ==> GUADALAJARA")
         this.loadingVisible = false;
       })
     }else if(period == "RAMOS ARIZPE"){
@@ -446,7 +1267,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "RAMOS ARIZPE");;
-        console.log("ANU ==> RAMOS ARIZPE")
+        //console.log("ANU ==> RAMOS ARIZPE")
         this.loadingVisible = false;
       })
     }else if(period == "MEXICALI"){
@@ -454,7 +1275,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "MEXICALI");;
-        console.log("ANU ==> MEXICALI")
+        //console.log("ANU ==> MEXICALI")
         this.loadingVisible = false;
       })
     }else if(period == "HERMOSILLO"){
@@ -462,15 +1283,15 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "HERMOSILLO");;
-        console.log("ANU ==> HERMOSILLO")
+        //console.log("ANU ==> HERMOSILLO")
         this.loadingVisible = false;
       })
-    }else if(period == "CUATITLAN"){
+    }else if(period == "CUAUTITLAN"){
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "CUATITLAN");;
-        console.log("ANU ==> CUATITLAN")
+        this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "CUAUTITLAN");;
+        //console.log("ANU ==> CUAUTITLAN")
         this.loadingVisible = false;
       })
     }else if(period == "TULTITLAN"){
@@ -478,7 +1299,7 @@ export class LiquidacionComponent implements OnInit {
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
         this.bajasMA = response.data.bajasAnuales.filter((word) => word.udn == "TULTITLAN");;
-        console.log("ANU ==> TULTITLAN")
+        //console.log("ANU ==> TULTITLAN")
         this.loadingVisible = false;
       })
     }

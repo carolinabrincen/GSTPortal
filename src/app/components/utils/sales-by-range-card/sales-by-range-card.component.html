@@ -35,10 +35,20 @@
 
     <dxo-series-template nameField="motivo"> </dxo-series-template>
     <dxo-size [height]="270"></dxo-size>
-    <!-- <dxo-value-axis>
-      <dxo-label>
-        <dxo-format type="largeNumber"></dxo-format>
-      </dxo-label>
-    </dxo-value-axis> -->
   </dx-chart>
+
+   <!-- <dx-chart class="sales-bars" [dataSource]="data" [rotated]="true">
+
+        <dxo-common-series-settings argumentField="motivo" type="bar" valueField="bajas" [barWidth]="20">
+            <dxo-label [visible]="true" position="outside" [rotationAngle]="90"
+             backgroundColor="transparent" [verticalOffset]="15">
+                <dxo-font size="12" color="black" weight="bold"></dxo-font>
+            </dxo-label>
+        </dxo-common-series-settings>
+        <dxo-series-template nameField="udn"></dxo-series-template>
+        <dxo-title text=""></dxo-title>
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+        <dxo-export [enabled]="true" fileName=""></dxo-export>
+        <dxo-size [height]="400"></dxo-size>
+    </dx-chart> -->
 </card-analytics>
