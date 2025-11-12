@@ -180,17 +180,21 @@ export class LiquidacionComponent implements OnInit {
     this.bajasMA = [];
     //this.loadingVisible = true;
     this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
-
-      this.bajasMem = response.data.bajasMensuales;
-      this.bajasAnu = response.data.bajasAnuales;
       //console.log(response.data)
 
       var myBaja = response.data.bajasMensuales;
       var myTotalesBP = [];
       
+       let totalSumaBaj = response.data.bajasMensuales.reduce((acc, val) => {
+        //console.log(acc, '   ',val)
+             return acc + val.bajas;
+            //return acc;
+          }, 0);
+          //console.log(totalSumaBaj)
        myBaja.forEach((row: any) =>{ 
 
         if(row.motivo == "AUSENTISMO"){
+          let totalPorcentajeA = 0;
           
           var mytotalBA = 0;
           mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
@@ -198,108 +202,226 @@ export class LiquidacionComponent implements OnInit {
             return acc;
           }, 0);
 
-          var mytotalPA = 0;
-          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeA = mytotalBA / totalSumaBaj;
+          //console.log(mytotalBA, ' + ', totalSumaBaj, ' = ', totalPorcentajeA)
+          // var mytotalPA = 0;
+          // mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBA;
           myTotalesBajasA.motivo = "AUSENTISMO";
-          myTotalesBajasA.porcentaje = mytotalPA;
+          myTotalesBajasA.porcentaje = totalPorcentajeA;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "DEFUNCION"){
-          
+          let totalPorcentajeD = 0;
           var mytotalBD = 0;
+
           mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "DEFUNCION") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPD = 0;
-          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeD = mytotalBD / totalSumaBaj;
+
+          // var mytotalPD = 0;
+          // mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBD;
           myTotalesBajasA.motivo = "DEFUNCION";
-          myTotalesBajasA.porcentaje = mytotalPD;
+          myTotalesBajasA.porcentaje = totalPorcentajeD;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "OTROS"){
-          
+          let totalPorcentajeO = 0;
           var mytotalBO = 0;
+
           mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "OTROS") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPO = 0;
-          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "OTROS") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeO = mytotalBO / totalSumaBaj;
+
+          // var mytotalPO = 0;
+          // mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "OTROS") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBO;
           myTotalesBajasA.motivo = "OTROS";
-          myTotalesBajasA.porcentaje = mytotalPO;
+          myTotalesBajasA.porcentaje = totalPorcentajeO;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "RESICION DE CONTRATO"){
-          
+          let totalPorcentajeRC = 0;
           var mytotalBR = 0;
+
           mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPR = 0;
-          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeRC = mytotalBR / totalSumaBaj;
+
+          // var mytotalPR = 0;
+          // mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBR;
           myTotalesBajasA.motivo = "RESICION DE CONTRATO";
-          myTotalesBajasA.porcentaje = mytotalPR;
+          myTotalesBajasA.porcentaje = totalPorcentajeRC;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "SEPARACION VOLUNTARIA"){
-          
+          let totalPorcentajeSV = 0;
           var mytotalBS = 0;
+
           mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPS = 0;
-          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeSV = mytotalBS / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBS;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
-          myTotalesBajasA.porcentaje = mytotalPS;
+          myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeAE = mytotalAE / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalAE;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeJ = mytotalJ / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalJ;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeTC = mytotalTC / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalTC;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeP = mytotalP / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalP;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -313,6 +435,8 @@ export class LiquidacionComponent implements OnInit {
           return unique;
       },[]);
       this.bajasMA = result;
+      //console.log(this.bajasMA)
+        //this.loadingVisible = false;
       //console.log(this.bajasMA)
     })
   }
@@ -697,10 +821,16 @@ export class LiquidacionComponent implements OnInit {
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
           var myBaja = response.data.bajasMensuales;
       var myTotalesBP = [];
-      
+
+       let totalSumaBaj = response.data.bajasMensuales.reduce((acc, val) => {
+             return acc + val.bajas;
+            //return acc;
+          }, 0);
+          //console.log(totalSumaBaj)
        myBaja.forEach((row: any) =>{ 
 
         if(row.motivo == "AUSENTISMO"){
+          let totalPorcentajeA = 0;
           
           var mytotalBA = 0;
           mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
@@ -708,108 +838,227 @@ export class LiquidacionComponent implements OnInit {
             return acc;
           }, 0);
 
-          var mytotalPA = 0;
-          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeA = mytotalBA / totalSumaBaj;
+
+
+          // var mytotalPA = 0;
+          // mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBA;
           myTotalesBajasA.motivo = "AUSENTISMO";
-          myTotalesBajasA.porcentaje = mytotalPA;
+          myTotalesBajasA.porcentaje = totalPorcentajeA;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "DEFUNCION"){
-          
+          let totalPorcentajeD = 0;
           var mytotalBD = 0;
+
           mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "DEFUNCION") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPD = 0;
-          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeD = mytotalBD / totalSumaBaj;
+
+          // var mytotalPD = 0;
+          // mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBD;
           myTotalesBajasA.motivo = "DEFUNCION";
-          myTotalesBajasA.porcentaje = mytotalPD;
+          myTotalesBajasA.porcentaje = totalPorcentajeD;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "OTROS"){
-          
+          let totalPorcentajeO = 0;
           var mytotalBO = 0;
+
           mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "OTROS") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPO = 0;
-          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "OTROS") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeO = mytotalBO / totalSumaBaj;
+
+          // var mytotalPO = 0;
+          // mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "OTROS") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBO;
           myTotalesBajasA.motivo = "OTROS";
-          myTotalesBajasA.porcentaje = mytotalPO;
+          myTotalesBajasA.porcentaje = totalPorcentajeO;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "RESICION DE CONTRATO"){
-          
+          let totalPorcentajeRC = 0;
           var mytotalBR = 0;
+
           mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPR = 0;
-          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeRC = mytotalBR / totalSumaBaj;
+
+          // var mytotalPR = 0;
+          // mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBR;
           myTotalesBajasA.motivo = "RESICION DE CONTRATO";
-          myTotalesBajasA.porcentaje = mytotalPR;
+          myTotalesBajasA.porcentaje = totalPorcentajeRC;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "SEPARACION VOLUNTARIA"){
-          
+          let totalPorcentajeSV = 0;
           var mytotalBS = 0;
+
           mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPS = 0;
-          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeSV = mytotalBS / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBS;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
-          myTotalesBajasA.porcentaje = mytotalPS;
+          myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeAE = mytotalAE / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalAE;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeJ = mytotalJ / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalJ;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeTC = mytotalTC / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalTC;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeP = mytotalP / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalP;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -838,9 +1087,16 @@ export class LiquidacionComponent implements OnInit {
           var myBaja = response.data.bajasMensuales;
       var myTotalesBP = [];
       
+       let totalSumaBaj = response.data.bajasMensuales.reduce((acc, val) => {
+        console.log(acc, '   ',val)
+             return acc + val.bajas;
+            //return acc;
+          }, 0);
+          //console.log(totalSumaBaj)
        myBaja.forEach((row: any) =>{ 
 
         if(row.motivo == "AUSENTISMO"){
+          let totalPorcentajeA = 0;
           
           var mytotalBA = 0;
           mytotalBA = response.data.bajasMensuales.reduce((acc, val) => {
@@ -848,108 +1104,226 @@ export class LiquidacionComponent implements OnInit {
             return acc;
           }, 0);
 
-          var mytotalPA = 0;
-          mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeA = mytotalBA / totalSumaBaj;
+          console.log(mytotalBA, ' + ', totalSumaBaj, ' = ', totalPorcentajeA)
+          // var mytotalPA = 0;
+          // mytotalPA = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "AUSENTISMO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBA;
           myTotalesBajasA.motivo = "AUSENTISMO";
-          myTotalesBajasA.porcentaje = mytotalPA;
+          myTotalesBajasA.porcentaje = totalPorcentajeA;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "DEFUNCION"){
-          
+          let totalPorcentajeD = 0;
           var mytotalBD = 0;
+
           mytotalBD = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "DEFUNCION") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPD = 0;
-          mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeD = mytotalBD / totalSumaBaj;
+
+          // var mytotalPD = 0;
+          // mytotalPD = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "DEFUNCION") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBD;
           myTotalesBajasA.motivo = "DEFUNCION";
-          myTotalesBajasA.porcentaje = mytotalPD;
+          myTotalesBajasA.porcentaje = totalPorcentajeD;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "OTROS"){
-          
+          let totalPorcentajeO = 0;
           var mytotalBO = 0;
+
           mytotalBO = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "OTROS") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPO = 0;
-          mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "OTROS") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeO = mytotalBO / totalSumaBaj;
+
+          // var mytotalPO = 0;
+          // mytotalPO = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "OTROS") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBO;
           myTotalesBajasA.motivo = "OTROS";
-          myTotalesBajasA.porcentaje = mytotalPO;
+          myTotalesBajasA.porcentaje = totalPorcentajeO;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "RESICION DE CONTRATO"){
-          
+          let totalPorcentajeRC = 0;
           var mytotalBR = 0;
+
           mytotalBR = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "RESICION DE CONTRATO") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPR = 0;
-          mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeRC = mytotalBR / totalSumaBaj;
+
+          // var mytotalPR = 0;
+          // mytotalPR = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "RESICION DE CONTRATO") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBR;
           myTotalesBajasA.motivo = "RESICION DE CONTRATO";
-          myTotalesBajasA.porcentaje = mytotalPR;
+          myTotalesBajasA.porcentaje = totalPorcentajeRC;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
 
         if(row.motivo == "SEPARACION VOLUNTARIA"){
-          
+          let totalPorcentajeSV = 0;
           var mytotalBS = 0;
+
           mytotalBS = response.data.bajasMensuales.reduce((acc, val) => {
             if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.bajas;
             return acc;
           }, 0);
 
-          var mytotalPS = 0;
-          mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
-            if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
-            return acc;
-          }, 0);
+          totalPorcentajeSV = mytotalBS / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
 
           let myTotalesBajasA = new totalesBajas;
           myTotalesBajasA.bajas = mytotalBS;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
-          myTotalesBajasA.porcentaje = mytotalPS;
+          myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeAE = mytotalAE / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalAE;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "JUBILACION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeJ = mytotalJ / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalJ;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeTC = mytotalTC / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalTC;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+            if (val.motivo == "PENSION") return acc + val.bajas;
+            return acc;
+          }, 0);
+
+          totalPorcentajeP = mytotalP / totalSumaBaj;
+
+          // var mytotalPS = 0;
+          // mytotalPS = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "SEPARACION VOLUNTARIA") return acc + val.porcentaje;
+          //   return acc;
+          // }, 0);
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = mytotalP;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -1086,6 +1460,90 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBajasA.bajas = row.bajas;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
           myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -1233,6 +1691,90 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
        })
 
       var result = myTotalesBP.reduce((unique, o) => {
@@ -1372,6 +1914,90 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBajasA.bajas = row.bajas;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
           myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -1519,6 +2145,90 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
+
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
        })
 
       var result = myTotalesBP.reduce((unique, o) => {
@@ -1658,6 +2368,89 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBajasA.bajas = row.bajas;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
           myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -1806,6 +2599,89 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
         }
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
        })
 
       var result = myTotalesBP.reduce((unique, o) => {
@@ -1827,7 +2703,7 @@ export class LiquidacionComponent implements OnInit {
         }, 'error', 3000);
         }
       })
-    }else if(period == "TULTITLAN"){
+    }else if(period == "TULTITLAN"){  
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -1945,6 +2821,89 @@ export class LiquidacionComponent implements OnInit {
           myTotalesBajasA.bajas = row.bajas;
           myTotalesBajasA.motivo = "SEPARACION VOLUNTARIA";
           myTotalesBajasA.porcentaje = totalPorcentajeSV;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+        if(row.motivo == "ABANDONO DE EMPLEO"){
+          let totalPorcentajeAE = 0;
+          var mytotalAE = 0;
+
+          // mytotalAE = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "ABANDONO DE EMPLEO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeAE = row.bajas / mytotalSuma;
+
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "ABANDONO DE EMPLEO";
+          myTotalesBajasA.porcentaje = totalPorcentajeAE;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "JUBILACION"){
+          let totalPorcentajeJ = 0;
+          var mytotalJ = 0;
+
+          // mytotalJ = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "JUBILACION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeJ = row.bajas / mytotalSuma;
+
+       
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "JUBILACION";
+          myTotalesBajasA.porcentaje = totalPorcentajeJ;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "TERMINO DE CONTRATO"){
+          let totalPorcentajeTC = 0;
+          var mytotalTC = 0;
+
+          // mytotalTC = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "TERMINO DE CONTRATO") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeTC = row.bajas / mytotalSuma;
+
+         
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "TERMINO DE CONTRATO";
+          myTotalesBajasA.porcentaje = totalPorcentajeTC;
+
+          myTotalesBP.push(myTotalesBajasA)
+          //console.log(this.bajasMA)
+        }
+
+        if(row.motivo == "PENSION"){
+          let totalPorcentajeP = 0;
+          var mytotalP = 0;
+
+          // mytotalP = response.data.bajasMensuales.reduce((acc, val) => {
+          //   if (val.motivo == "PENSION") return acc + val.bajas;
+          //   return acc;
+          // }, 0);
+
+          totalPorcentajeP = row.bajas / mytotalSuma;
+
+          let myTotalesBajasA = new totalesBajas;
+          myTotalesBajasA.bajas = row.bajas;
+          myTotalesBajasA.motivo = "PENSION";
+          myTotalesBajasA.porcentaje = totalPorcentajeP;
 
           myTotalesBP.push(myTotalesBajasA)
           //console.log(this.bajasMA)
@@ -2216,7 +3175,7 @@ export class LiquidacionComponent implements OnInit {
 
        myBaja.forEach((row: any) =>{ 
         
-        console.log(row )
+        //console.log(row )
         if(row.motivo == "AUSENTISMO"){
           
           var totalPorcentajeA = 0;
@@ -3548,7 +4507,7 @@ export class LiquidacionComponent implements OnInit {
 
        myBaja.forEach((row: any) =>{ 
         
-        console.log(row )
+        //console.log(row )
         if(row.motivo == "AUSENTISMO"){
           
           var totalPorcentajeA = 0;
