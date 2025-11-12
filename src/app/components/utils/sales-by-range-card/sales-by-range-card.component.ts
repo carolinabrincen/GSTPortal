@@ -10,43 +10,40 @@ export class SalesByRangeCardComponent {
   @Input() data: SalesOrOpportunitiesByCategory;
 
   @Input() groupByPeriods: string[];
-  @Input() groupByUdn: string[];
+  @Input() groupByUdnMen: string[];
+  @Input() groupByUdnAnu: string[];
 
   @Output() performancePeriodChanged = new EventEmitter();
   @Output() performanceUdnMenChanged = new EventEmitter();
   @Output() performanceUdnAnuChanged = new EventEmitter();
 
 
-  item: string = "Seleccione";
+  item: string = "Mensual";
+  itemUdnM: string = "Todos";
+  itemUdnA: string = "Todos";
 
-  customizeSaleText(value) {
-    const total = value.toFixed(2);
-
-    return total+" %";
-    //return arg.percentText;
+  customizeSaleText(arg: { percentText: string }) {
+    return arg.percentText;
   }
-
-  perosnalizeStyle(value){
-  //console.log(value)
-
-   const total = value.toFixed(2);
-
-    return total+" %";
-}
 
   selectBA(event) {
     this.performancePeriodChanged.emit(event);
-    console.log(event)
+    
     this.item = event.item;
+
+    this.itemUdnM = "Todos"
+    this.itemUdnA = "Todos"
   }
 
   selectUdnMensual(event) {
     this.performanceUdnMenChanged.emit(event);
-        console.log(event)  
+    this.itemUdnM = event.item;
+       //console.log(event)  
   }
   selectUdnAnual(event) {
     this.performanceUdnAnuChanged.emit(event);
-        console.log(event)  
+    this.itemUdnA = event.item;
+        //console.log(event)  
   }
 }
 

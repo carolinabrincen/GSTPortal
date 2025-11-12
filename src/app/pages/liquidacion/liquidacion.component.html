@@ -152,7 +152,7 @@
 
                 <div class="cards wide">
                   <!-- <sales-range-card [data]="bajasMensual" [(visualRange)]="visualRange" (salesRangeChanged)="onRangeChanged($event)"></sales-range-card> -->
-                  <sales-by-range-card [groupByPeriods]="periodoMA" [groupByUdn]="periodoUdn" [data]="bajasMA" (performancePeriodChanged)="selectionMotivosB($event)" (performanceUdnMenChanged)="selectionUdnMen($event)" (performanceUdnAnuChanged)="selectionUdnAnu($event)"></sales-by-range-card>
+                  <sales-by-range-card [groupByPeriods]="periodoMA" [groupByUdnMen]="periodoUdnMen" [groupByUdnAnu]="periodoUdnAnu" [data]="bajasMA" (performancePeriodChanged)="selectionMotivosB($event)" (performanceUdnMenChanged)="selectionUdnMen($event)" (performanceUdnAnuChanged)="selectionUdnAnu($event)"></sales-by-range-card>
                   <!-- <sales-performance-card [groupByPeriods]="groupByPeriods" [salesByDateAndCategory]="bajasMensual" [visualRange]="visualRange" (performancePeriodChanged)="selectionChange($event)"></sales-performance-card> -->
                 </div>
               </div>
