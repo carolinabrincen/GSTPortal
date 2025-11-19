@@ -26,6 +26,7 @@ import { exportDataGrid } from 'devextreme/excel_exporter';
 import { saveAs } from 'file-saver-es';
 import { group } from 'console';
 
+import { ActivatedRoute, Router } from '@angular/router';
 const getcvetra =new Liquidacion; 
 
 @Component({
@@ -110,12 +111,19 @@ export class LiquidacionComponent implements OnInit {
   periodoUO = ['Udn', 'Operación'];
   groupByPeriods = ['Mensual', 'Anual'];
   
+  bandera: boolean = false;
+
+  itemPeriodo: string;
+  itemUdnMen: string;
+  itemUdnAanu: string;
+
   constructor(
     private liquidacionService: LiquidacionService,
     private service: ServiceSales,
     private currencyPipe: CurrencyPipe,
     testService: Service,
     private storageService: StorageService,
+    private router: Router
   ) {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
@@ -482,7 +490,11 @@ export class LiquidacionComponent implements OnInit {
   }
   
   buscarClick = (e: any) => {
+
     if (this.formFilter.Fecha !== "") {
+
+      this.itemPeriodo = "Mensual"
+      this.itemUdnMen = "Todos"
 
       this.getLiquidacion();
       this.getBajas();
@@ -587,6 +599,7 @@ export class LiquidacionComponent implements OnInit {
 
   selectionMotivosB({item: period}: any) {
     if(period == "Anual"){
+      this.itemPeriodo = period;
       console.log("ANUAL")
       this.bajasMA = [];
       this.loadingVisible = true;
@@ -815,6 +828,7 @@ export class LiquidacionComponent implements OnInit {
         this.loadingVisible = false;
       })
     }else if(period == "Mensual"){
+      this.itemPeriodo = period;
       console.log("MENSUAL")
       this.bajasMA = [];
       this.loadingVisible = true;
@@ -1081,6 +1095,7 @@ export class LiquidacionComponent implements OnInit {
   selectionUdnMen({item: period}: any) {
     console.log("MENSUAL")
     if(period == "TODOS"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -1341,6 +1356,7 @@ export class LiquidacionComponent implements OnInit {
         this.loadingVisible = false;
       })
     }else if(period == "ORIZABA"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -1570,6 +1586,7 @@ export class LiquidacionComponent implements OnInit {
         }
     })
     }else if(period == "GUADALAJARA"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -1797,6 +1814,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "RAMOS ARIZPE"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -2024,6 +2042,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "MEXICALI"){
+      this.itemUdnMen = period;    
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -2251,6 +2270,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "HERMOSILLO"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -2477,6 +2497,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "CUAUTITLAN"){
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -2704,6 +2725,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "TULTITLAN"){  
+      this.itemUdnMen = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -2935,6 +2957,7 @@ export class LiquidacionComponent implements OnInit {
   selectionUdnAnu({item: period}: any) {
       console.log("ANUAL")
     if(period == "TODOS"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -3162,6 +3185,7 @@ export class LiquidacionComponent implements OnInit {
         this.loadingVisible = false;
       })
     }else if(period == "ORIZABA"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -3384,6 +3408,7 @@ export class LiquidacionComponent implements OnInit {
         }
     })
     }else if(period == "GUADALAJARA"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -3606,6 +3631,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "RAMOS ARIZPE"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -3828,6 +3854,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "MEXICALI"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -4050,6 +4077,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "HERMOSILLO"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -4272,6 +4300,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "CUAUTITLAN"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {
@@ -4494,6 +4523,7 @@ export class LiquidacionComponent implements OnInit {
         }
       })
     }else if(period == "TULTITLAN"){
+      this.itemUdnAanu = period;
       this.bajasMA = [];
       this.loadingVisible = true;
       this.liquidacionService.getBajas(this.formFilter.Fecha.toISOString()).subscribe((response) => {

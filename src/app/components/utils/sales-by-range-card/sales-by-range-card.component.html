@@ -2,9 +2,9 @@
 
   <div filter class="sales-filter">
     <!-- [selectedItemKey]="groupByPeriods[0]" -->
-    <dx-drop-down-button *ngIf="data.length !== 0" [text]="item" stylingMode="text" [useSelectMode]="true"  [items]="groupByPeriods" (onSelectionChanged)="selectBA($event)" [width]="100"></dx-drop-down-button>
-    <dx-drop-down-button *ngIf="item == 'Mensual'" [text]="itemUdnM" stylingMode="text" [useSelectMode]="true" [items]="groupByUdnMen" (onSelectionChanged)="selectUdnMensual($event)" [width]="130"></dx-drop-down-button>  
-    <dx-drop-down-button *ngIf="item == 'Anual'" [text]="itemUdnA" stylingMode="text" [useSelectMode]="true" [items]="groupByUdnAnu" (onSelectionChanged)="selectUdnAnual($event)" [width]="130"></dx-drop-down-button>  
+    <dx-drop-down-button *ngIf="data.length !== 0" [text]="itemPer" stylingMode="text" [useSelectMode]="true"  [items]="groupByPeriods" (onSelectionChanged)="selectBA($event)" [width]="100"></dx-drop-down-button>
+    <dx-drop-down-button *ngIf="itemPer == 'Mensual'" [text]="itemUdnM" stylingMode="text" [useSelectMode]="true" [items]="groupByUdnMen" (onSelectionChanged)="selectUdnMensual($event)" [width]="130"></dx-drop-down-button>  
+    <dx-drop-down-button *ngIf="itemPer == 'Anual'" [text]="itemUdnA" stylingMode="text" [useSelectMode]="true" [items]="groupByUdnAnu" (onSelectionChanged)="selectUdnAnual($event)" [width]="130"></dx-drop-down-button>  
   </div>
   <dx-pie-chart class="sales-pie" [dataSource]="data" type="doughnut" [diameter]="0.8" [innerRadius]="0.6" >
     <dxi-series argumentField="motivo" valueField="porcentaje">
