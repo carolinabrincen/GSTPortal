@@ -1,0 +1,146 @@
+<h2 class="content-block">Ultimo Status</h2>
+
+<div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
+
+      <br><br>
+            <dx-responsive-box>
+                <dxi-col [ratio]=".10"></dxi-col>
+                <dxi-col [ratio]=".40"></dxi-col>
+                <dxi-col [ratio]="1"></dxi-col>
+                <dxi-col [ratio]=".25"></dxi-col>
+
+
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>UdN:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="udn" displayExpr="nombre" valueExpr="idArea" (onValueChanged)="selectUdn($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+
+            </dx-responsive-box>
+            <br><br>
+
+            
+    <dx-tab-panel>
+        <dxi-item title="Viajes Cargados">
+            <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="viajesCargados" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+            (onRowPrepared)="onRowPreparedVC($event)" (onContentReady)="onContentReadyVC($event)" (onCellPrepared)="onCellPreparedVC($event)">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Precotizaciones"></dxo-export>
+
+                <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="clasificacion" caption="Clasificación" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="periodo" caption="Periodo" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="noviaje" caption="No Viaje" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+
+                <dxi-column dataField="despacho" caption="Despacho" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column>
+                <dxi-column dataField="remitente" caption="Remitente" [width]="250"></dxi-column>
+                <dxi-column dataField="destinatario " caption="Destinatario" [width]="100"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
+                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
+                <dxi-column dataField="id_usuario" caption="Usuario" [width]="100"></dxi-column>
+                <dxi-column dataField="f_ini_status" caption="Inicio" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="tiempo" caption="Tiempo" [width]="100" [fixed]="true" fixedPosition="right" dataType="date" format="HH:mm:ss"></dxi-column>
+               
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                </dxo-pager>
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+        </dxi-item>
+        <dxi-item title="Viajes Vacíos">
+            <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="viajesVacios" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+            (onRowPrepared)="onRowPreparedVV($event)" (onContentReady)="onContentReadyVV($event)" (onCellPrepared)="onCellPreparedVV($event)">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Precotizaciones"></dxo-export>
+
+                <dxi-column dataField="udN" caption="" [groupIndex]="0"></dxi-column>
+                <dxi-column dataField="clasificacion" caption="Clasificación" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="periodo" caption="Periodo" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="noviaje" caption="No Viaje" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+
+                <dxi-column dataField="despacho" caption="Despacho" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column> 
+                <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
+                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
+                <dxi-column dataField="id_usuario" caption="Usuario" [width]="100"></dxi-column>
+                <dxi-column dataField="f_ini_status" caption="Inicio" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="tiempo" caption="Tiempo" [width]="100" [fixed]="true" fixedPosition="right" dataType="date" format="HH:mm:ss"></dxi-column>
+               
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                </dxo-pager>
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+        </dxi-item>
+        <dxi-item title="Sin Viaje">
+            <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="sinViajes" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+            (onRowPrepared)="onRowPreparedSV($event)" (onContentReady)="onContentReadySV($event)" (onCellPrepared)="onCellPreparedSV($event)">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-export [enabled]="true" fileName="Precotizaciones"></dxo-export>
+
+                <dxi-column dataField="udN" caption="" [groupIndex]="0"></dxi-column>
+                <dxi-column dataField="clasificacion" caption="Clasificación" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="periodo" caption="Periodo" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="noviaje" caption="No Viaje" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [width]="100" [fixed]="true" alignment="center"></dxi-column>
+
+                <dxi-column dataField="despacho" caption="Despacho" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column>
+                <dxi-column dataField="remitente" caption="Remitente" [width]="250"></dxi-column>
+                <dxi-column dataField="destinatario " caption="Destinatario" [width]="100"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
+                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
+                <dxi-column dataField="id_usuario" caption="Usuario" [width]="100"></dxi-column>
+                <dxi-column dataField="f_ini_status" caption="Inicio" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="finViaje" caption="Fin Viaje" [width]="100" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="tiempo" caption="Tipo" [width]="100" [fixed]="true" fixedPosition="right" dataType="date" format="HH:mm:ss"></dxi-column>
+               
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [visible]="true" [allowedPageSizes]="allowedPageSizes" displayMode="full" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+                </dxo-pager>
+                <dxo-sorting mode="none"></dxo-sorting>
+            </dx-data-grid>
+        </dxi-item>
+    </dx-tab-panel>
+
+
+        <!-- LOAD PANEL -->
+    <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
+    </dx-load-panel>

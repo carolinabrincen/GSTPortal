@@ -70,6 +70,7 @@ import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
   import { SalesRangeCardComponent } from './components/utils/sales-range-card/sales-range-card.component';
   import { SalesPerformanceCardComponent } from './components/utils/sales-performance-card/sales-performance-card.component';
   import { SalesRangeGraficaComponent } from './components/utils/sales-by-range-card copy/sales-range-grafica.component';
+  import { UltimoStatusComponent } from './pages/ultimoStatus/ultimoStatus.component';
 
 const routes: Routes = [
   {
@@ -321,7 +322,11 @@ const routes: Routes = [
     component: SalesRangeGraficaComponent,
     canActivate: [ AuthGuardService  ]
   },
-
+  {
+    path: 'ultimoStatus',
+    component: UltimoStatusComponent,
+    canActivate: [ AuthGuardService  ]
+  },
   {
     path: '**',
     redirectTo: 'home'
@@ -425,7 +430,8 @@ const routes: Routes = [
     CardAnalytics2Component,
     SalesRangeCardComponent,
     SalesPerformanceCardComponent,
-    SalesRangeGraficaComponent
+    SalesRangeGraficaComponent,
+    UltimoStatusComponent
    
   ]
 })

@@ -86,7 +86,19 @@ export const navigation = [
   {
     text: 'Bitácora Viaje',
     icon: 'columnchooser',
-    path: '/bitacoraViaje'
+    items: [
+      {
+        text: 'Bitácora Viaje',
+        icon: 'columnchooser',
+        path: '/bitacoraViaje'
+      },
+      {
+        text: 'Ultimo Status',
+        icon: 'columnchooser',
+        path: '/ultimoStatus'
+      },
+    ]
+    
   },
   {
     text: 'Cartera',
