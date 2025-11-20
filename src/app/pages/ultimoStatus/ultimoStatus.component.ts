@@ -22,7 +22,7 @@ import { UltimoStatusService } from 'src/app/services/ultimoStatus/ultimoStatus.
 import dxSelectBox from 'devextreme/ui/select_box';
 import { runInThisContext } from 'vm';
 
-
+import { NgZone } from '@angular/core';
 
 
 
@@ -37,6 +37,7 @@ export class UltimoStatusComponent implements OnInit {
 
   private _user: IUser | null = null;
 
+  intervalId: any;
   viajesCargados: any[] = [];
   viajesVacios: any[] = [];
   sinViajes: any[] = [];
@@ -137,16 +138,13 @@ export class UltimoStatusComponent implements OnInit {
 
 
    udn: any[] = [
-    {idArea: 1, nombre: 'TBK ORI' },
-    {idArea: 2, nombre: 'TBK GDL' },
-    {idArea: 3, nombre: 'TBK RAMOS' },
-    {idArea: 4, nombre: 'TBK MEX' },
-    {idArea: 5, nombre: 'TBK HER' },
-    {idArea: 6, nombre: 'TBK PAZ' },
-    {idArea: 7, nombre: 'ATM' },
-    {idArea: 8, nombre: 'TEISA' },
-    {idArea: 9, nombre: 'GEMINIS' },
-    {idArea: 10, nombre: 'GST' },
+    {idArea: 1, nombre: 'ORIZABA' },
+    {idArea: 2, nombre: 'GUADALAJARA' },
+    {idArea: 3, nombre: 'RAMOS ARIZPE' },
+    {idArea: 4, nombre: 'MEXICALI' },
+    {idArea: 5, nombre: 'HERMOSILLO' },
+    {idArea: 8, nombre: 'CUAUTITLAN' },
+    {idArea: 9, nombre: 'TULTITLAN' },
 
   ]
 
@@ -158,7 +156,8 @@ export class UltimoStatusComponent implements OnInit {
     private renContService: RentContService,
     private renGerService: RentGerService,
     private pdfReport: ReportsPDFService,
-    private ultimoStService: UltimoStatusService
+    private ultimoStService: UltimoStatusService,
+    private ngZone: NgZone
   ) {
     const that = this;
     
@@ -196,10 +195,42 @@ export class UltimoStatusComponent implements OnInit {
     if (this.selectedUdn !==  0) {
       this.loadingVisible = true;
       
+      if (this.intervalId) {
+        console.log("INTERVAL ID: " + this.intervalId);
+        clearInterval(this.intervalId);
+      }
+  
       this.getUltmoSta();
+
+      this.actualizarIntervalo();
     }
 
+    
+
   };
+
+  actualizarIntervalo() {
+
+
+    this.ngZone.run(() => {
+
+    this.intervalId = setInterval(() => {
+        console.log('Interval ejecutado');
+        this.getUltmoSta();
+      }, 5000);
+    });
+     
+  }
+
+  detenerIntervalo() {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+  }
+
+  ngOnDestroy(): void {
+    // Por seguridad, detenerlo al destruir el componente
+    this.detenerIntervalo();
+  }
 
    onShown() {
     // setTimeout(() => {
@@ -211,6 +242,14 @@ export class UltimoStatusComponent implements OnInit {
   }
 
  
+  calcularPorcentajes(options: any) {
+    // //
+    // if (options.summaryProcess === 'calculate') {
+    //   if (options.name === 'grupMargenUtilidaPor') {
+    //     options.totalValue = .17;
+    //   }
+    // }
+  }
 
 
 
@@ -235,16 +274,22 @@ export class UltimoStatusComponent implements OnInit {
     if(e.rowType == 'header'){
       e.cells.forEach((c: any) => {
 
-        if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
-          || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
-        ){
-          c.cellElement.style.background = "#DCDCDC";
-                    c.cellElement.style.fontSize = "15px";
-         c.cellElement.style.fontWeight = "bolder";
+        if (c.cellElement) {
+          // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
 
+          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+            || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
+          ){
+            c.cellElement.style.background = "#DCDCDC";
+            // c.cellElement.style.fontSize = "18px";
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
         }
       })
-      console.log(e)
+     // console.log(e)
     }
     
   if (e.rowType == 'data') {
@@ -252,15 +297,23 @@ export class UltimoStatusComponent implements OnInit {
     e.cells.forEach((c: any) => {
 
     if (c.cellElement) {
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 4 || c.columnIndex == 16){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
       if(c.columnIndex == 1){
           
-        console.log(c.data.clasificacion)
+
       if (c.data.clasificacion == "12 Hrs.") {
+        console.log(c.data)
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "green";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#a9d08e";
         }
 
       }
@@ -271,7 +324,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
           // c.cellElement.style.color = "white"
-          c.cellElement.style.background = "yellow";
+          c.cellElement.style.background = "#ffd966";
         }
 
       }
@@ -280,8 +333,8 @@ export class UltimoStatusComponent implements OnInit {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "red";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ff5050";
         }
 
       }
@@ -297,11 +350,40 @@ export class UltimoStatusComponent implements OnInit {
 
   onRowPreparedVV(e){
 
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+
+          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+            || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12
+          ){
+            c.cellElement.style.background = "#DCDCDC";
+                      // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+
+          }
+        }
+      })
+      //console.log(e)
+    }
+
   if (e.rowType == 'data') {
 
     e.cells.forEach((c: any) => {
 
     if (c.cellElement) {
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 4 || c.columnIndex == 13){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
+
       if(c.columnIndex == 1){
           
         console.log(c.data.clasificacion)
@@ -309,8 +391,8 @@ export class UltimoStatusComponent implements OnInit {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "green";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#a9d08e";
         }
 
       }
@@ -321,7 +403,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
           // c.cellElement.style.color = "white"
-          c.cellElement.style.background = "yellow";
+          c.cellElement.style.background = "#ffd966"
         }
 
       }
@@ -330,8 +412,8 @@ export class UltimoStatusComponent implements OnInit {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "red";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ff5050";
         }
 
       }
@@ -347,20 +429,49 @@ export class UltimoStatusComponent implements OnInit {
 
   onRowPreparedSV(e){
 
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+
+          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+            || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14
+            || c.columnIndex == 15 || c.columnIndex == 16
+          ){
+            c.cellElement.style.background = "#DCDCDC";
+                      // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+
+          }
+        }
+      })
+    }
+
   if (e.rowType == 'data') {
 
     e.cells.forEach((c: any) => {
 
     if (c.cellElement) {
+
+
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 4 || c.columnIndex == 17){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
       if(c.columnIndex == 1){
           
-        console.log(c.data.clasificacion)
       if (c.data.clasificacion == "12 Hrs.") {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "green";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#a9d08e";
         }
 
       }
@@ -371,7 +482,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
           // c.cellElement.style.color = "white"
-          c.cellElement.style.background = "yellow";
+          c.cellElement.style.background = "#ffd966";
         }
 
       }
@@ -380,12 +491,16 @@ export class UltimoStatusComponent implements OnInit {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.color = "white"
-          c.cellElement.style.background = "red";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ff5050";
         }
 
       }
       }
+      
+
+
+
     }
     });
   }
