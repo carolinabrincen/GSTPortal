@@ -172,9 +172,10 @@ export class UltimoStatusComponent implements OnInit {
   // //#region :::: GETTERS ::::
   getUltmoSta() {
     this.ultimoStService.getUltimoSt(this.selectedUdn).subscribe(res => {
-      this.viajesCargados = res.data.enViajeCargado;
-      this.viajesVacios = res.data.enViajeVacio ;
-      this.sinViajes = res.data.sinViaje;
+      
+      this.viajesCargados = res.data.enViajeCargado.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
+      this.viajesVacios = res.data.enViajeVacio.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
+      this.sinViajes = res.data.sinViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
       console.log(res.data)
 
       this.loadingVisible = false;
