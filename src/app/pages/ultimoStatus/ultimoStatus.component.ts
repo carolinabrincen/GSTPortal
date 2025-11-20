@@ -239,6 +239,9 @@ export class UltimoStatusComponent implements OnInit {
           || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
         ){
           c.cellElement.style.background = "#DCDCDC";
+                    c.cellElement.style.fontSize = "15px";
+         c.cellElement.style.fontWeight = "bolder";
+
         }
       })
       console.log(e)
