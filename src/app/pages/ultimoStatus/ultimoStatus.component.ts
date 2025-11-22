@@ -1,32 +1,13 @@
 import { ReportsPDFService } from './../../shared/reports/reports-pdf.service';
 import { CotizadorService } from './../../services/cotizador/cotizador.service';
-import { CotizacionModel, VariablesCotizacionModel, DetalleCotizacionModel} from './../../shared/models/cotizador/cotizador.model';
 import { Component, OnInit } from '@angular/core';
-import {
-  DxDataGridModule,
-  DxDataGridComponent,
-  DxTemplateModule,
-  DxSelectBoxModule,
-  DxButtonModule,
-} from 'devextreme-angular';
-import { UnidadesNegocioModel } from 'src/app/shared/models/rentabilidad-contable/renta-contable.model';
+
 import { RentContService } from 'src/app/services/rentabilidad-contable/rent-cont.service';
 import { RentGerService } from 'src/app/services/rentabilidad-gerencial/rent-ger.service';
-import { TiposOperacionModel } from 'src/app/shared/models/rentabilidad-gerencial/renta-geren.model';
-import notify from 'devextreme/ui/notify';
-import { confirm } from 'devextreme/ui/dialog';
 import { IUser } from 'src/app/shared/services';
 
 import { UltimoStatusService } from 'src/app/services/ultimoStatus/ultimoStatus.service';
-
-import dxSelectBox from 'devextreme/ui/select_box';
-import { runInThisContext } from 'vm';
-
 import { NgZone } from '@angular/core';
-
-
-
-
 
 @Component({
   selector: 'app-ultimoStatus',
@@ -41,101 +22,13 @@ export class UltimoStatusComponent implements OnInit {
   viajesCargados: any[] = [];
   viajesVacios: any[] = [];
   sinViajes: any[] = [];
+  detalleVC: any[] = [];
+  detalleVV: any[] = [];
+  detalleSV: any[] = [];
 
-  arrPreCotizaciones: CotizacionModel[] = [];
-  arrUnidadesNegocio: UnidadesNegocioModel[] = [];
-  arrTipoOperacion: TiposOperacionModel[] = [];
-  arrVariables: VariablesCotizacionModel[] = [];
-  arrDetalleCotizacion: DetalleCotizacionModel[] = [];
-  arrClasificaciones: string[] = [];
- 
-
-  itemCotizacion: any = {
-    idCotizacion: undefined,
-    folio: 0,
-    sencillo:true,
-    tipoViaje: "Solo de ida",
-    regresa_vacio: false,
-    regreso:"Vacio",
-    id_ingreso: "0",
-    id_area: undefined,
-    unidadNegocio: "",
-    id_tipo_operacion: 0,
-    tipoOperacion: "",
-    clasificacion: "",
-    cliente: undefined,
-    origen: undefined,
-    destino: undefined,
-    kms_ida: 0,
-    kms_regreso:0,
-    kms_totales: 0,
-    casetas: 0,
-    casetas_si: 0,
-    casetas_regreso:0,
-    casetas_regreso_si:0,
-    casetas_total_sin_impuestos:0,
-    diesel:0,
-    diesel_sin_impuestos: 0,
-    diesel_total_sin_impuestos:0,
-    num_estancias_ida: 0,
-    num_maniobras_ida: 0,
-    ton_carga_ida:0,
-    num_estancias_regreso:0,
-    num_maniobras_regreso:0,
-    ton_carga_regreso:0,
-    clienta_paga: false,
-    clientePagaCasetas:"No",
-    tarifaFinal:0,
-    costoViaje:0,
-    toneladas:0,
-    costo_tonelada:0,
-    costoPorKm:0,
-    ingresoPorKm:0,
-    rend_cargado:0,
-    rend_vacio:0
-    
-  };
-
-  buttonOptions: any = {
-    text: 'Guardar',
-    type: 'default',
-    icon: 'check',
-    useSubmitBehavior: true,
-
-  };
-  buttonCalcularVariables: any;
-  buttonOptionsVariables: any;
-  buttonOptionsPre: any;
-  buttonOptionsImprimir: any;
-  buttonOptionsRadioTipoViaje: any;
-  RadioButtonTipoViaje: any;
-  RadioButtonRegreso: any;
-  RadioButtonClientePagaCasetas: any;
-  RadioButtonPrecioXTonelada: any;
-
-  buttonOptionsActualizar: any;
-  buttonOptionsAprobar: any;
-  buttonOptionsCerar: any;
-
-  bolModal: boolean = false;
-  positionOf: string = '#myDiv';
-  tituloModal: string = '';
-
-  bolModalVariables = false;
-  bolModalDetalleCotizacion = false;
   readonly allowedPageSizes = [5, 10, 20, 50];
 
-  tipoRegistro: string = '';
-  operacion: string = '';
-  rowIndex: number = -1;
-  bolEsViajeSencillo = true;
-  bolEsPrecioTonelada = true;
-  bolEsViajeVacio = true;
-  bolBotonAprobarCotizacion = false;
   bolFormSoloLectura = false;
-
-  modConfimation: boolean= false
-
 
    udn: any[] = [
     {idArea: 1, nombre: 'ORIZABA' },
@@ -150,6 +43,81 @@ export class UltimoStatusComponent implements OnInit {
 
   selectedUdn: number = 0;
   loadingVisible = false;
+
+  modViajeC: boolean = false;
+  modViajeV: boolean = false;
+  modSinV: boolean = false;
+
+  tiempoTotal: string= ""
+
+  getVC: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+  getVV: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+  getSV: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
 
   constructor(
     private cotizadorService: CotizadorService,
@@ -176,19 +144,169 @@ export class UltimoStatusComponent implements OnInit {
       this.viajesCargados = res.data.enViajeCargado.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
       this.viajesVacios = res.data.enViajeVacio.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
       this.sinViajes = res.data.sinViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
-      console.log(res.data)
+      //console.log(res.data)
 
       this.loadingVisible = false;
     });
   }
 
+  getDetalleV() {
+    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVC.noviaje).subscribe(res => {
+      this.detalleVC = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      console.log(res.data)
+      this.tiempoTotal = res.data.tiempoTotal;
+      this.loadingVisible = false;
+    });
+  }
 
+  getDetalleVV() {
+    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVV.noviaje).subscribe(res => {
+      this.detalleVV = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      console.log(res.data)
+      this.tiempoTotal = res.data.tiempoTotal;
+      this.loadingVisible = false;
+    });
+  }
 
-
+  getDetalleSV() {
+    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getSV.noviaje).subscribe(res => {
+      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      console.log(res.data)
+      this.tiempoTotal = res.data.tiempoTotal;
+      this.loadingVisible = false;
+    });
+  }
 
   selectUdn(value: any){
     this.selectedUdn = value.value;
     console.log(this.selectedUdn)
+  }
+
+  buttonVer(data){
+    this.detalleVC = []
+
+    var date = new Date(data.row.data.despacho);
+    data.row.data.despacho = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
+
+    this.getVC = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+    this.getVC = data.row.data;
+    console.log(this.getVC);
+
+    if(this.getVC !== undefined){
+      this.loadingVisible = true;
+      this.getDetalleV();
+    this.modViajeC = true;
+    }
+
+  }
+
+  buttonVerVV(data){
+    this.detalleVV = []
+    var date = new Date(data.row.data.despacho);
+    data.row.data.despacho = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
+
+
+    this.getVV = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+    this.getVV = data.row.data;
+    console.log(this.getVV);
+
+    if(this.getVV !== undefined){
+      this.loadingVisible = true;
+      this.getDetalleVV();
+    this.modViajeV = true;
+    }
+
+  }
+
+    buttonVerSV(data){
+    this.detalleSV = []
+
+        var date = new Date(data.row.data.despacho);
+    data.row.data.despacho = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
+
+        var date = new Date(data.row.data.finViaje);
+    data.row.data.finViaje = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
+
+    this.getSV = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+    this.getSV = data.row.data;
+    console.log(this.getSV);
+
+    if(this.getSV !== undefined){
+      this.loadingVisible = true;
+      this.getDetalleSV();
+    this.modSinV = true;
+    }
+
+  }
+
+  getViajesCargados(value: any){
+
   }
 
 
@@ -252,24 +370,6 @@ export class UltimoStatusComponent implements OnInit {
     // }
   }
 
-
-
-
-
-
-  mouseoverAprobarCotizacion(e: any) {
-    //TODO: Validar que sea tamien el gerente
-    this.bolBotonAprobarCotizacion = e.value === 'PRECOTIZACION';
-
-  }
- 
-  asignarFolio() {
-    
-      this.itemCotizacion.folio = 1 ;
-  }
-  //#endregion :::: FIN EVENTOS ::::
-
-
   onRowPreparedVC(e){
 
     if(e.rowType == 'header'){
@@ -309,7 +409,7 @@ export class UltimoStatusComponent implements OnInit {
           
 
       if (c.data.clasificacion == "12 Hrs.") {
-        console.log(c.data)
+        //console.log(c.data)
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
           // c.cellElement.style.fontSize = "15px";
@@ -387,7 +487,7 @@ export class UltimoStatusComponent implements OnInit {
 
       if(c.columnIndex == 1){
           
-        console.log(c.data.clasificacion)
+        //console.log(c.data.clasificacion)
       if (c.data.clasificacion == "12 Hrs.") {
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.fontWeight = "bolder";
@@ -511,5 +611,67 @@ export class UltimoStatusComponent implements OnInit {
   onCellPreparedSV(e){
   }
 
+
+  onRowPreparedDVC(e){
+
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+          c.cellElement.style.background = "#DCDCDC";
+        }
+      })
+    }
+
+ if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+    if (c.cellElement) {
+      if(c.columnIndex == 0){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
+      if(c.columnIndex == 0){
+          
+
+      if (c.data.clasificacion == "12 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.background = "#a9d08e";
+        }
+
+      }
+      
+
+      if (c.data.clasificacion == "24 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.background = "#ffd966";
+        }
+
+      }
+
+      if (c.data.clasificacion == "25+ Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.background = "#ff5050";
+        }
+
+      }
+      }
+    }
+    });
+  }
+  }
+
+  onCellPreparedDVC(e){
+
+  }
 
 }
