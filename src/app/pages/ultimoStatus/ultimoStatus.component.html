@@ -1,8 +1,6 @@
-<h2 class="content-block">Ultimo Status</h2>
+<h2 class="content-block">Status Actual</h2>
 
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
-
-      <br><br>
             <dx-responsive-box>
                 <dxi-col [ratio]=".10"></dxi-col>
                 <dxi-col [ratio]=".40"></dxi-col>
@@ -43,9 +41,44 @@
                 </dxi-item>
 
             </dx-responsive-box>
-            <br><br>
+           
+        <dx-scroll-view class="view-wrapper-scroll">
+            <div class="view-wrapper">
 
-            
+                <div class="cards grey">
+                    <div id="pick" class="ticker" *ngFor="let resumenM of cardsUS">
+                        
+                        <div *ngIf="resumenM.tipo == 'Total'" class="icon-wrapper">
+                            <img src="assets/truck.png" class="devextreme-logo">
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Cargados'" class="icon-wrapper">
+                            <img src="assets/deliveryTruck.png" class="devextreme-logo">
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Vacios'" class="icon-wrapper">
+                            <img src="assets/truckVacios.png" class="devextreme-logo">
+                        </div>
+                        <div *ngIf="resumenM.tipo == 'Sin Viajes'" class="icon-wrapper">
+                            <img src="assets/rest.png" class="devextreme-logo">
+                        </div>
+
+                        <div  class="middle">
+                            <div class="title"> {{ resumenM.tipo }} </div>
+                            <div class="total"> {{resumenM.total }} </div>
+                        </div>
+
+                        <div>
+                        <br>
+                        <!-- <div>
+                            <dx-button *ngIf="resumenM.tipo == 'Altas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalA($event)"></dx-button>
+                            <dx-button *ngIf="resumenM.tipo == 'Bajas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalB($event)"></dx-button>
+                        </div> -->
+                        </div>  
+                       
+                    </div>
+                </div>
+            </div>
+        </dx-scroll-view>
+        
     <dx-tab-panel>
         <dxi-item title="Viajes Cargados">
 
@@ -61,10 +94,10 @@
 
             <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
-                <dxi-column dataField="periodo" caption="Periodo" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
 
+                <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
@@ -104,10 +137,10 @@
 
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
-                <dxi-column dataField="periodo" caption="Periodo" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
 
+                <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column> 
@@ -141,10 +174,10 @@
 
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
-                <dxi-column dataField="periodo" caption="Periodo" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
 
+                <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
@@ -156,7 +189,7 @@
                 <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
                 <dxi-column dataField="id_usuario" caption="Usuario" [width]="150"></dxi-column>
                 <dxi-column dataField="f_ini_status" caption="Inicio" [width]="200" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
-                <dxi-column dataField="finViaje" caption="Fin Viaje" [width]="150" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="finViaje" caption="Fin Viaje" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
                 <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="60" cellTemplate="headerVerSV"></dxi-column>
     

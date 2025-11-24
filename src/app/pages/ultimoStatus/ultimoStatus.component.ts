@@ -8,6 +8,7 @@ import { IUser } from 'src/app/shared/services';
 
 import { UltimoStatusService } from 'src/app/services/ultimoStatus/ultimoStatus.service';
 import { NgZone } from '@angular/core';
+import { UltimoStausModel } from 'src/app/shared/models/ultimoStatus/ultimoStatus';
 
 @Component({
   selector: 'app-ultimoStatus',
@@ -25,6 +26,8 @@ export class UltimoStatusComponent implements OnInit {
   detalleVC: any[] = [];
   detalleVV: any[] = [];
   detalleSV: any[] = [];
+
+  cardsUS: UltimoStausModel[] = []
 
   readonly allowedPageSizes = [5, 10, 20, 50];
 
@@ -49,6 +52,11 @@ export class UltimoStatusComponent implements OnInit {
   modSinV: boolean = false;
 
   tiempoTotal: string= ""
+
+  totalViajes: number = 0;
+  totalCargados: number = 0;
+  totalVacios: number = 0;
+  totalSinViaje: number = 0;
 
   getVC: any = {
     ciclo: "",
@@ -139,12 +147,36 @@ export class UltimoStatusComponent implements OnInit {
 
   // //#region :::: GETTERS ::::
   getUltmoSta() {
+
     this.ultimoStService.getUltimoSt(this.selectedUdn).subscribe(res => {
       
-      this.viajesCargados = res.data.enViajeCargado.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
-      this.viajesVacios = res.data.enViajeVacio.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
-      this.sinViajes = res.data.sinViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));
+      this.viajesCargados = res.data.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.viajesVacios = res.data.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.sinViajes = res.data.sinViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       //console.log(res.data)
+
+
+      if(res.data !== undefined){
+        this.totalViajes = this.viajesCargados.length + this.viajesVacios.length + this.sinViajes.length;
+        this.totalCargados = this.viajesCargados.length;
+        this.totalVacios = this.viajesVacios.length;
+        this.totalSinViaje = this.sinViajes.length;
+
+        if(this.totalViajes !== 0){
+          this.cardsUS = [
+            {tipo: 'Total', total: this.totalViajes, color: '#bdd7ee'},
+            {tipo: 'Cargados', total: this.totalCargados , color: '#c6e0b4'},
+            {tipo: 'Vacios', total: this.totalVacios , color: '#f8cbad'},
+            {tipo: 'Sin Viajes', total: this.totalSinViaje , color: '#d9d9d9'},
+          ]
+      
+        } 
+
+        // var x = document.getElementById('pick');
+        // console.log(x)
+      }
+
+      // console.log(this.cardsUS);
 
       this.loadingVisible = false;
     });
@@ -152,7 +184,7 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVC.noviaje).subscribe(res => {
-      this.detalleVC = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      this.detalleVC = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       console.log(res.data)
       this.tiempoTotal = res.data.tiempoTotal;
       this.loadingVisible = false;
@@ -161,7 +193,7 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleVV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVV.noviaje).subscribe(res => {
-      this.detalleVV = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      this.detalleVV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       console.log(res.data)
       this.tiempoTotal = res.data.tiempoTotal;
       this.loadingVisible = false;
@@ -170,7 +202,7 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleSV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getSV.noviaje).subscribe(res => {
-      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.tiempo < b.tiempo ? -1 : 1));;
+      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       console.log(res.data)
       this.tiempoTotal = res.data.tiempoTotal;
       this.loadingVisible = false;
@@ -179,7 +211,7 @@ export class UltimoStatusComponent implements OnInit {
 
   selectUdn(value: any){
     this.selectedUdn = value.value;
-    console.log(this.selectedUdn)
+    //console.log(this.selectedUdn)
   }
 
   buttonVer(data){
@@ -312,6 +344,7 @@ export class UltimoStatusComponent implements OnInit {
 
    buscarClick = (e: any) => {
     if (this.selectedUdn !==  0) {
+          this.cardsUS = [];
       this.loadingVisible = true;
       
       if (this.intervalId) {
@@ -334,7 +367,7 @@ export class UltimoStatusComponent implements OnInit {
     this.ngZone.run(() => {
 
     this.intervalId = setInterval(() => {
-        console.log('Interval ejecutado');
+        //console.log('Interval ejecutado');
         this.getUltmoSta();
       }, 5000);
     });
@@ -370,6 +403,7 @@ export class UltimoStatusComponent implements OnInit {
     // }
   }
 
+  
   onRowPreparedVC(e){
 
     if(e.rowType == 'header'){
@@ -380,7 +414,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.color = "#000000"
 
-          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+          if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
             || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
           ){
             c.cellElement.style.background = "#DCDCDC";
@@ -459,7 +493,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.color = "#000000"
 
-          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+          if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
             || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12
           ){
             c.cellElement.style.background = "#DCDCDC";
@@ -538,7 +572,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.fontWeight = "bolder";
           c.cellElement.style.color = "#000000"
 
-          if(c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+          if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
             || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14
             || c.columnIndex == 15 || c.columnIndex == 16
           ){
@@ -673,5 +707,18 @@ export class UltimoStatusComponent implements OnInit {
   onCellPreparedDVC(e){
 
   }
+
+
+
+
+
+   customizeTooltip = ({ valueText }: { valueText: number }) => ({
+    text: Math.abs(valueText),
+  });
+
+  abs(value: number): number {
+    return Math.abs(value);
+  }
+  
 
 }
