@@ -221,6 +221,7 @@ export class BitacoraViajeComponent implements OnInit {
       this.selectTracto.value = '';
       this.bitacoraService.getTractos(this.anioSeleccionado, this.mesSeleccionado, this.udnPush).subscribe(res => {
         this.arrTractos = res.data.tractos;
+       // console.log(this.arrTractos)
       });
     }
   }
@@ -232,8 +233,8 @@ export class BitacoraViajeComponent implements OnInit {
     if(this.tractoSeleccionado == ""){
       this.tractoSeleccionado = "TODOS"
     }
-
-      this.bitacoraService.getBitacoraViaje(formatPerido, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
+// formatPerido, this.udnSeleccionado,this.tractoSeleccionado
+      this.bitacoraService.getBitacoraViaje(202511, 1, 'TT1434').subscribe(res => {
         this.bitacoraViaje = res.data
         console.log(this.bitacoraViaje)  
         this.loadingVisible = false;
@@ -297,11 +298,11 @@ export class BitacoraViajeComponent implements OnInit {
  
 
   buscarClick = (e: any) => {
-    if (this.mesSeleccionado && this.anioSeleccionado) {
+    // if (this.mesSeleccionado && this.anioSeleccionado) {
       this.loadingVisible = true;
       
       this.getBitacoraViaje()
-    }
+   // }
 
   };
 
@@ -331,38 +332,164 @@ export class BitacoraViajeComponent implements OnInit {
   }
 
   onRowPreparedResumenO(e: any) {
-    // if (e.rowType == 'data') {
+    
+     if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
 
-    //   e.cells.forEach((c: any) => {
+        if (c.cellElement) {
+          // c.cellElement.style.fontSize = "18px";
+          // c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.color = "#000000"
+          
+          if(c.cellElement.innerText == "Viaje Vacio" || c.column.dataField == "vvNo" || c.column.dataField == "vV1" || c.column.dataField == "vVh1" ||
+            c.column.dataField == "vV2" || c.column.dataField == "vVh2" || c.column.dataField == "vV3"
+           ){
+            c.cellElement.style.background = "#bdd7ee";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
 
-    //     if (c.cellElement) {
-    //       if (c.columnIndex == 2) {
-    //         c.cellElement.style.fontWeight = "bolder";
-    //         c.cellElement.style.fontSize = "15px";
-    //         c.cellElement.style.background = "#cdcbcb";
-    //       }
+          }
 
-    //       if (c.columnIndex == 12) {
-    //         c.cellElement.style.fontWeight = "bolder";
-    //         c.cellElement.style.fontSize = "15px";
-    //         c.cellElement.style.background = "#cdcbcb";
-    //       }
+          if(c.column.dataField == "vVh3"
+           ){
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
 
-    //       if (c.columnIndex == 14) {
-    //         c.cellElement.style.fontWeight = "bolder";
-    //         c.cellElement.style.fontSize = "15px";
-    //         c.cellElement.style.background = "#cdcbcb";
-    //       }
+          }
+
+          if(c.cellElement.innerText == "Viaje Cargado" || c.column.dataField == "vcNo" || c.column.dataField == "cliente" || c.column.dataField == "ruta" ||
+            c.column.dataField == "vC1" || c.column.dataField == "vCh1" || c.column.dataField == "vC2" || c.column.dataField == "vCh2" || c.column.dataField == "vC3"
+            || c.column.dataField == "vCh3" || c.column.dataField == "vC4" || c.column.dataField == "vCh4" || c.column.dataField == "vC5" || c.column.dataField == "vCh5"
+            || c.column.dataField == "vC6"
+           ){
+            c.cellElement.style.background = "#c6e0b4";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+
+          if(c.column.dataField == "vCh6"
+           ){
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+
+          if(c.cellElement.innerText == "Viaje Gasolineria" || c.column.dataField == "vgNo" || c.column.dataField == "vG1" || c.column.dataField == "vGh1" ||
+            c.column.dataField == "vG2" || c.column.dataField == "vGh2" || c.column.dataField == "vG3"
+           ){
+            c.cellElement.style.background = "#f8cbad";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+
+          if(c.column.dataField == "vGh3"
+           ){
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+
+          if(c.column.dataField == "tot"
+           ){
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+
+          if(c.column.dataField == "fake"
+           ){
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
+          }
+        }
+      })
+    }
+    
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+    if (c.cellElement) {
+      
+      if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#bdd7ee";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 10){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#d9d9d9";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
 
 
-    //       if (c.columnIndex == 32) {
-    //         c.cellElement.style.fontWeight = "bolder";
-    //         c.cellElement.style.fontSize = "15px";
-    //         c.cellElement.style.background = "#cdcbcb";
-    //       }
-    //     }
-    //   });
-    // }
+      if(c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15 || c.columnIndex == 16
+        || c.columnIndex == 17 || c.columnIndex == 18 || c.columnIndex == 19 || c.columnIndex == 20 || c.columnIndex == 21 || c.columnIndex == 22 
+        || c.columnIndex == 23 || c.columnIndex == 24
+      ){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#c6e0b4";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 25){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#d9d9d9";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 26 || c.columnIndex == 27 || c.columnIndex == 28 || c.columnIndex == 29 || c.columnIndex == 30 || c.columnIndex == 31){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#f8cbad";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 32){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#d9d9d9";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 33){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#d9d9d9";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+
+      if(c.columnIndex == 34){
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.background = "#d9d9d9";
+          c.cellElement.style.color = "#001029"
+          c.cellElement.style.fontWeight = "bolder";
+        }
+      }
+    }
+    });
+  }
+
 
     if (e.rowType == 'totalFooter') {
       e.cells.forEach((c: any) => {
