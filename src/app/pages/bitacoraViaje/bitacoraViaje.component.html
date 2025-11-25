@@ -2,128 +2,49 @@
 <div [id]="'myDiv'" class="content-block dx-card responsive-paddings">
     <br><br>
 
+
     <br><br>
-    <dx-responsive-box>
-        <!-- COLS -->
-        <!--UDN-->
-        <dxi-col [ratio]=".30"></dxi-col>
-        <dxi-col [ratio]="2"></dxi-col>
-        <!--vacia-->
-        <dxi-col [ratio]=".25"></dxi-col>
-        <!--Mes-->
-        <dxi-col [ratio]=".30"></dxi-col>
-        <dxi-col [ratio]=".80"></dxi-col>
-        <!--vacia-->
-        <dxi-col [ratio]=".25"></dxi-col>
-        <!--Año-->
-        <dxi-col [ratio]=".30"></dxi-col>
-        <dxi-col [ratio]=".60"></dxi-col>
-        <!--vacia-->
-        <dxi-col [ratio]=".25"></dxi-col>
-        <!--Tracto-->
-        <dxi-col [ratio]=".40"></dxi-col>
-        <dxi-col [ratio]="2"></dxi-col>
-        <!--vacia-->
-        <dxi-col [ratio]=".25"></dxi-col>
-        <!--Buscar-->
-        <dxi-col [ratio]="1"></dxi-col>
-        
 
-        <!-- ROWS -->
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
-        <dxi-row [ratio]="1"></dxi-row>
+        <dx-form id="form" [formData]="formFilter">
 
-        <!-- CONTROLES DEL FORM -->
-        <!--#region :::: ROW 1 DEL FORM ::::  -->
-        <!--ROW 1 Unidad de Negocio -->
+            <dxi-item itemType="group" cssClass="form-group" [colCount]="5">
+                 
+                <dxi-item itemType="group">
+                    <dxi-item dataField="UdN">  
+                        <dx-select-box [dataSource]="unidadNegoios" valueExpr="idUnidad" displayExpr="ciudad" [value]="unidadNegoios[0].idUnidad" (onValueChanged)="seleccionarUDN($event)"></dx-select-box>  
+                    </dxi-item>  
+                </dxi-item>
 
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-            <div>UdN:</div>
-        </dxi-item>
+                <dxi-item itemType="group">
+                    <dxi-item dataField="inicio" text="Inicio" editorType="dxDateBox" [editorOptions]="{ width: '100%', displayFormat:'dd/MM/yyyy' }"></dxi-item>
+                </dxi-item>
 
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-            <dx-select-box [items]="unidadNegoios" displayExpr="ciudad" valueExpr="idUnidad" (onValueChanged)="seleccionarUDN($event)">
-            </dx-select-box>
-        </dxi-item>
-        <!-- MES -->
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="2" [col]="0" [colspan]="12"></dxi-location>
-            <div>Mes:</div>
-        </dxi-item>
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="3" [col]="0" [colspan]="12"></dxi-location>
-            <dx-select-box [items]="arrMeses" displayExpr="nombre" valueExpr="periodo" (onValueChanged)="seleccionarMes($event)">
-            </dx-select-box>
-        </dxi-item>
+                <dxi-item itemType="group">
+                    <dxi-item dataField="fin" text="Fin" editorType="dxDateBox" [editorOptions]="{ width: '100%', displayFormat:'dd/MM/yyyy' }"></dxi-item>
+                </dxi-item>
 
-        <!-- AÑO -->
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-            <div>Año:</div>
-        </dxi-item>
-
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="7"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-            <dx-select-box [items]="anios" displayExpr="anio" valueExpr="idAnio" (onValueChanged)="seleccionarAnio($event)">
-            </dx-select-box>
-        </dxi-item>
-
-        <!-- TRACTO -->
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="9"></dxi-location>
-            <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
-            <div>Tracto:</div>
-        </dxi-item>
-
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="0" [col]="10"></dxi-location>
-            <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
-            <div style="display: flex;">
-              <dx-select-box #selectTracto id="selectTracto" style="width: 80%;"
-              [items]="arrTractos"
-              (onValueChanged)="seleccionarTracto($event)">
-                  ></dx-select-box>
-                  <div title="Borrar tracto">
+                <dxi-item itemType="group">
+                    <dxi-item dataField="Tracto">  
+                    <dx-select-box #selectTracto id="selectTracto" style="width: 50%;" [items]="arrTractos" (onValueChanged)="seleccionarTracto($event)">
+                     <div title="Borrar tracto">
                     <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" >
                     </dx-button>
                   </div>
-            </div>
-        </dxi-item>
+                    </dx-select-box>  
+                    
+                    </dxi-item>  
+                </dxi-item>
 
-        <!-- BUSCAR -->
-        <dxi-item>
-            <dxi-location screen="md lg" [row]="2" [col]="12"></dxi-location>
-            <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
-            <div>
-                <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
-                </dx-button>
-            </div>
-        </dxi-item>
-        <!--#endregion :::: FIN ROW 1 ::::  -->
-    </dx-responsive-box>
-    <br><br>
+                <dxi-item itemType="group" class="styleButton">
+                    <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
+                    </dx-button>
+                </dxi-item>
+                
+            </dxi-item>
+        </dx-form>
+            <br>
+
+   
             <br>
     <div>
      
@@ -135,19 +56,14 @@
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
             <dxo-export [enabled]="true" fileName="Disponiblidad-Operadores" [customizeExcelCell]="customizeOp"></dxo-export>
             
-            <dxo-filter-row
-            [visible]="showFilterRow"
-            [applyFilter]="currentFilter"
-          ></dxo-filter-row>
           <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter>
             
             <dxi-column dataField="udn" caption="UdN" [fixed]="true" [width]="90"></dxi-column>
             <dxi-column dataField="tracto" caption="Tracto" [fixed]="true" [width]="90"></dxi-column>
             
-            <dxi-column caption="Tracto" alignment="center">
-                <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
-                <dxi-column dataField="operador" caption="Operador" [fixed]="true"></dxi-column>
-            </dxi-column>
+            <dxi-column dataField="operacion" caption="Operación" [fixed]="true"></dxi-column>
+            <dxi-column dataField="operador" caption="Operador" [fixed]="true"></dxi-column>
+            
             <dxi-column caption="Viaje Vacio" alignment="center">
                 <dxi-column dataField="vvNo" caption="Num" [width]="70"></dxi-column>
                 <dxi-column dataField="vV1" caption="Despacho" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
@@ -156,11 +72,11 @@
                 <dxi-column dataField="vVh2" caption="Hrs" [width]="70"></dxi-column>
                 <dxi-column dataField="vV3" caption="Fin" [width]="150"dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
             </dxi-column>
-            <dxi-column dataField="vVh3" caption="Sin Viaje" [width]="100"></dxi-column>
+            <dxi-column dataField="vVh3" caption="Total Viaje" [width]="103"></dxi-column>
             <dxi-column caption="Viaje Cargado" alignment="center">
                 <dxi-column dataField="vcNo" caption="Num" [width]="70"></dxi-column>
-                <dxi-column dataField="cliente" caption="Cliente" [width]="180"></dxi-column>
-                <dxi-column dataField="ruta" caption="Ruta"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="300"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="300"></dxi-column>
                 <dxi-column dataField="vC1" caption="Lleg. Cliente" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
                 <dxi-column dataField="vCh1" caption="Hrs" [width]="70"></dxi-column>
                 <dxi-column dataField="vC2" caption="Entr. Carga" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
@@ -173,7 +89,7 @@
                 <dxi-column dataField="vCh5" caption="Hrs" [width]="70"></dxi-column>
                 <dxi-column dataField="vC6" caption="Sal. Descarga" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
             </dxi-column>
-            <dxi-column dataField="vCh6" caption="Sin Viaje" ></dxi-column>
+            <dxi-column dataField="vCh6" caption="Total Viaje" [width]="103"></dxi-column>
             <dxi-column caption="Viaje Gasolineria" alignment="center">
                 <dxi-column dataField="vgNo" caption="Num" [width]="70"></dxi-column>
                 <dxi-column dataField="vG1" caption="Ida" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
@@ -182,9 +98,9 @@
                 <dxi-column dataField="vGh2" caption="Hrs" [width]="70"></dxi-column>
                 <dxi-column dataField="vG3" caption="Fin" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
             </dxi-column>
-            <dxi-column dataField="vGh3" caption="Sin Viaje" [width]="100"></dxi-column>
-            <dxi-column dataField="tot" caption="Total" [width]="70" [fixed]="true" fixedPosition="right"></dxi-column>
-            <dxi-column dataField="fake" caption="" [fixed]="true" fixedPosition="right" [width]="30"></dxi-column>
+            <dxi-column dataField="vGh3" caption="Total Viaje" [width]="103"></dxi-column>
+            <!-- <dxi-column dataField="tot" caption="Total" [width]="70" [fixed]="true" fixedPosition="right"></dxi-column> -->
+            <dxi-column dataField="fake" caption="" [width]="30"></dxi-column>
 
             
             <!-- <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 

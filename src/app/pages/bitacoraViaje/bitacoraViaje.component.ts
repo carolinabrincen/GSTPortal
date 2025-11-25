@@ -216,12 +216,12 @@ export class BitacoraViajeComponent implements OnInit {
   }
 
   getTractos() {
-    if (this.anioSeleccionado && this.mesSeleccionado) {
+    if(this.udnSeleccionado !== undefined){
       this.arrTractos = [];
-      this.selectTracto.value = '';
-      this.bitacoraService.getTractos(this.anioSeleccionado, this.mesSeleccionado, this.udnPush).subscribe(res => {
+
+      this.bitacoraService.getTractos(this.udnSeleccionado).subscribe(res => {
         this.arrTractos = res.data.tractos;
-       // console.log(this.arrTractos)
+        console.log(this.arrTractos)
       });
     }
   }
@@ -233,8 +233,8 @@ export class BitacoraViajeComponent implements OnInit {
     if(this.tractoSeleccionado == ""){
       this.tractoSeleccionado = "TODOS"
     }
-// formatPerido, this.udnSeleccionado,this.tractoSeleccionado
-      this.bitacoraService.getBitacoraViaje(202511, 1, 'TT1434').subscribe(res => {
+
+      this.bitacoraService.getBitacoraViaje(this.formFilter.inicio, this.formFilter.fin, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
         this.bitacoraViaje = res.data
         console.log(this.bitacoraViaje)  
         this.loadingVisible = false;
@@ -279,8 +279,8 @@ export class BitacoraViajeComponent implements OnInit {
   seleccionarUDN(e: any) {
     this.udnPush = [];
     this.udnSeleccionado = e.value; 
-    this.udnPush.push(e.value);
-    console.log(this.udnPush)
+    // this.udnPush.push(e.value);
+    // console.log(this.udnPush)
 
       this.getTractos();
  
@@ -479,13 +479,13 @@ export class BitacoraViajeComponent implements OnInit {
         }
       }
 
-      if(c.columnIndex == 34){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#d9d9d9";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
-      }
+      // if(c.columnIndex == 34){
+      //   if(c.cellElement?.style !== undefined){
+      //     c.cellElement.style.background = "#d9d9d9";
+      //     c.cellElement.style.color = "#001029"
+      //     c.cellElement.style.fontWeight = "bolder";
+      //   }
+      // }
     }
     });
   }

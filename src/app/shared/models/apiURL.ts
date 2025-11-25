@@ -58,7 +58,8 @@ export enum API_URLS{
     GET_UNIDADES_NEOGCIO = 'api/General/UnidadesNegocio',
     POST_RENTABILIDAD_CONTABLE = 'api/Rentabilidad/RentbilidadContable',
     POST_TRACTOS = 'api/Rentabilidad/RCTractos',
-    POST_TRACTOS_BV = 'api/Disponibilidad/PostBitTracto',
+    POST_TRACTOS_BV = 'api/Disponibilidad/PostBitTracto/',
+    
 
     GET_TIPOS_OPERACION = 'api/General/TiposOperacion',
     GET_TIPOS_OPERACION_UDN = 'api/Cotizador/GetOperaciones/',

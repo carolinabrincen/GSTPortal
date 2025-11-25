@@ -26,9 +26,10 @@ export class BitacoraViajeService extends AbstractManagerService {
 
 
 
-  getBitacoraViaje(periodo:number, idArea:number, tracto:string){
+  getBitacoraViaje(inicio: string, fin: string, idArea:number, tracto:string){
     let body = {
-      periodo: periodo,
+      inicio: inicio,
+      fin: fin,
       idArea: idArea, 
       tracto: tracto,
     };
@@ -41,14 +42,8 @@ export class BitacoraViajeService extends AbstractManagerService {
     return this.get<any>((this.API_URL + API_URLS.GET_UNIDADES_NEOGCIO), this.httpOptions);
   }
 
-  getTractos(anioSel: number, mesSel: number, udnSel: number[]){
-    let body ={
-      anio: anioSel,
-      mes: mesSel,
-      unidadesNegocio: udnSel
-    };
-    console.log(body)
-    return this.post<any>((this.API_URL + API_URLS.POST_TRACTOS_BV), body,this.httpOptions);
+  getTractos(idArea){
+    return this.post<any>((this.API_URL + API_URLS.POST_TRACTOS_BV+idArea),"",this.httpOptions);
   }
 
 
