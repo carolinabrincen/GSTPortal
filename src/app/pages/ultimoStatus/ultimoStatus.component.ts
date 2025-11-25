@@ -202,8 +202,9 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleSV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getSV.noviaje).subscribe(res => {
-      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       console.log(res.data)
+      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
+      
       this.tiempoTotal = res.data.tiempoTotal;
       this.loadingVisible = false;
     });
@@ -297,10 +298,10 @@ export class UltimoStatusComponent implements OnInit {
     buttonVerSV(data){
     this.detalleSV = []
 
-        var date = new Date(data.row.data.despacho);
+    var date = new Date(data.row.data.despacho);
     data.row.data.despacho = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
 
-        var date = new Date(data.row.data.finViaje);
+    var date = new Date(data.row.data.finViaje);
     data.row.data.finViaje = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
 
     this.getSV = {
@@ -478,9 +479,49 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
-  onContentReadyVC(e){
-  }
   onCellPreparedVC(e){
+  }
+  customizeVC(e) {  
+    var gridCell = e.gridCell;
+    if(gridCell.rowType == 'data'){
+      
+      if(gridCell.column.dataField == 'clasificacion'){
+      if(gridCell.data.clasificacion == "12 Hrs." ){
+        console.log(e)
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"  
+        e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "24 Hrs." ){
+          e.backgroundColor = "#ffd966";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "25+ Hrs." ){
+
+          e.backgroundColor = "#ff5050";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+      }
+    }
+  //   if (gridCell.rowType === 'group') {
+      
+  //     e.backgroundColor = "#DCDCDC";
+  //     e.fontWeight = "bolder"
+  //     e.font = {bold: true}
+
+  // }
+
+  // if (gridCell.rowType === 'totalFooter') {
+      
+  //   e.backgroundColor = "#ff9460";
+  //   e.fontWeight = "bolder"
+  //   e.font = {bold: true}
+
+  // }
   }
 
   onRowPreparedVV(e){
@@ -557,9 +598,34 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
-  onContentReadyVV(e){
-  }
   onCellPreparedVV(e){
+  }
+  customizeVV(e) {  
+    var gridCell = e.gridCell;
+    if(gridCell.rowType == 'data'){
+      
+      if(gridCell.column.dataField == 'clasificacion'){
+      if(gridCell.data.clasificacion == "12 Hrs." ){
+        console.log(e)
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"  
+        e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "24 Hrs." ){
+          e.backgroundColor = "#ffd966";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "25+ Hrs." ){
+
+          e.backgroundColor = "#ff5050";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+      }
+    }
   }
 
   onRowPreparedSV(e){
@@ -640,9 +706,34 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
-  onContentReadySV(e){
-  }
   onCellPreparedSV(e){
+  }
+  customizeSV(e) {  
+    var gridCell = e.gridCell;
+    if(gridCell.rowType == 'data'){
+      
+      if(gridCell.column.dataField == 'clasificacion'){
+      if(gridCell.data.clasificacion == "12 Hrs." ){
+        console.log(e)
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"  
+        e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "24 Hrs." ){
+          e.backgroundColor = "#ffd966";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "25+ Hrs." ){
+
+          e.backgroundColor = "#ff5050";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+      }
+    }
   }
 
 
@@ -703,9 +794,34 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
-
   onCellPreparedDVC(e){
+  }
+  customizeDVC(e) {  
+    var gridCell = e.gridCell;
+    if(gridCell.rowType == 'data'){
+      
+      if(gridCell.column.dataField == 'clasificacion'){
+      if(gridCell.data.clasificacion == "12 Hrs." ){
+        console.log(e)
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"  
+        e.font = {bold: true}
+      }
 
+      if(gridCell.data.clasificacion == "24 Hrs." ){
+          e.backgroundColor = "#ffd966";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+
+      if(gridCell.data.clasificacion == "25+ Hrs." ){
+
+          e.backgroundColor = "#ff5050";
+          e.fontWeight = "bolder"  
+          e.font = {bold: true}
+      }
+      }
+    }
   }
 
 

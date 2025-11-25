@@ -88,7 +88,7 @@
             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
             <dxo-paging [pageSize]="100"></dxo-paging>
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-            <dxo-export [enabled]="true" fileName="Viajes Cargados"></dxo-export>
+            <dxo-export [enabled]="true" fileName="Viajes Cargados" [customizeExcelCell]="customizeVC"></dxo-export>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-sorting mode="multiple"></dxo-sorting>
 
@@ -127,11 +127,11 @@
         <dxi-item title="Viajes Vacíos">
 
             <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="viajesVacios" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-            (onRowPrepared)="onRowPreparedVV($event)" (onContentReady)="onContentReadyVV($event)" (onCellPrepared)="onCellPreparedVV($event)">
+            (onRowPrepared)="onRowPreparedVV($event)" (onCellPrepared)="onCellPreparedVV($event)">
                 <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                <dxo-export [enabled]="true" fileName="Viajes Vacíos"></dxo-export>
+                <dxo-export [enabled]="true" fileName="Viajes Vacíos" [customizeExcelCell]="customizeVV"></dxo-export>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-sorting mode="multiple"></dxo-sorting>
 
@@ -164,11 +164,11 @@
         <dxi-item title="Sin Viaje">
 
             <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="sinViajes" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-            (onRowPrepared)="onRowPreparedSV($event)" (onContentReady)="onContentReadySV($event)" (onCellPrepared)="onCellPreparedSV($event)">
+            (onRowPrepared)="onRowPreparedSV($event)" (onCellPrepared)="onCellPreparedSV($event)">
                 <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                 <dxo-paging [pageSize]="100"></dxo-paging>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                <dxo-export [enabled]="true" fileName="Sin Viaje"></dxo-export>
+                <dxo-export [enabled]="true" fileName="Sin Viaje" [customizeExcelCell]="customizeSV"></dxo-export>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-sorting mode="multiple"></dxo-sorting>
 
@@ -261,7 +261,7 @@
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados"></dxo-export>
+                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados" [customizeExcelCell]="customizeDVC"></dxo-export>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
                     <dxo-sorting mode="multiple"></dxo-sorting>
 
@@ -360,7 +360,7 @@
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados"></dxo-export>
+                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados" [customizeExcelCell]="customizeDVC"></dxo-export>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
                     <dxo-sorting mode="multiple"></dxo-sorting>
 
@@ -458,7 +458,7 @@
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                     <dxo-paging [pageSize]="100"></dxo-paging>
                     <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados"></dxo-export>
+                    <dxo-export [enabled]="true" fileName="Detalle Viajes Cargados" [customizeExcelCell]="customizeDVC"></dxo-export>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
                     <dxo-sorting mode="multiple"></dxo-sorting>
 

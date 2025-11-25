@@ -48,7 +48,7 @@
           <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
           <dxo-paging [pageSize]="100"></dxo-paging>
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-          <dxo-export [enabled]="true" fileName="MES CONSULTADO" [customizeExcelCell]="customizeOct"></dxo-export>
+          <dxo-export [enabled]="true" fileName="MES CONSULTADO" [customizeExcelCell]="customizePXD"></dxo-export>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
 
             <dxi-column dataField="udn" caption="UdN" [groupIndex]="0"></dxi-column>
@@ -62,12 +62,12 @@
             <dxi-column dataField="baja" caption="Baja" dataType="date" format="dd/MM/yyyy"></dxi-column>
             <dxi-column dataField="laborado" caption="Laborado"></dxi-column>
 
-            <dxi-column caption="MESES ANTERIORES" alignment="center">
+            <dxi-column caption="MESES ANTERIORES" alignment="center" cssClass="border-right2">
             <dxi-column dataField="mes1" [caption]="titulosMes?.mes1" [format]="formatValue"></dxi-column>
             <dxi-column dataField="mes2" [caption]="titulosMes?.mes2" [format]="formatValue"></dxi-column>
             <dxi-column dataField="mes3" [caption]="titulosMes?.mes3" [format]="formatValue"></dxi-column>
-            <dxi-column dataField="promedioMensual" caption="Promedio" [format]="formatValue"></dxi-column>
             </dxi-column>
+            <dxi-column dataField="promedioMensual" caption="Promedio" cssClass="border-right" [format]="formatValue"></dxi-column>
 
             <!-- <dxi-column caption="LIQUIDADO" alignment="center">
               <dxi-column dataField="semana1" caption="Semana 1" [format]="formatValue"></dxi-column>
@@ -82,11 +82,11 @@
               <dxi-column dataField="kmsVacios" caption="KMS Vacios"></dxi-column> -->
             <!-- </dxi-column> -->
 
-            <dxi-column [caption]="titulosMes?.mesActual" alignment="center">
+            <dxi-column [caption]="titulosMes?.mesActual" alignment="center" cssClass="border-right2">
               <dxi-column dataField="liquidado" caption="Liquidado" [format]="formatValue"></dxi-column> 
               <dxi-column dataField="noLiquidado" caption="No Liquidado" [format]="formatValue"></dxi-column>            
             </dxi-column>  
-            <dxi-column dataField="total" caption="Total" [format]="formatValue"></dxi-column>
+            <dxi-column dataField="total" caption="Total" cssClass="border-right" [format]="formatValue"></dxi-column>
             <dxi-column caption="Ver" cellTemplate="verTotal" alignment="center"></dxi-column>
 
             <dxi-column caption="OBSERVACIONES" alignment="center">

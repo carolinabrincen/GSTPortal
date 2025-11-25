@@ -134,3 +134,15 @@
 ::ng-deep .currency {
   text-align: center;
 }
+
+::ng-deep .border-right {
+     border-right: 1px solid black !important;
+     border-left: 1px solid black !important;
+    //border-right: 1px #e0e0e096 !important;
+  }
+
+  ::ng-deep .border-right2 {
+     border-right: 1px solid black !important;
+    //  border-left: 1px solid black !important;
+    //border-right: 1px #e0e0e096 !important;
+  }

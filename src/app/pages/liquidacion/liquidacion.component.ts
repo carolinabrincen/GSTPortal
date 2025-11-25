@@ -4949,6 +4949,19 @@ export class LiquidacionComponent implements OnInit {
 
 
   onRowPreparedPXD(e: any){
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if(c.columnIndex == 12 || c.columnIndex == 15
+          ){
+            c.cellElement.style.color = "#000000"
+            c.cellElement.style.fontSize = '15px'
+          }
+
+        }
+      })
+    }
    if (e.rowType == 'data') {
 
     e.cells.forEach((c: any) => {
@@ -5024,6 +5037,9 @@ export class LiquidacionComponent implements OnInit {
           }
         }
         if(c.columnIndex == 12){
+          c.cellElement.style.color = "#000000"
+          c.cellElement.style.fontSize = '15px'
+
           if (c.data.promedioMensual > 30000) {
             if(c.cellElement?.style !== undefined){
               c.cellElement.style.fontWeight = "bolder";
@@ -5045,6 +5061,8 @@ export class LiquidacionComponent implements OnInit {
         }
 
         if(c.columnIndex == 15){
+          c.cellElement.style.color = "#000000"
+          c.cellElement.style.fontSize = '15px'
           if (c.data.total > 30000) {
             if(c.cellElement?.style !== undefined){
               c.cellElement.style.fontWeight = "bolder";
@@ -5135,21 +5153,100 @@ export class LiquidacionComponent implements OnInit {
     }
   }
 
-  customizeOct(e) {  
+  customizePXD(e) {  
   var gridCell = e.gridCell;
   if (gridCell.rowType === 'data') {
 
 
+    if(e.gridCell.column.dataField == "mes1"){
+      if(gridCell.data.mes1 > 30000){
+        e.backgroundColor = "#a9d08e";
+        // e.fontWeight = "bolder"
+//         e.font = {bold: true}
+      }
+      if(gridCell.data.mes1 >= 25000 && gridCell.data.mes1 <= 30000){
+        e.backgroundColor = "#ffd966";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+      if(gridCell.data.mes1 < 25000 && gridCell.data.mes1 > 0){
+        e.backgroundColor = "#ff5050";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+
+    }
+
+    if(e.gridCell.column.dataField == "mes2"){
+      if(gridCell.data.mes2 > 30000){
+        e.backgroundColor = "#a9d08e";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+      if(gridCell.data.mes2 >= 25000 && gridCell.data.mes2 <= 30000){
+        e.backgroundColor = "#ffd966";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+      if(gridCell.data.mes2 < 25000 && gridCell.data.mes2 > 0){
+        e.backgroundColor = "#ff5050";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+    }
+
+
+    if(e.gridCell.column.dataField == "mes3"){
+      if(gridCell.data.mes3 > 30000){
+        e.backgroundColor = "#a9d08e";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+      if(gridCell.data.mes3 >= 25000 && gridCell.data.mes3 <= 30000){
+        e.backgroundColor = "#ffd966";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+      if(gridCell.data.mes3 < 25000 && gridCell.data.mes3 > 0){
+        e.backgroundColor = "#ff5050";
+        // e.fontWeight = "bolder"
+        // e.font = {bold: true}
+      }
+    }
     if(e.gridCell.column.dataField == "promedioMensual"){
-      e.backgroundColor = "#cdcbcb";
-      e.fontWeight = "bolder"
-      e.font = {bold: true}
+      if(gridCell.data.promedioMensual > 30000){
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
+      if(gridCell.data.promedioMensual >= 25000 && gridCell.data.promedioMensual <= 30000){
+        e.backgroundColor = "#ffd966";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
+      if(gridCell.data.promedioMensual < 25000 && gridCell.data.promedioMensual > 0){
+        e.backgroundColor = "#ff5050";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
     }
     
     if(e.gridCell.column.dataField == "total"){
-      e.backgroundColor = "#cdcbcb";
-      e.fontWeight = "bolder"
-      e.font = {bold: true}
+      if(gridCell.data.total > 30000){
+        e.backgroundColor = "#a9d08e";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
+      if(gridCell.data.total >= 25000 && gridCell.data.total <= 30000){
+        e.backgroundColor = "#ffd966";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
+      if(gridCell.data.total < 25000 && gridCell.data.total > 0){
+        e.backgroundColor = "#ff5050";
+        e.fontWeight = "bolder"
+        e.font = {bold: true}
+      }
     }
   }
 
