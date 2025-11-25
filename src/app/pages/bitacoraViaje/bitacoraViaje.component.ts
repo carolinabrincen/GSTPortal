@@ -74,7 +74,7 @@ export class BitacoraViajeComponent implements OnInit {
 
  
   unidadNegoios: any[] = [
-    { idUnidad: 0, ciudad: 'TODOS' },
+    // { idUnidad: 0, ciudad: 'TODOS' },
     { idUnidad: 1, ciudad: 'ORIZABA' },
     { idUnidad: 2, ciudad: 'GUADALAJARA' },
     { idUnidad: 3, ciudad: 'RAMOS ARIZPE' },
@@ -221,6 +221,7 @@ export class BitacoraViajeComponent implements OnInit {
 
       this.bitacoraService.getTractos(this.udnSeleccionado).subscribe(res => {
         this.arrTractos = res.data.tractos;
+        this.arrTractos.sort();
         console.log(this.arrTractos)
       });
     }
@@ -229,11 +230,7 @@ export class BitacoraViajeComponent implements OnInit {
   getBitacoraViaje(){
     var myPeriodo = this.anioSeleccionado+''+this.periodo;
     var formatPerido = parseInt(myPeriodo) 
-    
-    if(this.tractoSeleccionado == ""){
-      this.tractoSeleccionado = "TODOS"
-    }
-
+   
       this.bitacoraService.getBitacoraViaje(this.formFilter.inicio, this.formFilter.fin, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
         this.bitacoraViaje = res.data
         console.log(this.bitacoraViaje)  
