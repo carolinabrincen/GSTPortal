@@ -4961,16 +4961,108 @@ export class LiquidacionComponent implements OnInit {
       }
 
       if (c.cellElement) {
+        
+        if(c.columnIndex == 9){
+
+          if (c.data.mes1 > 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#a9d08e";
+            }
+          }
+          if (c.data.mes1 >= 25000 && c.data.mes1 <= 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ffd966";
+            }
+          }
+          if (c.data.mes1 < 25000 && c.data.mes1 > 0) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ff5050";
+            }
+          }
+        }
+        if(c.columnIndex == 10){
+          if (c.data.mes2 > 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#a9d08e";
+            }
+          }
+          if (c.data.mes2 >= 25000 && c.data.mes2 <= 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ffd966";
+            }
+          }
+          if (c.data.mes2 < 25000 && c.data.mes2 > 0) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ff5050";
+            }
+          }
+        }
+        if(c.columnIndex == 11){
+          if (c.data.mes3 > 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#a9d08e";
+            }
+          }
+          if (c.data.mes3 >= 25000 && c.data.mes3 <= 30000) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ffd966";
+            }
+          }
+          if (c.data.mes3 < 25000 && c.data.mes3 > 0) {
+            if(c.cellElement?.style !== undefined){
+              // c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ff5050";
+            }
+          }
+        }
         if(c.columnIndex == 12){
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.background = "#cdcbcb";
+          if (c.data.promedioMensual > 30000) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#a9d08e";
+            }
+          }
+          if (c.data.promedioMensual >= 25000 && c.data.promedioMensual <= 30000) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ffd966";
+            }
+          }
+          if (c.data.promedioMensual < 25000 && c.data.promedioMensual > 0) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ff5050";
+            }
+          }
         }
 
         if(c.columnIndex == 15){
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.fontSize = "15px";
-          c.cellElement.style.background = "#cdcbcb";
+          if (c.data.total > 30000) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#a9d08e";
+            }
+          }
+          if (c.data.total >= 25000 && c.data.total <= 30000) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ffd966";
+            }
+          }
+          if (c.data.total < 25000 && c.data.total > 0) {
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.fontWeight = "bolder";
+              c.cellElement.style.background = "#ff5050";
+            }
+          }
         }
 
       }
