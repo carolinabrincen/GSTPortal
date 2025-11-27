@@ -177,6 +177,7 @@
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
 
+                <dxi-column dataField="destino" caption="Destino" [width]="150" alignment="center"></dxi-column>
                 <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
@@ -244,13 +245,32 @@
                             </dxi-item>
                             <!-- <dxi-item dataField="ruta" [colSpan]="2"></dxi-item>   -->
 
-                            <dxi-item dataField="destinatario" [colSpan]="2">
-                                 <dxo-label text="Destinatario"></dxo-label>
-                            </dxi-item>
                             <dxi-item dataField="remitente" [colSpan]="2">
                                  <dxo-label text="Remitente"></dxo-label>
                             </dxi-item>
-    
+                            <dxi-item dataField="destinatario" [colSpan]="2">
+                                 <dxo-label text="Destinatario"></dxo-label>
+                            </dxi-item>
+
+
+                            <dxi-item dataField="origen" [colSpan]="1">
+                                 <dxo-label text="Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioOrigen" [colSpan]="1">
+                                <dxo-label text="Municipio Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="destino" [colSpan]="1">
+                                 <dxo-label text="Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioDestino" [colSpan]="1">
+                                 <dxo-label text="Municipio Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="kms" [colSpan]="1">
+                                 <dxo-label text="Kms"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="estimado" [colSpan]="1">
+                                 <dxo-label text="Tiempo Ruta (hrs) "></dxo-label>
+                            </dxi-item>    
                     </dx-form>
                 </form>
                 <br><br>
@@ -343,12 +363,32 @@
                             </dxi-item>
                             <!-- <dxi-item dataField="ruta" [colSpan]="2"></dxi-item>   -->
 
-                            <dxi-item dataField="destinatario" [colSpan]="2">
-                                 <dxo-label text="Destinatario"></dxo-label>
-                            </dxi-item>
                             <dxi-item dataField="remitente" [colSpan]="2">
                                  <dxo-label text="Remitente"></dxo-label>
                             </dxi-item>
+                            <dxi-item dataField="destinatario" [colSpan]="2">
+                                 <dxo-label text="Destinatario"></dxo-label>
+                            </dxi-item>
+
+
+                            <dxi-item dataField="origen" [colSpan]="1">
+                                 <dxo-label text="Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioOrigen" [colSpan]="1">
+                                <dxo-label text="Municipio Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="destino" [colSpan]="1">
+                                 <dxo-label text="Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioDestino" [colSpan]="1">
+                                 <dxo-label text="Municipio Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="kms" [colSpan]="1">
+                                 <dxo-label text="Kms"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="estimado" [colSpan]="1">
+                                 <dxo-label text="Tiempo Ruta (hrs) "></dxo-label>
+                            </dxi-item> 
     
                     </dx-form>
                 </form>
@@ -441,12 +481,32 @@
                             </dxi-item>
                             <!-- <dxi-item dataField="ruta" [colSpan]="2"></dxi-item>   -->
 
-                            <dxi-item dataField="destinatario" [colSpan]="2">
-                                 <dxo-label text="Destinatario"></dxo-label>
-                            </dxi-item>
                             <dxi-item dataField="remitente" [colSpan]="2">
                                  <dxo-label text="Remitente"></dxo-label>
                             </dxi-item>
+                            <dxi-item dataField="destinatario" [colSpan]="2">
+                                 <dxo-label text="Destinatario"></dxo-label>
+                            </dxi-item>
+
+
+                            <dxi-item dataField="origen" [colSpan]="1">
+                                 <dxo-label text="Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioOrigen" [colSpan]="1">
+                                <dxo-label text="Municipio Origen"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="destino" [colSpan]="1">
+                                 <dxo-label text="Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="municipioDestino" [colSpan]="1">
+                                 <dxo-label text="Municipio Destino"></dxo-label>
+                            </dxi-item>
+                            <dxi-item dataField="kms" [colSpan]="1">
+                                 <dxo-label text="Kms"></dxo-label>
+                            </dxi-item> 
+                            <dxi-item dataField="estimado" [colSpan]="1">
+                                 <dxo-label text="Tiempo Ruta (hrs)"></dxo-label>
+                            </dxi-item> 
     
                     </dx-form>
                 </form>

@@ -230,6 +230,10 @@ export class BitacoraViajeComponent implements OnInit {
   getBitacoraViaje(){
     var myPeriodo = this.anioSeleccionado+''+this.periodo;
     var formatPerido = parseInt(myPeriodo) 
+
+    if(this.tractoSeleccionado == null){
+      this.tractoSeleccionado = ""
+    }
    
       this.bitacoraService.getBitacoraViaje(this.formFilter.inicio, this.formFilter.fin, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
         this.bitacoraViaje = res.data

@@ -370,7 +370,7 @@ export class UltimoStatusComponent implements OnInit {
     this.intervalId = setInterval(() => {
         //console.log('Interval ejecutado');
         this.getUltmoSta();
-      }, 5000);
+      }, 600000);
     });
      
   }
@@ -640,7 +640,7 @@ export class UltimoStatusComponent implements OnInit {
 
           if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
             || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14
-            || c.columnIndex == 15 || c.columnIndex == 16
+            || c.columnIndex == 15 || c.columnIndex == 16 || c.columnIndex == 17
           ){
             c.cellElement.style.background = "#DCDCDC";
                       // c.cellElement.style.fontSize = "18px";
@@ -658,7 +658,7 @@ export class UltimoStatusComponent implements OnInit {
     if (c.cellElement) {
 
 
-      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 4 || c.columnIndex == 17){
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 18){
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.color = "#001029"
             c.cellElement.style.fontWeight = "bolder";

@@ -21,13 +21,11 @@
 
                 <dxi-item itemType="group">
                     <dxi-item dataField="Tracto">  
-                    <dx-select-box #selectTracto id="selectTracto" style="width: 50%;" [items]="arrTractos" [searchEnabled]="true" [searchExpr]="['']" (onValueChanged)="seleccionarTracto($event)">
-                     <div title="Borrar tracto">
-                    <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" >
-                    </dx-button>
-                  </div>
+                    <dx-select-box #selectTracto id="selectTracto" style="width: 50%;" [items]="arrTractos" [searchEnabled]="true" [searchExpr]="['']" [showClearButton]="true" (onValueChanged)="seleccionarTracto($event)">
+                    <div title="Borrar tracto">
+                        <dx-button  icon="trash" [width]="20" (onClick)="borrarClick($event)" ></dx-button>
+                    </div>
                     </dx-select-box>  
-                    
                     </dxi-item>  
                 </dxi-item>
 
