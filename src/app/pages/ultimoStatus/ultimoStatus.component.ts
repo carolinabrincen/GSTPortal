@@ -184,28 +184,30 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVC.noviaje).subscribe(res => {
-      this.detalleVC = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
-      console.log(res.data)
-      this.tiempoTotal = res.data.tiempoTotal;
+      this.detalleVC = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
+      // console.log(res.data)
+      this.tiempoTotal = res?.data?.tiempoTotal;
       this.loadingVisible = false;
     });
   }
 
   getDetalleVV() {
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVV.noviaje).subscribe(res => {
-      this.detalleVV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
-      console.log(res.data)
-      this.tiempoTotal = res.data.tiempoTotal;
+      this.detalleVV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
+      // console.log(res?.data)
+      this.tiempoTotal = res?.data?.tiempoTotal;
       this.loadingVisible = false;
     });
   }
 
   getDetalleSV() {
+    console.log(this.selectedUdn);
+    console.log(this.getSV.noviaje);
     this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getSV.noviaje).subscribe(res => {
-      console.log(res.data)
-      this.detalleSV = res.data.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
+      // console.log(res?.data)
+      this.detalleSV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       
-      this.tiempoTotal = res.data.tiempoTotal;
+      this.tiempoTotal = res?.data?.tiempoTotal;
       this.loadingVisible = false;
     });
   }
@@ -328,7 +330,7 @@ export class UltimoStatusComponent implements OnInit {
   };
 
     this.getSV = data.row.data;
-    console.log(this.getSV);
+    //console.log(this.getSV);
 
     if(this.getSV !== undefined){
       this.loadingVisible = true;
