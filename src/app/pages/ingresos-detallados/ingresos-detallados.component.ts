@@ -113,6 +113,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDSeptiembre2025();
     this.getIDMDOctubre2025();
     this.getIDMDNoviembre2025();
+    this.getIDMDDiciembre2025();
   }
 
 /*=======================LLamadas GET 2023==========================*/
@@ -453,7 +454,6 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDOctubre2025(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualOct2025().subscribe(res => {
@@ -463,12 +463,21 @@ export class IngresosDetalladosComponent implements OnInit {
       this.loadingVisible = false;
     });
   }
-
   getIDMDNoviembre2025(){
     this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualNov2025().subscribe(res => {
       this.arrIngresosNov2025 = res.data.resumen;
       this.arrDetalleNov2025 = res.data.detalle;
+      //console.log("NOVIEMBRE !!!!!! ",res.data)
+      this.loadingVisible = false;
+    });
+  }
+
+  getIDMDDiciembre2025(){
+    this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualDic2025().subscribe(res => {
+      this.arrIngresosDic2025 = res.data.resumen;
+      this.arrDetalleDic2025 = res.data.detalle;
       //console.log("NOVIEMBRE !!!!!! ",res.data)
       this.loadingVisible = false;
     });
@@ -487,6 +496,7 @@ export class IngresosDetalladosComponent implements OnInit {
     this.getIDMDSeptiembre2025();
     this.getIDMDOctubre2025();
     this.getIDMDNoviembre2025();
+    this.getIDMDDiciembre2025();
   }
 
   getData2024(e: any){

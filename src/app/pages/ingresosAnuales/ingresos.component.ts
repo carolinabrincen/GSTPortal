@@ -1281,11 +1281,10 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presupuestoNV = e.summaryCells[118][0].value;
           this.totalPor25.proyeccionNV = e.summaryCells[120][0].value;
           // //Diciembre
-          // this.totalPor25.totalDC = e.summaryCells[106][0].value;
-          // this.totalPor25.anioAntDC = e.summaryCells[107][0].value;
-          // this.totalPor25.presupuestoDC = e.summaryCells[109][0].value;
-          // this.totalPor25.proyeccionDC = e.summaryCells[111][0].value;
-          // console.log(e.summaryCells)
+          this.totalPor25.totalDC = e.summaryCells[128][0].value;
+          this.totalPor25.anioAntDC = e.summaryCells[129][0].value;
+          this.totalPor25.presupuestoDC = e.summaryCells[131][0].value;
+          this.totalPor25.proyeccionDC = e.summaryCells[133][0].value;
   
           // //ENERO
           this.totalPor25.aniATotalE = this.totalPor25.totalE / this.totalPor25.anioAntE;
@@ -1332,9 +1331,9 @@ export class IngresosComponent implements OnInit {
           this.totalPor25.presTotalNV = this.totalPor25.totalNV / this.totalPor25.presupuestoNV;
           this.totalPor25.ProyTotalNV = this.totalPor25.proyeccionNV / this.totalPor25.presupuestoNV;
           // // //Diciembre
-          // this.totalPor25.aniATotalDC = this.totalPor25.totalDC / this.totalPor25.anioAntDC;
-          // this.totalPor25.presTotalDC = this.totalPor25.totalDC / this.totalPor25.presupuestoDC;
-          // this.totalPor25.ProyTotalDC = this.totalPor25.proyeccionDC / this.totalPor25.presupuestoDC;
+          this.totalPor25.aniATotalDC = this.totalPor25.totalDC / this.totalPor25.anioAntDC;
+          this.totalPor25.presTotalDC = this.totalPor25.totalDC / this.totalPor25.presupuestoDC;
+          this.totalPor25.ProyTotalDC = this.totalPor25.proyeccionDC / this.totalPor25.presupuestoDC;
        
   
           // //ENERO
@@ -1406,11 +1405,11 @@ export class IngresosComponent implements OnInit {
           
           }
           //   // //Diciembre
-          // if(e.summaryCells[108][0].value !== undefined){  
-          //   e.summaryCells[108][0].value = this.totalPor25.aniATotalDC;
-          //   e.summaryCells[110][0].value = this.totalPor25.presTotalDC;
-          //   e.summaryCells[114][0].value = this.totalPor25.ProyTotalDC;
-          // }
+          if(e.summaryCells[130][0].value !== undefined){  
+            e.summaryCells[130][0].value = this.totalPor25.aniATotalDC;
+            e.summaryCells[132][0].value = this.totalPor25.presTotalDC;
+            e.summaryCells[138][0].value = this.totalPor25.ProyTotalDC;
+          }
         }
       }
   
@@ -1494,11 +1493,10 @@ export class IngresosComponent implements OnInit {
           let presupuestoNV25 = c.totalItem.summaryCells[118][0].value;
           let proyeccionNV25 = c.totalItem.summaryCells[120][0].value;
           // // //Diciembre
-          // let totalDC25 = c.totalItem.summaryCells[106][0].value;
-          // let anioAntDC25 = c.totalItem.summaryCells[107][0].value;
-          // let presupuestoDC25 = c.totalItem.summaryCells[109][0].value;
-          // let proyeccionDC25 = c.totalItem.summaryCells[111][0].value;
-          // console.log(c.totalItem.summaryCells)
+          let totalDC25 = c.totalItem.summaryCells[128][0].value;
+          let anioAntDC25 = c.totalItem.summaryCells[129][0].value;
+          let presupuestoDC25 = c.totalItem.summaryCells[131][0].value;
+          let proyeccionDC25 = c.totalItem.summaryCells[133][0].value;
   
           //Calculo de Porcentajes
           //ENERO
@@ -1611,16 +1609,16 @@ export class IngresosComponent implements OnInit {
             totalesPor25.presupuestoNV = c.totalItem.summaryCells[119][0].value
             totalesPor25.proyeccionNV = c.totalItem.summaryCells[125][0].value
           }
-          // //Diciembre
-          // if(c.totalItem.summaryCells[108][0] !== undefined){
-          //   totalDC25 === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalDC25/anioAntDC25;
-          //   presupuestoDC25 === 0 ? c.totalItem.summaryCells[110][0].value = 0 : c.totalItem.summaryCells[110][0].value = totalDC25/presupuestoDC25;
-          //   proyeccionDC25 === 0 ? c.totalItem.summaryCells[114][0].value = 0 : c.totalItem.summaryCells[114][0].value = totalDC25/presupuestoDC25;
-  
-          //   totalesPor25.totalDC = c.totalItem.summaryCells[108][0].value
-          //   totalesPor25.presupuestoDC = c.totalItem.summaryCells[110][0].value
-          //   totalesPor25.proyeccionDC = c.totalItem.summaryCells[114][0].value
-          // }
+          //Diciembre
+          if(c.totalItem.summaryCells[130][0] !== undefined){
+            totalDC25 === 0 ? c.totalItem.summaryCells[130][0].value = 0 : c.totalItem.summaryCells[130][0].value = totalDC25/anioAntDC25;
+            presupuestoDC25 === 0 ? c.totalItem.summaryCells[132][0].value = 0 : c.totalItem.summaryCells[132][0].value = totalDC25/presupuestoDC25;
+            proyeccionDC25 === 0 ? c.totalItem.summaryCells[138][0].value = 0 : c.totalItem.summaryCells[138][0].value = totalDC25/proyeccionDC25;
+            
+            totalesPor25.totalDC = c.totalItem.summaryCells[130][0].value
+            totalesPor25.presupuestoDC = c.totalItem.summaryCells[132][0].value
+            totalesPor25.proyeccionDC = c.totalItem.summaryCells[138][0].value
+          }
   
         })
         
