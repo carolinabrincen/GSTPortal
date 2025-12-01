@@ -335,81 +335,19 @@ export class BitacoraViajeComponent implements OnInit {
   onRowPreparedResumenO(e: any) {
     
      if(e.rowType == 'header'){
+
+      
       e.cells.forEach((c: any) => {
 
+         
         if (c.cellElement) {
-          // c.cellElement.style.fontSize = "18px";
-          // c.cellElement.style.fontWeight = "bolder";
-          // c.cellElement.style.color = "#000000"
+            c.cellElement.style.fontSize = "13px";
+            c.cellElement.style.background = "#d9d9d9";
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+
           
-          if(c.cellElement.innerText == "Viaje Vacio" || c.column.dataField == "vvNo" || c.column.dataField == "vV1" || c.column.dataField == "vVh1" ||
-            c.column.dataField == "vV2" || c.column.dataField == "vVh2" || c.column.dataField == "vV3"
-           ){
-            c.cellElement.style.background = "#bdd7ee";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.column.dataField == "vVh3"
-           ){
-            c.cellElement.style.background = "#d9d9d9";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.cellElement.innerText == "Viaje Cargado" || c.column.dataField == "vcNo" || c.column.dataField == "cliente" || c.column.dataField == "ruta" ||
-            c.column.dataField == "vC1" || c.column.dataField == "vCh1" || c.column.dataField == "vC2" || c.column.dataField == "vCh2" || c.column.dataField == "vC3"
-            || c.column.dataField == "vCh3" || c.column.dataField == "vC4" || c.column.dataField == "vCh4" || c.column.dataField == "vC5" || c.column.dataField == "vCh5"
-            || c.column.dataField == "vC6"
-           ){
-            c.cellElement.style.background = "#c6e0b4";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.column.dataField == "vCh6"
-           ){
-            c.cellElement.style.background = "#d9d9d9";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.cellElement.innerText == "Viaje Gasolineria" || c.column.dataField == "vgNo" || c.column.dataField == "vG1" || c.column.dataField == "vGh1" ||
-            c.column.dataField == "vG2" || c.column.dataField == "vGh2" || c.column.dataField == "vG3"
-           ){
-            c.cellElement.style.background = "#f8cbad";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.column.dataField == "vGh3"
-           ){
-            c.cellElement.style.background = "#d9d9d9";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.column.dataField == "tot"
-           ){
-            c.cellElement.style.background = "#d9d9d9";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
-
-          if(c.column.dataField == "fake"
-           ){
-            c.cellElement.style.background = "#d9d9d9";
-            c.cellElement.style.color = "#001029"
-            c.cellElement.style.fontWeight = "bolder";
-
-          }
+          
         }
       })
     }
@@ -420,65 +358,34 @@ export class BitacoraViajeComponent implements OnInit {
 
     if (c.cellElement) {
       
-      if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#bdd7ee";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
-      }
-
-      if(c.columnIndex == 10){
+     
+     
+      if(c.columnIndex == 17 || c.columnIndex == 18){
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.background = "#d9d9d9";
           c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
+           c.cellElement.style.fontWeight = "bolder";
         }
       }
 
-
-      if(c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15 || c.columnIndex == 16
-        || c.columnIndex == 17 || c.columnIndex == 18 || c.columnIndex == 19 || c.columnIndex == 20 || c.columnIndex == 21 || c.columnIndex == 22 
-        || c.columnIndex == 23 || c.columnIndex == 24
-      ){
+       if(c.columnIndex == 7 || c.columnIndex == 9 || c.columnIndex == 11 || c.columnIndex == 13 || c.columnIndex == 15){
         if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#c6e0b4";
+         
           c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
+           c.cellElement.style.fontWeight = "bolder";
         }
       }
 
-      if(c.columnIndex == 25){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#d9d9d9";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
+      if(c.columnIndex >  3 && c.columnIndex < 17 ){
+          if (c.data.tipo == "CARGADO") {
+          c.cellElement.style.background = "#a9d08e";
       }
-
-      if(c.columnIndex == 26 || c.columnIndex == 27 || c.columnIndex == 28 || c.columnIndex == 29 || c.columnIndex == 30 || c.columnIndex == 31){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#f8cbad";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
+       if (c.data.tipo == "VACIO") {
+          c.cellElement.style.background = "#d2dffb";
       }
-
-      if(c.columnIndex == 32){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#d9d9d9";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
       }
-
-      if(c.columnIndex == 33){
-        if(c.cellElement?.style !== undefined){
-          c.cellElement.style.background = "#d9d9d9";
-          c.cellElement.style.color = "#001029"
-          c.cellElement.style.fontWeight = "bolder";
-        }
-      }
+      
+      
 
       // if(c.columnIndex == 34){
       //   if(c.cellElement?.style !== undefined){
@@ -560,37 +467,35 @@ export class BitacoraViajeComponent implements OnInit {
     var gridCell = e.gridCell;
 
     if (gridCell.rowType === 'data') {
+     // console.log(e)
 
-      if (e.gridCell.column.dataField == "disponibles") {
-        e.backgroundColor = "#DCDCDC";
-        e.fontWeight = "bolder"
-        e.font = { bold: true }
+      if(gridCell.data.tipo === "CARGADO"){
+        if (e.gridCell.column.dataField == "tipo" || e.gridCell.column.dataField == "vcNo" || e.gridCell.column.dataField == "vC1" || e.gridCell.column.dataField == "vCh1" 
+          || e.gridCell.column.dataField == "vC2" || e.gridCell.column.dataField == "vCh2" || e.gridCell.column.dataField == "vC3" || e.gridCell.column.dataField == "vCh3" || e.gridCell.column.dataField == "vC4"
+          || e.gridCell.column.dataField == "vCh4" || e.gridCell.column.dataField == "vC5" || e.gridCell.column.dataField == "vCh5" || e.gridCell.column.dataField == "vC6") {
+          e.backgroundColor = "#a9d08e";
+          e.fontWeight = "bolder"
+          e.font = { bold: true }
+        }
       }
 
-      if (e.gridCell.column.dataField == "instructor") {
-        e.backgroundColor = "#DCDCDC";
-        e.fontWeight = "bolder"
-        e.font = { bold: true }
-      }
-
-      if (e.gridCell.column.dataField == "noDisponibles") {
-        e.backgroundColor = "#DCDCDC";
-        e.fontWeight = "bolder"
-        e.font = { bold: true }
-      }
-
-      if (e.gridCell.column.dataField == "bajaPor") {
-        e.fontWeight = "bolder"
-        e.font = { bold: true }
-      }
-
-      if (e.gridCell.column.dataField == "total") {
-        e.backgroundColor = "#DCDCDC";
-        e.fontWeight = "bolder"
-        e.font = { bold: true }
+      if(gridCell.data.tipo === "VACIO"){
+        if (e.gridCell.column.dataField == "tipo" || e.gridCell.column.dataField == "vcNo" || e.gridCell.column.dataField == "vC1" || e.gridCell.column.dataField == "vCh1" 
+          || e.gridCell.column.dataField == "vC2" || e.gridCell.column.dataField == "vCh2" || e.gridCell.column.dataField == "vC3" || e.gridCell.column.dataField == "vCh3" || e.gridCell.column.dataField == "vC4"
+          || e.gridCell.column.dataField == "vCh4" || e.gridCell.column.dataField == "vC5" || e.gridCell.column.dataField == "vCh5" || e.gridCell.column.dataField == "vC6") {
+          e.backgroundColor = "#d2dffb";
+          e.fontWeight = "bolder"
+          e.font = { bold: true }
+        }
       }
 
      
+    }
+
+    if(e.gridCell.column.dataField == "tot" || e.gridCell.column.dataField == "kms"){
+      e.backgroundColor = "#DCDCDC";
+        e.fontWeight = "bolder"
+        e.font = { bold: true }
     }
 
     if (gridCell.rowType === 'groupFooter') {
