@@ -23,6 +23,9 @@ export class UltimoStatusComponent implements OnInit {
   viajesCargados: any[] = [];
   viajesVacios: any[] = [];
   sinViajes: any[] = [];
+  tractoPatio : any[] = [];
+  tractoTaller : any[] = [];
+  tractoSiniestro : any[] = [];
   detalleVC: any[] = [];
   detalleVV: any[] = [];
   detalleSV: any[] = [];
@@ -57,6 +60,9 @@ export class UltimoStatusComponent implements OnInit {
   totalCargados: number = 0;
   totalVacios: number = 0;
   totalSinViaje: number = 0;
+  totalPatio : number = 0;
+  totalTaller : number = 0;
+  totalSiniesto : number = 0;
 
   getVC: any = {
     ciclo: "",
@@ -127,6 +133,76 @@ export class UltimoStatusComponent implements OnInit {
     udN: "",
   };
 
+  getPatio: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+   getTaller: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+   getSiniestro: any = {
+    ciclo: "",
+    clasificacion: "",
+    cliente: "",
+    despacho: "",
+    destinatario: "",
+    f_ini_status: "",
+    finViaje: "",
+    idArea: 0,
+    id_usuario: "",
+    nombre_status_viaje: "",
+    noviaje: 0,
+    operacion: "",
+    operador: "",
+    periodo: 0,
+    remitente: "",
+    ruta: "",
+    tiempo: "",
+    tipoViaje: "",
+    tracto: "",
+    udN: "",
+  };
+
+
   constructor(
     private cotizadorService: CotizadorService,
     private renContService: RentContService,
@@ -150,17 +226,25 @@ export class UltimoStatusComponent implements OnInit {
 
     this.ultimoStService.getUltimoSt(this.selectedUdn).subscribe(res => {
       
-      this.viajesCargados = res.data.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
-      this.viajesVacios = res.data.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
-      this.sinViajes = res.data.sinViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
-      //console.log(res.data)
+      this.viajesCargados = res?.data?.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.viajesVacios = res?.data?.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.sinViajes = res?.data?.sinViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.tractoPatio = res?.data?.enPatio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.tractoTaller = res?.data?.taller.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.tractoSiniestro = res?.data?.siniestrado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      console.log(res.data)
 
 
       if(res.data !== undefined){
-        this.totalViajes = this.viajesCargados.length + this.viajesVacios.length + this.sinViajes.length;
-        this.totalCargados = this.viajesCargados.length;
-        this.totalVacios = this.viajesVacios.length;
-        this.totalSinViaje = this.sinViajes.length;
+        this.totalViajes = this.viajesCargados?.length + this.viajesVacios?.length + this.sinViajes?.length + this.tractoPatio?.length
+                      +this.tractoTaller?.length + this.tractoSiniestro?.length;
+
+        this.totalCargados = this.viajesCargados?.length;
+        this.totalVacios = this.viajesVacios?.length;
+        this.totalSinViaje = this.sinViajes?.length;
+        this.totalPatio = this.tractoPatio?.length;
+        this.totalTaller = this.tractoTaller?.length;
+        this.totalSiniesto = this.tractoSiniestro?.length;
 
         if(this.totalViajes !== 0){
           this.cardsUS = [
@@ -168,6 +252,9 @@ export class UltimoStatusComponent implements OnInit {
             {tipo: 'Cargados', total: this.totalCargados , color: '#c6e0b4'},
             {tipo: 'Vacios', total: this.totalVacios , color: '#f8cbad'},
             {tipo: 'Sin Viajes', total: this.totalSinViaje , color: '#d9d9d9'},
+            {tipo: 'En Patio', total: this.totalPatio , color: '#d9d9d9'},
+            {tipo: 'Taller', total: this.totalTaller , color: '#d9d9d9'},
+            {tipo: 'Siniestrado', total: this.totalSiniesto , color: '#d9d9d9'},
           ]
       
         } 
@@ -708,7 +795,168 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
+
+   onRowPreparedTaller(e){
+
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+
+          if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+            || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14
+            || c.columnIndex == 15 || c.columnIndex == 16 || c.columnIndex == 17 || c.columnIndex == 18 || c.columnIndex == 19
+          ){
+            c.cellElement.style.background = "#DCDCDC";
+                      // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+
+          }
+        }
+      })
+    }
+
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+    if (c.cellElement) {
+
+
+      if(c.columnIndex == 0 || c.columnIndex == 2 ||  c.columnIndex == 19){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
+      if(c.columnIndex == 1){
+          
+      if (c.data.clasificacion == "12 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#a9d08e";
+        }
+
+      }
+      
+
+      if (c.data.clasificacion == "24 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ffd966";
+        }
+
+      }
+
+      if (c.data.clasificacion == "25+ Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ff5050";
+        }
+
+      }
+      }
+      
+
+
+
+    }
+    });
+  }
+  }
+
+  onRowPreparedSiniestro(e){
+
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+
+          if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+            || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14
+            || c.columnIndex == 15 || c.columnIndex == 16 || c.columnIndex == 17 || c.columnIndex == 18 || c.columnIndex == 19
+          ){
+            c.cellElement.style.background = "#DCDCDC";
+                      // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+
+          }
+        }
+      })
+    }
+
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+    if (c.cellElement) {
+
+
+      if(c.columnIndex == 0 || c.columnIndex == 2 ||  c.columnIndex == 19){
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.color = "#001029"
+            c.cellElement.style.fontWeight = "bolder";
+          }
+      }
+
+      if(c.columnIndex == 1){
+          
+      if (c.data.clasificacion == "12 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#a9d08e";
+        }
+
+      }
+      
+
+      if (c.data.clasificacion == "24 Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ffd966";
+        }
+
+      }
+
+      if (c.data.clasificacion == "25+ Hrs.") {
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontWeight = "bolder";
+          // c.cellElement.style.fontSize = "15px";
+          // c.cellElement.style.color = "white"
+          c.cellElement.style.background = "#ff5050";
+        }
+
+      }
+      }
+      
+
+
+
+    }
+    });
+  }
+  }
   onCellPreparedSV(e){
+  }
+
+   onCellPreparedTaller(e){
   }
   customizeSV(e) {  
     var gridCell = e.gridCell;
@@ -739,6 +987,7 @@ export class UltimoStatusComponent implements OnInit {
   }
 
 
+  
   onRowPreparedDVC(e){
 
     if(e.rowType == 'header'){

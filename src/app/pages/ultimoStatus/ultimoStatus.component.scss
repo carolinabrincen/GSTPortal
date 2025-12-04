@@ -15,13 +15,13 @@
 .cards {
     // background-color: var(--base-bg, #971818);
   display: grid;
-  width: 100%;
+  width: 56%;
   gap: 20px;
   grid-template-columns: repeat(2, calc(50% - 10px));
 
   &.grey {
     margin: 20px 0;
-    grid-template-columns: repeat(4, calc(25% - 15px));
+    grid-template-columns: repeat(7, calc(25% - 15px));
 
     ::ng-deep .card {
       background-color: var(--side-panel-background);
@@ -48,8 +48,117 @@
 
 @media only screen and (max-width: 1400px) {
   .cards.grey {
-    grid-template-columns: repeat(2, calc(50% - 10px));
+    grid-template-columns: repeat(7, calc(50% - 10px));
+    display: grid;
+    width: 27%;
+
+
+
+    .ticker {
+  --gap-padding: 12px;
+
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 10px 5px 5px rgb(156, 154, 154);
+  // background-color: var(--base-bg, #fff);
+  border: none;
+  padding: 16px;
+  display: flex;
+  gap: 12px;//var(--gap-padding);
+  align-items: center;
+
+
+  .positive {
+    background-color: color-mix(in sRGB, var(--success-color) 12%, transparent);
+    color: var(--success-color);
   }
+
+  .warning {
+    background-color: color-mix(in sRGB, var(--warning-color) 12%, transparent);
+    color: var(--icon-dark-warning-color);
+  }
+
+  .info {
+    background-color: color-mix(in sRGB, var(--info-color) 12%, transparent);
+    color: var(--info-color);
+  }
+
+  .negative {
+    background-color: color-mix(in sRGB, var(--error-color) 12%, transparent);
+    color: var(--error-color);
+  }
+
+  .icon-wrapper {
+    display: flex;
+    flex: 0 0 40px;
+    height: 27px;
+    border-radius: 35%;
+    // margin-left: 3em;
+    .dx-icon {
+      margin: auto;
+      font-size: 24px;
+    }
+  }
+
+  .middle {
+    flex: 1;
+    margin-left: 1em;
+  }
+
+  .middletwo {
+    flex: 2;
+  }
+  .title {
+    font-size: 10px;
+    line-height: 20px;
+    margin-bottom: 8px;
+  }
+
+  .total {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--base-text-color);
+  }
+
+  .percentage {
+    display: flex;
+    align-self: flex-start;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    align-items: center;
+    padding: 4px 8px 4px 2px;
+
+    .value {
+      line-height: 20px;
+    }
+
+    .dx-icon-spindown {
+      font-size: 20px;
+    }
+
+    .dx-icon-spinup {
+      font-size: 20px;
+    }
+  }
+
+  .buttonDetail{
+     position: relative;
+    align-self: end;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 20px;
+    align-items: end;
+    padding: 4px 8px 4px 2px;
+  }
+}
+  }
+
+  
 }
 
 @media only screen and (max-width: 900px) {
@@ -230,10 +339,10 @@
 
   .icon-wrapper {
     display: flex;
-    flex: 0 0 48px;
-    height: 48px;
-    border-radius: 50%;
-    margin-left: 3em;
+    flex: 0 0 40px;
+    height: 30px;
+    border-radius: 48%;
+    // margin-left: 3em;
     .dx-icon {
       margin: auto;
       font-size: 24px;
@@ -249,14 +358,14 @@
     flex: 2;
   }
   .title {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     margin-bottom: 8px;
   }
 
   .total {
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 20px;
     color: var(--base-text-color);
