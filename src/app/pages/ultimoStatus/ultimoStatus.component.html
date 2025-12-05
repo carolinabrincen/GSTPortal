@@ -95,7 +95,10 @@
 
                         <div  class="middle">
                             <div class="title"> {{ resumenM.tipo }} </div>
-                            <div class="total"> {{resumenM.total }} </div>
+                            <div *ngIf="resumenM.tipo !== 'Cargados'" class="total"> {{resumenM.total }} </div>
+                            <div *ngIf="resumenM.tipo == 'Cargados'&& myColor == '#a9d08e'" style="color: #a9d08e;" class="total"> {{resumenM.total }} </div>
+                            <div *ngIf="resumenM.tipo == 'Cargados'&& myColor == '#ffd966'" style="color: #ffd966;" class="total"> {{resumenM.total }} </div>
+                            <div *ngIf="resumenM.tipo == 'Cargados'&& myColor == '#ff5050'" style="color: #ff5050;" class="total"> {{resumenM.total }} </div> 
                         </div>
                        
                         
@@ -104,22 +107,22 @@
                 </div>
             </div>
         </dx-scroll-view>
-         <dx-data-grid #DM id="gridContainer1" [dataSource]="resumenOperaciones"  [showBorders]="false" [columnAutoWidth]="true" [showColumnHeaders]="false  "
-         (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)" [showRowLines]="false">
+         <dx-data-grid #DM id="gridContainer1" [dataSource]="resumenOperaciones"  [showBorders]="true" [columnAutoWidth]="true"
+         (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)">
         
             <dxo-group-panel [visible]="false"></dxo-group-panel>
             <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
             <dxo-paging [pageSize]="100"></dxo-paging>
             
-            <dxi-column dataField="operacion"        [width]="130"></dxi-column>
-            <dxi-column dataField="total"                [width]="60"  alignment="left"></dxi-column>
-            <dxi-column dataField="vc"                 alignment="center"></dxi-column>
-            <dxi-column dataField="vv"                   alignment="center"></dxi-column>
-            <dxi-column dataField="sv"               alignment="center" ></dxi-column>
-            <dxi-column dataField="patio"                 alignment="center" ></dxi-column>
-            <dxi-column dataField="taller"               alignment="center"  ></dxi-column>
-            <dxi-column dataField="siniestro"       alignment="center"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operación"     [width]="130"></dxi-column>
+            <dxi-column dataField="total" caption="Total" [width]="60"  alignment="left"></dxi-column>
+            <dxi-column dataField="vc" caption="Cargados" alignment="center"></dxi-column>
+            <dxi-column dataField="vv" caption="Vacíos" alignment="center"></dxi-column>
+            <dxi-column dataField="sv" caption="Sin Viajes" alignment="center" ></dxi-column>
+            <dxi-column dataField="patio" caption="Patio" alignment="center" ></dxi-column>
+            <dxi-column dataField="taller" caption="Taller" alignment="center"  ></dxi-column>
+            <dxi-column dataField="siniestro"caption="Siniestrado" alignment="center"></dxi-column>
             
         </dx-data-grid>
         <br>

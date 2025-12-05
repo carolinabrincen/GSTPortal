@@ -8,7 +8,7 @@ import { IUser } from 'src/app/shared/services';
 
 import { UltimoStatusService } from 'src/app/services/ultimoStatus/ultimoStatus.service';
 import { NgZone } from '@angular/core';
-import { UltimoStausModel } from 'src/app/shared/models/ultimoStatus/ultimoStatus';
+import { UltimoStausModel, NewResOp } from 'src/app/shared/models/ultimoStatus/ultimoStatus';
 
 @Component({
   selector: 'app-ultimoStatus',
@@ -75,6 +75,8 @@ export class UltimoStatusComponent implements OnInit {
   totalPatio : number = 0;
   totalTaller : number = 0;
   totalSiniesto : number = 0;
+
+  myColor = "#000000ff"
 
   getVC: any = {
     ciclo: "",
@@ -237,6 +239,10 @@ export class UltimoStatusComponent implements OnInit {
   getUltmoSta() {
 
     this.ultimoStService.getUltimoSt(this.selectedUdn, this.selectedOperacion).subscribe(res => {
+      var myResumenO = res?.data?.resumenOperacion;
+      let sumaCol = 0;
+      let totalOp = 0;
+      let newResumen = [];
       
       this.viajesCargados = res?.data?.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.viajesVacios = res?.data?.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
@@ -244,13 +250,36 @@ export class UltimoStatusComponent implements OnInit {
       this.tractoPatio = res?.data?.enPatio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.tractoTaller = res?.data?.taller.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.tractoSiniestro = res?.data?.siniestrado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
-      this.resumenOperaciones = res?.data?.resumenOperacion.sort((a, b) => (a.operacion < b.operacion ? -1 : 1));
-      console.log(res.data)
+
+      myResumenO.forEach((data: any) => {
+
+        sumaCol = data.vc + data.vv + data.sv;
+        totalOp = data.vc / sumaCol; 
+
+
+        var myNewResO = new NewResOp;
+        
+        myNewResO.operacion = data.operacion;
+        myNewResO.patio = data.patio;
+        myNewResO.siniestro = data.siniestro;
+        myNewResO.sv = data.sv;
+        myNewResO.taller = data.taller;
+        myNewResO.total = data.total;
+        myNewResO.vc = data.vc;
+        myNewResO.vv = data.vv
+        myNewResO.totalSuma = sumaCol;
+        myNewResO.porcentaje = totalOp;
+        
+        newResumen.push(myNewResO);
+        
+      })   
+      
+      this.resumenOperaciones = newResumen.sort((a, b) => (a.operacion < b.operacion ? -1 : 1));
+      //console.log(this.resumenOperaciones)
 
 
       if(res.data !== undefined){
-        this.totalViajes = this.viajesCargados?.length + this.viajesVacios?.length + this.sinViajes?.length + this.tractoPatio?.length
-                      +this.tractoTaller?.length + this.tractoSiniestro?.length;
+        this.totalViajes = this.viajesCargados?.length + this.viajesVacios?.length + this.sinViajes?.length + this.tractoPatio?.length +this.tractoTaller?.length + this.tractoSiniestro?.length;
 
         this.totalCargados = this.viajesCargados?.length;
         this.totalVacios = this.viajesVacios?.length;
@@ -259,10 +288,23 @@ export class UltimoStatusComponent implements OnInit {
         this.totalTaller = this.tractoTaller?.length;
         this.totalSiniesto = this.tractoSiniestro?.length;
 
+        let sumaTotal = this.viajesCargados.length + this.viajesVacios.length + this.sinViajes.length;
+        let totalOperacion = this.viajesCargados.length / sumaTotal;
+
+        
+
+        if(totalOperacion > 0.95){
+          this.myColor = "#a9d08e"
+        }else if(totalOperacion > 0.90 && totalOperacion < 0.95){
+          this.myColor = "#ffd966"
+        } else if(totalOperacion < 0.90){
+          this.myColor = "#ff5050"
+        }
+
         if(this.totalViajes !== 0){
           this.cardsUS = [
             {tipo: 'Total', total: this.totalViajes, color: '#bdd7ee'},
-            {tipo: 'Cargados', total: this.totalCargados , color: '#c6e0b4'},
+            {tipo: 'Cargados', total: this.totalCargados , color: this.myColor},
             {tipo: 'Vacios', total: this.totalVacios , color: '#f8cbad'},
             {tipo: 'Sin Viajes', total: this.totalSinViaje , color: '#d9d9d9'},
             {tipo: 'En Patio', total: this.totalPatio , color: '#d9d9d9'},
@@ -547,6 +589,31 @@ export class UltimoStatusComponent implements OnInit {
         }
 
       
+      }
+
+      if(c.columnIndex == 2){
+
+        if (c.data.porcentaje > 0.95) {
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.color = "#a9d08e";
+          }
+        }
+
+        if (c.data.porcentaje > 0.90 && c.data.porcentaje < 0.95) {
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.color = "#ffd966";
+          }
+        }
+
+        if (c.data.porcentaje < 0.90) {
+          if(c.cellElement?.style !== undefined){
+            c.cellElement.style.fontWeight = "bolder";
+            c.cellElement.style.color = "#ff5050";
+          }
+        }
+
       }
     }
     });
