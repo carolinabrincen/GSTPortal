@@ -37,8 +37,8 @@ export class UltimoStatusService extends AbstractManagerService {
   }
 
 
-  getUltimoSt(idArea) {
-    return this.get<any>(this.API_URL + API_URLS.GET_ULTIMO_STATUS+idArea, this.httpOptions);
+  getUltimoSt(idArea, idOperacion) {
+    return this.get<any>(this.API_URL + API_URLS.GET_ULTIMO_STATUS+idArea+'/'+idOperacion, this.httpOptions);
   }
 
   getDetalleViaje(idArea: number, noViaje: number) {

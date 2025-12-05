@@ -4,10 +4,15 @@
             <dx-responsive-box>
                 <dxi-col [ratio]=".10"></dxi-col>
                 <dxi-col [ratio]=".40"></dxi-col>
+                <dxi-col [ratio]=".1"></dxi-col>
+                <dxi-col [ratio]=".20"></dxi-col>
+                <dxi-col [ratio]=".40"></dxi-col>
                 <dxi-col [ratio]="1"></dxi-col>
                 <dxi-col [ratio]=".25"></dxi-col>
 
-
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
                 <dxi-row [ratio]="1"></dxi-row>
@@ -33,6 +38,20 @@
 
                 <dxi-item>
                     <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Operación:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="4"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [items]="operacion" displayExpr="operacion" valueExpr="id" (onValueChanged)="selectOperacion($event)">
+                    </dx-select-box>
+                </dxi-item>
+
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="6"></dxi-location>
                     <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
                     <div>
                         <dx-button stylingMode="contained" text="Buscar" icon="search" type="normal" [width]="120" (onClick)="buscarClick($event)">
@@ -78,21 +97,74 @@
                             <div class="title"> {{ resumenM.tipo }} </div>
                             <div class="total"> {{resumenM.total }} </div>
                         </div>
-
-                        <div>
-                        <br>
-                        <!-- <div>
-                            <dx-button *ngIf="resumenM.tipo == 'Altas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalA($event)"></dx-button>
-                            <dx-button *ngIf="resumenM.tipo == 'Bajas'" class="buttonDetail" stylingMode="contained" text="Ver detalle" icon="detailslayout" type="normal" (onClick)="openModalB($event)"></dx-button>
-                        </div> -->
-                        </div>  
+                       
+                        
                        
                     </div>
                 </div>
             </div>
         </dx-scroll-view>
+         <dx-data-grid #DM id="gridContainer1" [dataSource]="resumenOperaciones"  [showBorders]="false" [columnAutoWidth]="true" [showColumnHeaders]="false  "
+         (onRowPrepared)="onRowPrepared($event)" (onCellPrepared)="onCellPrepared($event)" [showRowLines]="false">
         
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            
+            <dxi-column dataField="operacion"        [width]="130"></dxi-column>
+            <dxi-column dataField="total"                [width]="60"  alignment="left"></dxi-column>
+            <dxi-column dataField="vc"                 alignment="center"></dxi-column>
+            <dxi-column dataField="vv"                   alignment="center"></dxi-column>
+            <dxi-column dataField="sv"               alignment="center" ></dxi-column>
+            <dxi-column dataField="patio"                 alignment="center" ></dxi-column>
+            <dxi-column dataField="taller"               alignment="center"  ></dxi-column>
+            <dxi-column dataField="siniestro"       alignment="center"></dxi-column>
+            
+        </dx-data-grid>
+        <br>
     <dx-tab-panel>
+
+     <dx-data-grid #DM id="gridContainer1" [dataSource]="viajesCargados" [height]="570" [showBorders]="true" [columnAutoWidth]="true">
+        
+            <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+            <dxo-paging [pageSize]="100"></dxo-paging>
+            
+            <dxo-export [enabled]="true" fileName="Viajes Cargados" [customizeExcelCell]="customizeVC"></dxo-export>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+
+            <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+
+                <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
+                <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
+                <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column>
+                <dxi-column dataField="remitente" caption="Remitente" [width]="250"></dxi-column>
+                <dxi-column dataField="destinatario" caption="Destinatario" [width]="200"></dxi-column>
+                <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column>
+                <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
+                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
+                <dxi-column dataField="id_usuario" caption="Usuario" [width]="150"></dxi-column>
+                <dxi-column dataField="f_ini_status" caption="Inicio" [width]="200" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+                <dxi-column dataField="tiempo" caption="Tiempo" [width]="90" [fixed]="true" fixedPosition="right" alignment="right" ></dxi-column>
+                <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="60" cellTemplate="headerVer"></dxi-column>
+    
+                <div *dxTemplate="let data of 'headerVer'">
+                    <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="buttonVer(data)"></dx-button>
+                </div>
+            <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
+                <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
+            </dxo-summary>
+
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        </dx-data-grid>
+
         <dxi-item title="Viajes Cargados">
 
         <dx-data-grid #DM id="gridContainer1" [dataSource]="viajesCargados" [height]="570" [showBorders]="true" [columnAutoWidth]="true"

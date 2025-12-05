@@ -26,6 +26,7 @@ export class UltimoStatusComponent implements OnInit {
   tractoPatio : any[] = [];
   tractoTaller : any[] = [];
   tractoSiniestro : any[] = [];
+  resumenOperaciones : any[] = [];
   detalleVC: any[] = [];
   detalleVV: any[] = [];
   detalleSV: any[] = [];
@@ -37,6 +38,7 @@ export class UltimoStatusComponent implements OnInit {
   bolFormSoloLectura = false;
 
    udn: any[] = [
+    {idArea: 0, nombre: 'TODOS'},
     {idArea: 1, nombre: 'ORIZABA' },
     {idArea: 2, nombre: 'GUADALAJARA' },
     {idArea: 3, nombre: 'RAMOS ARIZPE' },
@@ -47,7 +49,17 @@ export class UltimoStatusComponent implements OnInit {
 
   ]
 
+  operacion: any[] = [
+    {id: 0, operacion: 'TODOS'},
+    {id: 1, operacion: 'CAJA SECA'},
+    {id: 2, operacion: 'ENCORTINADO'},
+    {id: 3, operacion: 'GONDOLA'},
+    {id: 4, operacion: 'GRADO ALIMENT'},
+    {id: 5, operacion: 'TOLVA GRANEL'},
+  ];
+
   selectedUdn: number = 0;
+  selectedOperacion: number = 0;
   loadingVisible = false;
 
   modViajeC: boolean = false;
@@ -224,7 +236,7 @@ export class UltimoStatusComponent implements OnInit {
   // //#region :::: GETTERS ::::
   getUltmoSta() {
 
-    this.ultimoStService.getUltimoSt(this.selectedUdn).subscribe(res => {
+    this.ultimoStService.getUltimoSt(this.selectedUdn, this.selectedOperacion).subscribe(res => {
       
       this.viajesCargados = res?.data?.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.viajesVacios = res?.data?.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
@@ -232,6 +244,7 @@ export class UltimoStatusComponent implements OnInit {
       this.tractoPatio = res?.data?.enPatio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.tractoTaller = res?.data?.taller.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.tractoSiniestro = res?.data?.siniestrado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
+      this.resumenOperaciones = res?.data?.resumenOperacion.sort((a, b) => (a.operacion < b.operacion ? -1 : 1));
       console.log(res.data)
 
 
@@ -302,6 +315,9 @@ export class UltimoStatusComponent implements OnInit {
   selectUdn(value: any){
     this.selectedUdn = value.value;
     //console.log(this.selectedUdn)
+  }
+  selectOperacion(value: any){
+    this.selectedOperacion = value.value;
   }
 
   buttonVer(data){
@@ -433,7 +449,7 @@ export class UltimoStatusComponent implements OnInit {
 
 
    buscarClick = (e: any) => {
-    if (this.selectedUdn !==  0) {
+    if (this.selectedUdn !==  undefined) {
           this.cardsUS = [];
       this.loadingVisible = true;
       
@@ -493,6 +509,50 @@ export class UltimoStatusComponent implements OnInit {
     // }
   }
 
+  onRowPrepared(e){
+
+    if(e.rowType == 'header'){
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          // c.cellElement.style.fontSize = "18px";
+          c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000"
+          c.cellElement.style.background = "white"
+
+          // if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
+          //   || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
+          // ){
+          //   c.cellElement.style.background = "#DCDCDC";
+          //   // c.cellElement.style.fontSize = "18px";
+          //   c.cellElement.style.fontWeight = "bolder";
+
+          // }
+        }
+      })
+     // console.log(e)
+    }
+    
+  if (e.rowType == 'data') {
+
+    e.cells.forEach((c: any) => {
+
+    if (c.cellElement) {
+  
+      if(c.columnIndex == 0){
+          
+        //console.log(c.data)
+        if(c.cellElement?.style !== undefined){
+          c.cellElement.style.fontSize = "10px";
+        }
+
+      
+      }
+    }
+    });
+  }
+  }
+  onCellPrepared(e){}
   
   onRowPreparedVC(e){
 
@@ -596,6 +656,8 @@ export class UltimoStatusComponent implements OnInit {
       }
       }
     }
+
+    
   //   if (gridCell.rowType === 'group') {
       
   //     e.backgroundColor = "#DCDCDC";
