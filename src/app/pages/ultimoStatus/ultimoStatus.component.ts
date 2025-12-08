@@ -51,11 +51,11 @@ export class UltimoStatusComponent implements OnInit {
 
   operacion: any[] = [
     {id: 0, operacion: 'TODOS'},
-    {id: 1, operacion: 'CAJA SECA'},
-    {id: 2, operacion: 'ENCORTINADO'},
-    {id: 3, operacion: 'GONDOLA'},
-    {id: 4, operacion: 'GRADO ALIMENT'},
-    {id: 5, operacion: 'TOLVA GRANEL'},
+    {id: 4, operacion: 'CAJA SECA'},
+    {id: 9, operacion: 'ENCORTINADO'},
+    {id: 10, operacion: 'GONDOLA'},
+    {id: 8, operacion: 'GRADO ALIMENT'},
+    {id: 11, operacion: 'TOLVA GRANEL'},
   ];
 
   selectedUdn: number = 0;
@@ -294,11 +294,11 @@ export class UltimoStatusComponent implements OnInit {
         
 
         if(totalOperacion > 0.95){
-          this.myColor = "#a9d08e"
+          this.myColor = "#03af4b"
         }else if(totalOperacion > 0.90 && totalOperacion < 0.95){
           this.myColor = "#ffd966"
         } else if(totalOperacion < 0.90){
-          this.myColor = "#ff5050"
+          this.myColor = "#dd0f0f"
         }
 
         if(this.totalViajes !== 0){
@@ -596,7 +596,7 @@ export class UltimoStatusComponent implements OnInit {
         if (c.data.porcentaje > 0.95) {
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.color = "#a9d08e";
+            c.cellElement.style.color = "#03af4b";
           }
         }
 
@@ -610,7 +610,7 @@ export class UltimoStatusComponent implements OnInit {
         if (c.data.porcentaje < 0.90) {
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.fontWeight = "bolder";
-            c.cellElement.style.color = "#ff5050";
+            c.cellElement.style.color = "#dd0f0f";
           }
         }
 
