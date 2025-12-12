@@ -1248,7 +1248,7 @@ export class IndicadoresComponent implements OnInit {
       this.kmsXOperacion25.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
       // console.log(this.kmsXOperacion25)
       
-      const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
+      const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS" && word.clasificacion !== "GONDOLA");
       this.kmsXOperacionDescription25 = dataKMSO;
       this.kmsXOperacionDescription25.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
@@ -1287,7 +1287,7 @@ export class IndicadoresComponent implements OnInit {
 
       this.porXOperacion25 = data.data.porXOperacion;
       this.porXOperacion25.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      this.porXOperacionDescription25 = data.data.varPorXOperacion;
+      this.porXOperacionDescription25 = data.data.varPorXOperacion.filter((word) => word.clasificacion !== "GONDOLA");
       this.porXOperacionDescription25.sort((a, b) => (a.clasificacion < b.clasificacion ? -1 : 1));
 
       for(let i =0; i<myKMSTOP.length; i++){

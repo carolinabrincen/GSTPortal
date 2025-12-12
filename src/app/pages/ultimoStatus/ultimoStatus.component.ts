@@ -251,6 +251,7 @@ export class UltimoStatusComponent implements OnInit {
       this.tractoTaller = res?.data?.taller.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.tractoSiniestro = res?.data?.siniestrado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
 
+      console.log(this.viajesCargados)
       myResumenO.forEach((data: any) => {
 
         sumaCol = data.vc + data.vv + data.sv;
@@ -432,7 +433,7 @@ export class UltimoStatusComponent implements OnInit {
   };
 
     this.getVV = data.row.data;
-    console.log(this.getVV);
+    //console.log(this.getVV)
 
     if(this.getVV !== undefined){
       this.loadingVisible = true;
