@@ -359,25 +359,25 @@ export class UltimoStatusComponent implements OnInit {
 
   getDetalleVV() {
     
-    if(this.getVC.udN == "TODOS"){
+    if(this.getVV.udN == "TODOS"){
       this.myudnVV = 0;
-    }else if(this.getVC.udN == "ORIZABA"){
+    }else if(this.getVV.udN == "ORIZABA"){
       this.myudnVV = 1;
-    }else if(this.getVC.udN == "GUADALAJARA"){
+    }else if(this.getVV.udN == "GUADALAJARA"){
       this.myudnVV = 2;
-    }else if(this.getVC.udN == "RAMOS ARIZPE"){
+    }else if(this.getVV.udN == "RAMOS ARIZPE"){
       this.myudnVV = 3;
-    }else if(this.getVC.udN == "MEXICALI"){
+    }else if(this.getVV.udN == "MEXICALI"){
       this.myudnVV = 4;
-    }else if(this.getVC.udN == "HERMOSILLO"){
+    }else if(this.getVV.udN == "HERMOSILLO"){
       this.myudnVV = 5;
-    }else if(this.getVC.udN == "CUAUTITLAN"){
+    }else if(this.getVV.udN == "CUAUTITLAN"){
       this.myudnVV = 8;
-    }else if(this.getVC.udN == "TULTITLAN"){
+    }else if(this.getVV.udN == "TULTITLAN"){
       this.myudnVV = 9;
     }
 
-    this.ultimoStService.getDetalleViaje(this.myudnVV, this.getVV.noviaje).subscribe(res => {
+    this.ultimoStService.getDetalleViajeVV(this.myudnVV, this.getVV.noviaje).subscribe(res => {
       this.detalleVV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       // console.log(res?.data)
       this.tiempoTotal = res?.data?.tiempoTotal;
@@ -386,25 +386,25 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   getDetalleSV() {
-    if(this.getVC.udN == "TODOS"){
+    if(this.getSV.udN == "TODOS"){
       this.myudnSV = 0;
-    }else if(this.getVC.udN == "ORIZABA"){
+    }else if(this.getSV.udN == "ORIZABA"){
       this.myudnSV = 1;
-    }else if(this.getVC.udN == "GUADALAJARA"){
+    }else if(this.getSV.udN == "GUADALAJARA"){
       this.myudnSV = 2;
-    }else if(this.getVC.udN == "RAMOS ARIZPE"){
+    }else if(this.getSV.udN == "RAMOS ARIZPE"){
       this.myudnSV = 3;
-    }else if(this.getVC.udN == "MEXICALI"){
+    }else if(this.getSV.udN == "MEXICALI"){
       this.myudnSV = 4;
-    }else if(this.getVC.udN == "HERMOSILLO"){
+    }else if(this.getSV.udN == "HERMOSILLO"){
       this.myudnSV = 5;
-    }else if(this.getVC.udN == "CUAUTITLAN"){
+    }else if(this.getSV.udN == "CUAUTITLAN"){
       this.myudnSV = 8;
-    }else if(this.getVC.udN == "TULTITLAN"){
+    }else if(this.getSV.udN == "TULTITLAN"){
       this.myudnSV = 9;
     }
 
-    this.ultimoStService.getDetalleViaje(this.myudnSV, this.getSV.noviaje).subscribe(res => {
+    this.ultimoStService.getDetalleViajeSV(this.myudnSV, this.getSV.noviaje).subscribe(res => {
       // console.log(res?.data)
       this.detalleSV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       
