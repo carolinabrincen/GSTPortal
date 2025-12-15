@@ -76,6 +76,10 @@ export class UltimoStatusComponent implements OnInit {
   totalTaller : number = 0;
   totalSiniesto : number = 0;
 
+  myudnV = 0;
+  myudnVV = 0;
+  myudnSV = 0;
+
   myColor = "#000000ff"
 
   getVC: any = {
@@ -326,16 +330,54 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   getDetalleV() {
-    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVC.noviaje).subscribe(res => {
+
+    if(this.getVC.udN == "TODOS"){
+      this.myudnV = 0;
+    }else if(this.getVC.udN == "ORIZABA"){
+      this.myudnV = 1;
+    }else if(this.getVC.udN == "GUADALAJARA"){
+      this.myudnV = 2;
+    }else if(this.getVC.udN == "RAMOS ARIZPE"){
+      this.myudnV = 3;
+    }else if(this.getVC.udN == "MEXICALI"){
+      this.myudnV = 4;
+    }else if(this.getVC.udN == "HERMOSILLO"){
+      this.myudnV = 5;
+    }else if(this.getVC.udN == "CUAUTITLAN"){
+      this.myudnV = 8;
+    }else if(this.getVC.udN == "TULTITLAN"){
+      this.myudnV = 9;
+    }
+
+    this.ultimoStService.getDetalleViaje(this.myudnV, this.getVC.noviaje).subscribe(res => {
       this.detalleVC = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
-      // console.log(res.data)
+       console.log(res.data)
       this.tiempoTotal = res?.data?.tiempoTotal;
       this.loadingVisible = false;
     });
   }
 
   getDetalleVV() {
-    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getVV.noviaje).subscribe(res => {
+    
+    if(this.getVC.udN == "TODOS"){
+      this.myudnVV = 0;
+    }else if(this.getVC.udN == "ORIZABA"){
+      this.myudnVV = 1;
+    }else if(this.getVC.udN == "GUADALAJARA"){
+      this.myudnVV = 2;
+    }else if(this.getVC.udN == "RAMOS ARIZPE"){
+      this.myudnVV = 3;
+    }else if(this.getVC.udN == "MEXICALI"){
+      this.myudnVV = 4;
+    }else if(this.getVC.udN == "HERMOSILLO"){
+      this.myudnVV = 5;
+    }else if(this.getVC.udN == "CUAUTITLAN"){
+      this.myudnVV = 8;
+    }else if(this.getVC.udN == "TULTITLAN"){
+      this.myudnVV = 9;
+    }
+
+    this.ultimoStService.getDetalleViaje(this.myudnVV, this.getVV.noviaje).subscribe(res => {
       this.detalleVV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       // console.log(res?.data)
       this.tiempoTotal = res?.data?.tiempoTotal;
@@ -344,9 +386,25 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   getDetalleSV() {
-    console.log(this.selectedUdn);
-    console.log(this.getSV.noviaje);
-    this.ultimoStService.getDetalleViaje(this.selectedUdn, this.getSV.noviaje).subscribe(res => {
+    if(this.getVC.udN == "TODOS"){
+      this.myudnSV = 0;
+    }else if(this.getVC.udN == "ORIZABA"){
+      this.myudnSV = 1;
+    }else if(this.getVC.udN == "GUADALAJARA"){
+      this.myudnSV = 2;
+    }else if(this.getVC.udN == "RAMOS ARIZPE"){
+      this.myudnSV = 3;
+    }else if(this.getVC.udN == "MEXICALI"){
+      this.myudnSV = 4;
+    }else if(this.getVC.udN == "HERMOSILLO"){
+      this.myudnSV = 5;
+    }else if(this.getVC.udN == "CUAUTITLAN"){
+      this.myudnSV = 8;
+    }else if(this.getVC.udN == "TULTITLAN"){
+      this.myudnSV = 9;
+    }
+
+    this.ultimoStService.getDetalleViaje(this.myudnSV, this.getSV.noviaje).subscribe(res => {
       // console.log(res?.data)
       this.detalleSV = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
       
@@ -364,6 +422,7 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   buttonVer(data){
+    this.myudnV = 0;
     this.detalleVC = []
 
     var date = new Date(data.row.data.despacho);
@@ -404,6 +463,7 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   buttonVerVV(data){
+    this.myudnVV = 0;
     this.detalleVV = []
     var date = new Date(data.row.data.despacho);
     data.row.data.despacho = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' +  date.getFullYear())
@@ -444,6 +504,7 @@ export class UltimoStatusComponent implements OnInit {
   }
 
     buttonVerSV(data){
+      this.myudnSV = 0;
     this.detalleSV = []
 
     var date = new Date(data.row.data.despacho);

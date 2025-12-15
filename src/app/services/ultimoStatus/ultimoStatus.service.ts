@@ -42,6 +42,7 @@ export class UltimoStatusService extends AbstractManagerService {
   }
 
   getDetalleViaje(idArea: number, noViaje: number) {
+    console.log(idArea, noViaje)
     return this.get<any>(this.API_URL + API_URLS.GET_DETALLE_VIAJE+idArea+'/'+noViaje, this.httpOptions);
   }
 
