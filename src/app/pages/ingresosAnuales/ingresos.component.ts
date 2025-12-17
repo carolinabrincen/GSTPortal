@@ -1493,10 +1493,10 @@ export class IngresosComponent implements OnInit {
           let presupuestoNV25 = c.totalItem.summaryCells[118][0].value;
           let proyeccionNV25 = c.totalItem.summaryCells[120][0].value;
           // // //Diciembre
-          let totalDC25 = c.totalItem.summaryCells[128][0].value;
-          let anioAntDC25 = c.totalItem.summaryCells[129][0].value;
-          let presupuestoDC25 = c.totalItem.summaryCells[131][0].value;
-          let proyeccionDC25 = c.totalItem.summaryCells[133][0].value;
+          let totalDC25 = c.totalItem.summaryCells[126][0].value;
+          let anioAntDC25 = c.totalItem.summaryCells[127][0].value;
+          let presupuestoDC25 = c.totalItem.summaryCells[129][0].value;
+          let proyeccionDC25 = c.totalItem.summaryCells[131][0].value;
   
           //Calculo de Porcentajes
           //ENERO
@@ -1610,14 +1610,14 @@ export class IngresosComponent implements OnInit {
             totalesPor25.proyeccionNV = c.totalItem.summaryCells[125][0].value
           }
           //Diciembre
-          if(c.totalItem.summaryCells[130][0] !== undefined){
-            totalDC25 === 0 ? c.totalItem.summaryCells[130][0].value = 0 : c.totalItem.summaryCells[130][0].value = totalDC25/anioAntDC25;
-            presupuestoDC25 === 0 ? c.totalItem.summaryCells[132][0].value = 0 : c.totalItem.summaryCells[132][0].value = totalDC25/presupuestoDC25;
-            proyeccionDC25 === 0 ? c.totalItem.summaryCells[138][0].value = 0 : c.totalItem.summaryCells[138][0].value = totalDC25/proyeccionDC25;
+          if(c.totalItem.summaryCells[128][0] !== undefined){
+            totalDC25 === 0 ? c.totalItem.summaryCells[128][0].value = 0 : c.totalItem.summaryCells[128][0].value = totalDC25/anioAntDC25;
+            presupuestoDC25 === 0 ? c.totalItem.summaryCells[130][0].value = 0 : c.totalItem.summaryCells[130][0].value = totalDC25/presupuestoDC25;
+            proyeccionDC25 === 0 ? c.totalItem.summaryCells[134][0].value = 0 : c.totalItem.summaryCells[134][0].value = totalDC25/proyeccionDC25;
             
-            totalesPor25.totalDC = c.totalItem.summaryCells[130][0].value
-            totalesPor25.presupuestoDC = c.totalItem.summaryCells[132][0].value
-            totalesPor25.proyeccionDC = c.totalItem.summaryCells[138][0].value
+            totalesPor25.totalDC = c.totalItem.summaryCells[128][0].value
+            totalesPor25.presupuestoDC = c.totalItem.summaryCells[130][0].value
+            totalesPor25.proyeccionDC = c.totalItem.summaryCells[134][0].value
           }
   
         })
