@@ -280,6 +280,77 @@ export class ServiceSales extends AbstractManagerService{
     
   }
 
+/*============================================================================
+==================================Periodo 2026================================
+==============================================================================*/
+  getIndicadores2026(Anio: number, UnidadNegocio: number) {
+      
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_2026 ),this.httpOptions);    
+    
+  }
+
+  getIngresosDetalladosMensualEne2026( ) {
+    
+    return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_enero2026),this.httpOptions);    
+    
+  }
+  // getIngresosDetalladosMensualFeb2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_febrero2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualMar2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_marzo2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualAbr2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_abril2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualMay2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_mayo2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualJun2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_junio2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualJul2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_julio2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualAgo2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_agosto2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualSep2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_septiembre2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualOct2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_octubre2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualNov2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_noviembre2026),this.httpOptions);    
+    
+  // }
+  // getIngresosDetalladosMensualDic2026( ) {
+    
+  //   return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_DETALLADO_diciembre2026),this.httpOptions);    
+    
+  // }
+
+
 
   getIndicadoresGrafica(Anio: number, UnidadNegocio: number) {
     return this.get<any>((this.API_URL + API_URLS.GET_INGRESOS_ANUALES_CHART + '/' + Anio + '/'+ UnidadNegocio),this.httpOptions);    

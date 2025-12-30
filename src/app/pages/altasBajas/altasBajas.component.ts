@@ -125,6 +125,7 @@ export class AltasBajasComponent implements OnInit {
       { idPeriodo: 202510, periodo: "2025-10-01" },
       { idPeriodo: 202511, periodo: "2025-11-01" },
       { idPeriodo: 202512, periodo: "2025-12-01" },
+      { idPeriodo: 202601, periodo: "2026-01-01" },
     ];
 
   selectedPeriodo: number = 0;
