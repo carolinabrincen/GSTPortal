@@ -987,11 +987,11 @@ export class IndicadoresComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.getScoreCard2026();
-    // this.getGraficaIO26();
-    // this.getIndicadoresChart26();
-    // // this.getSueldoBase25();
-    // this.getSueldoOpAc26();
+    this.getScoreCard2026();
+    this.getGraficaIO26();
+    this.getIndicadoresChart26();
+    // this.getSueldoBase25();
+    this.getSueldoOpAc26();
     this.getUnidadesNegocio();
     this.getTractos();
   }
@@ -1273,9 +1273,10 @@ export class IndicadoresComponent implements OnInit {
       this.operadoresUDN26 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
       this.ingresoOperador26 = data.data.scIngrXOperador;   
-      //console.log(this.ingresoOperador26) 
+      console.log(this.ingresoOperador26) 
       
       this.ingresoOpProm26 = data.data.scIngrXOperadorProm;
+      console.log(this.ingresoOpProm26)
  
       this.precioMeta26 = data.data.scPrecioMeta;
 
@@ -1733,7 +1734,7 @@ export class IndicadoresComponent implements OnInit {
   getGraficaIO26(){
     this.indicadorService.getScoreCard2026().subscribe(data => {
       this.graficaIXO26 = data.data.scIngrXOperador;            
-      
+      console.log(this.graficaIXO26)
       var myArray26 = [
         {ingreso: 0, ingresoXOperador: 0, mes: '03 MARZO', operadores: 0, orden: 0},
         {orden: 0, mes: '04 ABRIL', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -1754,7 +1755,7 @@ export class IndicadoresComponent implements OnInit {
       const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
 
       this.graficaOP26 = result;
-      //console.log(this.graficaOP24)
+      console.log(this.graficaOP26)
 
     })
   }

@@ -21,6 +21,7 @@ import { group } from 'console';
 const totalesPor  = new TotalPorcentajes;
 const totalesPorGr  = new TotalPorcentajes;
 
+const totalesPor26  = new TotalPorcentajes;
 const totalesPor25  = new TotalPorcentajes;
 const totalesPor24  = new TotalPorcentajes;
 const totalesPorGr24  = new TotalPorcentajes;
@@ -1664,7 +1665,7 @@ export class IngresosComponent implements OnInit {
     if (e.rowType == 'totalFooter') {
       //console.log(e.summaryCells)
     /*====================================PERIODO 2024==================================================*/
-    this.graficaModel2025 = [
+    this.graficaModel2026 = [
       {mes: "ENERO", total: e.summaryCells[2][0]?.value, presupuesto: e.summaryCells[3][0]?.value},  
       {mes: "FEBRERO", total: e.summaryCells[4][0]?.value, presupuesto: e.summaryCells[5][0]?.value},
       {mes: "MARZO", total: e.summaryCells[6][0]?.value, presupuesto: e.summaryCells[7][0]?.value},
@@ -1712,190 +1713,190 @@ export class IngresosComponent implements OnInit {
         if(e.groupIndex == 0){
           //console.log(e.summaryCells)
           //ENERO 2024
-          this.totalPor25.totalE = e.summaryCells[4][0]?.value;
-          this.totalPor25.anioAntE = e.summaryCells[5][0]?.value;
-          this.totalPor25.presupuestoE = e.summaryCells[7][0]?.value;
-          this.totalPor25.proyeccionE = e.summaryCells[9][0]?.value;
-          //Febrero
-          this.totalPor25.totalFB = e.summaryCells[15][0]?.value;
-          this.totalPor25.anioAntFB = e.summaryCells[16][0]?.value;
-          this.totalPor25.presupuestoFB = e.summaryCells[18][0]?.value;
-          this.totalPor25.proyeccionFB = e.summaryCells[20][0]?.value;
-          // //Marzo
-          this.totalPor25.totalM = e.summaryCells[26][0]?.value;
-          this.totalPor25.anioAntM = e.summaryCells[27][0]?.value;
-          this.totalPor25.presupuestoM = e.summaryCells[29][0]?.value;
-          this.totalPor25.proyeccionM = e.summaryCells[31][0]?.value;
-          // //Abril
-          this.totalPor25.totalA = e.summaryCells[37][0].value;
-          this.totalPor25.anioAntA = e.summaryCells[38][0].value;
-          this.totalPor25.presupuestoA = e.summaryCells[40][0].value;
-          this.totalPor25.proyeccionA = e.summaryCells[42][0].value;
-          // //Mayo
-          this.totalPor25.totalMY = e.summaryCells[48][0].value;
-          this.totalPor25.anioAntMY = e.summaryCells[49][0].value;
-          this.totalPor25.presupuestoMY = e.summaryCells[51][0].value;
-          this.totalPor25.proyeccionMY = e.summaryCells[53][0].value;
-          // //Junio
-          this.totalPor25.totalJN = e.summaryCells[59][0].value;
-          this.totalPor25.anioAntJN = e.summaryCells[60][0].value;
-          this.totalPor25.presupuestoJN = e.summaryCells[62][0].value;
-          this.totalPor25.proyeccionJN = e.summaryCells[64][0].value;
-          // //Juio
-          this.totalPor25.totalJL = e.summaryCells[70][0].value;
-          this.totalPor25.anioAntJL = e.summaryCells[71][0].value;
-          this.totalPor25.presupuestoJL = e.summaryCells[73][0].value;
-          this.totalPor25.proyeccionJL = e.summaryCells[75][0].value;
-          // //Agosto
-          this.totalPor25.totalAG = e.summaryCells[81][0].value;
-          this.totalPor25.anioAntAG = e.summaryCells[82][0].value;
-          this.totalPor25.presupuestoAG = e.summaryCells[84][0].value;
-          this.totalPor25.proyeccionAG = e.summaryCells[86][0].value;
-          // //Septiembre
-          this.totalPor25.totalS = e.summaryCells[92][0].value;
-          this.totalPor25.anioAntS = e.summaryCells[93][0].value;
-          this.totalPor25.presupuestoS = e.summaryCells[95][0].value;
-          this.totalPor25.proyeccionS = e.summaryCells[97][0].value;
-          //Octubre
-          this.totalPor25.totalOC = e.summaryCells[104][0].value;
-          this.totalPor25.anioAntOC = e.summaryCells[105][0].value;
-          this.totalPor25.presupuestoOC = e.summaryCells[107][0].value;
-          this.totalPor25.proyeccionOC = e.summaryCells[109][0].value;
-          // //Noviembre
-          this.totalPor25.totalNV = e.summaryCells[115][0].value;
-          this.totalPor25.anioAntNV = e.summaryCells[116][0].value;
-          this.totalPor25.presupuestoNV = e.summaryCells[118][0].value;
-          this.totalPor25.proyeccionNV = e.summaryCells[120][0].value;
-          // //Diciembre
-          this.totalPor25.totalDC = e.summaryCells[128][0].value;
-          this.totalPor25.anioAntDC = e.summaryCells[129][0].value;
-          this.totalPor25.presupuestoDC = e.summaryCells[131][0].value;
-          this.totalPor25.proyeccionDC = e.summaryCells[133][0].value;
+          this.totalPor26.totalE = e.summaryCells[4][0]?.value;
+          this.totalPor26.anioAntE = e.summaryCells[5][0]?.value;
+          this.totalPor26.presupuestoE = e.summaryCells[7][0]?.value;
+          this.totalPor26.proyeccionE = e.summaryCells[9][0]?.value;
+          // //Febrero
+          // this.totalPor26.totalFB = e.summaryCells[15][0]?.value;
+          // this.totalPor26.anioAntFB = e.summaryCells[16][0]?.value;
+          // this.totalPor26.presupuestoFB = e.summaryCells[18][0]?.value;
+          // this.totalPor26.proyeccionFB = e.summaryCells[20][0]?.value;
+          // // //Marzo
+          // this.totalPor26.totalM = e.summaryCells[26][0]?.value;
+          // this.totalPor26.anioAntM = e.summaryCells[27][0]?.value;
+          // this.totalPor26.presupuestoM = e.summaryCells[29][0]?.value;
+          // this.totalPor26.proyeccionM = e.summaryCells[31][0]?.value;
+          // // //Abril
+          // this.totalPor26.totalA = e.summaryCells[37][0].value;
+          // this.totalPor26.anioAntA = e.summaryCells[38][0].value;
+          // this.totalPor26.presupuestoA = e.summaryCells[40][0].value;
+          // this.totalPor26.proyeccionA = e.summaryCells[42][0].value;
+          // // //Mayo
+          // this.totalPor26.totalMY = e.summaryCells[48][0].value;
+          // this.totalPor26.anioAntMY = e.summaryCells[49][0].value;
+          // this.totalPor26.presupuestoMY = e.summaryCells[51][0].value;
+          // this.totalPor26.proyeccionMY = e.summaryCells[53][0].value;
+          // // //Junio
+          // this.totalPor26.totalJN = e.summaryCells[59][0].value;
+          // this.totalPor26.anioAntJN = e.summaryCells[60][0].value;
+          // this.totalPor26.presupuestoJN = e.summaryCells[62][0].value;
+          // this.totalPor26.proyeccionJN = e.summaryCells[64][0].value;
+          // // //Juio
+          // this.totalPor26.totalJL = e.summaryCells[70][0].value;
+          // this.totalPor26.anioAntJL = e.summaryCells[71][0].value;
+          // this.totalPor26.presupuestoJL = e.summaryCells[73][0].value;
+          // this.totalPor26.proyeccionJL = e.summaryCells[75][0].value;
+          // // //Agosto
+          // this.totalPor26.totalAG = e.summaryCells[81][0].value;
+          // this.totalPor26.anioAntAG = e.summaryCells[82][0].value;
+          // this.totalPor26.presupuestoAG = e.summaryCells[84][0].value;
+          // this.totalPor26.proyeccionAG = e.summaryCells[86][0].value;
+          // // //Septiembre
+          // this.totalPor26.totalS = e.summaryCells[92][0].value;
+          // this.totalPor26.anioAntS = e.summaryCells[93][0].value;
+          // this.totalPor26.presupuestoS = e.summaryCells[95][0].value;
+          // this.totalPor26.proyeccionS = e.summaryCells[97][0].value;
+          // //Octubre
+          // this.totalPor26.totalOC = e.summaryCells[104][0].value;
+          // this.totalPor26.anioAntOC = e.summaryCells[105][0].value;
+          // this.totalPor26.presupuestoOC = e.summaryCells[107][0].value;
+          // this.totalPor26.proyeccionOC = e.summaryCells[109][0].value;
+          // // //Noviembre
+          // this.totalPor26.totalNV = e.summaryCells[115][0].value;
+          // this.totalPor26.anioAntNV = e.summaryCells[116][0].value;
+          // this.totalPor26.presupuestoNV = e.summaryCells[118][0].value;
+          // this.totalPor26.proyeccionNV = e.summaryCells[120][0].value;
+          // // //Diciembre
+          // this.totalPor26.totalDC = e.summaryCells[128][0].value;
+          // this.totalPor26.anioAntDC = e.summaryCells[129][0].value;
+          // this.totalPor26.presupuestoDC = e.summaryCells[131][0].value;
+          // this.totalPor26.proyeccionDC = e.summaryCells[133][0].value;
   
           // //ENERO
-          this.totalPor25.aniATotalE = this.totalPor25.totalE / this.totalPor25.anioAntE;
-          this.totalPor25.presTotalE = this.totalPor25.totalE / this.totalPor25.presupuestoE;
-          this.totalPor25.ProyTotalE = this.totalPor25.proyeccionE / this.totalPor25.presupuestoE;
-          // // //Febrero
-          this.totalPor25.aniATotalFB = this.totalPor25.totalFB / this.totalPor25.anioAntFB;
-          this.totalPor25.presTotalFB = this.totalPor25.totalFB / this.totalPor25.presupuestoFB;
-          this.totalPor25.ProyTotalFB = this.totalPor25.proyeccionFB / this.totalPor25.presupuestoFB;
-          // // //Marzo
-          this.totalPor25.aniATotalM = this.totalPor25.totalM / this.totalPor25.anioAntM;
-          this.totalPor25.presTotalM = this.totalPor25.totalM / this.totalPor25.presupuestoM;
-          this.totalPor25.ProyTotalM = this.totalPor25.proyeccionM / this.totalPor25.presupuestoM;
-          // // //Abril
-          this.totalPor25.aniATotalA = this.totalPor25.totalA / this.totalPor25.anioAntA;
-          this.totalPor25.presTotalA = this.totalPor25.totalA / this.totalPor25.presupuestoA;
-          this.totalPor25.ProyTotalA = this.totalPor25.proyeccionA / this.totalPor25.presupuestoA;
-          // // //Mayo
-          this.totalPor25.aniATotalMY = this.totalPor25.totalMY / this.totalPor25.anioAntMY;
-          this.totalPor25.presTotalMY = this.totalPor25.totalMY / this.totalPor25.presupuestoMY;
-          this.totalPor25.ProyTotalMY = this.totalPor25.proyeccionMY / this.totalPor25.presupuestoMY;
-          // // //Junio
-          this.totalPor25.aniATotalJN = this.totalPor25.totalJN / this.totalPor25.anioAntJN;
-          this.totalPor25.presTotalJN = this.totalPor25.totalJN / this.totalPor25.presupuestoJN;
-          this.totalPor25.ProyTotalJN = this.totalPor25.proyeccionJN / this.totalPor25.presupuestoJN;
-          // // //Julio
-          this.totalPor25.aniATotalJL = this.totalPor25.totalJL / this.totalPor25.anioAntJL;
-          this.totalPor25.presTotalJL = this.totalPor25.totalJL / this.totalPor25.presupuestoJL;
-          this.totalPor25.ProyTotalJL = this.totalPor25.proyeccionJL / this.totalPor25.presupuestoJL;
-          // // //Agosto
-          this.totalPor25.aniATotalAG = this.totalPor25.totalAG / this.totalPor25.anioAntAG;
-          this.totalPor25.presTotalAG = this.totalPor25.totalAG / this.totalPor25.presupuestoAG;
-          this.totalPor25.ProyTotalAG = this.totalPor25.proyeccionAG / this.totalPor25.presupuestoAG;
-          // // //Septiembre
-          this.totalPor25.aniATotalS = this.totalPor25.totalS / this.totalPor25.anioAntS;
-          this.totalPor25.presTotalS = this.totalPor25.totalS / this.totalPor25.presupuestoS;
-          this.totalPor25.ProyTotalS = this.totalPor25.proyeccionS / this.totalPor25.presupuestoS;
-          // // //Octubre
-          this.totalPor25.aniATotalOC = this.totalPor25.totalOC / this.totalPor25.anioAntOC;
-          this.totalPor25.presTotalOC = this.totalPor25.totalOC / this.totalPor25.presupuestoOC;
-          this.totalPor25.ProyTotalOC = this.totalPor25.proyeccionOC / this.totalPor25.presupuestoOC;
-          // // //Noviembre
-          this.totalPor25.aniATotalNV = this.totalPor25.totalNV / this.totalPor25.anioAntNV;
-          this.totalPor25.presTotalNV = this.totalPor25.totalNV / this.totalPor25.presupuestoNV;
-          this.totalPor25.ProyTotalNV = this.totalPor25.proyeccionNV / this.totalPor25.presupuestoNV;
-          // // //Diciembre
-          this.totalPor25.aniATotalDC = this.totalPor25.totalDC / this.totalPor25.anioAntDC;
-          this.totalPor25.presTotalDC = this.totalPor25.totalDC / this.totalPor25.presupuestoDC;
-          this.totalPor25.ProyTotalDC = this.totalPor25.proyeccionDC / this.totalPor25.presupuestoDC;
+          this.totalPor26.aniATotalE = this.totalPor26.totalE / this.totalPor26.anioAntE;
+          this.totalPor26.presTotalE = this.totalPor26.totalE / this.totalPor26.presupuestoE;
+          this.totalPor26.ProyTotalE = this.totalPor26.proyeccionE / this.totalPor26.presupuestoE;
+          // // // //Febrero
+          // this.totalPor26.aniATotalFB = this.totalPor26.totalFB / this.totalPor26.anioAntFB;
+          // this.totalPor26.presTotalFB = this.totalPor26.totalFB / this.totalPor26.presupuestoFB;
+          // this.totalPor26.ProyTotalFB = this.totalPor26.proyeccionFB / this.totalPor26.presupuestoFB;
+          // // // //Marzo
+          // this.totalPor26.aniATotalM = this.totalPor26.totalM / this.totalPor26.anioAntM;
+          // this.totalPor26.presTotalM = this.totalPor26.totalM / this.totalPor26.presupuestoM;
+          // this.totalPor26.ProyTotalM = this.totalPor26.proyeccionM / this.totalPor26.presupuestoM;
+          // // // //Abril
+          // this.totalPor26.aniATotalA = this.totalPor26.totalA / this.totalPor26.anioAntA;
+          // this.totalPor26.presTotalA = this.totalPor26.totalA / this.totalPor26.presupuestoA;
+          // this.totalPor26.ProyTotalA = this.totalPor26.proyeccionA / this.totalPor26.presupuestoA;
+          // // // //Mayo
+          // this.totalPor26.aniATotalMY = this.totalPor26.totalMY / this.totalPor26.anioAntMY;
+          // this.totalPor26.presTotalMY = this.totalPor26.totalMY / this.totalPor26.presupuestoMY;
+          // this.totalPor26.ProyTotalMY = this.totalPor26.proyeccionMY / this.totalPor26.presupuestoMY;
+          // // // //Junio
+          // this.totalPor26.aniATotalJN = this.totalPor26.totalJN / this.totalPor26.anioAntJN;
+          // this.totalPor26.presTotalJN = this.totalPor26.totalJN / this.totalPor26.presupuestoJN;
+          // this.totalPor26.ProyTotalJN = this.totalPor26.proyeccionJN / this.totalPor26.presupuestoJN;
+          // // // //Julio
+          // this.totalPor26.aniATotalJL = this.totalPor26.totalJL / this.totalPor26.anioAntJL;
+          // this.totalPor26.presTotalJL = this.totalPor26.totalJL / this.totalPor26.presupuestoJL;
+          // this.totalPor26.ProyTotalJL = this.totalPor26.proyeccionJL / this.totalPor26.presupuestoJL;
+          // // // //Agosto
+          // this.totalPor26.aniATotalAG = this.totalPor26.totalAG / this.totalPor26.anioAntAG;
+          // this.totalPor26.presTotalAG = this.totalPor26.totalAG / this.totalPor26.presupuestoAG;
+          // this.totalPor26.ProyTotalAG = this.totalPor26.proyeccionAG / this.totalPor26.presupuestoAG;
+          // // // //Septiembre
+          // this.totalPor26.aniATotalS = this.totalPor26.totalS / this.totalPor26.anioAntS;
+          // this.totalPor26.presTotalS = this.totalPor26.totalS / this.totalPor26.presupuestoS;
+          // this.totalPor26.ProyTotalS = this.totalPor26.proyeccionS / this.totalPor26.presupuestoS;
+          // // // //Octubre
+          // this.totalPor26.aniATotalOC = this.totalPor26.totalOC / this.totalPor26.anioAntOC;
+          // this.totalPor26.presTotalOC = this.totalPor26.totalOC / this.totalPor26.presupuestoOC;
+          // this.totalPor26.ProyTotalOC = this.totalPor26.proyeccionOC / this.totalPor26.presupuestoOC;
+          // // // //Noviembre
+          // this.totalPor26.aniATotalNV = this.totalPor26.totalNV / this.totalPor26.anioAntNV;
+          // this.totalPor26.presTotalNV = this.totalPor26.totalNV / this.totalPor26.presupuestoNV;
+          // this.totalPor26.ProyTotalNV = this.totalPor26.proyeccionNV / this.totalPor26.presupuestoNV;
+          // // // //Diciembre
+          // this.totalPor26.aniATotalDC = this.totalPor26.totalDC / this.totalPor26.anioAntDC;
+          // this.totalPor26.presTotalDC = this.totalPor26.totalDC / this.totalPor26.presupuestoDC;
+          // this.totalPor26.ProyTotalDC = this.totalPor26.proyeccionDC / this.totalPor26.presupuestoDC;
        
   
           // //ENERO
           if(e.summaryCells[6][0].value !== undefined){
-            e.summaryCells[6][0].value = this.totalPor25.aniATotalE;
-            e.summaryCells[8][0].value = this.totalPor25.presTotalE;
-            // e.summaryCells[12][0].value = this.totalPor25.ProyTotalE;s
+            e.summaryCells[6][0].value = this.totalPor26.aniATotalE;
+            e.summaryCells[8][0].value = this.totalPor26.presTotalE;
+            // e.summaryCells[12][0].value = this.totalPor26.ProyTotalE;s
           }
           // totalesPorGr.totalE = e.summaryCells[6][0]?.value;
-          // //Febrero
-          if(e.summaryCells[17][0].value !== undefined){
-            e.summaryCells[17][0].value = this.totalPor25.aniATotalFB;
-            e.summaryCells[19][0].value = this.totalPor25.presTotalFB;
-            e.summaryCells[23][0].value = this.totalPor25.ProyTotalFB;
-          }
-          // // //Marzo
-          if(e.summaryCells[28][0].value !== undefined){
-            e.summaryCells[28][0].value = this.totalPor25.aniATotalM;
-            e.summaryCells[30][0].value = this.totalPor25.presTotalM;
-            e.summaryCells[34][0].value = this.totalPor25.ProyTotalM;
-          }
-          // // //Abril
-          if(e.summaryCells[39][0].value !== undefined){
-            e.summaryCells[39][0].value = this.totalPor25.aniATotalA;
-            e.summaryCells[41][0].value = this.totalPor25.presTotalA;
-            e.summaryCells[45][0].value = this.totalPor25.ProyTotalA;
-          }
-          // // //Mayo
-          if(e.summaryCells[50][0].value !== undefined){
-            e.summaryCells[50][0].value = this.totalPor25.aniATotalMY;
-            e.summaryCells[52][0].value = this.totalPor25.presTotalMY;
-            e.summaryCells[56][0].value = this.totalPor25.ProyTotalMY;
-          }
-          // // //Junio
-          if(e.summaryCells[61][0].value !== undefined){
-            e.summaryCells[61][0].value = this.totalPor25.aniATotalJN;
-            e.summaryCells[63][0].value = this.totalPor25.presTotalJN;
-            e.summaryCells[67][0].value = this.totalPor25.ProyTotalJN;
-          }
-          // // //Julio
-          if(e.summaryCells[72][0].value !== undefined){
-            e.summaryCells[72][0].value = this.totalPor25.aniATotalJL;
-            e.summaryCells[74][0].value = this.totalPor25.presTotalJL;
-            e.summaryCells[78][0].value = this.totalPor25.ProyTotalJL;
-          }
-          // // //Agosto
-          if(e.summaryCells[83][0].value !== undefined){
-            e.summaryCells[83][0].value = this.totalPor25.aniATotalAG;
-            e.summaryCells[85][0].value = this.totalPor25.presTotalAG;
-            e.summaryCells[89][0].value = this.totalPor25.ProyTotalAG;
-          }
-          // // //Septiembre
-          if(e.summaryCells[94][0].value !== undefined){
-            e.summaryCells[94][0].value = this.totalPor25.aniATotalS;
-            e.summaryCells[96][0].value = this.totalPor25.presTotalS;
-            e.summaryCells[100][0].value = this.totalPor25.ProyTotalS;
-          }
-          // // //Octubre
-          if(e.summaryCells[106][0].value !== undefined){
-            e.summaryCells[106][0].value = this.totalPor25.aniATotalOC;
-            e.summaryCells[108][0].value = this.totalPor25.presTotalOC;
-            e.summaryCells[112][0].value = this.totalPor25.ProyTotalOC;
-          }
-          // // //Noviembre VALIDACION 125, CHECAR NOVPORPROY DOS ARRAY EXTRAS??????
-          if(e.summaryCells[125][0].value !== undefined){
-            e.summaryCells[117][0].value = this.totalPor25.aniATotalNV;
-            e.summaryCells[119][0].value = this.totalPor25.presTotalNV;
-            e.summaryCells[125][0].value = this.totalPor25.ProyTotalNV;
+          // // //Febrero
+          // if(e.summaryCells[17][0].value !== undefined){
+          //   e.summaryCells[17][0].value = this.totalPor26.aniATotalFB;
+          //   e.summaryCells[19][0].value = this.totalPor26.presTotalFB;
+          //   e.summaryCells[23][0].value = this.totalPor26.ProyTotalFB;
+          // }
+          // // // //Marzo
+          // if(e.summaryCells[28][0].value !== undefined){
+          //   e.summaryCells[28][0].value = this.totalPor26.aniATotalM;
+          //   e.summaryCells[30][0].value = this.totalPor26.presTotalM;
+          //   e.summaryCells[34][0].value = this.totalPor26.ProyTotalM;
+          // }
+          // // // //Abril
+          // if(e.summaryCells[39][0].value !== undefined){
+          //   e.summaryCells[39][0].value = this.totalPor26.aniATotalA;
+          //   e.summaryCells[41][0].value = this.totalPor26.presTotalA;
+          //   e.summaryCells[45][0].value = this.totalPor26.ProyTotalA;
+          // }
+          // // // //Mayo
+          // if(e.summaryCells[50][0].value !== undefined){
+          //   e.summaryCells[50][0].value = this.totalPor26.aniATotalMY;
+          //   e.summaryCells[52][0].value = this.totalPor26.presTotalMY;
+          //   e.summaryCells[56][0].value = this.totalPor26.ProyTotalMY;
+          // }
+          // // // //Junio
+          // if(e.summaryCells[61][0].value !== undefined){
+          //   e.summaryCells[61][0].value = this.totalPor26.aniATotalJN;
+          //   e.summaryCells[63][0].value = this.totalPor26.presTotalJN;
+          //   e.summaryCells[67][0].value = this.totalPor26.ProyTotalJN;
+          // }
+          // // // //Julio
+          // if(e.summaryCells[72][0].value !== undefined){
+          //   e.summaryCells[72][0].value = this.totalPor26.aniATotalJL;
+          //   e.summaryCells[74][0].value = this.totalPor26.presTotalJL;
+          //   e.summaryCells[78][0].value = this.totalPor26.ProyTotalJL;
+          // }
+          // // // //Agosto
+          // if(e.summaryCells[83][0].value !== undefined){
+          //   e.summaryCells[83][0].value = this.totalPor26.aniATotalAG;
+          //   e.summaryCells[85][0].value = this.totalPor26.presTotalAG;
+          //   e.summaryCells[89][0].value = this.totalPor26.ProyTotalAG;
+          // }
+          // // // //Septiembre
+          // if(e.summaryCells[94][0].value !== undefined){
+          //   e.summaryCells[94][0].value = this.totalPor26.aniATotalS;
+          //   e.summaryCells[96][0].value = this.totalPor26.presTotalS;
+          //   e.summaryCells[100][0].value = this.totalPor26.ProyTotalS;
+          // }
+          // // // //Octubre
+          // if(e.summaryCells[106][0].value !== undefined){
+          //   e.summaryCells[106][0].value = this.totalPor26.aniATotalOC;
+          //   e.summaryCells[108][0].value = this.totalPor26.presTotalOC;
+          //   e.summaryCells[112][0].value = this.totalPor26.ProyTotalOC;
+          // }
+          // // // //Noviembre VALIDACION 126, CHECAR NOVPORPROY DOS ARRAY EXTRAS??????
+          // if(e.summaryCells[126][0].value !== undefined){
+          //   e.summaryCells[117][0].value = this.totalPor26.aniATotalNV;
+          //   e.summaryCells[119][0].value = this.totalPor26.presTotalNV;
+          //   e.summaryCells[125][0].value = this.totalPor26.ProyTotalNV;
           
-          }
-          //   // //Diciembre
-          if(e.summaryCells[130][0].value !== undefined){  
-            e.summaryCells[130][0].value = this.totalPor25.aniATotalDC;
-            e.summaryCells[132][0].value = this.totalPor25.presTotalDC;
-            e.summaryCells[138][0].value = this.totalPor25.ProyTotalDC;
-          }
+          // }
+          // //   // //Diciembre
+          // if(e.summaryCells[130][0].value !== undefined){  
+          //   e.summaryCells[130][0].value = this.totalPor26.aniATotalDC;
+          //   e.summaryCells[132][0].value = this.totalPor26.presTotalDC;
+          //   e.summaryCells[138][0].value = this.totalPor26.ProyTotalDC;
+          // }
         }
       }
   
@@ -1923,188 +1924,188 @@ export class IngresosComponent implements OnInit {
         e.totalItem.cells.forEach((c: any) => {
           //console.log(c.totalItem.summaryCells)
           // //ENERO 2024
-          let total25E = c.totalItem.summaryCells[4][0]?.value;
-          let anioAnt25E = c.totalItem.summaryCells[5][0]?.value;
-          let presupuesto25E = c.totalItem.summaryCells[7][0]?.value;
-          let proyeccion25E = c.totalItem.summaryCells[9][0]?.value;
-          // // //Febrero
-          let total25FB = c.totalItem.summaryCells[15][0].value;
-          let anioAnt25FB = c.totalItem.summaryCells[16][0].value;
-          let presupuesto25FB = c.totalItem.summaryCells[18][0].value;
-          let proyeccion25FB = c.totalItem.summaryCells[20][0].value;
-          // // //Marzo
-          let total25M = c.totalItem.summaryCells[26][0].value;
-          let anioAnt25M = c.totalItem.summaryCells[27][0].value;
-          let presupuesto25M = c.totalItem.summaryCells[29][0].value;
-          let proyeccion25M = c.totalItem.summaryCells[31][0].value;
-          // // //Abril
-          let total25A = c.totalItem.summaryCells[37][0].value;
-          let anioAnt25A = c.totalItem.summaryCells[38][0].value;
-          let presupuesto25A = c.totalItem.summaryCells[40][0].value;
-          let proyeccion25A = c.totalItem.summaryCells[42][0].value;
-          // // //Mayo
-          // // console.log(c.totalItem.summaryCells)
-          let totalMY25 = c.totalItem.summaryCells[48][0].value;
-          let anioAntMY25 = c.totalItem.summaryCells[49][0].value;
-          let presupuestoMY25 = c.totalItem.summaryCells[51][0].value;
-          let proyeccionMY25 = c.totalItem.summaryCells[53][0].value;
-          // // //Junio
-          let totalJN25 = c.totalItem.summaryCells[59][0].value;
-          let anioAntJN25 = c.totalItem.summaryCells[60][0].value;
-          let presupuestoJN25 = c.totalItem.summaryCells[62][0].value;
-          let proyeccionJN25 = c.totalItem.summaryCells[64][0].value;
-          // // //Juio
-          let totalJL25 = c.totalItem.summaryCells[70][0].value;
-          let anioAntJL25 = c.totalItem.summaryCells[71][0].value;
-          let presupuestoJL25 = c.totalItem.summaryCells[73][0].value;
-          let proyeccionJL25 = c.totalItem.summaryCells[75][0].value;
-          // // //Agosto
-          let totalAG25 = c.totalItem.summaryCells[81][0].value;
-          let anioAntAG25 = c.totalItem.summaryCells[82][0].value;
-          let presupuestoAG25 = c.totalItem.summaryCells[84][0].value;
-          let proyeccionAG25 = c.totalItem.summaryCells[86][0].value;
-          // // //Septiembre
-          let totalS25 = c.totalItem.summaryCells[92][0].value;
-          let anioAntS25 = c.totalItem.summaryCells[93][0].value;
-          let presupuestoS25 = c.totalItem.summaryCells[95][0].value;
-          let proyeccionS25 = c.totalItem.summaryCells[97][0].value;
-          // // //Octubre
-          let totalOC25 = c.totalItem.summaryCells[104][0].value;
-          let anioAntOC25 = c.totalItem.summaryCells[105][0].value;
-          let presupuestoOC25 = c.totalItem.summaryCells[107][0].value;
-          let proyeccionOC25 = c.totalItem.summaryCells[109][0].value;
-          // //Noviembre
-          let totalNV25 = c.totalItem.summaryCells[115][0].value;
-          let anioAntNV25 = c.totalItem.summaryCells[116][0].value;
-          let presupuestoNV25 = c.totalItem.summaryCells[118][0].value;
-          let proyeccionNV25 = c.totalItem.summaryCells[120][0].value;
-          // // //Diciembre
-          let totalDC25 = c.totalItem.summaryCells[126][0].value;
-          let anioAntDC25 = c.totalItem.summaryCells[127][0].value;
-          let presupuestoDC25 = c.totalItem.summaryCells[129][0].value;
-          let proyeccionDC25 = c.totalItem.summaryCells[131][0].value;
+          let total26E = c.totalItem.summaryCells[4][0]?.value;
+          let anioAnt26E = c.totalItem.summaryCells[5][0]?.value;
+          let presupuesto26E = c.totalItem.summaryCells[7][0]?.value;
+          let proyeccion26E = c.totalItem.summaryCells[9][0]?.value;
+          // // // //Febrero
+          // let total26FB = c.totalItem.summaryCells[15][0].value;
+          // let anioAnt26FB = c.totalItem.summaryCells[16][0].value;
+          // let presupuesto26FB = c.totalItem.summaryCells[18][0].value;
+          // let proyeccion26FB = c.totalItem.summaryCells[20][0].value;
+          // // // //Marzo
+          // let total26M = c.totalItem.summaryCells[26][0].value;
+          // let anioAnt26M = c.totalItem.summaryCells[27][0].value;
+          // let presupuesto26M = c.totalItem.summaryCells[29][0].value;
+          // let proyeccion26M = c.totalItem.summaryCells[31][0].value;
+          // // // //Abril
+          // let total26A = c.totalItem.summaryCells[37][0].value;
+          // let anioAnt26A = c.totalItem.summaryCells[38][0].value;
+          // let presupuesto26A = c.totalItem.summaryCells[40][0].value;
+          // let proyeccion26A = c.totalItem.summaryCells[42][0].value;
+          // // // //Mayo
+          // // // console.log(c.totalItem.summaryCells)
+          // let totalMY26 = c.totalItem.summaryCells[48][0].value;
+          // let anioAntMY26 = c.totalItem.summaryCells[49][0].value;
+          // let presupuestoMY26 = c.totalItem.summaryCells[51][0].value;
+          // let proyeccionMY26 = c.totalItem.summaryCells[53][0].value;
+          // // // //Junio
+          // let totalJN26 = c.totalItem.summaryCells[59][0].value;
+          // let anioAntJN26 = c.totalItem.summaryCells[60][0].value;
+          // let presupuestoJN26 = c.totalItem.summaryCells[62][0].value;
+          // let proyeccionJN26 = c.totalItem.summaryCells[64][0].value;
+          // // // //Juio
+          // let totalJL26 = c.totalItem.summaryCells[70][0].value;
+          // let anioAntJL26 = c.totalItem.summaryCells[71][0].value;
+          // let presupuestoJL26 = c.totalItem.summaryCells[73][0].value;
+          // let proyeccionJL26 = c.totalItem.summaryCells[75][0].value;
+          // // // //Agosto
+          // let totalAG26 = c.totalItem.summaryCells[81][0].value;
+          // let anioAntAG26 = c.totalItem.summaryCells[82][0].value;
+          // let presupuestoAG26 = c.totalItem.summaryCells[84][0].value;
+          // let proyeccionAG26 = c.totalItem.summaryCells[86][0].value;
+          // // // //Septiembre
+          // let totalS26 = c.totalItem.summaryCells[92][0].value;
+          // let anioAntS26 = c.totalItem.summaryCells[93][0].value;
+          // let presupuestoS26 = c.totalItem.summaryCells[95][0].value;
+          // let proyeccionS26 = c.totalItem.summaryCells[97][0].value;
+          // // // //Octubre
+          // let totalOC26 = c.totalItem.summaryCells[104][0].value;
+          // let anioAntOC26 = c.totalItem.summaryCells[105][0].value;
+          // let presupuestoOC26 = c.totalItem.summaryCells[107][0].value;
+          // let proyeccionOC26 = c.totalItem.summaryCells[109][0].value;
+          // // //Noviembre
+          // let totalNV26 = c.totalItem.summaryCells[115][0].value;
+          // let anioAntNV26 = c.totalItem.summaryCells[116][0].value;
+          // let presupuestoNV26 = c.totalItem.summaryCells[118][0].value;
+          // let proyeccionNV26 = c.totalItem.summaryCells[120][0].value;
+          // // // //Diciembre
+          // let totalDC26 = c.totalItem.summaryCells[126][0].value;
+          // let anioAntDC26 = c.totalItem.summaryCells[127][0].value;
+          // let presupuestoDC26 = c.totalItem.summaryCells[129][0].value;
+          // let proyeccionDC26 = c.totalItem.summaryCells[131][0].value;
   
           //Calculo de Porcentajes
           //ENERO
           if(c.totalItem.summaryCells[6][0] !== undefined){
-            total25E === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = total25E/anioAnt25E;
-            presupuesto25E === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = total25E/presupuesto25E;
-            // proyeccion25E === 0 ? c.totalItem.summaryCells[12][0].value = 0 : c.totalItem.summaryCells[12][0].value = total25E/presupuesto25E;
+            total26E === 0 ? c.totalItem.summaryCells[6][0].value = 0 : c.totalItem.summaryCells[6][0].value = total26E/anioAnt26E;
+            presupuesto26E === 0 ? c.totalItem.summaryCells[8][0].value = 0 : c.totalItem.summaryCells[8][0].value = total26E/presupuesto26E;
+            // proyeccion26E === 0 ? c.totalItem.summaryCells[12][0].value = 0 : c.totalItem.summaryCells[12][0].value = total26E/presupuesto26E;
   
-            totalesPor25.totalE = c.totalItem.summaryCells[6][0].value
-            totalesPor25.presupuestoE = c.totalItem.summaryCells[8][0].value
-            // totalesPor25.proyeccionE = c.totalItem.summaryCells[12][0].value
+            totalesPor26.totalE = c.totalItem.summaryCells[6][0].value
+            totalesPor26.presupuestoE = c.totalItem.summaryCells[8][0].value
+            // totalesPor26.proyeccionE = c.totalItem.summaryCells[12][0].value
           }
-          // // //Febrero
-          if(c.totalItem.summaryCells[17][0] !== undefined){
-            total25FB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = total25FB/anioAnt25FB;
-            presupuesto25FB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = total25FB/presupuesto25FB;
-            proyeccion25FB === 0 ? c.totalItem.summaryCells[23][0].value = 0 : c.totalItem.summaryCells[23][0].value = total25FB/proyeccion25FB;
+          // // // //Febrero
+          // if(c.totalItem.summaryCells[17][0] !== undefined){
+          //   total26FB === 0 ? c.totalItem.summaryCells[17][0].value = 0 : c.totalItem.summaryCells[17][0].value = total26FB/anioAnt26FB;
+          //   presupuesto26FB === 0 ? c.totalItem.summaryCells[19][0].value = 0 : c.totalItem.summaryCells[19][0].value = total26FB/presupuesto26FB;
+          //   proyeccion26FB === 0 ? c.totalItem.summaryCells[23][0].value = 0 : c.totalItem.summaryCells[23][0].value = total26FB/proyeccion26FB;
   
-            totalesPor25.totalFB = c.totalItem.summaryCells[17][0].value
-            totalesPor25.presupuestoFB = c.totalItem.summaryCells[19][0].value
-            totalesPor25.proyeccionFB = c.totalItem.summaryCells[23][0].value
-          }
-          // // //Marzo
-          if(c.totalItem.summaryCells[28][0] !== undefined){
-            total25M === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = total25M/anioAnt25M;
-            presupuesto25M === 0 ? c.totalItem.summaryCells[30][0].value = 0 : c.totalItem.summaryCells[30][0].value = total25M/presupuesto25M;
-            proyeccion25M === 0 ? c.totalItem.summaryCells[34][0].value = 0 : c.totalItem.summaryCells[34][0].value = total25M/proyeccion25M;
+          //   totalesPor26.totalFB = c.totalItem.summaryCells[17][0].value
+          //   totalesPor26.presupuestoFB = c.totalItem.summaryCells[19][0].value
+          //   totalesPor26.proyeccionFB = c.totalItem.summaryCells[23][0].value
+          // }
+          // // // //Marzo
+          // if(c.totalItem.summaryCells[28][0] !== undefined){
+          //   total26M === 0 ? c.totalItem.summaryCells[28][0].value = 0 : c.totalItem.summaryCells[28][0].value = total26M/anioAnt26M;
+          //   presupuesto26M === 0 ? c.totalItem.summaryCells[30][0].value = 0 : c.totalItem.summaryCells[30][0].value = total26M/presupuesto26M;
+          //   proyeccion26M === 0 ? c.totalItem.summaryCells[34][0].value = 0 : c.totalItem.summaryCells[34][0].value = total26M/proyeccion26M;
   
-            totalesPor25.totalM = c.totalItem.summaryCells[28][0].value
-            totalesPor25.presupuestoM = c.totalItem.summaryCells[30][0].value
-            totalesPor25.proyeccionM = c.totalItem.summaryCells[34][0].value
-          }
-          // // //Abril
-          if(c.totalItem.summaryCells[39][0] !== undefined){
-            total25A === 0 ? c.totalItem.summaryCells[39][0].value = 0 : c.totalItem.summaryCells[39][0].value = total25A/anioAnt25A;
-            presupuesto25A === 0 ? c.totalItem.summaryCells[41][0].value = 0 : c.totalItem.summaryCells[41][0].value = total25A/presupuesto25A;
-            proyeccion25A === 0 ? c.totalItem.summaryCells[45][0].value = 0 : c.totalItem.summaryCells[45][0].value = total25A/proyeccion25A;
+          //   totalesPor26.totalM = c.totalItem.summaryCells[28][0].value
+          //   totalesPor26.presupuestoM = c.totalItem.summaryCells[30][0].value
+          //   totalesPor26.proyeccionM = c.totalItem.summaryCells[34][0].value
+          // }
+          // // // //Abril
+          // if(c.totalItem.summaryCells[39][0] !== undefined){
+          //   total26A === 0 ? c.totalItem.summaryCells[39][0].value = 0 : c.totalItem.summaryCells[39][0].value = total26A/anioAnt26A;
+          //   presupuesto26A === 0 ? c.totalItem.summaryCells[41][0].value = 0 : c.totalItem.summaryCells[41][0].value = total26A/presupuesto26A;
+          //   proyeccion26A === 0 ? c.totalItem.summaryCells[45][0].value = 0 : c.totalItem.summaryCells[45][0].value = total26A/proyeccion26A;
   
-            totalesPor25.totalA = c.totalItem.summaryCells[39][0].value
-            totalesPor25.presupuestoA = c.totalItem.summaryCells[41][0].value
-            totalesPor25.proyeccionA = c.totalItem.summaryCells[45][0].value
-          }
-          // // //Mayo
-          if(c.totalItem.summaryCells[50][0] !== undefined){
-            totalMY25 === 0 ? c.totalItem.summaryCells[50][0].value = 0 : c.totalItem.summaryCells[50][0].value = totalMY25/anioAntMY25;
-            presupuestoMY25 === 0 ? c.totalItem.summaryCells[52][0].value = 0 : c.totalItem.summaryCells[52][0].value = totalMY25/presupuestoMY25;
-            proyeccionMY25 === 0 ? c.totalItem.summaryCells[56][0].value = 0 : c.totalItem.summaryCells[56][0].value = totalMY25/proyeccionMY25;
+          //   totalesPor26.totalA = c.totalItem.summaryCells[39][0].value
+          //   totalesPor26.presupuestoA = c.totalItem.summaryCells[41][0].value
+          //   totalesPor26.proyeccionA = c.totalItem.summaryCells[45][0].value
+          // }
+          // // // //Mayo
+          // if(c.totalItem.summaryCells[50][0] !== undefined){
+          //   totalMY26 === 0 ? c.totalItem.summaryCells[50][0].value = 0 : c.totalItem.summaryCells[50][0].value = totalMY26/anioAntMY26;
+          //   presupuestoMY26 === 0 ? c.totalItem.summaryCells[52][0].value = 0 : c.totalItem.summaryCells[52][0].value = totalMY26/presupuestoMY26;
+          //   proyeccionMY26 === 0 ? c.totalItem.summaryCells[56][0].value = 0 : c.totalItem.summaryCells[56][0].value = totalMY26/proyeccionMY26;
   
-            totalesPor25.totalMY = c.totalItem.summaryCells[50][0].value
-            totalesPor25.presupuestoMY = c.totalItem.summaryCells[52][0].value
-            totalesPor25.proyeccionMY = c.totalItem.summaryCells[56][0].value
-          }
-          // //Junio
-          if(c.totalItem.summaryCells[61][0] !== undefined){
-            totalJN25 === 0 ? c.totalItem.summaryCells[61][0].value = 0 : c.totalItem.summaryCells[61][0].value = totalJN25/anioAntJN25;
-            presupuestoJN25 === 0 ? c.totalItem.summaryCells[63][0].value = 0 : c.totalItem.summaryCells[63][0].value = totalJN25/presupuestoJN25;
-            proyeccionJN25 === 0 ? c.totalItem.summaryCells[67][0].value = 0 : c.totalItem.summaryCells[67][0].value = totalJN25/proyeccionJN25;
+          //   totalesPor26.totalMY = c.totalItem.summaryCells[50][0].value
+          //   totalesPor26.presupuestoMY = c.totalItem.summaryCells[52][0].value
+          //   totalesPor26.proyeccionMY = c.totalItem.summaryCells[56][0].value
+          // }
+          // // //Junio
+          // if(c.totalItem.summaryCells[61][0] !== undefined){
+          //   totalJN26 === 0 ? c.totalItem.summaryCells[61][0].value = 0 : c.totalItem.summaryCells[61][0].value = totalJN26/anioAntJN26;
+          //   presupuestoJN26 === 0 ? c.totalItem.summaryCells[63][0].value = 0 : c.totalItem.summaryCells[63][0].value = totalJN26/presupuestoJN26;
+          //   proyeccionJN26 === 0 ? c.totalItem.summaryCells[67][0].value = 0 : c.totalItem.summaryCells[67][0].value = totalJN26/proyeccionJN26;
   
-            totalesPor25.totalJN = c.totalItem.summaryCells[61][0].value
-            totalesPor25.presupuestoJN = c.totalItem.summaryCells[63][0].value
-            totalesPor25.proyeccionJN = c.totalItem.summaryCells[67][0].value
-          }
-          // //Julio
-          if(c.totalItem.summaryCells[72][0] !== undefined){
-            totalJL25 === 0 ? c.totalItem.summaryCells[72][0].value = 0 : c.totalItem.summaryCells[72][0].value = totalJL25/anioAntJL25;
-            presupuestoJL25 === 0 ? c.totalItem.summaryCells[74][0].value = 0 : c.totalItem.summaryCells[74][0].value = totalJL25/presupuestoJL25;
-            proyeccionJL25 === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalJL25/proyeccionJL25;
+          //   totalesPor26.totalJN = c.totalItem.summaryCells[61][0].value
+          //   totalesPor26.presupuestoJN = c.totalItem.summaryCells[63][0].value
+          //   totalesPor26.proyeccionJN = c.totalItem.summaryCells[67][0].value
+          // }
+          // // //Julio
+          // if(c.totalItem.summaryCells[72][0] !== undefined){
+          //   totalJL26 === 0 ? c.totalItem.summaryCells[72][0].value = 0 : c.totalItem.summaryCells[72][0].value = totalJL26/anioAntJL26;
+          //   presupuestoJL26 === 0 ? c.totalItem.summaryCells[74][0].value = 0 : c.totalItem.summaryCells[74][0].value = totalJL26/presupuestoJL26;
+          //   proyeccionJL26 === 0 ? c.totalItem.summaryCells[78][0].value = 0 : c.totalItem.summaryCells[78][0].value = totalJL26/proyeccionJL26;
   
-            totalesPor25.totalJL = c.totalItem.summaryCells[72][0].value
-            totalesPor25.presupuestoJL = c.totalItem.summaryCells[74][0].value
-            totalesPor25.proyeccionJL = c.totalItem.summaryCells[78][0].value
-          }
-          // // //Agosto
-          if(c.totalItem.summaryCells[83][0] !== undefined){
-            totalAG25 === 0 ? c.totalItem.summaryCells[83][0].value = 0 : c.totalItem.summaryCells[83][0].value = totalAG25/anioAntAG25;
-            presupuestoAG25 === 0 ? c.totalItem.summaryCells[85][0].value = 0 : c.totalItem.summaryCells[85][0].value = totalAG25/presupuestoAG25;
-            proyeccionAG25 === 0 ? c.totalItem.summaryCells[89][0].value = 0 : c.totalItem.summaryCells[89][0].value = totalAG25/proyeccionAG25;
+          //   totalesPor26.totalJL = c.totalItem.summaryCells[72][0].value
+          //   totalesPor26.presupuestoJL = c.totalItem.summaryCells[74][0].value
+          //   totalesPor26.proyeccionJL = c.totalItem.summaryCells[78][0].value
+          // }
+          // // // //Agosto
+          // if(c.totalItem.summaryCells[83][0] !== undefined){
+          //   totalAG26 === 0 ? c.totalItem.summaryCells[83][0].value = 0 : c.totalItem.summaryCells[83][0].value = totalAG26/anioAntAG26;
+          //   presupuestoAG26 === 0 ? c.totalItem.summaryCells[85][0].value = 0 : c.totalItem.summaryCells[85][0].value = totalAG26/presupuestoAG26;
+          //   proyeccionAG26 === 0 ? c.totalItem.summaryCells[89][0].value = 0 : c.totalItem.summaryCells[89][0].value = totalAG26/proyeccionAG26;
   
-            totalesPor25.totalAG = c.totalItem.summaryCells[83][0].value
-            totalesPor25.presupuestoAG = c.totalItem.summaryCells[85][0].value
-            totalesPor25.proyeccionAG = c.totalItem.summaryCells[89][0].value
-          }
-          // // //Septiembre
-          if(c.totalItem.summaryCells[94][0] !== undefined){
-            totalS25 === 0 ? c.totalItem.summaryCells[94][0].value = 0 : c.totalItem.summaryCells[94][0].value = totalS25/anioAntS25;
-            presupuestoS25 === 0 ? c.totalItem.summaryCells[96][0].value = 0 : c.totalItem.summaryCells[96][0].value = totalS25/presupuestoS25;
-            proyeccionS25 === 0 ? c.totalItem.summaryCells[100][0].value = 0 : c.totalItem.summaryCells[100][0].value = totalS25/proyeccionS25;
+          //   totalesPor26.totalAG = c.totalItem.summaryCells[83][0].value
+          //   totalesPor26.presupuestoAG = c.totalItem.summaryCells[85][0].value
+          //   totalesPor26.proyeccionAG = c.totalItem.summaryCells[89][0].value
+          // }
+          // // // //Septiembre
+          // if(c.totalItem.summaryCells[94][0] !== undefined){
+          //   totalS26 === 0 ? c.totalItem.summaryCells[94][0].value = 0 : c.totalItem.summaryCells[94][0].value = totalS26/anioAntS26;
+          //   presupuestoS26 === 0 ? c.totalItem.summaryCells[96][0].value = 0 : c.totalItem.summaryCells[96][0].value = totalS26/presupuestoS26;
+          //   proyeccionS26 === 0 ? c.totalItem.summaryCells[100][0].value = 0 : c.totalItem.summaryCells[100][0].value = totalS26/proyeccionS26;
   
-            totalesPor25.totalS = c.totalItem.summaryCells[94][0].value
-            totalesPor25.presupuestoS = c.totalItem.summaryCells[96][0].value
-            totalesPor25.proyeccionS = c.totalItem.summaryCells[100][0].value
-          }
-          // //Octubre
-          if(c.totalItem.summaryCells[106][0] !== undefined){
-            totalOC25 === 0 ? c.totalItem.summaryCells[106][0].value = 0 : c.totalItem.summaryCells[106][0].value = totalOC25/anioAntOC25;
-            presupuestoOC25 === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalOC25/presupuestoOC25;
-            proyeccionOC25 === 0 ? c.totalItem.summaryCells[112][0].value = 0 : c.totalItem.summaryCells[112][0].value = totalOC25/proyeccionOC25;
+          //   totalesPor26.totalS = c.totalItem.summaryCells[94][0].value
+          //   totalesPor26.presupuestoS = c.totalItem.summaryCells[96][0].value
+          //   totalesPor26.proyeccionS = c.totalItem.summaryCells[100][0].value
+          // }
+          // // //Octubre
+          // if(c.totalItem.summaryCells[106][0] !== undefined){
+          //   totalOC26 === 0 ? c.totalItem.summaryCells[106][0].value = 0 : c.totalItem.summaryCells[106][0].value = totalOC26/anioAntOC26;
+          //   presupuestoOC26 === 0 ? c.totalItem.summaryCells[108][0].value = 0 : c.totalItem.summaryCells[108][0].value = totalOC26/presupuestoOC26;
+          //   proyeccionOC26 === 0 ? c.totalItem.summaryCells[112][0].value = 0 : c.totalItem.summaryCells[112][0].value = totalOC26/proyeccionOC26;
   
-            totalesPor25.totalOC = c.totalItem.summaryCells[106][0].value
-            totalesPor25.presupuestoOC = c.totalItem.summaryCells[108][0].value
-            totalesPor25.proyeccionOC = c.totalItem.summaryCells[112][0].value
-          }
-          // //Noviembre  VALIDACION CON 125 POR DOBLE PROYECCION CHECAR ??????
-          if(c.totalItem.summaryCells[125][0] !== undefined){
-            totalNV25 === 0 ? c.totalItem.summaryCells[117][0].value = 0 : c.totalItem.summaryCells[117][0].value = totalNV25/anioAntNV25;
-            presupuestoNV25 === 0 ? c.totalItem.summaryCells[119][0].value = 0 : c.totalItem.summaryCells[119][0].value = totalNV25/presupuestoNV25;
-            proyeccionNV25 === 0 ? c.totalItem.summaryCells[125][0].value = 0 : c.totalItem.summaryCells[125][0].value = totalNV25/proyeccionNV25;
+          //   totalesPor26.totalOC = c.totalItem.summaryCells[106][0].value
+          //   totalesPor26.presupuestoOC = c.totalItem.summaryCells[108][0].value
+          //   totalesPor26.proyeccionOC = c.totalItem.summaryCells[112][0].value
+          // }
+          // // //Noviembre  VALIDACION CON 126 POR DOBLE PROYECCION CHECAR ??????
+          // if(c.totalItem.summaryCells[126][0] !== undefined){
+          //   totalNV26 === 0 ? c.totalItem.summaryCells[117][0].value = 0 : c.totalItem.summaryCells[117][0].value = totalNV26/anioAntNV26;
+          //   presupuestoNV26 === 0 ? c.totalItem.summaryCells[119][0].value = 0 : c.totalItem.summaryCells[119][0].value = totalNV26/presupuestoNV26;
+          //   proyeccionNV26 === 0 ? c.totalItem.summaryCells[126][0].value = 0 : c.totalItem.summaryCells[126][0].value = totalNV26/proyeccionNV26;
   
-            totalesPor25.totalNV = c.totalItem.summaryCells[117][0].value
-            totalesPor25.presupuestoNV = c.totalItem.summaryCells[119][0].value
-            totalesPor25.proyeccionNV = c.totalItem.summaryCells[125][0].value
-          }
-          //Diciembre
-          if(c.totalItem.summaryCells[128][0] !== undefined){
-            totalDC25 === 0 ? c.totalItem.summaryCells[128][0].value = 0 : c.totalItem.summaryCells[128][0].value = totalDC25/anioAntDC25;
-            presupuestoDC25 === 0 ? c.totalItem.summaryCells[130][0].value = 0 : c.totalItem.summaryCells[130][0].value = totalDC25/presupuestoDC25;
-            proyeccionDC25 === 0 ? c.totalItem.summaryCells[134][0].value = 0 : c.totalItem.summaryCells[134][0].value = totalDC25/proyeccionDC25;
+          //   totalesPor26.totalNV = c.totalItem.summaryCells[117][0].value
+          //   totalesPor26.presupuestoNV = c.totalItem.summaryCells[119][0].value
+          //   totalesPor26.proyeccionNV = c.totalItem.summaryCells[126][0].value
+          // }
+          // //Diciembre
+          // if(c.totalItem.summaryCells[128][0] !== undefined){
+          //   totalDC26 === 0 ? c.totalItem.summaryCells[128][0].value = 0 : c.totalItem.summaryCells[128][0].value = totalDC26/anioAntDC26;
+          //   presupuestoDC26 === 0 ? c.totalItem.summaryCells[130][0].value = 0 : c.totalItem.summaryCells[130][0].value = totalDC26/presupuestoDC26;
+          //   proyeccionDC26 === 0 ? c.totalItem.summaryCells[134][0].value = 0 : c.totalItem.summaryCells[134][0].value = totalDC26/proyeccionDC26;
             
-            totalesPor25.totalDC = c.totalItem.summaryCells[128][0].value
-            totalesPor25.presupuestoDC = c.totalItem.summaryCells[130][0].value
-            totalesPor25.proyeccionDC = c.totalItem.summaryCells[134][0].value
-          }
+          //   totalesPor26.totalDC = c.totalItem.summaryCells[128][0].value
+          //   totalesPor26.presupuestoDC = c.totalItem.summaryCells[130][0].value
+          //   totalesPor26.proyeccionDC = c.totalItem.summaryCells[134][0].value
+          // }
   
         })
         
@@ -2118,7 +2119,7 @@ export class IngresosComponent implements OnInit {
     || event.cellElement.innerText == "Julio" || event.cellElement.innerText == "Agosto" || event.cellElement.innerText == "Septiembre"
     || event.cellElement.innerText == "Octubre" || event.cellElement.innerText == "Noviembre" || event.cellElement.innerText == "Diciembre" ){
 
-        this.openModReal2025 = true;
+        this.openModReal2026 = true;
     }
   }
 

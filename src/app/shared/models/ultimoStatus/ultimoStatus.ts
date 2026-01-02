@@ -12,6 +12,7 @@ export class NewResOp{
     taller: number;
     total: number;
     vc: number;
+    ev: number;
     vv: number;
     totalSuma: number;
     porcentaje: number;
