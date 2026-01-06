@@ -173,4 +173,5 @@ export enum API_URLS{
     GET_MOTIVOS_BAJAS = 'api/Pagos/GetMotivosBajas/',
     GET_ULTIMO_STATUS ='api/Disponibilidad/GetStUltViaje/',
     GET_DETALLE_VIAJE = 'api/Disponibilidad/GetUltStBitPorViaje/',
+    GET_DATOS_OPERADOR = 'api/Disponibilidad/GetOperadores',
 }

@@ -77,6 +77,11 @@ export const navigation = [
         path: '/liquidacion'
       },
       {
+        text: 'Datos Operador',
+        icon: 'columnchooser',
+        path: '/datosOperador'
+      },
+      {
         text: 'Presupuesto Disponiblidad',
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
@@ -261,6 +266,11 @@ export const navigationID24 = [
         text: 'Liquidación Mensual',
         icon: 'columnchooser',
         path: '/liquidacion'
+      },
+      {
+        text: 'Datos Operador',
+        icon: 'columnchooser',
+        path: '/datosOperador'
       },
       {
         text: 'Presupuesto Disponiblidad',
