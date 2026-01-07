@@ -700,12 +700,12 @@ export class UltimoStatusComponent implements OnInit {
             c.cellElement.style.fontWeight = "bolder";
           }
 
-          if( c.column.caption == "Cargados" || c.column.caption == "Vacíos" || c.column.caption == "Sin Viajes"){
+          if( c.column.caption == "Cargados" || c.column.caption == "Vacíos" || c.column.caption == "Programado" || c.column.caption == "Sin Viajes"){
             c.cellElement.style.background = "#a9d08e";
             c.cellElement.style.fontSize = "10px";
           }
 
-          if(c.columnIndex == 7){
+          if(c.columnIndex == 6){
             c.cellElement.style.background = "#ffd966";
             c.cellElement.style.fontSize = "12px";
             c.cellElement.style.fontWeight = "bolder";
