@@ -30,8 +30,8 @@ export class DatosOperadorService extends AbstractManagerService {
     this.putInterfaceManager(this);
   }
 
-  getDatosOperador(){
-    return this.get<any>((this.API_URL + API_URLS.GET_DATOS_OPERADOR), this.httpOptions);
+  getDatosOperador(udn: number){
+    return this.get<any>((this.API_URL + API_URLS.GET_DATOS_OPERADOR+udn), this.httpOptions);
   }
 
   postTipoOperacionOpe(cveOperador: number, idTipoOperacion: number, idUsuario: string) {

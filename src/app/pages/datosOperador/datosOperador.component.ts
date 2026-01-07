@@ -60,6 +60,20 @@ export class DatosOperadorComponent implements OnInit {
 
   bolFormSoloLectura = false;
 
+  selectedUdn: number = 0;
+
+  udn: any[] = [
+    {idArea: 0, nombre: 'TODOS'},
+    {idArea: 1, nombre: 'ORIZABA' },
+    {idArea: 2, nombre: 'GUADALAJARA' },
+    {idArea: 3, nombre: 'RAMOS ARIZPE' },
+    {idArea: 4, nombre: 'MEXICALI' },
+    {idArea: 5, nombre: 'HERMOSILLO' },
+    {idArea: 8, nombre: 'CUAUTITLAN' },
+    {idArea: 9, nombre: 'TULTITLAN' },
+
+  ]
+
   constructor(
     private datosOpService: DatosOperadorService,
     private service: ServiceSales,
@@ -83,16 +97,21 @@ export class DatosOperadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDatosOperador();
+
   }
 
   getDatosOperador() {
       this.loadingVisible = true,
-    this.datosOpService.getDatosOperador().subscribe((response) => {
+    this.datosOpService.getDatosOperador(this.selectedUdn).subscribe((response) => {
       this.datosOperador = response.data.vigentes;
       console.log(response.data)
       this.loadingVisible = false;
     });
+  }
+
+  selectUdn(value: any){
+    this.selectedUdn = value.value;
+    //console.log(this.selectedUdn)
   }
 
  
@@ -101,7 +120,7 @@ export class DatosOperadorComponent implements OnInit {
     // if (this.selectedUdn !== undefined && this.formFilter.Fecha !== "") {
       this.loadingVisible = true;
       
-      // this.getDisponiblidadMensual();
+    this.getDatosOperador();
       // }else{
       //   notify({
       //     message: "Debe seleccionar la Fecha",
