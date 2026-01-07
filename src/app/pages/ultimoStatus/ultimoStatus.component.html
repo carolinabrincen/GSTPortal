@@ -76,7 +76,7 @@
                         <div *ngIf="resumenM.tipo == 'Vacios'" class="icon-wrapper">
                             <img src="assets/truckVacios.png" class="devextreme-logo">
                         </div>
-                        <div *ngIf="resumenM.tipo == 'En Espera'" class="icon-wrapper">
+                        <div *ngIf="resumenM.tipo == 'Programado'" class="icon-wrapper">
                             <img src="assets/truckVacios.png" class="devextreme-logo">
                         </div>
                         <div *ngIf="resumenM.tipo == 'Sin Viajes'" class="icon-wrapper">
@@ -122,7 +122,7 @@
             <dxi-column dataField="total" caption="Total" [width]="60"  alignment="left"></dxi-column>
             <dxi-column dataField="vc" caption="Cargados" alignment="center"></dxi-column>
             <dxi-column dataField="vv" caption="Vacíos" alignment="center"></dxi-column>
-            <dxi-column dataField="ev" caption="En Espera Viaje" alignment="center"></dxi-column>
+            <dxi-column dataField="ev" caption="Programado Para Viaje" alignment="center"></dxi-column>
             <dxi-column dataField="sv" caption="Sin Viajes" alignment="center" ></dxi-column>
             <dxi-column dataField="patio" caption="Patio" alignment="center" ></dxi-column>
             <dxi-column dataField="taller" caption="Taller" alignment="center"  ></dxi-column>
@@ -253,7 +253,7 @@
             </dx-data-grid>
         </dxi-item>
         
-        <dxi-item title="En Espera Viaje">
+        <dxi-item title="Programado para Viaje">
 
             <dx-data-grid #PreCotizaciones id="gridContainer" [dataSource]="enEsperaViaje" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
             (onRowPrepared)="onRowPreparedEV($event)" (onCellPrepared)="onCellPreparedEV($event)">
@@ -266,19 +266,23 @@
 
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
-                <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
-
-                <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
-                <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
-                <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
-                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column> 
-                <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column>
-                <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
-                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
-                <dxi-column dataField="id_usuario" caption="Usuario" [width]="150"></dxi-column>
-                <dxi-column dataField="f_ini_status" caption="Inicio" [width]="200" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+                <dxi-column caption="Próximo Viaje Programado" alignment="center">
+                    <dxi-column dataField="despacho" caption="Fecha Prog." [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                    <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
+                    <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
+                    <dxi-column dataField="cliente" caption="Cliente" [width]="200"></dxi-column> 
+                    <dxi-column dataField="ruta" caption="Ruta" [width]="350"></dxi-column>
+                </dxi-column>
+                <dxi-column caption="Último Viaje" alignment="center">
+                    <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
+                    <dxi-column dataField="f_ini_status" caption="Fin Viaje" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+                </dxi-column>
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
+                <!-- <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column> -->
+                <!-- <dxi-column dataField="tipoViaje" caption="Tipo Viaje" [width]="200"></dxi-column>
+                <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column>
+                <dxi-column dataField="id_usuario" caption="Usuario" [width]="150"></dxi-column> -->
                 <!-- <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="60" cellTemplate="headerVerVV"></dxi-column> -->
     
                 <!-- <div *dxTemplate="let data of 'headerVerVV'">

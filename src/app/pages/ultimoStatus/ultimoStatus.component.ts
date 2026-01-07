@@ -340,7 +340,7 @@ export class UltimoStatusComponent implements OnInit {
             {tipo: 'Total', total: this.totalViajes, color: '#bdd7ee'},
             {tipo: 'Cargados', total: this.totalCargados , color: this.myColor},
             {tipo: 'Vacios', total: this.totalVacios , color: '#f8cbad'},
-            {tipo: 'En Espera', total: this.totalEnEsperaViaje , color: '#d9d9d9'},
+            {tipo: 'Programado', total: this.totalEnEsperaViaje , color: '#d9d9d9'},
             {tipo: 'Sin Viajes', total: this.totalSinViaje , color: '#d9d9d9'},
             {tipo: 'En Patio', total: this.totalPatio , color: '#d9d9d9'},
             {tipo: 'Taller', total: this.totalTaller , color: '#d9d9d9'},
@@ -966,7 +966,7 @@ export class UltimoStatusComponent implements OnInit {
     e.cells.forEach((c: any) => {
 
     if (c.cellElement) {
-      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 4 || c.columnIndex == 13){
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 10){
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.color = "#001029"
             c.cellElement.style.fontWeight = "bolder";
