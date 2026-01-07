@@ -60,13 +60,35 @@
                 </dxi-item>
 
             </dx-responsive-box>
-           
+           <br>
         <dx-scroll-view class="view-wrapper-scroll">
             <div class="view-wrapper">
 
+            <!-- <dx-box direction="col" width="100%" [height]="30">
+                <dxi-item [ratio]="3" [baseSize]="0">
+                    <dx-box direction="row" width="100%" [height]="35">
+
+                        <dxi-item class="rect demo-dark" [ratio]="1.9"></dxi-item>
+                        <dxi-item class="rect demo-dark" [ratio]="6.4">
+                            <div class="percentage" style="background-color: rgb(169, 208, 142);" >
+                            <span >{{ disponible }}</span>
+                        </div>
+                        </dxi-item> 
+                        <dxi-item class="rect demo-dark" [ratio]=".3"></dxi-item>
+                        <dxi-item class="rect demo-dark" [ratio]="5">
+                            <div class="percentage" style="background-color: rgb(255, 217, 102);" >
+                            <span >{{ noDisponible }}</span>
+                        </div>
+                        </dxi-item>
+                    </dx-box>
+                </dxi-item>
+            </dx-box> -->
+
+
+
                 <div class="cards grey">
                     <div id="pick" class="ticker" *ngFor="let resumenM of cardsUS">
-                        
+ 
                         <div *ngIf="resumenM.tipo == 'Total'" class="icon-wrapper">
                             <img src="assets/truck.png" class="devextreme-logo">
                         </div>
@@ -103,6 +125,8 @@
                             <div *ngIf="resumenM.tipo == 'Cargados'&& myColor == '#ffd966'" style="color: #ffd966;" class="total"> {{resumenM.total }} </div>
                             <div *ngIf="resumenM.tipo == 'Cargados'&& myColor == '#dd0f0f'" style="color: #dd0f0f;" class="total"> {{resumenM.total }} </div> 
                         </div>
+
+                       
                        
                         
                        
@@ -118,15 +142,21 @@
             <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
             <dxo-paging [pageSize]="100"></dxo-paging>
             
-            <dxi-column dataField="operacion" caption="Operación"     [width]="130"></dxi-column>
+            <dxi-column dataField="operacion" caption="Operación"     [width]="100"></dxi-column>
             <dxi-column dataField="total" caption="Total" [width]="60"  alignment="left"></dxi-column>
-            <dxi-column dataField="vc" caption="Cargados" alignment="center"></dxi-column>
-            <dxi-column dataField="vv" caption="Vacíos" alignment="center"></dxi-column>
-            <dxi-column dataField="ev" caption="Programado Para Viaje" alignment="center"></dxi-column>
-            <dxi-column dataField="sv" caption="Sin Viajes" alignment="center" ></dxi-column>
-            <dxi-column dataField="patio" caption="Patio" alignment="center" ></dxi-column>
-            <dxi-column dataField="taller" caption="Taller" alignment="center"  ></dxi-column>
-            <dxi-column dataField="siniestro"caption="Siniestrado" alignment="center"></dxi-column>
+            <dxi-column [caption]="disponible" alignment="center">
+                <dxi-column dataField="vc" caption="Cargados" [width]="100" alignment="center"></dxi-column>
+                <dxi-column dataField="vv" caption="Vacíos" [width]="100" alignment="center"></dxi-column>
+                <dxi-column dataField="ev" caption="Programado Para Viaje" [width]="200" alignment="center"></dxi-column>
+                <dxi-column dataField="sv" caption="Sin Viajes" [width]="95" alignment="center" ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="fake" [width]="24"></dxi-column>
+            <dxi-column [caption]="noDisponible" alignment="center">
+                <dxi-column dataField="patio" caption="Patio" alignment="center" ></dxi-column>
+                <dxi-column dataField="taller" caption="Taller" alignment="center"  ></dxi-column>
+                <dxi-column dataField="siniestro"caption="Siniestrado" alignment="center"></dxi-column>
+            </dxi-column>
+
             
         </dx-data-grid>
         <br>

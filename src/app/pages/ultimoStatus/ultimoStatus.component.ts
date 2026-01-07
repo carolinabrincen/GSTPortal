@@ -31,6 +31,8 @@ export class UltimoStatusComponent implements OnInit {
   detalleVC: any[] = [];
   detalleVV: any[] = [];
   detalleSV: any[] = [];
+  disponible: any;
+  noDisponible: any;
 
   cardsUS: UltimoStausModel[] = []
 
@@ -325,7 +327,10 @@ export class UltimoStatusComponent implements OnInit {
         let sumaTotal = this.viajesCargados.length + this.viajesVacios.length +this.enEsperaViaje.length+ this.sinViajes.length;
         let totalOperacion = this.viajesCargados.length / sumaTotal;
 
-        
+
+        let sumaND = this.tractoPatio.length + this.tractoTaller.length + this.tractoSiniestro.length;
+        this.disponible = 'Disponible: '+sumaTotal;
+        this.noDisponible = 'No Disponible: '+sumaND;
 
         if(totalOperacion > 0.95){
           this.myColor = "#03af4b"
@@ -643,6 +648,40 @@ export class UltimoStatusComponent implements OnInit {
     // }
   }
 
+  onRowPreparedD(e){
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+
+      if (c.cellElement) {
+  
+        if(c.columnIndex == 0){
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.color = "#a9d08e";
+            }
+        }
+      }
+      });
+    }
+  }
+
+  onRowPreparedND(e){
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+
+      if (c.cellElement) {
+  
+        if(c.columnIndex == 0){
+            if(c.cellElement?.style !== undefined){
+              c.cellElement.style.color = "#ffd966";
+            }
+        }
+      }
+      });
+    }
+  }
+
   onRowPrepared(e){
 
     if(e.rowType == 'header'){
@@ -650,18 +689,33 @@ export class UltimoStatusComponent implements OnInit {
 
         if (c.cellElement) {
           // c.cellElement.style.fontSize = "18px";
-          c.cellElement.style.fontWeight = "bolder";
-          c.cellElement.style.color = "#000000"
+          // c.cellElement.style.fontWeight = "bolder";
+          c.cellElement.style.color = "#000000" 
           c.cellElement.style.background = "white"
+          
+          console.log(c)
+          if(c.columnIndex == 2){
+            c.cellElement.style.background = "#a9d08e";
+            c.cellElement.style.fontSize = "12px";
+            c.cellElement.style.fontWeight = "bolder";
+          }
 
-          // if(c.columnIndex == 4 || c.columnIndex == 5 || c.columnIndex == 6 || c.columnIndex == 7 || c.columnIndex == 8 || c.columnIndex == 9
-          //   || c.columnIndex == 10 || c.columnIndex == 11 || c.columnIndex == 12 || c.columnIndex == 13 || c.columnIndex == 14 || c.columnIndex == 15
-          // ){
-          //   c.cellElement.style.background = "#DCDCDC";
-          //   // c.cellElement.style.fontSize = "18px";
-          //   c.cellElement.style.fontWeight = "bolder";
+          if( c.column.caption == "Cargados" || c.column.caption == "Vacíos" || c.column.caption == "Sin Viajes"){
+            c.cellElement.style.background = "#a9d08e";
+            c.cellElement.style.fontSize = "10px";
+          }
 
-          // }
+          if(c.columnIndex == 7){
+            c.cellElement.style.background = "#ffd966";
+            c.cellElement.style.fontSize = "12px";
+            c.cellElement.style.fontWeight = "bolder";
+          } 
+          if(c.column.caption == "Patio" || c.column.caption == "Taller" || c.column.caption == "Siniestrado"){
+            c.cellElement.style.background = "#ffd966";
+            c.cellElement.style.fontSize = "10px";
+            // c.cellElement.style.fontWeight = "bolder";
+
+          }
         }
       })
      // console.log(e)
