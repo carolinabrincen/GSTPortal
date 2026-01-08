@@ -136,6 +136,7 @@ export enum API_URLS{
     POST_OPERADOR = 'api/Disponibilidad/GetOperadoresNOM',
     POST_OBSERVACIONES = 'api/Pagos/GuardarObservacionesOperador',
     POST_GUARDAR_PERMISOS = 'api/General/PostGuardarOpcion',
+    POST_TRACTO = 'api/Disponibilidad/PostDisponibilidadMensualTracto',
     GET_TPS = 'api/Costos/GetTPS/',
     GET_TIPO_USUARIOS = 'api/Login/TiposUsuarios',
     GET_COSTOS_CC = 'api/Costos/GetCC',

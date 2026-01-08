@@ -88,16 +88,25 @@ export class disponibilidadMensualComponent implements OnInit {
     { id: 12, descripcion: 'Sin Estado', disponible: 'No Disponible', status: 'A', tipo: 'Automatico' },
   ]
 
+  udn: any[] = [
+    {idArea: 0, nombre: 'TODOS'},
+    {idArea: 1, nombre: 'ORIZABA' },
+    {idArea: 2, nombre: 'GUADALAJARA' },
+    {idArea: 3, nombre: 'RAMOS ARIZPE' },
+    {idArea: 4, nombre: 'MEXICALI' },
+    {idArea: 5, nombre: 'HERMOSILLO' },
+    {idArea: 8, nombre: 'CUAUTITLAN' },
+    {idArea: 9, nombre: 'TULTITLAN' },
+
+  ]
+
   operaciones: any[] = [
-    { id: 0, descripcion: 'SIN ASIGNAR' },
-    { id: 4, descripcion: 'CAJA SECA' },
-    { id: 10, descripcion: 'GONDOLA' },
-    { id: 11, descripcion: 'TOLVA GRANEL' },
-    { id: 8, descripcion: 'GRADO ALIMENT' },
-    { id: 9, descripcion: 'ENCORTINADO' },
-
-
-
+    {id: 0, operacion: 'TODOS'},
+    {id: 4, operacion: 'CAJA SECA'},
+    {id: 9, operacion: 'ENCORTINADO'},
+    {id: 10, operacion: 'GONDOLA'},
+    {id: 8, operacion: 'GRADO ALIMENT'},
+    {id: 11, operacion: 'TOLVA GRANEL'},
   ];
 
   selectedMes: number = 0;
@@ -107,6 +116,8 @@ export class disponibilidadMensualComponent implements OnInit {
   selectedTransporte: number = 0;
   selectedPeriodo: number = 0;
   selectedStatus: number = 0;
+  selectedOp: number = 0;
+  selectedUdn: number = 0;
 
 
   printUdn: string = "";
@@ -116,9 +127,9 @@ export class disponibilidadMensualComponent implements OnInit {
   }
 
   disponibilidadMensual: any = [];
-
   operadorDetalle: any = [];
   unidadDetalle: any =  [];
+  tractos: any = [];
 
   showFilterRow: boolean;
   currentFilter: any;
@@ -178,13 +189,28 @@ export class disponibilidadMensualComponent implements OnInit {
     });
   }
 
+  getTracto() {
+    this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp).subscribe((response) => {
+      this.tractos = response.data.mes;
+      console.log(this.tractos)
+      this.loadingVisible = false
+
+    });
+  }
+
   /*======================SELECTE FUNCIONS================================================*/
-  selectUdn(value: any) {
+  selectMes(value: any) {
     this.selectedMes = value.value;
     console.log(this.selectedMes)
   }
   selectAnio(value: any) {
     this.selectedAnio = value.value;
+  }
+  selectUdn(value: any) {
+    this.selectedUdn = value.value;
+  }
+  selectOpe(value: any) {
+    this.selectedOp = value.value;
   }
   
 
@@ -269,10 +295,12 @@ export class disponibilidadMensualComponent implements OnInit {
   }
 
   buscarClick = (e: any) => {
-    // if (this.selectedUdn !== undefined && this.formFilter.Fecha !== "") {
+     if (this.selectedMes !== undefined && this.selectedAnio !== undefined && this.selectedUdn !== undefined && this.selectedOp !== undefined) {
       this.loadingVisible = true;
       
       this.getDisponiblidadMensual();
+      this.getTracto();
+     }
       // }else{
       //   notify({
       //     message: "Debe seleccionar la Fecha",
@@ -308,6 +336,2443 @@ export class disponibilidadMensualComponent implements OnInit {
   export() {
     this.chart.instance.exportTo('Example', 'png');
   }
+
+  onRowPreparedT(e: any) {
+    if (e.rowType == 'data') {
+
+      e.cells.forEach((c: any) => {
+
+        if (c.cellElement) {
+          if(c.columnIndex == 4){
+            if (c.data.dia1 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia1 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia1 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia1 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia1 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia1 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia1 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia1 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia1 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia1 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia1 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia1 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 5){
+            if (c.data.dia2 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia2 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia2 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia2 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia2 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia2 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia2 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia2 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia2 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia2 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia2 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia2 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 6){
+            if (c.data.dia3 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia3 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia3 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia3 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia3 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia3 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia3 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia3 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia3 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia3 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia3 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia3 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 7){
+            if (c.data.dia4 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia4 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia4 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia4 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia4 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia4 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia4 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia4 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia4 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia4 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia4 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia4 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 8){
+            if (c.data.dia5 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia5 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia5 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia5 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia5 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia5 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia5 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia5 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia5 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia5 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia5 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia5 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 9){
+            if (c.data.dia6 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia6 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia6 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia6 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia6 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia6 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia6 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia6 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia6 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia6 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia6 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia6 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 10){
+            if (c.data.dia7 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia7 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia7 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia7 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia7 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia7 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia7 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia7 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia7 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia7 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia7 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia7 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 11){
+            if (c.data.dia8 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia8 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia8 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia8 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia8 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia8 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia8 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia8 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia8 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia8 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia8 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia8 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 12){
+            if (c.data.dia9 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia9 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia9 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia9 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia9 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia9 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia9 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia9 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia9 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia9 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia9 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia9 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 13){
+            if (c.data.dia10 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia10 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia10 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia10 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia10 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia10 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia10 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia10 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia10 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia10 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia10 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia10 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 14){
+            if (c.data.dia11 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia11 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia11 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia11 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia11 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia11 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia11 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia11 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia11 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia11 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia11 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia11 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 15){
+            if (c.data.dia12 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia12 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia12 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia12 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia12 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia12 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia12 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia12 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia12 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia12 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia12 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia12 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 16){
+            if (c.data.dia13 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia13 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia13 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia13 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia13 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia13 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia13 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia13 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia13 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia13 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia13 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia13 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 17){
+            if (c.data.dia14 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia14 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia14 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia14 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia14 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia14 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia14 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia14 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia14 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia14 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia14 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia14 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 18){
+            if (c.data.dia15 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia15 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia15 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia15 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia15 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia15 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia15 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia15 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia15 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia15 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia15 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia15 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 19){
+            if (c.data.dia16 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia16 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia16 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia16 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia16 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia16 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia16 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia16 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia16 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia16 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia16 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia16 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 20){
+            if (c.data.dia17 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia17 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia17 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia17 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia17 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia17 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia17 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia17 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia17 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia17 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia17 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia17 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 21){
+            if (c.data.dia18 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia18 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia18 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia18 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia18 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia18 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia18 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia18 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia18 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia18 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia18 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia18 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 22){
+            if (c.data.dia19 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia19 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia19 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia19 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia19 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia19 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia19 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia19 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia19 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia19 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia19 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia19 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 23){
+            if (c.data.dia20 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia20 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia20 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia20 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia20 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia20 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia20 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia20 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia20 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia20 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia20 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia20 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 24){
+            if (c.data.dia21 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia21 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia21 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia21 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia21 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia21 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia21 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia21 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia21 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia21 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia21 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia21 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 25){
+            if (c.data.dia22 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia22 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia22 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia22 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia22 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia22 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia22 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia22 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia22 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia22 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia22 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia22 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 26){
+            if (c.data.dia23 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia23 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia23 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia23 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia23 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia23 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia23 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia23 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia23 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia23 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia23 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia23 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 27){
+            if (c.data.dia24 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia24 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia24 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia24 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia24 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia24 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia24 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia24 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia24 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia24 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia24 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia24 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 28){
+            if (c.data.dia25 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia25 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia25 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia25 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia25 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia25 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia25 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia25 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia25 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia25 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia25 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia25 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 29){
+            if (c.data.dia26 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia26 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia26 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia26 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia26 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia26 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia26 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia26 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia26 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia26 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia26 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia26 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 30){
+            if (c.data.dia27 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia27 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia27 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia27 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia27 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia27 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia27 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia27 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia27 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia27 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia27 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia27 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 31){
+            if (c.data.dia28 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia28 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia28 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia28 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia28 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia28 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia28 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia28 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia28 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia28 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia28 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia28 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 32){
+            if (c.data.dia29 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia29 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia29 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia29 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia29 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia29 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia29 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia29 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia29 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia29 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia29 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia29 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 33){
+            if (c.data.dia30 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia30 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia30 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia30 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia30 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia30 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia30 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia30 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia30 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia30 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia30 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia30 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+          if(c.columnIndex == 34){
+            if (c.data.dia31 == "PC"){
+              c.cellElement.style.background = "#fed966";
+            }
+            if (c.data.dia31 == "EC") {
+              c.cellElement.style.background = "#fb0000";
+            }
+            if (c.data.dia31 == "TC") {
+              c.cellElement.style.background = "#00af50";
+            }
+            if (c.data.dia31 == "ED") {
+              c.cellElement.style.background = "#012060";
+            }
+            if (c.data.dia31 == "TV") {
+              c.cellElement.style.background = "#712fa2";
+            }
+            if (c.data.dia31 == "TT") {
+              c.cellElement.style.background = "#ffffffff";
+            }
+            if (c.data.dia31 == "D") {
+              c.cellElement.style.background = "#fffafaff";
+            }
+            if (c.data.dia31 == "V") {
+              c.cellElement.style.background = "#cdcbcb";
+            }
+            if (c.data.dia31 == "P") {
+              c.cellElement.style.background = "#fcc6c6";
+            }
+            if (c.data.dia31 == "A") {
+              c.cellElement.style.background = "#fffdfdff";
+            }
+            if (c.data.dia31 == "TD") {
+              c.cellElement.style.background = "#808080";
+            }
+            if (c.data.dia31 == "DV") {
+              c.cellElement.style.background = "#d674a5ff";
+            }
+          }
+        }
+      });
+    }
+    // if (e.rowType == 'totalFooter') {
+    //   e.cells.forEach((c: any) => {
+    //     if (c.cellElement) {
+    //       c.cellElement.style.fontWeight = "bolder";
+    //       c.cellElement.style.fontSize = "16px";
+    //       c.cellElement.style.background = "#ff9460";
+    //       c.cellElement.style.color = "black";
+    //     }
+    //   });
+    // };
+  }
+
+  onCellPreparedT(e: any) {
+    // if (e.rowType == 'group') {
+
+    //   e.cellElement.style.fontSize = '12px';
+    //   e.cellElement.style.background = "#DCDCDC";
+    // }
+
+    // if (e.rowType == 'groupFooter') {
+
+
+    //   if (e.columnIndex == 2) {
+    //     e.cellElement.style.fontWeight = "bolder";
+    //     e.cellElement.style.fontSize = "15px";
+    //     e.cellElement.style.background = "#cdcbcb";
+    //   }
+    // }
+  }
+
+  customizeTr(e) {
+    var gridCell = e.gridCell;
+
+    if (gridCell.rowType === 'data') {
+
+      if (e.gridCell.column.dataField == "dia1") {
+        if (gridCell.data.dia1 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia1 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia1 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia1 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia1 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia1 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia1 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia1 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia1 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia1 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia1 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia1 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia2") {
+        if (gridCell.data.dia2 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia2 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia2 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia2 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia2 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia2 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia2 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia2 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia2 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia2 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia2 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia2 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia3") {
+        if (gridCell.data.dia3 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia3 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia3 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia3 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia3 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia3 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia3 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia3 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia3 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia3 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia3 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia3 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia4") {
+        if (gridCell.data.dia4 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia4 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia4 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia4 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia4 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia4 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia4 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia4 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia4 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia4 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia4 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia4 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia5") {
+        if (gridCell.data.dia5 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia5 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia5 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia5 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia5 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia5 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia5 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia5 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia5 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia5 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia5 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia5 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia6") {
+        if (gridCell.data.dia6 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia6 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia6 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia6 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia6 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia6 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia6 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia6 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia6 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia6 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia6 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia6 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia7") {
+        if (gridCell.data.dia7 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia7 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia7 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia7 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia7 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia7 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia7 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia7 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia7 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia7 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia7 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia7 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia8") {
+        if (gridCell.data.dia8 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia8 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia8 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia8 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia8 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia8 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia8 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia8 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia8 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia8 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia8 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia8 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia9") {
+        if (gridCell.data.dia9 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia9 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia9 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia9 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia9 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia9 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia9 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia9 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia9 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia9 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia9 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia9 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia10") {
+        if (gridCell.data.dia10 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia10 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia10 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia10 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia10 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia10 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia10 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia10 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia10 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia10 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia10 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia10 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia11") {
+        if (gridCell.data.dia11 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia11 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia11 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia11 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia11 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia11 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia11 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia11 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia11 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia11 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia11 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia11 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia12") {
+        if (gridCell.data.dia12 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia12 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia12 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia12 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia12 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia12 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia12 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia12 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia12 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia12 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia12 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia12 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia13") {
+        if (gridCell.data.dia13 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia13 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia13 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia13 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia13 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia13 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia13 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia13 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia13 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia13 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia13 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia13 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia14") {
+        if (gridCell.data.dia14 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia14 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia14 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia14 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia14 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia14 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia14 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia14 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia14 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia14 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia14 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia14 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia15") {
+        if (gridCell.data.dia15 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia15 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia15 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia15 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia15 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia15 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia15 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia15 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia15 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia15 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia15 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia15 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia16") {
+        if (gridCell.data.dia16 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia16 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia16 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia16 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia16 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia16 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia16 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia16 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia16 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia16 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia16 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia16 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia17") {
+        if (gridCell.data.dia17 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia17 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia17 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia17 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia17 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia17 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia17 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia17 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia17 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia17 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia17 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia17 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia18") {
+        if (gridCell.data.dia18 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia18 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia18 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia18 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia18 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia18 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia18 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia18 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia18 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia18 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia18 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia18 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia19") {
+        if (gridCell.data.dia19 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia19 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia19 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia19 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia19 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia19 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia19 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia19 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia19 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia19 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia19 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia19 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia20") {
+        if (gridCell.data.dia20 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia20 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia20 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia20 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia20 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia20 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia20 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia20 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia20 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia20 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia20 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia20 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+        
+      }
+      if (e.gridCell.column.dataField == "dia21") {
+        if (gridCell.data.dia21 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia21 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia21 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia21 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia21 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia21 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia21 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia21 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia21 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia21 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia21 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia21 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia22") {
+        if (gridCell.data.dia22 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia22 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia22 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia22 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia22 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia22 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia22 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia22 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia22 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia22 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia22 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia22 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia23") {
+        if (gridCell.data.dia23 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia23 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia23 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia23 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia23 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia23 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia23 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia23 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia23 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia23 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia23 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia23 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia24") {
+        if (gridCell.data.dia24 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia24 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia24 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia24 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia24 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia24 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia24 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia24 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia24 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia24 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia24 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia24 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia25") {
+        if (gridCell.data.dia25 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia25 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia25 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia25 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia25 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia25 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia25 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia25 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia25 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia25 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia25 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia25 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia26") {
+        if (gridCell.data.dia26 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia26 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia26 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia26 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia26 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia26 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia26 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia26 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia26 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia26 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia26 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia26 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia27") {
+        if (gridCell.data.dia27 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia27 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia27 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia27 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia27 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia27 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia27 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia27 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia27 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia27 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia27 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia27 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia28") {
+        if (gridCell.data.dia28 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia28 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia28 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia28 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia28 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia28 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia28 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia28 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia28 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia28 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia28 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia28 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia29") {
+        if (gridCell.data.dia29 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia29 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia29 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia29 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia29 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia29 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia29 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia29 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia29 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia29 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia29 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia29 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia30") {
+        if (gridCell.data.dia30 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia30 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia30 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia30 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia30 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia30 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia30 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia30 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia30 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia30 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia30 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia30 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }
+      if (e.gridCell.column.dataField == "dia31") {
+        if (gridCell.data.dia31 == "PC"){
+          e.backgroundColor = "#fed966";
+        }
+        if (gridCell.data.dia31 == "EC") {
+          e.backgroundColor = "#fb0000";
+        }
+        if (gridCell.data.dia31 == "TC") {
+          e.backgroundColor = "#00af50";
+        }
+        if (gridCell.data.dia31 == "ED") {
+          e.backgroundColor = "#012060";
+        }
+        if (gridCell.data.dia31 == "TV") {
+          e.backgroundColor = "#712fa2";
+        }
+        if (gridCell.data.dia31 == "TT") {
+          e.backgroundColor = "#ffffffff";
+        }
+        if (gridCell.data.dia31 == "D") {
+          e.backgroundColor = "#fffafaff";
+        }
+        if (gridCell.data.dia31 == "V") {
+          e.backgroundColor = "#cdcbcb";
+        }
+        if (gridCell.data.dia31 == "P") {
+          e.backgroundColor = "#fcc6c6";
+        }
+        if (gridCell.data.dia31 == "A") {
+          e.backgroundColor = "#fffdfdff";
+        }
+        if (gridCell.data.dia31 == "TD") {
+          e.backgroundColor = "#808080";
+        }
+        if (gridCell.data.dia31 == "DV") {
+          e.backgroundColor = "#d674a5ff";
+        }
+      }     
+    }
+
+    // if (gridCell.rowType === 'groupFooter') {
+    //   e.backgroundColor = "#DCDCDC";
+    //   e.fontWeight = "bolder"
+    //   e.font = {bold: true}
+    // }
+
+    // if (gridCell.rowType === 'totalFooter') {
+      
+    //   e.backgroundColor = "#ff9460";
+    //   e.fontWeight = "bolder"
+    //   e.font = {bold: true}
+    // }
+  }
+
 
   onRowPreparedDM(e: any) {
     // if (e.rowType == 'data') {
