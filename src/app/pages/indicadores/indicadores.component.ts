@@ -1240,6 +1240,8 @@ export class IndicadoresComponent implements OnInit {
       this.expandGroup = true;
       this.expandGroupKV = true;
 
+      this.loadingVisible = false;
+
     })
   }
 
@@ -2112,6 +2114,13 @@ export class IndicadoresComponent implements OnInit {
 
   getDataSO2024 = (e:any)=>{
     this.getSueldoBase();
+  }
+
+  getData2025= (e:any)=>{
+    this.getScoreCard2025();
+    this.getIndicadoresChart25();
+    this.getGraficaIO25();
+    this.loadingVisible = true;
   }
 
   getData2024= (e:any)=>{
