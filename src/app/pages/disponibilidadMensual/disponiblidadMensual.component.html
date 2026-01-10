@@ -57,7 +57,15 @@
                     <dxi-column dataField="idPersonal" caption="ID" [fixed]="true"></dxi-column>
                     <dxi-column dataField="operador" caption="Operación" [fixed]="true"></dxi-column>
                     <dxi-column dataField="total" caption="Total" [fixed]="true"></dxi-column>
-                    <dxi-column dataField="disponibles" caption="Disponibles" [fixed]="true"></dxi-column>
+                    <dxi-column caption="Disponibles" alignment="center" [fixed]="true">
+                        <dxi-column dataField="disponibles" caption="Disponibles" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="operando" caption="Operando" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="porOperando" caption="%" format="percent" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="programado" caption="Programado" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="porProgramadoo" caption="%" format="percent" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="patio" caption="Patio" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="porPatio" caption="%" format="percent" [fixed]="true"></dxi-column>
+                    </dxi-column>
                     <dxi-column dataField="noDisponibles" caption="No Disponibles" [fixed]="true"></dxi-column>
                     <dxi-column dataField="porDisponibilidad" caption="%" format="percent" [fixed]="true"></dxi-column>
                     <dxi-column dataField="dia1" caption="1"></dxi-column>
