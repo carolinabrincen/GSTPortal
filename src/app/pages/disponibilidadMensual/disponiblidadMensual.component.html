@@ -38,9 +38,71 @@
             <br>
 
     <dx-tab-panel>
+
         <dxi-item title="Operadores">
             <div>
-                <br>
+            <dx-box direction="col" width="100%" [height]="350">
+                <dxi-item [ratio]="3" [baseSize]="0">
+                    <dx-box direction="row" width="100%" [height]="230">
+                        <dxi-item class="rect demo-dark" [ratio]="5">
+
+                        <dx-pie-chart id="pie" type="doughnut" title="Operatividad Mensual" [dataSource]="graficaOperador">
+                            <dxo-size [height]="330"></dxo-size>
+                            <dxi-series argumentField="value" valueField="operador">
+                                <dxo-label [visible]="true" [format]="calculatePercent" backgroundColor="none" [radialOffset]="-20">
+                                    <dxo-font size="15" color="black"></dxo-font>
+                                </dxo-label>
+                            </dxi-series>
+                            <dxo-export [enabled]="true"></dxo-export>
+                            <dxo-legend
+                                [margin]="0"
+                                horizontalAlignment="right"
+                                verticalAlignment="top"
+                            ></dxo-legend>
+                            <!-- <dxo-tooltip
+                                [enabled]="true"
+                                [customizeTooltip]="calculatePercent"
+                                
+                            >
+                            </dxo-tooltip> -->
+                        </dx-pie-chart>     
+
+                        </dxi-item>
+                        <dxi-item class="rect demo-dark" [ratio]=".5"></dxi-item>
+                        <dxi-item class="rect demo-dark" [ratio]="5">
+
+                            <h3 style="text-align: center; font-weight: bold;">Promedio Operadores Mensuales</h3>
+                            <dx-scroll-view class="view-wrapper-scroll">
+                                <div class="view-wrapper">
+
+                                    <div class="cards grey">
+                                        <div id="pick" class="ticker" *ngFor="let resumenM of promedioOpMen">
+                    
+                                            <div *ngIf="resumenM.value == 'Operando'" class="icon-wrapper">
+                                                <img src="assets/deliveryTruck.png" class="devextreme-logo">
+                                            </div>
+                                            <div *ngIf="resumenM.value == 'No Operando'" class="icon-wrapper">
+                                                <img src="assets/rest.png" class="devextreme-logo">
+                                            </div>
+                                            <div *ngIf="resumenM.value == 'Total Disponibles'" class="icon-wrapper">
+                                                <img src="assets/truck.png" class="devextreme-logo">
+                                            </div>
+                                          
+                                            <div  class="middle">
+                                                <div class="title"> {{ resumenM.value }} </div>
+                                                <div class="total"> {{resumenM.promedio }} </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dx-scroll-view>
+                        </dxi-item>
+                    </dx-box>
+                    
+                </dxi-item>
+            </dx-box>
+            </div>
+            <div>
                 <dx-data-grid #DM id="gridContainer1" [dataSource]="disponibilidadMensual" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedDM($event)" (onCellPrepared)="onCellPreparedDM($event)">
                 
@@ -64,7 +126,7 @@
                         <dxi-column dataField="programado" caption="Programado" [fixed]="true"></dxi-column>
                         <dxi-column dataField="porProgramadoo" caption="%" format="percent" [fixed]="true"></dxi-column>
                         <dxi-column dataField="patio" caption="Patio" [fixed]="true"></dxi-column>
-                        <dxi-column dataField="porPatio" caption="%" format="percent" [fixed]="true"></dxi-column>
+                        <dxi-column dataField="porPatio" caption="%" [fixed]="true"></dxi-column>
                     </dxi-column>
                     <dxi-column dataField="noDisponibles" caption="No Disponibles" [fixed]="true"></dxi-column>
                     <dxi-column dataField="porDisponibilidad" caption="%" format="percent" [fixed]="true"></dxi-column>

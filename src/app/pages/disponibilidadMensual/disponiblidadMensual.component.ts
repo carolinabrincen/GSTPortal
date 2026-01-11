@@ -13,13 +13,11 @@ import { TotalPorcentajes } from '../../shared/models/ingresos/totalporcentajes.
 import { ModeloGrafica } from '../../shared/models/ingresos/modeloGrafica.model';
 import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { DisponibilidadAnualService } from '../../services/disponibilidadAnual/disponibilidadAnual.service';
+import { DisponibilidadMensual, NoOperando, Operando } from 'src/app/shared/models/disponiblidad/disponibilidadMensual.model';
+
+import { DecimalPipe } from '@angular/common';
 
 import notify from 'devextreme/ui/notify';
-
-import { Workbook } from 'exceljs';
-import { exportDataGrid } from 'devextreme/excel_exporter';
-import { saveAs } from 'file-saver-es';
-import { group } from 'console';
 
 const totalesPor = new TotalPorcentajes;
 const totalesPorGr = new TotalPorcentajes;
@@ -130,6 +128,8 @@ export class disponibilidadMensualComponent implements OnInit {
   operadorDetalle: any = [];
   unidadDetalle: any =  [];
   tractos: any = [];
+  graficaOperador: any = [];
+  promedioOpMen: any = [];
 
   showFilterRow: boolean;
   currentFilter: any;
@@ -152,6 +152,8 @@ export class disponibilidadMensualComponent implements OnInit {
     tipoOperacion: "",
   }
   bolFormSoloLectura = false;
+
+  pipe = new DecimalPipe('es-MX');
 
   constructor(
     private disponibilidadService: DisponibilidadAnualService,
@@ -181,9 +183,29 @@ export class disponibilidadMensualComponent implements OnInit {
   }
 
   getDisponiblidadMensual() {
-    this.disponibilidadService.postDisponiblidadMensual(this.selectedMes, this.selectedAnio).subscribe((response) => {
-      this.disponibilidadMensual = response.data;
-      // console.log(this.disponibilidadMensual)
+    this.disponibilidadService.postDisponiblidadMensual(this.selectedMes, this.selectedAnio, this.selectedUdn, this.selectedOp).subscribe((response) => {
+      this.disponibilidadMensual = response.data.disponiblidadMensualDTO;
+
+      
+      let myOperador = response.data.graficaPastel;
+        let myOperandos = [
+          {operador: myOperador.operando, value: 'Operando'},
+          {operador: myOperador.noOperando, value: 'No Operando'}
+        ]
+        this.graficaOperador = myOperandos;
+
+      let myPromedio = [
+        {promedio: myOperador.promOperando, value: 'Operando'},
+        {promedio: myOperador.promNoOperando, value: 'No Operando'},
+        {promedio: myOperador.promTotal, value: 'Total Disponibles'},
+      ]  
+        this.promedioOpMen = myPromedio;
+        console.log(this.graficaOperador)
+      
+
+      // this.graficaOperador.push(response.data.graficaPastel);
+      // console.log(this.graficaOperador)
+      
       this.loadingVisible = false
 
     });
@@ -192,7 +214,7 @@ export class disponibilidadMensualComponent implements OnInit {
   getTracto() {
     this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp).subscribe((response) => {
       this.tractos = response.data.mes;
-      console.log(this.tractos)
+      //console.log(this.tractos)
       this.loadingVisible = false
 
     });
@@ -212,8 +234,6 @@ export class disponibilidadMensualComponent implements OnInit {
   selectOpe(value: any) {
     this.selectedOp = value.value;
   }
-  
-
   selectOperacion(value: any) {
     this.selectedOperacion = value.value
     console.log(this.selectedOperacion)
@@ -351,16 +371,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia1 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia1 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia1 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia1 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia1 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -375,10 +395,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia1 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia1 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia1 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia1 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia1 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia1 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia1 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 5){
@@ -389,16 +424,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia2 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia2 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia2 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia2 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia2 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -413,10 +448,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia2 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia2 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia2 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia2 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia2 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia2 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia2 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 6){
@@ -427,16 +477,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia3 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia3 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia3 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia3 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia3 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -451,10 +501,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia3 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia3 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia3 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia3 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia3 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia3 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia3 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 7){
@@ -465,16 +530,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia4 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia4 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia4 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia4 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia4 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -489,10 +554,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia4 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia4 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia4 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia4 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia4 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia4 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia4 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 8){
@@ -503,16 +583,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia5 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia5 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia5 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia5 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia5 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -527,10 +607,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia5 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia5 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia5 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia5 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia5 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia5 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia5 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 9){
@@ -541,16 +636,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia6 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia6 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia6 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia6 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia6 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -565,10 +660,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia6 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia6 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia6 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia6 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia6 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia6 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia6 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 10){
@@ -579,16 +689,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia7 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia7 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia7 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia7 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia7 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -602,11 +712,26 @@ export class disponibilidadMensualComponent implements OnInit {
             if (c.data.dia7 == "A") {
               c.cellElement.style.background = "#fffdfdff";
             }
-            if (c.data.dia7 == "TD") {
-              c.cellElement.style.background = "#808080";
+           if (c.data.dia7 == "TD") {
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia7 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia7 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia7 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia7 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia7 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia7 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 11){
@@ -617,16 +742,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia8 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia8 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia8 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia8 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia8 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -641,10 +766,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia8 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia8 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia8 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia8 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia8 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia8 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia8 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 12){
@@ -655,16 +795,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia9 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia9 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia9 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia9 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia9 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -679,10 +819,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia9 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia9 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia9 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia9 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia9 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia9 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia9 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 13){
@@ -693,16 +848,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia10 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia10 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia10 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia10 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia10 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -716,11 +871,26 @@ export class disponibilidadMensualComponent implements OnInit {
             if (c.data.dia10 == "A") {
               c.cellElement.style.background = "#fffdfdff";
             }
-            if (c.data.dia10 == "TD") {
-              c.cellElement.style.background = "#808080";
+           if (c.data.dia10 == "TD") {
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia10 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia10 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia10 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia10 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia10 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia10 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 14){
@@ -731,16 +901,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia11 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia11 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia11 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia11 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia11 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -755,10 +925,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia11 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia11 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia11 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia11 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia11 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia11 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia11 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 15){
@@ -769,16 +954,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia12 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia12 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia12 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia12 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia12 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -793,10 +978,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia12 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia12 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia12 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia12 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia12 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia12 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia12 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 16){
@@ -807,16 +1007,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia13 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia13 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia13 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia13 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia13 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -831,10 +1031,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia13 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia13 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia13 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia13 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia13 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia13 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia13 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 17){
@@ -845,16 +1060,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia14 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia14 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia14 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia14 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia14 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -869,10 +1084,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia14 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia14 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia14 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia14 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia14 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia14 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia14 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 18){
@@ -883,16 +1113,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia15 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia15 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia15 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia15 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia15 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -906,11 +1136,26 @@ export class disponibilidadMensualComponent implements OnInit {
             if (c.data.dia15 == "A") {
               c.cellElement.style.background = "#fffdfdff";
             }
-            if (c.data.dia15 == "TD") {
-              c.cellElement.style.background = "#808080";
+           if (c.data.dia15 == "TD") {
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia15 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia15 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia15 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia15 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia15 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia15 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 19){
@@ -921,16 +1166,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia16 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia16 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia16 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia16 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia16 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -945,10 +1190,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia16 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia16 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia16 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia16 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia16 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia16 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia16 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 20){
@@ -959,16 +1219,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia17 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia17 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia17 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia17 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia17 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -983,10 +1243,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia17 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia17 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia17 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia17 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia17 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia17 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia17 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 21){
@@ -997,16 +1272,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia18 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia18 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia18 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia18 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia18 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1021,10 +1296,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia18 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia18 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia18 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia18 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia18 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia18 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia18 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 22){
@@ -1035,16 +1325,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia19 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia19 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia19 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia19 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia19 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1059,10 +1349,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia19 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia19 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia19 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia19 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia19 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia19 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia19 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 23){
@@ -1073,16 +1378,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia20 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia20 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia20 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia20 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia20 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1097,10 +1402,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia20 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia20 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia20 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia20 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia20 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia20 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia20 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 24){
@@ -1111,16 +1431,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia21 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia21 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia21 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia21 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia21 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1135,10 +1455,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia21 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia21 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia21 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia21 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia21 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia21 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia21 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 25){
@@ -1149,16 +1484,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia22 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia22 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia22 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia22 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia22 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1173,10 +1508,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia22 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia22 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia22 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia22 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia22 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia22 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia22 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 26){
@@ -1187,16 +1537,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia23 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia23 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia23 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia23 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia23 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1211,10 +1561,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia23 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia23 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia23 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia23 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia23 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia23 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia23 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 27){
@@ -1225,16 +1590,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia24 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia24 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia24 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia24 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia24 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1249,10 +1614,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia24 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia24 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia24 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia24 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia24 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia24 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia24 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 28){
@@ -1263,16 +1643,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia25 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia25 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia25 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia25 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia25 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1287,10 +1667,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia25 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia25 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia25 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia25 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia25 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia25 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia25 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 29){
@@ -1301,16 +1696,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia26 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia26 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia26 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia26 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia26 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1325,10 +1720,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia26 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia26 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia26 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia26 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia26 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia26 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia26 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 30){
@@ -1339,16 +1749,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia27 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia27 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia27 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia27 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia27 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1363,10 +1773,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia27 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia27 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia27 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia27 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia27 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia27 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia27 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 31){
@@ -1377,16 +1802,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia28 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia28 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia28 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia28 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia28 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1401,10 +1826,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia28 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia28 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia28 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia28 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia28 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia28 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia28 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 32){
@@ -1415,16 +1855,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia29 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia29 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia29 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia29 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia29 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1439,10 +1879,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia29 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia29 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia29 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia29 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia29 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia29 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia29 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 33){
@@ -1453,16 +1908,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia30 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia30 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia30 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia30 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia30 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1477,10 +1932,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia30 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia30 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia30 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia30 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia30 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia30 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia30 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
           if(c.columnIndex == 34){
@@ -1491,16 +1961,16 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fb0000";
             }
             if (c.data.dia31 == "TC") {
-              c.cellElement.style.background = "#00af50";
+              c.cellElement.style.background = "#70ad46";
             }
             if (c.data.dia31 == "ED") {
               c.cellElement.style.background = "#012060";
             }
             if (c.data.dia31 == "TV") {
-              c.cellElement.style.background = "#712fa2";
+              c.cellElement.style.background = "#aad08d";
             }
             if (c.data.dia31 == "TT") {
-              c.cellElement.style.background = "#ffffffff";
+              c.cellElement.style.background = "#ffd963";
             }
             if (c.data.dia31 == "D") {
               c.cellElement.style.background = "#fffafaff";
@@ -1515,10 +1985,25 @@ export class disponibilidadMensualComponent implements OnInit {
               c.cellElement.style.background = "#fffdfdff";
             }
             if (c.data.dia31 == "TD") {
-              c.cellElement.style.background = "#808080";
+              c.cellElement.style.background = "#9bc1e7";
             }
             if (c.data.dia31 == "DV") {
-              c.cellElement.style.background = "#d674a5ff";
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia31 == "PA") {
+              c.cellElement.style.background = "#9cc1e5";
+            }
+            if (c.data.dia31 == "PR") {
+              c.cellElement.style.background = "#4572c6";
+            }
+            if (c.data.dia31 == "AU") {
+              c.cellElement.style.background = "#c7dfb3";
+            }
+            if (c.data.dia31 == "IN") {
+              c.cellElement.style.background = "#bfbfbf";
+            }
+            if (c.data.dia31 == "TS") {
+              c.cellElement.style.background = "#a6a6a6";
             }
           }
         }
@@ -1567,16 +2052,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia1 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia1 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia1 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia1 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia1 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1591,10 +2076,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia1 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia1 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia1 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia1 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia1 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia1 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia1 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1606,16 +2106,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia2 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia2 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia2 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia2 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia2 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1630,10 +2130,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia2 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia2 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia2 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia2 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia2 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia2 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia2 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1645,16 +2160,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia3 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia3 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia3 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia3 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia3 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1669,10 +2184,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia3 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia3 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia3 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia3 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia3 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia3 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia3 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1684,16 +2214,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia4 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia4 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia4 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia4 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia4 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1708,10 +2238,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia4 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia4 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia4 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia4 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia4 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia4 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia4 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1723,16 +2268,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia5 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia5 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia5 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia5 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia5 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1747,10 +2292,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia5 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia5 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia5 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia5 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia5 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia5 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia5 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1762,16 +2322,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia6 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia6 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia6 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia6 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia6 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1786,10 +2346,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia6 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia6 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia6 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia6 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia6 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia6 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia6 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1801,16 +2376,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia7 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia7 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia7 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia7 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia7 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1825,10 +2400,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia7 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia7 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia7 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia7 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia7 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia7 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia7 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1840,16 +2430,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia8 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia8 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia8 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia8 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia8 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1864,10 +2454,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia8 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia8 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia8 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia8 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia8 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia8 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia8 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1879,16 +2484,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia9 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia9 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia9 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia9 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia9 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1903,10 +2508,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia9 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia9 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia9 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia9 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia9 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia9 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia9 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1918,16 +2538,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia10 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia10 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia10 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia10 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia10 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1942,10 +2562,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia10 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia10 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia10 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia10 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia10 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia10 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia10 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1957,16 +2592,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia11 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia11 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia11 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia11 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia11 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -1981,10 +2616,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia11 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia11 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia11 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia11 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia11 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia11 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia11 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -1996,16 +2646,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia12 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia12 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia12 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia12 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia12 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2020,10 +2670,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia12 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia12 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia12 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia12 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia12 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia12 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia12 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2035,16 +2700,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia13 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia13 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia13 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia13 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia13 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2059,10 +2724,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia13 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia13 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia13 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia13 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia13 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia13 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia13 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2074,16 +2754,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia14 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia14 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia14 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia14 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia14 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2098,10 +2778,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia14 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia14 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia14 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia14 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia14 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia14 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia14 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2113,16 +2808,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia15 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia15 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia15 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia15 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia15 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2137,10 +2832,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia15 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia15 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia15 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia15 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia15 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia15 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia15 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2152,16 +2862,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia16 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia16 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia16 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia16 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia16 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2176,10 +2886,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia16 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia16 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia16 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia16 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia16 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia16 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia16 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2191,16 +2916,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia17 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia17 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia17 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia17 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia17 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2215,10 +2940,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia17 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia17 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia17 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia17 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia17 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia17 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia17 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2230,16 +2970,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia18 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia18 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia18 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia18 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia18 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2254,10 +2994,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia18 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia18 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia18 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia18 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia18 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia18 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia18 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2269,16 +3024,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia19 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia19 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia19 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia19 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia19 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2293,10 +3048,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia19 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia19 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia19 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia19 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia19 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia19 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia19 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2308,16 +3078,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia20 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia20 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia20 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia20 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia20 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2332,10 +3102,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia20 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia20 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia20 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia20 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia20 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia20 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia20 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
         
       }
@@ -2347,16 +3132,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia21 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia21 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia21 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia21 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia21 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2370,11 +3155,26 @@ export class disponibilidadMensualComponent implements OnInit {
         if (gridCell.data.dia21 == "A") {
           e.backgroundColor = "#fffdfdff";
         }
-        if (gridCell.data.dia21 == "TD") {
-          e.backgroundColor = "#808080";
+       if (gridCell.data.dia21 == "TD") {
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia21 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia21 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia21 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia21 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia21 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia21 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia22") {
@@ -2385,16 +3185,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia22 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia22 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia22 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia22 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia22 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2409,10 +3209,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia22 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia22 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia22 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia22 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia22 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia22 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia22 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia23") {
@@ -2423,16 +3238,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia23 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia23 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia23 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia23 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia23 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2447,10 +3262,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia23 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia23 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia23 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia23 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia23 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia23 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia23 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia24") {
@@ -2461,16 +3291,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia24 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia24 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia24 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia24 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia24 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2485,10 +3315,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia24 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia24 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia24 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia24 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia24 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia24 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia24 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia25") {
@@ -2499,16 +3344,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia25 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia25 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia25 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia25 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia25 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2523,10 +3368,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia25 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia25 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia25 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia25 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia25 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia25 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia25 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia26") {
@@ -2537,16 +3397,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia26 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia26 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia26 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia26 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia26 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2561,10 +3421,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia26 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia26 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia26 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia26 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia26 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia26 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia26 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia27") {
@@ -2575,16 +3450,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia27 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia27 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia27 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia27 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia27 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2599,10 +3474,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia27 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia27 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia27 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia27 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia27 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia27 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia27 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia28") {
@@ -2613,16 +3503,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia28 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia28 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia28 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia28 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia28 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2637,10 +3527,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia28 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia28 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia28 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia28 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia28 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia28 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia28 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia29") {
@@ -2651,16 +3556,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia29 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia29 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia29 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia29 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia29 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2675,10 +3580,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia29 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia29 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia29 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia29 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia29 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia29 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia29 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia30") {
@@ -2689,16 +3609,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia30 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia30 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia30 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia30 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia30 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2713,10 +3633,25 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fffdfdff";
         }
         if (gridCell.data.dia30 == "TD") {
-          e.backgroundColor = "#808080";
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia30 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia30 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia30 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia30 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia30 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia30 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }
       if (e.gridCell.column.dataField == "dia31") {
@@ -2727,16 +3662,16 @@ export class disponibilidadMensualComponent implements OnInit {
           e.backgroundColor = "#fb0000";
         }
         if (gridCell.data.dia31 == "TC") {
-          e.backgroundColor = "#00af50";
+          e.backgroundColor = "#70ad46";
         }
         if (gridCell.data.dia31 == "ED") {
           e.backgroundColor = "#012060";
         }
         if (gridCell.data.dia31 == "TV") {
-          e.backgroundColor = "#712fa2";
+          e.backgroundColor = "#aad08d";
         }
         if (gridCell.data.dia31 == "TT") {
-          e.backgroundColor = "#ffffffff";
+          e.backgroundColor = "#ffd963";
         }
         if (gridCell.data.dia31 == "D") {
           e.backgroundColor = "#fffafaff";
@@ -2750,11 +3685,26 @@ export class disponibilidadMensualComponent implements OnInit {
         if (gridCell.data.dia31 == "A") {
           e.backgroundColor = "#fffdfdff";
         }
-        if (gridCell.data.dia31 == "TD") {
-          e.backgroundColor = "#808080";
+       if (gridCell.data.dia31 == "TD") {
+          e.backgroundColor = "#9bc1e7";
         }
         if (gridCell.data.dia31 == "DV") {
-          e.backgroundColor = "#d674a5ff";
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia31 == "PA") {
+          e.backgroundColor = "#9cc1e5";
+        }
+        if (gridCell.data.dia31 == "PR") {
+          e.backgroundColor = "#4572c6";
+        }
+        if (gridCell.data.dia31 == "AU") {
+          e.backgroundColor = "#c7dfb3";
+        }
+        if (gridCell.data.dia31 == "IN") {
+          e.backgroundColor = "#bfbfbf";
+        }
+        if (gridCell.data.dia31 == "TS") {
+          e.backgroundColor = "#a6a6a6";
         }
       }     
     }
@@ -3276,5 +4226,16 @@ export class disponibilidadMensualComponent implements OnInit {
 
   dateBixInicio(value) {
     console.log(value)
+  }
+   customizeLabelDonut(point) {
+    return `${point.argumentText}   :    $ ${point.valueText}`;
+  }
+
+  calculatePercent(value){
+    //var mypercent = 
+    var mypercent = value * 100;
+    var myvalue = Math.trunc(mypercent);
+    
+    return myvalue +"%";
   }
 }
