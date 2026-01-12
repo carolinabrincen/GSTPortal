@@ -261,6 +261,13 @@
     color: var(--base-text-color);
   }
 
+  .total2 {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 20px;
+    color: var(--base-text-color);
+  }
+
   .percentage {
     display: flex;
     align-self: flex-start;

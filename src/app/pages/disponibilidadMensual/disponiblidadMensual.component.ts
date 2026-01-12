@@ -191,14 +191,17 @@ export class disponibilidadMensualComponent implements OnInit {
       let myOperador = response.data.graficaPastel;
         let myOperandos = [
           {operador: myOperador.operando, value: 'Operando'},
-          {operador: myOperador.noOperando, value: 'No Operando'}
+          {operador: myOperador.noOperando, value: 'SinViaje/Programado'}
         ]
         this.graficaOperador = myOperandos;
 
       let myPromedio = [
         {promedio: myOperador.promOperando, value: 'Operando'},
-        {promedio: myOperador.promNoOperando, value: 'No Operando'},
+        {promedio: myOperador.promNoOperando, value: 'SinViaje/ Programado'},
         {promedio: myOperador.promTotal, value: 'Total Disponibles'},
+        {promedio: myOperador.promTotal, value: 'Disponible'},
+        {promedio: myOperador.promNoDisponible, value: 'No Disponible'},
+        {promedio: myOperador.promTotalT, value: 'Total'},
       ]  
         this.promedioOpMen = myPromedio;
         console.log(this.graficaOperador)

@@ -43,7 +43,7 @@
             <div>
             <dx-box direction="col" width="100%" [height]="350">
                 <dxi-item [ratio]="3" [baseSize]="0">
-                    <dx-box direction="row" width="100%" [height]="230">
+                    <dx-box direction="row" width="100%" [height]="320">
                         <dxi-item class="rect demo-dark" [ratio]="5">
 
                         <dx-pie-chart id="pie" type="doughnut" title="Operatividad Mensual" [dataSource]="graficaOperador">
@@ -81,16 +81,26 @@
                                             <div *ngIf="resumenM.value == 'Operando'" class="icon-wrapper">
                                                 <img src="assets/deliveryTruck.png" class="devextreme-logo">
                                             </div>
-                                            <div *ngIf="resumenM.value == 'No Operando'" class="icon-wrapper">
+                                            <div *ngIf="resumenM.value == 'SinViaje/ Programado'" class="icon-wrapper">
                                                 <img src="assets/rest.png" class="devextreme-logo">
                                             </div>
                                             <div *ngIf="resumenM.value == 'Total Disponibles'" class="icon-wrapper">
                                                 <img src="assets/truck.png" class="devextreme-logo">
                                             </div>
+                                            <div *ngIf="resumenM.value == 'Disponible'" class="icon-wrapper">
+                                                <img src="assets/truck.png" class="devextreme-logo">
+                                            </div>
+                                            <div *ngIf="resumenM.value == 'No Disponible'" class="icon-wrapper">
+                                                <img src="assets/noDisponibles.jpeg" class="devextreme-logo">
+                                            </div>
+                                            <div *ngIf="resumenM.value == 'Total'" class="icon-wrapper">
+                                                <img src="assets/total.jpeg" class="devextreme-logo">
+                                            </div>
                                           
                                             <div  class="middle">
                                                 <div class="title"> {{ resumenM.value }} </div>
-                                                <div class="total"> {{resumenM.promedio }} </div> 
+                                                <div class="total"> {{resumenM.promedio }} </div>
+                                                <!-- <div *ngIf="resumenM.value == 'Operando'" class="total2"> {{resumenM.promedio }} </div>  -->
                                             </div>
                                         </div>
                                     </div>

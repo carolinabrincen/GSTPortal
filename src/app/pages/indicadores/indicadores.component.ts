@@ -11587,12 +11587,14 @@ onCellPreparedIK2025(e){
     });
   }
 }
-customizeIK2025(e) {  
+
+customizeIK2025(e, rows) {  
 
     var gridCell = e.gridCell;
 
     if (gridCell.rowType === 'group') {
-
+      
+      console.log(e)
       // if(gridCell.column.dataField == "cuatitlan"){
       //   const totalC = totalAgrupamientoIKE26.cuautitlan.toFixed(1);
       //   e.value = totalC
@@ -11658,7 +11660,7 @@ customizeIK2025(e) {
         const totalTO = totalOperacionIK25.total.toFixed(1);
         e.value = totalTO;
       }
-      console.log(e)
+      //console.log(e)
       e.backgroundColor = "#ff9460";
       e.fontWeight = "bolder"
       e.font = {bold: true}
