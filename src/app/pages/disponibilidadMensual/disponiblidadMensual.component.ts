@@ -183,6 +183,7 @@ export class disponibilidadMensualComponent implements OnInit {
   }
 
   getDisponiblidadMensual() {
+    this.disponibilidadMensual = [];
     this.disponibilidadService.postDisponiblidadMensual(this.selectedMes, this.selectedAnio, this.selectedUdn, this.selectedOp).subscribe((response) => {
       this.disponibilidadMensual = response.data.disponiblidadMensualDTO;
 
@@ -212,6 +213,7 @@ export class disponibilidadMensualComponent implements OnInit {
   }
 
   getTracto() {
+    this.tractos = []
     this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp).subscribe((response) => {
       this.tractos = response.data.mes;
       //console.log(this.tractos)

@@ -11587,6 +11587,85 @@ onCellPreparedIK2025(e){
     });
   }
 }
+customizeIK2025(e) {  
+
+    var gridCell = e.gridCell;
+
+    if (gridCell.rowType === 'group') {
+
+      // if(gridCell.column.dataField == "cuatitlan"){
+      //   const totalC = totalAgrupamientoIKE26.cuautitlan.toFixed(1);
+      //   e.value = totalC
+      // }
+      // if(gridCell.column.dataField == "tultitlan"){
+      //   const totalT = totalAgrupamientoIKE26.tultitlan.toFixed(1);
+      //   e.value = totalT;
+      // }
+      // if(gridCell.column.dataField == "guadalajara"){
+      //   const totalG = totalAgrupamientoIKE26.guadalajara.toFixed(1);
+      //   e.value = totalG;
+      // }
+      // if(gridCell.column.dataField == "hermosillo"){
+      //   const totalH = totalAgrupamientoIKE26.hermosillo.toFixed(1);
+      //   e.value = totalH;
+      // }
+      // if(gridCell.column.dataField == "mexicali"){
+      //   const totalM = totalAgrupamientoIKE26.mexicali.toFixed(1);
+      //   e.value = totalM;
+      // }
+      // if(gridCell.column.dataField == "orizaba"){
+      //   const totalO = totalAgrupamientoIKE26.orizaba.toFixed(1);
+      //   e.value = totalO;
+      // }
+      // if(gridCell.column.dataField == "total"){
+      //   const totalTO = totalAgrupamientoIKE26.total.toFixed(1);
+      //   e.value = totalTO;
+      // }
+
+      e.backgroundColor = "#DCDCDC";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+    }
+
+    if (gridCell.rowType === 'totalFooter') {
+      var gridCell = e.gridCell;
+      if(gridCell.column.dataField == "cuatitlan"){
+        const totalC = totalOperacionIK25.cuautitlan.toFixed(1);
+        e.value = totalC
+      }
+      if(gridCell.column.dataField == "tultitlan"){
+        const totalT = totalOperacionIK25.tultitlan.toFixed(1);
+        e.value = totalT;
+      }
+      if(gridCell.column.dataField == "guadalajara"){
+        const totalG = totalOperacionIK25.guadalajara.toFixed(1);
+        e.value = totalG;
+      }
+      if(gridCell.column.dataField == "hermosillo"){
+        const totalH = totalOperacionIK25.hermosillo.toFixed(1);
+        e.value = totalH;
+      }
+      if(gridCell.column.dataField == "mexicali"){
+        const totalM = totalOperacionIK25.mexicali.toFixed(1);
+        e.value = totalM;
+      }
+      if(gridCell.column.dataField == "orizaba"){
+        const totalO = totalOperacionIK25.orizaba.toFixed(1);
+        e.value = totalO;
+      }
+      if(gridCell.column.dataField == "total"){
+        const totalTO = totalOperacionIK25.total.toFixed(1);
+        e.value = totalTO;
+      }
+      console.log(e)
+      e.backgroundColor = "#ff9460";
+      e.fontWeight = "bolder"
+      e.font = {bold: true}
+
+    }
+
+  }
 //==============================VIAJES KILOMETROS 2025=================================
 onRowPreparedKV2025(e){
 

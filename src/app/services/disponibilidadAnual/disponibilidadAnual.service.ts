@@ -63,12 +63,12 @@ export class DisponibilidadAnualService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_DISPONIBILIDAD_ANUAL), body, this.httpOptions);
   }
 
-  postDisponiblidadMensual(mes: number, anio: number, idArea: number, idOperador: number) {
+  postDisponiblidadMensual(mes: number, anio: number, idArea: number, idOperacion: number) {
     let body = {
       anio: anio,
       mes: mes,
       idArea: idArea,
-      idOperador: idOperador
+      idOperacion: idOperacion
     };
     console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_DISPONIBILIDAD_MENSUAL), body, this.httpOptions);
