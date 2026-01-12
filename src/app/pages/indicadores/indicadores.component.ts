@@ -1112,7 +1112,7 @@ export class IndicadoresComponent implements OnInit {
 // ====================================INGRESOS======================================================================================================
       const myingresos24 = data.data.scIng.filter((word) => word.mes !== "");      
       this.ingresos24 = myingresos24//data.data.scIng;
-      //console.log(this.ingresos24)
+      ////(this.ingresos24)
       // this.ingresos24.sort((a, b) => (a.orden < b.orden ? -1 : 1))
 // ====================================KILOMETROS====================================================================================================
       const mykilomentros24 = data.data.scKms.filter((word) => word.mes !== "");      
@@ -1143,7 +1143,7 @@ export class IndicadoresComponent implements OnInit {
 // ====================================INGRESO POR OPERADOR =========================================================================================      
       const myIO2024 = data.data.scIngrXOperador.filter((word) => word.mes !== "(0)");
       this.ingresoOperador24 = myIO2024//data.data.scIngrXOperador;   
-      //console.log(this.ingresoOperador24) 
+      ////(this.ingresoOperador24) 
       
       const myIOP2024 = data.data.scIngrXOperadorProm.filter((word) => word.mes !== "(0)");
       this.ingresoOpProm24 = myIOP2024//data.data.scIngrXOperadorProm;
@@ -1209,7 +1209,7 @@ export class IndicadoresComponent implements OnInit {
       this.operadoresUDN25 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
       this.ingresoOperador25 = data.data.scIngrXOperador;   
-      //console.log(this.ingresoOperador25) 
+      ////(this.ingresoOperador25) 
       
       this.ingresoOpProm25 = data.data.scIngrXOperadorProm;
  
@@ -1275,10 +1275,10 @@ export class IndicadoresComponent implements OnInit {
       this.operadoresUDN26 = data.data.scOperadores// data.data.scOperadores;
 // ====================================INGRESO POR OPERADOR =========================================================================================      
       this.ingresoOperador26 = data.data.scIngrXOperador;   
-      console.log(this.ingresoOperador26) 
+      //(this.ingresoOperador26) 
       
       this.ingresoOpProm26 = data.data.scIngrXOperadorProm;
-      console.log(this.ingresoOpProm26)
+      //(this.ingresoOpProm26)
  
       this.precioMeta26 = data.data.scPrecioMeta;
 
@@ -1315,7 +1315,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getkmsMensuales(this.selectedPeriodo).subscribe(data => {
       this.kmsMensuales = data.data;
       this.kmsMensuales.sort((a, b) => (a.udN < b.udN ? -1 : 1));
-      console.log(this.kmsMensuales)
+      //(this.kmsMensuales)
      
       this.loadingVisible = false;
     })
@@ -1349,14 +1349,14 @@ export class IndicadoresComponent implements OnInit {
 
   getIndicadoresChart24(){
     this.indicadorService.getIndicadoresChart24().subscribe(data => {
-      // console.log(data.data)
+      // //(data.data)
       this.periodoVariacion = data.data.periodoVariacion;
       
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
       var myKMSO = data.data.varKmsXOperacion;
       this.kmsXOperacion24 = data.data.kmsXOperacion;
       this.kmsXOperacion24.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
-      // console.log(this.kmsXOperacion24)
+      // //(this.kmsXOperacion24)
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
       this.kmsXOperacionDescription24 = dataKMSO;
@@ -1460,14 +1460,14 @@ export class IndicadoresComponent implements OnInit {
 
   getIndicadoresChart25(){
     this.indicadorService.getIndicadoresChart25().subscribe(data => {
-       console.log(data.data)
+       //(data.data)
       this.periodoVariacion = data.data.periodoVariacion;
       
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
       var myKMSO = data.data.varKmsXOperacion;
       this.kmsXOperacion25 = data.data.kmsXOperacion;
       this.kmsXOperacion25.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
-      // console.log(this.kmsXOperacion25)
+      // //(this.kmsXOperacion25)
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS" && word.clasificacion !== "GONDOLA");
       this.kmsXOperacionDescription25 = dataKMSO;
@@ -1493,7 +1493,7 @@ export class IndicadoresComponent implements OnInit {
       var myTotal = []
       myTotal.push(data.data.varKmsXOperacion[0])
       this.kmsXUdnTotal25 = myTotal;
-      // console.log(this.kmsXUdnTotal25)
+      // //(this.kmsXUdnTotal25)
 
       for(let i =0; i<myKMSRUDN.length; i++){
         var myvalue = Math.trunc(myKMSRUDN[i].kmsDiferencia);
@@ -1552,7 +1552,7 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
       this.porXFlotaOperacion25 = data.data.porXFlotaOperacion;
       this.porXFlotaOperacion25.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      console.log(this.porXFlotaOperacion25)
+      //(this.porXFlotaOperacion25)
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
@@ -1572,14 +1572,14 @@ export class IndicadoresComponent implements OnInit {
 
   getIndicadoresChart26(){
     this.indicadorService.getIndicadoresChart26().subscribe(data => {
-       console.log(data.data)
+       //(data.data)
       this.periodoVariacion = data.data.periodoVariacion;
       
 /*==========================MILLONES DE KMS RECORRIDOS POR TIPO DE OPERACIÓN=============================*/
       var myKMSO = data.data.varKmsXOperacion;
       this.kmsXOperacion26 = data.data.kmsXOperacion;
       this.kmsXOperacion26.sort((a, b) => (a.periodo < b.periodo ? -1 : 1)); 
-      // console.log(this.kmsXOperacion26)
+      // //(this.kmsXOperacion26)
       
       const dataKMSO = data.data.varKmsXOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS" && word.clasificacion !== "GONDOLA");
       this.kmsXOperacionDescription26 = dataKMSO;
@@ -1605,7 +1605,7 @@ export class IndicadoresComponent implements OnInit {
       var myTotal = []
       myTotal.push(data.data.varKmsXOperacion[0])
       this.kmsXUdnTotal26 = myTotal;
-      // console.log(this.kmsXUdnTotal26)
+      // //(this.kmsXUdnTotal26)
 
       for(let i =0; i<myKMSRUDN.length; i++){
         var myvalue = Math.trunc(myKMSRUDN[i].kmsDiferencia);
@@ -1664,7 +1664,7 @@ export class IndicadoresComponent implements OnInit {
 /*===========================% FLOTA ACTIVA TIPO OPERACIÓN==============================================*/
       this.porXFlotaOperacion26 = data.data.porXFlotaOperacion;
       this.porXFlotaOperacion26.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
-      console.log(this.porXFlotaOperacion26)
+      //(this.porXFlotaOperacion26)
 
 
       const result = data.data.varPorXFlotaOperacion.filter((word) => word.clasificacion !== "KMS RECORRIDOS");
@@ -1687,7 +1687,7 @@ export class IndicadoresComponent implements OnInit {
 
       const myData = data.data.scIngrXOperador.filter((word) => word.mes != "(0)");
       this.graficaIXO24 = myData//data.data.scIngrXOperador;      
-      console.log(this.graficaIXO24)
+      //(this.graficaIXO24)
       // var myArray = [
       //   {orden: 0, mes: '12 DIC', operadores: 0, ingreso: 0, ingresoXOperador: 0},
       // ]
@@ -1699,7 +1699,7 @@ export class IndicadoresComponent implements OnInit {
       const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION" && word.mes != "(0)");
 
       this.graficaOP24 = result;
-      //console.log(this.graficaOP24)
+      ////(this.graficaOP24)
 
     })
   }
@@ -1722,13 +1722,13 @@ export class IndicadoresComponent implements OnInit {
       ]
 
       // this.graficaIXO25.push(myArray25[0]);
-      //  console.log(this.graficaIXO25)
+      //  //(this.graficaIXO25)
       // this.graficaOP25.push(myArray25[0],myArray25[1],myArray25[2],myArray25[3],myArray25[4],myArray25[5],myArray25[6],myArray25[7],myArray25[8],myArray25[9]);
       
       const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
 
       this.graficaOP25 = result;
-      //console.log(this.graficaOP24)
+      ////(this.graficaOP24)
 
     })
   }
@@ -1736,7 +1736,7 @@ export class IndicadoresComponent implements OnInit {
   getGraficaIO26(){
     this.indicadorService.getScoreCard2026().subscribe(data => {
       this.graficaIXO26 = data.data.scIngrXOperador;            
-      console.log(this.graficaIXO26)
+      //(this.graficaIXO26)
       var myArray26 = [
         {ingreso: 0, ingresoXOperador: 0, mes: '03 MARZO', operadores: 0, orden: 0},
         {orden: 0, mes: '04 ABRIL', operadores: 0, ingreso: 0, ingresoXOperador: 0},
@@ -1751,13 +1751,13 @@ export class IndicadoresComponent implements OnInit {
       ]
 
       // this.graficaIXO26.push(myArray26[0]);
-      //  console.log(this.graficaIXO26)
+      //  //(this.graficaIXO26)
       // this.graficaOP26.push(myArray26[8],myArray26[9]);
       
       const result = data.data.scIngrXOperadorProm.filter((word) => word.operacion != "SIN OPERACION");
 
       this.graficaOP26 = result;
-      console.log(this.graficaOP26)
+      //(this.graficaOP26)
 
     })
   }
@@ -1771,7 +1771,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getSueldoOperador(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
       this.graficaSueldoOp = data.data;
       this.graficaSueldoOp.sort((a, b) => (a.mes < b.mes ? -1 : 1))
-      //console.log(this.graficaSueldoOp)
+      ////(this.graficaSueldoOp)
       this.loadingVisible = false;
     })
   }
@@ -1784,7 +1784,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getSueldoOperador25(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
       this.graficaSueldoOp = data.data;
       this.graficaSueldoOp.sort((a, b) => (a.mes < b.mes ? -1 : 1))
-      //console.log(this.graficaSueldoOp)
+      ////(this.graficaSueldoOp)
     })
   }
   getSueldoBase26(){
@@ -1795,7 +1795,7 @@ export class IndicadoresComponent implements OnInit {
     this.indicadorService.getSueldoOperador26(anio, mes, idTracto, unidadesNegocio).subscribe(data => {
       this.graficaSueldoOp = data.data;
       this.graficaSueldoOp.sort((a, b) => (a.mes < b.mes ? -1 : 1))
-      //console.log(this.graficaSueldoOp)
+      ////(this.graficaSueldoOp)
     })
   }
 
@@ -1811,7 +1811,7 @@ export class IndicadoresComponent implements OnInit {
     this.loadingVisible = true;
     this.indicadorService.getSueldoOpAc25().subscribe(data => {
       this.graficaSueldoOpAc2025 = data.data;
-      console.log(data)
+      //(data)
       this.loadingVisible = false;
     })
   }
@@ -1820,7 +1820,7 @@ export class IndicadoresComponent implements OnInit {
     this.loadingVisible = true;
     this.indicadorService.getSueldoOpAc26().subscribe(data => {
       this.graficaSueldoOpAc2026 = data.data;
-      console.log(data)
+      //(data)
       this.loadingVisible = false;
     })
   }
@@ -1829,7 +1829,7 @@ export class IndicadoresComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.indicadorService.postSueldoDetalle(this.selectedPerAC).subscribe(data =>{
         this.sueldoDetalle = data.data;
-        //console.log(this.sueldoDetalle)
+        ////(this.sueldoDetalle)
         this.loadingVisible = false;
       })
     })
@@ -1841,7 +1841,7 @@ export class IndicadoresComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.indicadorService.postSueldoDetalle25(this.selectedPerAC25).subscribe(data =>{
         this.sueldoDetalle25 = data.data;
-        //console.log(this.sueldoDetalle25)
+        ////(this.sueldoDetalle25)
         this.loadingVisible = false;
       })
     })
@@ -1853,7 +1853,7 @@ export class IndicadoresComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
       this.indicadorService.postSueldoDetalle26(this.selectedPerAC26).subscribe(data =>{
         this.sueldoDetalle26 = data.data;
-        //console.log(this.sueldoDetalle26)
+        ////(this.sueldoDetalle26)
         this.loadingVisible = false;
       })
     })
@@ -1867,7 +1867,7 @@ export class IndicadoresComponent implements OnInit {
       this.indicadorService.getIngresosXCliente(this.selectedIpC).subscribe(data =>{
         this.IpCViajes = data.data.viajes;
         this.graficaIpC = data.data.graficaIngrXCliente;;
-        //console.log(this.graficaIpC)
+        ////(this.graficaIpC)
         //const ixc = data.data.graficaIngrXCliente;
 
         // for(let i =0; i<ixc.length; i++){
@@ -1891,7 +1891,7 @@ export class IndicadoresComponent implements OnInit {
       this.indicadorService.getIngresosXClienteAnual(this.selectedIpCAnual).subscribe(data =>{
         this.IpCViajesAnual = data.data.viajes;
         this.graficaIpCAnual = data.data.graficaIngrXCliente;;
-        //console.log(this.graficaIpCAnual)
+        ////(this.graficaIpCAnual)
 
         this.loadingVisible = false;
       })
@@ -1917,7 +1917,7 @@ export class IndicadoresComponent implements OnInit {
 
   seleccionarPeriodo(e: any) {
     this.selectedPeriodo = e.value
-    console.log(this.selectedPeriodo)
+    //(this.selectedPeriodo)
   }
 
   seleccionarMes(e: any) {
@@ -1945,28 +1945,28 @@ export class IndicadoresComponent implements OnInit {
   }
   selectPeriodoAC(e: any) {
     this.selectedPerAC = e.value
-    console.log(this.selectedPerAC)
+    //(this.selectedPerAC)
   }
 
   selectPeriodoAC25(e: any) {
     this.selectedPerAC25 = e.value
-    console.log(this.selectedPerAC25)
+    //(this.selectedPerAC25)
   }
 
   selectPeriodoAC26(e: any) {
     this.selectedPerAC26 = e.value
-    console.log(this.selectedPerAC26)
+    //(this.selectedPerAC26)
   }
 
 
   selectPeriodoIpC(e: any) {
     this.selectedIpC = e.value
-    console.log(this.selectedIpC)
+    //(this.selectedIpC)
   }
 
   selectPeriodoIpCAnual(e: any) {
     this.selectedIpCAnual = e.value
-    console.log(this.selectedIpCAnual)
+    //(this.selectedIpCAnual)
   }
   
   buscarClick = (e: any) => {
@@ -3227,7 +3227,7 @@ onCellPreparedPM(e){
 
       if(row.rowType == "group"){
         if(row.key[0] == '01 ENE'){
-          console.log(rowValues)
+          //(rowValues)
           rowValues[3][0].value = totalAgrupamientoIKE.cuautitlan;
           rowValues[4][0].value = totalAgrupamientoIKE.tultitlan;
           rowValues[5][0].value = totalAgrupamientoIKE.guadalajara;
@@ -13028,7 +13028,7 @@ onCellPreparedIO2025(e){
 onRowPreparedITL2026(event){
     
   if (event.rowType == 'group'){
-    if(event.data.key == '01 ENE'){
+    if(event.data.key == '202601 ENE'){
       agrupamientoITLE26.cuatitlanIngr = event.summaryCells[4][0].value;
       agrupamientoITLE26.cuatitlanPres = event.summaryCells[5][0].value;
       agrupamientoITLE26.cuatitlanIngrAc = event.summaryCells[7][0].value;
@@ -13967,7 +13967,7 @@ onCellPreparedITL2026(e){
 onRowPreparedI2026(event){
 
   if (event.rowType == 'group'){
-    if (event.data.key == '01 ENE') {
+    if (event.data.key == '202601 ENE') {
 
       if(event.summaryCells[4].length !== 0){
       agrupamientoIE26.cuautitlan = event.summaryCells[4][0].value;
@@ -14158,8 +14158,8 @@ if (gridCell.rowType === 'totalFooter') {
 onRowPreparedK2026(e){
 
   if (e.rowType == 'group'){
-    
-    if (e.data.key == '01 ENE') {
+    console.log()
+    if (e.data.key == '202601 ENE') {
 
       if(e.summaryCells[4].length !== 0){
       agrupamientoKE26.cuautitlan = e.summaryCells[4][0].value;
@@ -14194,6 +14194,8 @@ onRowPreparedK2026(e){
       totalAgrupamientoIKE26.orizaba = agrupamientoIE26.orizaba / agrupamientoKE26.orizaba;
       // totalAgrupamientoIKE26.ramosArispe = agrupamientoIE26.ramosArispe / agrupamientoKE26.ramosArispe;
       totalAgrupamientoIKE26.total = agrupamientoIE26.total / agrupamientoKE26.total
+      console.log("Entre")
+      console.log(totalAgrupamientoIKE26.tultitlan, "= ", agrupamientoIE26.tultitlan, " / ", agrupamientoKE26.tultitlan)
     }
     // if (e.data.key == '02 FEB'){
     //   agrupamientoKF26.cuautitlan = e.summaryCells[4][0]?.value;
@@ -14509,7 +14511,7 @@ onRowPreparedVC2026(event){
   
   if (event.rowType == 'group'){
     
-    if (event.data.key == '01 ENE') {
+    if (event.data.key == '202601 ENE') {
        
       viajesCargadosE26.cuautitlan = event.summaryCells[4][0]?.value;
       viajesCargadosE26.tultitlan = event.summaryCells[5][0]?.value;
@@ -14937,7 +14939,7 @@ onRowPreparedIK2026(e){
     }
 
 
-    if (e.data.key == '01 ENE') {
+    if (e.data.key == '202601 ENE') {
       if(e.summaryCells[4].length !== 0){
       e.summaryCells[4][0].value =  totalAgrupamientoIKE26.cuautitlan;
       }
@@ -15452,7 +15454,7 @@ onRowPreparedKV2026(e){
     }
 
 
-    if (e.data.key == '01 ENE') {
+    if (e.data.key == '202601 ENE') {
       if(e.summaryCells[4].length !== 0){
       e.summaryCells[4][0].value = totalKVCE26.cuautitlan;
       }
@@ -15985,7 +15987,7 @@ customizeExportDataKV2026(cols, rows){
     
 
     if(row.rowType == "group"){
-      if(row.key[0] == '01 ENE'){
+      if(row.key[0] == '202601 ENE'){
 
         rowValues[3][0].value = totalKVCE26.cuautitlan;
         rowValues[4][0].value = totalKVCE26.tultitlan;
@@ -16153,7 +16155,7 @@ onRowPreparedIV2026(e){
     }
 
 
-    if (e.data.key == '01 ENE') {
+    if (e.data.key == '202601 ENE') {
       if(e.summaryCells[4].length !== 0){
         e.summaryCells[4][0].value = totalIVCE26.cuautitlan;
       }
@@ -16685,7 +16687,7 @@ customizeExportDataIV2026(cols, rows){
   var rowValues =  row.values;  
 
   if(row.rowType == "group"){
-    if(row.key[0] == '01 ENE'){
+    if(row.key[0] == '202601 ENE'){
 
       rowValues[3][0].value = totalIVCE26.cuautitlan;
       rowValues[4][0].value = totalIVCE26.tultitlan;
@@ -16963,7 +16965,7 @@ onCellPreparedIO2026(e){
   onRowPreparedSOAC(e){
     
     if(e.rowType == 'groupFooter'){
-      //console.log(e.data)
+      ////(e.data)
       if(e.data.key ==  "01 ENE"){
         this.soEneAC = e.summaryCells[3][0].value;
         this.sdEneAC = e.summaryCells[5][0].value;
@@ -17089,7 +17091,7 @@ onCellPreparedIO2026(e){
   newText: string = "";
   test(e){
     this.newText = e;
-    console.log(this.newText)
+    //(this.newText)
   }
 
   separator(value) {
@@ -17272,7 +17274,7 @@ onCellPreparedIO2026(e){
   }
 
   // customizeLabel = (point) =>{
-  //   console.log(point)
+  //   //(point)
   //   return `$${parseFloat(point.valueText).toFixed(2)}`;
   // }
 
