@@ -99,8 +99,8 @@
                                           
                                             <div  class="middle">
                                                 <div class="title"> {{ resumenM.value }} </div>
-                                                <div class="total"> {{resumenM.promedio }} </div>
-                                                <!-- <div *ngIf="resumenM.value == 'Operando'" class="total2"> {{resumenM.promedio }} </div>  -->
+                                                <div *ngIf="resumenM.value == 'Total Disponibles' || resumenM.value == 'Total'" class="total"> {{resumenM.promedio }} </div>
+                                                <div *ngIf="resumenM.value !== 'Total Disponibles' && resumenM.value !== 'Total'" class="total2"> {{resumenM.promedio }} </div> 
                                             </div>
                                         </div>
                                     </div>

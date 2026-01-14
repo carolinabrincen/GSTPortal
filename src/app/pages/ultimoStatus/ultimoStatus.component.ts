@@ -1126,7 +1126,7 @@ export class UltimoStatusComponent implements OnInit {
     if (c.cellElement) {
 
 
-      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 3 || c.columnIndex == 18){
+      if(c.columnIndex == 0 || c.columnIndex == 2 || c.columnIndex == 7){
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.color = "#001029"
             c.cellElement.style.fontWeight = "bolder";
@@ -1205,7 +1205,7 @@ export class UltimoStatusComponent implements OnInit {
     if (c.cellElement) {
 
 
-      if(c.columnIndex == 0 || c.columnIndex == 2 ||  c.columnIndex == 19){
+      if(c.columnIndex == 0 || c.columnIndex == 2 ||  c.columnIndex == 7){
           if(c.cellElement?.style !== undefined){
             c.cellElement.style.color = "#001029"
             c.cellElement.style.fontWeight = "bolder";
