@@ -129,6 +129,7 @@ export class AltasBajasComponent implements OnInit {
     ];
 
   selectedPeriodo: number = 0;
+  screen = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   
   constructor(
     private altasBajasService: AltasBjasService,
@@ -141,7 +142,8 @@ export class AltasBajasComponent implements OnInit {
     this.calcularPorcentajes = this.calcularPorcentajes.bind(this);
     this.formFilter   
 
-    
+   
+
   }
 
   title="Inicio"
