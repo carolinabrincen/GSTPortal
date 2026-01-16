@@ -48,6 +48,8 @@ export class MetricaCobranzaComponent implements OnInit {
   colorBar: string = ""
 
   pipe = new DecimalPipe('es-MX');
+
+    screen = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   
   constructor(
     private metricaCobranzaService: MetricaCobranzaService,
