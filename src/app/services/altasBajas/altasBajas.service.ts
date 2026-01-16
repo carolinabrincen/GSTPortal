@@ -32,6 +32,7 @@ export class AltasBjasService extends AbstractManagerService {
 
 
   getAltasBajas(fecha){
+    console.log(fecha)
     return this.get<any>((this.API_URL + API_URLS.GET_ALTAS_BAJAS+fecha), this.httpOptions);
   }
 
