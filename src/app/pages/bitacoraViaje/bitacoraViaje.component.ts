@@ -360,7 +360,7 @@ export class BitacoraViajeComponent implements OnInit {
       
      
      
-      if(c.columnIndex == 17 || c.columnIndex == 18){
+      if(c.columnIndex == 21 || c.columnIndex == 22){
         if(c.cellElement?.style !== undefined){
           c.cellElement.style.background = "#d9d9d9";
           c.cellElement.style.color = "#001029"
@@ -376,7 +376,7 @@ export class BitacoraViajeComponent implements OnInit {
         }
       }
 
-      if(c.columnIndex >  3 && c.columnIndex < 17 ){
+      if(c.columnIndex >  3 && c.columnIndex < 21 ){
           if (c.data.tipo == "CARGADO") {
           c.cellElement.style.background = "#a9d08e";
       }
