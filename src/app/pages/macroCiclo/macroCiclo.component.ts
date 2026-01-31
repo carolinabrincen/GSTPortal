@@ -86,6 +86,7 @@ export class MarcroCicloCompaniasComponent implements OnInit {
 
   periodo: any[] = [
     {id: 2026, periodo: 2026 },
+    {id: 202602, periodo: 202602 },
     {id: 202601, periodo: 202601 },
     {id: 2025, periodo: 2025 },
     {id: 202501, periodo: 202501 },

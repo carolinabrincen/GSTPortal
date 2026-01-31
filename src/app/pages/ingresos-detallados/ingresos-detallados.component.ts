@@ -129,7 +129,7 @@ export class IngresosDetalladosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIDMDEnero2026();
-    // this.getIDMDFebrero2026();
+    this.getIDMDFebrero2026();
     // this.getIDMDMarzo2026();
     // this.getIDMDAbril2026();
     // this.getIDMDMayo2026();
@@ -514,7 +514,17 @@ export class IngresosDetalladosComponent implements OnInit {
     this.ingresosService.getIngresosDetalladosMensualEne2026().subscribe(res => {
       this.arrIngresosEne2026 = res.data.resumen;
       this.arrDetalleEne2026 = res.data.detalle;
-      console.log(this.arrIngresosEne2026)
+      //console.log(this.arrIngresosEne2026)
+      //this.loadingVisible = false;
+    });
+  }
+
+  getIDMDFebrero2026(){
+    //this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualFeb2026().subscribe(res => {
+      this.arrIngresosFeb2026 = res.data.resumen;
+      this.arrDetalleFeb2026 = res.data.detalle;
+      console.log(this.arrIngresosFeb2026)
       //this.loadingVisible = false;
     });
   }
