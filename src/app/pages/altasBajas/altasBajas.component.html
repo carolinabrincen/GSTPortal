@@ -466,13 +466,7 @@
         <br><br>
 
         <h3>Altas / Bajas</h3>
-        <dx-box *ngIf="screen > 500" direction="col" width="100%" [height]="400">
-               <dxi-item [ratio]="5" [baseSize]="0">
-                 <dx-box direction="row" width="100%" [height]="125">
-                    
-                   <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualAltas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+                <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualAltas" [height]="350" [showBorders]="true" [columnAutoWidth]="true"
                     (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
                         
                         <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
@@ -480,11 +474,20 @@
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-export [enabled]="true" fileName="Altas" [customizeExcelCell]="customizeOp"></dxo-export>
                         
-                        <dxi-column caption="Altas">
+                        <dxi-column caption="Altas" alignment="center">
                             <dxi-column dataField="udn" caption="UdN"></dxi-column>
                             <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
                             <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
                             <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                            <dxi-column dataField="mes4" [caption]="mes4"></dxi-column>
+                            <dxi-column dataField="mes5" [caption]="mes5"></dxi-column>
+                            <dxi-column dataField="mes6" [caption]="mes6"></dxi-column>
+                            <dxi-column dataField="mes7" [caption]="mes7"></dxi-column>
+                            <dxi-column dataField="mes8" [caption]="mes8"></dxi-column>
+                            <dxi-column dataField="mes9" [caption]="mes9"></dxi-column>
+                            <dxi-column dataField="mes10" [caption]="mes10"></dxi-column>
+                            <dxi-column dataField="mes11" [caption]="mes11"></dxi-column>
+                            <dxi-column dataField="mes12" [caption]="mes12"></dxi-column>
                             <dxi-column dataField="total" caption="Total"></dxi-column>
                             <dxi-column dataField="" caption="" [width]="15"></dxi-column>
                         </dxi-column>
@@ -493,33 +496,46 @@
                             <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes4" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes5" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes6" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes7" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes8" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes9" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes10" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes11" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes12" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
 
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
-                    </dx-data-grid>
-                   
-                    </dxi-item>
+                </dx-data-grid>
+                    <br>
 
-                    <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
-
-                     <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualBajas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+                <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualBajas" [height]="350" [showBorders]="true" [columnAutoWidth]="true"
+                (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
 
                         <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-export [enabled]="true" fileName="Bajas" [customizeExcelCell]="customizeOp"></dxo-export>
 
-                        <dxi-column caption="Bajas">
+                        <dxi-column caption="Bajas" alignment="center">
                             <dxi-column dataField="udn" caption="UdN"></dxi-column>
                             <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
                             <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
                             <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                            <dxi-column dataField="mes4" [caption]="mes4"></dxi-column>
+                            <dxi-column dataField="mes5" [caption]="mes5"></dxi-column>
+                            <dxi-column dataField="mes6" [caption]="mes6"></dxi-column>
+                            <dxi-column dataField="mes7" [caption]="mes7"></dxi-column>
+                            <dxi-column dataField="mes8" [caption]="mes8"></dxi-column>
+                            <dxi-column dataField="mes9" [caption]="mes9"></dxi-column>
+                            <dxi-column dataField="mes10" [caption]="mes10"></dxi-column>
+                            <dxi-column dataField="mes11" [caption]="mes11"></dxi-column>
+                            <dxi-column dataField="mes12" [caption]="mes12"></dxi-column>
                             <dxi-column dataField="total" caption="Total"></dxi-column>
                             <dxi-column dataField="" caption="" [width]="15"></dxi-column>
                         </dxi-column>
@@ -528,33 +544,46 @@
                             <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes4" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes5" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes6" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes7" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes8" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes9" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes10" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes11" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes12" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
 
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
-                    </dx-data-grid>
+                </dx-data-grid>
+                    <br>
 
-                    </dxi-item>
-
-                    <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
-
-                     <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualSaldos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
+                <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualSaldos" [height]="350" [showBorders]="true" [columnAutoWidth]="true"
+                (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
 
                         <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
                         <dxo-paging [pageSize]="100"></dxo-paging>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
                         <dxo-export [enabled]="true" fileName="Saldos" [customizeExcelCell]="customizeOp"></dxo-export>
                         
-                        <dxi-column caption="Saldos">
+                        <dxi-column caption="Saldos" alignment="center">
                             <dxi-column dataField="udn" caption="UdN"></dxi-column>
                             <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
                             <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
                             <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
+                            <dxi-column dataField="mes4" [caption]="mes4"></dxi-column>
+                            <dxi-column dataField="mes5" [caption]="mes5"></dxi-column>
+                            <dxi-column dataField="mes6" [caption]="mes6"></dxi-column>
+                            <dxi-column dataField="mes7" [caption]="mes7"></dxi-column>
+                            <dxi-column dataField="mes8" [caption]="mes8"></dxi-column>
+                            <dxi-column dataField="mes9" [caption]="mes9"></dxi-column>
+                            <dxi-column dataField="mes10" [caption]="mes10"></dxi-column>
+                            <dxi-column dataField="mes11" [caption]="mes11"></dxi-column>
+                            <dxi-column dataField="mes12" [caption]="mes12"></dxi-column>
                             <dxi-column dataField="total" caption="Total"></dxi-column>
                             <dxi-column dataField="" caption="" [width]="15"></dxi-column>
                         </dxi-column>
@@ -563,6 +592,15 @@
                             <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes4" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes5" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes6" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes7" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes8" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes9" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes10" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes11" summaryType="sum" displayFormat="{0}"></dxi-total-item>
+                            <dxi-total-item column="mes12" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                             <dxi-total-item column="" summaryType="sum" displayFormat="{0}"></dxi-total-item>
                         </dxo-summary>
@@ -570,123 +608,8 @@
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
                     <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
-                    </dx-data-grid>
-
-                    </dxi-item>
-                </dx-box>
-            </dxi-item>
-        </dx-box>
-
-        <dx-responsive-box *ngIf="screen <= 412" direction="col" width="100%">
-               <dxi-item [ratio]="5" [baseSize]="0">
-                 <dx-responsive-box direction="row" width="100%">
-                    
-                   <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualAltas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
-                        
-                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-                        <dxo-paging [pageSize]="100"></dxo-paging>
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <dxo-export [enabled]="true" fileName="Altas" [customizeExcelCell]="customizeOp"></dxo-export>
-                        
-                        <dxi-column caption="Altas">
-                            <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                            <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                            <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                            <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                            <dxi-column dataField="total" caption="Total"></dxi-column>
-                            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-                        </dxi-column>
-                       
-                        <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
-                            <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                        </dxo-summary>
-
-                    <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-
-                    </dx-data-grid>
-                   
-                    </dxi-item>
-
-                    <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
-
-                     <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualBajas" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
-
-                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-                        <dxo-paging [pageSize]="100"></dxo-paging>
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <dxo-export [enabled]="true" fileName="Bajas" [customizeExcelCell]="customizeOp"></dxo-export>
-
-                        <dxi-column caption="Bajas">
-                            <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                            <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                            <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                            <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                            <dxi-column dataField="total" caption="Total"></dxi-column>
-                            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-                        </dxi-column>
-
-                        <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
-                            <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                        </dxo-summary>
-
-                    <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-
-                    </dx-data-grid>
-
-                    </dxi-item>
-
-                    <dxi-item class="rect demo-dark" [ratio]=".2"></dxi-item>
-
-                     <dxi-item class="rect demo-dark" [ratio]="4">
-
-                    <dx-data-grid #resmen id="gridContainer1" [dataSource]="mensualSaldos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
-                    (onRowPrepared)="onRowPreparedResumenO($event)" (onCellPrepared)="onCellPreparedResumenO($event)">
-
-                        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
-                        <dxo-paging [pageSize]="100"></dxo-paging>
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Buscar..."></dxo-search-panel>
-                        <dxo-export [enabled]="true" fileName="Saldos" [customizeExcelCell]="customizeOp"></dxo-export>
-                        
-                        <dxi-column caption="Saldos">
-                            <dxi-column dataField="udn" caption="UdN"></dxi-column>
-                            <dxi-column dataField="mes1" [caption]="mes1"></dxi-column>
-                            <dxi-column dataField="mes2" [caption]="mes2"></dxi-column>
-                            <dxi-column dataField="mes3" [caption]="mes3"></dxi-column>
-                            <dxi-column dataField="total" caption="Total"></dxi-column>
-                            <dxi-column dataField="" caption="" [width]="15"></dxi-column>
-                        </dxi-column>
-
-                        <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
-                            <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="total" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                            <dxi-total-item column="" summaryType="sum" displayFormat="{0}"></dxi-total-item>
-                        </dxo-summary>
-
-                    <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-
-                    </dx-data-grid>
-
-                    </dxi-item>
-                </dx-responsive-box>
-            </dxi-item>
-        </dx-responsive-box>
+                </dx-data-grid>
+                     
         <br><br>
 
          <dx-popup width="100%" height="100%" [showTitle]="true" title="Detalle de Altas" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="modalDA">

@@ -92,6 +92,15 @@ export class AltasBajasComponent implements OnInit {
   mes1: string = "";
   mes2: string = "";
   mes3: string = "";
+  mes4: string = "";
+  mes5: string = "";
+  mes6: string = "";
+  mes7: string = "";
+  mes8: string = "";
+  mes9: string = "";
+  mes10: string = "";
+  mes11: string = "";
+  mes12: string = "";
 
 
 
@@ -161,53 +170,161 @@ export class AltasBajasComponent implements OnInit {
     printMes.mes1 = new Date(getPeriodo).toLocaleString('es-MX',{month:'numeric'});
     //Solo obtiene un mes antirior 
     if(printMes.mes1 == "12"){
-      this.mes1 = "Noviembre"
-      this.mes2 = "Diciembre"
-      this.mes3 = "Enero"
-    }else if(printMes.mes1 == "1"){
-      this.mes1 = "Diciembre"
-      this.mes2 = "Enero"
-      this.mes3 = "Febrero"
-    }else if(printMes.mes1 == "2"){
-      this.mes1 = "Enero"
-      this.mes2 = "Febrero"
-      this.mes3 = "Marzo"
-    }else if(printMes.mes1 == "3"){
       this.mes1 = "Febrero"
       this.mes2 = "Marzo"
       this.mes3 = "Abril"
-    }else if(printMes.mes1 == "4"){
+      this.mes4 = "Mayo"
+      this.mes5 = "Junio"
+      this.mes6 = "Julio"
+      this.mes7 = "Agosto"
+      this.mes8 = "Septiembre"
+      this.mes9 = "Octubre"
+      this.mes10 = "Noviembre"
+      this.mes11 = "Diciembre"
+      this.mes12 = "Enero"
+    }else if(printMes.mes1 == "1"){
       this.mes1 = "Marzo"
       this.mes2 = "Abril"
       this.mes3 = "Mayo"
-    }else if(printMes.mes1 == "5"){
+      this.mes4 = "Junio"
+      this.mes5 = "Julio"
+      this.mes6 = "Agosto"
+      this.mes7 = "Septiembre"
+      this.mes8 = "Octubre"
+      this.mes9 = "Noviembre"
+      this.mes10 = "Diciembre"
+      this.mes11 = "Enero"
+      this.mes12 = "Febrero"
+    }else if(printMes.mes1 == "2"){
       this.mes1 = "Abril"
       this.mes2 = "Mayo"
       this.mes3 = "Junio"
-    }else if(printMes.mes1 == "6"){
+      this.mes4 = "Julio"
+      this.mes5 = "Agosto"
+      this.mes6 = "Septiembre"
+      this.mes7 = "Octubre"
+      this.mes8 = "Noviembre"
+      this.mes9 = "Diciembre"
+      this.mes10 = "Enero"
+      this.mes11 = "Febrero"
+      this.mes12 = "Marzo"
+    }else if(printMes.mes1 == "3"){
       this.mes1 = "Mayo"
       this.mes2 = "Junio"
       this.mes3 = "Julio"
-    }else if(printMes.mes1 == "7"){
+      this.mes4 = "Agosto"
+      this.mes5 = "Septiembre"
+      this.mes6 = "Octubre"
+      this.mes7 = "Noviembre"
+      this.mes8 = "Diciembre"
+      this.mes9 = "Enero"
+      this.mes10 = "Febrero"
+      this.mes11 = "Marzo"
+      this.mes12 = "Abril"
+    }else if(printMes.mes1 == "4"){
       this.mes1 = "Junio"
       this.mes2 = "Julio"
       this.mes3 = "Agosto"
-    }else if(printMes.mes1 == "8"){
+      this.mes4 = "Septiembre"
+      this.mes5 = "Octubre"
+      this.mes6 = "Noviembre"
+      this.mes7 = "Diciembre"
+      this.mes8 = "Enero"
+      this.mes9 = "Febrero"
+      this.mes10 = "Marzo"
+      this.mes11 = "Abril"
+      this.mes12 = "Mayo"
+    }else if(printMes.mes1 == "5"){
       this.mes1 = "Julio"
       this.mes2 = "Agosto"
       this.mes3 = "Septiembre"
-    }else if(printMes.mes1 == "9"){
+      this.mes4 = "Octubre"
+      this.mes5 = "Noviembre"
+      this.mes6 = "Diciembre"
+      this.mes7 = "Enero"
+      this.mes8 = "Febrero"
+      this.mes9 = "Marzo"
+      this.mes10 = "Abril"
+      this.mes11 = "Mayo"
+      this.mes12 = "Junio"
+    }else if(printMes.mes1 == "6"){
       this.mes1 = "Agosto"
       this.mes2 = "Septiembre"
       this.mes3 = "Octubre"
-    }else if(printMes.mes1 == "10"){
+      this.mes4 = "Noviembre"
+      this.mes5 = "Diciembre"
+      this.mes6 = "Enero"
+      this.mes7 = "Febrero"
+      this.mes8 = "Marzo"
+      this.mes9 = "Abril"
+      this.mes10 = "Mayo"
+      this.mes11 = "Junio"
+      this.mes12 = "Julio"
+    }else if(printMes.mes1 == "7"){
       this.mes1 = "Septiembre"
       this.mes2 = "Octubre"
       this.mes3 = "Noviembre"
-    }else if(printMes.mes1 == "11"){
+      this.mes4 = "Diciembre"
+      this.mes5 = "Enero"
+      this.mes6 = "Febrero"
+      this.mes7 = "Marzo"
+      this.mes8 = "Abril"
+      this.mes9 = "Mayo"
+      this.mes10 = "Junio"
+      this.mes11 = "Julio"
+      this.mes12 = "Agosto"
+    }else if(printMes.mes1 == "8"){
       this.mes1 = "Octubre"
       this.mes2 = "Noviembre"
       this.mes3 = "Diciembre"
+      this.mes4 = "Enero"
+      this.mes5 = "Febrero"
+      this.mes6 = "Marzo"
+      this.mes7 = "Abril"
+      this.mes8 = "Mayo"
+      this.mes9 = "Junio"
+      this.mes10 = "Julio"
+      this.mes11 = "Agosto"
+      this.mes12 = "Septiembre"
+    }else if(printMes.mes1 == "9"){
+      this.mes1 = "Noviembre"
+      this.mes2 = "Diciembre"
+      this.mes3 = "Enero"
+      this.mes4 = "Febrero"
+      this.mes5 = "Marzo"
+      this.mes6 = "Abril"
+      this.mes7 = "Mayo"
+      this.mes8 = "Junio"
+      this.mes9 = "Julio"
+      this.mes10 = "Agosto"
+      this.mes11 = "Septiembre"
+      this.mes12 = "Octubre"
+    }else if(printMes.mes1 == "10"){
+      this.mes1 = "Diciembre"
+      this.mes2 = "Enero"
+      this.mes3 = "Febrero"
+      this.mes4 = "Marzo"
+      this.mes5 = "Abril"
+      this.mes6 = "Mayo"
+      this.mes7 = "Junio"
+      this.mes8 = "Julio"
+      this.mes9 = "Agosto"
+      this.mes10 = "Septiembre"
+      this.mes11 = "Octubre"
+      this.mes12 = "Noviembre"
+    }else if(printMes.mes1 == "11"){
+      this.mes1 = "Enero"
+      this.mes2 = "Febrero"
+      this.mes3 = "Marzo"
+      this.mes4 = "Abril"
+      this.mes5 = "Mayo"
+      this.mes6 = "Junio"
+      this.mes7 = "Julio"
+      this.mes8 = "Agosto"
+      this.mes9 = "Septiembre"
+      this.mes10 = "Octubre"
+      this.mes11 = "Noviembre"
+      this.mes12 = "Diciembre"
     }
 
     this.altasBajasService.getAltasBajas(this.selectedPeriodo).subscribe((response) => {
