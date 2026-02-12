@@ -61,6 +61,9 @@ export class DatosOperadorComponent implements OnInit {
   bolFormSoloLectura = false;
 
   selectedUdn: number = 0;
+  ine: boolean;
+  apto: boolean;
+  licencia: boolean;
 
   udn: any[] = [
     {idArea: 0, nombre: 'TODOS'},
@@ -262,6 +265,101 @@ export class DatosOperadorComponent implements OnInit {
 
     return "$ " + myFormat.join("");
 
+  }
+
+  inePDF(value){
+    this.ine = value.data.tieneINE;
+    if(this.ine == true){
+      let tipo = "ine"
+      let inePDF = value.data.cvetra;
+
+      this.loadingVisible = true;
+      this.datosOpService.getPDF(inePDF, tipo).subscribe(data =>{
+
+        this.loadingVisible = false;
+
+        var byteCharacters = atob(data.data);
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+
+      })
+    }else if(this.ine == false){
+      notify({
+        message: "No existe documento",
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+  }
+
+  aptoPDF(value){
+    this.apto = value.data.apto;
+    if(this.apto == true){
+      let tipo = "apto"
+      let aptoPDF = value.data.cvetra;
+
+      this.loadingVisible = true;
+      this.datosOpService.getPDF(aptoPDF, tipo).subscribe(data =>{
+        this.loadingVisible = false;
+
+        var byteCharacters = atob(data.data);
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+    }else if(this.apto == false){
+      notify({
+        message: "No existe documento",
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
+  }
+
+  licenciaPDF(value){
+    this.licencia = value.data.licencia;
+    if(this.licencia == true){
+      let tipo = "licencia"
+      let licenciaPDF = value.data.cvetra;
+
+      this.loadingVisible = true;
+      this.datosOpService.getPDF(licenciaPDF, tipo).subscribe(data =>{
+        this.loadingVisible = false;
+
+        var byteCharacters = atob(data.data);
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      })
+    }else if(this.licencia == false){
+      notify({
+        message: "No existe documento",
+        position: {
+          my: 'center center',
+          at: 'center center',
+        },
+      }, 'warning', 3000);
+    }
   }
 
 }

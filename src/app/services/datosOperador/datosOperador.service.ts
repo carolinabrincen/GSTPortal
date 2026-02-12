@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AbstractManagerService } from 'src/app/shared/services/abstractManagerService';
 import { API_URLS } from 'src/app/shared/models/apiURL';
+import { URLSearchParams } from 'url';
+import { encode } from 'querystring';
+import { HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -25,13 +28,21 @@ export class DatosOperadorService extends AbstractManagerService {
   arrDetalleCotizacion: DetalleCotizacionModel[] = [];
   arrClasificaciones: string[] = [];
 
-  constructor(http: HttpClient,) {
+  constructor(http: HttpClient) {
     super(http)
     this.putInterfaceManager(this);
   }
 
   getDatosOperador(udn: number){
     return this.get<any>((this.API_URL + API_URLS.GET_DATOS_OPERADOR+udn), this.httpOptions);
+  }
+
+  getPDF(idOperador: number, tipo: string){
+
+    // let params = new HttpParams().set('query', idOperador+'/'+tipo);
+    // // this.http.get('api/datos', { params });
+
+    return this.get<any>((this.API_URL + API_URLS.GET_PDF+idOperador+'/'+tipo), this.httpOptions);
   }
 
   postTipoOperacionOpe(cveOperador: number, idTipoOperacion: number, idUsuario: string) {
@@ -44,6 +55,8 @@ export class DatosOperadorService extends AbstractManagerService {
     console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_TIPO_OPERACION_OPERADOR), body, this.httpOptions);
   }
+
+
 
  
 

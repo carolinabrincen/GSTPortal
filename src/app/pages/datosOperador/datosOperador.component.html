@@ -67,11 +67,14 @@
             <dxi-column dataField="alta" caption="Alta" dataType="date" format="dd/MM/yyyy"></dxi-column>
             <dxi-column dataField="antiguedad" caption="Antiguedad" alignment="right"></dxi-column>
             <dxi-column dataField="ine" caption="INE"></dxi-column>
+            <dxi-column dataField="tieneINE" caption="Doc"></dxi-column>
+            <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="openPDF" [width]="100"></dxi-column>
             <dxi-column dataField="curp" caption="CURP"></dxi-column>
             <dxi-column dataField="rfc" caption="RFC"></dxi-column>
             <dxi-column caption="Apto. Medico" alignment="center">
                 <dxi-column dataField="apto" caption="Doc."></dxi-column>
                 <dxi-column dataField="vigApto" caption="Vigencia" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="openAptoPDF" [width]="100"></dxi-column>
             </dxi-column>
             <dxi-column caption="Licencia" alignment="center">
                 <dxi-column dataField="licencia" caption="Doc."></dxi-column>
@@ -79,6 +82,7 @@
                 <dxi-column dataField="licLIS" caption="Venc. LIS" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="licNOM" caption="Venc. NOM" dataType="date" format="dd/MM/yyyy"></dxi-column>
                 <dxi-column dataField="licSt" caption="Status"></dxi-column>
+                <dxi-column dataField="" caption="Ver" [fixed]="false" cellTemplate="openLicPDF" [width]="100"></dxi-column>
             </dxi-column>
             <dxi-column caption="Contacto Emergencia" alignment="center">
                 <dxi-column dataField="contacto" caption="Nombre"></dxi-column>
@@ -86,6 +90,18 @@
                 <dxi-column dataField="conTel2" caption="Tel2"></dxi-column>
             </dxi-column>
 
+
+            <div *dxTemplate="let data of 'openPDF'">
+                <dx-button icon="pdffile" stylingMode="outlined" type="danger" (onClick)="inePDF(data)"></dx-button>
+            </div>
+
+            <div *dxTemplate="let data of 'openAptoPDF'">
+                <dx-button icon="pdffile" stylingMode="outlined" type="danger" (onClick)="aptoPDF(data)"></dx-button>
+            </div>
+
+            <div *dxTemplate="let data of 'openLicPDF'">
+                <dx-button icon="pdffile" stylingMode="outlined" type="danger" (onClick)="licenciaPDF(data)"></dx-button>
+            </div>
 
             
             <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 

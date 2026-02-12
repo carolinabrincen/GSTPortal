@@ -1,6 +1,6 @@
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
@@ -23,6 +23,10 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
 
 import { DxoValueAxisModule } from 'devextreme-angular/ui/nested';
 import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
+
+  import { PdfViewerModule } from 'ng2-pdf-viewer';
+
+
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -72,6 +76,7 @@ import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
   import { SalesRangeGraficaComponent } from './components/utils/sales-by-range-card copy/sales-range-grafica.component';
   import { UltimoStatusComponent } from './pages/ultimoStatus/ultimoStatus.component';
   import { DatosOperadorComponent } from './pages/datosOperador/datosOperador.component';
+  import { PreviewPDFComponent } from './pages/previewPDF/previewPDF.component';
 
 const routes: Routes = [
   {
@@ -334,6 +339,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService  ]
   },
   {
+    path: 'previewPDF',
+    component: PreviewPDFComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -381,8 +391,11 @@ const routes: Routes = [
     DxFunnelModule,
     DxDropDownButtonModule,
     DxoValueAxisModule,
-    DxRangeSelectorModule
+    DxRangeSelectorModule,
+    PdfViewerModule
+    
   ],
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [AuthGuardService],
   exports: [
     RouterModule,
@@ -438,7 +451,8 @@ const routes: Routes = [
     SalesPerformanceCardComponent,
     SalesRangeGraficaComponent,
     UltimoStatusComponent,
-    DatosOperadorComponent
+    DatosOperadorComponent,
+    PreviewPDFComponent
   ]
 })
 export class AppRoutingModule { }

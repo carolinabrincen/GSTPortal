@@ -4,11 +4,15 @@ export const navigation = [
   //   path: '/home',
   //   icon: 'home'
   // },
+  // {
+  //       text: 'PDF',
+  //       icon: 'columnchooser',
+  //       path: '/previewPDF'
+  // },
   {
     text: 'Gerenciales',
     icon: 'datafield',
     items: [
-
       {
         text: 'Ingresos',
         path: '/ingresosAnuales',
@@ -205,6 +209,11 @@ export const navigation = [
 ];
 
 export const navigationID24 = [
+  // {
+  //       text: 'PDF',
+  //       icon: 'columnchooser',
+  //       path: '/previewPDF'
+  // },
   {
     text: 'Gerenciales',
     icon: 'datafield',
