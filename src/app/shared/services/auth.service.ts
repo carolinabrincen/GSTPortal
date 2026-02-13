@@ -59,7 +59,6 @@ export class AuthService extends AbstractManagerService{
       this.httpOptions.headers = this.httpOptions.headers.set('Authorization',this.token);
       let xUser = this.post<any>((this.API_URL + API_URLS.LOGEO),{usuario:email, password: password},this.httpOptions).subscribe(data => {
 
-        // console.log(data.data.data);
         this.storageService.setSession("idValidation", data.data.data.idGrupo)
         this.storageService.setSession("username", data.data.data.idUsuario)
 

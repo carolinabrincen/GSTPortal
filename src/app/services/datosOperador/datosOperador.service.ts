@@ -51,9 +51,18 @@ export class DatosOperadorService extends AbstractManagerService {
       idTipoOperacion: idTipoOperacion,
       idUsuario: idUsuario,
     };
-    console.log("operacion")
-    console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_TIPO_OPERACION_OPERADOR), body, this.httpOptions);
+  }
+
+  postBitacora(pantalla: string, cvetra: string, descripcion: string, otros: string) {
+    let body = {
+      patalla: pantalla,
+      cvetra: cvetra,
+      descripcion: descripcion,
+      otros: otros,
+    };
+    console.log(body)
+    return this.post<any>((this.API_URL + API_URLS.POST_GUARDAR_BITACORA), body, this.httpOptions);
   }
 
 

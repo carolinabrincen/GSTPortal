@@ -15,6 +15,7 @@ import { Modelos } from '../../shared/models/ingresos/modelos.model';
 import { DatosOperadorService } from 'src/app/services/datosOperador/datosOperador.service';
 
 import notify from 'devextreme/ui/notify';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 import { Workbook } from 'exceljs';
 import { exportDataGrid } from 'devextreme/excel_exporter';
@@ -81,7 +82,8 @@ export class DocumentacionOperadorComponent implements OnInit {
     private datosOpService: DatosOperadorService,
     private service: ServiceSales,
     private currencyPipe: CurrencyPipe,
-    testService: Service
+    testService: Service,
+    private storageService: StorageService
   ) {
 
     this.customizeTooltip = this.customizeTooltip.bind(this);
@@ -269,12 +271,12 @@ export class DocumentacionOperadorComponent implements OnInit {
     if(this.ine == true){
       let tipo = "ine"
       let inePDF = value.data.cvetra;
+      let nombreArch = ""
 
       this.loadingVisible = true;
       this.datosOpService.getPDF(inePDF, tipo).subscribe(data =>{
-
-        this.loadingVisible = false;
-
+        nombreArch = data.nombre
+        
         var byteCharacters = atob(data.data);
         var byteNumbers = new Array(byteCharacters.length);
         for (var i = 0; i < byteCharacters.length; i++) {
@@ -285,6 +287,9 @@ export class DocumentacionOperadorComponent implements OnInit {
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
 
+        this.postBitacora(nombreArch)
+
+        this.loadingVisible = false;
       })
     }else if(this.ine == false){
       notify({
@@ -302,10 +307,11 @@ export class DocumentacionOperadorComponent implements OnInit {
     if(this.apto == true){
       let tipo = "apto"
       let aptoPDF = value.data.cvetra;
+      let nombreArchApt = ""
 
       this.loadingVisible = true;
       this.datosOpService.getPDF(aptoPDF, tipo).subscribe(data =>{
-        this.loadingVisible = false;
+        nombreArchApt = data.nombre
 
         var byteCharacters = atob(data.data);
         var byteNumbers = new Array(byteCharacters.length);
@@ -316,6 +322,10 @@ export class DocumentacionOperadorComponent implements OnInit {
         var file = new Blob([byteArray], { type: 'application/pdf;base64' });
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
+
+        this.postBitacora(nombreArchApt)
+
+        this.loadingVisible = false;
       })
     }else if(this.apto == false){
       notify({
@@ -333,10 +343,11 @@ export class DocumentacionOperadorComponent implements OnInit {
     if(this.licencia == true){
       let tipo = "licencia"
       let licenciaPDF = value.data.cvetra;
+      let nombreArchLic = ""
 
       this.loadingVisible = true;
       this.datosOpService.getPDF(licenciaPDF, tipo).subscribe(data =>{
-        this.loadingVisible = false;
+        nombreArchLic = data.nombre
 
         var byteCharacters = atob(data.data);
         var byteNumbers = new Array(byteCharacters.length);
@@ -347,6 +358,10 @@ export class DocumentacionOperadorComponent implements OnInit {
         var file = new Blob([byteArray], { type: 'application/pdf;base64' });
         var fileURL = URL.createObjectURL(file);
         window.open(fileURL);
+
+        this.postBitacora(nombreArchLic)
+
+        this.loadingVisible = false;
       })
     }else if(this.licencia == false){
       notify({
@@ -357,6 +372,15 @@ export class DocumentacionOperadorComponent implements OnInit {
         },
       }, 'warning', 3000);
     }
+  }
+
+    postBitacora(nombreArch){
+    let pantalla = "Documentación Operador";
+    let otros = ""
+    let cvetra = this.storageService.getSession("username")
+    this.datosOpService.postBitacora(pantalla, cvetra, nombreArch, otros).subscribe(data =>{
+      console.log(data)
+    })
   }
 
 }

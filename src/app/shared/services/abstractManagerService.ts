@@ -19,7 +19,8 @@ export abstract class AbstractManagerService{
 
     constructor(http: HttpClient){
       //  this.toastService = 'toast';
-      this.API_URL = 'http://10.9.0.234/PortalGST2/';
+      // this.API_URL = 'http://10.9.0.234/PortalGST2/';
+      this.API_URL = 'http://10.9.0.234/PortalGST/';
        this.http = http;
     }
 
