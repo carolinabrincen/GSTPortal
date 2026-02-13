@@ -21,12 +21,11 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
 
   import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
-import { DxoValueAxisModule } from 'devextreme-angular/ui/nested';
-import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
-
+  import { DxoValueAxisModule } from 'devextreme-angular/ui/nested';
+  import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
   import { PdfViewerModule } from 'ng2-pdf-viewer';
-
-
+  //import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+  
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
   import { RentGerComponent } from './pages/rent-ger/rent-ger.component';
@@ -77,6 +76,7 @@ import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
   import { UltimoStatusComponent } from './pages/ultimoStatus/ultimoStatus.component';
   import { DatosOperadorComponent } from './pages/datosOperador/datosOperador.component';
   import { PreviewPDFComponent } from './pages/previewPDF/previewPDF.component';
+  import { DocumentacionOperadorComponent } from './pages/documentacionOperador/documentacionOperador.component';
 
 const routes: Routes = [
   {
@@ -344,6 +344,11 @@ const routes: Routes = [
     canActivate: [ AuthGuardService  ]
   },
   {
+    path: 'documentacionOperador',
+    component: DocumentacionOperadorComponent,
+    canActivate: [ AuthGuardService  ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
@@ -392,7 +397,8 @@ const routes: Routes = [
     DxDropDownButtonModule,
     DxoValueAxisModule,
     DxRangeSelectorModule,
-    PdfViewerModule
+    PdfViewerModule,
+    //LeafletModule
     
   ],
   // schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -452,7 +458,8 @@ const routes: Routes = [
     SalesRangeGraficaComponent,
     UltimoStatusComponent,
     DatosOperadorComponent,
-    PreviewPDFComponent
+    PreviewPDFComponent,
+    DocumentacionOperadorComponent
   ]
 })
 export class AppRoutingModule { }

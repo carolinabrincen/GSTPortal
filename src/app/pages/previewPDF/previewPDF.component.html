@@ -3,10 +3,11 @@
 
 <!-- <input id="preview" type="file" (change)="previewFile($event)"/> -->
 
-    <pdf-viewer [src]="pdfSrc"
-              [render-text]="true"
-              style="width: 400px; height: 500px"
-  ></pdf-viewer>
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map" class="map"></div>
+      </div>
+    </div>
     <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
     </dx-load-panel>

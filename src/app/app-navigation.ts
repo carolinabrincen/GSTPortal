@@ -86,6 +86,11 @@ export const navigation = [
         path: '/datosOperador'
       },
       {
+        text: 'Documentación Operador',
+        icon: 'columnchooser',
+        path: '/documentacionOperador'
+      },
+      {
         text: 'Presupuesto Disponiblidad',
         icon: 'columnchooser',
         path: '/presupuestoDisponibilidad'
@@ -280,6 +285,11 @@ export const navigationID24 = [
         text: 'Datos Operador',
         icon: 'columnchooser',
         path: '/datosOperador'
+      },
+      {
+        text: 'Documentación Operador',
+        icon: 'columnchooser',
+        path: '/documentacionOperador'
       },
       {
         text: 'Presupuesto Disponiblidad',

@@ -15,6 +15,8 @@ import { DxiDataGridColumn } from 'devextreme-angular/ui/nested/base/data-grid-c
 import { DxoGridComponent } from 'devextreme-angular/ui/nested';
 import { reduce } from 'rxjs/operators';
 
+import * as L from 'leaflet';
+
 @Component({
   templateUrl: './previewPDF.component.html',
   styleUrls: ['./previewPDF.component.scss'],
@@ -33,7 +35,7 @@ export class PreviewPDFComponent implements OnInit {
 
   }
 
-
+  private map;
   constructor(
     private permisosService: PermisosService,
     private storageService: StorageService,
@@ -74,7 +76,7 @@ export class PreviewPDFComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
+this.initMap();
   }
 
 
@@ -86,6 +88,44 @@ export class PreviewPDFComponent implements OnInit {
 
   onHidden() {
   }
+
+    private initMap(): void {
+
+  this.map = L.map('map', {
+    center: [ 19.7547562,-95.6449205],
+    zoom: 7,
+    //minZoom: 5,
+    //maxZoom :14
+  });
+
+  const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+  {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  });
+
+  tiles.addTo(this.map);
+  // this.map.pm.addControls({
+  //   position: 'topleft',
+  //   drawCircle: false,
+  // })
+  //L.marker([51.50915, -0.096112], { pmIgnore: true }).addTo(this.map);
+
+  // listen to vertexes being added to currently drawn layer (called workingLayer)
+ // listen to vertexes being added to currently drawn layer (called workingLayer)
+
+// this.map.on('pm:drawstart', ({ workingLayer }) => {
+// workingLayer.on('pm:vertexadded', e => {
+  
+//   this.polygono = e.workingLayer._latlngs;
+//   this._storage.setLocal("key_poligono", this.polygono);
+
+//   this.mypolygono = JSON.stringify(this._storage.getLocal("key_poligono"));
+  
+// });
+// });
+
+}
 
 }
 

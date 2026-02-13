@@ -54,6 +54,7 @@
                             "src/web.config"
                         ],
                         "styles": [
+                            "node_modules/leaflet/dist/leaflet.css",
                             "node_modules/devextreme/dist/css/dx.common.css",
                             "src/themes/generated/theme.base.css",
                             "src/themes/generated/theme.additional.css",

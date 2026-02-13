@@ -27,6 +27,7 @@
         "devextreme-schematics": "^1.2.21",
         "exceljs": "^4.3.0",
         "file-saver-es": "^2.0.5",
+        "leaflet": "^1.8.0",
         "ng2-pdf-viewer": "^8.0.0",
         "pdfmake": "^0.2.4",
         "rxjs": "~6.6.0",
