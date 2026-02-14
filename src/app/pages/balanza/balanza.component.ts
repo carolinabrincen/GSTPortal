@@ -75,7 +75,7 @@ export class BalanzaComponent implements OnInit {
   getCompanias(){
     this.balanzaService.getCompanias().subscribe(data => {
       this.companias = data.data;
-      console.log(this.companias)
+      //console.log(this.companias)
       var myData = data.data;
       for (var i = 0; i < myData.length; i++) {
         this.allCompanias.push(myData[i].idCompania);
@@ -158,7 +158,7 @@ export class BalanzaComponent implements OnInit {
 
       this.balanzaService.postCostosCC(tipos, clase).subscribe(data =>{
         this.centroCostos = data.data;
-        console.log(this.centroCostos)
+        //console.log(this.centroCostos)
       })
     });
     return request;
@@ -170,7 +170,7 @@ export class BalanzaComponent implements OnInit {
   } 
   
   selectFechaF(e: any){
-    console.log(e)
+    //console.log(e)
     this.selectedFechaF = e.value;
 
     if(this.selectedFechaI >= this.selectedFechaF){
@@ -196,7 +196,7 @@ export class BalanzaComponent implements OnInit {
 
   selecttClasesCostos(e: any){
     this.selectedClasesCostos = e.value;
-    console.log(this.selectedClasesCostos)
+    //console.log(this.selectedClasesCostos)
     this.getCC(this.selectedTiposCostos, this.selectedClasesCostos)
   }
 
@@ -222,14 +222,14 @@ export class BalanzaComponent implements OnInit {
     const request = new Promise((resolve, reject) => {
 
       if(this.selectedCompania !== undefined && this.selectedUdN !== undefined && this.selectedTiposCostos !== undefined && this.selectedClasesCostos !== undefined){
-        console.log("entre primero")
+        //console.log("entre primero")
         this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.selectedCompania, this.selectedUdN, this.selectedTiposCostos, this.selectedClasesCostos, this.selectedCostos, this.checkConsolidado).subscribe(data =>{
           this.gridBalanza = data.data;
           // this.gridBalanza.sort((a, b) => (a.cuenta < b.cuenta ? -1 : 1));
           this.loadingVisible = false;
         })
       }else {
-        console.log("entre segundo")
+        //console.log("entre segundo")
         var centrocostos = [];
         this.balanzaService.postBalanza(this.selectedFechaI, this.selectedFechaF, this.allCompanias, this.allUdns, this.allTipos, this.allClases, centrocostos, this.checkConsolidado).subscribe(data =>{
           this.gridBalanza = data.data;

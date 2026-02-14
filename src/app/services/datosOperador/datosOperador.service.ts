@@ -56,12 +56,12 @@ export class DatosOperadorService extends AbstractManagerService {
 
   postBitacora(pantalla: string, cvetra: string, descripcion: string, otros: string) {
     let body = {
-      patalla: pantalla,
+      pantalla: pantalla,
       cvetra: cvetra,
       descripcion: descripcion,
       otros: otros,
     };
-    console.log(body)
+    console.log(JSON.stringify(body))
     return this.post<any>((this.API_URL + API_URLS.POST_GUARDAR_BITACORA), body, this.httpOptions);
   }
 

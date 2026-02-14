@@ -111,7 +111,7 @@ export class AnticiposComponent implements OnInit {
   getAnticipos(){  
     this.loadingVisible = true;
     this.anticiposService.getAnticipos(this.selectedOperador).subscribe(data => {
-      console.log(data.data)
+      //console.log(data.data)
       if(data !== null){
       var myAnti = [];
       myAnti.push(data?.data?.anticipos);

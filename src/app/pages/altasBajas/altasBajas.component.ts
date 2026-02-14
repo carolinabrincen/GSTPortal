@@ -328,7 +328,7 @@ export class AltasBajasComponent implements OnInit {
     }
 
     this.altasBajasService.getAltasBajas(this.selectedPeriodo).subscribe((response) => {
-      console.log(response.data)
+      //console.log(response.data)
       var myAnual = response.data.anual;
       for(let i =0; i<myAnual.length; i++){ 
         var myBajas = myAnual[i].bajas;
@@ -362,7 +362,7 @@ export class AltasBajasComponent implements OnInit {
       this.platillaPA = response.data.plantillaPromedioAnual;
       this.platillaPA.sort((a, b) => (a.periodo < b.periodo ? -1 : 1));
 
-      console.log(response.data)
+      //console.log(response.data)
 
       this.loadingVisible = false;
     });
@@ -416,7 +416,7 @@ export class AltasBajasComponent implements OnInit {
   }
 
   onClick(value: any){
-    console.log(value)
+    //console.log(value)
   }
 
   buscarClick = (e: any) => {
@@ -713,7 +713,7 @@ export class AltasBajasComponent implements OnInit {
   }
 
   dateBixInicio(value) {
-    console.log(value)
+    //console.log(value)
   }
 
    calculatePercent(value){

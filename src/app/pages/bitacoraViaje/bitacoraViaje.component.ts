@@ -222,7 +222,7 @@ export class BitacoraViajeComponent implements OnInit {
       this.bitacoraService.getTractos(this.udnSeleccionado).subscribe(res => {
         this.arrTractos = res.data.tractos;
         this.arrTractos.sort();
-        console.log(this.arrTractos)
+        ////console.log(this.arrTractos)
       });
     }
   }
@@ -237,7 +237,7 @@ export class BitacoraViajeComponent implements OnInit {
    
       this.bitacoraService.getBitacoraViaje(this.formFilter.inicio, this.formFilter.fin, this.udnSeleccionado, this.tractoSeleccionado).subscribe(res => {
         this.bitacoraViaje = res.data
-        console.log(this.bitacoraViaje)  
+        ////console.log(this.bitacoraViaje)  
         this.loadingVisible = false;
       });
   }
@@ -245,7 +245,7 @@ export class BitacoraViajeComponent implements OnInit {
   /*======================SELECTE FUNCIONS================================================*/
   seleccionarAnio(e: any) {
     this.anioSeleccionado = e.value;
-    console.log(this.anioSeleccionado)
+    ////console.log(this.anioSeleccionado)
     this.getTractos();
 
   }
@@ -271,7 +271,7 @@ export class BitacoraViajeComponent implements OnInit {
       this.mesSeleccionado = 9;
     }
 
-    console.log(this.mesSeleccionado)
+    ////console.log(this.mesSeleccionado)
 
     this.getTractos();
 
@@ -281,7 +281,7 @@ export class BitacoraViajeComponent implements OnInit {
     this.udnPush = [];
     this.udnSeleccionado = e.value; 
     // this.udnPush.push(e.value);
-    // console.log(this.udnPush)
+    // ////console.log(this.udnPush)
 
       this.getTractos();
  
@@ -467,7 +467,7 @@ export class BitacoraViajeComponent implements OnInit {
     var gridCell = e.gridCell;
 
     if (gridCell.rowType === 'data') {
-     // console.log(e)
+     // ////console.log(e)
 
       if(gridCell.data.tipo === "CARGADO"){
         if (e.gridCell.column.dataField == "tipo" || e.gridCell.column.dataField == "vcNo" || e.gridCell.column.dataField == "vC1" || e.gridCell.column.dataField == "vCh1" 
@@ -548,7 +548,7 @@ export class BitacoraViajeComponent implements OnInit {
 
     if (e.rowType == 'groupFooter'){
 
-      // console.log(e.summaryCells)
+      // ////console.log(e.summaryCells)
       totalXTractos.disponible = e.summaryCells[3][0]?.value;
       totalXTractos.operadores = e.summaryCells[5][0]?.value;
       totalXTractos.variacion = e.summaryCells[7][0]?.value;
@@ -560,7 +560,7 @@ export class BitacoraViajeComponent implements OnInit {
       totalXTractos.faltaDocumento = e.summaryCells[19][0]?.value;
       totalXTractos.corralon = e.summaryCells[21][0]?.value;
       totalXTractos.total = e.summaryCells[23][0]?.value;
-      // console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
+      // ////console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
 
       totalOpeT.totalDisponible = totalXTractos.disponible / totalXTractos.total;
       totalOpeT.totalOperadores = totalXTractos.operadores / totalXTractos.total;
@@ -574,7 +574,7 @@ export class BitacoraViajeComponent implements OnInit {
       totalOpeT.totalCorralon = totalXTractos.corralon / totalXTractos.total;
       
    
-      // console.log("2 ==> "+totalOperacion.totalDisponiblePor)
+      // ////console.log("2 ==> "+totalOperacion.totalDisponiblePor)
 
 
       e.summaryCells[4][0].value = totalOpeT.totalDisponible; 
@@ -587,7 +587,7 @@ export class BitacoraViajeComponent implements OnInit {
       e.summaryCells[18][0].value = totalOpeT.totalRobo;
       e.summaryCells[20][0].value = totalOpeT.totalFaltaDocumento;
       e.summaryCells[22][0].value = totalOpeT.totalCorralon;
-      // console.log("4 ==> "+e.summaryCells[3][0].value) 
+      // ////console.log("4 ==> "+e.summaryCells[3][0].value) 
     }
 
     if (e.rowType == 'totalFooter') {
@@ -638,7 +638,7 @@ export class BitacoraViajeComponent implements OnInit {
     if (e.rowType == 'totalFooter') {
    
       e.totalItem.cells.forEach((c: any) => {
-        // console.log(c.totalItem.summaryCells)
+        // //console.log(c.totalItem.summaryCells)
         totalXT.disponible = c.totalItem.summaryCells[3][0].value;
         totalXT.operadores = c.totalItem.summaryCells[5][0].value;
         totalXT.variacion = c.totalItem.summaryCells[7][0].value;
@@ -749,7 +749,7 @@ export class BitacoraViajeComponent implements OnInit {
       totalXRemolques.noDisponibles = e.summaryCells[13][0]?.value;
       totalXRemolques.total = e.summaryCells[15][0]?.value;
       
-      // console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
+      // //console.log("1 ==> "+totalXDisponibilidad.disponiblePor)
 
       totalOpeR.totalTotalUds = totalXRemolques.totalUds / totalXRemolques.total;
       totalOpeR.totalDisponibilidad = totalXRemolques.disponibilidad / totalXRemolques.total;
@@ -759,7 +759,7 @@ export class BitacoraViajeComponent implements OnInit {
       totalOpeR.totalNoDisponibles = totalXRemolques.noDisponibles / totalXRemolques.total;
       
    
-      // console.log("2 ==> "+totalOperacion.totalDisponiblePor)
+      // //console.log("2 ==> "+totalOperacion.totalDisponiblePor)
 
 
       e.summaryCells[4][0].value = totalOpeR.totalTotalUds; 
@@ -768,7 +768,7 @@ export class BitacoraViajeComponent implements OnInit {
       e.summaryCells[10][0].value = totalOpeR.totalTaller;
       e.summaryCells[12][0].value = totalOpeR.totalSiniestrado;
       e.summaryCells[14][0].value = totalOpeR.totalNoDisponibles;
-      // console.log("4 ==> "+e.summaryCells[3][0].value) 
+      // //console.log("4 ==> "+e.summaryCells[3][0].value) 
     }
 
     if (e.rowType == 'totalFooter') {
@@ -809,7 +809,7 @@ export class BitacoraViajeComponent implements OnInit {
     if (e.rowType == 'totalFooter') {
    
       e.totalItem.cells.forEach((c: any) => {
-        // console.log(c.totalItem.summaryCells)
+        // //console.log(c.totalItem.summaryCells)
         totalXR.totalUds = c.totalItem.summaryCells[3][0].value;
         totalXR.disponibilidad = c.totalItem.summaryCells[5][0].value;
         totalXR.variacion = c.totalItem.summaryCells[7][0].value;
@@ -846,7 +846,7 @@ export class BitacoraViajeComponent implements OnInit {
   onRowPreparedTractos(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
+      ////console.log(e.summaryCells)
       // this.graficaModel = [
       //   {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
       //   {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
@@ -886,7 +886,7 @@ export class BitacoraViajeComponent implements OnInit {
   onRowPreparedOperador(e: any) {
 
     if (e.rowType == 'totalFooter') {
-      //console.log(e.summaryCells)
+      ////console.log(e.summaryCells)
       // this.graficaModel = [
       //   {mes: "ENERO", total: e.summaryCells[2][0].value, presupuesto: e.summaryCells[3][0].value},
       //   {mes: "FEBRERO", total: e.summaryCells[4][0].value, presupuesto: e.summaryCells[5][0].value},
@@ -1195,7 +1195,7 @@ export class BitacoraViajeComponent implements OnInit {
     let idOperador = value.data.id_personal; 
     this.disponibilidadService.getOperador(idOperador).subscribe(data =>{
       this.operadorDetalle = data.data;
-      // console.log(this.operadorDetalle)
+      // //console.log(this.operadorDetalle)
 
       this.openModalOperador = true;
     })
@@ -1205,7 +1205,7 @@ export class BitacoraViajeComponent implements OnInit {
     let idUnidad = value.data.tracto; 
     this.disponibilidadService.getUTracto(idUnidad).subscribe(data =>{
       this.unidadDetalle = data.data;
-      console.log(this.unidadDetalle)
+      //console.log(this.unidadDetalle)
 
       this.openModalUnidades = true;
     })
@@ -1235,10 +1235,10 @@ export class BitacoraViajeComponent implements OnInit {
   }
 
   customizeExportData(cols, rows) {
-    //console.log(cols)
+    ////console.log(cols)
     rows.forEach((row: any) => {
 
-      //console.log(row)
+      ////console.log(row)
       if (row.rowType == "groupFooter") {
 
 
@@ -1312,6 +1312,6 @@ export class BitacoraViajeComponent implements OnInit {
   }
 
   dateBixInicio(value) {
-    console.log(value)
+    //console.log(value)
   }
 }

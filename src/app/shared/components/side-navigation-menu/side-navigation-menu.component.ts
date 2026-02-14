@@ -7,6 +7,7 @@ import * as events from 'devextreme/events';
 import { StorageService } from '../../services/storage.service';
 import { Claves } from '../../models/menu/menu.model';
 import notify from 'devextreme/ui/notify';
+import { DatosOperadorService } from 'src/app/services/datosOperador/datosOperador.service';
 
 //const menuTest = [];
 
@@ -65,10 +66,11 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private elementRef: ElementRef,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private datosOpService: DatosOperadorService
   ) {
     this.idGrupo24 = this.storageService.getSession("idValidation")
-    console.log("1 "+ this.idGrupo24)
+    //console.log("1 "+ this.idGrupo24)
 
     this.permisosUser = this.storageService.getSession('permisos')
   }
@@ -117,7 +119,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   onItemClick(event: ItemClickEvent) {
     let permiso = true;
-    console.log("Evento click del menu:  ",event);
+    //console.log("Evento click del menu:  ",event);
 
     this.permisosUser.forEach((c: any) => {
       if(c.clave == event.itemData.path && c.activo == false){
@@ -133,6 +135,11 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
         }, 'error', 4000);
       }
       
+
+      if(c.clave == event.itemData.path && c.activo == true){
+        //console.log("Entro en la pantalla")
+        this.postBitacora(event.itemData.text)
+      }
     })
 
       if(permiso){
@@ -149,6 +156,15 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     events.off(this.elementRef.nativeElement, 'dxclick');
+  }
+
+  postBitacora(nomPantalla){
+    let nombreArch = "";
+    let otros = ""
+    let cvetra = this.storageService.getSession("username")
+    this.datosOpService.postBitacora(nomPantalla, cvetra, nombreArch, otros).subscribe(data =>{
+      console.log(data)
+    })
   }
 }
 
