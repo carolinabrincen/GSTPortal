@@ -10,6 +10,8 @@ import { UltimoStatusService } from 'src/app/services/ultimoStatus/ultimoStatus.
 import { NgZone } from '@angular/core';
 import { UltimoStausModel, NewResOp } from 'src/app/shared/models/ultimoStatus/ultimoStatus';
 
+import * as L from 'leaflet';
+
 @Component({
   selector: 'app-ultimoStatus',
   templateUrl: './ultimoStatus.component.html',
@@ -18,6 +20,7 @@ import { UltimoStausModel, NewResOp } from 'src/app/shared/models/ultimoStatus/u
 export class UltimoStatusComponent implements OnInit {
 
   private _user: IUser | null = null;
+   private map;
 
   intervalId: any;
   viajesCargados: any[] = [];
@@ -68,6 +71,7 @@ export class UltimoStatusComponent implements OnInit {
   modViajeC: boolean = false;
   modViajeV: boolean = false;
   modSinV: boolean = false;
+  modMapa: boolean = false;
 
   tiempoTotal: string= ""
 
@@ -266,6 +270,73 @@ export class UltimoStatusComponent implements OnInit {
     
   }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
+  private initMap(): void {
+
+  this.map = L.map('map', {
+    center: [ 19.7547562,-95.6449205],
+    zoom: 7,
+    minZoom: 5,
+    //maxZoom :14
+    
+  });
+
+  const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+  {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  });
+
+  tiles.addTo(this.map);
+  // this.map.pm.addControls({
+  //   position: 'topleft',
+  //   drawCircle: false,
+  //   drawCircleMarker: false,
+  //   drawRectangle: false,
+  //   drawPolyline: false,
+  //   drawMarker: false,
+  //   dragend: false,
+  //   edit: {
+  //     featureGroup: drawnItems
+  //   },
+  
+  // });
+
+  var drawnItems = new L.FeatureGroup();
+  this.map.addLayer(drawnItems);
+
+  // get json
+  var json = drawnItems.toGeoJSON();
+
+  //alert("print test json"+json);
+  this.map.on("pm:create", e => {
+    
+    //console.log(e.shape);
+    //console.log(e);
+    this.map.addLayer(e.layer);
+    
+    
+  });
+
+  this.map.invalidateSize();
+
+// this.map.on('pm:drawstart', ({ workingLayer }) => {
+//   workingLayer.on('pm:vertexadded', e => {
+//   this.polygono = e.workingLayer._latlngs;
+//   this._storage.setLocal("key_poligono", this.polygono);
+//   this.mypolygono = JSON.stringify(this._storage.getLocal("key_poligono"));
+//   //console.log("this my print poligon"+this.mypolygono);
+
+//   return this.mypolygono;
+// });
+// });
+
+}
+
+
   // //#region :::: GETTERS ::::
   getUltmoSta() {
 
@@ -275,7 +346,7 @@ export class UltimoStatusComponent implements OnInit {
       let totalOp = 0;
       let newResumen = [];
 
-      console.log(res.data)
+    //  console.log(res.data)
       this.viajesCargados = res?.data?.enViajeCargado.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.viajesVacios = res?.data?.enViajeVacio.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
       this.enEsperaViaje = res?.data?.esperaViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));
@@ -386,7 +457,7 @@ export class UltimoStatusComponent implements OnInit {
 
     this.ultimoStService.getDetalleViaje(this.myudnV, this.getVC.noviaje).subscribe(res => {
       this.detalleVC = res?.data?.bitacoraPorViaje.sort((a, b) => (a.f_ini_status < b.f_ini_status ? -1 : 1));;
-       console.log(res.data)
+    //   console.log(res.data)
       this.tiempoTotal = res?.data?.tiempoTotal;
       this.loadingVisible = false;
     });
@@ -487,7 +558,7 @@ export class UltimoStatusComponent implements OnInit {
   };
 
     this.getVC = data.row.data;
-    console.log(this.getVC);
+  //  console.log(this.getVC);
 
     if(this.getVC !== undefined){
       this.loadingVisible = true;
@@ -538,7 +609,7 @@ export class UltimoStatusComponent implements OnInit {
 
   }
 
-    buttonVerSV(data){
+  buttonVerSV(data){
       this.myudnSV = 0;
     this.detalleSV = []
 
@@ -582,6 +653,16 @@ export class UltimoStatusComponent implements OnInit {
 
   }
 
+  openMapa(value){
+    console.log(value.data)
+    this.modMapa = true;
+  }
+
+  openModal(): void {
+  const dialog = document.getElementById("myDialog") as HTMLDialogElement;
+  dialog.showModal();
+  }
+
   getViajesCargados(value: any){
 
   }
@@ -593,7 +674,7 @@ export class UltimoStatusComponent implements OnInit {
       this.loadingVisible = true;
       
       if (this.intervalId) {
-        console.log("INTERVAL ID: " + this.intervalId);
+        //console.log("INTERVAL ID: " + this.intervalId);
         clearInterval(this.intervalId);
       }
   
@@ -693,7 +774,7 @@ export class UltimoStatusComponent implements OnInit {
           c.cellElement.style.color = "#000000" 
           c.cellElement.style.background = "white"
           
-          console.log(c)
+          //console.log(c)
           if(c.columnIndex == 2){
             c.cellElement.style.background = "#a9d08e";
             c.cellElement.style.fontSize = "12px";
@@ -849,7 +930,7 @@ export class UltimoStatusComponent implements OnInit {
       
       if(gridCell.column.dataField == 'clasificacion'){
       if(gridCell.data.clasificacion == "12 Hrs." ){
-        console.log(e)
+      //  console.log(e)
         e.backgroundColor = "#a9d08e";
         e.fontWeight = "bolder"  
         e.font = {bold: true}
@@ -970,7 +1051,7 @@ export class UltimoStatusComponent implements OnInit {
       
       if(gridCell.column.dataField == 'clasificacion'){
       if(gridCell.data.clasificacion == "12 Hrs." ){
-        console.log(e)
+      //  console.log(e)
         e.backgroundColor = "#a9d08e";
         e.fontWeight = "bolder"  
         e.font = {bold: true}
@@ -1074,7 +1155,7 @@ export class UltimoStatusComponent implements OnInit {
       
       if(gridCell.column.dataField == 'clasificacion'){
       if(gridCell.data.clasificacion == "12 Hrs." ){
-        console.log(e)
+      //  console.log(e)
         e.backgroundColor = "#a9d08e";
         e.fontWeight = "bolder"  
         e.font = {bold: true}
@@ -1174,6 +1255,7 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
+  onCellPreparedSV(e){}
 
    onRowPreparedTaller(e){
 
@@ -1332,8 +1414,7 @@ export class UltimoStatusComponent implements OnInit {
     });
   }
   }
-  onCellPreparedSV(e){
-  }
+
 
    onCellPreparedTaller(e){
   }
@@ -1343,7 +1424,7 @@ export class UltimoStatusComponent implements OnInit {
       
       if(gridCell.column.dataField == 'clasificacion'){
       if(gridCell.data.clasificacion == "12 Hrs." ){
-        console.log(e)
+      //  console.log(e)
         e.backgroundColor = "#a9d08e";
         e.fontWeight = "bolder"  
         e.font = {bold: true}
@@ -1432,7 +1513,7 @@ export class UltimoStatusComponent implements OnInit {
       
       if(gridCell.column.dataField == 'clasificacion'){
       if(gridCell.data.clasificacion == "12 Hrs." ){
-        console.log(e)
+      //  console.log(e)
         e.backgroundColor = "#a9d08e";
         e.fontWeight = "bolder"  
         e.font = {bold: true}

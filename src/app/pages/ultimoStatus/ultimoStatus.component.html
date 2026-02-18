@@ -228,6 +228,7 @@
             <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="40" [fixed]="true" cellTemplate="mapa"></dxi-column>
 
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
@@ -247,6 +248,9 @@
     
                 <div *dxTemplate="let data of 'headerVer'">
                     <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="buttonVer(data)"></dx-button>
+                </div>
+                <div *dxTemplate="let data of 'mapa'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
                 </div>
             <dxo-summary [calculateCustomSummary]="calcularPorcentajes"> 
                 <dxi-group-item column="fake" [alignByColumn]="true"></dxi-group-item>
@@ -315,6 +319,7 @@
                     <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
                     <dxi-column dataField="cliente" caption="Cliente" [width]="200"></dxi-column> 
                     <dxi-column dataField="ruta" caption="Ruta" [width]="350"></dxi-column>
+                    <dxi-column dataField="ciclo" caption="Ult. Status" [width]="120"></dxi-column>
                 </dxi-column>
                 <dxi-column caption="Último Viaje" alignment="center">
                     <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
@@ -357,6 +362,7 @@
                 <!-- <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
+                <dxi-column dataField="ciclo" caption="Ult. Status" [width]="120"></dxi-column>
                 <!-- <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column> -->
                 <!-- <dxi-column dataField="remitente" caption="Remitente" [width]="250"></dxi-column> -->
                 <!-- <dxi-column dataField="destinatario" caption="Destinatario" [width]="200"></dxi-column> -->
@@ -497,6 +503,8 @@
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
             </dx-data-grid>
         </dxi-item>
+
+
     </dx-tab-panel>
 
 
@@ -855,6 +863,29 @@
             </dx-scroll-view>
         </div>
     </dx-popup>
+
+    <!--===========================================MODAL MAPA=====================================================-->
+    <dx-popup width="100%" height="100%" [showTitle]="true" title="Mapa" [dragEnabled]="false" [closeOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [deferRendering]="false" [(visible)]="modMapa">
+        <div *dxTemplate="let data of 'content'">
+            <dx-scroll-view width="100%" height="100%">
+               <dxi-item>
+                    <p>Inicio</p>
+                    <div id="map" class="map"></div>
+                    <p>Fin</p>
+                </dxi-item>
+                
+               
+            </dx-scroll-view>
+        </div>
+    </dx-popup>
+
+    <dialog id="myDialog">
+        <h2>Modal Title</h2>
+        <p>This is the content of the modal.</p>
+            
+            <div id="map" class="map"></div>
+        <!-- <button onclick="closeModal()">Close</button> -->
+    </dialog>
         <!-- LOAD PANEL -->
     <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [position]="{ of: '#rentCont2' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
     </dx-load-panel>

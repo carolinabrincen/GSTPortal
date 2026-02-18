@@ -24,7 +24,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { DxoValueAxisModule } from 'devextreme-angular/ui/nested';
   import { DxRangeSelectorModule } from 'devextreme-angular/ui/range-selector';
   import { PdfViewerModule } from 'ng2-pdf-viewer';
-  //import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+  // import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   
 
   import { RentContComponent } from './pages/rent-cont/rent-cont.component';
@@ -77,6 +77,7 @@ import { DxDataGridModule, DxFormModule, DxSelectBoxModule, DxButtonModule, DxDr
   import { DatosOperadorComponent } from './pages/datosOperador/datosOperador.component';
   import { PreviewPDFComponent } from './pages/previewPDF/previewPDF.component';
   import { DocumentacionOperadorComponent } from './pages/documentacionOperador/documentacionOperador.component';
+  import { MapaComponent } from './components/utils/mapa/mapa.component';
 
 const routes: Routes = [
   {
@@ -398,7 +399,7 @@ const routes: Routes = [
     DxoValueAxisModule,
     DxRangeSelectorModule,
     PdfViewerModule,
-    //LeafletModule
+    // LeafletModule
     
   ],
   // schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -459,7 +460,8 @@ const routes: Routes = [
     UltimoStatusComponent,
     DatosOperadorComponent,
     PreviewPDFComponent,
-    DocumentacionOperadorComponent
+    DocumentacionOperadorComponent,
+    MapaComponent
   ]
 })
 export class AppRoutingModule { }
