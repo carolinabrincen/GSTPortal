@@ -228,7 +228,7 @@
             <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
-                <dxi-column [width]="40" [fixed]="true" cellTemplate="mapa"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapa" alignment="center"></dxi-column>
 
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
@@ -275,6 +275,7 @@
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapaVV" alignment="center"></dxi-column>
 
                 <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
                 <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column>
@@ -293,6 +294,10 @@
                     <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="buttonVerVV(data)"></dx-button>
                 </div>
                
+                <div *dxTemplate="let data of 'mapaVV'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
+                </div>
+
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
             </dx-data-grid>
@@ -312,6 +317,7 @@
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapaPV" alignment="center"></dxi-column>
 
                 <dxi-column caption="Próximo Viaje Programado" alignment="center">
                     <dxi-column dataField="despacho" caption="Fecha Prog." [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
@@ -319,11 +325,11 @@
                     <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
                     <dxi-column dataField="cliente" caption="Cliente" [width]="200"></dxi-column> 
                     <dxi-column dataField="ruta" caption="Ruta" [width]="350"></dxi-column>
-                    <dxi-column dataField="ciclo" caption="Ult. Status" [width]="120"></dxi-column>
                 </dxi-column>
                 <dxi-column caption="Último Viaje" alignment="center">
+                    <dxi-column dataField="ciclo" caption="Ult. Status"></dxi-column>
                     <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" alignment="center"></dxi-column>
-                    <dxi-column dataField="f_ini_status" caption="Fin Viaje" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+                    <dxi-column dataField="f_ini_status" caption="Fin Ult. Status" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
                 </dxi-column>
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
                 <!-- <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column> -->
@@ -335,6 +341,10 @@
                 <!-- <div *dxTemplate="let data of 'headerVerVV'">
                     <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="buttonVerEV(data)"></dx-button>
                 </div> -->
+
+                <div *dxTemplate="let data of 'mapaPV'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
+                </div>
                
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -356,14 +366,14 @@
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <!-- <dxi-column dataField="noviaje" caption="No Viaje" [width]="110" [fixed]="true" alignment="center"></dxi-column> -->
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapaSV" alignment="center"></dxi-column>
 
                 <dxi-column dataField="destino" caption="Destino" [width]="150" alignment="center"></dxi-column>
                 <!-- <dxi-column dataField="periodo" caption="Periodo" [width]="110" alignment="center"></dxi-column> -->
                 <!-- <dxi-column dataField="despacho" caption="Despacho" [width]="110" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
-                <dxi-column dataField="ciclo" caption="Ult. Status" [width]="120"></dxi-column>
-                <!-- <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column> -->
+                <dxi-column dataField="ciclo" caption="Ult. Status" ></dxi-column>                <!-- <dxi-column dataField="cliente" caption="Cliente" [width]="250"></dxi-column> -->
                 <!-- <dxi-column dataField="remitente" caption="Remitente" [width]="250"></dxi-column> -->
                 <!-- <dxi-column dataField="destinatario" caption="Destinatario" [width]="200"></dxi-column> -->
                 <!-- <dxi-column dataField="ruta" caption="Ruta" [width]="200"></dxi-column> -->
@@ -371,12 +381,16 @@
                 <!-- <dxi-column dataField="nombre_status_viaje" caption="Status" [width]="200"></dxi-column> -->
                 <!-- <dxi-column dataField="id_usuario" caption="Usuario" [width]="150"></dxi-column> -->
                 <!-- <dxi-column dataField="f_ini_status" caption="Inicio" [width]="200" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column> -->
-                <dxi-column dataField="finViaje" caption="Fin Ult. Viaje" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
+                <dxi-column dataField="finViaje" caption="Fin Ult. Status" [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
                 <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="60" cellTemplate="headerVerSV"></dxi-column>
     
                 <div *dxTemplate="let data of 'headerVerSV'">
                     <dx-button icon="search" stylingMode="outlined" type="danger" (onClick)="buttonVerSV(data)"></dx-button>
+                </div>
+
+                <div *dxTemplate="let data of 'mapaSV'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
                 </div>
                
                  <dxo-group-panel [visible]="false"></dxo-group-panel>
@@ -398,6 +412,7 @@
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapaEP" alignment="center"></dxi-column>
 
                <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
                 <dxi-column dataField="operador" caption="Operador" [width]="250"></dxi-column>
@@ -416,7 +431,9 @@
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
                 <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="60" ></dxi-column>
     
-                
+                <div *dxTemplate="let data of 'mapaEP'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
+                </div>
                
                  <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -436,8 +453,8 @@
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapaT" alignment="center"></dxi-column>
 
-               
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>
                 <dxi-column dataField="ordenMttoInicio" caption="Inicio Mtto." [width]="150" dataType="date" format="dd/MM/yyyy HH:mm:ss"></dxi-column>
                 <dxi-column dataField="destino" caption="Destino" [width]="150" alignment="center"></dxi-column>
@@ -458,7 +475,9 @@
                 <dxi-column dataField="tiempo" caption="Tiempo" [width]="150" [fixed]="true" fixedPosition="right" alignment="right"></dxi-column>
                 <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="30" ></dxi-column>
     
-                
+                <div *dxTemplate="let data of 'mapaT'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
+                </div>
                
                  <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
@@ -478,6 +497,7 @@
                 <dxi-column dataField="udN" caption="UdN" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="clasificacion" caption="Clasificación" [width]="140" [fixed]="true" alignment="center"></dxi-column>
                 <dxi-column dataField="tracto" caption="Tracto" [width]="110" [fixed]="true" alignment="center"></dxi-column>
+                <dxi-column [width]="50" [fixed]="true" cellTemplate="mapa" alignment="center"></dxi-column>
 
                 <dxi-column dataField="operacion" caption="Operación" [width]="200"></dxi-column>   
                 <dxi-column dataField="destino" caption="Destino" [width]="150" alignment="center"></dxi-column>
@@ -497,7 +517,9 @@
                 
                 <dxi-column dataField="" caption="" [fixed]="true" fixedPosition="right" [width]="30" ></dxi-column>
     
-                
+                <div *dxTemplate="let data of 'mapa'">
+                    <dx-button icon="map" stylingMode="outlined" type="success" (onClick)="openMapa(data)"></dx-button>
+                </div>
                
                  <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>

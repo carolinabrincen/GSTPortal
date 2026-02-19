@@ -11,6 +11,7 @@ import { NgZone } from '@angular/core';
 import { UltimoStausModel, NewResOp } from 'src/app/shared/models/ultimoStatus/ultimoStatus';
 
 import * as L from 'leaflet';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-ultimoStatus',
@@ -667,18 +668,31 @@ export class UltimoStatusComponent implements OnInit {
 
     this.loadingVisible = true;
     this.ultimoStService.getLatLong(value.data.tracto).subscribe(data => {
-       latitud = data.data.poslat;
-       longitud = data.data.poslon;
-       detalle = data.data;
-      console.log(detalle.posicion, ' ', latitud, ' ', longitud)
-      setTimeout(() => {
-        this.map.invalidateSize()
-        this.markerGroup = L.layerGroup().addTo(this.map);
-        L.marker([latitud, longitud]).bindTooltip(detalle.posicion,{permanent: true, direction: 'top'}).addTo(this.markerGroup);
-        this.map.flyTo([latitud, longitud], 10);
-      },1 );
+       latitud = data?.data?.poslat;
+       longitud = data?.data?.poslon;
+       detalle = data?.data;
+        console.log(data)
+       if(data.data !== null){
+        console.log("ENTRE")
+        setTimeout(() => {
+          this.map.invalidateSize()
+          this.markerGroup = L.layerGroup().addTo(this.map);
+          L.marker([latitud, longitud]).bindTooltip(detalle.posicion,{permanent: true, direction: 'top'}).addTo(this.markerGroup);
+          this.map.flyTo([latitud, longitud], 10);
+        },1 );
 
-      this.modMapa = true;
+        this.modMapa = true;
+      }else if(data.data == null){
+                console.log("ENTRE else")
+        notify({
+                message: "No hay posición",
+                position: {
+                  my: 'center center',
+                  at: 'center center',
+                },
+              }, 'warning', 3000);
+      }
+      
       this.loadingVisible = false;
     })
 
