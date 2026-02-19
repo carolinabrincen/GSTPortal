@@ -675,6 +675,7 @@ export class UltimoStatusComponent implements OnInit {
         this.map.invalidateSize()
         this.markerGroup = L.layerGroup().addTo(this.map);
         L.marker([latitud, longitud]).bindTooltip(detalle.posicion,{permanent: true, direction: 'top'}).addTo(this.markerGroup);
+        this.map.flyTo([latitud, longitud], 10);
       },1 );
 
       this.modMapa = true;
