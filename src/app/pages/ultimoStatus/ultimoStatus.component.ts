@@ -34,6 +34,7 @@ export class UltimoStatusComponent implements OnInit {
   detalleVC: any[] = [];
   detalleVV: any[] = [];
   detalleSV: any[] = [];
+  
   disponible: any;
   noDisponible: any;
 
@@ -83,6 +84,8 @@ export class UltimoStatusComponent implements OnInit {
   totalPatio : number = 0;
   totalTaller : number = 0;
   totalSiniesto : number = 0;
+
+  markerGroup: any;
 
   myudnV = 0;
   myudnVV = 0;
@@ -277,10 +280,10 @@ export class UltimoStatusComponent implements OnInit {
   private initMap(): void {
 
   this.map = L.map('map', {
-    center: [ 19.7547562,-95.6449205],
-    zoom: 7,
+    center: [ 24.4545022,-100.9452497],
+    zoom: 5,
     minZoom: 5,
-    //maxZoom :14
+    //maxZoom :14,
     
   });
 
@@ -321,7 +324,6 @@ export class UltimoStatusComponent implements OnInit {
     
   });
 
-  this.map.invalidateSize();
 
 // this.map.on('pm:drawstart', ({ workingLayer }) => {
 //   workingLayer.on('pm:vertexadded', e => {
@@ -654,8 +656,32 @@ export class UltimoStatusComponent implements OnInit {
   }
 
   openMapa(value){
-    console.log(value.data)
-    this.modMapa = true;
+    let latitud = 0;
+    let longitud = 0;
+    let detalle = undefined;
+
+    if (this.map.hasLayer(this.markerGroup)) {
+      this.map.removeLayer(this.markerGroup);
+      this.markerGroup.clearLayers();
+    }
+
+    this.loadingVisible = true;
+    this.ultimoStService.getLatLong(value.data.tracto).subscribe(data => {
+       latitud = data.data.poslat;
+       longitud = data.data.poslon;
+       detalle = data.data;
+      console.log(detalle.posicion, ' ', latitud, ' ', longitud)
+      setTimeout(() => {
+        this.map.invalidateSize()
+        this.markerGroup = L.layerGroup().addTo(this.map);
+        L.marker([latitud, longitud]).bindTooltip(detalle.posicion,{permanent: true, direction: 'top'}).addTo(this.markerGroup);
+      },1 );
+
+      this.modMapa = true;
+      this.loadingVisible = false;
+    })
+
+    
   }
 
   openModal(): void {

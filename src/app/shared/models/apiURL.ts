@@ -176,5 +176,6 @@ export enum API_URLS{
     GET_ULTIMO_STATUS ='api/Disponibilidad/GetStUltViaje/',
     GET_DETALLE_VIAJE = 'api/Disponibilidad/GetUltStBitPorViaje/',
     GET_DATOS_OPERADOR = 'api/Disponibilidad/GetOperadores/',
+    GET_ULTIMA_POSICION = 'api/Disponibilidad/GetUltimaPosicion/',
     GET_PDF = 'api/Disponibilidad/GetPDF/',
 }

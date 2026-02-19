@@ -56,6 +56,10 @@ export class UltimoStatusService extends AbstractManagerService {
     return this.get<any>(this.API_URL + API_URLS.GET_DETALLE_VIAJE+idArea+'/'+noViaje, this.httpOptions);
   }
 
+  getLatLong(tracto: number) {
+    return this.get<any>(this.API_URL + API_URLS.GET_ULTIMA_POSICION+tracto, this.httpOptions);
+  }
+
   postAprobarCotizacion(idCotizacion: number) {
     const cotizacion = {
       idCotizacion: idCotizacion,
