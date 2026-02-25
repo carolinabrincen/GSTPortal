@@ -107,6 +107,21 @@ export class disponibilidadMensualComponent implements OnInit {
     {id: 11, operacion: 'TOLVA GRANEL'},
   ];
 
+  estadoTracto: any[] = [
+    {siglas: 'TC', estado: 'TC - Tránsito Cargado', color:'#70ad46'},
+    {siglas: 'TV', estado: 'TV - Tránsito Vacío', color:'#aad08d'},
+    {siglas: 'AU', estado: 'AU - Auxilio', color:'#c7dfb3'},
+    {siglas: 'PR', estado: 'PR - Progranado Para Viaje', color:'#4572c6'},
+    {siglas: 'TD', estado: 'TD - Espera Viaje', color:'#9bc1e7'},
+    {siglas: 'PA', estado: 'PA - Patio Sin Operador', color:'#9cc1e5'},
+    {siglas: 'TT', estado: 'TT - Taller', color:'#ffd963'},
+    {siglas: 'DV', estado: 'DV - Descanso Vacaciones', color:'#bfbfbf'},
+    {siglas: 'IN', estado: 'IN - Incapacidad', color:'#bfbfbf'},
+    {siglas: 'TS', estado: 'TS - Siniestrado', color:'#a6a6a6'},
+    {siglas: 'BP', estado: 'BP - Baja Progamada', color:'#a6a6a6'},
+    
+  ]
+
   selectedMes: number = 0;
   selectedAnio: number = 0;  
 
@@ -116,6 +131,7 @@ export class disponibilidadMensualComponent implements OnInit {
   selectedStatus: number = 0;
   selectedOp: number = 0;
   selectedUdn: number = 0;
+  selectedFiltro: string = "";
 
 
   printUdn: string = "";
@@ -204,7 +220,7 @@ export class disponibilidadMensualComponent implements OnInit {
         {promedio: myOperador.promTotalT, value: 'Total'},
       ]  
         this.promedioOpMen = myPromedio;
-        console.log(this.graficaOperador)
+       // console.log(this.graficaOperador)
       
 
       // this.graficaOperador.push(response.data.graficaPastel);
@@ -217,9 +233,21 @@ export class disponibilidadMensualComponent implements OnInit {
 
   getTracto() {
     this.tractos = []
-    this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp).subscribe((response) => {
+    let siglas = ""
+    this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp, siglas).subscribe((response) => {
       this.tractos = response.data.mes;
-      //console.log(this.tractos)
+      console.log(this.tractos)
+      this.loadingVisible = false
+
+    });
+  }
+
+  getFiltro() {
+    this.tractos = []
+    
+    this.disponibilidadService.postTracto(this.selectedAnio, this.selectedMes, this.selectedUdn, this.selectedOp, this.selectedFiltro).subscribe((response) => {
+      this.tractos = response.data.mes;
+      console.log(this.tractos)
       this.loadingVisible = false
 
     });
@@ -246,6 +274,11 @@ export class disponibilidadMensualComponent implements OnInit {
   selectStatus(value: any) {
     this.selectedStatus = value.value;
     console.log(value)
+  }
+
+  selectFiltro(value: any) {
+    this.selectedFiltro = value.value;
+    console.log(this.selectedFiltro)
   }
 
   blurStatus(value: any) {
@@ -335,6 +368,14 @@ export class disponibilidadMensualComponent implements OnInit {
       //     },
       //   }, 'warning', 4000);
       // }
+  };
+  
+  buscarFiltro = (e: any) => {
+     if (this.selectedMes !== undefined && this.selectedAnio !== undefined && this.selectedUdn !== undefined && this.selectedOp !== undefined && this.selectedFiltro !== "") {
+      this.loadingVisible = true;
+      
+      this.getFiltro();
+     }
   };
 
   ngAfterViewInit() {

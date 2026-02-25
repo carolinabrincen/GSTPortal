@@ -194,7 +194,64 @@
             </div>
         </dxi-item>
         <dxi-item title="Tractos">
-                            <dx-data-grid #DM id="gridContainer1" [dataSource]="tractos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
+            <br>
+            <dx-responsive-box>
+                <!-- COLS -->
+                <!--Año-->
+                <dxi-col [ratio]=".1"></dxi-col>
+                <dxi-col [ratio]=".5"></dxi-col>
+                <!--vacia-->
+                <dxi-col [ratio]=".15"></dxi-col>
+                <!--Compañia-->
+                <dxi-col [ratio]=".30"></dxi-col>
+        
+                <!-- ROWS -->
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                 <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+                <dxi-row [ratio]="1"></dxi-row>
+        
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="0"></dxi-location>
+                    <dxi-location style="margin-top: 1rem" screen="xs sm" [row]="10" [col]="0" [colspan]="12"></dxi-location>
+                    <div>Estado Tracto:</div>
+                </dxi-item>
+        
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="1"></dxi-location>
+                    <dxi-location style="margin-top: 0.5rem" screen="xs sm" [row]="11" [col]="0" [colspan]="12"></dxi-location>
+                    <dx-select-box [dataSource]="estadoTracto" valueExpr="siglas" displayExpr="estado" itemTemplate="colorTemplate" (onValueChanged)="selectFiltro($event)">
+                            <div *dxTemplate="let data of 'colorTemplate'">
+                              <div [ngStyle]="{'background-color': data.color, 'height': '20px', 'width': '100%'}">
+                                {{data.estado}}
+                              </div>
+                            </div>
+                        </dx-select-box> 
+                </dxi-item>
+
+                <dxi-item>
+                    <dxi-location screen="md lg" [row]="0" [col]="3"></dxi-location>
+                    <dxi-location style="margin-top: .20rem" screen="xs sm" [row]="12" [col]="0" [colspan]="12"></dxi-location>
+                    <div>
+                        <dx-button stylingMode="contained" text="Filtrar" icon="search" type="normal" [width]="120" (onClick)="buscarFiltro($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+             
+            </dx-responsive-box>
+            <br>
+            <dx-data-grid #DM id="gridContainer1" [dataSource]="tractos" [height]="570" [showBorders]="true" [columnAutoWidth]="true"
                 (onRowPrepared)="onRowPreparedT($event)" (onCellPrepared)="onCellPreparedT($event)">
                 
                     <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
@@ -256,7 +313,7 @@
 
                 <dxo-group-panel [visible]="false"></dxo-group-panel>
                 <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-                </dx-data-grid>
+            </dx-data-grid>
         </dxi-item>
     </dx-tab-panel>    
 

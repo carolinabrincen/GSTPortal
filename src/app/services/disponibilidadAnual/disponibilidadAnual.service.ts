@@ -99,14 +99,15 @@ export class DisponibilidadAnualService extends AbstractManagerService {
     return this.post<any>((this.API_URL + API_URLS.POST_TIPO_OPERACION_OPERADOR), body, this.httpOptions);
   }
 
-  postTracto(anio: number, mes: number, idArea: number, idOperacion: number) {
+  postTracto(anio: number, mes: number, idArea: number, idOperacion: number, status: string) {
     let body = {
       anio: anio,
       mes: mes,
       idArea: idArea,
-      idOperacion: idOperacion
+      idOperacion: idOperacion,
+      status: status
     };
-    console.log(JSON.stringify(body))
+    console.log(body)
     return this.post<any>((this.API_URL + API_URLS.POST_TRACTO), body, this.httpOptions);
   }
 

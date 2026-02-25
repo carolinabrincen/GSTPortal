@@ -4949,19 +4949,19 @@ export class LiquidacionComponent implements OnInit {
 
 
   onRowPreparedPXD(e: any){
-    if(e.rowType == 'header'){
-      e.cells.forEach((c: any) => {
-
-        if (c.cellElement) {
-          if(c.columnIndex == 12 || c.columnIndex == 15
-          ){
-            c.cellElement.style.color = "#000000"
-            c.cellElement.style.fontSize = '15px'
-          }
-
-        }
-      })
-    }
+    //if(e.rowType == 'header'){
+    //  e.cells.forEach((c: any) => {
+//
+    //    if (c.cellElement) {
+    //      if(c.columnIndex == 1
+    //      ){
+    //        c.cellElement.style.color = "#000000"
+    //        c.cellElement.style.fontSize = '15px'
+    //      }
+//
+    //    }
+    //  })
+    //}
    if (e.rowType == 'data') {
 
     e.cells.forEach((c: any) => {
@@ -4975,7 +4975,7 @@ export class LiquidacionComponent implements OnInit {
 
       if (c.cellElement) {
         
-        if(c.columnIndex == 9){
+        if(c.columnIndex == 11){
 
           if (c.data.mes1 > 30000) {
             if(c.cellElement?.style !== undefined){
@@ -4996,7 +4996,7 @@ export class LiquidacionComponent implements OnInit {
             }
           }
         }
-        if(c.columnIndex == 10){
+        if(c.columnIndex == 14){
           if (c.data.mes2 > 30000) {
             if(c.cellElement?.style !== undefined){
               // c.cellElement.style.fontWeight = "bolder";
@@ -5016,7 +5016,7 @@ export class LiquidacionComponent implements OnInit {
             }
           }
         }
-        if(c.columnIndex == 11){
+        if(c.columnIndex == 17){
           if (c.data.mes3 > 30000) {
             if(c.cellElement?.style !== undefined){
               // c.cellElement.style.fontWeight = "bolder";
@@ -5036,7 +5036,7 @@ export class LiquidacionComponent implements OnInit {
             }
           }
         }
-        if(c.columnIndex == 12){
+        if(c.columnIndex == 18){
           c.cellElement.style.color = "#000000"
           c.cellElement.style.fontSize = '15px'
 
@@ -5060,7 +5060,7 @@ export class LiquidacionComponent implements OnInit {
           }
         }
 
-        if(c.columnIndex == 15){
+        if(c.columnIndex == 23){
           c.cellElement.style.color = "#000000"
           c.cellElement.style.fontSize = '15px'
           if (c.data.total > 30000) {

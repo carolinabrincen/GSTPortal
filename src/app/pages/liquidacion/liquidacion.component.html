@@ -63,9 +63,22 @@
             <dxi-column dataField="laborado" caption="Laborado"></dxi-column>
 
             <dxi-column caption="MESES ANTERIORES" alignment="center" cssClass="border-right2">
-            <dxi-column dataField="mes1" [caption]="titulosMes?.mes1" [format]="formatValue"></dxi-column>
-            <dxi-column dataField="mes2" [caption]="titulosMes?.mes2" [format]="formatValue"></dxi-column>
-            <dxi-column dataField="mes3" [caption]="titulosMes?.mes3" [format]="formatValue"></dxi-column>
+            <dxi-column [caption]="titulosMes?.mes1" cssClass="border-right" >
+              
+              <dxi-column dataField="mes1sueldo" caption="Sueldo" [format]="formatValue"></dxi-column>
+               <dxi-column dataField="mes1otros" caption="Otros" [format]="formatValue"></dxi-column>
+              <dxi-column dataField="mes1" caption="Total" [format]="formatValue" cssClass="border-right" ></dxi-column>
+            </dxi-column>
+            <dxi-column  [caption]="titulosMes?.mes2" cssClass="border-right" >
+                <dxi-column dataField="mes2sueldo" caption="Sueldo" [format]="formatValue"></dxi-column>
+               <dxi-column dataField="mes2otros" caption="Otros" [format]="formatValue"></dxi-column>
+              <dxi-column dataField="mes2" caption="Total" [format]="formatValue" cssClass="border-right"></dxi-column>
+            </dxi-column>
+            <dxi-column [caption]="titulosMes?.mes3" cssClass="border-right" >
+                <dxi-column dataField="mes3sueldo" caption="Sueldo" [format]="formatValue"></dxi-column>
+                <dxi-column dataField="mes3otros" caption="Otros" [format]="formatValue"></dxi-column>
+                <dxi-column dataField="mes3" caption="Total" [format]="formatValue"cssClass="border-right" ></dxi-column>
+            </dxi-column>
             </dxi-column>
             <dxi-column dataField="promedioMensual" caption="Promedio" cssClass="border-right" [format]="formatValue"></dxi-column>
 
@@ -82,9 +95,13 @@
               <dxi-column dataField="kmsVacios" caption="KMS Vacios"></dxi-column> -->
             <!-- </dxi-column> -->
 
-            <dxi-column [caption]="titulosMes?.mesActual" alignment="center" cssClass="border-right2">
-              <dxi-column dataField="liquidado" caption="Liquidado" [format]="formatValue"></dxi-column> 
-              <dxi-column dataField="noLiquidado" caption="No Liquidado" [format]="formatValue"></dxi-column>            
+            <dxi-column [caption]="titulosMes?.mesActual" alignment="center" cssClass="border-right">
+              <dxi-column  caption="Liquidado" cssClass="border-right" >
+                   <dxi-column dataField="liquidadoSueldo" caption="Sueldo" [format]="formatValue"></dxi-column> 
+                   <dxi-column dataField="liquidadoOtros" caption="Otros" [format]="formatValue"></dxi-column> 
+                  <dxi-column dataField="liquidado" caption="Total" [format]="formatValue" cssClass="border-right" ></dxi-column> 
+              </dxi-column> 
+              <dxi-column dataField="noLiquidado" caption="No Liquidado" cssClass="border-right" [format]="formatValue"></dxi-column>            
             </dxi-column>  
             <dxi-column dataField="total" caption="Total" cssClass="border-right" [format]="formatValue"></dxi-column>
             <dxi-column caption="Ver" cellTemplate="verTotal" alignment="center"></dxi-column>
@@ -109,8 +126,14 @@
             </div>
 
           <dxo-summary>
+            <dxi-group-item column="mes1sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes1otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="mes1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes2sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes2otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="mes2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes3sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="mes3otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="mes3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="promedioMensual" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
 
@@ -119,13 +142,21 @@
             <dxi-group-item column="semana3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="semana4" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="semana5" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="liquidadoSueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
+            <dxi-group-item column="liquidadoOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="liquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="noLiquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
             <dxi-group-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" [showInGroupFooter]="true" [alignByColumn]="true"></dxi-group-item>
 
 
+            <dxi-total-item column="mes1sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes1otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="mes1" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes2sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes2otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="mes2" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes3sueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="mes3otros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="mes3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="promedioMensual" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
 
@@ -134,6 +165,8 @@
             <dxi-total-item column="semana3" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="semana4" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="semana5" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="liquidadoSueldo" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
+            <dxi-total-item column="liquidadoOtros" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="liquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="noLiquidado" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
             <dxi-total-item column="total" summaryType="sum" displayFormat="{0}" [valueFormat]="formatValue" ></dxi-total-item>
