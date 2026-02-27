@@ -130,7 +130,7 @@ export class IngresosDetalladosComponent implements OnInit {
   ngOnInit(): void {
     this.getIDMDEnero2026();
     this.getIDMDFebrero2026();
-    // this.getIDMDMarzo2026();
+    this.getIDMDMarzo2026();
     // this.getIDMDAbril2026();
     // this.getIDMDMayo2026();
     // this.getIDMDJunio2026();
@@ -510,42 +510,33 @@ export class IngresosDetalladosComponent implements OnInit {
 
   /*=======================LLamadas GET 2026==========================*/
   getIDMDEnero2026(){
-    //this.loadingVisible = true;
+    this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualEne2026().subscribe(res => {
       this.arrIngresosEne2026 = res.data.resumen;
       this.arrDetalleEne2026 = res.data.detalle;
       //console.log(this.arrIngresosEne2026)
-      //this.loadingVisible = false;
+      this.loadingVisible = false;
     });
   }
-
   getIDMDFebrero2026(){
     //this.loadingVisible = true;
     this.ingresosService.getIngresosDetalladosMensualFeb2026().subscribe(res => {
       this.arrIngresosFeb2026 = res.data.resumen;
       this.arrDetalleFeb2026 = res.data.detalle;
-      console.log(this.arrIngresosFeb2026)
+      //console.log(this.arrIngresosFeb2026)
       //this.loadingVisible = false;
     });
   }
-  // getIDMDFebrero2026(){
-  // //  this.loadingVisible = true;
-  //   this.ingresosService.getIngresosDetalladosMensualFeb2026().subscribe(res => {
-  //     this.arrIngresosFeb2026 = res.data.resumen;
-  //     this.arrDetalleFeb2026 = res.data.detalle;
 
-  //   //  this.loadingVisible = false;
-  //   });
-  // }
-  // getIDMDMarzo2026(){
-  //  // this.loadingVisible = true;
-  //   this.ingresosService.getIngresosDetalladosMensualMar2026().subscribe(res => {
-  //     this.arrIngresosMar2026 = res.data.resumen;
-  //     this.arrDetalleMar2026 = res.data.detalle;
-  //     //console.log(this.arrIngresosMar2025)
-  //    // this.loadingVisible = false;
-  //   });
-  // }
+  getIDMDMarzo2026(){
+   // this.loadingVisible = true;
+    this.ingresosService.getIngresosDetalladosMensualMar2026().subscribe(res => {
+      this.arrIngresosMar2026 = res.data.resumen;
+      this.arrDetalleMar2026 = res.data.detalle;
+      console.log(this.arrIngresosMar2025)
+     // this.loadingVisible = false;
+    });
+  }
   // getIDMDAbril2026(){
   //   //this.loadingVisible = true;
   //   this.ingresosService.getIngresosDetalladosMensualAbr2026().subscribe(res => {

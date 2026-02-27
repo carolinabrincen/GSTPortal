@@ -46,7 +46,7 @@ export enum API_URLS{
     /*==================================2026===============================================================*/
     GET_INGRESOS_ANUALES_DETALLADO_enero2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202601/01',
     GET_INGRESOS_ANUALES_DETALLADO_febrero2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202602/02',
-    // GET_INGRESOS_ANUALES_DETALLADO_marzo2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202603/03',
+    GET_INGRESOS_ANUALES_DETALLADO_marzo2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202603/03',
     // GET_INGRESOS_ANUALES_DETALLADO_abril2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202604/04',
     // GET_INGRESOS_ANUALES_DETALLADO_mayo2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202605/05',
     // GET_INGRESOS_ANUALES_DETALLADO_junio2026 = 'api/Ingresos/IngresosAnualesDetalladoMensual202409/2026/202606/06',
